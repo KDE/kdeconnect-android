@@ -32,6 +32,7 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.kde.kdeconnect.Helpers.VideoUrlsHelper;
 import org.kde.kdeconnect.Helpers.VolumeHelperKt;
 import org.kde.kdeconnect.KdeConnect;
@@ -298,8 +299,11 @@ public class MprisNowPlayingFragment extends Fragment implements VolumeKeyListen
             //No player with that name found, just display "empty" data
             playerStatus = plugin.getEmptyPlayer();
         }
-        String song = playerStatus.getCurrentSong();
 
+        String song = playerStatus.getTitle();
+        if (!StringUtils.isEmpty(playerStatus.getArtist())) {
+            song += " - " + playerStatus.getArtist();
+        }
         if (!mprisControlBinding.nowPlayingTextview.getText().toString().equals(song)) {
             mprisControlBinding.nowPlayingTextview.setText(song);
         }

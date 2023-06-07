@@ -35,7 +35,6 @@ public class MprisPlugin extends Plugin {
     public class MprisPlayer {
         private String player = "";
         private boolean playing = false;
-        private String currentSong = "";
         private String title = "";
         private String artist = "";
         private String album = "";
@@ -57,10 +56,6 @@ public class MprisPlugin extends Plugin {
 
         MprisPlayer() {
             lastPositionTime = System.currentTimeMillis();
-        }
-
-        public String getCurrentSong() {
-            return currentSong;
         }
 
         public String getTitle() {
@@ -314,7 +309,6 @@ public class MprisPlugin extends Plugin {
         if (np.has("player")) {
             MprisPlayer playerStatus = players.get(np.getString("player"));
             if (playerStatus != null) {
-                playerStatus.currentSong = np.getString("nowPlaying", playerStatus.currentSong);
                 //Note: title, artist and album will not be available for all desktop clients
                 playerStatus.title = np.getString("title", playerStatus.title);
                 playerStatus.artist = np.getString("artist", playerStatus.artist);

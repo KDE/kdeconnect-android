@@ -285,12 +285,8 @@ public class MprisMediaSession implements
 
         MediaMetadataCompat.Builder metadata = new MediaMetadataCompat.Builder();
 
-        //Fallback because older KDE connect versions do not support getTitle()
-        if (!notificationPlayer.getTitle().isEmpty()) {
-            metadata.putString(MediaMetadataCompat.METADATA_KEY_TITLE, notificationPlayer.getTitle());
-        } else {
-            metadata.putString(MediaMetadataCompat.METADATA_KEY_TITLE, notificationPlayer.getCurrentSong());
-        }
+        metadata.putString(MediaMetadataCompat.METADATA_KEY_TITLE, notificationPlayer.getTitle());
+
         if (!notificationPlayer.getArtist().isEmpty()) {
             metadata.putString(MediaMetadataCompat.METADATA_KEY_AUTHOR, notificationPlayer.getArtist());
             metadata.putString(MediaMetadataCompat.METADATA_KEY_ARTIST, notificationPlayer.getArtist());
@@ -368,11 +364,8 @@ public class MprisMediaSession implements
                 .setVisibility(androidx.core.app.NotificationCompat.VISIBILITY_PUBLIC)
                 .setSubText(KdeConnect.getInstance().getDevice(notificationDevice).getName());
 
-        if (!notificationPlayer.getTitle().isEmpty()) {
-            notification.setContentTitle(notificationPlayer.getTitle());
-        } else {
-            notification.setContentTitle(notificationPlayer.getCurrentSong());
-        }
+        notification.setContentTitle(notificationPlayer.getTitle());
+
         //Only set the notification body text if we have an author and/or album
         if (!notificationPlayer.getArtist().isEmpty() && !notificationPlayer.getAlbum().isEmpty()) {
             notification.setContentText(notificationPlayer.getArtist() + " - " + notificationPlayer.getAlbum() + " (" + notificationPlayer.getPlayerName() + ")");

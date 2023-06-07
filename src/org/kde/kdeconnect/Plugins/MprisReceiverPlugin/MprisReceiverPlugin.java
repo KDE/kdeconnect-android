@@ -207,11 +207,6 @@ public class MprisReceiverPlugin extends Plugin {
     void sendMetadata(MprisReceiverPlayer player) {
         NetworkPacket np = new NetworkPacket(MprisReceiverPlugin.PACKET_TYPE_MPRIS);
         np.set("player", player.getName());
-        if (player.getArtist().isEmpty()) {
-            np.set("nowPlaying", player.getTitle());
-        } else {
-            np.set("nowPlaying", player.getArtist() + " - " + player.getTitle());
-        }
         np.set("title", player.getTitle());
         np.set("artist", player.getArtist());
         np.set("album", player.getAlbum());
