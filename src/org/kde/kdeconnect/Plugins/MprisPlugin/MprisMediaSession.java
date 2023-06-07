@@ -99,7 +99,9 @@ public class MprisMediaSession implements
 
         @Override
         public void onStop() {
-            notificationPlayer.stop();
+            if (notificationPlayer != null) {
+                notificationPlayer.stop();
+            }
         }
 
         @Override
