@@ -287,4 +287,5 @@
   <string name="alex_fiestas_task">კონტაქტების დამატების გაუმჯობესება</string>
   <string name="send_clipboard">ბუფერის გაგზავნა</string>
   <string name="tap_to_execute">ქმედების შესასრულებლად დაატყაპუნეთ</string>
+  <string name="plugin_stats">მოდულის სტატისტიკა</string>
 </resources>

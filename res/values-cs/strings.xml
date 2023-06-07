@@ -60,6 +60,8 @@
   <string name="mousepad_mouse_buttons_title">Zobrazit tlačítka myši</string>
   <string name="mousepad_acceleration_profile_settings_title">Nastavit akceleraci ukazatele</string>
   <string name="mousepad_scroll_direction_title">Obrácený směr posunu</string>
+  <string name="gyro_mouse_enabled_title">Povolit gyroskopickou myš</string>
+  <string name="gyro_mouse_sensitivity_title">Citlivost gyroskopu</string>
   <string-array name="mousepad_tap_entries">
     <item>Kliknutí levým tlačítkem myši</item>
     <item>Kliknutí pravým tlačítkem myši</item>
@@ -106,6 +108,7 @@
   <string name="device_menu_plugins">Nastavení modulů</string>
   <string name="device_menu_unpair">Zrušit párování</string>
   <string name="pair_new_device">Spárovat nové zařízení</string>
+  <string name="cancel_pairing">Zrušit párování</string>
   <string name="unknown_device">Neznámé zařízení</string>
   <string name="error_not_reachable">Zařízení je nedostupné</string>
   <string name="error_already_paired">Zařízení je již spárováno</string>
@@ -406,4 +409,5 @@
   <string name="everyone_else">Každý kdo přispěl do KDE Connect během let</string>
   <string name="send_clipboard">Poslat schránku</string>
   <string name="tap_to_execute">Pro spuštění ťukněte sem</string>
+  <string name="plugin_stats">Statistiky modulů</string>
 </resources>
