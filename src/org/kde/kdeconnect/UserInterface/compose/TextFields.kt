@@ -24,7 +24,9 @@ fun KdeTextField(modifier: Modifier = Modifier, input: MutableState<String>, lab
             ) {
         var value by rememberSaveable { input
         }
-        OutlinedTextField(value = value,
+        OutlinedTextField(
+            modifier = modifier,
+            value = value,
             onValueChange ={
                 value =it
             },
