@@ -1,0 +1,14 @@
+KDE Bağlan, iş akışınızı aygıtlar arasında tümleştirmek için bir dizi özellik sağlar:
+
+- Paylaşılan pano: Aygıtlarınız arasında kopyalayıp yapıştırın.
+- Dosyaları ve URL'leri herhangi bir uygulamadan bilgisayarınıza paylaşın.
+- Bilgisayarınıza gelen aramalar ve SMS iletileri için bildirimler alın.
+- Sanal dokunmatik yüzey: Telefon ekranınızı bilgisayarınızın dokunmatik yüzeyi olarak kullanın.
+- Bildirim eşzamanlaması: Android bildirimlerinizi masaüstünden okuyun.
+- Çoklu ortam uzaktan kumandası: Telefonunuzu Linux ortam oynatıcıları için uzaktan kumanda olarak kullanın.
+- WiFi bağlantısı: USB kablosu veya Bluetooth gerekmez.
+- Uçtan uca TLS şifrelemesi: Bilgileriniz güvende.
+
+Bu uygulamanın çalışması için bilgisayarınıza KDE Bağlan'ı kurmanız ve güncel özelliklerin çalışması için masaüstü sürümünü Android sürümüyle güncel tutmanız gerekeceğini lütfen unutmayın.
+
+Bu uygulama, açık kaynaklı bir projenin parçasıdır ve ona katkıda bulunan tüm insanlar sayesinde var olur. Kaynak kodunu almak için web sitesini ziyaret edin.

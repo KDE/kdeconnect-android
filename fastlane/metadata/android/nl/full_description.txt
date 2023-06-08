@@ -1,0 +1,14 @@
+KDE Connect biedt een set mogelijkheden om uw werkmethode te integreren tussen apparaten:
+
+- Gedeeld klembord: kopiëren en plakken tussen uw apparaten.
+- Bestanden en URL's delen naar uw computer vanuit elke app.
+- Meldingen krijgen over inkomende oproepen en SMS berichten op uw PC.
+- Virtueel touchpad: uw telefoonscherm gebruiken als het touchpad van uw computer.
+- Meldingen synchroniseren: lees uw Android meldingen vanaf het bureaublad.
+- Afstandsbediening van multimedia: uw telefoon als een afstandsbediening gebruiken voor Linux mediaspelers.
+- WiFi verbinding: geen USB-draad of bluetooth nodig.
+- Eind-tot-eind TLS versleuteling: uw informatie is veilig.
+
+Merk op dat u KDE Connect op uw computer moet installeren om deze app te laten werken, en de bureaubladversie up-to-date te houden met de Android-version om de laatste mogelijkheden te laten werken.
+
+Deze app is onderdeel van een open-source-project en het bestaat dankzij alle mensen die er aan hebben bijgedragen. Bezoek de website om de broncode te verkrijgen.

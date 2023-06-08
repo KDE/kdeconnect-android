@@ -1,0 +1,14 @@
+KDE Connect proporciona un conjunt de característiques per a integrar el flux de treball entre dispositius:
+
+- Porta-retalls compartit: copieu i apegueu entre els dispositius.
+- Compartiu fitxers i URL a l'ordinador des de qualsevol aplicació.
+- Obteniu notificacions de tocades entrants i missatges SMS al vostre PC.
+- Ratolí tàctil virtual: utilitzeu la pantalla del telèfon com a ratolí tàctil de l'ordinador.
+- Sincronització de notificacions: llegiu les notificacions d'Android a l'escriptori.
+- Control remot multimèdia: utilitzeu el telèfon com a control remot dels reproductors multimèdia Linux.
+- Connexió Wi-Fi: no cal connexió USB ni Bluetooth.
+- Encriptació TLS d'extrem a extrem: la informació és segura.
+
+Cal tindre en compte que haureu d'instal·lar KDE Connect en l'ordinador perquè esta aplicació funcione, i manteniu actualitzada la versió d'escriptori amb la versió d'Android perquè funcionen les últimes característiques.
+
+Esta aplicació forma part d'un projecte de codi obert i existix gràcies a totes les persones que hi han contribuït. Visiteu el lloc web per a aconseguir el codi font.
