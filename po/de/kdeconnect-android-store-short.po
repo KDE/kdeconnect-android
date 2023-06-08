@@ -1,0 +1,19 @@
+# Frederik Schwarzer <schwarzer@kde.org>, 2023.
+#. extracted from ./metadata/android/en-US/short_description.txt
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-07 00:47+0000\n"
+"PO-Revision-Date: 2023-06-07 19:50+0200\n"
+"Last-Translator: Frederik Schwarzer <schwarzer@kde.org>\n"
+"Language-Team: German <kde-i18n-de@kde.org>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 23.07.70\n"
+
+msgid "KDE Connect integrates your smartphone and computer"
+msgstr "KDE Connect verbindet Ihr Smartphone mit Ihrem Computer"

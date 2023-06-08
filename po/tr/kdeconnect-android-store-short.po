@@ -1,0 +1,19 @@
+# Emir SARI <emir_sari@icloud.com>, 2023.
+#. extracted from ./metadata/android/en-US/short_description.txt
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-07 00:47+0000\n"
+"PO-Revision-Date: 2023-06-07 12:58+0300\n"
+"Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
+"Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 23.07.70\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "KDE Connect integrates your smartphone and computer"
+msgstr "KDE Bağlan, akıllı telefonunuzu ve bilgisayarınızı tümleştirir"
