@@ -11,6 +11,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -84,8 +85,13 @@ public class FindMyPhonePlugin extends Plugin {
         try {
             mediaPlayer = new MediaPlayer();
             mediaPlayer.setDataSource(context, ringtone);
-            //TODO: Deprecated use setAudioAttributes for API > 21
-            mediaPlayer.setAudioStreamType(AudioManager.STREAM_ALARM);
+            AudioAttributes audioAttributes = new AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_ALARM)
+                .setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
+                .setFlags(AudioAttributes.FLAG_AUDIBILITY_ENFORCED)
+                .build();
+            mediaPlayer.setWakeMode(context, PowerManager.PARTIAL_WAKE_LOCK); // Prevent screen turning off, requires WAKE_LOCK permission
+            mediaPlayer.setAudioAttributes(audioAttributes);
             mediaPlayer.setLooping(true);
             mediaPlayer.prepare();
         } catch (Exception e) {
