@@ -135,6 +135,7 @@ public class SystemVolumeFragment
     }
 
     private void updateDefaultSinkVolume(int percent) {
+        if (plugin == null) return;
 
         Sink defaultSink = SystemVolumeUtilsKt.getDefaultSink(plugin);
         if (defaultSink == null) return;
