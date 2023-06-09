@@ -4,7 +4,7 @@
   <string name="manifest_label_share">Envia a un dispositiu</string>
   <string name="foreground_notification_no_devices">No està connectat a cap dispositiu</string>
   <string name="foreground_notification_devices">Connectat a: %s</string>
-  <string name="foreground_notification_send_clipboard">Envia al porta-retalls</string>
+  <string name="foreground_notification_send_clipboard">Envia el porta-retalls</string>
   <string name="pref_plugin_telephony">Notificador de telefonia</string>
   <string name="pref_plugin_telephony_desc">Envia notificacions per a les trucades entrants</string>
   <string name="pref_plugin_battery">Informe de bateria</string>
