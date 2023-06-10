@@ -1,0 +1,14 @@
+KDE Connect fornece funcionalidades para facilitar traballar con varios dispositivos:
+
+- Portapapeis compartido: copie e peque entre dispositivos.
+- Compartir ficheiros e enderezos URL co computador desde calquera aplicación.
+- Obter notificacións de chamadas e mensaxes SMS no computador.
+- Panel táctil virtual: use a pantalla do teléfono como panel táctil do computador.
+- Sincronización de notificacións: lea as notificacións do teléfono desde o computador.
+- Mando a distancia: use o teléfono como mando a distancia para reprodutores multimedia no computador.
+- Conexión WiFi: non necesita cable USB nin Bluetooth.
+- Cifrado TLS de punto a punto: a súa información está segura.
+
+Para que esta aplicación funcione ten que instalar KDE Connect no computador, e manter a versión do computador e do móbil actualizadas para que funcionen as últimas funcionalidades.
+
+Esta aplicación é parte dun proxecto de software libre e existe grazas á xente que colaborou no proxecto. Visite o sitio web para obter o código fonte.
