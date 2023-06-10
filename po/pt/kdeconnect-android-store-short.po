@@ -1,0 +1,18 @@
+#. extracted from ./metadata/android/en-US/short_description.txt
+msgid ""
+msgstr ""
+"Project-Id-Version: kdeconnect-android-store-short\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-07 00:47+0000\n"
+"PO-Revision-Date: 2023-06-09 23:23+0100\n"
+"Last-Translator: José Nuno Coelho Pires <zepires@gmail.com>\n"
+"Language-Team: Portuguese <kde-i18n-pt@kde.org>\n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Translate Toolkit 2.5.0\n"
+"X-POFile-SpellExtra: Connect\n"
+
+msgid "KDE Connect integrates your smartphone and computer"
+msgstr "O KDE Connect integra o seu telemóvel com o computador"
