@@ -53,6 +53,7 @@ import kotlin.text.Charsets;
  */
 public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDisconnectedCallback {
 
+    private final static int UDP_PORT = 1716;
     private final static int MIN_PORT = 1716;
     private final static int MAX_PORT = 1764;
     final static int PAYLOAD_TRANSFER_MIN_PORT = 1739;
@@ -279,14 +280,21 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
 
     private void setupUdpListener() {
         try {
-            udpServer = new DatagramSocket(MIN_PORT);
+            udpServer = new DatagramSocket(null);
             udpServer.setReuseAddress(true);
             udpServer.setBroadcast(true);
         } catch (SocketException e) {
             Log.e("LanLinkProvider", "Error creating udp server", e);
             throw new RuntimeException(e);
         }
+        try {
+            udpServer.bind(new InetSocketAddress(UDP_PORT));
+        } catch (SocketException e) {
+            // We ignore this exception and continue without being able to receive broadcasts instead of crashing the app.
+            Log.e("LanLinkProvider", "Error binding udp server. We can send udp broadcasts but not receive them", e);
+        }
         ThreadHelper.execute(() -> {
+            Log.i("UdpListener", "Starting UDP listener");
             while (listening) {
                 final int bufferSize = 1024 * 512;
                 byte[] data = new byte[bufferSize];
