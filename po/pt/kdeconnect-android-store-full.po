@@ -13,6 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Translate Toolkit 2.5.0\n"
 "X-POFile-SpellExtra: Connect Android WiFi\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 msgid ""
 "KDE Connect provides a set of features to integrate your workflow across "

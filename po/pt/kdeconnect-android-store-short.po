@@ -13,6 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Translate Toolkit 2.5.0\n"
 "X-POFile-SpellExtra: Connect\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 msgid "KDE Connect integrates your smartphone and computer"
 msgstr "O KDE Connect integra o seu telemóvel com o computador"
