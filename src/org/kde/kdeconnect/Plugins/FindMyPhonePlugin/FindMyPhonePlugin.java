@@ -90,7 +90,7 @@ public class FindMyPhonePlugin extends Plugin {
                 .setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
                 .setFlags(AudioAttributes.FLAG_AUDIBILITY_ENFORCED)
                 .build();
-            mediaPlayer.setWakeMode(context, PowerManager.PARTIAL_WAKE_LOCK); // Prevent screen turning off, requires WAKE_LOCK permission
+            mediaPlayer.setWakeMode(context, PowerManager.SCREEN_DIM_WAKE_LOCK); // Prevent screen turning off, requires WAKE_LOCK permission
             mediaPlayer.setAudioAttributes(audioAttributes);
             mediaPlayer.setLooping(true);
             mediaPlayer.prepare();
