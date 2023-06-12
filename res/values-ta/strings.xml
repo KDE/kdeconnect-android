@@ -108,6 +108,7 @@
   <string name="device_menu_plugins">செருகுநிரல் அமைப்புகள்</string>
   <string name="device_menu_unpair">இணைப்பை துண்டி</string>
   <string name="pair_new_device">புதிய சாதனத்தை இணை</string>
+  <string name="cancel_pairing">இணைப்பதை ரத்துசெய்</string>
   <string name="unknown_device">தெரியாத சாதனம்</string>
   <string name="error_not_reachable">சாதனத்தை கிட்ட முடியவில்லை</string>
   <string name="error_already_paired">சாதனம் ஏற்கனவே இணைந்துள்ளது</string>
@@ -392,4 +393,5 @@
   <string name="everyone_else">கடந்த ஆண்டுகளில் கே.டீ.யீ. கனெக்டிற்கு பங்களித்த மற்றவர்கள்</string>
   <string name="send_clipboard">பிடிப்புப்பலகையை அனுப்பு</string>
   <string name="tap_to_execute">இயக்க தட்டவும்</string>
+  <string name="plugin_stats">செருகுநிரல் புள்ளிவிவரங்கள்</string>
 </resources>
