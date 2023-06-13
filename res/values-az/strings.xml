@@ -108,6 +108,7 @@
   <string name="device_menu_plugins">Plaqin ayarları</string>
   <string name="device_menu_unpair">Ayırmaq</string>
   <string name="pair_new_device">Yeni cihaz qoşmaq</string>
+  <string name="cancel_pairing">Qoşulmanı ləğv edin</string>
   <string name="unknown_device">Naməlum Cihaz</string>
   <string name="error_not_reachable">Cihaz əlçatmazdır</string>
   <string name="error_already_paired">Cihaz artıq qoşulub</string>
@@ -393,6 +394,7 @@
   <string name="holger_kaelberer_task">Uzaq klaviatura əlavəsi və xəta sazlamaları</string>
   <string name="saikrishna_arcot_task">Uzaq daxiletmə əlavəsində klaviaturanın istifadəsini dəstəklənməsi, xəta sazlamaları və əsas yaxşılaşdırmalar</string>
   <string name="everyone_else">İllər boyu KDE Connect\'ə töhfə verən hər kəs</string>
-  <string name="send_clipboard">Mübadilə buferinə göndərin</string>
+  <string name="send_clipboard">Mübadilə yaddaşını göndərin</string>
   <string name="tap_to_execute">İcra etmək üçün vurun</string>
+  <string name="plugin_stats">Plaqin statistikası</string>
 </resources>
