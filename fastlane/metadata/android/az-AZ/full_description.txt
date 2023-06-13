@@ -1,0 +1,14 @@
+KDE connect cihazlarınız arasında inteqrasiya üçün funksiyalar dəstini təqdim edir:
+
+- Mübadilə yaddaşının paylaşılması: cihazlarınız arasında kopyalayın və yerləşdirin.
+- İstənilən tətbiqdən komputeriniz ilə URL ünvanlarını və faylları paylaşın.
+- Kompyyuterinizdə gələn zənglər və SMS ismarıcları haqqında bildirişlər alın.
+- Virtual toxunma paneli: Telefonunuzun ektranını kompyuterin toxunma paneli kimi istifdə edin.
+- Bildirişlərin eyniləşdirilməsi: Android bildirişlərinizi kompyuterinizin iş masasından ozuyun.
+- Multimedianın məsafədən idarə edilməsi: Linux media oxuducusunu telefonunuzdan idarə edin.
+- WiFi bağlantısı: USB qoşulması və ya Bluetooth qoşulmasına ehtiyyac yoxdur.
+- Ucdan-uca TLC şifrələmə: məlumatlarınızın təhlükəsizliyi qorunur.
+
+Nəzərə alın ki, bu tətbiqin işləməsi üçün kompyuterinizə KDE Connect-i quraşdırmalısınız və sonuncu funksiyaların işləməsi üçün İş masası və Android versiyalarını sonuncu versiyaya eyni şəkildə yeniləməlisiniz.
+
+Bu tətbiq açıq qaynaq layihəsinin bir hissəsidir və ona töhvə verənlərin sayəsində mövcuddur. Mənbə kodunu əldə etmək üçün veb-səhifəyə daxil olun.
