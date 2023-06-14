@@ -57,7 +57,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
 
     private final Context context;
 
-    private final HashMap<String, LanLink> visibleComputers = new HashMap<>();  //Links by device id
+    private final HashMap<String, LanLink> visibleDevices = new HashMap<>();  //Links by device id
 
     private ServerSocket tcpServer;
     private DatagramSocket udpServer;
@@ -70,7 +70,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
     @Override // SocketClosedCallback
     public void linkDisconnected(LanLink brokenLink) {
         String deviceId = brokenLink.getDeviceId();
-        visibleComputers.remove(deviceId);
+        visibleDevices.remove(deviceId);
         connectionLost(brokenLink);
     }
 
@@ -228,7 +228,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
     }
 
     /**
-     * Add or update a link in the {@link #visibleComputers} map.
+     * Add or update a link in the {@link #visibleDevices} map.
      *
      * @param deviceId         remote device id
      * @param certificate      remote device certificate
@@ -237,7 +237,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
      * @throws IOException if an exception is thrown by {@link LanLink#reset(SSLSocket)}
      */
     private void addLink(String deviceId, Certificate certificate, final NetworkPacket identityPacket, SSLSocket socket) throws IOException {
-        LanLink currentLink = visibleComputers.get(deviceId);
+        LanLink currentLink = visibleDevices.get(deviceId);
         if (currentLink != null) {
             //Update old link
             Log.i("KDE/LanLinkProvider", "Reusing same link for device " + deviceId);
@@ -247,7 +247,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
             Log.i("KDE/LanLinkProvider", "Creating a new link for device " + deviceId);
             //Let's create the link
             LanLink link = new LanLink(context, deviceId, this, socket);
-            visibleComputers.put(deviceId, link);
+            visibleDevices.put(deviceId, link);
             connectionAccepted(deviceId, certificate, identityPacket, link);
         }
     }

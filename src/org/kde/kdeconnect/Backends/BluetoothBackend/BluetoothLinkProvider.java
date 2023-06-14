@@ -44,7 +44,7 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
     private static final int REQUEST_ENABLE_BT = 48;
 
     private final Context context;
-    private final Map<String, BluetoothLink> visibleComputers = new HashMap<>();
+    private final Map<String, BluetoothLink> visibleDevices = new HashMap<>();
     private final Map<BluetoothDevice, BluetoothSocket> sockets = new HashMap<>();
 
     private final BluetoothAdapter bluetoothAdapter;
@@ -59,12 +59,12 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
         Certificate certificate = SslHelper.parseCertificate(certificateBytes);
 
         Log.i("BluetoothLinkProvider", "addLink to " + deviceId);
-        BluetoothLink oldLink = visibleComputers.get(deviceId);
+        BluetoothLink oldLink = visibleDevices.get(deviceId);
         if (oldLink == link) {
             Log.e("BluetoothLinkProvider", "oldLink == link. This should not happen!");
             return;
         }
-        visibleComputers.put(deviceId, link);
+        visibleDevices.put(deviceId, link);
         connectionAccepted(deviceId, certificate, identityPacket, link);
         link.startListening();
         if (oldLink != null) {
@@ -129,7 +129,7 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
 
     public void disconnectedLink(BluetoothLink link, String deviceId, BluetoothDevice remoteAddress) {
         sockets.remove(remoteAddress);
-        visibleComputers.remove(deviceId);
+        visibleDevices.remove(deviceId);
         connectionLost(link);
     }
 
@@ -367,7 +367,7 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
                     return;
                 }
 
-                if (visibleComputers.containsKey(identityPacket.getString("deviceId"))) {
+                if (visibleDevices.containsKey(identityPacket.getString("deviceId"))) {
                     return;
                 }
 
