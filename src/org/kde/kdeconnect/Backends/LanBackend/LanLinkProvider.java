@@ -35,8 +35,6 @@ import java.net.SocketException;
 import java.security.cert.Certificate;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import javax.net.SocketFactory;
 import javax.net.ssl.SSLSocket;
@@ -68,9 +66,6 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
     private final static long delayBetweenBroadcasts = 200;
 
     private boolean listening = false;
-
-    // To prevent infinite loop between Android < IceCream because both device can only broadcast identity packet but cannot connect via TCP
-    private final ArrayList<InetAddress> reverseConnectionBlackList = new ArrayList<>();
 
     @Override // SocketClosedCallback
     public void linkDisconnected(LanLink brokenLink) {
@@ -140,19 +135,8 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
 
         } catch (Exception e) {
             Log.e("KDE/LanLinkProvider", "Cannot connect to " + address, e);
-            if (!reverseConnectionBlackList.contains(address)) {
-                Log.w("KDE/LanLinkProvider", "Blacklisting " + address);
-                reverseConnectionBlackList.add(address);
-                new Timer().schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        reverseConnectionBlackList.remove(address);
-                    }
-                }, 5 * 1000);
-
-                // Try to cause a reverse connection
-                onNetworkChange();
-            }
+            // Broadcast our identity packet to see if we get a reverse connection
+            onNetworkChange();
         }
     }
 
