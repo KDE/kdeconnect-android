@@ -11,7 +11,6 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
@@ -45,7 +44,7 @@ import javax.net.ssl.SSLSocket;
 import kotlin.text.Charsets;
 
 /**
- * This BaseLinkProvider creates {@link LanLink}s to other devices on the same
+ * This LanLinkProvider creates {@link LanLink}s to other devices on the same
  * WiFi network. The first packet sent over a socket must be an
  * {@link NetworkPacket#createIdentityPacket(Context)}.
  *
@@ -70,7 +69,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
 
     private boolean listening = false;
 
-    // To prevent infinte loop between Android < IceCream because both device can only broadcast identity packet but cannot connect via TCP
+    // To prevent infinite loop between Android < IceCream because both device can only broadcast identity packet but cannot connect via TCP
     private final ArrayList<InetAddress> reverseConnectionBlackList = new ArrayList<>();
 
     @Override // SocketClosedCallback
@@ -80,7 +79,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
         connectionLost(brokenLink);
     }
 
-    //They received my UDP broadcast and are connecting to me. The first thing they sned should be their identity.
+    //They received my UDP broadcast and are connecting to me. The first thing they send should be their identity packet.
     private void tcpPacketReceived(Socket socket) {
 
         NetworkPacket networkPacket;
@@ -226,7 +225,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
             //Handshake is blocking, so do it on another thread and free this thread to keep receiving new connection
             ThreadHelper.execute(() -> {
                 try {
-                    synchronized (this) {
+                    synchronized (this) { // FIXME: Why is this needed?
                         sslsocket.startHandshake();
                     }
                 } catch (Exception e) {
@@ -245,12 +244,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
     }
 
     /**
-     * Add or update a link in the {@link #visibleComputers} map. This method is synchronized, which ensures that only one
-     * link is operated on at a time.
-     * <p>
-     * Without synchronization, the call to {@link SslHelper#parseCertificate(byte[])} in
-     * {@link Device#addLink(NetworkPacket, BaseLink)} crashes on some devices running Oreo 8.1 (SDK level 27).
-     * </p>
+     * Add or update a link in the {@link #visibleComputers} map.
      *
      * @param deviceId         remote device id
      * @param certificate      remote device certificate
