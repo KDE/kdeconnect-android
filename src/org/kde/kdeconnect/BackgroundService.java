@@ -64,6 +64,8 @@ public class BackgroundService extends Service {
         return instance;
     }
 
+    private static boolean initialized = false;
+
     // This indicates when connected over wifi/usb/bluetooth/(anything other than cellular)
     private final MutableLiveData<Boolean> connectedToNonCellularNetwork = new MutableLiveData<>();
     public LiveData<Boolean> isConnectedToNonCellularNetwork() {
@@ -88,6 +90,10 @@ public class BackgroundService extends Service {
     }
 
     public void onNetworkChange() {
+        if (!initialized) {
+            Log.d("KDE/BackgroundService", "ignoring onNetworkChange called before the service is initialized");
+            return;
+        }
         Log.d("KDE/BackgroundService", "onNetworkChange");
         for (BaseLinkProvider a : linkProviders) {
             a.onNetworkChange();
@@ -145,6 +151,7 @@ public class BackgroundService extends Service {
         for (BaseLinkProvider a : linkProviders) {
             a.onStart();
         }
+        initialized = true;
     }
 
     private static NetworkRequest.Builder getNonCellularNetworkRequestBuilder() {
@@ -248,6 +255,7 @@ public class BackgroundService extends Service {
     @Override
     public void onDestroy() {
         Log.d("KdeConnect/BgService", "onDestroy");
+        initialized = false;
         for (BaseLinkProvider a : linkProviders) {
             a.onStop();
         }
