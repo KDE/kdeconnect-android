@@ -194,4 +194,5 @@
   <string name="everyone_else">Alcun altere qui ha contribuite a KDE Connect durante le annos</string>
   <string name="send_clipboard">Invia Area de transferentia</string>
   <string name="tap_to_execute">Toccaper executar</string>
+  <string name="plugin_stats">"Statisticas de plugin "</string>
 </resources>
