@@ -616,16 +616,16 @@ public class Device implements BaseLink.PacketReceiver {
         if (existing != null) {
 
             if (!existing.isCompatible()) {
-                Log.i("KDE/addPlugin", "Minimum requirements (e.g. API level) not fulfilled " + pluginKey);
+                Log.d("KDE/addPlugin", "Minimum requirements (e.g. API level) not fulfilled " + pluginKey);
                 return false;
             }
 
             //Log.w("KDE/addPlugin","plugin already present:" + pluginKey);
             if (existing.checkOptionalPermissions()) {
-                Log.i("KDE/addPlugin", "Optional Permissions OK " + pluginKey);
+                Log.d("KDE/addPlugin", "Optional Permissions OK " + pluginKey);
                 pluginsWithoutOptionalPermissions.remove(pluginKey);
             } else {
-                Log.e("KDE/addPlugin", "No optional permission " + pluginKey);
+                Log.i("KDE/addPlugin", "No optional permission " + pluginKey);
                 pluginsWithoutOptionalPermissions.put(pluginKey, existing);
             }
             return true;
@@ -638,14 +638,14 @@ public class Device implements BaseLink.PacketReceiver {
         }
 
         if (!plugin.isCompatible()) {
-            Log.i("KDE/addPlugin", "Minimum requirements (e.g. API level) not fulfilled " + pluginKey);
+            Log.d("KDE/addPlugin", "Minimum requirements (e.g. API level) not fulfilled " + pluginKey);
             return false;
         }
 
         plugins.put(pluginKey, plugin);
 
         if (!plugin.checkRequiredPermissions()) {
-            Log.e("KDE/addPlugin", "No permission " + pluginKey);
+            Log.i("KDE/addPlugin", "No permission " + pluginKey);
             plugins.remove(pluginKey);
             pluginsWithoutPermissions.put(pluginKey, plugin);
             return false;

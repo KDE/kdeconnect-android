@@ -168,7 +168,7 @@ public class PluginFactory {
             //Check incoming against outgoing
             if (Collections.disjoint(outgoing, info.getSupportedPacketTypes())
                     && Collections.disjoint(incoming, info.getOutgoingPacketTypes())) {
-                Log.i("PluginFactory", "Won't load " + pluginId + " because of unmatched capabilities");
+                Log.d("PluginFactory", "Won't load " + pluginId + " because of unmatched capabilities");
                 continue; //No capabilities in common, do not load this plugin
             }
             plugins.add(pluginId);
