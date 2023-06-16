@@ -91,7 +91,7 @@ public class LanLink extends BaseLink {
                 boolean thereIsaANewSocket = (newSocket != socket);
                 if (!thereIsaANewSocket) {
                     Log.i("LanLink", "Socket closed and there's no new socket, disconnecting device");
-                    getLinkProvider().connectionLost(LanLink.this);
+                    getLinkProvider().onConnectionLost(LanLink.this);
                 }
             }
         });

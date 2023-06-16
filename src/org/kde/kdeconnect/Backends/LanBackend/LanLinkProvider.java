@@ -68,10 +68,10 @@ public class LanLinkProvider extends BaseLinkProvider {
 
     private boolean listening = false;
 
-    public void connectionLost(BaseLink link) {
+    public void onConnectionLost(BaseLink link) {
         String deviceId = link.getDeviceId();
         visibleDevices.remove(deviceId);
-        super.connectionLost(link);
+        super.onConnectionLost(link);
     }
 
     //They received my UDP broadcast and are connecting to me. The first thing they send should be their identity packet.
@@ -248,7 +248,7 @@ public class LanLinkProvider extends BaseLinkProvider {
             //Let's create the link
             LanLink link = new LanLink(context, deviceId, this, socket);
             visibleDevices.put(deviceId, link);
-            connectionAccepted(deviceId, certificate, identityPacket, link);
+            onConnectionReceived(deviceId, certificate, identityPacket, link);
         }
     }
 

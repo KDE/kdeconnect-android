@@ -34,16 +34,16 @@ public abstract class BaseLinkProvider {
     }
 
     //These two should be called when the provider links to a new computer
-    protected void connectionAccepted(@NonNull final String deviceId,
+    protected void onConnectionReceived(@NonNull final String deviceId,
                                       @NonNull final Certificate certificate,
                                       @NonNull final NetworkPacket identityPacket,
                                       @NonNull final BaseLink link) {
-        //Log.i("KDE/LinkProvider", "connectionAccepted");
+        //Log.i("KDE/LinkProvider", "onConnectionReceived");
         for(ConnectionReceiver cr : connectionReceivers) {
             cr.onConnectionReceived(deviceId, certificate, identityPacket, link);
         }
     }
-    public void connectionLost(BaseLink link) {
+    public void onConnectionLost(BaseLink link) {
         //Log.i("KDE/LinkProvider", "connectionLost");
         for(ConnectionReceiver cr : connectionReceivers) {
             cr.onConnectionLost(link);

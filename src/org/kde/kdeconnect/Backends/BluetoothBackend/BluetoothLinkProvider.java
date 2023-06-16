@@ -65,7 +65,7 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
             return;
         }
         visibleDevices.put(deviceId, link);
-        connectionAccepted(deviceId, certificate, identityPacket, link);
+        onConnectionReceived(deviceId, certificate, identityPacket, link);
         link.startListening();
         if (oldLink != null) {
             Log.i("BluetoothLinkProvider", "Removing old connection to same device");
@@ -130,7 +130,7 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
     public void disconnectedLink(BluetoothLink link, String deviceId, BluetoothDevice remoteAddress) {
         sockets.remove(remoteAddress);
         visibleDevices.remove(deviceId);
-        connectionLost(link);
+        onConnectionLost(link);
     }
 
     private class ServerRunnable implements Runnable {

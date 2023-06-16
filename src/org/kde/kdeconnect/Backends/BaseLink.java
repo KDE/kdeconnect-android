@@ -61,7 +61,7 @@ public abstract class BaseLink {
     }
 
     public void disconnect() {
-        linkProvider.connectionLost(this);
+        linkProvider.onConnectionLost(this);
     }
 
     //TO OVERRIDE, should be sync. If sendPayloadFromSameThread is false, it should only block to send the packet but start a separate thread to send the payload.

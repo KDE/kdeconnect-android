@@ -34,7 +34,7 @@ public class LoopbackLinkProvider extends BaseLinkProvider {
     public void onNetworkChange() {
         NetworkPacket np = NetworkPacket.createIdentityPacket(context);
         String deviceId = DeviceHelper.getDeviceId(context);
-        connectionAccepted(deviceId, SslHelper.certificate, np, new LoopbackLink(context, this));
+        onConnectionReceived(deviceId, SslHelper.certificate, np, new LoopbackLink(context, this));
     }
 
     @Override
