@@ -625,7 +625,7 @@ public class Device implements BaseLink.PacketReceiver {
                 Log.d("KDE/addPlugin", "Optional Permissions OK " + pluginKey);
                 pluginsWithoutOptionalPermissions.remove(pluginKey);
             } else {
-                Log.i("KDE/addPlugin", "No optional permission " + pluginKey);
+                Log.d("KDE/addPlugin", "No optional permission " + pluginKey);
                 pluginsWithoutOptionalPermissions.put(pluginKey, existing);
             }
             return true;
@@ -645,18 +645,18 @@ public class Device implements BaseLink.PacketReceiver {
         plugins.put(pluginKey, plugin);
 
         if (!plugin.checkRequiredPermissions()) {
-            Log.i("KDE/addPlugin", "No permission " + pluginKey);
+            Log.d("KDE/addPlugin", "No permission " + pluginKey);
             plugins.remove(pluginKey);
             pluginsWithoutPermissions.put(pluginKey, plugin);
             return false;
         } else {
-            Log.i("KDE/addPlugin", "Permissions OK " + pluginKey);
+            Log.d("KDE/addPlugin", "Permissions OK " + pluginKey);
             pluginsWithoutPermissions.remove(pluginKey);
             if (plugin.checkOptionalPermissions()) {
-                Log.i("KDE/addPlugin", "Optional Permissions OK " + pluginKey);
+                Log.d("KDE/addPlugin", "Optional Permissions OK " + pluginKey);
                 pluginsWithoutOptionalPermissions.remove(pluginKey);
             } else {
-                Log.e("KDE/addPlugin", "No optional permission " + pluginKey);
+                Log.d("KDE/addPlugin", "No optional permission " + pluginKey);
                 pluginsWithoutOptionalPermissions.put(pluginKey, plugin);
             }
         }
