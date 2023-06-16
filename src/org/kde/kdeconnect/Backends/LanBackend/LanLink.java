@@ -172,9 +172,7 @@ public class LanLink extends BaseLink {
             }
             return true;
         } catch (Exception e) {
-            if (callback != null) {
-                callback.onFailure(e);
-            }
+            callback.onFailure(e);
             return false;
         } finally  {
             //Make sure we close the payload stream, if any
