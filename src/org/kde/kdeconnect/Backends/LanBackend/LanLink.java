@@ -14,6 +14,7 @@ import androidx.annotation.WorkerThread;
 
 import org.json.JSONObject;
 import org.kde.kdeconnect.Backends.BaseLink;
+import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.Helpers.ThreadHelper;
@@ -37,17 +38,11 @@ import kotlin.text.Charsets;
 
 public class LanLink extends BaseLink {
 
-    public interface LinkDisconnectedCallback {
-        void linkDisconnected(LanLink brokenLink);
-    }
-
     public enum ConnectionStarted {
         Locally, Remotely
     }
 
     private volatile SSLSocket socket = null;
-
-    private final LinkDisconnectedCallback callback;
 
     @Override
     public void disconnect() {
@@ -96,7 +91,7 @@ public class LanLink extends BaseLink {
                 boolean thereIsaANewSocket = (newSocket != socket);
                 if (!thereIsaANewSocket) {
                     Log.i("LanLink", "Socket closed and there's no new socket, disconnecting device");
-                    callback.linkDisconnected(LanLink.this);
+                    getLinkProvider().connectionLost(LanLink.this);
                 }
             }
         });
@@ -104,12 +99,10 @@ public class LanLink extends BaseLink {
         return oldSocket;
     }
 
-    public LanLink(Context context, String deviceId, LanLinkProvider linkProvider, SSLSocket socket) throws IOException {
+    public LanLink(Context context, String deviceId, BaseLinkProvider linkProvider, SSLSocket socket) throws IOException {
         super(context, deviceId, linkProvider);
-        callback = linkProvider;
         reset(socket);
     }
-
 
     @Override
     public String getName() {

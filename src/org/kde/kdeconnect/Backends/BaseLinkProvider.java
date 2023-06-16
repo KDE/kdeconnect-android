@@ -43,7 +43,7 @@ public abstract class BaseLinkProvider {
             cr.onConnectionReceived(deviceId, certificate, identityPacket, link);
         }
     }
-    protected void connectionLost(BaseLink link) {
+    public void connectionLost(BaseLink link) {
         //Log.i("KDE/LinkProvider", "connectionLost");
         for(ConnectionReceiver cr : connectionReceivers) {
             cr.onConnectionLost(link);

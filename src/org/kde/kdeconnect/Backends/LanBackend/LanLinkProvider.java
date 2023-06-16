@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
@@ -48,7 +49,7 @@ import kotlin.text.Charsets;
  *
  * @see #identityPacketReceived(NetworkPacket, Socket, LanLink.ConnectionStarted)
  */
-public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDisconnectedCallback {
+public class LanLinkProvider extends BaseLinkProvider {
 
     private final static int UDP_PORT = 1716;
     private final static int MIN_PORT = 1716;
@@ -67,11 +68,10 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
 
     private boolean listening = false;
 
-    @Override // SocketClosedCallback
-    public void linkDisconnected(LanLink brokenLink) {
-        String deviceId = brokenLink.getDeviceId();
+    public void connectionLost(BaseLink link) {
+        String deviceId = link.getDeviceId();
         visibleDevices.remove(deviceId);
-        connectionLost(brokenLink);
+        super.connectionLost(link);
     }
 
     //They received my UDP broadcast and are connecting to me. The first thing they send should be their identity packet.
