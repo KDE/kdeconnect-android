@@ -62,10 +62,15 @@ public class PairingHandler {
                     Log.w("PairingHandler", "Ignoring second pairing request before the first one timed out");
                     break;
                 case Paired:
-                    Log.w("PairingHandler", "Auto-accepting pairing request from a device we already trusted");
-                    acceptPairing();
-                    break;
                 case NotPaired:
+                    if (mPairState == PairState.Paired) {
+                        Log.w("PairingHandler", "Received pairing request from a device we already trusted.");
+                        // It would be nice to auto-accept the pairing request here, but since the pairing accept and pairing request
+                        // messages are identical, this could create an infinite loop if both devices are "accepting" each other pairs.
+                        // Instead, unpair and handle as if "NotPaired".
+                        mPairState = PairState.NotPaired;
+                        mCallback.unpaired();
+                    }
                     mPairState = PairState.RequestedByPeer;
 
                     mPairingTimer = new Timer();
