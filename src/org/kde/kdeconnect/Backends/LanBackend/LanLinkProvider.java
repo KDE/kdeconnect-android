@@ -65,10 +65,12 @@ public class LanLinkProvider extends BaseLinkProvider {
 
     private final Context context;
 
-    private final HashMap<String, LanLink> visibleDevices = new HashMap<>();  //Links by device id
+    final HashMap<String, LanLink> visibleDevices = new HashMap<>();  //Links by device id
 
-    private ServerSocket tcpServer;
-    private DatagramSocket udpServer;
+    ServerSocket tcpServer;
+    DatagramSocket udpServer;
+
+    MdnsDiscovery mdnsDiscovery;
 
     private long lastBroadcast = 0;
     private final static long delayBetweenBroadcasts = 200;
@@ -241,6 +243,7 @@ public class LanLinkProvider extends BaseLinkProvider {
 
     public LanLinkProvider(Context context) {
         this.context = context;
+        this.mdnsDiscovery = new MdnsDiscovery(context, this);
     }
 
     private void setupUdpListener() {
@@ -411,6 +414,9 @@ public class LanLinkProvider extends BaseLinkProvider {
             setupUdpListener();
             setupTcpListener();
 
+            mdnsDiscovery.startListening();
+            mdnsDiscovery.startAnnouncing();
+
             broadcastUdpIdentityPacket();
         }
     }
@@ -418,6 +424,8 @@ public class LanLinkProvider extends BaseLinkProvider {
     @Override
     public void onNetworkChange() {
         broadcastUdpIdentityPacket();
+        mdnsDiscovery.stopListening();
+        mdnsDiscovery.startListening();
     }
 
     @Override
@@ -434,6 +442,8 @@ public class LanLinkProvider extends BaseLinkProvider {
         } catch (Exception e) {
             Log.e("LanLink", "Exception", e);
         }
+        mdnsDiscovery.stopAnnouncing();
+        mdnsDiscovery.stopListening();
     }
 
     @Override
