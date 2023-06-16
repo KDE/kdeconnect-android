@@ -169,21 +169,22 @@ public class KdeConnect extends Application {
 
         @Override
         public void onConnectionLost(BaseLink link) {
-            Device d = devices.get(link.getDeviceId());
+            Device device = devices.get(link.getDeviceId());
             Log.i("KDE/onConnectionLost", "removeLink, deviceId: " + link.getDeviceId());
-            if (d != null) {
-                d.removeLink(link);
-                if (!d.isReachable() && !d.isPaired()) {
+            if (device != null) {
+                device.removeLink(link);
+                if (!device.isReachable() && !device.isPaired()) {
                     //Log.e("onConnectionLost","Removing connection device because it was not paired");
                     devices.remove(link.getDeviceId());
-                    d.removePairingCallback(devicePairingCallback);
+                    device.removePairingCallback(devicePairingCallback);
                 }
             } else {
-                //Log.d("KDE/onConnectionLost","Removing connection to unknown device");
+                Log.d("KDE/onConnectionLost","Removing connection to unknown device");
             }
             onDeviceListChanged();
         }
     };
+
     public BaseLinkProvider.ConnectionReceiver getConnectionListener() {
         return connectionListener;
     }
