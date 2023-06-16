@@ -18,7 +18,7 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.DeviceType;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
@@ -41,7 +41,7 @@ public class PresenterPlugin extends Plugin {
 
     @Override
     public boolean isCompatible() {
-        return !device.getDeviceType().equals(Device.DeviceType.Phone) && super.isCompatible();
+        return !device.getDeviceType().equals(DeviceType.Phone) && super.isCompatible();
     }
 
     @Override

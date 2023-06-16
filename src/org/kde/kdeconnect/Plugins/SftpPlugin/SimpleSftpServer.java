@@ -92,7 +92,7 @@ class SimpleSftpServer {
         sshd.setCommandFactory(new ScpCommandFactory());
         sshd.setSubsystemFactories(Collections.singletonList(new SftpSubsystem.Factory()));
 
-        keyAuth.deviceKey = device.certificate.getPublicKey();
+        keyAuth.deviceKey = device.getCertificate().getPublicKey();
 
         sshd.setPublickeyAuthenticator(keyAuth);
         sshd.setPasswordAuthenticator(passwordAuth);

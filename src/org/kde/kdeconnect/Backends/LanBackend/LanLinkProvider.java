@@ -17,6 +17,7 @@ import org.json.JSONException;
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.DeviceInfo;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.Helpers.ThreadHelper;
@@ -50,7 +51,7 @@ import kotlin.text.Charsets;
 /**
  * This LanLinkProvider creates {@link LanLink}s to other devices on the same
  * WiFi network. The first packet sent over a socket must be an
- * {@link NetworkPacket#createIdentityPacket(Context)}.
+ * {@link DeviceInfo#toIdentityPacket()}.
  *
  * @see #identityPacketReceived(NetworkPacket, Socket, LanLink.ConnectionStarted)
  */
@@ -133,8 +134,10 @@ public class LanLinkProvider extends BaseLinkProvider {
         Socket socket = socketFactory.createSocket(address, tcpPort);
         configureSocket(socket);
 
+        DeviceInfo myDeviceInfo = DeviceHelper.getDeviceInfo(context);
+        NetworkPacket myIdentity = myDeviceInfo.toIdentityPacket();
+
         OutputStream out = socket.getOutputStream();
-        NetworkPacket myIdentity = NetworkPacket.createIdentityPacket(context);
         out.write(myIdentity.serialize().getBytes());
         out.flush();
 
@@ -190,17 +193,19 @@ public class LanLinkProvider extends BaseLinkProvider {
             identityPacketReceived(identityPacket, socket, connectionStarted);
         }
 
-        Log.i("KDE/LanLinkProvider", "Starting SSL handshake with " + identityPacket.getString("deviceName") + " trusted:" + isDeviceTrusted);
+        String deviceName = identityPacket.getString("deviceName", "unknown");
+        Log.i("KDE/LanLinkProvider", "Starting SSL handshake with " + deviceName + " trusted:" + isDeviceTrusted);
 
         final SSLSocket sslSocket = SslHelper.convertToSslSocket(context, socket, deviceId, isDeviceTrusted, clientMode);
         sslSocket.addHandshakeCompletedListener(event -> {
             String mode = clientMode ? "client" : "server";
             try {
                 Certificate certificate = event.getPeerCertificates()[0];
-                Log.i("KDE/LanLinkProvider", "Handshake as " + mode + " successful with " + identityPacket.getString("deviceName") + " secured with " + event.getCipherSuite());
-                addLink(deviceId, certificate, identityPacket, sslSocket);
-            } catch (Exception e) {
-                Log.e("KDE/LanLinkProvider", "Handshake as " + mode + " failed with " + identityPacket.getString("deviceName"), e);
+                DeviceInfo deviceInfo = DeviceInfo.fromIdentityPacketAndCert(identityPacket, certificate);
+                Log.i("KDE/LanLinkProvider", "Handshake as " + mode + " successful with " + deviceName + " secured with " + event.getCipherSuite());
+                addLink(sslSocket, deviceInfo);
+            } catch (IOException e) {
+                Log.e("KDE/LanLinkProvider", "Handshake as " + mode + " failed with " + deviceName, e);
                 Device device = KdeConnect.getInstance().getDevice(deviceId);
                 if (device == null) {
                     return;
@@ -218,25 +223,24 @@ public class LanLinkProvider extends BaseLinkProvider {
     /**
      * Add or update a link in the {@link #visibleDevices} map.
      *
-     * @param deviceId         remote device id
-     * @param certificate      remote device certificate
-     * @param identityPacket   identity packet with the remote device's device name, type, protocol version, etc.
      * @param socket           a new Socket, which should be used to send and receive packets from the remote device
+     * @param deviceInfo       remote device info
      * @throws IOException if an exception is thrown by {@link LanLink#reset(SSLSocket)}
      */
-    private void addLink(String deviceId, Certificate certificate, final NetworkPacket identityPacket, SSLSocket socket) throws IOException {
-        LanLink currentLink = visibleDevices.get(deviceId);
-        if (currentLink != null) {
-            //Update old link
-            Log.i("KDE/LanLinkProvider", "Reusing same link for device " + deviceId);
-            final Socket oldSocket = currentLink.reset(socket);
+    private LanLink addLink(SSLSocket socket, DeviceInfo deviceInfo) throws IOException {
+        LanLink link = visibleDevices.get(deviceInfo.id);
+        if (link != null) {
+            // Update existing link
+            Log.d("KDE/LanLinkProvider", "Reusing same link for device " + deviceInfo.id);
+            final Socket oldSocket = link.reset(socket);
         } else {
-            Log.i("KDE/LanLinkProvider", "Creating a new link for device " + deviceId);
-            //Let's create the link
-            LanLink link = new LanLink(context, deviceId, this, socket);
-            visibleDevices.put(deviceId, link);
-            onConnectionReceived(deviceId, certificate, identityPacket, link);
+            // Create a new link
+            Log.d("KDE/LanLinkProvider", "Creating a new link for device " + deviceInfo.id);
+            link = new LanLink(context, deviceInfo, this, socket);
+            visibleDevices.put(deviceInfo.id, link);
+            onConnectionReceived(link);
         }
+        return link;
     }
 
     public LanLinkProvider(Context context) {
@@ -368,7 +372,8 @@ public class LanLinkProvider extends BaseLinkProvider {
             return;
         }
 
-        NetworkPacket identity = NetworkPacket.createIdentityPacket(context);
+        DeviceInfo myDeviceInfo = DeviceHelper.getDeviceInfo(context);
+        NetworkPacket identity = myDeviceInfo.toIdentityPacket();
         identity.set("tcpPort", tcpServer.getLocalPort());
 
         byte[] bytes;
