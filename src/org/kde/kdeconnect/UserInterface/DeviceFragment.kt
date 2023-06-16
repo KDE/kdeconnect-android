@@ -34,6 +34,7 @@ import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.Device.PluginsChangedListener
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper
 import org.kde.kdeconnect.KdeConnect
+import org.kde.kdeconnect.PairingHandler
 import org.kde.kdeconnect.Plugins.BatteryPlugin.BatteryPlugin
 import org.kde.kdeconnect.Plugins.MprisPlugin.MprisPlugin
 import org.kde.kdeconnect.Plugins.Plugin

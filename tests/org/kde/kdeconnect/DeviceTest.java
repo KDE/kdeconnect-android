@@ -9,7 +9,6 @@ package org.kde.kdeconnect;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -33,7 +32,6 @@ import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
-import org.kde.kdeconnect.UserInterface.PairingHandler;
 import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
@@ -41,10 +39,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
 import java.security.cert.Certificate;
-import java.security.cert.CertificateEncodingException;
 import java.security.cert.CertificateException;
 
 @RunWith(PowerMockRunner.class)

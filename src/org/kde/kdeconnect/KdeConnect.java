@@ -22,7 +22,6 @@ import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
-import org.kde.kdeconnect.UserInterface.PairingHandler;
 import org.kde.kdeconnect.UserInterface.ThemeUtil;
 
 import java.security.cert.Certificate;

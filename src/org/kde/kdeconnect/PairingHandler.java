@@ -4,12 +4,10 @@
  * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
  */
 
-package org.kde.kdeconnect.UserInterface;
+package org.kde.kdeconnect;
 
 import android.util.Log;
 
-import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.Timer;
