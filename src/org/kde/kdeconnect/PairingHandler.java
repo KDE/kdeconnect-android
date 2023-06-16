@@ -194,9 +194,11 @@ public class PairingHandler {
 
     public void unpair() {
         mPairState = PairState.NotPaired;
-        NetworkPacket np = new NetworkPacket(NetworkPacket.PACKET_TYPE_PAIR);
-        np.set("pair", false);
-        mDevice.sendPacket(np);
+        if (mDevice.isReachable()) {
+            NetworkPacket np = new NetworkPacket(NetworkPacket.PACKET_TYPE_PAIR);
+            np.set("pair", false);
+            mDevice.sendPacket(np);
+        }
         mCallback.unpaired();
     }
 
