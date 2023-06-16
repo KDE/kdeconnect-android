@@ -109,7 +109,6 @@ public class LanLink extends BaseLink {
         return "LanLink";
     }
 
-    //Blocking, do not call from main thread
     @WorkerThread
     @Override
     public boolean sendPacket(@NonNull NetworkPacket np, @NonNull final Device.SendPacketStatusCallback callback, boolean sendPayloadFromSameThread) {

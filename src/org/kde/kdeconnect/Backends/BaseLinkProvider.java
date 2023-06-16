@@ -33,7 +33,9 @@ public abstract class BaseLinkProvider {
         return connectionReceivers.remove(cr);
     }
 
-    //These two should be called when the provider links to a new computer
+    /**
+     * To be called from the child classes when a link to a new device is established
+     */
     protected void onConnectionReceived(@NonNull final String deviceId,
                                       @NonNull final Certificate certificate,
                                       @NonNull final NetworkPacket identityPacket,
@@ -43,6 +45,10 @@ public abstract class BaseLinkProvider {
             cr.onConnectionReceived(deviceId, certificate, identityPacket, link);
         }
     }
+
+    /**
+     * To be called from the child classes when a link to an existing device is disconnected
+     */
     public void onConnectionLost(BaseLink link) {
         //Log.i("KDE/LinkProvider", "connectionLost");
         for(ConnectionReceiver cr : connectionReceivers) {
@@ -50,7 +56,6 @@ public abstract class BaseLinkProvider {
         }
     }
 
-    //To override
     public abstract void onStart();
     public abstract void onStop();
     public abstract void onNetworkChange();
