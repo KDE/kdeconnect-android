@@ -108,6 +108,7 @@
   <string name="device_menu_plugins">插件设置</string>
   <string name="device_menu_unpair">取消配对</string>
   <string name="pair_new_device">配对新设备</string>
+  <string name="cancel_pairing">取消配对</string>
   <string name="unknown_device">未知设备</string>
   <string name="error_not_reachable">设备不可及</string>
   <string name="error_already_paired">设备已配对</string>
@@ -387,4 +388,5 @@
   <string name="everyone_else">以及多年来为 KDE Connect 作出过贡献的其他所有人</string>
   <string name="send_clipboard">发送剪贴板</string>
   <string name="tap_to_execute">轻触执行</string>
+  <string name="plugin_stats">插件状态</string>
 </resources>
