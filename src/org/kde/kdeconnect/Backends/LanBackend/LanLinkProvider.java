@@ -24,6 +24,7 @@ import org.kde.kdeconnect.Helpers.TrustedNetworkHelper;
 import org.kde.kdeconnect.KdeConnect;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.UserInterface.CustomDevicesActivity;
+import org.kde.kdeconnect.UserInterface.SettingsFragment;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -331,6 +332,12 @@ public class LanLinkProvider extends BaseLinkProvider {
     }
 
     private void broadcastUdpIdentityPacket() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        if (!preferences.getBoolean(SettingsFragment.KEY_UDP_BROADCAST_ENABLED, true)) {
+            Log.i("LanLinkProvider", "UDP broadcast is disabled in settings. Skipping.");
+            return;
+        }
+
         if (System.currentTimeMillis() < lastBroadcast + delayBetweenBroadcasts) {
             Log.i("LanLinkProvider", "broadcastUdpPacket: relax cowboy");
             return;

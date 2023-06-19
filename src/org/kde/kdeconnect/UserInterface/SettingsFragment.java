@@ -37,6 +37,9 @@ import org.kde.kdeconnect_tp.R;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
 
+    public static final String KEY_UDP_BROADCAST_ENABLED = "udp_broadcast_enabled";
+    public static final String KEY_APP_THEME = "theme_pref";
+
     private EditTextPreference renameDevice;
 
     @NonNull
@@ -90,7 +93,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
         // Theme Selector
         ListPreference themeSelector = new ListPreference(context);
-        themeSelector.setKey("theme_pref");
+        themeSelector.setKey(KEY_APP_THEME);
         themeSelector.setTitle(R.string.theme_dialog_title);
         themeSelector.setDialogTitle(R.string.theme_dialog_title);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
@@ -168,6 +171,13 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             return true;
         });
 
+        // UDP broadcast toggle
+        final TwoStatePreference udpBroadcastDiscovery = new SwitchPreference(context);
+        udpBroadcastDiscovery.setPersistent(false);
+        udpBroadcastDiscovery.setDefaultValue(true);
+        udpBroadcastDiscovery.setKey(KEY_UDP_BROADCAST_ENABLED);
+        udpBroadcastDiscovery.setTitle(R.string.enable_udp_broadcast);
+        screen.addPreference(udpBroadcastDiscovery);
 
         // More settings text
         Preference moreSettingsText = new Preference(context);
