@@ -296,9 +296,11 @@ public class Device implements BaseLink.PacketReceiver {
         links.add(link);
         link.addPacketReceiver(this);
 
-        updateDeviceInfo(link.getDeviceInfo());
+        boolean hasChanges = updateDeviceInfo(link.getDeviceInfo());
 
-        reloadPluginsFromSettings();
+        if (hasChanges || links.size() == 1) {
+            reloadPluginsFromSettings();
+        }
     }
 
     public void removeLink(BaseLink link) {
@@ -316,9 +318,11 @@ public class Device implements BaseLink.PacketReceiver {
         }
     }
 
-    public void updateDeviceInfo(@NonNull DeviceInfo newDeviceInfo) {
+    public boolean updateDeviceInfo(@NonNull DeviceInfo newDeviceInfo) {
 
+        boolean hasChanges = false;
         if (!deviceInfo.name.equals(newDeviceInfo.name) || deviceInfo.type != newDeviceInfo.type) {
+            hasChanges = true;
             deviceInfo.name = newDeviceInfo.name;
             deviceInfo.type = newDeviceInfo.type;
             if (isPaired()) {
@@ -329,12 +333,13 @@ public class Device implements BaseLink.PacketReceiver {
         if (deviceInfo.outgoingCapabilities != newDeviceInfo.outgoingCapabilities ||
                 deviceInfo.incomingCapabilities != newDeviceInfo.incomingCapabilities) {
             if (newDeviceInfo.outgoingCapabilities != null && newDeviceInfo.incomingCapabilities != null) {
-                Log.e("updateDeviceInfo", "Updating supported plugins according to new capabilities");
+                hasChanges = true;
+                Log.i("updateDeviceInfo", "Updating supported plugins according to new capabilities");
                 supportedPlugins = new Vector<>(PluginFactory.pluginsForCapabilities(newDeviceInfo.incomingCapabilities, newDeviceInfo.outgoingCapabilities));
-                reloadPluginsFromSettings();
             }
         }
 
+        return hasChanges;
     }
 
     @Override
@@ -617,6 +622,7 @@ public class Device implements BaseLink.PacketReceiver {
     }
 
     public void reloadPluginsFromSettings() {
+        Log.i("Device", deviceInfo.name +": reloading plugins");
         MultiValuedMap<String, String> newPluginsByIncomingInterface = new ArrayListValuedHashMap<>();
 
         for (String pluginKey : supportedPlugins) {
