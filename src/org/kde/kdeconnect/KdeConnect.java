@@ -76,6 +76,7 @@ public class KdeConnect extends Application {
     }
 
     private void onDeviceListChanged() {
+        Log.i("MainActivity","Device list changed, notifying "+ deviceListChangedCallbacks.size() +" observers.");
         for (DeviceListChangedCallback callback : deviceListChangedCallbacks.values()) {
             callback.onDeviceListChanged();
         }
