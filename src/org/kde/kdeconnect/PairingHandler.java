@@ -92,13 +92,14 @@ public class PairingHandler {
                     break;
                 case Requested: // We started pairing and got rejected
                 case RequestedByPeer: // They stared pairing, then cancelled
+                    mPairState = PairState.NotPaired;
                     mCallback.pairingFailed(mDevice.getContext().getString(R.string.error_canceled_by_other_peer));
                     break;
                 case Paired:
+                    mPairState = PairState.NotPaired;
                     mCallback.unpaired();
                     break;
             }
-            mPairState = PairState.NotPaired;
         }
     }
 
