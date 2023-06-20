@@ -122,7 +122,7 @@ public class MdnsDiscovery {
         serviceInfo.setServiceName(deviceId);
         serviceInfo.setServiceType(SERVICE_TYPE);
 
-        Log.d(LOG_TAG, "My MDNS info: " + serviceInfo.toString());
+        Log.d(LOG_TAG, "My MDNS info: " + serviceInfo);
 
         return serviceInfo;
     }
