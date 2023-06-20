@@ -33,7 +33,7 @@
   <string name="pref_plugin_notifications">Sincronización de notificacións</string>
   <string name="pref_plugin_notifications_desc">Acceda ás súas notificacións desde outros dispositivos</string>
   <string name="pref_plugin_receive_notifications">Recibir notificacións</string>
-  <string name="pref_plugin_receive_notifications_desc">Recibir notificacións do outro dispositivo e mostralas en Android</string>
+  <string name="pref_plugin_receive_notifications_desc">Recibir notificacións do outro dispositivo e amosalas en Android</string>
   <string name="pref_plugin_sharereceiver">Compartir e recibir</string>
   <string name="pref_plugin_sharereceiver_desc">Comparta ficheiros e enderezos URL entre dispositivos</string>
   <string name="device_list_empty">Non hai dispositivos.</string>
@@ -57,7 +57,7 @@
   <string name="mousepad_double_tap_settings_title">Definir a acción de tocar con dous dedos</string>
   <string name="mousepad_triple_tap_settings_title">Definir a acción de tocar con tres dedos</string>
   <string name="mousepad_sensitivity_settings_title">Definir a sensibilidade do punteiro táctil</string>
-  <string name="mousepad_mouse_buttons_title">Mostrar os botóns do rato</string>
+  <string name="mousepad_mouse_buttons_title">Amosar os botóns do rato</string>
   <string name="mousepad_acceleration_profile_settings_title">Definir a aceleración do punteiro</string>
   <string name="mousepad_scroll_direction_title">Inverter a dirección de desprazamento</string>
   <string name="gyro_mouse_enabled_title">Activar o rato de xiroscopio</string>
@@ -159,7 +159,7 @@
   <string name="tap_to_answer">Toque para contestar</string>
   <string name="right_click">Enviar un clic secundario</string>
   <string name="middle_click">Enviar un clic central</string>
-  <string name="show_keyboard">Mostrar o teclado</string>
+  <string name="show_keyboard">Amosar o teclado</string>
   <string name="device_not_paired">O dispositivo non está emparellado</string>
   <string name="request_pairing">Solicitar emparellarse</string>
   <string name="pairing_accept">Aceptar</string>
@@ -183,7 +183,7 @@
     <item>1 minuto</item>
     <item>2 minutos</item>
   </string-array>
-  <string name="mpris_notification_settings_title">Mostrar a notificación de control de reprodución.</string>
+  <string name="mpris_notification_settings_title">Amosar a notificación de control de reprodución.</string>
   <string name="mpris_notification_settings_summary">Permitir controlar os reprodutores sen abrir KDE Connect</string>
   <string name="share_to">Compartir con…</string>
   <string name="protocol_version_newer">Este dispositivo usa unha versión máis nova do protocolo.</string>
@@ -215,9 +215,9 @@
   <string name="sftp_storage_preference_storage_location">Lugar de almacenamento</string>
   <string name="sftp_storage_preference_storage_location_already_configured">Este lugar xa está configurado</string>
   <string name="sftp_storage_preference_click_to_select">premer para seleccionar</string>
-  <string name="sftp_storage_preference_display_name">Nome para mostrar</string>
-  <string name="sftp_storage_preference_display_name_already_used">Este nome para mostrar xa está a usarse</string>
-  <string name="sftp_storage_preference_display_name_cannot_be_empty">O nome para mostrar non pode estar baleiro</string>
+  <string name="sftp_storage_preference_display_name">Nome para amosar</string>
+  <string name="sftp_storage_preference_display_name_already_used">Este nome para amosar xa está a usarse</string>
+  <string name="sftp_storage_preference_display_name_cannot_be_empty">O nome para amosar non pode estar baleiro</string>
   <string name="sftp_action_mode_menu_delete">Eliminar</string>
   <string name="sftp_no_storage_locations_configured">Non se configuraron localizacións de almacenamento</string>
   <string name="sftp_saf_permission_explanation">Para acceder a ficheiro remotamente ten que configurar lugares de almacenamento</string>
@@ -258,7 +258,7 @@
   <string name="contacts_permission_explanation">Para compartir o caderno de contactos co escritorio ten que dar permiso de contactos</string>
   <string name="select_ringtone">Seleccione un ton de chamada</string>
   <string name="telephony_pref_blocked_title">Números bloqueados</string>
-  <string name="telephony_pref_blocked_dialog_desc">Non mostrar chamadas nin SMS destes números. Indique un número por liña.</string>
+  <string name="telephony_pref_blocked_dialog_desc">Non amosar chamadas nin SMS destes números. Indique un número por liña.</string>
   <string name="mpris_coverart_description">Portada da obra actual.</string>
   <string name="device_icon_description">Icona do dispositivo.</string>
   <string name="settings_icon_description">Icona da configuración.</string>
@@ -296,7 +296,7 @@
   <string name="settings_dark_mode">Tema escuro</string>
   <string name="settings_more_settings_title">Máis opcións</string>
   <string name="settings_more_settings_text">As opcións específicas dun dispositivo atópanse en «Configuración dos complementos» no dispositivo.</string>
-  <string name="setting_persistent_notification">Mostrar unha notificación persistente</string>
+  <string name="setting_persistent_notification">Amosar unha notificación persistente</string>
   <string name="setting_persistent_notification_oreo">Notificación persistente</string>
   <string name="setting_persistent_notification_description">Toque para activar ou desactivar na configuración de notificacións</string>
   <string name="extra_options">Opcións adicionais</string>
