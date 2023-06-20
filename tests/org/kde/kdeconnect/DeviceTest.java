@@ -84,7 +84,7 @@ public class DeviceTest {
         MockSharedPreference deviceSettings = new MockSharedPreference();
         SharedPreferences.Editor editor = deviceSettings.edit();
         editor.putString("deviceName", name);
-        editor.putString("deviceType", Device.DeviceType.Phone.toString());
+        editor.putString("deviceType", DeviceType.Phone.toString());
         editor.putString("certificate", encodedCertificate);
         editor.apply();
         Mockito.when(context.getSharedPreferences(eq(deviceId), eq(Context.MODE_PRIVATE))).thenReturn(deviceSettings);
@@ -110,12 +110,11 @@ public class DeviceTest {
 
     @Test
     public void testDeviceType() {
-        assertEquals(Device.DeviceType.Phone, Device.DeviceType.FromString(Device.DeviceType.Phone.toString()));
-        assertEquals(Device.DeviceType.Tablet, Device.DeviceType.FromString(Device.DeviceType.Tablet.toString()));
-        assertEquals(Device.DeviceType.Computer, Device.DeviceType.FromString(Device.DeviceType.Computer.toString()));
-        assertEquals(Device.DeviceType.Tv, Device.DeviceType.FromString(Device.DeviceType.Tv.toString()));
-        assertEquals(Device.DeviceType.Computer, Device.DeviceType.FromString(""));
-        assertEquals(Device.DeviceType.Computer, Device.DeviceType.FromString(null));
+        assertEquals(DeviceType.Phone, DeviceType.fromString(DeviceType.Phone.toString()));
+        assertEquals(DeviceType.Tablet, DeviceType.fromString(DeviceType.Tablet.toString()));
+        assertEquals(DeviceType.Computer, DeviceType.fromString(DeviceType.Computer.toString()));
+        assertEquals(DeviceType.Tv, DeviceType.fromString(DeviceType.Tv.toString()));
+        assertEquals(DeviceType.Computer, DeviceType.fromString("invalid"));
     }
 
     // Basic paired device testing
@@ -124,10 +123,10 @@ public class DeviceTest {
         Device device = new Device(context, "testDevice");
 
         assertEquals(device.getDeviceId(), "testDevice");
-        assertEquals(device.getDeviceType(), Device.DeviceType.Phone);
+        assertEquals(device.getDeviceType(), DeviceType.Phone);
         assertEquals(device.getName(), "Test Device");
         assertTrue(device.isPaired());
-        assertNotNull(device.certificate);
+        assertNotNull(device.deviceInfo.certificate);
     }
 
     public void testPairingDone() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException, CertificateException {
@@ -137,7 +136,7 @@ public class DeviceTest {
         fakeNetworkPacket.set("deviceId", deviceId);
         fakeNetworkPacket.set("deviceName", "Unpaired Test Device");
         fakeNetworkPacket.set("protocolVersion", DeviceHelper.ProtocolVersion);
-        fakeNetworkPacket.set("deviceType", Device.DeviceType.Phone.toString());
+        fakeNetworkPacket.set("deviceType", DeviceType.Phone.toString());
         String certificateString =
             "MIIDVzCCAj+gAwIBAgIBCjANBgkqhkiG9w0BAQUFADBVMS8wLQYDVQQDDCZfZGExNzlhOTFfZjA2\n" +
             "NF80NzhlX2JlOGNfMTkzNWQ3NTQ0ZDU0XzEMMAoGA1UECgwDS0RFMRQwEgYDVQQLDAtLZGUgY29u\n" +
@@ -157,18 +156,21 @@ public class DeviceTest {
             "7n+KOQ==";
         byte[] certificateBytes = Base64.decode(certificateString, 0);
         Certificate certificate = SslHelper.parseCertificate(certificateBytes);
+        DeviceInfo deviceInfo = DeviceInfo.fromIdentityPacketAndCert(fakeNetworkPacket, certificate);
 
         LanLinkProvider linkProvider = Mockito.mock(LanLinkProvider.class);
         Mockito.when(linkProvider.getName()).thenReturn("LanLinkProvider");
         LanLink link = Mockito.mock(LanLink.class);
         Mockito.when(link.getLinkProvider()).thenReturn(linkProvider);
-        Device device = new Device(context, deviceId, certificate, fakeNetworkPacket, link);
+        Mockito.when(link.getDeviceId()).thenReturn(deviceId);
+        Mockito.when(link.getDeviceInfo()).thenReturn(deviceInfo);
+        Device device = new Device(context, link);
 
         assertNotNull(device);
         assertEquals(device.getDeviceId(), deviceId);
         assertEquals(device.getName(), "Unpaired Test Device");
-        assertEquals(device.getDeviceType(), Device.DeviceType.Phone);
-        assertNotNull(device.certificate);
+        assertEquals(device.getDeviceType(), DeviceType.Phone);
+        assertNotNull(device.deviceInfo.certificate);
 
         Method method = PairingHandler.class.getDeclaredMethod("pairingDone");
         method.setAccessible(true);

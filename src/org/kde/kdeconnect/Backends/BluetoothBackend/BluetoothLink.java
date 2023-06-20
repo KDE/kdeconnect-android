@@ -17,6 +17,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.DeviceInfo;
 import org.kde.kdeconnect.NetworkPacket;
 
 import java.io.IOException;
@@ -34,6 +35,7 @@ public class BluetoothLink extends BaseLink {
     private final OutputStream output;
     private final BluetoothDevice remoteAddress;
     private final BluetoothLinkProvider linkProvider;
+    private final DeviceInfo deviceInfo;
 
     private boolean continueAccepting = true;
 
@@ -93,11 +95,12 @@ public class BluetoothLink extends BaseLink {
         }
     });
 
-    public BluetoothLink(Context context, ConnectionMultiplexer connection, InputStream input, OutputStream output, BluetoothDevice remoteAddress, String deviceId, BluetoothLinkProvider linkProvider) {
-        super(context, deviceId, linkProvider);
+    public BluetoothLink(Context context, ConnectionMultiplexer connection, InputStream input, OutputStream output, BluetoothDevice remoteAddress, DeviceInfo deviceInfo, BluetoothLinkProvider linkProvider) {
+        super(context, linkProvider);
         this.connection = connection;
         this.input = input;
         this.output = output;
+        this.deviceInfo = deviceInfo;
         this.remoteAddress = remoteAddress;
         this.linkProvider = linkProvider;
     }
@@ -111,6 +114,11 @@ public class BluetoothLink extends BaseLink {
         return "BluetoothLink";
     }
 
+    @Override
+    public DeviceInfo getDeviceInfo() {
+        return deviceInfo;
+    }
+
     public void disconnect() {
         if (connection == null) {
             return;
@@ -120,7 +128,7 @@ public class BluetoothLink extends BaseLink {
             connection.close();
         } catch (IOException ignored) {
         }
-        linkProvider.disconnectedLink(this, getDeviceId(), remoteAddress);
+        linkProvider.disconnectedLink(this, remoteAddress);
     }
 
     private void sendMessage(NetworkPacket np) throws JSONException, IOException {

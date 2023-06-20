@@ -8,22 +8,16 @@ package org.kde.kdeconnect.Backends;
 
 import androidx.annotation.NonNull;
 
-import org.kde.kdeconnect.NetworkPacket;
-
-import java.security.cert.Certificate;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public abstract class BaseLinkProvider {
 
-    private final CopyOnWriteArrayList<ConnectionReceiver> connectionReceivers = new CopyOnWriteArrayList<>();
-
     public interface ConnectionReceiver {
-        void onConnectionReceived(@NonNull final String deviceId,
-                                  @NonNull final Certificate certificate,
-                                  @NonNull final NetworkPacket identityPacket,
-                                  @NonNull final BaseLink link);
+        void onConnectionReceived(@NonNull final BaseLink link);
         void onConnectionLost(BaseLink link);
     }
+
+    private final CopyOnWriteArrayList<ConnectionReceiver> connectionReceivers = new CopyOnWriteArrayList<>();
 
     public void addConnectionReceiver(ConnectionReceiver cr) {
         connectionReceivers.add(cr);
@@ -36,13 +30,10 @@ public abstract class BaseLinkProvider {
     /**
      * To be called from the child classes when a link to a new device is established
      */
-    protected void onConnectionReceived(@NonNull final String deviceId,
-                                      @NonNull final Certificate certificate,
-                                      @NonNull final NetworkPacket identityPacket,
-                                      @NonNull final BaseLink link) {
+    protected void onConnectionReceived(@NonNull final BaseLink link) {
         //Log.i("KDE/LinkProvider", "onConnectionReceived");
         for(ConnectionReceiver cr : connectionReceivers) {
-            cr.onConnectionReceived(deviceId, certificate, identityPacket, link);
+            cr.onConnectionReceived(link);
         }
     }
 

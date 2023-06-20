@@ -19,7 +19,7 @@ import android.view.KeyEvent;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 
-import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.DeviceType;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
@@ -33,7 +33,7 @@ public class BigscreenPlugin extends Plugin {
 
     @Override
     public boolean isCompatible() {
-        return device.getDeviceType().equals(Device.DeviceType.Tv) && super.isCompatible();
+        return device.getDeviceType().equals(DeviceType.Tv) && super.isCompatible();
     }
 
     @Override

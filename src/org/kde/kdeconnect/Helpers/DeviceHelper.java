@@ -19,7 +19,10 @@ import android.util.Log;
 import com.univocity.parsers.csv.CsvParser;
 import com.univocity.parsers.csv.CsvParserSettings;
 
-import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.DeviceInfo;
+import org.kde.kdeconnect.DeviceType;
+import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
+import org.kde.kdeconnect.Plugins.PluginFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -53,13 +56,13 @@ public class DeviceHelper {
         return (uiMode & Configuration.UI_MODE_TYPE_MASK) == Configuration.UI_MODE_TYPE_TELEVISION;
     }
 
-    public static Device.DeviceType getDeviceType(Context context) {
+    public static DeviceType getDeviceType(Context context) {
         if (isTv(context)) {
-            return Device.DeviceType.Tv;
+            return DeviceType.Tv;
         } else if (isTablet()) {
-            return Device.DeviceType.Tablet;
+            return DeviceType.Tablet;
         } else {
-            return Device.DeviceType.Phone;
+            return DeviceType.Phone;
         }
     }
 
@@ -144,6 +147,16 @@ public class DeviceHelper {
     public static String getDeviceId(Context context) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         return preferences.getString(KEY_DEVICE_ID_PREFERENCE, null);
+    }
+
+    public static DeviceInfo getDeviceInfo(Context context) {
+        return new DeviceInfo(getDeviceId(context),
+                SslHelper.certificate,
+                getDeviceName(context),
+                DeviceHelper.getDeviceType(context),
+                ProtocolVersion,
+                PluginFactory.getIncomingCapabilities(),
+                PluginFactory.getOutgoingCapabilities());
     }
 
 }

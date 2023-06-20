@@ -14,12 +14,14 @@ import androidx.annotation.WorkerThread;
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.DeviceInfo;
+import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.NetworkPacket;
 
 public class LoopbackLink extends BaseLink {
 
     public LoopbackLink(Context context, BaseLinkProvider linkProvider) {
-        super(context, "loopback", linkProvider);
+        super(context, linkProvider);
     }
 
     @Override
@@ -38,6 +40,11 @@ public class LoopbackLink extends BaseLink {
         }
         callback.onSuccess();
         return true;
+    }
+
+    @Override
+    public DeviceInfo getDeviceInfo() {
+        return DeviceHelper.getDeviceInfo(context);
     }
 
 }
