@@ -100,6 +100,10 @@ public class MdnsDiscovery {
         serviceInfo.setHost(address);
         serviceInfo.setPort(port);
 
+        // iOS seems to need these as a TXT records
+        serviceInfo.setAttribute("ip", address.toString());
+        serviceInfo.setAttribute("port", Integer.toString(port));
+
         // The following fields aren't really used for anything, since we can't include enough info
         // for it to be useful (namely: we can't include the device certificate).
         // Each field (key + value) needs to be < 255 bytes. All the fields combined need to be < 1300 bytes.
