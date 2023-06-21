@@ -1,0 +1,7 @@
+To upload translations to the Play Store, run from the root of the repo:
+
+```
+fastlane supply --skip_upload_screenshots --skip_upload_images --skip_upload_changelogs --json-key <path to the json key file>
+```
+
+F-Droid reads them directly from this directory for each release tag, so no action is needed.
