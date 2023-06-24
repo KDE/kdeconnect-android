@@ -101,7 +101,7 @@
   <string name="view_status_title">Stav</string>
   <string name="battery_status_format">Baterie: %d%%</string>
   <string name="battery_status_low_format">Baterie: %d%% Téměř vybitá baterie</string>
-  <string name="battery_status_charging_format">Battery: %d%% nabíjí se</string>
+  <string name="battery_status_charging_format">Baterie: %d%% nabíjí se</string>
   <string name="category_connected_devices">Připojená zařízení</string>
   <string name="category_not_paired_devices">Dostupná zařízení</string>
   <string name="category_remembered_devices">Zapamatovaná zařízení</string>
@@ -116,7 +116,7 @@
   <string name="error_canceled_by_user">Přerušeno uživatelem</string>
   <string name="error_canceled_by_other_peer">Přerušeno druhým uživatelem</string>
   <string name="encryption_info_title">Informace o šifrování</string>
-  <string name="encryption_info_msg_no_ssl">Druhé zařízení nepoužívá poslední verzi KDE connect. Bude použita stará metoda šifrování.</string>
+  <string name="encryption_info_msg_no_ssl">Druhé zařízení nepoužívá poslední verzi KDE Connect. Bude použita stará metoda šifrování.</string>
   <string name="my_device_fingerprint">Otisk SHA256 certifikátu vašeho zařízení je:</string>
   <string name="remote_device_fingerprint">Otisk certifikátu SHA256 vzdáleného zařízení je:</string>
   <string name="pair_requested">Bylo vyžádáno párování</string>
@@ -274,7 +274,7 @@
   <string name="contacts_permission_explanation">Pro sdílení knihy kontaktů s pracovním prostředím, musíte udělit přístup ke kontaktům</string>
   <string name="select_ringtone">Vybrat vyzváněcí tón</string>
   <string name="telephony_pref_blocked_title">Blokovaná čísla</string>
-  <string name="telephony_pref_blocked_dialog_desc">Nezobrazovat volnání a SMS z těchto čísel. Prosím, zadejte pouze jedno slovo na řádek.</string>
+  <string name="telephony_pref_blocked_dialog_desc">Nezobrazovat volání a SMS z těchto čísel. Prosím, zadejte pouze jedno slovo na řádek.</string>
   <string name="mpris_coverart_description">Obal současného média</string>
   <string name="device_icon_description">Ikona zařízení</string>
   <string name="settings_icon_description">Ikona nastavení</string>
