@@ -1,0 +1,9 @@
+1.26.1:
+* Fix infinite loop that would cause high CPU usage.
+
+1.26.0:
+* Allow having different widgets for diferent devices.
+* Add stats about network packets sent and received.
+* Add the option to cancel a pairing request after sending it.
+* Fix device name set initially not being human-friendly.
+* Rewrite some of the internals to improve performance.
