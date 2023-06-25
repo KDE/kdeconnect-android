@@ -60,6 +60,8 @@
   <string name="mousepad_mouse_buttons_title">Näytä hiiripainikkeet</string>
   <string name="mousepad_acceleration_profile_settings_title">Aseta osoittimen kiihdytys</string>
   <string name="mousepad_scroll_direction_title">Käänteinen vierityssuunta</string>
+  <string name="gyro_mouse_enabled_title">Käytä gyroskooppihiirtä</string>
+  <string name="gyro_mouse_sensitivity_title">Gyroskoopin herkkyys</string>
   <string-array name="mousepad_tap_entries">
     <item>Vasen napsautus</item>
     <item>Oikea napsautus</item>
@@ -374,6 +376,7 @@
   <string name="click_here_to_type">Napauta ja kirjoita</string>
   <string name="clear_compose">Tyhjennä</string>
   <string name="send_compose">Lähetä</string>
+  <string name="compose_send_title">Kirjoita teksti</string>
   <string name="open_compose_send">Kirjoita teksti</string>
   <string name="about_kde_about">&lt;h1&gt;Tietoa&lt;/h1&gt; &lt;p&gt;KDE on ohjelmoijien, taiteilijoiden, kirjoittajien, kääntäjien ja muiden sisällönluojien kansainvälinen yhteisö, joka on sitoutunut &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;vapaiden ohjelmien&lt;/a&gt; kehitykseen. KDE tuottaa Plasma-työpöytäympäristöä, satoja sovelluksia ja monia niitä tukevia ohjelmakirjastoja.&lt;/p&gt; &lt;p&gt;KDE pyrkii yhteistyöhön: mikään yksittäinen toimija ei hallitse sen suuntaa tai tuotteita, vaan teemme yhdessä työtä yhteisen päämäärän hyväksi: tuottaaksemme maailman hienointa vapaata ohjelmistoa. Kaikki ovat tervetulleita &lt;a href=https://community.kde.org/Get_Involved&gt;liittymään ja avustamaan&lt;/a&gt; KDE:ta – myös sinä.&lt;/p&gt; Sivulta &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; löytyy KDE-yhteisöstä ja tuottamistamme ohjelmista lisätietoa.</string>
   <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Ilmoita ohjelmavirheistä tai -toiveista&lt;/h1&gt; &lt;p&gt;Ohjelmia voi aina parantaa, ja KDE-yhteisö on siihen valmis. Sinun – käyttäjän – on kuitenkin kerrottava meille, kun jokin ei toimi odotetusti tai voisi toimia paremmin.&lt;/p&gt; &lt;p&gt;KDE:lla on virheenseurantajärjestelmä. Käy sivulla &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; tai käytä Tietoa-sivun painiketta ”Ilmoita ohjelmavirheestä”.&lt;/p&gt; Parannusehdotuksissakin olet tervetullut käyttämään virheenseurantajärjestelmää kirjataksesi toiveesi. Varmista, että käytät vakavuustasoa ”Wishlist”.</string>
