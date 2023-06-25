@@ -43,6 +43,7 @@ public class MprisReceiverPlugin extends Plugin {
     private static final String TAG = "MprisReceiver";
 
     private HashMap<String, MprisReceiverPlayer> players;
+    private HashMap<String, MprisReceiverCallback> playerCbs;
     private MediaSessionChangeListener mediaSessionChangeListener;
 
     @Override
@@ -52,6 +53,7 @@ public class MprisReceiverPlugin extends Plugin {
             return false;
 
         players = new HashMap<>();
+        playerCbs = new HashMap<>();
         try {
             MediaSessionManager manager = ContextCompat.getSystemService(context, MediaSessionManager.class);
             if (null == manager)
@@ -175,7 +177,10 @@ public class MprisReceiverPlugin extends Plugin {
             if (null == controllers) {
                 return;
             }
-
+            for (MprisReceiverPlayer p : players.values()) {
+                p.getController().unregisterCallback(playerCbs.get(p.getName()));
+            }
+            playerCbs.clear();
             players.clear();
 
             createPlayers(controllers);
@@ -189,7 +194,9 @@ public class MprisReceiverPlugin extends Plugin {
         if (controller.getPackageName().equals(context.getPackageName())) return;
 
         MprisReceiverPlayer player = new MprisReceiverPlayer(controller, AppsHelper.appNameLookup(context, controller.getPackageName()));
-        controller.registerCallback(new MprisReceiverCallback(this, player), new Handler(Looper.getMainLooper()));
+        MprisReceiverCallback cb = new MprisReceiverCallback(this, player);
+        controller.registerCallback(cb, new Handler(Looper.getMainLooper()));
+        playerCbs.put(player.getName(), cb);
         players.put(player.getName(), player);
     }
 

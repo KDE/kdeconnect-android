@@ -24,6 +24,10 @@ class MprisReceiverPlayer {
         this.name = name;
     }
 
+    public MediaController getController() {
+        return controller;
+    }
+
     boolean isPlaying() {
         PlaybackState state = controller.getPlaybackState();
         if (state == null) return false;
