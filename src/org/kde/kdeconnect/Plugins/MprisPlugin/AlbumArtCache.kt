@@ -204,10 +204,12 @@ internal object AlbumArtCache {
         }
 
         //Only fetch an URL if we're not fetching it already
-        if (url in fetchUrlList || url in isFetchingList) {
-            return
+        synchronized(fetchUrlList) {
+            if (url in fetchUrlList || url in isFetchingList) {
+                return
+            }
+            fetchUrlList.add(url)
         }
-        fetchUrlList.add(url)
         initiateFetch()
     }
 
@@ -215,12 +217,14 @@ internal object AlbumArtCache {
      * Does the actual fetching and makes sure only not too many fetches are running at the same time
      */
     private fun initiateFetch() {
-        if (numFetching >= 2 || fetchUrlList.isEmpty()) return
-
-        //Fetch the last-requested url first, it will probably be needed first
-        val url = fetchUrlList.last()
-        //Remove the url from the to-fetch list
-        fetchUrlList.remove(url)
+        var url : URL;
+        synchronized(fetchUrlList) {
+            if (numFetching >= 2 || fetchUrlList.isEmpty()) return
+            //Fetch the last-requested url first, it will probably be needed first
+            url = fetchUrlList.last()
+            //Remove the url from the to-fetch list
+            fetchUrlList.remove(url)
+        }
         if ("file" == url.protocol) {
             throw AssertionError("Not file urls should be possible here!")
         }
