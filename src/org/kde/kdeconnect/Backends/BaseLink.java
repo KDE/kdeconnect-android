@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.DeviceInfo;
 import org.kde.kdeconnect.NetworkPacket;
 
 import java.io.IOException;
@@ -26,20 +27,20 @@ public abstract class BaseLink {
 
     protected final Context context;
     private final BaseLinkProvider linkProvider;
-    private final String deviceId;
     private final ArrayList<PacketReceiver> receivers = new ArrayList<>();
 
-    protected BaseLink(@NonNull Context context, @NonNull String deviceId, @NonNull BaseLinkProvider linkProvider) {
+    protected BaseLink(@NonNull Context context, @NonNull BaseLinkProvider linkProvider) {
         this.context = context;
         this.linkProvider = linkProvider;
-        this.deviceId = deviceId;
     }
 
     /* To be implemented by each link for pairing handlers */
     public abstract String getName();
 
+    public abstract DeviceInfo getDeviceInfo();
+
     public String getDeviceId() {
-        return deviceId;
+        return getDeviceInfo().id;
     }
 
     public BaseLinkProvider getLinkProvider() {
@@ -54,7 +55,7 @@ public abstract class BaseLink {
     }
 
     //Should be called from a background thread listening for packets
-    protected void packetReceived(@NonNull NetworkPacket np) {
+    public void packetReceived(@NonNull NetworkPacket np) {
         for(PacketReceiver pr : receivers) {
             pr.onPacketReceived(np);
         }

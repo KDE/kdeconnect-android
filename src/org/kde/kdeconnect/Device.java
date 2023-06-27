@@ -14,7 +14,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
-import android.util.Base64;
 import android.util.Log;
 
 import androidx.annotation.AnyThread;
@@ -26,7 +25,6 @@ import androidx.core.content.ContextCompat;
 
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.ArrayListValuedHashMap;
-import org.apache.commons.lang3.StringUtils;
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.Helpers.NotificationHelper;
@@ -38,13 +36,8 @@ import org.kde.kdeconnect_tp.R;
 
 import java.io.IOException;
 import java.security.cert.Certificate;
-import java.security.cert.CertificateEncodingException;
-import java.security.cert.CertificateException;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.Vector;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -53,30 +46,26 @@ public class Device implements BaseLink.PacketReceiver {
 
     private final Context context;
 
-    private final String deviceId;
-    private String name;
-    public Certificate certificate;
+    final DeviceInfo deviceInfo;
+
     private int notificationId;
-    private int protocolVersion;
-    private DeviceType deviceType;
     PairingHandler pairingHandler;
     private final CopyOnWriteArrayList<PairingHandler.PairingCallback> pairingCallbacks = new CopyOnWriteArrayList<>();
     private final CopyOnWriteArrayList<BaseLink> links = new CopyOnWriteArrayList<>();
     private DevicePacketQueue packetQueue;
-    private List<String> supportedPlugins = new ArrayList<>();
+    private List<String> supportedPlugins;
     private final ConcurrentHashMap<String, Plugin> plugins = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<String, Plugin> pluginsWithoutPermissions = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<String, Plugin> pluginsWithoutOptionalPermissions = new ConcurrentHashMap<>();
     private MultiValuedMap<String, String> pluginsByIncomingInterface = new ArrayListValuedHashMap<>();
     private final SharedPreferences settings;
     private final CopyOnWriteArrayList<PluginsChangedListener> pluginsChangedListeners = new CopyOnWriteArrayList<>();
-    private Set<String> incomingCapabilities = new HashSet<>();
 
     public boolean supportsPacketType(String type) {
-        if (incomingCapabilities == null) {
+        if (deviceInfo.incomingCapabilities == null) {
             return true;
         } else {
-            return incomingCapabilities.contains(type);
+            return deviceInfo.incomingCapabilities.contains(type);
         }
     }
 
@@ -84,109 +73,52 @@ public class Device implements BaseLink.PacketReceiver {
         void onPluginsChanged(@NonNull Device device);
     }
 
-    public enum DeviceType {
-        Phone,
-        Tablet,
-        Computer,
-        Tv;
-
-        static public DeviceType FromString(String s) {
-            if ("tablet".equals(s)) return Tablet;
-            if ("phone".equals(s)) return Phone;
-            if ("tv".equals(s)) return Tv;
-            return Computer; //Default
-        }
-
-        @NonNull
-        public String toString() {
-            switch (this) {
-                case Tablet:
-                    return "tablet";
-                case Phone:
-                    return "phone";
-                case Tv:
-                    return "tv";
-                default:
-                    return "desktop";
-            }
-        }
-
-        public Drawable getIcon(Context context) {
-            int drawableId;
-            switch (this) {
-                case Phone:
-                    drawableId = R.drawable.ic_device_phone_32dp;
-                    break;
-                case Tablet:
-                    drawableId = R.drawable.ic_device_tablet_32dp;
-                    break;
-                case Tv:
-                    drawableId = R.drawable.ic_device_tv_32dp;
-                    break;
-                default:
-                    drawableId = R.drawable.ic_device_laptop_32dp;
-            }
-            return ContextCompat.getDrawable(context, drawableId);
-        }
-    }
-
-    // Remembered trusted device, we need to wait for a incoming Link to communicate
-    Device(@NonNull Context context, @NonNull String deviceId) throws CertificateException {
-
+    /**
+     * Constructor for remembered, already-trusted devices.
+     * Given the deviceId, it will load the other properties from SharedPreferences.
+     */
+    Device(@NonNull Context context, @NonNull String deviceId) {
         this.context = context;
-
         this.settings = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE);
+        this.deviceInfo = DeviceInfo.loadFromSettings(context, deviceId, settings);
         this.pairingHandler = new PairingHandler(this, pairingCallback, PairingHandler.PairState.Paired);
-
-        this.deviceId = deviceId;
-        this.name = settings.getString("deviceName", context.getString(R.string.unknown_device));
-        this.protocolVersion = 0; //We don't know it yet
-        this.deviceType = DeviceType.FromString(settings.getString("deviceType", "desktop"));
-        this.certificate = SslHelper.getDeviceCertificate(context, deviceId);
-
-        Log.i("Device","Loading trusted device: " + this.name);
-
-        //Assume every plugin is supported until addLink is called and we can get the actual list
-        supportedPlugins = new Vector<>(PluginFactory.getAvailablePlugins());
-
-        //Do not load plugins yet, the device is not present
-        //reloadPluginsFromSettings();
+        this.supportedPlugins = new Vector<>(PluginFactory.getAvailablePlugins()); // Assume all are supported until we receive capabilities
+        Log.i("Device","Loading trusted device: " + deviceInfo.name);
     }
 
-    // Device known via an incoming connection sent to us via a Link, we don't trust it yet
-    Device(@NonNull Context context, @NonNull String deviceId, @NonNull Certificate certificate, @NonNull NetworkPacket identityPacket, @NonNull BaseLink dl) {
-        Log.i("Device","Creating untrusted device");
-
+    /**
+     * Constructor for devices discovered but not trusted yet.
+     * Gets the DeviceInfo by calling link.getDeviceInfo() on the link passed.
+     * This constructor also calls addLink() with the link you pass to it, since it's not legal to have an unpaired Device with 0 links.
+     */
+    Device(@NonNull Context context, @NonNull BaseLink link) {
         this.context = context;
-
-        this.settings = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE);
+        this.deviceInfo = link.getDeviceInfo();
+        this.settings = context.getSharedPreferences(deviceInfo.id, Context.MODE_PRIVATE);
         this.pairingHandler = new PairingHandler(this, pairingCallback, PairingHandler.PairState.NotPaired);
-
-        this.deviceId = deviceId;
-        this.certificate = certificate;
-
-        // The following properties are read from the identityPacket in addLink since they can change in future identity packets
-        this.name = context.getString(R.string.unknown_device);
-        this.deviceType = DeviceType.Computer;
-        this.protocolVersion = 0;
-
-        addLink(identityPacket, dl);
+        this.supportedPlugins = new Vector<>(PluginFactory.getAvailablePlugins()); // Assume all are supported until we receive capabilities
+        Log.i("Device","Creating untrusted device: "+ deviceInfo.name);
+        addLink(link);
     }
 
     public String getName() {
-        return StringUtils.defaultString(name, context.getString(R.string.unknown_device));
+        return deviceInfo.name;
     }
 
     public Drawable getIcon() {
-        return deviceType.getIcon(context);
+        return  deviceInfo.type.getIcon(context);
     }
 
     public DeviceType getDeviceType() {
-        return deviceType;
+        return deviceInfo.type;
     }
 
     public String getDeviceId() {
-        return deviceId;
+        return deviceInfo.id;
+    }
+
+    public Certificate getCertificate() {
+        return deviceInfo.certificate;
     }
 
     public Context getContext() {
@@ -195,7 +127,7 @@ public class Device implements BaseLink.PacketReceiver {
 
     //Returns 0 if the version matches, < 0 if it is older or > 0 if it is newer
     public int compareProtocolVersion() {
-        return protocolVersion - DeviceHelper.ProtocolVersion;
+        return deviceInfo.protocolVersion - DeviceHelper.ProtocolVersion;
     }
 
 
@@ -257,20 +189,11 @@ public class Device implements BaseLink.PacketReceiver {
             hidePairingNotification();
 
             // Store current device certificate so we can check it in the future (TOFU)
-            SharedPreferences.Editor editor = context.getSharedPreferences(getDeviceId(), Context.MODE_PRIVATE).edit();
-            try {
-                String encodedCertificate = Base64.encodeToString(certificate.getEncoded(), 0);
-                editor.putString("certificate", encodedCertificate);
-            } catch(CertificateEncodingException e) {
-                throw new RuntimeException(e);
-            }
-            editor.putString("deviceName", name);
-            editor.putString("deviceType", deviceType.toString());
-            editor.apply();
+            deviceInfo.saveInSettings(Device.this.settings);
 
             // Store as trusted device
             SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
-            preferences.edit().putBoolean(deviceId, true).apply();
+            preferences.edit().putBoolean(deviceInfo.id, true).apply();
 
             reloadPluginsFromSettings();
 
@@ -290,9 +213,9 @@ public class Device implements BaseLink.PacketReceiver {
         @Override
         public void unpaired() {
             SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
-            preferences.edit().remove(deviceId).apply();
+            preferences.edit().remove(deviceInfo.id).apply();
 
-            SharedPreferences devicePreferences = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE);
+            SharedPreferences devicePreferences = context.getSharedPreferences(deviceInfo.id, Context.MODE_PRIVATE);
             devicePreferences.edit().clear().apply();
 
             for (PairingHandler.PairingCallback cb : pairingCallbacks) {
@@ -334,7 +257,7 @@ public class Device implements BaseLink.PacketReceiver {
 
         final NotificationManager notificationManager = ContextCompat.getSystemService(getContext(), NotificationManager.class);
 
-        String verificationKeyShort = SslHelper.getVerificationKey(SslHelper.certificate, certificate).substring(8);
+        String verificationKeyShort = SslHelper.getVerificationKey(SslHelper.certificate, deviceInfo.certificate).substring(8);
 
         Notification noti = new NotificationCompat.Builder(getContext(), NotificationHelper.Channels.DEFAULT)
                 .setContentTitle(res.getString(R.string.pairing_request_from, getName()))
@@ -365,7 +288,7 @@ public class Device implements BaseLink.PacketReceiver {
         return !links.isEmpty();
     }
 
-    public void addLink(NetworkPacket identityPacket, BaseLink link) {
+    public void addLink(BaseLink link) {
         if (links.isEmpty()) {
             packetQueue = new DevicePacketQueue(this);
         }
@@ -373,33 +296,11 @@ public class Device implements BaseLink.PacketReceiver {
         links.add(link);
         link.addPacketReceiver(this);
 
-        this.protocolVersion = identityPacket.getInt("protocolVersion");
+        boolean hasChanges = updateDeviceInfo(link.getDeviceInfo());
 
-        if (identityPacket.has("deviceName")) {
-            this.name = identityPacket.getString("deviceName", this.name);
-            SharedPreferences.Editor editor = settings.edit();
-            editor.putString("deviceName", this.name);
-            editor.apply();
+        if (hasChanges || links.size() == 1) {
+            reloadPluginsFromSettings();
         }
-
-        if (identityPacket.has("deviceType")) {
-            this.deviceType = DeviceType.FromString(identityPacket.getString("deviceType", "desktop"));
-        }
-
-        Log.i("KDE/Device", "addLink " + link.getLinkProvider().getName() + " -> " + getName() + " active links: " + links.size());
-
-        Set<String> outgoingCapabilities = identityPacket.getStringSet("outgoingCapabilities", null);
-        Set<String> incomingCapabilities = identityPacket.getStringSet("incomingCapabilities", null);
-
-        if (incomingCapabilities != null && outgoingCapabilities != null) {
-            supportedPlugins = new Vector<>(PluginFactory.pluginsForCapabilities(incomingCapabilities, outgoingCapabilities));
-        } else {
-            supportedPlugins = new Vector<>(PluginFactory.getAvailablePlugins());
-        }
-        this.incomingCapabilities = incomingCapabilities;
-
-        reloadPluginsFromSettings();
-
     }
 
     public void removeLink(BaseLink link) {
@@ -415,6 +316,30 @@ public class Device implements BaseLink.PacketReceiver {
                 packetQueue = null;
             }
         }
+    }
+
+    public boolean updateDeviceInfo(@NonNull DeviceInfo newDeviceInfo) {
+
+        boolean hasChanges = false;
+        if (!deviceInfo.name.equals(newDeviceInfo.name) || deviceInfo.type != newDeviceInfo.type) {
+            hasChanges = true;
+            deviceInfo.name = newDeviceInfo.name;
+            deviceInfo.type = newDeviceInfo.type;
+            if (isPaired()) {
+                deviceInfo.saveInSettings(settings);
+            }
+        }
+
+        if (deviceInfo.outgoingCapabilities != newDeviceInfo.outgoingCapabilities ||
+                deviceInfo.incomingCapabilities != newDeviceInfo.incomingCapabilities) {
+            if (newDeviceInfo.outgoingCapabilities != null && newDeviceInfo.incomingCapabilities != null) {
+                hasChanges = true;
+                Log.i("updateDeviceInfo", "Updating supported plugins according to new capabilities");
+                supportedPlugins = new Vector<>(PluginFactory.pluginsForCapabilities(newDeviceInfo.incomingCapabilities, newDeviceInfo.outgoingCapabilities));
+            }
+        }
+
+        return hasChanges;
     }
 
     @Override
@@ -580,7 +505,7 @@ public class Device implements BaseLink.PacketReceiver {
         }
 
         if (!success) {
-            Log.e("KDE/sendPacket", "No device link (of " + links.size() + " available) could send the packet. Packet " + np.getType() + " to " + name + " lost!");
+            Log.e("KDE/sendPacket", "No device link (of " + links.size() + " available) could send the packet. Packet " + np.getType() + " to " + deviceInfo.name + " lost!");
         }
 
         return success;
@@ -697,6 +622,7 @@ public class Device implements BaseLink.PacketReceiver {
     }
 
     public void reloadPluginsFromSettings() {
+        Log.i("Device", deviceInfo.name +": reloading plugins");
         MultiValuedMap<String, String> newPluginsByIncomingInterface = new ArrayListValuedHashMap<>();
 
         for (String pluginKey : supportedPlugins) {

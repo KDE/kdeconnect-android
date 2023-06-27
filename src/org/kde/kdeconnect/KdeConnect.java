@@ -2,7 +2,7 @@
  * SPDX-FileCopyrightText: 2023 Albert Vaca Cintora <albertvaka@gmail.com>
  *
  * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
-*/
+ */
 
 package org.kde.kdeconnect;
 
@@ -24,8 +24,6 @@ import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect.UserInterface.ThemeUtil;
 
-import java.security.cert.Certificate;
-import java.security.cert.CertificateException;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -115,14 +113,9 @@ public class KdeConnect extends Application {
         for (String deviceId : trustedDevices) {
             //Log.e("BackgroundService", "Loading device "+deviceId);
             if (preferences.getBoolean(deviceId, false)) {
-                try {
-                    Device device = new Device(this, deviceId);
-                    devices.put(deviceId, device);
-                    device.addPairingCallback(devicePairingCallback);
-                } catch (CertificateException e) {
-                    Log.e("KdeConnect", "Could not load trusted device, certificate not valid: " + deviceId);
-                    e.printStackTrace();
-                }
+                Device device = new Device(this, deviceId);
+                devices.put(deviceId, device);
+                device.addPairingCallback(devicePairingCallback);
             }
         }
     }
@@ -151,18 +144,13 @@ public class KdeConnect extends Application {
 
     private final BaseLinkProvider.ConnectionReceiver connectionListener = new BaseLinkProvider.ConnectionReceiver() {
         @Override
-        public void onConnectionReceived(@NonNull final String deviceId,
-                                         @NonNull final Certificate certificate,
-                                         @NonNull final NetworkPacket identityPacket,
-                                         @NonNull final BaseLink link) {
-            Device device = devices.get(deviceId);
+        public void onConnectionReceived(@NonNull final BaseLink link) {
+            Device device = devices.get(link.getDeviceId());
             if (device != null) {
-                Log.i("KDE/Application", "addLink, known device: " + deviceId);
-                device.addLink(identityPacket, link);
+                device.addLink(link);
             } else {
-                Log.i("KDE/Application", "addLink,unknown device: " + deviceId);
-                device = new Device(KdeConnect.this, deviceId, certificate, identityPacket, link);
-                devices.put(deviceId, device);
+                device = new Device(KdeConnect.this, link);
+                devices.put(link.getDeviceId(), device);
                 device.addPairingCallback(devicePairingCallback);
             }
             onDeviceListChanged();

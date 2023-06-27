@@ -10,10 +10,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.ArgumentMatchers.anyString;
 
-import android.content.Context;
 import android.util.Log;
 
 import org.json.JSONException;
@@ -22,9 +19,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.mockito.Mockito;
+import org.mockito.internal.util.collections.Sets;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
+
+import java.security.cert.Certificate;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({DeviceHelper.class, Log.class})
@@ -34,7 +34,7 @@ public class NetworkPacketTest {
     public void setUp() {
         PowerMockito.mockStatic(DeviceHelper.class);
         PowerMockito.when(DeviceHelper.getDeviceId(any())).thenReturn("123");
-        PowerMockito.when(DeviceHelper.getDeviceType(any())).thenReturn(Device.DeviceType.Phone);
+        PowerMockito.when(DeviceHelper.getDeviceType(any())).thenReturn(DeviceType.Phone);
 
         PowerMockito.mockStatic(Log.class);
     }
@@ -70,14 +70,23 @@ public class NetworkPacketTest {
 
     @Test
     public void testIdentity() {
+        Certificate cert = Mockito.mock(Certificate.class);
 
-        Context context = Mockito.mock(Context.class);
-        MockSharedPreference settings = new MockSharedPreference();
-        Mockito.when(context.getSharedPreferences(anyString(), anyInt())).thenReturn(settings);
+        DeviceInfo deviceInfo = new DeviceInfo("myid", cert, "myname", DeviceType.Tv, 12, Sets.newSet("ASDFG"), Sets.newSet("QWERTY"));
 
-        NetworkPacket np = NetworkPacket.createIdentityPacket(context);
+        NetworkPacket np = deviceInfo.toIdentityPacket();
 
-        assertEquals(np.getInt("protocolVersion"), DeviceHelper.ProtocolVersion);
+        assertEquals(np.getInt("protocolVersion"), 12);
+
+        DeviceInfo parsed = DeviceInfo.fromIdentityPacketAndCert(np, cert);
+
+        assertEquals(parsed.name, deviceInfo.name);
+        assertEquals(parsed.id, deviceInfo.id);
+        assertEquals(parsed.type, deviceInfo.type);
+        assertEquals(parsed.protocolVersion, deviceInfo.protocolVersion);
+        assertEquals(parsed.incomingCapabilities, deviceInfo.incomingCapabilities);
+        assertEquals(parsed.outgoingCapabilities, deviceInfo.outgoingCapabilities);
+
 
     }
 

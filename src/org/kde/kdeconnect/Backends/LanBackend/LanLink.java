@@ -16,6 +16,7 @@ import org.json.JSONObject;
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.DeviceInfo;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.Helpers.ThreadHelper;
 import org.kde.kdeconnect.NetworkPacket;
@@ -41,6 +42,8 @@ public class LanLink extends BaseLink {
     public enum ConnectionStarted {
         Locally, Remotely
     }
+
+    private final DeviceInfo deviceInfo;
 
     private volatile SSLSocket socket = null;
 
@@ -99,14 +102,20 @@ public class LanLink extends BaseLink {
         return oldSocket;
     }
 
-    public LanLink(Context context, String deviceId, BaseLinkProvider linkProvider, SSLSocket socket) throws IOException {
-        super(context, deviceId, linkProvider);
+    public LanLink(@NonNull Context context, @NonNull DeviceInfo deviceInfo, @NonNull BaseLinkProvider linkProvider, @NonNull SSLSocket socket) throws IOException {
+        super(context, linkProvider);
+        this.deviceInfo = deviceInfo;
         reset(socket);
     }
 
     @Override
     public String getName() {
         return "LanLink";
+    }
+
+    @Override
+    public DeviceInfo getDeviceInfo() {
+        return deviceInfo;
     }
 
     @WorkerThread

@@ -6,15 +6,10 @@
 
 package org.kde.kdeconnect;
 
-import android.content.Context;
-import android.util.Log;
-
 import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.kde.kdeconnect.Helpers.DeviceHelper;
-import org.kde.kdeconnect.Plugins.PluginFactory;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -261,26 +256,6 @@ public class NetworkPacket {
             np.mPayload = new Payload(0);
         }
         return np;
-    }
-
-    static public NetworkPacket createIdentityPacket(Context context) {
-
-        NetworkPacket np = new NetworkPacket(NetworkPacket.PACKET_TYPE_IDENTITY);
-
-        String deviceId = DeviceHelper.getDeviceId(context);
-        try {
-            np.mBody.put("deviceId", deviceId);
-            np.mBody.put("deviceName", DeviceHelper.getDeviceName(context));
-            np.mBody.put("protocolVersion", DeviceHelper.ProtocolVersion);
-            np.mBody.put("deviceType", DeviceHelper.getDeviceType(context).toString());
-            np.mBody.put("incomingCapabilities", new JSONArray(PluginFactory.getIncomingCapabilities()));
-            np.mBody.put("outgoingCapabilities", new JSONArray(PluginFactory.getOutgoingCapabilities()));
-        } catch (Exception e) {
-            Log.e("NetworkPacket", "Exception on createIdentityPacket", e);
-        }
-
-        return np;
-
     }
 
     public void setPayload(Payload payload) { mPayload = payload; }
