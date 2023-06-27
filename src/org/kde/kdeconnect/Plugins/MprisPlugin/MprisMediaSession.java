@@ -168,12 +168,13 @@ public class MprisMediaSession implements
      * Prefers playing devices/mpris players, but tries to keep displaying the same
      * player and device, while possible.
      */
-    private void updateCurrentPlayer() {
+    private MprisPlugin.MprisPlayer updateCurrentPlayer() {
         Pair<Device, MprisPlugin.MprisPlayer> player = findPlayer();
 
         //Update the last-displayed device and player
         notificationDevice = player.first == null ? null : player.first.getDeviceId();
         notificationPlayer = player.second;
+        return notificationPlayer;
     }
 
     private Pair<Device, MprisPlugin.MprisPlayer> findPlayer() {
@@ -273,10 +274,10 @@ public class MprisMediaSession implements
         }
 
         //Make sure our information is up-to-date
-        updateCurrentPlayer();
+        MprisPlugin.MprisPlayer currentPlayer = updateCurrentPlayer();
 
         //If the player disappeared (and no other playing one found), just remove the notification
-        if (notificationPlayer == null) {
+        if (currentPlayer == null) {
             closeMediaNotification();
             return;
         }
@@ -285,20 +286,20 @@ public class MprisMediaSession implements
 
         MediaMetadataCompat.Builder metadata = new MediaMetadataCompat.Builder();
 
-        metadata.putString(MediaMetadataCompat.METADATA_KEY_TITLE, notificationPlayer.getTitle());
+        metadata.putString(MediaMetadataCompat.METADATA_KEY_TITLE, currentPlayer.getTitle());
 
-        if (!notificationPlayer.getArtist().isEmpty()) {
-            metadata.putString(MediaMetadataCompat.METADATA_KEY_AUTHOR, notificationPlayer.getArtist());
-            metadata.putString(MediaMetadataCompat.METADATA_KEY_ARTIST, notificationPlayer.getArtist());
+        if (!currentPlayer.getArtist().isEmpty()) {
+            metadata.putString(MediaMetadataCompat.METADATA_KEY_AUTHOR, currentPlayer.getArtist());
+            metadata.putString(MediaMetadataCompat.METADATA_KEY_ARTIST, currentPlayer.getArtist());
         }
-        if (!notificationPlayer.getAlbum().isEmpty()) {
-            metadata.putString(MediaMetadataCompat.METADATA_KEY_ALBUM, notificationPlayer.getAlbum());
+        if (!currentPlayer.getAlbum().isEmpty()) {
+            metadata.putString(MediaMetadataCompat.METADATA_KEY_ALBUM, currentPlayer.getAlbum());
         }
-        if (notificationPlayer.getLength() > 0) {
-            metadata.putLong(MediaMetadataCompat.METADATA_KEY_DURATION, notificationPlayer.getLength());
+        if (currentPlayer.getLength() > 0) {
+            metadata.putLong(MediaMetadataCompat.METADATA_KEY_DURATION, currentPlayer.getLength());
         }
 
-        Bitmap albumArt = notificationPlayer.getAlbumArt();
+        Bitmap albumArt = currentPlayer.getAlbumArt();
         if (albumArt != null) {
             metadata.putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, albumArt);
         }
@@ -306,17 +307,17 @@ public class MprisMediaSession implements
         mediaSession.setMetadata(metadata.build());
         PlaybackStateCompat.Builder playbackState = new PlaybackStateCompat.Builder();
 
-        if (notificationPlayer.isPlaying()) {
-            playbackState.setState(PlaybackStateCompat.STATE_PLAYING, notificationPlayer.getPosition(), 1.0f);
+        if (currentPlayer.isPlaying()) {
+            playbackState.setState(PlaybackStateCompat.STATE_PLAYING, currentPlayer.getPosition(), 1.0f);
         } else {
-            playbackState.setState(PlaybackStateCompat.STATE_PAUSED, notificationPlayer.getPosition(), 0.0f);
+            playbackState.setState(PlaybackStateCompat.STATE_PAUSED, currentPlayer.getPosition(), 0.0f);
         }
 
         //Create all actions (previous/play/pause/next)
         Intent iPlay = new Intent(context, MprisMediaNotificationReceiver.class);
         iPlay.setAction(MprisMediaNotificationReceiver.ACTION_PLAY);
         iPlay.putExtra(MprisMediaNotificationReceiver.EXTRA_DEVICE_ID, notificationDevice);
-        iPlay.putExtra(MprisMediaNotificationReceiver.EXTRA_MPRIS_PLAYER, notificationPlayer.getPlayerName());
+        iPlay.putExtra(MprisMediaNotificationReceiver.EXTRA_MPRIS_PLAYER, currentPlayer.getPlayerName());
         PendingIntent piPlay = PendingIntent.getBroadcast(context, 0, iPlay, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE);
         NotificationCompat.Action.Builder aPlay = new NotificationCompat.Action.Builder(
                 R.drawable.ic_play_white, context.getString(R.string.mpris_play), piPlay);
@@ -324,7 +325,7 @@ public class MprisMediaSession implements
         Intent iPause = new Intent(context, MprisMediaNotificationReceiver.class);
         iPause.setAction(MprisMediaNotificationReceiver.ACTION_PAUSE);
         iPause.putExtra(MprisMediaNotificationReceiver.EXTRA_DEVICE_ID, notificationDevice);
-        iPause.putExtra(MprisMediaNotificationReceiver.EXTRA_MPRIS_PLAYER, notificationPlayer.getPlayerName());
+        iPause.putExtra(MprisMediaNotificationReceiver.EXTRA_MPRIS_PLAYER, currentPlayer.getPlayerName());
         PendingIntent piPause = PendingIntent.getBroadcast(context, 0, iPause, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE);
         NotificationCompat.Action.Builder aPause = new NotificationCompat.Action.Builder(
                 R.drawable.ic_pause_white, context.getString(R.string.mpris_pause), piPause);
@@ -332,7 +333,7 @@ public class MprisMediaSession implements
         Intent iPrevious = new Intent(context, MprisMediaNotificationReceiver.class);
         iPrevious.setAction(MprisMediaNotificationReceiver.ACTION_PREVIOUS);
         iPrevious.putExtra(MprisMediaNotificationReceiver.EXTRA_DEVICE_ID, notificationDevice);
-        iPrevious.putExtra(MprisMediaNotificationReceiver.EXTRA_MPRIS_PLAYER, notificationPlayer.getPlayerName());
+        iPrevious.putExtra(MprisMediaNotificationReceiver.EXTRA_MPRIS_PLAYER, currentPlayer.getPlayerName());
         PendingIntent piPrevious = PendingIntent.getBroadcast(context, 0, iPrevious, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE);
         NotificationCompat.Action.Builder aPrevious = new NotificationCompat.Action.Builder(
                 R.drawable.ic_previous_white, context.getString(R.string.mpris_previous), piPrevious);
@@ -340,14 +341,14 @@ public class MprisMediaSession implements
         Intent iNext = new Intent(context, MprisMediaNotificationReceiver.class);
         iNext.setAction(MprisMediaNotificationReceiver.ACTION_NEXT);
         iNext.putExtra(MprisMediaNotificationReceiver.EXTRA_DEVICE_ID, notificationDevice);
-        iNext.putExtra(MprisMediaNotificationReceiver.EXTRA_MPRIS_PLAYER, notificationPlayer.getPlayerName());
+        iNext.putExtra(MprisMediaNotificationReceiver.EXTRA_MPRIS_PLAYER, currentPlayer.getPlayerName());
         PendingIntent piNext = PendingIntent.getBroadcast(context, 0, iNext, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE);
         NotificationCompat.Action.Builder aNext = new NotificationCompat.Action.Builder(
                 R.drawable.ic_next_white, context.getString(R.string.mpris_next), piNext);
 
         Intent iOpenActivity = new Intent(context, MprisActivity.class);
         iOpenActivity.putExtra("deviceId", notificationDevice);
-        iOpenActivity.putExtra("player", notificationPlayer.getPlayerName());
+        iOpenActivity.putExtra("player", currentPlayer.getPlayerName());
 
         PendingIntent piOpenActivity = TaskStackBuilder.create(context)
                 .addNextIntentWithParentStack(iOpenActivity)
@@ -364,28 +365,28 @@ public class MprisMediaSession implements
                 .setVisibility(androidx.core.app.NotificationCompat.VISIBILITY_PUBLIC)
                 .setSubText(KdeConnect.getInstance().getDevice(notificationDevice).getName());
 
-        notification.setContentTitle(notificationPlayer.getTitle());
+        notification.setContentTitle(currentPlayer.getTitle());
 
         //Only set the notification body text if we have an author and/or album
-        if (!notificationPlayer.getArtist().isEmpty() && !notificationPlayer.getAlbum().isEmpty()) {
-            notification.setContentText(notificationPlayer.getArtist() + " - " + notificationPlayer.getAlbum() + " (" + notificationPlayer.getPlayerName() + ")");
-        } else if (!notificationPlayer.getArtist().isEmpty()) {
-            notification.setContentText(notificationPlayer.getArtist() + " (" + notificationPlayer.getPlayerName() + ")");
-        } else if (!notificationPlayer.getAlbum().isEmpty()) {
-            notification.setContentText(notificationPlayer.getAlbum() + " (" + notificationPlayer.getPlayerName() + ")");
+        if (!currentPlayer.getArtist().isEmpty() && !currentPlayer.getAlbum().isEmpty()) {
+            notification.setContentText(currentPlayer.getArtist() + " - " + currentPlayer.getAlbum() + " (" + currentPlayer.getPlayerName() + ")");
+        } else if (!currentPlayer.getArtist().isEmpty()) {
+            notification.setContentText(currentPlayer.getArtist() + " (" + currentPlayer.getPlayerName() + ")");
+        } else if (!currentPlayer.getAlbum().isEmpty()) {
+            notification.setContentText(currentPlayer.getAlbum() + " (" + currentPlayer.getPlayerName() + ")");
         } else {
-            notification.setContentText(notificationPlayer.getPlayerName());
+            notification.setContentText(currentPlayer.getPlayerName());
         }
 
         if (albumArt != null) {
             notification.setLargeIcon(albumArt);
         }
 
-        if (!notificationPlayer.isPlaying()) {
+        if (!currentPlayer.isPlaying()) {
             Intent iCloseNotification = new Intent(context, MprisMediaNotificationReceiver.class);
             iCloseNotification.setAction(MprisMediaNotificationReceiver.ACTION_CLOSE_NOTIFICATION);
             iCloseNotification.putExtra(MprisMediaNotificationReceiver.EXTRA_DEVICE_ID, notificationDevice);
-            iCloseNotification.putExtra(MprisMediaNotificationReceiver.EXTRA_MPRIS_PLAYER, notificationPlayer.getPlayerName());
+            iCloseNotification.putExtra(MprisMediaNotificationReceiver.EXTRA_MPRIS_PLAYER, currentPlayer.getPlayerName());
             PendingIntent piCloseNotification = PendingIntent.getBroadcast(context, 0, iCloseNotification, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE);
             notification.setDeleteIntent(piCloseNotification);
         }
@@ -393,37 +394,37 @@ public class MprisMediaSession implements
         //Add media control actions
         int numActions = 0;
         long playbackActions = 0;
-        if (notificationPlayer.isGoPreviousAllowed()) {
+        if (currentPlayer.isGoPreviousAllowed()) {
             notification.addAction(aPrevious.build());
             playbackActions |= PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS;
             ++numActions;
         }
-        if (notificationPlayer.isPlaying() && notificationPlayer.isPauseAllowed()) {
+        if (currentPlayer.isPlaying() && currentPlayer.isPauseAllowed()) {
             notification.addAction(aPause.build());
             playbackActions |= PlaybackStateCompat.ACTION_PAUSE;
             ++numActions;
         }
-        if (!notificationPlayer.isPlaying() && notificationPlayer.isPlayAllowed()) {
+        if (!currentPlayer.isPlaying() && currentPlayer.isPlayAllowed()) {
             notification.addAction(aPlay.build());
             playbackActions |= PlaybackStateCompat.ACTION_PLAY;
             ++numActions;
         }
-        if (notificationPlayer.isGoNextAllowed()) {
+        if (currentPlayer.isGoNextAllowed()) {
             notification.addAction(aNext.build());
             playbackActions |= PlaybackStateCompat.ACTION_SKIP_TO_NEXT;
             ++numActions;
         }
         // Documentation says that this was added in Lollipop (21) but it seems to cause crashes on < Pie (28)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            if (notificationPlayer.isSeekAllowed()) {
+            if (currentPlayer.isSeekAllowed()) {
                 playbackActions |= PlaybackStateCompat.ACTION_SEEK_TO;
             }
         }
         playbackState.setActions(playbackActions);
         mediaSession.setPlaybackState(playbackState.build());
 
-        //Only allow deletion if no music is notificationPlayer
-        notification.setOngoing(notificationPlayer.isPlaying());
+        //Only allow deletion if no music is currentPlayer
+        notification.setOngoing(currentPlayer.isPlaying());
 
         //Use the MediaStyle notification, so it feels like other media players. That also allows adding actions
         MediaStyle mediaStyle = new MediaStyle();
