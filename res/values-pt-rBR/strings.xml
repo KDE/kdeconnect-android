@@ -108,6 +108,7 @@
   <string name="device_menu_plugins">Configuração dos plugins</string>
   <string name="device_menu_unpair">Cancelar emparelhamento</string>
   <string name="pair_new_device">Emparelhar novo dispositivo</string>
+  <string name="cancel_pairing">Cancelar emparelhamento</string>
   <string name="unknown_device">Dispositivo desconhecido</string>
   <string name="error_not_reachable">Dispositivo inacessível</string>
   <string name="error_already_paired">Dispositivo já emparelhado</string>
@@ -395,4 +396,5 @@
   <string name="everyone_else">Todos os outros que contribuíram para o KDE Connect ao longo dos anos</string>
   <string name="send_clipboard">Enviar para área de transferência</string>
   <string name="tap_to_execute">Toque para executar</string>
+  <string name="plugin_stats">Estatísticas do plugin</string>
 </resources>
