@@ -33,6 +33,8 @@ import org.kde.kdeconnect_tp.R;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @PluginFactory.LoadablePlugin
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
@@ -216,6 +218,9 @@ public class MprisReceiverPlugin extends Plugin {
         np.set("player", player.getName());
         np.set("title", player.getTitle());
         np.set("artist", player.getArtist());
+        String nowPlaying = Stream.of(player.getArtist(), player.getTitle())
+            .filter(StringUtils::isNotEmpty).collect(Collectors.joining(" - "));
+        np.set("nowPlaying", nowPlaying); // GSConnect 50 (so, Ubuntu 22.04) needs this
         np.set("album", player.getAlbum());
         np.set("isPlaying", player.isPlaying());
         np.set("pos", player.getPosition());
