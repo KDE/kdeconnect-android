@@ -396,4 +396,5 @@
   <string name="everyone_else">Toutes les autres personnes ayant contribué à « KDE Connect » depuis plusieurs années</string>
   <string name="send_clipboard">Envoyer le presse-papier</string>
   <string name="tap_to_execute">Tapotez pour lancer</string>
+  <string name="plugin_stats">Statistiques des modules externes</string>
 </resources>
