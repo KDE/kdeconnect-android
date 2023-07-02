@@ -264,13 +264,10 @@ public class MprisMediaSession implements
             return;
         }
 
-        synchronized (instance) {
-            if (mediaSession == null) {
-                mediaSession = new MediaSessionCompat(context, MPRIS_MEDIA_SESSION_TAG);
-                mediaSession.setCallback(mediaSessionCallback, new Handler(context.getMainLooper()));
-                // Deprecated flags not required in Build.VERSION_CODES.O and later
-                mediaSession.setFlags(MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS | MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS);
-            }
+        Device device = KdeConnect.getInstance().getDevice(notificationDevice);
+        if (device == null) {
+            closeMediaNotification();
+            return;
         }
 
         //Make sure our information is up-to-date
@@ -280,6 +277,15 @@ public class MprisMediaSession implements
         if (currentPlayer == null) {
             closeMediaNotification();
             return;
+        }
+
+        synchronized (instance) {
+            if (mediaSession == null) {
+                mediaSession = new MediaSessionCompat(context, MPRIS_MEDIA_SESSION_TAG);
+                mediaSession.setCallback(mediaSessionCallback, new Handler(context.getMainLooper()));
+                // Deprecated flags not required in Build.VERSION_CODES.O and later
+                mediaSession.setFlags(MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS | MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS);
+            }
         }
 
         updateRemoteDeviceVolumeControl();
@@ -363,7 +369,7 @@ public class MprisMediaSession implements
                 .setShowWhen(false)
                 .setColor(ContextCompat.getColor(context, R.color.primary))
                 .setVisibility(androidx.core.app.NotificationCompat.VISIBILITY_PUBLIC)
-                .setSubText(KdeConnect.getInstance().getDevice(notificationDevice).getName());
+                .setSubText(device.getName());
 
         notification.setContentTitle(currentPlayer.getTitle());
 
