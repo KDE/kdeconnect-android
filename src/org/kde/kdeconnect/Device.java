@@ -186,6 +186,8 @@ public class Device implements BaseLink.PacketReceiver {
 
         @Override
         public void pairingSuccessful() {
+            Log.i("Device", "pairing successful, adding to trusted devices list");
+
             hidePairingNotification();
 
             // Store current device certificate so we can check it in the future (TOFU)
@@ -212,6 +214,7 @@ public class Device implements BaseLink.PacketReceiver {
 
         @Override
         public void unpaired() {
+            Log.i("Device", "unpaired, removing from trusted devices list");
             SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
             preferences.edit().remove(deviceInfo.id).apply();
 
