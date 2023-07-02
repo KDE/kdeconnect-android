@@ -197,10 +197,15 @@ public class Device implements BaseLink.PacketReceiver {
             SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
             preferences.edit().putBoolean(deviceInfo.id, true).apply();
 
-            reloadPluginsFromSettings();
+            try {
+                reloadPluginsFromSettings();
 
-            for (PairingHandler.PairingCallback cb : pairingCallbacks) {
-                cb.pairingSuccessful();
+                for (PairingHandler.PairingCallback cb : pairingCallbacks) {
+                    cb.pairingSuccessful();
+                }
+            } catch (Exception e) {
+                Log.e("PairingHandler", "Exception in pairingSuccessful. Not unpairing because saving the trusted device succeeded");
+                e.printStackTrace();
             }
         }
 
