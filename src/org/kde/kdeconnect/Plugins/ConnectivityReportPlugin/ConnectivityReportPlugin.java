@@ -219,12 +219,17 @@ public class ConnectivityReportPlugin extends Plugin {
         runWithLooper(() -> {
             TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                TelephonyHelper.cancelActiveSubscriptionIDsListener(context, subListener);
+                if (subListener != null) {
+                    TelephonyHelper.cancelActiveSubscriptionIDsListener(context, subListener);
+                    subListener = null;
+                }
             }
             for (Integer subID : listeners.keySet()) {
                 Log.i("ConnectivityReport", "Removed subscription ID " + subID);
                 tm.listen(listeners.get(subID), PhoneStateListener.LISTEN_NONE);
             }
+            listeners.clear();
+            states.clear();
         });
     }
 
