@@ -574,8 +574,6 @@ public class Device implements BaseLink.PacketReceiver {
             return false;
         }
 
-        plugins.put(pluginKey, plugin);
-
         if (!plugin.checkRequiredPermissions()) {
             Log.d("KDE/addPlugin", "No permission " + pluginKey);
             plugins.remove(pluginKey);
@@ -583,6 +581,7 @@ public class Device implements BaseLink.PacketReceiver {
             return false;
         } else {
             Log.d("KDE/addPlugin", "Permissions OK " + pluginKey);
+            plugins.put(pluginKey, plugin);
             pluginsWithoutPermissions.remove(pluginKey);
             if (plugin.checkOptionalPermissions()) {
                 Log.d("KDE/addPlugin", "Optional Permissions OK " + pluginKey);
