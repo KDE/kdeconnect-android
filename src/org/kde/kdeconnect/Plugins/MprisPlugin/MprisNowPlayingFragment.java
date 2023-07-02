@@ -245,7 +245,10 @@ public class MprisNowPlayingFragment extends Fragment implements VolumeKeyListen
                         return; //Player hasn't actually changed
                     }
                     targetPlayer = plugin.getPlayerStatus(player);
-                    targetPlayerName = targetPlayer.getPlayerName();
+                    if (targetPlayer != null) {
+                        targetPlayerName = targetPlayer.getPlayerName();
+                    }
+
                     updatePlayerStatus(plugin);
 
                     if (targetPlayer != null && targetPlayer.isPlaying()) {
