@@ -16,6 +16,7 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
 
+import com.univocity.parsers.common.TextParsingException;
 import com.univocity.parsers.csv.CsvParser;
 import com.univocity.parsers.csv.CsvParserSettings;
 
@@ -111,7 +112,7 @@ public class DeviceHelper {
                         Log.e("DeviceHelper", "Didn't find a device name for " + Build.MODEL);
                     }
                 }
-            } catch(IOException e) {
+            } catch(IOException | TextParsingException e) {
                 e.printStackTrace();
             }
             fetchingName = false;
