@@ -502,11 +502,15 @@ public class MprisMediaSession implements
 
     @Override
     public void onListenerConnected(NotificationReceiver service) {
-        for (StatusBarNotification n : service.getActiveNotifications()) {
-            if ("com.spotify.music".equals(n.getPackageName())) {
-                spotifyRunning = true;
-                updateMediaNotification();
+        try {
+            for (StatusBarNotification n : service.getActiveNotifications()) {
+                if ("com.spotify.music".equals(n.getPackageName())) {
+                    spotifyRunning = true;
+                    updateMediaNotification();
+                }
             }
+        } catch(SecurityException e) {
+            e.printStackTrace();
         }
     }
 
