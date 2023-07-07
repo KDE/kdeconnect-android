@@ -206,6 +206,7 @@ public class BackgroundService extends Service {
                 .setContentIntent(pi)
                 .setPriority(NotificationCompat.PRIORITY_MIN) //MIN so it's not shown in the status bar before Oreo, on Oreo it will be bumped to LOW
                 .setShowWhen(false)
+                .setForegroundServiceBehavior(NotificationCompat.FOREGROUND_SERVICE_IMMEDIATE)
                 .setAutoCancel(false);
         notification.setGroup("BackgroundService");
 
