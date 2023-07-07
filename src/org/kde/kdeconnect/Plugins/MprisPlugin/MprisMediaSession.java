@@ -216,7 +216,7 @@ public class MprisMediaSession implements
     }
 
     private MprisPlugin.MprisPlayer getPlayerFromDevice(Device device, MprisPlugin.MprisPlayer preferredPlayer) {
-        if (!mprisDevices.contains(device.getDeviceId()))
+        if (device == null || !mprisDevices.contains(device.getDeviceId()))
             return null;
 
         MprisPlugin plugin = device.getPlugin(MprisPlugin.class);
