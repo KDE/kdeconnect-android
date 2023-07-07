@@ -12,7 +12,7 @@ function import_po_dirs # First parameter will be a path that will be a director
 {
     podir=$1
     # Some languages don't exist in Google Play or have different codes
-    declare -a to_delete=( "bs" "ca@valencia" "sr@ijekavian" "sr@ijekavianlatin" "sr@latin" "ia" "tg" )
+    declare -a to_delete=( "bs" "ca@valencia" "sr@ijekavian" "sr@ijekavianlatin" "sr@latin" "ia" "eo" "tg" )
     for lang in "${to_delete[@]}"; do
         if [ -d $podir/$lang ]; then
             rm $podir/$lang/*
