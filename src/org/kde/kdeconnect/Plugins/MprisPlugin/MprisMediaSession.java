@@ -264,14 +264,14 @@ public class MprisMediaSession implements
             return;
         }
 
+        //Make sure our information is up-to-date
+        MprisPlugin.MprisPlayer currentPlayer = updateCurrentPlayer();
+
         Device device = KdeConnect.getInstance().getDevice(notificationDevice);
         if (device == null) {
             closeMediaNotification();
             return;
         }
-
-        //Make sure our information is up-to-date
-        MprisPlugin.MprisPlayer currentPlayer = updateCurrentPlayer();
 
         //If the player disappeared (and no other playing one found), just remove the notification
         if (currentPlayer == null) {
