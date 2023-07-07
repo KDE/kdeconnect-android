@@ -26,14 +26,6 @@ public class KdeConnectBroadcastReceiver extends BroadcastReceiver {
                 Log.i("KdeConnect", "MyUpdateReceiver");
                 BackgroundService.Start(context);
                 break;
-            case Intent.ACTION_PACKAGE_REPLACED:
-                Log.i("KdeConnect", "UpdateReceiver");
-                if (!intent.getData().getSchemeSpecificPart().equals(context.getPackageName())) {
-                    Log.i("KdeConnect", "Ignoring, it's not me!");
-                    return;
-                }
-                BackgroundService.Start(context);
-                break;
             case Intent.ACTION_BOOT_COMPLETED:
                 Log.i("KdeConnect", "KdeConnectBroadcastReceiver");
                 BackgroundService.Start(context);
