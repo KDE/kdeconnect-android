@@ -1,0 +1,14 @@
+KDE Connect tarjoaa ominaisuudet työnvuosi eheyttämiseksi laitteiden kesken:
+
+– Jaettu leikepöytä: kopioi ja liitä laitteelta toiselle.
+– Jaa tiedostoja ja verkko-osoitteita tietokoneeseesi mistä sovelluksesta vain.
+– Saa ilmoitukset saapuvista puheluista ja tekstiviesteistä tietokoneellesi.
+– Näyttönäppäimistö: käytä puhelimen näyttöä tietokoneesi osoitinlaitteena.
+– Ilmoitusten tahdistus: lue Android-ilmoituksesi työpöydältä.
+– Multimedian etähallinta: käytä puhelinta Linux-mediasoitinten kaukosäätimenä.
+– Langaton verkkoyhteys: USB-johtoa tai Bluetoothia ei tarvita.
+– Päästä päähän -TLS-salaus: tietosi ovat turvassa.
+
+Huomaa, että sovelluksen toimimiseksi KDE Connect tulee asentaa tietokoneeseen ja pitää ajan tasalla Android-version kanssa, jotta kaikki ominaisuudet toimisivat.
+
+Sovellus on avoimen lähdekoodin projekti ja on olemassa sitä avustaneiden ihmisten ansiosta. Lähdekoodin saat noudettua kotisivulta.
