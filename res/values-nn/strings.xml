@@ -108,6 +108,7 @@
   <string name="device_menu_plugins">Programtillegg-oppsett</string>
   <string name="device_menu_unpair">Løys paring</string>
   <string name="pair_new_device">Par ny eining</string>
+  <string name="cancel_pairing">Avbryt paring</string>
   <string name="unknown_device">Ukjend eining</string>
   <string name="error_not_reachable">Får ikkje kontakt med eininga</string>
   <string name="error_already_paired">Eininga er alt para</string>
@@ -394,4 +395,5 @@
   <string name="everyone_else">Alle andre som har hjelpt til med utviklinga av KDE Connect opp gjennom åra</string>
   <string name="send_clipboard">Send utklippstavla</string>
   <string name="tap_to_execute">Tapp for å utføra handlinga</string>
+  <string name="plugin_stats">Programtillegg-statistikk</string>
 </resources>
