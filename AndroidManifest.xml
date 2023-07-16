@@ -9,8 +9,8 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="org.kde.kdeconnect_tp"
-    android:versionCode="12604"
-    android:versionName="1.26.4">
+    android:versionCode="12700"
+    android:versionName="1.27.0">
 
     <uses-feature
         android:name="android.hardware.telephony"
