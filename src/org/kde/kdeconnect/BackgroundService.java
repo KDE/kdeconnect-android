@@ -22,7 +22,6 @@ import android.net.NetworkCapabilities;
 import android.net.NetworkRequest;
 import android.os.Build;
 import android.os.IBinder;
-import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -33,7 +32,6 @@ import androidx.lifecycle.MutableLiveData;
 
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
-import org.kde.kdeconnect.Backends.LoopbackBackend.LoopbackLinkProvider;
 import org.kde.kdeconnect.Helpers.NotificationHelper;
 import org.kde.kdeconnect.Plugins.ClibpoardPlugin.ClipboardFloatingActivity;
 import org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandActivity;
@@ -82,10 +80,7 @@ public class BackgroundService extends Service {
 
     private void registerLinkProviders() {
         linkProviders.add(new LanLinkProvider(this));
-        String testLabSetting = Settings.System.getString(getContentResolver(), "firebase.test.lab");
-        if ("true".equals(testLabSetting)) {
-            linkProviders.add(new LoopbackLinkProvider(this));
-        }
+//        linkProviders.add(new LoopbackLinkProvider(this));
 //        linkProviders.add(new BluetoothLinkProvider(this));
     }
 
