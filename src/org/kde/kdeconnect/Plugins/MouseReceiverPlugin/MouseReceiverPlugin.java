@@ -17,6 +17,7 @@ import androidx.fragment.app.DialogFragment;
 import org.apache.commons.lang3.ArrayUtils;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
+import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect.Plugins.RemoteKeyboardPlugin.RemoteKeyboardPlugin;
 import org.kde.kdeconnect.UserInterface.MainActivity;
 import org.kde.kdeconnect.UserInterface.StartActivityAlertDialogFragment;
