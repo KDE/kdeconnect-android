@@ -57,13 +57,6 @@ public class ConnectivityReportPlugin extends Plugin {
      */
     private final static String PACKET_TYPE_CONNECTIVITY_REPORT = "kdeconnect.connectivity_report";
 
-    /**
-     * Packet sent to request the current connectivity state
-     * <p>
-     * The request packet shall contain no body
-     */
-    private final static String PACKET_TYPE_CONNECTIVITY_REPORT_REQUEST = "kdeconnect.connectivity_report.request";
-
     private final NetworkPacket connectivityInfo = new NetworkPacket(PACKET_TYPE_CONNECTIVITY_REPORT);
 
     OnSubscriptionsChangedListener subListener = null;
@@ -235,18 +228,12 @@ public class ConnectivityReportPlugin extends Plugin {
 
     @Override
     public boolean onPacketReceived(@NonNull NetworkPacket np) {
-        if (PACKET_TYPE_CONNECTIVITY_REPORT_REQUEST.equals(np.getType())) {
-            Log.i("ConnectivityReport", "Requested");
-            serializeSignalStrengths();
-            device.sendPacket(connectivityInfo);
-        }
-
-        return true;
+        return false;
     }
 
     @Override
     public @NonNull String[] getSupportedPacketTypes() {
-        return new String[]{PACKET_TYPE_CONNECTIVITY_REPORT_REQUEST};
+        return new String[]{};
     }
 
     @Override
