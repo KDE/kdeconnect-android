@@ -154,7 +154,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
 
     <string name="mouse_receiver_plugin_description">Receive remote mouse movement</string>
     <string name="mouse_receiver_plugin_name">Mouse receiver</string>
-    <string name="mouse_receiver_no_permissions">You need to enable Accessibility Service</string>
+    <string name="mouse_receiver_no_permissions">To receive touch inputs remotely you need to grant Accessibility permissions to fully control your device</string>
 
     <string name="view_status_title">Status</string>
     <string name="battery_status_format">Battery: %d%%</string>
