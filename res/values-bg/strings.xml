@@ -97,7 +97,6 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Изпращане като клавишни комбинации</string>
   <string name="mouse_receiver_plugin_description">Получаване на дистанционно движение на мишката</string>
   <string name="mouse_receiver_plugin_name">Приемане на движение на мишката</string>
-  <string name="mouse_receiver_no_permissions">Трябва да активирате услугата за достъпност</string>
   <string name="view_status_title">Състояние</string>
   <string name="battery_status_format">Батерия: %d%%</string>
   <string name="battery_status_low_format">Батерия: %d%% Ниско ниво на батерията</string>

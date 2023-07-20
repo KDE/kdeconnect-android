@@ -92,7 +92,6 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Trimite ca apăsări de taste</string>
   <string name="mouse_receiver_plugin_description">Primește mișcări de maus de la distanță</string>
   <string name="mouse_receiver_plugin_name">Receptor pentru maus</string>
-  <string name="mouse_receiver_no_permissions">Trebuie să activați Serviciul de Accesibilitate</string>
   <string name="view_status_title">Stare</string>
   <string name="battery_status_format">Acumulator: %d%%</string>
   <string name="battery_status_low_format">Acumulator: %d%% Acumulator scăzut</string>

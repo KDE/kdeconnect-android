@@ -86,7 +86,6 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Senda sem lyklaáslátt</string>
   <string name="mouse_receiver_plugin_description">"Taka á móti  fjartengdum músarhreyfingum"</string>
   <string name="mouse_receiver_plugin_name">Móttakari músarmerkja</string>
-  <string name="mouse_receiver_no_permissions">Þú þarft að virkja þjónustuna fyrir aukið aðgengi</string>
   <string name="view_status_title">Staða</string>
   <string name="battery_status_format">Rafhlaða: %d%%</string>
   <string name="battery_status_low_format">Rafhlaða: %d%% lítil hleðsla</string>

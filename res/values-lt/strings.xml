@@ -93,7 +93,6 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Siųsti kaip klavišų paspaudimus</string>
   <string name="mouse_receiver_plugin_description">Gauti nuotolinius pelės judesius</string>
   <string name="mouse_receiver_plugin_name">Pelės gavėjas</string>
-  <string name="mouse_receiver_no_permissions">Jūs turite įjungti prieinamumo tarnybą</string>
   <string name="view_status_title">Būsena</string>
   <string name="battery_status_format">Akumuliatorius: %d%%</string>
   <string name="battery_status_low_format">Akumuliatorius: %d%% baigia išsikrauti</string>

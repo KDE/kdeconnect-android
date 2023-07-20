@@ -97,7 +97,6 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Düymə vuruşu kimi göndərmək</string>
   <string name="mouse_receiver_plugin_description">Uzaqdakı siçanın hərəkətini qəbul etmək</string>
   <string name="mouse_receiver_plugin_name">Siçanı qəbul edən</string>
-  <string name="mouse_receiver_no_permissions">Xüsusi İmkanlarda xidməti aktiv etməlisiniz</string>
   <string name="view_status_title">Vəziyyət</string>
   <string name="battery_status_format">Batareya: %d%%</string>
   <string name="battery_status_low_format">Batareya: %d%% Zəif batareya</string>

@@ -95,7 +95,6 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Als Tastendruck senden</string>
   <string name="mouse_receiver_plugin_description">Empfänger für entfernte Mauseingaben</string>
   <string name="mouse_receiver_plugin_name">Maus-Empfänger</string>
-  <string name="mouse_receiver_no_permissions">Sie müssen den Zugangshilfendienst aktivieren</string>
   <string name="view_status_title">Status</string>
   <string name="battery_status_format">Akku: %d%%</string>
   <string name="battery_status_low_format">Akku: %d%% Niedriger Ladestand</string>

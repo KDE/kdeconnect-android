@@ -97,7 +97,6 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Posílat jako úhozy kláves</string>
   <string name="mouse_receiver_plugin_description">Přijímat vzdálený pohyb myši</string>
   <string name="mouse_receiver_plugin_name">Příjemce myši</string>
-  <string name="mouse_receiver_no_permissions">Musíte povolit Službu Zpřístupnění.</string>
   <string name="view_status_title">Stav</string>
   <string name="battery_status_format">Baterie: %d%%</string>
   <string name="battery_status_low_format">Baterie: %d%% Téměř vybitá baterie</string>

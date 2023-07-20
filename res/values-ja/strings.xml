@@ -93,7 +93,6 @@
   <string name="pref_plugin_mousepad_send_keystrokes">キー入力として送信</string>
   <string name="mouse_receiver_plugin_description">リモートからマウスの動きを受信</string>
   <string name="mouse_receiver_plugin_name">マウスレシーバ</string>
-  <string name="mouse_receiver_no_permissions">アクセシビリティサービスを有効化する必要があります</string>
   <string name="view_status_title">状態</string>
   <string name="battery_status_format">バッテリ: %d%%</string>
   <string name="battery_status_low_format">バッテリ: %d%% 残量低下</string>

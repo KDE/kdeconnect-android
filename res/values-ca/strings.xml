@@ -97,7 +97,7 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Envia com a pulsacions de tecla</string>
   <string name="mouse_receiver_plugin_description">Rep el moviment del ratolí remot</string>
   <string name="mouse_receiver_plugin_name">Receptor del ratolí</string>
-  <string name="mouse_receiver_no_permissions">Cal que habiliteu el servei Accessibilitat</string>
+  <string name="mouse_receiver_no_permissions">Per a rebre entrades tàctils remotament cal atorgar el permís d\'Accessibilitat a control complet del vostre dispositiu</string>
   <string name="view_status_title">Estat</string>
   <string name="battery_status_format">Bateria: %d%%</string>
   <string name="battery_status_low_format">Bateria: %d%% bateria baixa</string>

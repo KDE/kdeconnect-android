@@ -97,7 +97,7 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Düğme basımları olarak gönder</string>
   <string name="mouse_receiver_plugin_description">Uzaktan fare hareketi al</string>
   <string name="mouse_receiver_plugin_name">Fare alıcısı</string>
-  <string name="mouse_receiver_no_permissions">Erişilebilirlik Hizmeti\'ni etkinleştirmeniz gerekiyor</string>
+  <string name="mouse_receiver_no_permissions">Dokunma girdilerini uzaktan almak için aygıtı tümüyle denetlemek üzere Erişilebilirlik izinleri sağlamanız gerekir</string>
   <string name="view_status_title">Durum</string>
   <string name="battery_status_format">Pil: %d%%</string>
   <string name="battery_status_low_format">Pil: %d%% Düşük pil</string>

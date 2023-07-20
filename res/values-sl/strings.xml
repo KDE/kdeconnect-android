@@ -97,7 +97,7 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Pošlji kot pritiske tipk</string>
   <string name="mouse_receiver_plugin_description">Sprejemaj gibanje oddaljene miške</string>
   <string name="mouse_receiver_plugin_name">Sprejemnik miške</string>
-  <string name="mouse_receiver_no_permissions">Omogočiti morate storitev dostopnosti</string>
+  <string name="mouse_receiver_no_permissions">Če želite prejemati vnose dotikov na daljavo, morate podeliti dovoljenja za dostopnost za popoln nadzor vaše naprave</string>
   <string name="view_status_title">Stanje</string>
   <string name="battery_status_format">Baterija: %d%%</string>
   <string name="battery_status_low_format">Baterija: %d%% skoraj prazna</string>

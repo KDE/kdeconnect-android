@@ -97,7 +97,6 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Wysyłaj jako naciśnięcia klawiszy</string>
   <string name="mouse_receiver_plugin_description">Odbiera ruchy myszy z innego urządzenia do sterowania tym urządzeniem</string>
   <string name="mouse_receiver_plugin_name">Odbieranie myszy</string>
-  <string name="mouse_receiver_no_permissions">Musisz włączyć usługę dostępności</string>
   <string name="view_status_title">Stan</string>
   <string name="battery_status_format">Bateria: %d%%</string>
   <string name="battery_status_low_format">Bateria: %d%% niski poziom</string>

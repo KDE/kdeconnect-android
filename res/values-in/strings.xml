@@ -92,7 +92,6 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Kirim sebagai penekanan tombol</string>
   <string name="mouse_receiver_plugin_description">Terima penggerakan mouse jarak jauh</string>
   <string name="mouse_receiver_plugin_name">Penerima mouse</string>
-  <string name="mouse_receiver_no_permissions">Anda harus mengaktifkan Layanan Aksesibilitas</string>
   <string name="view_status_title">Status</string>
   <string name="battery_status_format">Baterai: %d%%</string>
   <string name="battery_status_low_format">Baterai: %d%% Baterai Lemah</string>

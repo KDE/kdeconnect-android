@@ -95,7 +95,6 @@
   <string name="pref_plugin_mousepad_send_keystrokes">키 입력으로 보내기</string>
   <string name="mouse_receiver_plugin_description">원격 마우스 움직임 받기</string>
   <string name="mouse_receiver_plugin_name">마우스 수신기</string>
-  <string name="mouse_receiver_no_permissions">접근성 서비스를 활성화해야 합니다</string>
   <string name="view_status_title">상태</string>
   <string name="battery_status_format">배터리: %d%%</string>
   <string name="battery_status_low_format">배터리: %d%% 배터리 부족</string>

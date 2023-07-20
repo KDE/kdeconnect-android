@@ -92,7 +92,6 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Küldés billentyűleütésként</string>
   <string name="mouse_receiver_plugin_description">Távoli egérmozgások fogadása</string>
   <string name="mouse_receiver_plugin_name">Egérvevő</string>
-  <string name="mouse_receiver_no_permissions">Engedélyeznie kell az akadálymentesítési szolgáltatást</string>
   <string name="view_status_title">Állapot</string>
   <string name="battery_status_format">Akku: %d%%</string>
   <string name="battery_status_low_format">Akku: %d%% alacsony töltöttség</string>

@@ -76,7 +76,6 @@
   <string name="sendkeystrokes_pref_enabled">Povoliť odosielanie stlačení klávesov</string>
   <string name="mouse_receiver_plugin_description">Prijímanie pohybu vzdialenej myši</string>
   <string name="mouse_receiver_plugin_name">Prijímač myši</string>
-  <string name="mouse_receiver_no_permissions">Musíte povoliť službu dostupnosti</string>
   <string name="view_status_title">Stav</string>
   <string name="battery_status_format">Batéria: %d%%</string>
   <string name="battery_status_low_format">Batéria: %d%% Nízka úroveň batérie</string>

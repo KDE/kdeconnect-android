@@ -97,7 +97,6 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Enviar como pulsaciones</string>
   <string name="mouse_receiver_plugin_description">Recibir el movimiento de un ratón remoto</string>
   <string name="mouse_receiver_plugin_name">Receptor del ratón</string>
-  <string name="mouse_receiver_no_permissions">Necesita activar el servicio de accesibilidad</string>
   <string name="view_status_title">Estado</string>
   <string name="battery_status_format">Batería: %d%%</string>
   <string name="battery_status_low_format">Batería: %d%% Batería baja</string>

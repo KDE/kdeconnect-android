@@ -97,7 +97,6 @@
   <string name="pref_plugin_mousepad_send_keystrokes">作为按键发送</string>
   <string name="mouse_receiver_plugin_description">接收远程鼠标移动</string>
   <string name="mouse_receiver_plugin_name">鼠标接收器</string>
-  <string name="mouse_receiver_no_permissions">您需要启用无障碍模式</string>
   <string name="view_status_title">状态</string>
   <string name="battery_status_format">电池：%d%%</string>
   <string name="battery_status_low_format">电池：%d%% 电量低</string>

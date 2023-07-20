@@ -97,7 +97,7 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Надсилати як натискання клавіш</string>
   <string name="mouse_receiver_plugin_description">Отримувати віддалені рухи мишею</string>
   <string name="mouse_receiver_plugin_name">Отримання даних миші</string>
-  <string name="mouse_receiver_no_permissions">Вам слід увімкнути службу доступності</string>
+  <string name="mouse_receiver_no_permissions">Щоб отримувати сигнали про торкання віддалено, вам слід надати засобам доступності дозвіл на повне керування вашим пристроєм</string>
   <string name="view_status_title">Стан</string>
   <string name="battery_status_format">Акумулятор: %d%%</string>
   <string name="battery_status_low_format">Акумулятор: %d%%, низький заряд</string>

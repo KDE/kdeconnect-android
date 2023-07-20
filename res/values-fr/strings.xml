@@ -97,7 +97,6 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Envoyez comme appuis de touches</string>
   <string name="mouse_receiver_plugin_description">Recevoir les mouvements de la souri distante</string>
   <string name="mouse_receiver_plugin_name">Récepteur de souris</string>
-  <string name="mouse_receiver_no_permissions">Vous avez besoin d\'accéder au service « Accessibilité »</string>
   <string name="view_status_title">État</string>
   <string name="battery_status_format">Batterie : %d %%</string>
   <string name="battery_status_low_format">Batterie : %d %% Batterie faible</string>
