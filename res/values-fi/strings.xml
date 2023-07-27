@@ -107,6 +107,7 @@
   <string name="device_menu_plugins">Liitännäisten asetukset</string>
   <string name="device_menu_unpair">Poista laitepari</string>
   <string name="pair_new_device">Kytke uusi laite pariksi</string>
+  <string name="cancel_pairing">Peru paritus</string>
   <string name="unknown_device">Tuntematon laite</string>
   <string name="error_not_reachable">Laite tavoittamattomissa</string>
   <string name="error_already_paired">Laite on jo kytketty pariksi</string>
@@ -394,4 +395,5 @@
   <string name="everyone_else">Kaikki muut vuosien varrella KDE Connectia avustaneet</string>
   <string name="send_clipboard">Lähetä leikepöytä</string>
   <string name="tap_to_execute">Suorita napauttamalla</string>
+  <string name="plugin_stats">Liitännäisen tilastot</string>
 </resources>
