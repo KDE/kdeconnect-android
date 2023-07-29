@@ -15,6 +15,7 @@ import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper
 import org.kde.kdeconnect_tp.R
 import java.security.cert.Certificate
 import java.security.cert.CertificateEncodingException
+import java.security.cert.CertificateException
 
 /**
  * DeviceInfo contains all the properties needed to instantiate a Device.
@@ -70,6 +71,7 @@ class DeviceInfo(
          * Recreates a DeviceInfo object that was persisted using saveInSettings()
          */
         @JvmStatic
+        @Throws(CertificateException::class)
         fun loadFromSettings(context : Context, deviceId: String, settings: SharedPreferences): DeviceInfo {
             val deviceName = settings.getString("deviceName", "unknown")!!
             val deviceType = DeviceType.fromString(settings.getString("deviceType", "desktop")!!)

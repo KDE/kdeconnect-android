@@ -24,6 +24,7 @@ import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect.UserInterface.ThemeUtil;
 
+import java.security.cert.CertificateException;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -113,9 +114,15 @@ public class KdeConnect extends Application {
         for (String deviceId : trustedDevices) {
             //Log.e("BackgroundService", "Loading device "+deviceId);
             if (preferences.getBoolean(deviceId, false)) {
-                Device device = new Device(this, deviceId);
-                devices.put(deviceId, device);
-                device.addPairingCallback(devicePairingCallback);
+                try {
+                    Device device = new Device(this, deviceId);
+                    devices.put(deviceId, device);
+                    device.addPairingCallback(devicePairingCallback);
+                } catch (CertificateException e) {
+                    Log.w("KdeConnect", "Couldn't load the certificate for a remembered device. Removing from trusted list.");
+                    e.printStackTrace();
+                    preferences.edit().remove(deviceId).apply();
+                }
             }
         }
     }

@@ -36,6 +36,7 @@ import org.kde.kdeconnect_tp.R;
 
 import java.io.IOException;
 import java.security.cert.Certificate;
+import java.security.cert.CertificateException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Vector;
@@ -77,7 +78,7 @@ public class Device implements BaseLink.PacketReceiver {
      * Constructor for remembered, already-trusted devices.
      * Given the deviceId, it will load the other properties from SharedPreferences.
      */
-    Device(@NonNull Context context, @NonNull String deviceId) {
+    Device(@NonNull Context context, @NonNull String deviceId) throws CertificateException {
         this.context = context;
         this.settings = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE);
         this.deviceInfo = DeviceInfo.loadFromSettings(context, deviceId, settings);
