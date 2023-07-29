@@ -279,15 +279,6 @@ public class MprisMediaSession implements
             return;
         }
 
-        synchronized (instance) {
-            if (mediaSession == null) {
-                mediaSession = new MediaSessionCompat(context, MPRIS_MEDIA_SESSION_TAG);
-                mediaSession.setCallback(mediaSessionCallback, new Handler(context.getMainLooper()));
-                // Deprecated flags not required in Build.VERSION_CODES.O and later
-                mediaSession.setFlags(MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS | MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS);
-            }
-        }
-
         updateRemoteDeviceVolumeControl();
 
         MediaMetadataCompat.Builder metadata = new MediaMetadataCompat.Builder();
@@ -310,7 +301,6 @@ public class MprisMediaSession implements
             metadata.putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, albumArt);
         }
 
-        mediaSession.setMetadata(metadata.build());
         PlaybackStateCompat.Builder playbackState = new PlaybackStateCompat.Builder();
 
         if (currentPlayer.isPlaying()) {
@@ -427,7 +417,6 @@ public class MprisMediaSession implements
             }
         }
         playbackState.setActions(playbackActions);
-        mediaSession.setPlaybackState(playbackState.build());
 
         //Only allow deletion if no music is currentPlayer
         notification.setOngoing(currentPlayer.isPlaying());
@@ -441,14 +430,24 @@ public class MprisMediaSession implements
         } else if (numActions >= 3) {
             mediaStyle.setShowActionsInCompactView(0, 1, 2);
         }
-        mediaStyle.setMediaSession(mediaSession.getSessionToken());
-        notification.setStyle(mediaStyle);
         notification.setGroup("MprisMediaSession");
 
         //Display the notification
-        mediaSession.setActive(true);
-        final NotificationManager nm = ContextCompat.getSystemService(context, NotificationManager.class);
-        nm.notify(MPRIS_MEDIA_NOTIFICATION_ID, notification.build());
+        synchronized (instance) {
+            if (mediaSession == null) {
+                mediaSession = new MediaSessionCompat(context, MPRIS_MEDIA_SESSION_TAG);
+                mediaSession.setCallback(mediaSessionCallback, new Handler(context.getMainLooper()));
+                // Deprecated flags not required in Build.VERSION_CODES.O and later
+                mediaSession.setFlags(MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS | MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS);
+            }
+            mediaSession.setMetadata(metadata.build());
+            mediaSession.setPlaybackState(playbackState.build());
+            mediaStyle.setMediaSession(mediaSession.getSessionToken());
+            notification.setStyle(mediaStyle);
+            mediaSession.setActive(true);
+            final NotificationManager nm = ContextCompat.getSystemService(context, NotificationManager.class);
+            nm.notify(MPRIS_MEDIA_NOTIFICATION_ID, notification.build());
+        }
     }
 
     public void closeMediaNotification() {
