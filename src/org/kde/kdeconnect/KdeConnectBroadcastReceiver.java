@@ -28,7 +28,12 @@ public class KdeConnectBroadcastReceiver extends BroadcastReceiver {
                 break;
             case Intent.ACTION_BOOT_COMPLETED:
                 Log.i("KdeConnect", "KdeConnectBroadcastReceiver");
-                BackgroundService.Start(context);
+                try {
+                    BackgroundService.Start(context);
+                } catch (IllegalStateException e) { // To catch ForegroundServiceStartNotAllowedException
+                    Log.w("BroadcastReceiver", "Couldn't start the foreground service.");
+                    e.printStackTrace();
+                }
                 break;
             case WifiManager.SUPPLICANT_CONNECTION_CHANGE_ACTION:
             case WifiManager.WIFI_STATE_CHANGED_ACTION:
