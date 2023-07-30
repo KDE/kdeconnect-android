@@ -25,7 +25,7 @@
   <string name="pref_plugin_mpris">Controis multimedia</string>
   <string name="pref_plugin_mpris_desc">Fornece un mando a distancia para o reprodutor.</string>
   <string name="pref_plugin_runcommand">Executar unha orde</string>
-  <string name="pref_plugin_runcommand_desc">Provocar ordes remotas desde o teléfono ou tableta.</string>
+  <string name="pref_plugin_runcommand_desc">Activar ordes remotas desde o teléfono ou tableta.</string>
   <string name="pref_plugin_contacts">Sincronizador de contactos</string>
   <string name="pref_plugin_contacts_desc">Permitir sincronizar o caderno de contactos do dispositivo</string>
   <string name="pref_plugin_ping">Ping</string>
@@ -97,6 +97,7 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Enviar como pulsacións de tecla</string>
   <string name="mouse_receiver_plugin_description">Recibir movementos de rato remotos</string>
   <string name="mouse_receiver_plugin_name">Receptor de rato</string>
+  <string name="mouse_receiver_no_permissions">Para recibir entrada táctil remota ten que garantir permisos de accesibilidade para controlar completamente o dispositivo.</string>
   <string name="view_status_title">Estado</string>
   <string name="battery_status_format">Batería: %d%%</string>
   <string name="battery_status_low_format">Batería: %d%% (baixa)</string>
@@ -112,7 +113,7 @@
   <string name="error_not_reachable">Dispositivo fóra do alcance</string>
   <string name="error_already_paired">O dispositivo xa está emparellado.</string>
   <string name="error_timed_out">Esgotouse o tempo límite</string>
-  <string name="error_canceled_by_user">Cancelouno o usuario.</string>
+  <string name="error_canceled_by_user">Cancelouno a persoa usuaria.</string>
   <string name="error_canceled_by_other_peer">Cancelouse remotamente</string>
   <string name="encryption_info_title">Información do cifrado</string>
   <string name="encryption_info_msg_no_ssl">O outro dispositivo non usa unha versión recente de KDE Connect, usarase un método obsoleto de cifrado.</string>
@@ -197,14 +198,14 @@
   <string name="undo">Desfacer</string>
   <string name="share_notification_preference">Notificacións sonoras</string>
   <string name="share_notification_preference_summary">Vibrar e reproducir un son ao recibir un ficheiro.</string>
-  <string name="share_destination_customize">Personalizar o directorio de destino</string>
+  <string name="share_destination_customize">Personalizar o cartafol de destino</string>
   <string name="share_destination_customize_summary_disabled">Os ficheiros recibidos aparecerán en «Descargas».</string>
-  <string name="share_destination_customize_summary_enabled">Os ficheiros almacenaranse no directorio de abaixo.</string>
-  <string name="share_destination_folder_preference">Directorio de destino</string>
+  <string name="share_destination_customize_summary_enabled">Os ficheiros almacenaranse no cartafol de abaixo.</string>
+  <string name="share_destination_folder_preference">Cartafol de destino</string>
   <string name="share">Compartir</string>
   <string name="share_received_file">Compartir «%s»</string>
   <string name="title_activity_notification_filter">Filtro de notificacións</string>
-  <string name="filter_apps_info">As notificacións sincronizaranse para os seguintes aplicativos.</string>
+  <string name="filter_apps_info">As notificacións das seguintes aplicacións sincronizaranse.</string>
   <string name="show_notification_if_screen_off">Enviar notificacións só se a pantalla está apagada</string>
   <string name="add_device_dialog_title">Engadir o dispositivo</string>
   <string name="add_device_hint">Nome de máquina ou enderezo IP</string>
@@ -214,9 +215,9 @@
   <string name="sftp_storage_preference_storage_location">Lugar de almacenamento</string>
   <string name="sftp_storage_preference_storage_location_already_configured">Este lugar xa está configurado</string>
   <string name="sftp_storage_preference_click_to_select">premer para seleccionar</string>
-  <string name="sftp_storage_preference_display_name">Nome para amosar</string>
-  <string name="sftp_storage_preference_display_name_already_used">Este nome para amosar xa está a usarse</string>
-  <string name="sftp_storage_preference_display_name_cannot_be_empty">O nome para amosar non pode estar baleiro</string>
+  <string name="sftp_storage_preference_display_name">Nome visual</string>
+  <string name="sftp_storage_preference_display_name_already_used">Este nome visual xa está a usarse.</string>
+  <string name="sftp_storage_preference_display_name_cannot_be_empty">O nome visual non pode estar baleiro.</string>
   <string name="sftp_action_mode_menu_delete">Eliminar</string>
   <string name="sftp_no_storage_locations_configured">Non se configuraron localizacións de almacenamento</string>
   <string name="sftp_saf_permission_explanation">Para acceder a ficheiro remotamente ten que configurar lugares de almacenamento</string>
@@ -237,7 +238,7 @@
   <string name="pref_plugin_telepathy">Enviar unha mensaxe de texto</string>
   <string name="pref_plugin_telepathy_desc">Enviar mensaxes de texto desde o seu escritorio</string>
   <string name="pref_plugin_telepathy_mms">Enviar MMS</string>
-  <string name="pref_plugin_telepathy_mms_desc">Para poder enviar MMS desde KDE Connect ten que configuralo como a aplicación predeterminada de envío de SMS.</string>
+  <string name="pref_plugin_telepathy_mms_desc">Para poder enviar MMS desde KDE Connect ten que definila como a aplicación predeterminada de envío de SMS.</string>
   <string name="findmyphone_title">Atopar o móbil</string>
   <string name="findmyphone_title_tablet">Atopar a tableta</string>
   <string name="findmyphone_title_tv">Atopar o meu televisor</string>
@@ -299,14 +300,14 @@
   <string name="setting_persistent_notification_oreo">Notificación persistente</string>
   <string name="setting_persistent_notification_description">Toque para activar ou desactivar na configuración de notificacións</string>
   <string name="extra_options">Opcións adicionais</string>
-  <string name="privacy_options">Opcións de intimidade</string>
-  <string name="set_privacy_options">Definir as súas opcións de protección da intimidade</string>
+  <string name="privacy_options">Opcións de privacidade</string>
+  <string name="set_privacy_options">Definir as súas opcións de protección da privacidade.</string>
   <string name="block_contents">Bloquear o contido das notificacións</string>
   <string name="block_images">Bloquear as imaxes nas notificacións</string>
   <string name="notification_channel_receivenotification">Notificacións desde outros dispositivos</string>
   <string name="take_picture">Iniciar a cámara</string>
-  <string name="plugin_photo_desc">Iniciar o aplicativo da cámara para facilitar sacar e transferir imaxes</string>
-  <string name="no_app_for_opening">Non se atopou ningún aplicativo axeitado para abrir este ficheiro</string>
+  <string name="plugin_photo_desc">Iniciar a aplicación da cámara para facilitar sacar e transferir imaxes.</string>
+  <string name="no_app_for_opening">Non se atopou ningunha aplicación axeitada para abrir o ficheiro.</string>
   <string name="remote_keyboard_service">Teclado remoto de KDE Connect</string>
   <string name="presenter_pointer">Punteiro</string>
   <string name="trusted_networks">Redes de confianza</string>
@@ -368,7 +369,7 @@
   <string name="visit_contributors_homepage">Visitar a páxina persoal da persoa colaboradora\n%s</string>
   <string name="version">Versión %s</string>
   <string name="about_kde">Sobre KDE</string>
-  <string name="kde_be_free">KDE - Sexa libre!</string>
+  <string name="kde_be_free">KDE — Sexa libre!</string>
   <string name="kde">KDE</string>
   <string name="konqi">Konqi</string>
   <string name="rise_up">Ir ao principio</string>
@@ -378,7 +379,7 @@
   <string name="send_compose">Enviar</string>
   <string name="compose_send_title">Preparar un envío</string>
   <string name="open_compose_send">Escribir texto</string>
-  <string name="about_kde_about">"&lt;h1&gt;Sobre&lt;/h1&gt; &lt;p&gt;KDE é unha comunidade internacional de persoas dedicadas á enxeñaría de software, á arte, á documentación, á tradución e á creación, todas elas comprometidas co desenvolvemento de &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;software libre&lt;/a&gt;. KDE produce o ambiente de escritorio Plasma, centos de aplicacións, e as moitas bibliotecas de software sobre as que estas están construídas.&lt;/p&gt; &lt;p&gt;KDE é un esforzo cooperativo: non hai unha única entidade que controle a súa dirección ou os seus produtos. No seu lugar, xuntámonos para traballar no obxectivo común de construír o mellor software libre do mundo.  Todas as persoas son benvidas a &lt;a href=https://community.kde.org/Get_Involved&gt;unirse e colaborar&lt;/a&gt; en KDE, incluída vostede.&lt;/p&gt; Visite &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; para máis información sobre a comunidade KDE e o software que produce."</string>
+  <string name="about_kde_about">"&lt;h1&gt;Sobre&lt;/h1&gt; &lt;p&gt;KDE é unha comunidade internacional de persoas dedicadas á enxeñaría de software, á arte, á documentación, á tradución e á creación, todas elas comprometidas co desenvolvemento de &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;software libre&lt;/a&gt;. KDE produce o contorno de escritorio Plasma, centos de aplicacións, e as moitas bibliotecas de software sobre as que estas están construídas.&lt;/p&gt; &lt;p&gt;KDE é un esforzo cooperativo: non hai unha única entidade que controle a súa dirección ou os seus produtos. No seu lugar, xuntámonos para traballar no obxectivo común de construír o mellor software libre do mundo.  Todas as persoas son benvidas a &lt;a href=https://community.kde.org/Get_Involved&gt;unirse e colaborar&lt;/a&gt; en KDE, incluída vostede.&lt;/p&gt; Visite &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; para máis información sobre a comunidade KDE e o software que produce."</string>
   <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Informe de fallos ou pida melloras&lt;/h1&gt; &lt;p&gt;O software sempre pode mellorarse, e o equipo de KDE está preparado para facelo. Porén, vostede, a persoa usuaria, ten que avisarnos cando algo non funciona como espera ou podería mellorarse.&lt;/p&gt; &lt;p&gt;KDE ten un sistema de seguimento de fallos. Visite &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; ou use o botón de «Informar dun fallo» da pantalla de información para informar dun fallo.&lt;/p&gt; Se ten unha suxestión de mellora tamén pode usar o sistema de seguimento de fallos para rexistrala. Asegúrese nese caso de usar a severidade «Lista de desexos».</string>
   <string name="about_kde_join_kde">&lt;h1&gt;Únase a KDE&lt;/h1&gt; &lt;p&gt;Non necesita saber desenvolver software para formar parte do equipo de KDE. Pode unirse aos equipos nacionais que traducen as interfaces dos programas. Pode crear imaxes, temas, sons, e mellorar a documentación. Vostede decide!&lt;/p&gt; &lt;p&gt;Visite &lt;a href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/Get_Involved&lt;/a&gt; para informarse sobre os proxectos nos que pode participar.&lt;/p&gt; Se necesita máis información ou documentación, ten o que necesita en &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/&lt;/a&gt;.</string>
   <string name="about_kde_support_kde">&lt;h1&gt;Apoie KDE&lt;/h1&gt; &lt;p&gt;O software de KDE está e estará sempre dispoñíbel de balde, porén crealo ten custos.&lt;/p&gt; &lt;p&gt;Para apoiar o seu desenvolvemento, a comunidade KDE formou o KDE e.V., unha organización sen ánimo de lucro fundada legalmente na Alemaña. KDE e.V. representa á comunidade KDE en asuntos legais e financeiros. Consulte &lt;a href=https://ev.kde.org/&gt;https://ev.kde.org/&lt;/a&gt; para máis información sobre KDE e.V.&lt;/p&gt; &lt;p&gt;KDE benefíciase de moitos tipos de contribucións, incluídas as monetarias. Usamos os fondos para cubrir gastos derivados de colaborar. A maiores, os fondos úsanse para asistencia legal e para organizar conferencias e encontros.&lt;/p&gt; &lt;p&gt;Animámoslle a apoiar os nosos esforzos cunha doazón monetaria, mediante un dos sistemas detallados en &lt;a href=https://www.kde.org/community/donations/&gt;https://www.kde.org/community/donations/&lt;/a&gt;.&lt;/p&gt; Moitas grazas de antemán polo seu apoio.</string>

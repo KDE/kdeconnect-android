@@ -51,13 +51,17 @@
   <string name="remotekeyboard_connected">Urruneko teklatuarekin konexioa aktibo dago</string>
   <string name="remotekeyboard_multiple_connections">Urruneko teklatuekin konexio bat baino gehiago dago, hautatu konfiguratu beharreko gailua</string>
   <string name="open_mousepad">Urruneko sarrera</string>
+  <string name="mousepad_info">Mugitu hatz bat pantailan zehar saguaren erakuslea mugitzeko. Egin tak klik baterako, eta erabili bi/hiru hatz eskuin eta erdiko botoietarako. Erabili 2 hatz kiribiltzeko. Erabili sakatze luze bat arrastatu eta jaregiteko. Saguaren giroskopio funtzionalitatea pluginen hobespenetatik gaitu daiteke.</string>
   <string name="mousepad_keyboard_input_not_supported">Parekatutako gailuak ez du teklatuko sarreraren euskarririk</string>
   <string name="mousepad_single_tap_settings_title">Ezarri hatz bakarrarekin tak egitearen ekintza</string>
   <string name="mousepad_double_tap_settings_title">Ezarri bi hatzez tak egitearen ekintza</string>
   <string name="mousepad_triple_tap_settings_title">Ezarri hiru hatzez tak egitearen ekintza</string>
   <string name="mousepad_sensitivity_settings_title">Ezarri ukimen-saguaren sentikortasuna</string>
+  <string name="mousepad_mouse_buttons_title">Erakutsi saguaren botoiak</string>
   <string name="mousepad_acceleration_profile_settings_title">Ezarri erakuslearen azelerazio</string>
   <string name="mousepad_scroll_direction_title">Alderantzikatu korritzearen norabidea</string>
+  <string name="gyro_mouse_enabled_title">Gaitu giroskopio-sagua</string>
+  <string name="gyro_mouse_sensitivity_title">Giroskopioaren sentikortasuna</string>
   <string-array name="mousepad_tap_entries">
     <item>Ezkerreko klik</item>
     <item>Eskuineko klik</item>
@@ -93,6 +97,7 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Bidali tekla-joaldi gisa</string>
   <string name="mouse_receiver_plugin_description">Jaso urrutiko saguaren mugimenduak</string>
   <string name="mouse_receiver_plugin_name">Sagu jasotzailea</string>
+  <string name="mouse_receiver_no_permissions">Urrutiko ukipen sarrerak jasotzeko, zure gailua erabat agintzeko Irisgarritasun baimenak eman behar dituzu</string>
   <string name="view_status_title">Egoera</string>
   <string name="battery_status_format">Bateria: %%%d</string>
   <string name="battery_status_low_format">Bateria: %%%d bateria baxu</string>
@@ -103,6 +108,7 @@
   <string name="device_menu_plugins">Pluginen ezarpenak</string>
   <string name="device_menu_unpair">Desparekatu</string>
   <string name="pair_new_device">Parekatu gailu berria</string>
+  <string name="cancel_pairing">Ezeztatu parekatzea</string>
   <string name="unknown_device">Gailu ezezaguna</string>
   <string name="error_not_reachable">Gailua ez dago eskuragarri</string>
   <string name="error_already_paired">Gailua dagoeneko parekatuta</string>
@@ -215,8 +221,11 @@
   <string name="sftp_action_mode_menu_delete">Ezabatu</string>
   <string name="sftp_no_storage_locations_configured">Ez da biltegiratze kokalekurik konfiguratu</string>
   <string name="sftp_saf_permission_explanation">Fitxategiak urrunetik atzitzeko biltegiratze kokalekuak konfiguratu behar dituzu</string>
+  <string name="sftp_manage_storage_permission_explanation">gailu honetako fitxategietara urrutiko sarbidea baimentzeko, «KDE Connect»eri biltegiratzea kudeatzeko baimena eman behar diozu.</string>
   <string name="no_players_connected">Ez da jotzailerik aurkitu</string>
   <string name="send_files">Bidali fitxategiak</string>
+  <string name="block_notification_contents">Oztopatu jakinarazpenen edukia</string>
+  <string name="block_notification_images">Oztopatu jakinarazpenen irudiak</string>
   <string name="pairing_title">KDE Connect gailuak</string>
   <string name="pairing_description">KDE Connect darabilten sareko beste gailuak hemen agertu beharko lirateke.</string>
   <string name="device_rename_title">Aldatu izena gailuari</string>
@@ -239,8 +248,10 @@
   <string name="close">Itxi</string>
   <string name="plugins_need_permission">Plugin batzuek jarduteko baimenak behar dituzte (tak egin informazio gehiagorako):</string>
   <string name="permission_explanation">Plugin honek baimena behar du funtzionatzeko</string>
+  <string name="all_permissions_granted">Baimen guztiak eman dira 🎉</string>
   <string name="optional_permission_explanation">Baimen gehiago eman behar dituzu funtzio guztiak gaitzeko</string>
   <string name="plugins_need_optional_permission">Plugin batzuek desgaitutako eginbideak dituzte baimenak faltan dituztelako (tak egin informazio gehiagorako):</string>
+  <string name="share_optional_permission_explanation">Fitxategiak jasotzeko biltegiratze sarbidea baimendu behar duzu</string>
   <string name="telepathy_permission_explanation">SMSak zure mahaigainetik bidali ahal izateko, SMSak erabiltzeko baimena eman behar duzu</string>
   <string name="telephony_permission_explanation">Telefono deiak zure mahaigainetik ikusteko, telefono deien egunkarira eta telefonoaren egoerara baimena eman behar duzu</string>
   <string name="telephony_optional_permission_explanation">Telefono zenbakiaren ordez kontaktuaren izena ikusteko telefonoko kontaktuak atzitzeko baimena eman behar duzu</string>
@@ -366,6 +377,7 @@
   <string name="click_here_to_type">Tak egin hemen tekleatzeko</string>
   <string name="clear_compose">Garbitu</string>
   <string name="send_compose">Bidali</string>
+  <string name="compose_send_title">Bidalketa osatu</string>
   <string name="open_compose_send">Konposatu testua</string>
   <string name="about_kde_about">"&lt;h1&gt;Honi buruz&lt;/h1&gt; &lt;p&gt;KDE &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Software Askearen&lt;/a&gt; garapenarekin engaiatutako mundu osoko software ingeniari, artista, idazle, itzultzaile eta sortzaile elkarte bat da. KDEk Plasma mahaigain ingurunea, ehunka aplikazio, eta haiei euskarria ematen dieten liburutegi ugariak ekoizten ditu. &lt;/p&gt; &lt;p&gt;KDE ekimen kooperatibo bat da: ez dago bere norabidea eta produktuak kontrolatzen dituen erakunderik. Aldiz, elkarrekin lan egiten dugu guztiok partekatzen dugun helburu bera lortzeko, munduko Software Aske bikainena eraikitzearena alegia. Jende oro ongi etorria da  KDErekin &lt;a href=https://community.kde.org/Get_Involved&gt;elkartu eta laguntza ematera&lt;/a&gt;, zu barne. &lt;/p&gt; Bisitatu &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; , KDE elkartearen eta ekoizten dugun softwarearen gaineko informazio zabalagoa eskuratzeko."</string>
   <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Akatsen edo nahien berri ematea&lt;/h1&gt; &lt;p&gt;Softwarea beti hobetu daiteke, eta KDE taldea horretarako prest dago. Hala ere, zuk - erabiltzailea zaren horrek - zerbait behar bezala ez dabilenean edo hobeto egin daitekeenean esan egin behar diguzu.&lt;/p&gt; &lt;p&gt;KDEk programa-akatsen gaineko jarraipena egiteko sistema bat du. Bisitatu &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; edo erabili Honi buruz pantailako «Akatsa jakinarazi» botoia.&lt;/p&gt; Hobetzeko iradokizunik baduzu, akatsen jarraipen sisteman zure nahia erregistratzera gonbidatzen zaitugu. Larritasun maila bezala \"Wishlist\" (nahien zerrenda) erabil ezazu horretarako.</string>
@@ -384,4 +396,5 @@
   <string name="everyone_else">Urteetan KDE Connect-ekin lagundu duten gainerako guztiak</string>
   <string name="send_clipboard">Bidali arbelekoa</string>
   <string name="tap_to_execute">Tak egin exekutatzeko</string>
+  <string name="plugin_stats">Pluginaren estatistikak</string>
 </resources>
