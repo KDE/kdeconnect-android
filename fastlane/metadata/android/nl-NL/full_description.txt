@@ -11,4 +11,10 @@ KDE Connect biedt een set mogelijkheden om uw werkmethode te integreren tussen a
 
 Merk op dat u KDE Connect op uw computer moet installeren om deze app te laten werken, en de bureaubladversie up-to-date te houden met de Android-version om de laatste mogelijkheden te laten werken.
 
+Informatie over gevoelige toestemmingen:
+* Toegangsrechten: vereist om invoer te ontvangen uit een ander apparaat om uw Android telefoon te besturen, als u de functie Invoer van afstand gebruikt.
+* Rechten voor achtergrondlocatie: vereist om te weten naar welk WiFi-netwerk u bent verbonden, als de functie vertrouwde netwerken gebruikt.
+
+KDE Connect stuurt nooit enige informatie naar KDE noch naar een derde partij. KDE Connect verstuurt gegevens van het ene apparaat direct naar het andere met gebruik van het lokale netwerk, nooit via het internet en gebruikt eind-tot-eind versleuteling.
+
 Deze app is onderdeel van een open-source-project en het bestaat dankzij alle mensen die er aan hebben bijgedragen. Bezoek de website om de broncode te verkrijgen.

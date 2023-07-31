@@ -97,6 +97,7 @@
   <string name="pref_plugin_mousepad_send_keystrokes">விசைகளாக அனுப்பு</string>
   <string name="mouse_receiver_plugin_description">தொலை சுட்டி அசைவைப் பெறு</string>
   <string name="mouse_receiver_plugin_name">சுட்டி பெறுநர்</string>
+  <string name="mouse_receiver_no_permissions">தொடுமுறை உள்ளீட்டை தொலை சாதனங்களிலிருந்து பெற, அணுகல்தன்மை அனுமதியை வழங்க வேண்டும்</string>
   <string name="view_status_title">நிலை</string>
   <string name="battery_status_format">மின்கலம்: %d%%</string>
   <string name="battery_status_low_format">மின்கலம்: %d%% குறைந்த மின்கலம்</string>

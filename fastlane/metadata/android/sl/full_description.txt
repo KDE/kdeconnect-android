@@ -1,14 +1,19 @@
 KDE Connect ponuja niz funkcij za integracijo delovnega procesa na različnih napravah:
 
-- skupno odložišče: kopirajte in lepite med napravami;
-- datoteke in URL-je lahko z računalnikom delite iz poljubnega programa;
-- prejemanje obvestil o dohodnih klicih in sporočilih SMS na računalniku;
-- virtualna sledilna plošča: uporabite zaslon telefona kot sledilno tablico na računalniku;
-- sinhronizacija obvestil: preberite obvestila iz sistema Android na namizju;
-- večpredstavnostni daljinski upravljalnik: uporabite telefon kot daljinski upravljalnik za večpredstavnostne predvajalnike na Linuxu;
-- povezava WiFi: ne potrebujete žice USB ali bluetootha;
-- šifriranje TLS od enega konca do drugega: vaši podatki so varni.
+- Skupno odložišče: kopirajte in lepite med napravami;
+- Datoteke in URL-je lahko z računalnikom delite iz poljubnega programa;
+- Prejemanje obvestil o dohodnih klicih in sporočilih SMS na računalniku;
+- Virtualna sledilna plošča: uporabite zaslon telefona kot sledilno tablico na računalniku;
+- Sinhronizacija obvestil: preberite obvestila iz sistema Android na namizju;
+- Večpredstavnostni daljinski upravljalnik: uporabite telefon kot daljinski upravljalnik za večpredstavnostne predvajalnike na Linuxu;
+- Šovezava WiFi: ne potrebujete žice USB ali bluetootha;
+- Šifriranje TLS od enega konca do drugega: vaši podatki so varni.
 
 Upoštevajte, da morate za delovanje tega programa na računalnik namestiti program KDE Connect in posodobiti namizno različico z različico za Android, da bodo delovale najnovejše funkcije.
 
+Informacija o senzitivnih dovoljenjih:
+* Dovoljenje za dostop: Zahtevano za prejemanje vhoda iz druge naprave za upravljanje vašega telefona z Androidom, če uporabljate zmožnost oddaljenega vhoda.
+* Dovoljenje lokacije v zaledju: Zahtevano, da se ve na katero WiFi omrežje ste povezani, če uporabljate zmožnost zaupanja vrednega omrežja.
+
+KDE Connect nikoli ne pošilja nobenih informacij niti za KDE niti kateri tretji stranki. KDE Connect pošilja podatke iz ene naprave do druge neposredno z uporabo lokalne mreže, nikoli preko interneta in z uporabo šifriranja od začetka do konca.
 Ta program je del odprto-kodnega projekta in obstaja po zaslugi vseh ljudi, ki so prispevali. Obiščite spletno mesto in si zagotovite izvorno kodo.

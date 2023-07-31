@@ -11,4 +11,10 @@ KDE Bağlan, iş akışınızı aygıtlar arasında tümleştirmek için bir diz
 
 Bu uygulamanın çalışması için bilgisayarınıza KDE Bağlan'ı kurmanız ve güncel özelliklerin çalışması için masaüstü sürümünü Android sürümüyle güncel tutmanız gerekeceğini lütfen unutmayın.
 
+Hassas izin bilgileri:
+* Erişilebilirlik izni: Uzaktan Giriş özelliğini kullanıyorsanız Android telefonunuzu denetlemek üzere başka bir aygıttan giriş almak için gereklidir.
+* Arka planda konum izni: Güvenilir Ağlar özelliğini kullanıyorsanız hangi Wi-Fi ağına bağlı olduğunuzu bilmek için gereklidir.
+
+KDE Bağlan, KDE'ye veya herhangi bir üçüncü tarafa asla herhangi bir bilgi göndermez. KDE Bağlan, verileri bir aygıttan diğerine doğrudan yerel ağı kullanarak gönderir, asla interneti kullanmaz ve uçtan uca şifrelemeden yararlanır.
+
 Bu uygulama, açık kaynaklı bir projenin parçasıdır ve ona katkıda bulunan tüm insanlar sayesinde var olur. Kaynak kodunu almak için web sitesini ziyaret edin.
