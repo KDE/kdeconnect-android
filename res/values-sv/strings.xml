@@ -51,12 +51,17 @@
   <string name="remotekeyboard_connected">Anslutning till externt tangentbord är aktiv</string>
   <string name="remotekeyboard_multiple_connections">Det finns mer än en anslutning till externt tangentbord, välj apparat att anpassa</string>
   <string name="open_mousepad">Extern inmatning</string>
+  <string name="mousepad_info">Flytta fingret på skärmen för att röra muspekaren. Rör för att klicka, och använd två eller tre fingrar för höger- och mittenknapparna. Använd två fingrar för att panorera. Använd en längre beröring för drag och släpp. Musens gyroskopiska funktion kan aktiveras från insticksprogrammets inställningar.</string>
+  <string name="mousepad_keyboard_input_not_supported">Tangentbordsinmatning stöds inte av den ihopparade apparaten</string>
   <string name="mousepad_single_tap_settings_title">Ställ in åtgärd vid en fingerberöring</string>
   <string name="mousepad_double_tap_settings_title">Ställ in åtgärd vid två fingerberöringar</string>
   <string name="mousepad_triple_tap_settings_title">Ställ in åtgärd vid tre fingerberöringar</string>
   <string name="mousepad_sensitivity_settings_title">Ställ in tryckplattans känslighet</string>
+  <string name="mousepad_mouse_buttons_title">Visa musknappar</string>
   <string name="mousepad_acceleration_profile_settings_title">Ställ in pekaracceleration</string>
   <string name="mousepad_scroll_direction_title">Omvänd rullningsriktning</string>
+  <string name="gyro_mouse_enabled_title">Aktivera gyroskopisk mus</string>
+  <string name="gyro_mouse_sensitivity_title">Gyroskop-känslighet</string>
   <string-array name="mousepad_tap_entries">
     <item>Vänsterklick</item>
     <item>Högerklick</item>
@@ -92,6 +97,7 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Skicka som tangentnedtryckningar</string>
   <string name="mouse_receiver_plugin_description">Ta emot externa musrörelser</string>
   <string name="mouse_receiver_plugin_name">Musmottagare</string>
+  <string name="mouse_receiver_no_permissions">För att ta emot pekinmatning från en annan apparat måste du ge åtkomsträttighet att fullständigt kontrollera din apparat.</string>
   <string name="view_status_title">Status</string>
   <string name="battery_status_format">Batteri: %d %%</string>
   <string name="battery_status_low_format">Batteri: %d %% låg laddning</string>
@@ -102,6 +108,7 @@
   <string name="device_menu_plugins">Inställningar av insticksprogram</string>
   <string name="device_menu_unpair">Ta bort ihopparning</string>
   <string name="pair_new_device">Para ihop ny apparat</string>
+  <string name="cancel_pairing">Avbryt ihopparning</string>
   <string name="unknown_device">Okänd apparat</string>
   <string name="error_not_reachable">Apparaten kan inte nås</string>
   <string name="error_already_paired">Apparat redan ihopparad</string>
@@ -214,8 +221,11 @@
   <string name="sftp_action_mode_menu_delete">Ta bort</string>
   <string name="sftp_no_storage_locations_configured">Inga lagringsplatser inställda</string>
   <string name="sftp_saf_permission_explanation">För att komma åt filer från en annan apparat måste lagringsplatser ställas in</string>
+  <string name="sftp_manage_storage_permission_explanation">För att tillåta åtkomst av filer på den här apparaten från en annan apparat måste du låta KDE-anslut hantera lagringsenheten.</string>
   <string name="no_players_connected">Inga spelare hittades</string>
   <string name="send_files">Skicka filer</string>
+  <string name="block_notification_contents">Blockera underrättelseinnehåll</string>
+  <string name="block_notification_images">Blockera underrättelsebilder</string>
   <string name="pairing_title">KDE-anslut apparater</string>
   <string name="pairing_description">Andra apparater som kör KDE-anslut i samma nätverk ska synas här.</string>
   <string name="device_rename_title">Byt namn på apparat</string>
@@ -238,8 +248,10 @@
   <string name="close">Stäng</string>
   <string name="plugins_need_permission">Vissa insticksprogram kräver rättigheter för att fungera (rör för mer information):</string>
   <string name="permission_explanation">Insticksprogrammet behöver rättigheter för att fungera</string>
+  <string name="all_permissions_granted">Alla rättigheter beviljade 🎉</string>
   <string name="optional_permission_explanation">Du måste ge extra rättigheter för att aktivera alla funktioner</string>
   <string name="plugins_need_optional_permission">Vissa insticksprogram har inaktiverade funktioner på grund av att rättigheter saknas (rör för mer information):</string>
+  <string name="share_optional_permission_explanation">För att ta emot filer måste du tillåta lagringsåtkomst</string>
   <string name="telepathy_permission_explanation">För att läsa och skriva SMS från skrivbordet måste du ge rättigheter för SMS</string>
   <string name="telephony_permission_explanation">För att se telefonsamtal på skrivbordet måste du ge rättigheter för telefonsamtalsloggar och telefontillstånd</string>
   <string name="telephony_optional_permission_explanation">För att se ett kontaktnamn istället för ett telefonnummer måste du ge tillgång till telefonens kontakter</string>
@@ -260,6 +272,7 @@
   <string name="pref_plugin_mprisreceiver">Styrning av mediaspelare</string>
   <string name="pref_plugin_mprisreceiver_desc">Styr telefonens mediaspelare från en annan apparat</string>
   <string name="notification_channel_default">Andra underrättelser</string>
+  <string name="notification_channel_persistent">Permanent indikering</string>
   <string name="notification_channel_media_control">Kontroll av media</string>
   <string name="notification_channel_filetransfer">Filöverföring</string>
   <string name="notification_channel_high_priority">Hög prioritet</string>
@@ -303,6 +316,7 @@
   <string name="empty_trusted_networks_list_text">Du har inte lagt till några pålitliga nätverk ännu</string>
   <string name="allow_all_networks_text">Tillåt alla</string>
   <string name="location_permission_needed_title">Rättighet krävs</string>
+  <string name="location_permission_needed_desc">KDE-anslut behöver rättigheter för bakgrundsplats för att känna till WIFI-nätverket du är ansluten med även när programmet är i bakgrunden. Det beror på att namnen på WIFI-nätverk omkring dig skulle kunna användas för att ta reda på var du befinner dig, även om det inte är vad KDE-anslut gör.</string>
   <string name="clipboard_android_x_incompat">Android 10 har tagit bort åtkomst till klippbordet för alla applikationer. Det här insticksprogrammet kommer att inaktiveras.</string>
   <string name="mpris_open_url">Fortsätt spela här</string>
   <string name="cant_open_url">Kan inte öppna webbadress för att sluta spela</string>
@@ -363,6 +377,7 @@
   <string name="click_here_to_type">Rör här för att skriva</string>
   <string name="clear_compose">Rensa</string>
   <string name="send_compose">Skicka</string>
+  <string name="compose_send_title">Skriv och skicka</string>
   <string name="open_compose_send">Skriv text</string>
   <string name="about_kde_about">&lt;h1&gt;Om&lt;/h1&gt; &lt;p&gt;KDE är ett världsomspännande nätverk av programvaruingenjörer, grafiker, författare, översättare och kreatörer som är engagerade i utveckling av &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;fri programvara&lt;/a&gt;. KDE producerar skrivbordsmiljön Plasma, hundratals program, och de talrika programvarubibliotek som stöder dem.&lt;/p&gt; &lt;p&gt;KDE är ett kooperativ, där ingen enskild person styr inriktningen eller produkterna. Istället arbetar vi tillsammans för att uppnå det gemensamma målet att skapa värdens finaste fria programvara. Alla är välkomna att &lt;a href=https://community.kde.org/Get_Involved&gt;gå med och bidra&lt;/a&gt; till KDE, inklusive du själv.&lt;/p&gt; Besök &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; för ytterligare information om KDE-gemenskapen och programvaran vi skapar.</string>
   <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Rapportera fel eller önskemål&lt;/h1&gt; &lt;p&gt;Programvara kan alltid förbättras, och KDE-gruppen är beredd att göra det. Men du - användaren - måste berätta för oss om något inte fungerar som förväntat eller kunde ha gjorts bättre.&lt;/p&gt; &lt;p&gt;KDE har ett felrapporteringssystem. Besök &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; eller använd dialogrutan \"Rapportera fel...\" från om-skärmen för att rapportera fel.&lt;/p&gt; Om du har ett förslag på en förbättring kan du använda felrapporteringssystemet för att registrera din önskan. Se då till att du använder allvarlighetsgraden \"Önskan\".</string>
@@ -381,4 +396,5 @@
   <string name="everyone_else">Alla andra som har bidragit till KDE-anslut under alla år</string>
   <string name="send_clipboard">Skicka klippbord</string>
   <string name="tap_to_execute">Rör för att köra</string>
+  <string name="plugin_stats">Insticksprogramstatistik</string>
 </resources>
