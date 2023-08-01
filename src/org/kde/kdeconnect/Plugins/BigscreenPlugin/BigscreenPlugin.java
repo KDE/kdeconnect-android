@@ -33,7 +33,7 @@ public class BigscreenPlugin extends Plugin {
 
     @Override
     public boolean isCompatible() {
-        return device.getDeviceType().equals(DeviceType.Tv) && super.isCompatible();
+        return device.getDeviceType().equals(DeviceType.TV) && super.isCompatible();
     }
 
     @Override

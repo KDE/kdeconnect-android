@@ -8,7 +8,6 @@ package org.kde.kdeconnect
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.graphics.drawable.Drawable
 import android.util.Base64
 import androidx.core.content.ContextCompat
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper
@@ -36,34 +35,34 @@ class DeviceInfo(
      * The capabilities and protocol version are not persisted.
      */
     fun saveInSettings(settings: SharedPreferences) {
-        val editor = settings.edit()
         try {
             val encodedCertificate = Base64.encodeToString(certificate.encoded, 0)
-            editor.putString("certificate", encodedCertificate)
+
+            with (settings.edit()) {
+                putString("certificate", encodedCertificate)
+                putString("deviceName", name)
+                putString("deviceType", type.toString())
+                apply()
+            }
         } catch (e: CertificateEncodingException) {
             throw RuntimeException(e)
         }
-        editor.putString("deviceName", name)
-        editor.putString("deviceType", type.toString())
-        editor.apply()
     }
-
 
     /**
      * Serializes to a NetworkPacket, which LanLinkProvider uses to send this data over the network.
      * The serialization doesn't include the certificate, since LanLink can query that from the socket.
      * Can be deserialized using fromIdentityPacketAndCert(), given a certificate.
      */
-    fun toIdentityPacket(): NetworkPacket {
-        val np = NetworkPacket(NetworkPacket.PACKET_TYPE_IDENTITY)
-        np.set("deviceId", id)
-        np.set("deviceName", name)
-        np.set("protocolVersion", protocolVersion)
-        np.set("deviceType", type.toString())
-        np.set("incomingCapabilities", incomingCapabilities)
-        np.set("outgoingCapabilities", outgoingCapabilities)
-        return np
-    }
+    fun toIdentityPacket(): NetworkPacket =
+        NetworkPacket(NetworkPacket.PACKET_TYPE_IDENTITY).also { np ->
+            np.set("deviceId", id)
+            np.set("deviceName", name)
+            np.set("protocolVersion", protocolVersion)
+            np.set("deviceType", type.toString())
+            np.set("incomingCapabilities", incomingCapabilities)
+            np.set("outgoingCapabilities", outgoingCapabilities)
+        }
 
     companion object {
 
@@ -72,64 +71,66 @@ class DeviceInfo(
          */
         @JvmStatic
         @Throws(CertificateException::class)
-        fun loadFromSettings(context : Context, deviceId: String, settings: SharedPreferences): DeviceInfo {
-            val deviceName = settings.getString("deviceName", "unknown")!!
-            val deviceType = DeviceType.fromString(settings.getString("deviceType", "desktop")!!)
-            val certificate = SslHelper.getDeviceCertificate(context, deviceId)
-            return DeviceInfo(id = deviceId, name = deviceName, type = deviceType, certificate = certificate)
-        }
+        fun loadFromSettings(context : Context, deviceId: String, settings: SharedPreferences) =
+            with(settings) {
+                DeviceInfo(
+                    id = deviceId,
+                    name = getString("deviceName", "unknown")!!,
+                    type = DeviceType.fromString(getString("deviceType", "desktop")!!),
+                    certificate = SslHelper.getDeviceCertificate(context, deviceId)
+                )
+            }
 
         /**
          * Recreates a DeviceInfo object that was serialized using toIdentityPacket().
          * Since toIdentityPacket() doesn't serialize the certificate, this needs to be passed separately.
          */
         @JvmStatic
-        fun fromIdentityPacketAndCert(identityPacket : NetworkPacket, certificate : Certificate): DeviceInfo {
-            val deviceId = identityPacket.getString("deviceId")
-            val deviceName = identityPacket.getString("deviceName", "unknown")
-            val protocolVersion = identityPacket.getInt("protocolVersion")
-            val deviceType = DeviceType.fromString(identityPacket.getString("deviceType", "desktop"))
-            val incomingCapabilities = identityPacket.getStringSet("incomingCapabilities")
-            val outgoingCapabilities = identityPacket.getStringSet("outgoingCapabilities")
-            return DeviceInfo(id = deviceId, name = deviceName, type = deviceType, certificate = certificate,
-                protocolVersion = protocolVersion, incomingCapabilities = incomingCapabilities, outgoingCapabilities = outgoingCapabilities)
-        }
+        fun fromIdentityPacketAndCert(identityPacket: NetworkPacket, certificate: Certificate) =
+            with(identityPacket) {
+                DeviceInfo(
+                    id = getString("deviceId"),
+                    name = getString("deviceName", "unknown"),
+                    type = DeviceType.fromString(getString("deviceType", "desktop")),
+                    certificate = certificate,
+                    protocolVersion = getInt("protocolVersion"),
+                    incomingCapabilities = getStringSet("incomingCapabilities"),
+                    outgoingCapabilities = getStringSet("outgoingCapabilities")
+                )
+            }
     }
-
 }
 
-
 enum class DeviceType {
-    Phone, Tablet, Computer, Tv;
+    PHONE, TABLET, COMPUTER, TV;
 
-    override fun toString(): String {
-        return when (this) {
-            Tablet -> "tablet"
-            Phone -> "phone"
-            Tv -> "tv"
+    override fun toString() =
+        when (this) {
+            TABLET -> "tablet"
+            PHONE -> "phone"
+            TV -> "tv"
             else -> "desktop"
         }
-    }
 
-    fun getIcon(context: Context): Drawable? {
-        val drawableId: Int = when (this) {
-            Phone -> R.drawable.ic_device_phone_32dp
-            Tablet -> R.drawable.ic_device_tablet_32dp
-            Tv -> R.drawable.ic_device_tv_32dp
+    fun getIcon(context: Context) =
+        ContextCompat.getDrawable(context, toDrawableId())
+
+    private fun toDrawableId() =
+        when (this) {
+            PHONE -> R.drawable.ic_device_phone_32dp
+            TABLET -> R.drawable.ic_device_tablet_32dp
+            TV -> R.drawable.ic_device_tv_32dp
             else -> R.drawable.ic_device_laptop_32dp
         }
-        return ContextCompat.getDrawable(context, drawableId)
-    }
 
     companion object {
         @JvmStatic
-        fun fromString(s: String): DeviceType {
-            return when (s) {
-                "phone" -> Phone
-                "tablet" -> Tablet
-                "tv" -> Tv
-                else -> Computer
+        fun fromString(s: String) =
+            when (s) {
+                "phone" -> PHONE
+                "tablet" -> TABLET
+                "tv" -> TV
+                else -> COMPUTER
             }
-        }
     }
 }

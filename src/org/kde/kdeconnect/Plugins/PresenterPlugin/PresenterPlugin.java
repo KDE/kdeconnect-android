@@ -41,7 +41,7 @@ public class PresenterPlugin extends Plugin {
 
     @Override
     public boolean isCompatible() {
-        return !device.getDeviceType().equals(DeviceType.Phone) && super.isCompatible();
+        return !device.getDeviceType().equals(DeviceType.PHONE) && super.isCompatible();
     }
 
     @Override

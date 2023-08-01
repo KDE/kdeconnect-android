@@ -51,11 +51,11 @@ public class FindMyPhonePlugin extends Plugin {
     @Override
     public @NonNull String getDisplayName() {
         switch (DeviceHelper.getDeviceType(context)) {
-            case Tv:
+            case TV:
                 return context.getString(R.string.findmyphone_title_tv);
-            case Tablet:
+            case TABLET:
                 return context.getString(R.string.findmyphone_title_tablet);
-            case Phone:
+            case PHONE:
             default:
                 return context.getString(R.string.findmyphone_title);
         }

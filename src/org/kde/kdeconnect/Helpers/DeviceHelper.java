@@ -59,11 +59,11 @@ public class DeviceHelper {
 
     public static DeviceType getDeviceType(Context context) {
         if (isTv(context)) {
-            return DeviceType.Tv;
+            return DeviceType.TV;
         } else if (isTablet()) {
-            return DeviceType.Tablet;
+            return DeviceType.TABLET;
         } else {
-            return DeviceType.Phone;
+            return DeviceType.PHONE;
         }
     }
 

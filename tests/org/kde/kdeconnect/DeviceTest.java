@@ -41,6 +41,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
+import java.util.Arrays;
+import java.util.HashSet;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({Base64.class, Log.class, PreferenceManager.class, ContextCompat.class})
@@ -84,7 +86,7 @@ public class DeviceTest {
         MockSharedPreference deviceSettings = new MockSharedPreference();
         SharedPreferences.Editor editor = deviceSettings.edit();
         editor.putString("deviceName", name);
-        editor.putString("deviceType", DeviceType.Phone.toString());
+        editor.putString("deviceType", DeviceType.PHONE.toString());
         editor.putString("certificate", encodedCertificate);
         editor.apply();
         Mockito.when(context.getSharedPreferences(eq(deviceId), eq(Context.MODE_PRIVATE))).thenReturn(deviceSettings);
@@ -109,12 +111,31 @@ public class DeviceTest {
     }
 
     @Test
+    public void testDeviceInfoToIdentityPacket() throws CertificateException {
+        String deviceId = "testDevice";
+        SharedPreferences settings = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE);
+        DeviceInfo di = DeviceInfo.loadFromSettings(context, deviceId,  settings);
+        di.protocolVersion = DeviceHelper.ProtocolVersion;
+        di.incomingCapabilities = new HashSet<>(Arrays.asList("kdeconnect.plugin1State", "kdeconnect.plugin2State"));
+        di.outgoingCapabilities = new HashSet<>(Arrays.asList("kdeconnect.plugin1State.request", "kdeconnect.plugin2State.request"));
+
+        NetworkPacket np = di.toIdentityPacket();
+
+        assertEquals(di.id, np.getString("deviceId"));
+        assertEquals(di.name, np.getString("deviceName"));
+        assertEquals(di.protocolVersion, np.getInt("protocolVersion"));
+        assertEquals(di.type.toString(), np.getString("deviceType"));
+        assertEquals(di.incomingCapabilities, np.getStringSet("incomingCapabilities"));
+        assertEquals(di.outgoingCapabilities, np.getStringSet("outgoingCapabilities"));
+    }
+
+    @Test
     public void testDeviceType() {
-        assertEquals(DeviceType.Phone, DeviceType.fromString(DeviceType.Phone.toString()));
-        assertEquals(DeviceType.Tablet, DeviceType.fromString(DeviceType.Tablet.toString()));
-        assertEquals(DeviceType.Computer, DeviceType.fromString(DeviceType.Computer.toString()));
-        assertEquals(DeviceType.Tv, DeviceType.fromString(DeviceType.Tv.toString()));
-        assertEquals(DeviceType.Computer, DeviceType.fromString("invalid"));
+        assertEquals(DeviceType.PHONE, DeviceType.fromString(DeviceType.PHONE.toString()));
+        assertEquals(DeviceType.TABLET, DeviceType.fromString(DeviceType.TABLET.toString()));
+        assertEquals(DeviceType.COMPUTER, DeviceType.fromString(DeviceType.COMPUTER.toString()));
+        assertEquals(DeviceType.TV, DeviceType.fromString(DeviceType.TV.toString()));
+        assertEquals(DeviceType.COMPUTER, DeviceType.fromString("invalid"));
     }
 
     // Basic paired device testing
@@ -123,7 +144,7 @@ public class DeviceTest {
         Device device = new Device(context, "testDevice");
 
         assertEquals(device.getDeviceId(), "testDevice");
-        assertEquals(device.getDeviceType(), DeviceType.Phone);
+        assertEquals(device.getDeviceType(), DeviceType.PHONE);
         assertEquals(device.getName(), "Test Device");
         assertTrue(device.isPaired());
         assertNotNull(device.deviceInfo.certificate);
@@ -136,7 +157,7 @@ public class DeviceTest {
         fakeNetworkPacket.set("deviceId", deviceId);
         fakeNetworkPacket.set("deviceName", "Unpaired Test Device");
         fakeNetworkPacket.set("protocolVersion", DeviceHelper.ProtocolVersion);
-        fakeNetworkPacket.set("deviceType", DeviceType.Phone.toString());
+        fakeNetworkPacket.set("deviceType", DeviceType.PHONE.toString());
         String certificateString =
             "MIIDVzCCAj+gAwIBAgIBCjANBgkqhkiG9w0BAQUFADBVMS8wLQYDVQQDDCZfZGExNzlhOTFfZjA2\n" +
             "NF80NzhlX2JlOGNfMTkzNWQ3NTQ0ZDU0XzEMMAoGA1UECgwDS0RFMRQwEgYDVQQLDAtLZGUgY29u\n" +
@@ -169,7 +190,7 @@ public class DeviceTest {
         assertNotNull(device);
         assertEquals(device.getDeviceId(), deviceId);
         assertEquals(device.getName(), "Unpaired Test Device");
-        assertEquals(device.getDeviceType(), DeviceType.Phone);
+        assertEquals(device.getDeviceType(), DeviceType.PHONE);
         assertNotNull(device.deviceInfo.certificate);
 
         Method method = PairingHandler.class.getDeclaredMethod("pairingDone");

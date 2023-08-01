@@ -34,7 +34,7 @@ public class NetworkPacketTest {
     public void setUp() {
         PowerMockito.mockStatic(DeviceHelper.class);
         PowerMockito.when(DeviceHelper.getDeviceId(any())).thenReturn("123");
-        PowerMockito.when(DeviceHelper.getDeviceType(any())).thenReturn(DeviceType.Phone);
+        PowerMockito.when(DeviceHelper.getDeviceType(any())).thenReturn(DeviceType.PHONE);
 
         PowerMockito.mockStatic(Log.class);
     }
@@ -72,7 +72,7 @@ public class NetworkPacketTest {
     public void testIdentity() {
         Certificate cert = Mockito.mock(Certificate.class);
 
-        DeviceInfo deviceInfo = new DeviceInfo("myid", cert, "myname", DeviceType.Tv, 12, Sets.newSet("ASDFG"), Sets.newSet("QWERTY"));
+        DeviceInfo deviceInfo = new DeviceInfo("myid", cert, "myname", DeviceType.TV, 12, Sets.newSet("ASDFG"), Sets.newSet("QWERTY"));
 
         NetworkPacket np = deviceInfo.toIdentityPacket();
 
