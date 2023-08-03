@@ -41,8 +41,14 @@ class DevicePacketQueue {
     private boolean exit = false;
 
     DevicePacketQueue(Device device) {
+        this(device, true);
+    }
+
+    DevicePacketQueue(Device device, Boolean startThread) {
         mDevice = device;
-        ThreadHelper.execute(new SendingRunnable());
+        if (startThread) {
+            ThreadHelper.execute(new SendingRunnable());
+        }
     }
 
     /**
@@ -56,17 +62,23 @@ class DevicePacketQueue {
             if (exit) {
                 callback.onFailure(new Exception("Device disconnected!"));
             } else {
+                boolean replaced = false;
+
                 if (replaceID >= 0) {
-                    final Optional<Item> itemOptional = items.stream()
-                            .filter(item -> item.replaceID == replaceID).findFirst();
-                    itemOptional.ifPresent(item -> {
-                        //Replace contents with new contents
-                        item.packet = packet;
-                        item.callback = callback;
-                    });
+                    for (Item item : items) {
+                        if (item.replaceID == replaceID) {
+                            item.packet = packet;
+                            item.callback = callback;
+                            replaced = true;
+                            break;
+                        }
+                    }
                 }
-                items.addLast(new Item(packet, replaceID, callback));
-                lock.notify();
+
+                if (!replaced) {
+                    items.addLast(new Item(packet, replaceID, callback));
+                    lock.notify();
+                }
             }
         }
     }
