@@ -42,6 +42,7 @@ import java.security.cert.Certificate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.net.SocketFactory;
 import javax.net.ssl.SSLSocket;
@@ -64,9 +65,13 @@ public class LanLinkProvider extends BaseLinkProvider {
 
     final static int MAX_UDP_PACKET_SIZE = 1024 * 512;
 
+    final static long MILLIS_DELAY_BETWEEN_CONNECTIONS_TO_SAME_DEVICE = 500L;
+
     private final Context context;
 
     private final HashMap<String, LanLink> visibleDevices = new HashMap<>();  //Links by device id
+
+    final ConcurrentHashMap<String, Long> lastConnectionTime = new ConcurrentHashMap<>();
 
     private ServerSocket tcpServer;
     private DatagramSocket udpServer;
@@ -118,21 +123,29 @@ public class LanLinkProvider extends BaseLinkProvider {
         if (!identityPacket.getType().equals(NetworkPacket.PACKET_TYPE_IDENTITY)) {
             Log.e("KDE/LanLinkProvider", "Expecting an UDP identity packet");
             return;
-        } else {
-            String myId = DeviceHelper.getDeviceId(context);
-            if (deviceId.equals(myId)) {
-                //Ignore my own broadcast
-                return;
-            }
         }
 
-        Log.i("KDE/LanLinkProvider", "Broadcast identity packet received from " + identityPacket.getString("deviceName"));
+        String myId = DeviceHelper.getDeviceId(context);
+        if (deviceId.equals(myId)) {
+            //Ignore my own broadcast
+            return;
+        }
+
+        long now = System.currentTimeMillis();
+        Long last =  lastConnectionTime.get(deviceId);
+        if (last != null && (last + MILLIS_DELAY_BETWEEN_CONNECTIONS_TO_SAME_DEVICE > now)) {
+            Log.i("LanLinkProvider", "Discarding second UDP packet from the same device " + deviceId + " received too quickly");
+            return;
+        }
+        lastConnectionTime.put(deviceId, now);
 
         int tcpPort = identityPacket.getInt("tcpPort", MIN_PORT);
         if (tcpPort < MIN_PORT || tcpPort > MAX_PORT) {
             Log.e("LanLinkProvider", "TCP port outside of kdeconnect's range");
             return;
         }
+
+        Log.i("KDE/LanLinkProvider", "Broadcast identity packet received from " + identityPacket.getString("deviceName"));
 
         SocketFactory socketFactory = SocketFactory.getDefault();
         Socket socket = socketFactory.createSocket(address, tcpPort);
