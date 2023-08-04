@@ -9,6 +9,7 @@ package org.kde.kdeconnect.Backends.LanBackend;
 import android.content.Context;
 import android.util.Log;
 
+import org.apache.commons.io.IOUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
@@ -63,9 +64,7 @@ public class LanLink extends BaseLink {
         SSLSocket oldSocket = socket;
         socket = newSocket;
 
-        if (oldSocket != null) {
-            oldSocket.close(); //This should cancel the readThread
-        }
+        IOUtils.close(oldSocket); //This should cancel the readThread
 
         //Log.e("LanLink", "Start listening");
         //Create a thread to take care of incoming data for the new socket
@@ -230,9 +229,9 @@ public class LanLink extends BaseLink {
             e.printStackTrace();
         } finally {
             try { server.close(); } catch (Exception ignored) { }
-            try { payloadSocket.close(); } catch (Exception ignored) { }
+            try { IOUtils.close(payloadSocket); } catch (Exception ignored) { }
             np.getPayload().close();
-            try { outputStream.close(); } catch (Exception ignored) { }
+            try { IOUtils.close(outputStream); } catch (Exception ignored) { }
         }
     }
 

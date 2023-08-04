@@ -325,9 +325,7 @@ public class NetworkPacket {
             } catch(IOException ignored) {}
 
             try {
-                if (inputSocket != null) {
-                    inputSocket.close();
-                }
+                IOUtils.close(inputSocket);
             } catch (IOException ignored) {}
         }
     }

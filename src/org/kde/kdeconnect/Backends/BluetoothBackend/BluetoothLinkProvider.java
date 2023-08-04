@@ -18,6 +18,7 @@ import android.os.Parcelable;
 import android.util.Base64;
 import android.util.Log;
 
+import org.apache.commons.io.IOUtils;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.DeviceInfo;
@@ -139,12 +140,10 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
 
         void stopProcessing() {
             continueProcessing = false;
-            if (serverSocket != null) {
-                try {
-                    serverSocket.close();
-                } catch (IOException e) {
-                    Log.e("KDEConnect", "Exception", e);
-                }
+            try {
+                IOUtils.close(serverSocket);
+            } catch (IOException e) {
+                Log.e("KDEConnect", "Exception", e);
             }
         }
 
