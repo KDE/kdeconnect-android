@@ -1,12 +1,9 @@
-import com.android.build.gradle.AppExtension
-import com.android.build.gradle.api.ApkVariantOutput
-import com.android.build.gradle.api.ApplicationVariant
 import com.github.jk1.license.render.TextReportRenderer
 
 buildscript {
-    ext.kotlin_version = '1.8.21'
+    ext.kotlin_version = '1.8.22'
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.0.2'
+        classpath 'com.android.tools.build:gradle:8.1.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -19,9 +16,37 @@ def licenseResDir = new File("$projectDir/build/dependency-license-res")
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
+/**
+ * This is a special on-demand Gradle object.
+ *
+ * Its value will not be determined until someone calls one of the gitHashProvider.getXXX() methods.
+ *
+ * If it does not encounter an explicit 'return' statement, getHashProvider.isPresent() will return false.
+ */
+Provider<String> gitHashProvider = project.provider {
+    Process gitCommand = null
+    try {
+        // This invokes 'git' immediately, but does not wait for it to finish
+        gitCommand = 'git rev-parse --short HEAD'.execute([], project.rootDir)
+    } catch (IOException ignored) {
+    }
+
+    if (gitCommand == null) {
+        logger.warn("Could not make use of the 'git' command-line tool. Output filenames will not be customized.")
+    } else if (gitCommand.waitFor() == 0) {
+        // This call to '::getText' (using the 'text' Groovy accessor syntax) collects the
+        // output stream
+        return '-' + gitCommand.text.trim()
+    } else {
+        logger.warn("Could not determine which commit is currently checked out -" +
+                        " did you download this code without the .git directory?"
+        )
+    }
+}
+
 android {
     namespace 'org.kde.kdeconnect_tp'
-    compileSdkVersion 33
+    compileSdk 33
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 32
@@ -33,7 +58,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.7"
+        kotlinCompilerExtensionVersion = "1.4.8"
     }
 
     compileOptions {
@@ -100,64 +125,30 @@ android {
             ]
         }
     }
-}
-
-/**
- * This is a special on-demand Gradle object.
- *
- * Its value will not be determined until someone calls one of the gitHashProvider.getXXX() methods.
- *
- * If it does not encounter an explicit 'return' statement, getHashProvider.isPresent() will return false.
- */
-Provider<String> gitHashProvider = project.provider {
-    Process gitCommand = null
-    try {
-        // This invokes 'git' immediately, but does not wait for it to finish
-        gitCommand = 'git rev-parse --short HEAD'.execute([], project.rootDir)
-    } catch (IOException ignored) {
-    }
-
-    if (gitCommand == null) {
-        logger.log(LogLevel.WARN, "Could not make use of the 'git' command-line tool. Output filenames will not be customized.")
-    } else if (gitCommand.waitFor() == 0) {
-        // This call to '::getText' (using the 'text' Groovy accessor syntax) collects the
-        // output stream
-        return '-' + gitCommand.text.trim()
-    } else {
-        logger.log(
-                LogLevel.WARN,
-                "Could not determine which commit is currently checked out -" +
-                        " did you download this code without the .git directory?"
-        )
-    }
-}
-
-// We know we can safely cast the 'android' type to the 'AppExtension' class because
-// we used the 'com.android.application' plugin at the top of the file.
-//
-// Note the use of the '::all' extension method; unlike '::each', it can detect every
-// object added to the collection, no matter in which build phase that happens.
-(android as AppExtension).applicationVariants.all { ApplicationVariant v ->
-    logger.log(LogLevel.INFO, "Found a variant called '${v.name}'.")
-    if (v.buildType.debuggable) {
-        // We're looking at variants made from android.buildTypes.debug! This one
-        // might have multiple outputs, but only one output will be an APK file.
-        v.outputs.matching { it instanceof ApkVariantOutput }.all {
-            // Default output filename is "${project.name}-${v.name}.apk". We want
-            // the Git commit short-hash to be added onto that default filename.
-            (it as ApkVariantOutput).outputFileName = "${project.name}-${v.name}${gitHashProvider.getOrElse("")}.apk"
+    applicationVariants.configureEach { variant ->
+        logger.quiet("Found a variant called ${variant.name}")
+        if (variant.buildType.debuggable) {
+            variant.outputs.each { output ->
+                if (output.outputFile.name.endsWith(".apk")) {
+                    // Default output filename is "${project.name}-${v.name}.apk". We want
+                    // the Git commit short-hash to be added onto that default filename.
+                    def newName = "${project.name}-${variant.name}${gitHashProvider.getOrElse("")}.apk"
+                    logger.quiet("    Found an output file ${output.outputFile.name}, renaming to ${newName}")
+                    output.outputFileName = newName
+                }
+            }
         }
     }
 }
 
 ext {
-    coroutines_version = '1.6.4'
+    coroutines_version = '1.7.1'
 }
 
 dependencies {
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.3'
 
-    implementation 'androidx.compose.material3:material3:1.1.0'
+    implementation 'androidx.compose.material3:material3:1.1.1'
     implementation 'androidx.compose.ui:ui-tooling-preview:1.4.3'
     implementation 'androidx.activity:activity-compose:1.7.2'
     implementation 'com.google.accompanist:accompanist-themeadapter-material3:0.31.0-alpha'
@@ -170,7 +161,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.core:core-ktx:1.10.1'
     implementation 'androidx.preference:preference-ktx:1.2.0'
-    implementation 'androidx.recyclerview:recyclerview:1.3.0'
+    implementation 'androidx.recyclerview:recyclerview:1.3.1'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     implementation 'androidx.documentfile:documentfile:1.0.1'
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1"
