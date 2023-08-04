@@ -1,0 +1,20 @@
+KDE-anslut tillhandahåller en uppsättning funktioner för att integrera ditt arbetsflöde mellan apparater:
+
+- Delat klippbord: kopiera och klistra in mellan dina apparater.
+- Dela filer och webbadresser till din dator från valfritt program.
+- Få underrättelse om inkommande samtal och SMS på din dator.
+- Virtuell pekplatta: Använd din telefonskärm som din dators pekplatta.
+- Synkronisering av underrättelser: Läs dina Android-underrättelser från skrivbordet.
+- Multimediafjärrkontroll: Använd din telefon som fjärrkontroll för Linux-mediaspelare.
+- WIFI-anslutning: Ingen USB-kabel eller Blåtand behövs.
+- TLS-kryptering hela vägen: Din information är säker.
+
+Observera att du måste installera KDE-anslut på din dator för att programmet ska fungerar och hålla skrivbordsversionen uppdaterad med Androidversionen för att de senaste funktionerna ska fungera.
+
+Känslig behörighetsinformation:
+* Åtkomsträttigheter: Krävs för att ta emot indata från en annan apparat för att styra din Android-telefon om du använder funktionen fjärrinmatning.
+* Bakgrundsåtkomst av plats: Krävs för att veta vilket WIFI-nätverk du är ansluten till, om du använder funktionen Pålitliga nätverk.
+
+KDE-anslut skickar aldrig någon information till KDE eller till någon tredje part. KDE-anslut skickar data från en apparat till en annan direkt med hjälp av det lokala nätverket, aldrig via Internet, och med kryptering hela vägen.
+
+Det här programmet är en del av ett projekt med öppen källkod och det existerar tack vare alla de som bidragit till det. Besök webbplatsen för att hämta källkoden.
