@@ -97,6 +97,7 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Send som tastetrykk</string>
   <string name="mouse_receiver_plugin_description">Ta imot eksterne muserørsler</string>
   <string name="mouse_receiver_plugin_name">Muserørsle-mottakar</string>
+  <string name="mouse_receiver_no_permissions">For å kunna ta imot trykk-data, må du gje tilgjenge­løyva for å styring av heile eininga</string>
   <string name="view_status_title">Status</string>
   <string name="battery_status_format">Batteri: %d %%</string>
   <string name="battery_status_low_format">Batteri: %d %% – lågt batterinivå</string>
@@ -376,6 +377,7 @@
   <string name="click_here_to_type">Trykk her for å skriva</string>
   <string name="clear_compose">Tøm</string>
   <string name="send_compose">Send</string>
+  <string name="compose_send_title">Send tekst</string>
   <string name="open_compose_send">Skriv tekst</string>
   <string name="about_kde_about">&lt;h1&gt;Om&lt;/h1&gt; &lt;p&gt;KDE er eit verdsfemnande fellesskap av eldsjeler som programmerer, teiknar, komponerer, dokumenterer, set om eller hjelper til på andre måtar med utvikling av &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;fri programvare&lt;/a&gt;. Me har laga brukarflata Plasma, hundrevis av program og dei mange programbiblioteka desse byggjer på.&lt;/p&gt; &lt;p&gt;KDE er eit fellesskap der inga einskild gruppe, firma eller organisasjon har eigarskap til produkta eller styrer retninga den vidare utviklinga skal gå i. Derimot arbeider me saman om å oppnå vårt felles mål om å laga fri programvare i verdsklasse. Alle er &lt;a href=https://community.kde.org/Get_Involved&gt;velkomne til å bidra&lt;/a&gt; – du òg.&lt;/p&gt;Du finn meir informasjon om KDE og programma me utviklar på &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt;.</string>
   <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Meld frå om feil eller ønskje&lt;/h1&gt; &lt;p&gt;Ein kan alltid forbetra programvare, og KDE-gruppa arbeider heile tida for det. Men du, som brukar, må melda frå til oss når noko ikkje verkar slik du forventar, eller når noko kunne vore gjort betre.&lt;/p&gt; &lt;p&gt;KDE har eit feilsporingssystem. Gå til &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; eller vel «Meld frå om feil» på «Om»-sida for å melda frå om feil.&lt;/p&gt; Om du har framlegg til forbetringar, kan du gjerne registrera òg desse i feilsporingssystemet. Sjå då til at du har markert feilrapporten med «Wishlist».</string>
