@@ -5,7 +5,7 @@ pluginManagement {
         mavenCentral()
         /* Needed for org.apache.sshd debugging
         maven {
-            url "https://jitpack.io"
+            url = uri("https://jitpack.io")
         }
         */
     }
@@ -16,7 +16,7 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven {
-            url = "https://jitpack.io"
+            url = uri("https://jitpack.io")
         }
     }
 }

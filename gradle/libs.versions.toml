@@ -1,0 +1,91 @@
+[versions]
+accompanistThemeadapterMaterial3 = "0.31.0-alpha"
+activityCompose = "1.7.2"
+androidDesugarJdkLibs = "2.0.3"
+androidGradlePlugin = "8.1.0"
+androidSmsmms = "kdeconnect-1-21-0"
+appcompat = "1.6.1"
+bcpkixJdk15on = "1.70"
+classindex = "3.13"
+commonsCollections4 = "4.4"
+commonsIo = "2.11.0"
+commonsLang3 = "3.12.0"
+constraintlayoutCompose = "1.0.1"
+coreKtx = "1.10.1"
+disklrucache = "2.0.2"
+documentfile = "1.0.1"
+gradle = "8.1.0"
+gridlayout = "1.0.0"
+jsonassert = "1.5.1"
+junit = "4.13.2"
+dependencyLicenseReport = "1.16"
+kotlin = "1.9.0"
+kotlinxCoroutinesCore = "1.7.1"
+lifecycleExtensions = "2.2.0"
+lifecycleRuntimeKtx = "2.6.1"
+logger = "1.0.3"
+material = "1.9.0"
+material3 = "1.1.1"
+media = "1.6.0"
+minaCore = "2.0.19"
+mockitoCore = "3.12.4"
+powermockModuleJunit4 = "2.0.0"
+preferenceKtx = "1.2.0"
+reactiveStreams = "1.0.4"
+recyclerview = "1.3.1"
+rxjava = "2.2.21"
+sshdCore = "0.14.0"
+swiperefreshlayout = "1.1.0"
+uiToolingPreview = "1.4.3"
+univocityParsers = "2.9.1"
+
+[libraries]
+accompanist-themeadapter-material3 = { module = "com.google.accompanist:accompanist-themeadapter-material3", version.ref = "accompanistThemeadapterMaterial3" }
+android-desugarJdkLibs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
+android-smsmms = { module = "org.kde.invent.sredman:android-smsmms", version.ref = "androidSmsmms" }
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+androidx-compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "material3" }
+androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "uiToolingPreview" }
+androidx-constraintlayout-compose = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "constraintlayoutCompose" }
+androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "uiToolingPreview" }
+androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
+androidx-documentfile = { module = "androidx.documentfile:documentfile", version.ref = "documentfile" }
+androidx-gridlayout = { module = "androidx.gridlayout:gridlayout", version.ref = "gridlayout" }
+androidx-lifecycle-common-java8 = { module = "androidx.lifecycle:lifecycle-common-java8", version.ref = "lifecycleRuntimeKtx" }
+androidx-lifecycle-extensions = { module = "androidx.lifecycle:lifecycle-extensions", version.ref = "lifecycleExtensions" }
+androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleRuntimeKtx" }
+androidx-media = { module = "androidx.media:media", version.ref = "media" }
+androidx-preference-ktx = { module = "androidx.preference:preference-ktx", version.ref = "preferenceKtx" }
+androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
+androidx-swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayout" }
+bcpkix-jdk15on = { module = "org.bouncycastle:bcpkix-jdk15on", version.ref = "bcpkixJdk15on" }
+classindex = { module = "org.atteo.classindex:classindex", version.ref = "classindex" }
+commons-collections4 = { module = "org.apache.commons:commons-collections4", version.ref = "commonsCollections4" }
+commons-io = { module = "commons-io:commons-io", version.ref = "commonsIo" }
+commons-lang3 = { module = "org.apache.commons:commons-lang3", version.ref = "commonsLang3" }
+disklrucache = { module = "com.jakewharton:disklrucache", version.ref = "disklrucache" }
+android-gradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
+jsonassert = { module = "org.skyscreamer:jsonassert", version.ref = "jsonassert" }
+junit = { module = "junit:junit", version.ref = "junit" }
+kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+kotlin-stdlib-jdk8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutinesCore" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
+logger = { module = "com.klinkerapps:logger", version.ref = "logger" }
+material = { module = "com.google.android.material:material", version.ref = "material" }
+apache-mina-core = { module = "org.apache.mina:mina-core", version.ref = "minaCore" }
+apache-sshd-core = { module = "org.apache.sshd:sshd-core", version.ref = "sshdCore" }
+mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
+powermock-api-mockito2 = { module = "org.powermock:powermock-api-mockito2", version.ref = "powermockModuleJunit4" }
+powermock-core = { module = "org.powermock:powermock-core", version.ref = "powermockModuleJunit4" }
+powermock-module-junit4 = { module = "org.powermock:powermock-module-junit4", version.ref = "powermockModuleJunit4" }
+reactive-streams = { module = "org.reactivestreams:reactive-streams", version.ref = "reactiveStreams" }
+rxjava = { module = "io.reactivex.rxjava2:rxjava", version.ref = "rxjava" }
+univocity-parsers = { module = "com.univocity:univocity-parsers", version.ref = "univocityParsers" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
+kotlin-android = { id ="org.jetbrains.kotlin.android", version.ref = "kotlin" }
+dependencyLicenseReport = { id = "com.github.jk1.dependency-license-report", version.ref = "dependencyLicenseReport" }
