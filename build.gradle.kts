@@ -64,6 +64,9 @@ android {
         jvmTarget = "1.8"
     }
 
+    androidResources {
+        generateLocaleConfig = true
+    }
     sourceSets {
         getByName("main") {
             manifest.srcFile("AndroidManifest.xml")
