@@ -15,9 +15,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Send
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -74,10 +72,10 @@ class ComposeSendActivity : AppCompatActivity() {
         }
         val plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, MousePadPlugin::class.java)
         if (plugin == null) {
-            finish();
-            return;
+            finish()
+            return
         }
-        plugin.sendKeyboardPacket(np);
+        plugin.sendKeyboardPacket(np)
     }
 
     private fun sendComposed() {
@@ -89,7 +87,6 @@ class ComposeSendActivity : AppCompatActivity() {
         userInput.value = String()
     }
 
-    @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     private fun ComposeSendScreen() {
         Mdc3Theme {
@@ -97,7 +94,6 @@ class ComposeSendActivity : AppCompatActivity() {
                 topBar = {
                     KdeTopAppBar(
                         title = stringResource(R.string.compose_send_title),
-                        navIcon = Icons.Default.ArrowBack,
                         navIconOnClick = { onBackPressedDispatcher.onBackPressed() },
                         actions = {
                             KdeTextButton(

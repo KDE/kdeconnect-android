@@ -9,12 +9,16 @@ package org.kde.kdeconnect.UserInterface.compose
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Build
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.style.TextOverflow.Companion.Ellipsis
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -38,5 +42,47 @@ fun KdeTextButton(
             }
             Text(text = text)
         }
+    )
+}
+
+@Composable
+fun KdeButton(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    colors: ButtonColors = ButtonDefaults.buttonColors(),
+    text: String? = null,
+    icon: ImageVector? = null,
+) {
+    //TODO uncomment when button is widely used
+//    val interactionSource = remember { MutableInteractionSource() }
+//    val pressedState = interactionSource.collectIsPressedAsState()
+//    val cornerSize by animateDpAsState(
+//        targetValue = if (pressedState.value) 24.dp else 48.dp,
+//        label = "Corner size change on press"
+//    )
+
+    Button(
+        onClick = onClick,
+        modifier = modifier,
+//        shape = RoundedCornerShape(cornerSize),
+        shape = RoundedCornerShape(24.dp),
+        colors = colors,
+//        interactionSource = interactionSource,
+        content = {
+            icon?.let { Icon(imageVector = it, contentDescription = text) }
+            text?.let { Text(it, maxLines = 1, overflow = Ellipsis) }
+        }
+    )
+}
+
+@Preview
+@Composable
+fun IconButtonPreview() {
+    KdeButton(
+        {},
+        Modifier.width(120.dp),
+        ButtonDefaults.buttonColors(Color.Gray, Color.DarkGray),
+        "Button Text",
+        Icons.Default.Build,
     )
 }
