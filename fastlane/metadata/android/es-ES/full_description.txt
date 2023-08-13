@@ -11,4 +11,10 @@ KDE Connect proporciona una serie de funcionalidades para integrar tus flujos de
 
 Ten en cuenta que necesitas tener instalado KDE en tu equipo para que esta aplicación funcione, y mantener la versión de escritorio actualizada con la versión de Android para tener acceso a las nuevas funcionalidades.
 
+Información de permisos: 
+* Permisos de acceso: Necesarios para recibir entradas desde otro dispositivo para controlar su dispositivo Android, si usa la funcionalidad de entrada remota.
+* Permisos de localización en segundo plano: Necesarios para saber a que red WiFi está conectado, si usa la funcionalidad de redes confiables.
+
+KDE Connect nunca envía ninguna información a KDE o a terceros. KDE Connect envía datos de un dispositivo a otro usando directamente la red local, nunca a través de internet, y usando cifrado extremo a extremo.
+
 Esta aplicación es parte de un proyecto de código abierto y existe gracias a toda gente que ha contribuido a ella. Visita la página web para acceder al código fuente.
