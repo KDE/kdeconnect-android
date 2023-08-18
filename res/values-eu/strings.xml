@@ -163,7 +163,7 @@
   <string name="device_not_paired">Gailua parekatu gabe</string>
   <string name="request_pairing">Eskatu parekatzea</string>
   <string name="pairing_accept">Onartu</string>
-  <string name="pairing_reject">Ukatu</string>
+  <string name="pairing_reject">Errefusatu</string>
   <string name="settings">Ezarpenak</string>
   <string name="mpris_play">Jo</string>
   <string name="mpris_pause">Eten</string>
