@@ -6,12 +6,18 @@
 
 package org.kde.kdeconnect.Plugins.PingPlugin;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
@@ -64,6 +70,15 @@ public class PingPlugin extends Plugin {
         } else {
             message = "Ping!";
             id = 42; //A unique id to create only one notification
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            int permissionResult = ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS);
+            if (permissionResult != PackageManager.PERMISSION_GRANTED) {
+                // If notifications are not allowed, show a toast instead of a notification
+                new Handler(Looper.getMainLooper()).post(() -> Toast.makeText(context, message, Toast.LENGTH_LONG).show());
+                return true;
+            }
         }
 
         NotificationManager notificationManager = ContextCompat.getSystemService(context, NotificationManager.class);

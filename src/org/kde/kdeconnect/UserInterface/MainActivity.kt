@@ -22,6 +22,8 @@ import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
@@ -192,6 +194,15 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
                 else -> setContentFragment(PairingFragment())
             }
         }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            val permissionResult = ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+            if (permissionResult != PackageManager.PERMISSION_GRANTED) {
+                if (!ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.POST_NOTIFICATIONS)) {
+                    ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.POST_NOTIFICATIONS), RESULT_NOTIFICATIONS_ENABLED)
+                }
+            }
+        }
     }
 
     override fun onDestroy() {
@@ -324,23 +335,31 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
                 val uri = data.data
                 ShareSettingsFragment.saveStorageLocationPreference(this, uri)
             }
-
             else -> super.onActivityResult(requestCode, resultCode, data)
         }
+    }
+
+    fun isPermissionGranted(permissions: Array<String>, grantResults: IntArray, permission : String) : Boolean {
+        val index = ArrayUtils.indexOf(permissions, permission)
+        return index != ArrayUtils.INDEX_NOT_FOUND && grantResults[index] == PackageManager.PERMISSION_GRANTED
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         val permissionsGranted = ArrayUtils.contains(grantResults, PackageManager.PERMISSION_GRANTED)
         if (permissionsGranted) {
-            val i = ArrayUtils.indexOf(permissions, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-            val writeStoragePermissionGranted = i != ArrayUtils.INDEX_NOT_FOUND &&
-                    grantResults[i] == PackageManager.PERMISSION_GRANTED
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && writeStoragePermissionGranted) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && isPermissionGranted(permissions, grantResults, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                 // To get a writeable path manually on Android 10 and later for Share and Receive Plugin.
                 // Otherwise, Receiving files will keep failing until the user chooses a path manually to receive files.
                 val intent = Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
                 startActivityForResult(intent, STORAGE_LOCATION_CONFIGURED)
+            }
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isPermissionGranted(permissions, grantResults, Manifest.permission.POST_NOTIFICATIONS)) {
+                // If PairingFragment is active, reload it
+                if (mCurrentDevice == null) {
+                    setContentFragment(PairingFragment())
+                }
             }
 
             //New permission granted, reload plugins
@@ -370,6 +389,7 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
         const val PAIRING_REJECTED = "rejected"
         const val PAIRING_PENDING = "pending"
         const val RESULT_NEEDS_RELOAD = RESULT_FIRST_USER
+        const val RESULT_NOTIFICATIONS_ENABLED = RESULT_FIRST_USER+1
         const val FLAG_FORCE_OVERVIEW = "forceOverview"
     }
 

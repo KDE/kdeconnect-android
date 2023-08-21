@@ -278,8 +278,6 @@ public abstract class Plugin {
         return new PermissionsAlertDialogFragment.Builder()
                 .setTitle(getDisplayName())
                 .setMessage(reason)
-                .setPositiveButton(R.string.ok)
-                .setNegativeButton(R.string.cancel)
                 .setPermissions(permissions)
                 .setRequestCode(MainActivity.RESULT_NEEDS_RELOAD)
                 .create();

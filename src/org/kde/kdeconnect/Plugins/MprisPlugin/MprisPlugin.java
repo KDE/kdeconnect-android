@@ -6,15 +6,18 @@
 
 package org.kde.kdeconnect.Plugins.MprisPlugin;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.util.Log;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
@@ -520,5 +523,20 @@ public class MprisPlugin extends Plugin {
             return true;
         }
         return false;
+    }
+
+    @NonNull
+    @Override
+    protected String[] getOptionalPermissions() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            return new String[]{Manifest.permission.POST_NOTIFICATIONS};
+        } else {
+            return ArrayUtils.EMPTY_STRING_ARRAY;
+        }
+    }
+
+    @Override
+    protected int getOptionalPermissionExplanation() {
+        return R.string.mpris_notifications_explanation;
     }
 }

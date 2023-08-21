@@ -6,11 +6,13 @@
 
 package org.kde.kdeconnect.Plugins.MprisPlugin;
 
+import android.Manifest;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.media.AudioManager;
 import android.os.Build;
@@ -256,6 +258,14 @@ public class MprisMediaSession implements
      * Update the media control notification
      */
     private void updateMediaNotification() {
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+            int permissionResult = ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS);
+            if (permissionResult != PackageManager.PERMISSION_GRANTED) {
+                closeMediaNotification();
+                return;
+            }
+        }
 
         //If the user disabled the media notification, do not show it
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
