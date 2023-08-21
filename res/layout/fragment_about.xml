@@ -26,6 +26,8 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="12dp"
+            android:clickable="false"
+            android:focusable="false"
             card_view:cardUseCompatPadding="true">
 
             <LinearLayout

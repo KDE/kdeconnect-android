@@ -24,6 +24,8 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
 
         <FrameLayout
             android:id="@+id/container"
+            android:descendantFocusability="afterDescendants"
+            android:focusable="false"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"

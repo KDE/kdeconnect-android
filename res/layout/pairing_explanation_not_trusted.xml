@@ -12,6 +12,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     android:layout_height="wrap_content"
     android:background="?attr/selectableItemBackground"
     android:clickable="false"
+    android:focusable="false"
     android:drawablePadding="8dp"
     android:paddingTop="16dp"
     android:paddingBottom="12dp"

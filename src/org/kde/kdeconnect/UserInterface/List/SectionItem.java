@@ -30,6 +30,8 @@ public class SectionItem implements ListAdapter.Item {
         //Make it not selectable
         binding.getRoot().setOnClickListener(null);
         binding.getRoot().setOnLongClickListener(null);
+        binding.getRoot().setFocusable(false);
+        binding.getRoot().setClickable(false);
 
         binding.listItemCategoryText.setText(title);
 
