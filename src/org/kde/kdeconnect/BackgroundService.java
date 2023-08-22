@@ -130,6 +130,16 @@ public class BackgroundService extends Service {
         cm.registerNetworkCallback(networkRequestBuilder.build(), new ConnectivityManager.NetworkCallback() {
             @Override
             public void onAvailable(Network network) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    cm.bindProcessToNetwork(network);
+                } else {
+                    try {
+                        ConnectivityManager.setProcessDefaultNetwork(network);
+                    } catch (IllegalStateException e) {
+                        Log.d("KDE/BackgroundService", "Failed to bind process to network", e);
+                        return;
+                    }
+                }
                 connectedToNonCellularNetwork.postValue(true);
                 onNetworkChange();
             }
