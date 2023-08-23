@@ -6,7 +6,13 @@
 
 package org.kde.kdeconnect.UserInterface;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
@@ -14,6 +20,7 @@ import androidx.core.app.ActivityCompat;
 import org.kde.kdeconnect_tp.R;
 
 public class PermissionsAlertDialogFragment extends AlertDialogFragment {
+    private static final String KEY_PERMANENTLY_DENIED_PREFERENCES = "permanently_denied_permissions";
     private static final String KEY_PERMISSIONS = "Permissions";
     private static final String KEY_REQUEST_CODE = "RequestCode";
 
@@ -21,6 +28,18 @@ public class PermissionsAlertDialogFragment extends AlertDialogFragment {
     private int requestCode;
 
     public PermissionsAlertDialogFragment() {
+    }
+
+    public static void PermissionsDenied(Activity activity, String[] permissions) {
+        for (String permission : permissions) {
+            if (!ActivityCompat.shouldShowRequestPermissionRationale(activity, permission)) {
+                // The user selected "don't show again" or denied the permission twice, so the
+                // system permission dialog won't show again. We want to remember this to open the
+                // app preferences instead the next time
+                SharedPreferences prefs = activity.getSharedPreferences(KEY_PERMANENTLY_DENIED_PREFERENCES, Context.MODE_PRIVATE);
+                prefs.edit().putBoolean(permission, true).apply();
+            }
+        }
     }
 
     @Override
@@ -36,10 +55,27 @@ public class PermissionsAlertDialogFragment extends AlertDialogFragment {
         permissions = args.getStringArray(KEY_PERMISSIONS);
         requestCode = args.getInt(KEY_REQUEST_CODE, 0);
 
+
         setCallback(new Callback() {
             @Override
             public void onPositiveButtonClicked() {
+            SharedPreferences prefs = getContext().getSharedPreferences(KEY_PERMANENTLY_DENIED_PREFERENCES, Context.MODE_PRIVATE);
+            boolean permanentlyDenied = false;
+            for (String permission : permissions) {
+                if (prefs.getBoolean(permission, false)) {
+                    permanentlyDenied = true;
+                    break;
+                }
+            }
+            if (permanentlyDenied) {
+                Intent intent = new Intent();
+                intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                Uri uri = Uri.fromParts("package", getContext().getPackageName(), null);
+                intent.setData(uri);
+                startActivity(intent);
+            } else {
                 ActivityCompat.requestPermissions(requireActivity(), permissions, requestCode);
+            }
             }
         });
     }

@@ -32,6 +32,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
+import org.kde.kdeconnect.Backends.LoopbackBackend.LoopbackLinkProvider;
 import org.kde.kdeconnect.Helpers.NotificationHelper;
 import org.kde.kdeconnect.Plugins.ClibpoardPlugin.ClipboardFloatingActivity;
 import org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandActivity;
@@ -80,7 +81,7 @@ public class BackgroundService extends Service {
 
     private void registerLinkProviders() {
         linkProviders.add(new LanLinkProvider(this));
-//        linkProviders.add(new LoopbackLinkProvider(this));
+        linkProviders.add(new LoopbackLinkProvider(this));
 //        linkProviders.add(new BluetoothLinkProvider(this));
     }
 
@@ -267,6 +268,14 @@ public class BackgroundService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d("KDE/BackgroundService", "onStartCommand");
+        postForegroundNotification();
+        if (intent != null && intent.getBooleanExtra("refresh", false)) {
+            onNetworkChange();
+        }
+        return Service.START_STICKY;
+    }
+
+    public void postForegroundNotification() {
         if (NotificationHelper.isPersistentNotificationEnabled(this)) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 startForeground(FOREGROUND_NOTIFICATION_ID, createForegroundNotification(), ServiceInfo.FOREGROUND_SERVICE_TYPE_CONNECTED_DEVICE);
@@ -274,10 +283,6 @@ public class BackgroundService extends Service {
                 startForeground(FOREGROUND_NOTIFICATION_ID, createForegroundNotification());
             }
         }
-        if (intent != null && intent.getBooleanExtra("refresh", false)) {
-            onNetworkChange();
-        }
-        return Service.START_STICKY;
     }
 
     public static void Start(Context context) {
