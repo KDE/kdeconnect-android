@@ -269,7 +269,7 @@
   <string name="addcommand_explanation">Kayıtlı komut yok</string>
   <string name="addcommand_explanation2">KDE Bağlan Sistem Ayarlarında yeni komutlar ekleyebilirsiniz</string>
   <string name="add_command_description">Masaüstüne komut ekleyebilirsiniz</string>
-  <string name="pref_plugin_mprisreceiver">Ortam Oynatıcı Denetimi</string>
+  <string name="pref_plugin_mprisreceiver">Ortam Oynatıcısı Denetimi</string>
   <string name="pref_plugin_mprisreceiver_desc">Telefonunuzun ortam oynatıcılarını başka bir aygıttan denetleyin</string>
   <string name="notification_channel_default">Diğer bildirimler</string>
   <string name="notification_channel_persistent">Kalıcı gösterge</string>
