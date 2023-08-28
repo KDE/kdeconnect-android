@@ -65,7 +65,7 @@
   <string-array name="mousepad_tap_entries">
     <item>左键点击</item>
     <item>右键点击</item>
-    <item>中间键点击</item>
+    <item>中键点击</item>
     <item>无操作</item>
   </string-array>
   <string-array name="mousepad_sensitivity_entries">
