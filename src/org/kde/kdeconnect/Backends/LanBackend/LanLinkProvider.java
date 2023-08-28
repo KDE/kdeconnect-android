@@ -25,6 +25,7 @@ import org.kde.kdeconnect.Helpers.TrustedNetworkHelper;
 import org.kde.kdeconnect.KdeConnect;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.UserInterface.CustomDevicesActivity;
+import org.kde.kdeconnect.UserInterface.SettingsFragment;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -58,9 +59,9 @@ import kotlin.text.Charsets;
  */
 public class LanLinkProvider extends BaseLinkProvider {
 
-    private final static int UDP_PORT = 1716;
-    private final static int MIN_PORT = 1716;
-    private final static int MAX_PORT = 1764;
+    final static int UDP_PORT = 1716;
+    final static int MIN_PORT = 1716;
+    final static int MAX_PORT = 1764;
     final static int PAYLOAD_TRANSFER_MIN_PORT = 1739;
 
     final static int MAX_UDP_PACKET_SIZE = 1024 * 512;
@@ -69,12 +70,14 @@ public class LanLinkProvider extends BaseLinkProvider {
 
     private final Context context;
 
-    private final HashMap<String, LanLink> visibleDevices = new HashMap<>();  //Links by device id
+    final HashMap<String, LanLink> visibleDevices = new HashMap<>();  //Links by device id
 
     final ConcurrentHashMap<String, Long> lastConnectionTime = new ConcurrentHashMap<>();
 
     private ServerSocket tcpServer;
     private DatagramSocket udpServer;
+
+    private MdnsDiscovery mdnsDiscovery;
 
     private long lastBroadcast = 0;
     private final static long delayBetweenBroadcasts = 200;
@@ -265,6 +268,7 @@ public class LanLinkProvider extends BaseLinkProvider {
 
     public LanLinkProvider(Context context) {
         this.context = context;
+        this.mdnsDiscovery = new MdnsDiscovery(context, this);
     }
 
     private void setupUdpListener() {
@@ -352,11 +356,11 @@ public class LanLinkProvider extends BaseLinkProvider {
     }
 
     private void broadcastUdpIdentityPacket() {
-        if (System.currentTimeMillis() < lastBroadcast + delayBetweenBroadcasts) {
-            Log.i("LanLinkProvider", "broadcastUdpPacket: relax cowboy");
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        if (!preferences.getBoolean(SettingsFragment.KEY_UDP_BROADCAST_ENABLED, true)) {
+            Log.i("LanLinkProvider", "UDP broadcast is disabled in settings. Skipping.");
             return;
         }
-        lastBroadcast = System.currentTimeMillis();
 
         ThreadHelper.execute(() -> {
             List<String> ipStringList = CustomDevicesActivity
@@ -436,19 +440,32 @@ public class LanLinkProvider extends BaseLinkProvider {
             setupUdpListener();
             setupTcpListener();
 
+            mdnsDiscovery.startDiscovering();
+            mdnsDiscovery.startAnnouncing();
+
             broadcastUdpIdentityPacket();
         }
     }
 
     @Override
     public void onNetworkChange() {
+        if (System.currentTimeMillis() < lastBroadcast + delayBetweenBroadcasts) {
+            Log.i("LanLinkProvider", "onNetworkChange: relax cowboy");
+            return;
+        }
+        lastBroadcast = System.currentTimeMillis();
+
         broadcastUdpIdentityPacket();
+        mdnsDiscovery.stopDiscovering();
+        mdnsDiscovery.startDiscovering();
     }
 
     @Override
     public void onStop() {
         //Log.i("KDE/LanLinkProvider", "onStop");
         listening = false;
+        mdnsDiscovery.stopAnnouncing();
+        mdnsDiscovery.stopDiscovering();
         try {
             tcpServer.close();
         } catch (Exception e) {

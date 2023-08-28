@@ -20,6 +20,7 @@ import androidx.annotation.NonNull;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.kde.kdeconnect.Helpers.NetworkHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
@@ -147,7 +148,7 @@ public class SftpPlugin extends Plugin implements SharedPreferences.OnSharedPref
 
                 NetworkPacket np2 = new NetworkPacket(PACKET_TYPE_SFTP);
 
-                np2.set("ip", server.getLocalIpAddress()); // for backwards compatibility
+                np2.set("ip", NetworkHelper.getLocalIpAddress().getHostAddress());
                 np2.set("port", server.getPort());
                 np2.set("user", SimpleSftpServer.USER);
                 np2.set("password", server.getPassword());

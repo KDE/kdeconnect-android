@@ -26,17 +26,12 @@ import org.kde.kdeconnect.Helpers.RandomHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
 
 import java.io.IOException;
-import java.net.Inet4Address;
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
 import java.security.GeneralSecurityException;
 import java.security.KeyPair;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Enumeration;
 import java.util.List;
 
 class SimpleSftpServer {
@@ -143,39 +138,6 @@ class SimpleSftpServer {
 
     int getPort() {
         return port;
-    }
-
-    String getLocalIpAddress() {
-        String ip6 = null;
-        try {
-            for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements(); ) {
-                NetworkInterface intf = en.nextElement();
-
-                // Anything with rmnet is related to cellular connections or USB
-                // tethering mechanisms.  See:
-                //
-                // https://android.googlesource.com/kernel/msm/+/android-msm-flo-3.4-kitkat-mr1/Documentation/usb/gadget_rmnet.txt
-                //
-                // If we run across an interface that has this, we can safely
-                // ignore it.  In fact, it's much safer to do.  If we don't, we
-                // might get invalid IP adddresses out of it.
-                if (intf.getDisplayName().contains("rmnet")) continue;
-
-                for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements(); ) {
-                    InetAddress inetAddress = enumIpAddr.nextElement();
-                    if (!inetAddress.isLoopbackAddress()) {
-                        String address = inetAddress.getHostAddress();
-                        if (inetAddress instanceof Inet4Address) { //Prefer IPv4 over IPv6, because sshfs doesn't seem to like IPv6
-                            return address;
-                        } else {
-                            ip6 = address;
-                        }
-                    }
-                }
-            }
-        } catch (SocketException ignored) {
-        }
-        return ip6;
     }
 
     public boolean isInitialized() {
