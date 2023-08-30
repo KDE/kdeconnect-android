@@ -216,7 +216,7 @@ public class MdnsDiscovery {
 
                 // Let the LanLinkProvider handle the connection
                 InetAddress remoteAddress = serviceInfo.getHost();
-                lanLinkProvider.sendUdpIdentityPacket(Collections.singletonList(remoteAddress));
+                lanLinkProvider.sendUdpIdentityPacket(Collections.singletonList(remoteAddress), null);
             }
         };
     }

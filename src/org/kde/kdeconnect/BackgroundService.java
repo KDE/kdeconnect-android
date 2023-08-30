@@ -25,6 +25,7 @@ import android.os.IBinder;
 import android.text.TextUtils;
 import android.util.Log;
 
+import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LiveData;
@@ -84,14 +85,14 @@ public class BackgroundService extends Service {
 //        linkProviders.add(new BluetoothLinkProvider(this));
     }
 
-    public void onNetworkChange() {
+    public void onNetworkChange(@Nullable Network network) {
         if (!initialized) {
             Log.d("KDE/BackgroundService", "ignoring onNetworkChange called before the service is initialized");
             return;
         }
         Log.d("KDE/BackgroundService", "onNetworkChange");
         for (BaseLinkProvider a : linkProviders) {
-            a.onNetworkChange();
+            a.onNetworkChange(network);
         }
     }
 
@@ -130,18 +131,8 @@ public class BackgroundService extends Service {
         cm.registerNetworkCallback(networkRequestBuilder.build(), new ConnectivityManager.NetworkCallback() {
             @Override
             public void onAvailable(Network network) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    cm.bindProcessToNetwork(network);
-                } else {
-                    try {
-                        ConnectivityManager.setProcessDefaultNetwork(network);
-                    } catch (IllegalStateException e) {
-                        Log.d("KDE/BackgroundService", "Failed to bind process to network", e);
-                        return;
-                    }
-                }
                 connectedToNonCellularNetwork.postValue(true);
-                onNetworkChange();
+                onNetworkChange(network);
             }
             @Override
             public void onLost(Network network) {
@@ -285,7 +276,7 @@ public class BackgroundService extends Service {
             }
         }
         if (intent != null && intent.getBooleanExtra("refresh", false)) {
-            onNetworkChange();
+            onNetworkChange(null);
         }
         return Service.START_STICKY;
     }

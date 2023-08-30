@@ -14,9 +14,12 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Network;
 import android.os.Parcelable;
 import android.util.Base64;
 import android.util.Log;
+
+import androidx.annotation.Nullable;
 
 import org.apache.commons.io.IOUtils;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
@@ -107,7 +110,7 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
     }
 
     @Override
-    public void onNetworkChange() {
+    public void onNetworkChange(@Nullable Network network) {
         onStop();
         onStart();
     }

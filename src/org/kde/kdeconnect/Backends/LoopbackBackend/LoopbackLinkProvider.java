@@ -7,6 +7,9 @@
 package org.kde.kdeconnect.Backends.LoopbackBackend;
 
 import android.content.Context;
+import android.net.Network;
+
+import androidx.annotation.Nullable;
 
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 
@@ -20,7 +23,7 @@ public class LoopbackLinkProvider extends BaseLinkProvider {
 
     @Override
     public void onStart() {
-        onNetworkChange();
+        onNetworkChange(null);
     }
 
     @Override
@@ -28,7 +31,7 @@ public class LoopbackLinkProvider extends BaseLinkProvider {
     }
 
     @Override
-    public void onNetworkChange() {
+    public void onNetworkChange(@Nullable Network network) {
         LoopbackLink link = new LoopbackLink(context, this);
         onConnectionReceived(link);
     }

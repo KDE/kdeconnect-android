@@ -8,9 +8,12 @@ package org.kde.kdeconnect.Backends.LanBackend;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.Network;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import org.json.JSONException;
@@ -301,7 +304,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                     });
                 } catch (IOException e) {
                     Log.e("LanLinkProvider", "UdpReceive exception", e);
-                    onNetworkChange(); // Trigger a UDP broadcast to try to get them to connect to us instead
+                    onNetworkChange(null); // Trigger a UDP broadcast to try to get them to connect to us instead
                 }
             }
             Log.w("UdpListener", "Stopping UDP listener");
@@ -355,7 +358,7 @@ public class LanLinkProvider extends BaseLinkProvider {
         throw new RuntimeException("This should not be reachable");
     }
 
-    private void broadcastUdpIdentityPacket() {
+    private void broadcastUdpIdentityPacket(@Nullable Network network) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         if (!preferences.getBoolean(SettingsFragment.KEY_UDP_BROADCAST_ENABLED, true)) {
             Log.i("LanLinkProvider", "UDP broadcast is disabled in settings. Skipping.");
@@ -385,12 +388,12 @@ public class LanLinkProvider extends BaseLinkProvider {
                 return;
             }
 
-            sendUdpIdentityPacket(ipList);
+            sendUdpIdentityPacket(ipList, network);
         });
     }
 
     @WorkerThread
-    public void sendUdpIdentityPacket(List<InetAddress> ipList) {
+    public void sendUdpIdentityPacket(List<InetAddress> ipList, @Nullable Network network) {
         if (tcpServer == null || !tcpServer.isBound()) {
             Log.i("LanLinkProvider", "Won't broadcast UDP packet if TCP socket is not ready yet");
             return;
@@ -411,6 +414,14 @@ public class LanLinkProvider extends BaseLinkProvider {
         DatagramSocket socket;
         try {
             socket = new DatagramSocket();
+            if (network != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+                try {
+                    network.bindSocket(socket);
+                } catch (IOException e) {
+                    Log.w("LanLinkProvider", "Couldn't bind socket to the network");
+                    e.printStackTrace();
+                }
+            }
             socket.setReuseAddress(true);
             socket.setBroadcast(true);
         } catch (SocketException e) {
@@ -443,19 +454,19 @@ public class LanLinkProvider extends BaseLinkProvider {
             mdnsDiscovery.startDiscovering();
             mdnsDiscovery.startAnnouncing();
 
-            broadcastUdpIdentityPacket();
+            broadcastUdpIdentityPacket(null);
         }
     }
 
     @Override
-    public void onNetworkChange() {
+    public void onNetworkChange(@Nullable Network network) {
         if (System.currentTimeMillis() < lastBroadcast + delayBetweenBroadcasts) {
             Log.i("LanLinkProvider", "onNetworkChange: relax cowboy");
             return;
         }
         lastBroadcast = System.currentTimeMillis();
 
-        broadcastUdpIdentityPacket();
+        broadcastUdpIdentityPacket(network);
         mdnsDiscovery.stopDiscovering();
         mdnsDiscovery.startDiscovering();
     }

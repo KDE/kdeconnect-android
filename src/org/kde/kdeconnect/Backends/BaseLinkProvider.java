@@ -6,7 +6,10 @@
 
 package org.kde.kdeconnect.Backends;
 
+import android.net.Network;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -49,7 +52,7 @@ public abstract class BaseLinkProvider {
 
     public abstract void onStart();
     public abstract void onStop();
-    public abstract void onNetworkChange();
+    public abstract void onNetworkChange(@Nullable Network network);
     public abstract String getName();
 
 }
