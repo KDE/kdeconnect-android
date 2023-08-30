@@ -397,4 +397,5 @@
   <string name="send_clipboard">Bidali arbelekoa</string>
   <string name="tap_to_execute">Tak egin exekutatzeko</string>
   <string name="plugin_stats">Pluginaren estatistikak</string>
+  <string name="enable_udp_broadcast">Gaitu UDP bidez gailua aurkitzea</string>
 </resources>

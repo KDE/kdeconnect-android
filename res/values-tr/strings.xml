@@ -397,4 +397,5 @@
   <string name="send_clipboard">Pano gönder</string>
   <string name="tap_to_execute">Yürütmek için dokun</string>
   <string name="plugin_stats">Eklenti istatistikleri</string>
+  <string name="enable_udp_broadcast">UDP aygıt keşfini etkinleştir</string>
 </resources>

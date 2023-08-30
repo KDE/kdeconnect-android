@@ -413,4 +413,5 @@
   <string name="send_clipboard">Pošlji odložišče</string>
   <string name="tap_to_execute">Tapkajte za izvedbo</string>
   <string name="plugin_stats">Stanje vtičnikov</string>
+  <string name="enable_udp_broadcast">Omogoči odkrivanje naprav UDP</string>
 </resources>

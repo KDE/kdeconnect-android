@@ -413,4 +413,5 @@
   <string name="send_clipboard">Надіслати вміст буфера</string>
   <string name="tap_to_execute">Торкніться, щоб виконати</string>
   <string name="plugin_stats">Статистика щодо додатків</string>
+  <string name="enable_udp_broadcast">Увімкнути виявлення пристроїв UDP</string>
 </resources>

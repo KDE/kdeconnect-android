@@ -397,4 +397,5 @@
   <string name="send_clipboard">Изпращане на клипборд</string>
   <string name="tap_to_execute">Докоснете, за да се изпълни</string>
   <string name="plugin_stats">Данни на приставки</string>
+  <string name="enable_udp_broadcast">Активиране на откриване на устройства чрез UDP</string>
 </resources>
