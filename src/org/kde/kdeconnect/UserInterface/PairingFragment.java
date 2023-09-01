@@ -6,10 +6,13 @@
 
 package org.kde.kdeconnect.UserInterface;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.LayoutInflater;
@@ -21,6 +24,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import org.kde.kdeconnect.BackgroundService;
@@ -34,6 +39,7 @@ import org.kde.kdeconnect_tp.R;
 import org.kde.kdeconnect_tp.databinding.DevicesListBinding;
 import org.kde.kdeconnect_tp.databinding.PairingExplanationNotTrustedBinding;
 import org.kde.kdeconnect_tp.databinding.PairingExplanationTextBinding;
+import org.kde.kdeconnect_tp.databinding.PairingExplanationTextNoNotificationsBinding;
 import org.kde.kdeconnect_tp.databinding.PairingExplanationTextNoWifiBinding;
 
 import java.util.ArrayList;
@@ -52,6 +58,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
     private PairingExplanationNotTrustedBinding pairingExplanationNotTrustedBinding;
     private PairingExplanationTextBinding pairingExplanationTextBinding;
     private PairingExplanationTextNoWifiBinding pairingExplanationTextNoWifiBinding;
+    private PairingExplanationTextNoNotificationsBinding pairingExplanationTextNoNotificationsBinding;
 
     private MainActivity mActivity;
 
@@ -59,6 +66,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
 
     private TextView headerText;
     private TextView noWifiHeader;
+    private TextView noNotificationsHeader;
     private TextView notTrustedText;
 
     @Override
@@ -69,23 +77,35 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
         setHasOptionsMenu(true);
 
         devicesListBinding = DevicesListBinding.inflate(inflater, container, false);
+
         pairingExplanationNotTrustedBinding = PairingExplanationNotTrustedBinding.inflate(inflater);
-        pairingExplanationTextBinding = PairingExplanationTextBinding.inflate(inflater);
-        pairingExplanationTextNoWifiBinding = PairingExplanationTextNoWifiBinding.inflate(inflater);
-
-        devicesListBinding.refreshListLayout.setOnRefreshListener(this::refreshDevicesAction);
-
         notTrustedText = pairingExplanationNotTrustedBinding.getRoot();
         notTrustedText.setOnClickListener(null);
         notTrustedText.setOnLongClickListener(null);
 
+        pairingExplanationTextBinding = PairingExplanationTextBinding.inflate(inflater);
         headerText = pairingExplanationTextBinding.getRoot();
         headerText.setOnClickListener(null);
         headerText.setOnLongClickListener(null);
 
+        pairingExplanationTextNoWifiBinding = PairingExplanationTextNoWifiBinding.inflate(inflater);
         noWifiHeader = pairingExplanationTextNoWifiBinding.getRoot();
         noWifiHeader.setOnClickListener(view -> startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS)));
+
+        pairingExplanationTextNoNotificationsBinding = PairingExplanationTextNoNotificationsBinding.inflate(inflater);
+        noNotificationsHeader = pairingExplanationTextNoNotificationsBinding.getRoot();
+        noNotificationsHeader.setOnClickListener(view -> ActivityCompat.requestPermissions(requireActivity(), new String[]{Manifest.permission.POST_NOTIFICATIONS}, MainActivity.RESULT_NOTIFICATIONS_ENABLED));
+        noNotificationsHeader.setOnLongClickListener(view -> {
+            Intent intent = new Intent();
+            intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+            Uri uri = Uri.fromParts("package", requireContext().getPackageName(), null);
+            intent.setData(uri);
+            startActivity(intent);
+            return true;
+        });
+
         devicesListBinding.devicesList.addHeaderView(headerText);
+        devicesListBinding.refreshListLayout.setOnRefreshListener(this::refreshDevicesAction);
 
         return devicesListBinding.getRoot();
     }
@@ -207,12 +227,17 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
             }
         }
 
+        boolean hasNotificationsPermission = ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED;
+
         devicesListBinding.devicesList.removeHeaderView(headerText);
         devicesListBinding.devicesList.removeHeaderView(noWifiHeader);
         devicesListBinding.devicesList.removeHeaderView(notTrustedText);
+        devicesListBinding.devicesList.removeHeaderView(noNotificationsHeader);
 
         if (someDevicesReachable || isConnectedToNonCellularNetwork) {
-            if (TrustedNetworkHelper.isTrustedNetwork(getContext())) {
+            if (!hasNotificationsPermission) {
+                devicesListBinding.devicesList.addHeaderView(noNotificationsHeader);
+            } else if (TrustedNetworkHelper.isTrustedNetwork(getContext())) {
                 devicesListBinding.devicesList.addHeaderView(headerText);
             } else {
                 devicesListBinding.devicesList.addHeaderView(notTrustedText);

@@ -75,7 +75,11 @@ public class SharePlugin extends Plugin {
 
     @Override
     protected int getOptionalPermissionExplanation() {
-        return R.string.share_optional_permission_explanation;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            return R.string.share_notifications_explanation;
+        } else {
+            return R.string.share_optional_permission_explanation;
+        }
     }
 
     @Override
@@ -290,7 +294,9 @@ public class SharePlugin extends Plugin {
 
     @Override
     public @NonNull String[] getOptionalPermissions() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            return new String[]{Manifest.permission.POST_NOTIFICATIONS};
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             return ArrayUtils.EMPTY_STRING_ARRAY;
         } else {
             return new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};

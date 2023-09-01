@@ -6,18 +6,21 @@
 
 package org.kde.kdeconnect.Plugins.ReceiveNotificationsPlugin;
 
+import android.Manifest;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.kde.kdeconnect.Helpers.NotificationHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
@@ -121,5 +124,20 @@ public class ReceiveNotificationsPlugin extends Plugin {
     @Override
     public @NonNull String[] getOutgoingPacketTypes() {
         return new String[]{PACKET_TYPE_NOTIFICATION_REQUEST};
+    }
+
+    @NonNull
+    @Override
+    protected String[] getRequiredPermissions() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            return new String[]{Manifest.permission.POST_NOTIFICATIONS};
+        } else {
+            return ArrayUtils.EMPTY_STRING_ARRAY;
+        }
+    }
+
+    @Override
+    protected int getPermissionExplanation() {
+        return R.string.receive_notifications_permission_explanation;
     }
 }

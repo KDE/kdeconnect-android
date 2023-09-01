@@ -11,6 +11,8 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 
+import org.kde.kdeconnect_tp.R;
+
 public class PermissionsAlertDialogFragment extends AlertDialogFragment {
     private static final String KEY_PERMISSIONS = "Permissions";
     private static final String KEY_REQUEST_CODE = "RequestCode";
@@ -43,6 +45,12 @@ public class PermissionsAlertDialogFragment extends AlertDialogFragment {
     }
 
     public static class Builder extends AlertDialogFragment.AbstractBuilder<Builder, PermissionsAlertDialogFragment> {
+
+        public Builder() {
+            setPositiveButton(R.string.ok);
+            setNegativeButton(R.string.cancel);
+        }
+
         @Override
         public Builder getThis() {
             return this;

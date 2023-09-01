@@ -6,6 +6,7 @@
 
 package org.kde.kdeconnect.Plugins.FindMyPhonePlugin;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -120,6 +121,9 @@ public class FindMyPhonePlugin extends Plugin {
             intent.putExtra(FindMyPhoneActivity.EXTRA_DEVICE_ID, device.getDeviceId());
             context.startActivity(intent);
         } else {
+            if (!checkOptionalPermissions()) {
+                return false;
+            }
             if (powerManager.isInteractive()) {
                 startPlaying();
                 showBroadcastNotification();
@@ -127,7 +131,6 @@ public class FindMyPhonePlugin extends Plugin {
                 showActivityNotification();
             }
         }
-
         return true;
     }
 
@@ -218,5 +221,20 @@ public class FindMyPhonePlugin extends Plugin {
     @Override
     public PluginSettingsFragment getSettingsFragment(Activity activity) {
         return FindMyPhoneSettingsFragment.newInstance(getPluginKey(), R.xml.findmyphoneplugin_preferences);
+    }
+
+    @NonNull
+    @Override
+    protected String[] getRequiredPermissions() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            return new String[]{Manifest.permission.POST_NOTIFICATIONS};
+        } else {
+            return ArrayUtils.EMPTY_STRING_ARRAY;
+        }
+    }
+
+    @Override
+    protected int getPermissionExplanation() {
+        return R.string.findmyphone_notifications_explanation;
     }
 }

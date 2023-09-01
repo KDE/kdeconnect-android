@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--
-SPDX-FileCopyrightText: 2019 Matthijs Tijink <matthijstijink@gmail.com>
+SPDX-FileCopyrightText: 2023 Albert Vaca Cintora <albertvaka@gmail.com>
 
 SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 -->
@@ -18,8 +18,8 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     android:paddingBottom="12dp"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
-    android:text="@string/no_wifi"
-    app:drawableStartCompat="@drawable/ic_wifi"
-    app:drawableTint="?attr/colorControlNormal">
+    android:text="@string/no_notifications"
+    app:drawableStartCompat="@drawable/ic_warning"
+    app:drawableLeftCompat="@drawable/ic_warning">
 
 </TextView>

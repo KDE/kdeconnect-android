@@ -67,8 +67,6 @@ public class BigscreenActivity extends AppCompatActivity {
                 new PermissionsAlertDialogFragment.Builder()
                         .setTitle(plugin.getDisplayName())
                         .setMessage(R.string.bigscreen_optional_permission_explanation)
-                        .setPositiveButton(R.string.ok)
-                        .setNegativeButton(R.string.cancel)
                         .setPermissions(new String[]{Manifest.permission.RECORD_AUDIO})
                         .setRequestCode(MainActivity.RESULT_NEEDS_RELOAD)
                         .create().show(getSupportFragmentManager(), null);
