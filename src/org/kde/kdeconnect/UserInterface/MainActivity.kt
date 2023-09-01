@@ -329,7 +329,7 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when {
             requestCode == RESULT_NEEDS_RELOAD -> {
-                KdeConnect.getInstance().getDevice(mCurrentDevice)?.reloadPluginsFromSettings()
+                KdeConnect.getInstance().devices.values.forEach(Device::reloadPluginsFromSettings)
             }
             requestCode == STORAGE_LOCATION_CONFIGURED && resultCode == RESULT_OK && data != null -> {
                 val uri = data.data
@@ -363,7 +363,7 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
             }
 
             //New permission granted, reload plugins
-            KdeConnect.getInstance().getDevice(mCurrentDevice)?.reloadPluginsFromSettings()
+            KdeConnect.getInstance().devices.values.forEach(Device::reloadPluginsFromSettings)
         }
     }
 
