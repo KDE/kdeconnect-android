@@ -11,4 +11,10 @@ KDE Connect poskytuje sadu vlastností pro vzájemnou integraci vašich zaříze
 
 Prosím pamatujte, že pro správnou funkci této aplikace je nutné abyste na vašem počítači měli nainstalován KDE Connect a udržovali jej aktuální zde i na Androidu.
 
+Informace o citlivých oprávněních:
+* Oprávnění přístupnosti: Nutné pro příjem vstupu z jiného zařízení aby mohlo ovládat váš telefon Android pokud používáte vlastnost Vzdálený vstup.
+* Oprávnění o poloze na pozadí: Je potřebné pro rozpoznání, ke které síti WiFi jste připojeni, pokud používáte funkci Důvěryhodné sítě.
+
+KDE Connect nikdy neposílá KDE ani nikomu jinému jakékoliv informace. KDE Connect odesílá data z jednoho zařízení druhému přímo přes místní síť, nikdy přes internet, a výhradně s použitím koncového šifrování.
+
 Tato aplikace je součástí Open Source projektu a existuje jenom díky přispěvatelům. Zdrojové soubory naleznete na webových stránkách.
