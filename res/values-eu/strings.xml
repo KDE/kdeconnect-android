@@ -183,6 +183,7 @@
     <item>minutu 1</item>
     <item>2 minutu</item>
   </string-array>
+  <string name="mpris_notifications_explanation">Urruneko euskarria jakinarazpen tiraderan erakusteko jakinarazpen-baimena behar da</string>
   <string name="mpris_notification_settings_title">Erakutsi euskarri kontrolaren jakinarazpena</string>
   <string name="mpris_notification_settings_summary">Utzi zure euskarri-jotzaileak kontrolatzen KDE Connect ireki gabe</string>
   <string name="share_to">Partekatu honekin...</string>
@@ -252,6 +253,7 @@
   <string name="optional_permission_explanation">Baimen gehiago eman behar dituzu funtzio guztiak gaitzeko</string>
   <string name="plugins_need_optional_permission">Plugin batzuek desgaitutako eginbideak dituzte baimenak faltan dituztelako (tak egin informazio gehiagorako):</string>
   <string name="share_optional_permission_explanation">Fitxategiak jasotzeko biltegiratze sarbidea baimendu behar duzu</string>
+  <string name="share_notifications_explanation">Fitxategiak bidaltzean eta jasotzean aurrerapena ikusteko, jakinarazpenak baimendu behar dituzu</string>
   <string name="telepathy_permission_explanation">SMSak zure mahaigainetik bidali ahal izateko, SMSak erabiltzeko baimena eman behar duzu</string>
   <string name="telephony_permission_explanation">Telefono deiak zure mahaigainetik ikusteko, telefono deien egunkarira eta telefonoaren egoerara baimena eman behar duzu</string>
   <string name="telephony_optional_permission_explanation">Telefono zenbakiaren ordez kontaktuaren izena ikusteko telefonoko kontaktuak atzitzeko baimena eman behar duzu</string>
@@ -398,4 +400,7 @@
   <string name="tap_to_execute">Tak egin exekutatzeko</string>
   <string name="plugin_stats">Pluginaren estatistikak</string>
   <string name="enable_udp_broadcast">Gaitu UDP bidez gailua aurkitzea</string>
+  <string name="receive_notifications_permission_explanation">Jakinarazpenak baimendu behar dira beste gailuetatik haiek jasotzeko</string>
+  <string name="findmyphone_notifications_explanation">Aplikazioa atzeko planoan dagoenean telefonoak jo dezan jakinarazpen-baimena behar da</string>
+  <string name="no_notifications">Jakinarazpenak ezgaituta daude, ez duzu jasoko parekatzeko sarrerako jakinarazpenik.</string>
 </resources>

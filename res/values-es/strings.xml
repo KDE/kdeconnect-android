@@ -183,6 +183,7 @@
     <item>1 minuto</item>
     <item>2 minutos</item>
   </string-array>
+  <string name="mpris_notifications_explanation">Se necesita el permiso de notificaciones para mostrar los medios remotos en el panel de notificaciones</string>
   <string name="mpris_notification_settings_title">Mostrar notificación del control de medios</string>
   <string name="mpris_notification_settings_summary">Permite controlar sus reproductores de medios sin abrir KDE Connect</string>
   <string name="share_to">Compartir con...</string>
@@ -252,6 +253,7 @@
   <string name="optional_permission_explanation">Debe otorgar permisos extra para activar todas las funciones</string>
   <string name="plugins_need_optional_permission">Algunos complementos tienen funcionalidades desactivadas por falta de permisos (pulse para más información):</string>
   <string name="share_optional_permission_explanation">Para recibir archivos necesita permitir el acceso a almacenamiento</string>
+  <string name="share_notifications_explanation">Para ver el progreso al enviar y recibir archivos necesita activar las notificaciones</string>
   <string name="telepathy_permission_explanation">Para leer y escribir SMS desde su escritorio, necesita dar permisos para SMS</string>
   <string name="telephony_permission_explanation">Para ver las llamadas telefónicas en el escritorio, necesita dar permisos al registro de llamadas telefónicas y al estado del teléfono</string>
   <string name="telephony_optional_permission_explanation">Para ver el nombre de un contacto en lugar de un número telefónico, necesita dar acceso a los contactos de su teléfono</string>
@@ -397,4 +399,8 @@
   <string name="send_clipboard">Enviar al portapapeles</string>
   <string name="tap_to_execute">Pulse para ejecutar</string>
   <string name="plugin_stats">Estadísticas del complemento</string>
+  <string name="enable_udp_broadcast">Activar descubrimiento de dispositivos por UDP</string>
+  <string name="receive_notifications_permission_explanation">Las notificaciones tienen que estar activadas para recibirlas desde otros dispositivos</string>
+  <string name="findmyphone_notifications_explanation">Se necesita el permiso de notificaciones para que el teléfono pueda sonar cuando la aplicación está en segundo plano</string>
+  <string name="no_notifications">Las notificaciones están desactivadas, no recibirá notificaciones de vinculación entrantes.</string>
 </resources>

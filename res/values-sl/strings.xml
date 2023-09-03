@@ -199,6 +199,7 @@
     <item>1 minuta</item>
     <item>2 minuti</item>
   </string-array>
+  <string name="mpris_notifications_explanation">Dovoljenje za obvestila je potrebno za prikaz oddaljenih medijev v predalu za obvestila</string>
   <string name="mpris_notification_settings_title">Pokaži obvestilo o nadzoru medija</string>
   <string name="mpris_notification_settings_summary">Dovoli nadzor nad predvajalniki medijev, ne da bi odprli KDE Connect</string>
   <string name="share_to">Deli z…</string>
@@ -268,6 +269,7 @@
   <string name="optional_permission_explanation">Če želite omogočiti vse funkcije, morate podeliti dodatna dovoljenja</string>
   <string name="plugins_need_optional_permission">Nekateri vtičniki imajo funkcije onemogočene zaradi pomanjkanja dovoljenj (tapnite za več informacij):</string>
   <string name="share_optional_permission_explanation">Če želite prejemati datoteke, morate dovoliti dostop do hrambe</string>
+  <string name="share_notifications_explanation">Če želite videti napredek pri pošiljanju in prejemanju datotek, morate omogočiti obvestila</string>
   <string name="telepathy_permission_explanation">Če želite brati in pisati SMS z namizja, morate izdati dovoljenje za SMS</string>
   <string name="telephony_permission_explanation">Če želite videti telefonske klice na namizju, morate dati dovoljenje za dnevnike klicev in stanje telefona</string>
   <string name="telephony_optional_permission_explanation">Če želite namesto telefonske številke videti ime stika, morate omogočiti dostop do stikov telefona</string>
@@ -414,4 +416,7 @@
   <string name="tap_to_execute">Tapkajte za izvedbo</string>
   <string name="plugin_stats">Stanje vtičnikov</string>
   <string name="enable_udp_broadcast">Omogoči odkrivanje naprav UDP</string>
+  <string name="receive_notifications_permission_explanation">Morate imeti dovoljenje za obvestila, če jih želite sprejemati iz drugih naprav</string>
+  <string name="findmyphone_notifications_explanation">Potrebno je dovoljenje za obvestila, da lahko telefon zazvoni, ko je aplikacija v ozadju</string>
+  <string name="no_notifications">Obvestila so onemogočena, ne boste prejemali obvestil o dohodnih parih.</string>
 </resources>

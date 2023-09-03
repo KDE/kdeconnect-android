@@ -183,6 +183,7 @@
     <item>1 minuut</item>
     <item>2 minuten</item>
   </string-array>
+  <string name="mpris_notifications_explanation">Het recht op meldingen is nodig om media op afstand te tonen in de meldingenschuiflade</string>
   <string name="mpris_notification_settings_title">Mediabesturingsmelding tonen</string>
   <string name="mpris_notification_settings_summary">Staat besturing van uw mediaspelers toe zonder KDE Connect te openen</string>
   <string name="share_to">Delen met...</string>
@@ -252,6 +253,7 @@
   <string name="optional_permission_explanation">U moet toestemming geven om alle functies in te schakelen</string>
   <string name="plugins_need_optional_permission">Sommige plug-ins hebben functies uitgeschakeld vanwege ontbrekende toestemming (tik voor meer informatie):</string>
   <string name="share_optional_permission_explanation">Om bestanden te ontvangen die u nodig hebt voor toegang tot opslag</string>
+  <string name="share_notifications_explanation">Om de voortgang te zien bij verzenden en ontvangen van bestanden moet u meldingen toestaan</string>
   <string name="telepathy_permission_explanation">Om een SMS te lezen of te schrijven vanaf uw bureaublad moet u toestemming geven tot SMS</string>
   <string name="telephony_permission_explanation">Om telefoonoproepen te zien op het bureaublad moet u toestemming geven tot telefoonoproeplogs en telefoonstatus</string>
   <string name="telephony_optional_permission_explanation">Om een naam van een contactpersoon te zien in plaats van een telefoonnummer moet u toegang geven tot de contacten in uw telefoon</string>
@@ -398,4 +400,7 @@
   <string name="tap_to_execute">Tik om uit te voeren</string>
   <string name="plugin_stats">Plug-in-statistieken</string>
   <string name="enable_udp_broadcast">Ontdekken van UDP-apparaat inschakelen</string>
+  <string name="receive_notifications_permission_explanation">Meldingen moeten toegestaan worden om ze te ontvangen van andere apparaten</string>
+  <string name="findmyphone_notifications_explanation">Het recht op meldingen is nodig zodat de telefoon af kan gaan wanneer de toepassing in de achtergrond is</string>
+  <string name="no_notifications">Meldingen zijn uitgeschakeld, u zult inkomende paringmeldingen ontvangen.</string>
 </resources>

@@ -183,6 +183,7 @@
     <item>1 minut</item>
     <item>2 minuter</item>
   </string-array>
+  <string name="mpris_notifications_explanation">Underrättelserättigheter krävs för att visa fjärrmedia i underrättelselådan</string>
   <string name="mpris_notification_settings_title">Visa underrättelser om mediastyrning</string>
   <string name="mpris_notification_settings_summary">Tillåt att styra mediaspelare utan att KDE-anslut öppnas</string>
   <string name="share_to">Dela med…</string>
@@ -252,6 +253,7 @@
   <string name="optional_permission_explanation">Du måste ge extra rättigheter för att aktivera alla funktioner</string>
   <string name="plugins_need_optional_permission">Vissa insticksprogram har inaktiverade funktioner på grund av att rättigheter saknas (rör för mer information):</string>
   <string name="share_optional_permission_explanation">För att ta emot filer måste du tillåta lagringsåtkomst</string>
+  <string name="share_notifications_explanation">För att se förlopp när filer skickas och tas emot måste underrättelser tillåtas</string>
   <string name="telepathy_permission_explanation">För att läsa och skriva SMS från skrivbordet måste du ge rättigheter för SMS</string>
   <string name="telephony_permission_explanation">För att se telefonsamtal på skrivbordet måste du ge rättigheter för telefonsamtalsloggar och telefontillstånd</string>
   <string name="telephony_optional_permission_explanation">För att se ett kontaktnamn istället för ett telefonnummer måste du ge tillgång till telefonens kontakter</string>
@@ -398,4 +400,7 @@
   <string name="tap_to_execute">Rör för att köra</string>
   <string name="plugin_stats">Insticksprogramstatistik</string>
   <string name="enable_udp_broadcast">Aktivera UDP-enhetsupptäckt</string>
+  <string name="receive_notifications_permission_explanation">Underrättelser måste vara tillåtna för att kunna ta emot dem från andra apparater</string>
+  <string name="findmyphone_notifications_explanation">Underrättelserättigheter krävs så att telefonen kan ringa när programmet är i bakgrunden</string>
+  <string name="no_notifications">Underrättelser är inaktiverade, så en underrättelse om inkommande begäran att para ihop inte tas emot.</string>
 </resources>
