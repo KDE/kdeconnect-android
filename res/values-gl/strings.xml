@@ -183,6 +183,7 @@
     <item>1 minuto</item>
     <item>2 minutos</item>
   </string-array>
+  <string name="mpris_notifications_explanation">Necesítase o permiso de notificacións para amosar medios remotos no caixón de notificacións.</string>
   <string name="mpris_notification_settings_title">Amosar a notificación de control de reprodución.</string>
   <string name="mpris_notification_settings_summary">Permitir controlar os reprodutores sen abrir KDE Connect</string>
   <string name="share_to">Compartir con…</string>
@@ -252,6 +253,7 @@
   <string name="optional_permission_explanation">Ten que conceder permisos adicionais para activar todas as funcións.</string>
   <string name="plugins_need_optional_permission">Algúns complementos teñen funcionalidades desactivadas por mor dunha falta de permisos (toque para máis información):</string>
   <string name="share_optional_permission_explanation">Para recibir ficheiros ten que permitir acceder ao almacenamento</string>
+  <string name="share_notifications_explanation">Para ver o progreso ao enviar ou recibir ficheiros ten que permitir notificacións.</string>
   <string name="telepathy_permission_explanation">Para ler e escribir SMS desde o escritorio ten que dar permiso de SMS.</string>
   <string name="telephony_permission_explanation">Para ver as chamadas de teléfono no escritorio ten que dar permiso aos rexistros de chamadas telefónicas e ao estado do teléfono</string>
   <string name="telephony_optional_permission_explanation">Para ver o nome dun contacto en vez dun número de teléfono ten que dar acceso aos contactos do teléfono.</string>
@@ -375,7 +377,7 @@
   <string name="rise_up">Ir ao principio</string>
   <string name="rise_down">Ir ao final</string>
   <string name="click_here_to_type">Toque aquí para escribir</string>
-  <string name="clear_compose">Borrar</string>
+  <string name="clear_compose">Baleirar</string>
   <string name="send_compose">Enviar</string>
   <string name="compose_send_title">Preparar un envío</string>
   <string name="open_compose_send">Escribir texto</string>
@@ -397,4 +399,8 @@
   <string name="send_clipboard">Enviar o portapapeis</string>
   <string name="tap_to_execute">Toque para executar</string>
   <string name="plugin_stats">Estatísticas do complemento</string>
+  <string name="enable_udp_broadcast">Activar o descubrimento de dispositivos UDP.</string>
+  <string name="receive_notifications_permission_explanation">Debe permitir notificacións para recibilas doutros dispositivos.</string>
+  <string name="findmyphone_notifications_explanation">Necesita o permiso de notificacións para que o teléfono poda soar cando a aplicación está en segundo plano.</string>
+  <string name="no_notifications">As notificacións están desactivadas, non recibirá notificacións entrantes de emparellamento.</string>
 </resources>

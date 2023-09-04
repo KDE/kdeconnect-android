@@ -199,6 +199,7 @@
     <item>1 хвилина</item>
     <item>2 хвилини</item>
   </string-array>
+  <string name="mpris_notifications_explanation">Для показу віддалених носіїв даних на панелі сповіщень потрібні права доступу до сповіщень</string>
   <string name="mpris_notification_settings_title">Показувати сповіщення щодо керування відтворенням</string>
   <string name="mpris_notification_settings_summary">Уможливлює керування відтворенням мультимедійних даних без відкриття KDE Connect</string>
   <string name="share_to">Використовувати спільно з…</string>
@@ -268,6 +269,7 @@
   <string name="optional_permission_explanation">Щоб уможливити використання усіх функцій, вам слід надати програмі додаткові права доступу</string>
   <string name="plugins_need_optional_permission">Можливості деяких додатків вимкнено, оскільки програмі не вистачає прав доступу (натисніть, щоб дізнатися більше):</string>
   <string name="share_optional_permission_explanation">Для отримання файлів вам слід дозволити доступ до сховища даних</string>
+  <string name="share_notifications_explanation">Для перегляду поступу надсилання та отримання файлів вам слід уможливити показ сповіщень</string>
   <string name="telepathy_permission_explanation">Щоб читати і писати SMS з вашого робочого комп’ютера, вам слід надати програмі доступ до SMS</string>
   <string name="telephony_permission_explanation">Щоб переглядати дзвінки з робочого комп’ютера, вам слід надати програмі доступ до журналу дзвінків та стану телефону</string>
   <string name="telephony_optional_permission_explanation">Щоб бачити ім’я контакту замість номеру телефону, вам слід надати програмі доступ до записів контактів на телефоні</string>
@@ -414,4 +416,7 @@
   <string name="tap_to_execute">Торкніться, щоб виконати</string>
   <string name="plugin_stats">Статистика щодо додатків</string>
   <string name="enable_udp_broadcast">Увімкнути виявлення пристроїв UDP</string>
+  <string name="receive_notifications_permission_explanation">Для отримання сповіщень з інших пристроїв має бути уможливлено показ сповіщень</string>
+  <string name="findmyphone_notifications_explanation">Для уможливлення дзвінків, коли програма перебуває у фоновому режимі, потрібні права доступу до сповіщень</string>
+  <string name="no_notifications">Показ сповіщень вимкнено, ви не отримуватимете сповіщень щодо вхідних запитів на пов\'язування пристроїв.</string>
 </resources>
