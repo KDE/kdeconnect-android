@@ -42,7 +42,12 @@ public class KdeConnectBroadcastReceiver extends BroadcastReceiver {
                 BackgroundService.ForceRefreshConnections(context);
                 break;
             case Intent.ACTION_SCREEN_ON:
-                BackgroundService.ForceRefreshConnections(context);
+                try {
+                    BackgroundService.ForceRefreshConnections(context);
+                } catch (IllegalStateException e) { // To catch ForegroundServiceStartNotAllowedException
+                    Log.w("BroadcastReceiver", "Couldn't start the foreground service.");
+                    e.printStackTrace();
+                }
                 break;
             default:
                 Log.i("BroadcastReceiver", "Ignoring broadcast event: " + intent.getAction());
