@@ -367,7 +367,7 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
         }
     }
 
-    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
+    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String?) {
         if (DeviceHelper.KEY_DEVICE_NAME_PREFERENCE == key) {
             mNavViewDeviceName.text = DeviceHelper.getDeviceName(this)
             BackgroundService.ForceRefreshConnections(this) //Re-send our identity packet

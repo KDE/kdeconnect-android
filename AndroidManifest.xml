@@ -8,7 +8,6 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="org.kde.kdeconnect_tp"
     android:versionCode="12701"
     android:versionName="1.27.1">
 

@@ -150,7 +150,7 @@ public class PluginSettingsActivity
         finish();
     }
 
-    public String getDeviceId() {
+    public String getSettingsDeviceId() { // Weird name because Activity also has a getDeviceId()
         return deviceId;
     }
 }
