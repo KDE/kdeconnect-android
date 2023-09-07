@@ -37,6 +37,7 @@ import org.kde.kdeconnect_tp.R;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
 
+    public static final String KEY_UDP_BROADCAST_ENABLED = "udp_broadcast_enabled";
     public static final String KEY_APP_THEME = "theme_pref";
 
     private EditTextPreference renameDevice;
@@ -170,6 +171,12 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             return true;
         });
 
+        // UDP broadcast toggle
+        final TwoStatePreference udpBroadcastDiscovery = new SwitchPreference(context);
+        udpBroadcastDiscovery.setDefaultValue(true);
+        udpBroadcastDiscovery.setKey(KEY_UDP_BROADCAST_ENABLED);
+        udpBroadcastDiscovery.setTitle(R.string.enable_udp_broadcast);
+        screen.addPreference(udpBroadcastDiscovery);
 
         // More settings text
         Preference moreSettingsText = new Preference(context);
