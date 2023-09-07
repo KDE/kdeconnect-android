@@ -183,6 +183,7 @@
     <item>1 минута</item>
     <item>2 минути</item>
   </string-array>
+  <string name="mpris_notifications_explanation">Разрешението за нотификации е необходимо, за да се показват отдалечени медии в чекмеджето за известия</string>
   <string name="mpris_notification_settings_title">Показване на известие за управление на медиите</string>
   <string name="mpris_notification_settings_summary">Разрешаване на управлението на медийните плейъри, без да отваряте KDE Connect</string>
   <string name="share_to">Споделяне към...</string>
@@ -252,6 +253,7 @@
   <string name="optional_permission_explanation">Трябва да предоставите допълнителни разрешения, за да активирате всички функции</string>
   <string name="plugins_need_optional_permission">Някои плъгини имат деактивирани функции поради липса на разрешение (докоснете за повече информация):</string>
   <string name="share_optional_permission_explanation">За да получавате файлове, трябва да разрешите достъпа до хранилището</string>
+  <string name="share_notifications_explanation">За да виждате напредъка при изпращане и получаване на файлове, трябва да разрешите известия</string>
   <string name="telepathy_permission_explanation">За да четете и записвате SMS от работния плот, трябва да дадете разрешение за SMS</string>
   <string name="telephony_permission_explanation">За да виждате телефонни обаждания на работния плот, трябва да дадете разрешение за телефонни обаждания дневници и състояние на телефона</string>
   <string name="telephony_optional_permission_explanation">За да видите име на контакт вместо телефонен номер, трябва да дадете достъп до контактите на телефона</string>
@@ -398,4 +400,7 @@
   <string name="tap_to_execute">Докоснете, за да се изпълни</string>
   <string name="plugin_stats">Данни на приставки</string>
   <string name="enable_udp_broadcast">Активиране на откриване на устройства чрез UDP</string>
+  <string name="receive_notifications_permission_explanation">Известията трябва са разрешени, за да може да се получават от други устройства</string>
+  <string name="findmyphone_notifications_explanation">Разрешение за известия е необходимо, за да може телефонът да звъни, когато приложението е във фонов режим</string>
+  <string name="no_notifications">Известията са деактивирани, няма да получавате известия за входящи двойки.</string>
 </resources>
