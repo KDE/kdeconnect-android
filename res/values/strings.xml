@@ -549,8 +549,6 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
 
     <string name="plugin_stats">Plugin stats</string>
 
-    <string name="enable_udp_broadcast">Enable UDP device discovery</string>
-
     <string name="receive_notifications_permission_explanation">Notifications need to be allowed to receive them from other devices</string>
     <string name="findmyphone_notifications_explanation">The notifications permission is needed so the phone can ring when the app is in the background</string>
     <string name="no_notifications">Notifications are disabled, you won\'t receive incoming pair notifications.</string>
