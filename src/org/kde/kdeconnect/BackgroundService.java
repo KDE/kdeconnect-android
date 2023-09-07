@@ -131,11 +131,13 @@ public class BackgroundService extends Service {
         cm.registerNetworkCallback(networkRequestBuilder.build(), new ConnectivityManager.NetworkCallback() {
             @Override
             public void onAvailable(Network network) {
+                Log.i("BackgroundService", "Valid network available");
                 connectedToNonCellularNetwork.postValue(true);
                 onNetworkChange(network);
             }
             @Override
             public void onLost(Network network) {
+                Log.i("BackgroundService", "Valid network lost");
                 connectedToNonCellularNetwork.postValue(false);
             }
         });
