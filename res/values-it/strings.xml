@@ -183,6 +183,7 @@
     <item>1 minuto</item>
     <item>2 minuti</item>
   </string-array>
+  <string name="mpris_notifications_explanation">L\'autorizzazione alle notifiche è necessaria per mostrare i media remoti nel riquadro delle notifiche</string>
   <string name="mpris_notification_settings_title">Mostra la notifica del controllo multimediale</string>
   <string name="mpris_notification_settings_summary">Consenti di controllare i lettori multimediali senza aprire KDE Connect</string>
   <string name="share_to">Condividi con…</string>
@@ -252,6 +253,7 @@
   <string name="optional_permission_explanation">Devi concedere permessi aggiuntivi per abilitare tutte le funzioni</string>
   <string name="plugins_need_optional_permission">Alcune estensioni hanno funzioni disabilitate per una mancanza di permessi (tocca per maggiori informazioni):</string>
   <string name="share_optional_permission_explanation">Per ricevere i file devi consentire l\'accesso allo spazio di archiviazione</string>
+  <string name="share_notifications_explanation">Per vedere lo stato di avanzamento durante l\'invio e la ricezione di file è necessario consentire le notifiche</string>
   <string name="telepathy_permission_explanation">Per leggere e scrivere SMS dal tuo desktop, devi concedere l\'autorizzazione per SMS</string>
   <string name="telephony_permission_explanation">Per vedere le chiamate telefoniche dal desktop devi dare l\'autorizzazione per accedere al registro delle chiamate e allo stato del telefono</string>
   <string name="telephony_optional_permission_explanation">Per vedere il nome di un contatto invece del numero di telefono devi dare accesso alla rubrica del telefono</string>
@@ -398,4 +400,7 @@
   <string name="tap_to_execute">Tocca per eseguire</string>
   <string name="plugin_stats">Statistiche delle estensioni</string>
   <string name="enable_udp_broadcast">Abilita rilevamento UDP dei dispositivi</string>
+  <string name="receive_notifications_permission_explanation">Le notifiche devono essere consentite per riceverle da altri dispositivi</string>
+  <string name="findmyphone_notifications_explanation">L\'autorizzazione alle notifiche è necessaria affinché il telefono possa squillare quando l\'applicazione è sullo sfondo</string>
+  <string name="no_notifications">Le notifiche sono disabilitate, non riceverai notifiche di associazione in arrivo.</string>
 </resources>
