@@ -33,7 +33,7 @@ class UploadNotification {
 
         notificationId = (int) System.currentTimeMillis();
         notificationManager = ContextCompat.getSystemService(device.getContext(), NotificationManager.class);
-        builder = new NotificationCompat.Builder(device.getContext(), NotificationHelper.Channels.FILETRANSFER)
+        builder = new NotificationCompat.Builder(device.getContext(), NotificationHelper.Channels.FILETRANSFER_UPLOAD)
                 .setSmallIcon(android.R.drawable.stat_sys_upload)
                 .setAutoCancel(true)
                 .setOngoing(true)
@@ -64,7 +64,7 @@ class UploadNotification {
     }
 
     public void setFinished(String message) {
-        builder = new NotificationCompat.Builder(device.getContext(), NotificationHelper.Channels.FILETRANSFER);
+        builder = new NotificationCompat.Builder(device.getContext(), NotificationHelper.Channels.FILETRANSFER_UPLOAD);
         builder.setContentTitle(message)
                 .setTicker(message)
                 .setSmallIcon(android.R.drawable.stat_sys_upload_done)

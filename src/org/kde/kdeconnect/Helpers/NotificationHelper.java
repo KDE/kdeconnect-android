@@ -28,7 +28,10 @@ public class NotificationHelper {
         public final static String PERSISTENT = "persistent";
         public final static String DEFAULT = "default";
         public final static String MEDIA_CONTROL = "media_control";
-        public final static String FILETRANSFER = "filetransfer";
+
+        public final static String FILETRANSFER_DOWNLOAD = "filetransfer";
+        public final static String FILETRANSFER_UPLOAD = "filetransfer_upload";
+
         public final static String RECEIVENOTIFICATION = "receive";
         public final static String HIGHPRIORITY = "highpriority";
     }
@@ -64,9 +67,14 @@ public class NotificationHelper {
                 .Builder(Channels.MEDIA_CONTROL, NotificationManagerCompat.IMPORTANCE_LOW)
                 .setName(context.getString(R.string.notification_channel_media_control))
                 .build();
-        final NotificationChannelCompat fileTransferChannel = new NotificationChannelCompat
-                .Builder(Channels.FILETRANSFER, NotificationManagerCompat.IMPORTANCE_LOW)
+        final NotificationChannelCompat fileTransferDownloadChannel = new NotificationChannelCompat
+                .Builder(Channels.FILETRANSFER_DOWNLOAD, NotificationManagerCompat.IMPORTANCE_LOW)
                 .setName(context.getString(R.string.notification_channel_filetransfer))
+                .setVibrationEnabled(false)
+                .build();
+        final NotificationChannelCompat fileTransferUploadChannel = new NotificationChannelCompat
+                .Builder(Channels.FILETRANSFER_UPLOAD, NotificationManagerCompat.IMPORTANCE_LOW)
+                .setName(context.getString(R.string.notification_channel_filetransfer_upload))
                 .setVibrationEnabled(false)
                 .build();
         final NotificationChannelCompat receiveNotificationChannel = new NotificationChannelCompat
@@ -79,8 +87,9 @@ public class NotificationHelper {
                 .build();
 
         final List<NotificationChannelCompat> channels = Arrays.asList(persistentChannel,
-                defaultChannel, mediaChannel, fileTransferChannel, receiveNotificationChannel,
-                highPriorityChannel);
+                defaultChannel, mediaChannel, fileTransferDownloadChannel, fileTransferUploadChannel,
+                receiveNotificationChannel, highPriorityChannel);
+
         NotificationManagerCompat.from(context).createNotificationChannelsCompat(channels);
 
         // Delete any notification channels which weren't added.
