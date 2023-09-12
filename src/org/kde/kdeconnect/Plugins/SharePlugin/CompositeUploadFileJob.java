@@ -127,7 +127,7 @@ public class CompositeUploadFileJob extends BackgroundJob<Device, Void> {
             int failedFiles;
             synchronized (lock) {
                 failedFiles = (totalNumFiles - currentFileNum + 1);
-                uploadNotification.setFinished(getDevice().getContext().getResources()
+                uploadNotification.setFailed(getDevice().getContext().getResources()
                         .getQuantityString(R.plurals.send_files_fail_title, failedFiles, getDevice().getName(),
                                 failedFiles, totalNumFiles));
             }
@@ -229,7 +229,7 @@ public class CompositeUploadFileJob extends BackgroundJob<Device, Void> {
 
         @Override
         public void onFailure(Throwable e) {
-            //Ignored
+            // Handled in the run() function when sendPacketBlocking returns false
         }
     }
 }

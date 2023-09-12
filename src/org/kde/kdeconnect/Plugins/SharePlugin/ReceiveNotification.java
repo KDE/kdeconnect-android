@@ -99,6 +99,11 @@ class ReceiveNotification {
         }
     }
 
+    public void setFailed(String message) {
+        setFinished(message);
+        builder.setSmallIcon(android.R.drawable.stat_notify_error);
+    }
+
     public void setURI(Uri destinationUri, String mimeType, String filename) {
         /*
          * We only support file URIs (because sending a content uri to another app does not work for security reasons).

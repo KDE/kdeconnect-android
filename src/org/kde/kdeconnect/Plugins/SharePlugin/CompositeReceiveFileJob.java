@@ -241,7 +241,7 @@ public class CompositeReceiveFileJob extends BackgroundJob<Device, Void> {
                 failedFiles = (totalNumFiles - currentFileNum + 1);
             }
 
-            receiveNotification.setFinished(getDevice().getContext().getResources().getQuantityString(R.plurals.received_files_fail_title, failedFiles, getDevice().getName(), failedFiles, totalNumFiles));
+            receiveNotification.setFailed(getDevice().getContext().getResources().getQuantityString(R.plurals.received_files_fail_title, failedFiles, getDevice().getName(), failedFiles, totalNumFiles));
             receiveNotification.show();
             reportError(e);
         } finally {
