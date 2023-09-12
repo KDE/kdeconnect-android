@@ -39,6 +39,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
             android:layout_margin="16dp"
             app:srcCompat="@drawable/ic_action_image_edit_24dp"
             app:layout_anchor="@id/run_commands_list"
+            android:contentDescription="@string/add_command"
             app:layout_anchorGravity="bottom|end" />
 
         <TextView

@@ -48,6 +48,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
             app:elevation="@dimen/fab_elevation"
+            android:contentDescription="@string/add_device_dialog_title"
             android:src="@drawable/ic_add"/>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
