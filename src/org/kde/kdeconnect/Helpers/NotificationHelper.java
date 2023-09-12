@@ -20,6 +20,7 @@ import org.kde.kdeconnect_tp.R;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class NotificationHelper {
 
@@ -28,7 +29,6 @@ public class NotificationHelper {
         public final static String DEFAULT = "default";
         public final static String MEDIA_CONTROL = "media_control";
         public final static String FILETRANSFER = "filetransfer";
-        public final static String SMS_MMS = "sms_mms";
         public final static String RECEIVENOTIFICATION = "receive";
         public final static String HIGHPRIORITY = "highpriority";
     }
@@ -73,10 +73,6 @@ public class NotificationHelper {
                 .Builder(Channels.RECEIVENOTIFICATION, NotificationManagerCompat.IMPORTANCE_DEFAULT)
                 .setName(context.getString(R.string.notification_channel_receivenotification))
                 .build();
-        final NotificationChannelCompat smsMmsChannel = new NotificationChannelCompat
-                .Builder(Channels.SMS_MMS, NotificationManagerCompat.IMPORTANCE_DEFAULT)
-                .setName(context.getString(R.string.notification_channel_sms_mms))
-                .build();
         final NotificationChannelCompat highPriorityChannel = new NotificationChannelCompat
                 .Builder(Channels.HIGHPRIORITY, NotificationManagerCompat.IMPORTANCE_HIGH)
                 .setName(context.getString(R.string.notification_channel_high_priority))
@@ -84,8 +80,15 @@ public class NotificationHelper {
 
         final List<NotificationChannelCompat> channels = Arrays.asList(persistentChannel,
                 defaultChannel, mediaChannel, fileTransferChannel, receiveNotificationChannel,
-                smsMmsChannel, highPriorityChannel);
+                highPriorityChannel);
         NotificationManagerCompat.from(context).createNotificationChannelsCompat(channels);
+
+        // Delete any notification channels which weren't added.
+        // Use this to deprecate old channels.
+        NotificationManagerCompat.from(context).deleteUnlistedNotificationChannels(
+                channels.stream()
+                        .map(notificationChannelCompat -> notificationChannelCompat.getId())
+                        .collect(Collectors.toList()));
     }
 
     public static void setPersistentNotificationEnabled(Context context, boolean enabled) {

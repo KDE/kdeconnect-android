@@ -360,7 +360,6 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="notification_channel_media_control">Media control</string>
     <string name="notification_channel_filetransfer">File transfer</string>
     <string name="notification_channel_high_priority">High priority</string>
-    <string name="notification_channel_sms_mms">New Message</string>
 
     <string name="mpris_stop">Stop the current player</string>
     <string name="copy_url_to_clipboard">Copy URL to clipboard</string>
