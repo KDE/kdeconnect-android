@@ -31,6 +31,7 @@ public class NotificationHelper {
 
         public final static String FILETRANSFER_DOWNLOAD = "filetransfer";
         public final static String FILETRANSFER_UPLOAD = "filetransfer_upload";
+        public final static String FILETRANSFER_ERROR = "filetransfer_error";
 
         public final static String RECEIVENOTIFICATION = "receive";
         public final static String HIGHPRIORITY = "highpriority";
@@ -77,6 +78,11 @@ public class NotificationHelper {
                 .setName(context.getString(R.string.notification_channel_filetransfer_upload))
                 .setVibrationEnabled(false)
                 .build();
+        final NotificationChannelCompat fileTransferErrorChannel = new NotificationChannelCompat
+                .Builder(Channels.FILETRANSFER_ERROR, NotificationManagerCompat.IMPORTANCE_HIGH)
+                .setName(context.getString(R.string.notification_channel_filetransfer_error))
+                .setVibrationEnabled(false)
+                .build();
         final NotificationChannelCompat receiveNotificationChannel = new NotificationChannelCompat
                 .Builder(Channels.RECEIVENOTIFICATION, NotificationManagerCompat.IMPORTANCE_DEFAULT)
                 .setName(context.getString(R.string.notification_channel_receivenotification))
@@ -88,7 +94,7 @@ public class NotificationHelper {
 
         final List<NotificationChannelCompat> channels = Arrays.asList(persistentChannel,
                 defaultChannel, mediaChannel, fileTransferDownloadChannel, fileTransferUploadChannel,
-                receiveNotificationChannel, highPriorityChannel);
+                fileTransferErrorChannel, receiveNotificationChannel, highPriorityChannel);
 
         NotificationManagerCompat.from(context).createNotificationChannelsCompat(channels);
 

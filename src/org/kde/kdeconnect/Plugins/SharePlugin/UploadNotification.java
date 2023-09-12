@@ -79,7 +79,8 @@ class UploadNotification {
 
     public void setFailed(String message) {
         setFinished(message);
-        builder.setSmallIcon(android.R.drawable.stat_notify_error);
+        builder.setSmallIcon(android.R.drawable.stat_notify_error)
+                .setChannelId(NotificationHelper.Channels.FILETRANSFER_ERROR);
     }
 
     public void cancel() {
