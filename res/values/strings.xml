@@ -337,6 +337,8 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="telephony_permission_explanation">To see phone calls on the desktop you need to give permission to phone call logs and phone state</string>
     <string name="telephony_optional_permission_explanation">To see a contact name instead of a phone number you need to give access to the phone\'s contacts</string>
     <string name="contacts_permission_explanation">To share your contacts book with the desktop, you need to give contacts permission</string>
+    <string name="contacts_per_device_confirmation">Your phone contacts will be copied over to this device, so they can be used by the KDE Connect SMS app and other apps.</string>
+
     <string name="select_ringtone">Select a ringtone</string>
     <string name="telephony_pref_blocked_title">Blocked numbers</string>
     <string name="telephony_pref_blocked_dialog_desc">Don\'t show calls and SMS from these numbers. Please specify one number per line</string>

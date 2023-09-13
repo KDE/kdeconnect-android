@@ -13,6 +13,7 @@ import android.Manifest;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
 
 import org.kde.kdeconnect.Helpers.ContactsHelper;
 import org.kde.kdeconnect.Helpers.ContactsHelper.ContactNotFoundException;
@@ -21,6 +22,7 @@ import org.kde.kdeconnect.Helpers.ContactsHelper.uID;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
+import org.kde.kdeconnect.UserInterface.AlertDialogFragment;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
@@ -107,6 +109,39 @@ public class ContactsPlugin extends Plugin {
     public @NonNull String[] getRequiredPermissions() {
         return new String[]{Manifest.permission.READ_CONTACTS};
         // One day maybe we will also support WRITE_CONTACTS, but not yet
+    }
+
+    @Override
+    public boolean checkRequiredPermissions() {
+        if (!arePermissionsGranted(getRequiredPermissions())) {
+            return false;
+        }
+        return preferences.getBoolean("acceptedToTransferContacts", false);
+    }
+
+    @Override
+    public boolean supportsDeviceSpecificSettings() {
+        return true;
+    }
+
+    public @NonNull DialogFragment getPermissionExplanationDialog() {
+        if (!arePermissionsGranted(getRequiredPermissions())) {
+            return super.getPermissionExplanationDialog();
+        }
+        AlertDialogFragment dialog = new AlertDialogFragment.Builder()
+                .setTitle(getDisplayName())
+                .setMessage(R.string.contacts_per_device_confirmation)
+                .setPositiveButton(R.string.ok)
+                .setNegativeButton(R.string.cancel)
+                .create();
+        dialog.setCallback(new AlertDialogFragment.Callback() {
+            @Override
+            public void onPositiveButtonClicked() {
+                preferences.edit().putBoolean("acceptedToTransferContacts", true).apply();
+                device.reloadPluginsFromSettings();
+            }
+        });
+        return dialog;
     }
 
     /**

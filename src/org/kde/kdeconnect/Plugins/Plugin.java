@@ -265,7 +265,7 @@ public abstract class Plugin {
         return (result == PackageManager.PERMISSION_GRANTED);
     }
 
-    private boolean arePermissionsGranted(@NonNull String[] permissions) {
+    protected boolean arePermissionsGranted(@NonNull String[] permissions) {
         for (String permission : permissions) {
             if (!isPermissionGranted(permission)) {
                 return false;
