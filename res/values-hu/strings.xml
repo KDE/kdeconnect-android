@@ -261,9 +261,7 @@
   <string name="pref_plugin_mprisreceiver_desc">A telefon médialejátszóinak vezérlése egy másik eszközről</string>
   <string name="notification_channel_default">Egyéb értesítések</string>
   <string name="notification_channel_media_control">Médiavezérlő</string>
-  <string name="notification_channel_filetransfer">Fájlátvitel</string>
   <string name="notification_channel_high_priority">Magas prioritás</string>
-  <string name="notification_channel_sms_mms">Új üzenet</string>
   <string name="mpris_stop">Az aktuális lejátszó leállítása</string>
   <string name="copy_url_to_clipboard">URL másolása a vágólapra</string>
   <string name="clipboard_toast">Másolva a vágólapra</string>

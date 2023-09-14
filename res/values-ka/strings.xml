@@ -195,9 +195,7 @@
   <string name="notification_channel_default">სხვა გაფრთხილებები</string>
   <string name="notification_channel_persistent">მუდმივი მაჩვენებელი</string>
   <string name="notification_channel_media_control">მედიის კონტროლი</string>
-  <string name="notification_channel_filetransfer">ფაილის მიმოცვლა</string>
   <string name="notification_channel_high_priority">მაღალი პრიორიტეტი</string>
-  <string name="notification_channel_sms_mms">ახალი შეტყობინება</string>
   <string name="mpris_stop">მიმდინარე დამკვრელის გაჩერება</string>
   <string name="copy_url_to_clipboard">URL-ის ბუფერში კოპირება</string>
   <string name="clipboard_toast">დაკოპირდა გაცვლის ბაფერში</string>

@@ -276,9 +276,7 @@
   <string name="notification_channel_default">Diğer bildirimler</string>
   <string name="notification_channel_persistent">Kalıcı gösterge</string>
   <string name="notification_channel_media_control">Ortam denetimi</string>
-  <string name="notification_channel_filetransfer">Dosya aktarımı</string>
   <string name="notification_channel_high_priority">Yüksek öncelik</string>
-  <string name="notification_channel_sms_mms">Yeni İleti</string>
   <string name="mpris_stop">Geçerli oynatıcıyı durdur</string>
   <string name="copy_url_to_clipboard">URL\'yi panoya kopyala</string>
   <string name="clipboard_toast">Panoya kopyalandı</string>

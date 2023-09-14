@@ -235,9 +235,7 @@
   <string name="notification_channel_default">Aðrar tilkynningar</string>
   <string name="notification_channel_persistent">Viðvarandi gaumvísir</string>
   <string name="notification_channel_media_control">Margmiðlunarstýring</string>
-  <string name="notification_channel_filetransfer">Skráarflutningur</string>
   <string name="notification_channel_high_priority">Hár forgangur</string>
-  <string name="notification_channel_sms_mms">Ný skilaboð</string>
   <string name="mpris_stop">Stöðva virkan spilara</string>
   <string name="copy_url_to_clipboard">Afrita slóð á klippispjaldið</string>
   <string name="clipboard_toast">Afritað á klippispjald</string>

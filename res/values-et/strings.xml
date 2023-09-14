@@ -228,9 +228,7 @@
   <string name="pref_plugin_mprisreceiver_desc">Telefoni meediamängijate juhtimine teisest seadmest</string>
   <string name="notification_channel_default">Muud märguanded</string>
   <string name="notification_channel_media_control">Meedia juhtimine</string>
-  <string name="notification_channel_filetransfer">Failiülekanne</string>
   <string name="notification_channel_high_priority">Kõrge prioriteediga</string>
-  <string name="notification_channel_sms_mms">Uus sõnum</string>
   <string name="mpris_stop">Peata aktiivne mängija</string>
   <string name="copy_url_to_clipboard">Kopeeri URL lõikepuhvrisse</string>
   <string name="clipboard_toast">Kopeeriti lõikepuhvrisse</string>

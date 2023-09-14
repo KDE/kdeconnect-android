@@ -269,9 +269,7 @@
   <string name="notification_channel_default">Andere Benachrichtigungen</string>
   <string name="notification_channel_persistent">Dauerhafte Benachrichtigung</string>
   <string name="notification_channel_media_control">Medienkontrolle</string>
-  <string name="notification_channel_filetransfer">Dateiübertragung</string>
   <string name="notification_channel_high_priority">Hohe Priorität</string>
-  <string name="notification_channel_sms_mms">Neue Nachricht</string>
   <string name="mpris_stop">Die aktuelle Medienwiedergabe beenden</string>
   <string name="copy_url_to_clipboard">Adresse in die Zwischenablage kopieren</string>
   <string name="clipboard_toast">In die Zwischenablage kopiert</string>

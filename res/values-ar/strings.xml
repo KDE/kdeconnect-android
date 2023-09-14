@@ -166,9 +166,7 @@
   <string name="pref_plugin_mprisreceiver">متحكم الوسائط</string>
   <string name="notification_channel_default">إخطارات أخرى</string>
   <string name="notification_channel_media_control">متحكم الوسائط</string>
-  <string name="notification_channel_filetransfer">نقل الملفّات</string>
   <string name="notification_channel_high_priority">مرتفعة الأولوية</string>
-  <string name="notification_channel_sms_mms">رسالة جديدة</string>
   <string name="mpris_stop">أوقف المشغل الحالي</string>
   <string name="copy_url_to_clipboard">انسخ المسار إلى الحافظة</string>
   <string name="clipboard_toast">نُسخ إلى الحافظة</string>

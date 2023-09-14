@@ -223,7 +223,6 @@
   <string name="pref_plugin_mprisreceiver_desc">從另外一個裝置操控您手機的媒體播放器</string>
   <string name="notification_channel_default">其他通知</string>
   <string name="notification_channel_media_control">多媒體控制</string>
-  <string name="notification_channel_filetransfer">檔案傳輸</string>
   <string name="notification_channel_high_priority">高優先度</string>
   <string name="mpris_stop">停止目前播放器</string>
   <string name="copy_url_to_clipboard">複製 URL 至剪貼簿</string>

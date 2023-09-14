@@ -289,9 +289,7 @@
   <string name="notification_channel_default">Ostatní oznámení</string>
   <string name="notification_channel_persistent">Stálý ukazatel</string>
   <string name="notification_channel_media_control">Ovládání médií</string>
-  <string name="notification_channel_filetransfer">Přenos souboru</string>
   <string name="notification_channel_high_priority">Vysoká priorita</string>
-  <string name="notification_channel_sms_mms">Nová zpráva</string>
   <string name="mpris_stop">Zastavit současný přehrávač</string>
   <string name="copy_url_to_clipboard">Kopírovat URL do schránky</string>
   <string name="clipboard_toast">Zkopírováno do schránky</string>

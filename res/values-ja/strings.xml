@@ -266,9 +266,7 @@
   <string name="notification_channel_default">他の通知</string>
   <string name="notification_channel_persistent">永続的なインジケータ</string>
   <string name="notification_channel_media_control">メディアの操作</string>
-  <string name="notification_channel_filetransfer">ファイル転送</string>
   <string name="notification_channel_high_priority">高い優先度</string>
-  <string name="notification_channel_sms_mms">新しいメッセージ</string>
   <string name="mpris_stop">現在のプレーヤーを停止</string>
   <string name="copy_url_to_clipboard">URL をクリップボードにコピー</string>
   <string name="clipboard_toast">クリップボードにコピーしました</string>

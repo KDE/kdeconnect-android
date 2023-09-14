@@ -276,9 +276,7 @@
   <string name="notification_channel_default">பிற அறிவிப்புகள்</string>
   <string name="notification_channel_persistent">விடாப்பிடி அறிவிப்பு</string>
   <string name="notification_channel_media_control">ஊடக கட்டுப்பாடு</string>
-  <string name="notification_channel_filetransfer">கோப்பு இடமாற்றம்</string>
   <string name="notification_channel_high_priority">அதிக முன்னுரிமை</string>
-  <string name="notification_channel_sms_mms">புதிய தகவல்</string>
   <string name="mpris_stop">தற்போதைய இயக்கியை நிறுத்து</string>
   <string name="copy_url_to_clipboard">முகவரியை பிடிப்புப்பலகையில் நகலெடு</string>
   <string name="clipboard_toast">பிடிப்புப்பலகையில் நகலெடுக்கப்பட்டது</string>

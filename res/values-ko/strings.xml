@@ -266,9 +266,7 @@
   <string name="notification_channel_default">기타 알림</string>
   <string name="notification_channel_persistent">항상 표시된 표시기</string>
   <string name="notification_channel_media_control">미디어 제어</string>
-  <string name="notification_channel_filetransfer">파일 전송</string>
   <string name="notification_channel_high_priority">높은 우선 순위</string>
-  <string name="notification_channel_sms_mms">새 메시지</string>
   <string name="mpris_stop">현재 재생기 정지</string>
   <string name="copy_url_to_clipboard">클립보드로 URL 복사</string>
   <string name="clipboard_toast">클립보드에 복사됨</string>

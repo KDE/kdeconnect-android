@@ -253,9 +253,7 @@
   <string name="pref_plugin_mprisreceiver_desc">Kendalikan pemutar media ponsel Anda dari peranti lainnya</string>
   <string name="notification_channel_default">Notifikasi lainnya</string>
   <string name="notification_channel_media_control">Kontrol multimedia</string>
-  <string name="notification_channel_filetransfer">Transfer file</string>
   <string name="notification_channel_high_priority">Prioritas tinggi</string>
-  <string name="notification_channel_sms_mms">Pesan Baru</string>
   <string name="mpris_stop">Hentikan player saat ini</string>
   <string name="copy_url_to_clipboard">Salin URL ke clipboard</string>
   <string name="clipboard_toast">Disalin ke clipboard</string>

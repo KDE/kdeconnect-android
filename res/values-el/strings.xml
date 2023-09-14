@@ -252,9 +252,7 @@
   <string name="pref_plugin_mprisreceiver_desc">Ελέγξτε τους αναπαραγωγείς πολυμέσων του τηλεφώνου σας από άλλη συσκευή</string>
   <string name="notification_channel_default">Άλλες ειδοποιήσεις</string>
   <string name="notification_channel_media_control">Κονσόλα πολυμέσων</string>
-  <string name="notification_channel_filetransfer">Μεταφορά αρχείου</string>
   <string name="notification_channel_high_priority">Υψηλής προτεραιότητας</string>
-  <string name="notification_channel_sms_mms">Νέο μήνυμα</string>
   <string name="mpris_stop">Διακοπή του τρέχοντος αναπαραγωγέα</string>
   <string name="copy_url_to_clipboard">Αντιγραφή του URL στο πρόχειρο</string>
   <string name="clipboard_toast">Έγινε αντιγραφή στο πρόχειρο</string>

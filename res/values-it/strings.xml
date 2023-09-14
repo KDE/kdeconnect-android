@@ -276,9 +276,7 @@
   <string name="notification_channel_default">Altre notifiche</string>
   <string name="notification_channel_persistent">Indicatore persistente</string>
   <string name="notification_channel_media_control">Controllo multimediale</string>
-  <string name="notification_channel_filetransfer">Trasferimento file</string>
   <string name="notification_channel_high_priority">Priorità alta</string>
-  <string name="notification_channel_sms_mms">Nuovo messaggio</string>
   <string name="mpris_stop">Ferma il lettore attuale</string>
   <string name="copy_url_to_clipboard">Copia l\'URL negli appunti</string>
   <string name="clipboard_toast">Copiato negli appunti</string>

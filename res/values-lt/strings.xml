@@ -279,9 +279,7 @@
   <string name="notification_channel_default">Kiti pranešimai</string>
   <string name="notification_channel_persistent">Pastovus indikatorius</string>
   <string name="notification_channel_media_control">Įvairialypės terpės valdymas</string>
-  <string name="notification_channel_filetransfer">Failų persiuntimas</string>
   <string name="notification_channel_high_priority">Didelė pirmenybė</string>
-  <string name="notification_channel_sms_mms">Nauja žinutė</string>
   <string name="mpris_stop">Stabdyti dabartinę leistuvę</string>
   <string name="copy_url_to_clipboard">Kopijuoti URL į iškarpinę</string>
   <string name="clipboard_toast">Nukopijuota į iškarpinę</string>
