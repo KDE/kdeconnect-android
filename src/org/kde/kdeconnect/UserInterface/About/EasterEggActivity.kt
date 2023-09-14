@@ -83,7 +83,7 @@ class EasterEggActivity : AppCompatActivity(), SensorEventListener {
                     R.drawable.ic_baseline_info_24, R.drawable.ic_baseline_web_24,
                     R.drawable.ic_baseline_send_24, R.drawable.ic_baseline_sms_24,
                     R.drawable.ic_accept_pairing_24dp, R.drawable.ic_share_white,
-                    R.drawable.ic_camera, R.drawable.ic_delete,
+                    R.drawable.ic_delete,
                     R.drawable.ic_device_laptop_32dp, R.drawable.ic_device_phone_32dp,
                     R.drawable.ic_device_tablet_32dp, R.drawable.ic_device_tv_32dp,
                     R.drawable.ic_delete, R.drawable.ic_warning,
