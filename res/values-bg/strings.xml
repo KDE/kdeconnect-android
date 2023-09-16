@@ -276,6 +276,8 @@
   <string name="notification_channel_default">Други известия</string>
   <string name="notification_channel_persistent">Постоянен индикатор</string>
   <string name="notification_channel_media_control">Контрол на медиите</string>
+  <string name="notification_channel_filetransfer">Прехвърляне на входящ файл</string>
+  <string name="notification_channel_filetransfer_upload">Прехвърляне на изходящ файл</string>
   <string name="notification_channel_high_priority">Висок приоритет</string>
   <string name="mpris_stop">Спиране на текущия плейър</string>
   <string name="copy_url_to_clipboard">Копиране на URL в клипборда</string>
