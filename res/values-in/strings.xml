@@ -282,8 +282,6 @@
   <string name="block_contents">Blokir konten-konten notifikasi</string>
   <string name="block_images">Blokir citra-citra dalam notifikasi</string>
   <string name="notification_channel_receivenotification">Notifikasi dari peranti lainnya</string>
-  <string name="take_picture">Luncurkan kamera</string>
-  <string name="plugin_photo_desc">Luncurkan aplikasi kamera untuk memudahkan mengambil dan mentransfer foto</string>
   <string name="no_app_for_opening">Tidak menemukan aplikasi yang dapat membuka berkas ini</string>
   <string name="remote_keyboard_service">Keyboard Remote KDE Connect</string>
   <string name="presenter_pointer">Penunjuk</string>

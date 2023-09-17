@@ -307,8 +307,6 @@
   <string name="block_contents">Bloca el contingut de les notificacions</string>
   <string name="block_images">Bloca les imatges a les notificacions</string>
   <string name="notification_channel_receivenotification">Notificacions des d\'altres dispositius</string>
-  <string name="take_picture">Inicia la càmera</string>
-  <string name="plugin_photo_desc">Llança l\'aplicació de càmera per a facilitar la presa i la transferència de fotografies</string>
   <string name="no_app_for_opening">No s\'ha trobat cap aplicació adequada per a obrir aquest fitxer</string>
   <string name="remote_keyboard_service">Teclat remot del KDE Connect</string>
   <string name="presenter_pointer">Apuntador</string>

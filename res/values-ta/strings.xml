@@ -305,8 +305,6 @@
   <string name="block_contents">அறிவிப்புகளின் உள்ளடக்கத்தை காட்டாதே</string>
   <string name="block_images">அறிவிப்புகளில் படங்களை காட்டாதே</string>
   <string name="notification_channel_receivenotification">மற்ற சாதனங்களிலிருந்து அறிவிப்புகள்</string>
-  <string name="take_picture">புகைப்பட செயலியை திற</string>
-  <string name="plugin_photo_desc">புகைப்படங்களை எளிதாக எடுக்கவும் மாற்றவும் படக்கருவி செயலியை திறக்கும்</string>
   <string name="no_app_for_opening">இக்கோப்பை திறப்பதற்குகந்த செயலி ஏதுமில்லை</string>
   <string name="remote_keyboard_service">கே.டீ.யீ. கனெக்ட் தொலை விசைப்பலகை</string>
   <string name="presenter_pointer">சுட்டி</string>

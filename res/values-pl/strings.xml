@@ -317,8 +317,6 @@
   <string name="block_contents">Blokuj treści w powiadomieniach</string>
   <string name="block_images">Blokuj obrazy w powiadomieniach</string>
   <string name="notification_channel_receivenotification">Powiadomienia z innych urządzeń</string>
-  <string name="take_picture">Uruchamianie aparatu</string>
-  <string name="plugin_photo_desc">Zezwala na uruchamianie aparatu, aby ułatwić robienie i przesyłanie zdjęć</string>
   <string name="no_app_for_opening">Nie znaleziono aplikacji do otwarcia tego pliku</string>
   <string name="remote_keyboard_service">Zdalna klawiatura KDE Connect</string>
   <string name="presenter_pointer">Wskaźnik</string>

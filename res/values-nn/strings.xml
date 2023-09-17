@@ -274,9 +274,7 @@
   <string name="notification_channel_default">Andre varslingar</string>
   <string name="notification_channel_persistent">Evigvarande varsling</string>
   <string name="notification_channel_media_control">Mediestyring</string>
-  <string name="notification_channel_filetransfer">Filoverføring</string>
   <string name="notification_channel_high_priority">Høg prioritet</string>
-  <string name="notification_channel_sms_mms">Ny melding</string>
   <string name="mpris_stop">Stopp gjeldande avspelar</string>
   <string name="copy_url_to_clipboard">Kopier adresse til utklippstavla</string>
   <string name="clipboard_toast">Kopiert til utklippstavla</string>
@@ -305,8 +303,6 @@
   <string name="block_contents">Blokker varslingsinnhald</string>
   <string name="block_images">Blokker bilete i varslingar</string>
   <string name="notification_channel_receivenotification">Varslingar frå andre einingar</string>
-  <string name="take_picture">Opna kamera</string>
-  <string name="plugin_photo_desc">Opna kamera-appen for å gjera det lettare å ta og overføra bilete</string>
   <string name="no_app_for_opening">Fann ikkje nokon app som kan opna denne fila</string>
   <string name="remote_keyboard_service">KDE Connect fjerntastatur</string>
   <string name="presenter_pointer">Peikar</string>

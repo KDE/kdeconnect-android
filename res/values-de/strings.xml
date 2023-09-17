@@ -298,8 +298,6 @@
   <string name="block_contents">Inhalt von Benachrichtigungen blockieren</string>
   <string name="block_images">Bilder in Benachrichtigungen blockieren</string>
   <string name="notification_channel_receivenotification">Benachrichtigungen verbundener Geräte</string>
-  <string name="take_picture">Kamera starten</string>
-  <string name="plugin_photo_desc">Die Kamera starten um das Erstellen und Übertragen von Bildern zu vereinfachen</string>
   <string name="no_app_for_opening">Es wurde keine passende App zum Öffnen dieser Datei gefunden</string>
   <string name="remote_keyboard_service">Entfernte Tastatur für KDE Connect</string>
   <string name="presenter_pointer">Laserpointer</string>

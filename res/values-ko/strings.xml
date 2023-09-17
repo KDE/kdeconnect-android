@@ -295,8 +295,6 @@
   <string name="block_contents">알림 내용 숨기기</string>
   <string name="block_images">알림 이미지 숨기기</string>
   <string name="notification_channel_receivenotification">다른 장치의 알림</string>
-  <string name="take_picture">카메라 실행</string>
-  <string name="plugin_photo_desc">카메라 앱을 실행하여 쉽게 사진을 찍고 전송</string>
   <string name="no_app_for_opening">이 파일을 열 수 있는 앱을 찾을 수 없음</string>
   <string name="remote_keyboard_service">KDE Connect 원격 키보드</string>
   <string name="presenter_pointer">포인터</string>

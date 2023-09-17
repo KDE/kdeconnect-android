@@ -289,8 +289,6 @@
   <string name="block_contents">Blokovať obsah upozornení</string>
   <string name="block_images">Blokovať obrázky v upozorneniach</string>
   <string name="notification_channel_receivenotification">Upozornenia z iných zariadení</string>
-  <string name="take_picture">Spustenie fotoaparátu</string>
-  <string name="plugin_photo_desc">Spustí aplikáciu fotoaparátu na uľahčenie zachytenia a prenosu obrázkov</string>
   <string name="no_app_for_opening">Nenašla sa vhodná aplikácia na otvorenie tohto súboru</string>
   <string name="remote_keyboard_service">KDE Connect Vzdialená Klávesnica</string>
   <string name="presenter_pointer">Ukazovateľ</string>

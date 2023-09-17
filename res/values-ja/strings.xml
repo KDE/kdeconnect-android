@@ -295,8 +295,6 @@
   <string name="block_contents">通知の内容をブロック</string>
   <string name="block_images">通知の画像をブロック</string>
   <string name="notification_channel_receivenotification">他のデバイスからの通知</string>
-  <string name="take_picture">カメラを起動</string>
-  <string name="plugin_photo_desc">写真を撮影して転送するためにカメラを起動</string>
   <string name="no_app_for_opening">このファイルを開くための適切なアプリが見つかりません</string>
   <string name="remote_keyboard_service">KDE Connect リモートキーボード</string>
   <string name="presenter_pointer">ポインタ</string>

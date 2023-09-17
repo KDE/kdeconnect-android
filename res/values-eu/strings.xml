@@ -305,8 +305,6 @@
   <string name="block_contents">Oztopatu jakinarazpenen edukiak</string>
   <string name="block_images">Oztopatu jakinarazpenen irudiak</string>
   <string name="notification_channel_receivenotification">Beste gailu batzuen jakinarazpenak</string>
-  <string name="take_picture">Abiarazi kamera</string>
-  <string name="plugin_photo_desc">Abiarazi kamerako aplikazioa argazkiak hartzeko eta transferitzeko</string>
   <string name="no_app_for_opening">Ez da fitxategi hau irekitzeko aplikazio egokirik aurkitu</string>
   <string name="remote_keyboard_service">KDE Connect urruneko teklatua</string>
   <string name="presenter_pointer">Erakuslea</string>

@@ -281,8 +281,6 @@
   <string name="block_contents">Φραγή περιεχομένου ειδοποιήσεων</string>
   <string name="block_images">Φραγή εικόνων σε ειδοποιήσεις</string>
   <string name="notification_channel_receivenotification">Ειδοποιήσεις από άλλες συσκευές</string>
-  <string name="take_picture">Εκτέλεση κάμερας</string>
-  <string name="plugin_photo_desc">Εκτέλεση της εφαρμογής κάμερας για διευκόλυνση στη λήψη και μεταφορά φωτογραφιών</string>
   <string name="no_app_for_opening">Δεν βρέθηκε κατάλληλη εφαρμογή για το άνοιγμα αυτού του αρχείου</string>
   <string name="remote_keyboard_service">Απομακρυσμένο πληκτρολόγιο KDE Connect</string>
   <string name="presenter_pointer">Δείκτης</string>

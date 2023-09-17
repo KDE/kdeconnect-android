@@ -323,8 +323,6 @@
   <string name="block_contents">Блокувати вміст сповіщень</string>
   <string name="block_images">Блокувати зображення у сповіщеннях</string>
   <string name="notification_channel_receivenotification">Сповіщення з інших пристроїв</string>
-  <string name="take_picture">Запустити камеру</string>
-  <string name="plugin_photo_desc">Запустити додаток камери для спрощення знімання та передавання фотографій</string>
   <string name="no_app_for_opening">Не знайдено відповідної програми для відкриття цього файла</string>
   <string name="remote_keyboard_service">Віддалена клавіатура KDE Connect</string>
   <string name="presenter_pointer">Указка</string>

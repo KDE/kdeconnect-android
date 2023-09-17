@@ -276,6 +276,8 @@
   <string name="notification_channel_default">Otras notificaciones</string>
   <string name="notification_channel_persistent">Indicador persistente</string>
   <string name="notification_channel_media_control">Control multimedia</string>
+  <string name="notification_channel_filetransfer">Transferencia de archivo entrante</string>
+  <string name="notification_channel_filetransfer_upload">Transferencia de archivo saliente</string>
   <string name="notification_channel_high_priority">Alta prioridad</string>
   <string name="mpris_stop">Parar el reproductor actual</string>
   <string name="copy_url_to_clipboard">Copiar URL al portapapeles</string>
@@ -305,8 +307,6 @@
   <string name="block_contents">Bloquear el contenido de las notificaciones</string>
   <string name="block_images">Bloquear las imágenes en las notificaciones</string>
   <string name="notification_channel_receivenotification">Notificaciones desde otros dispositivos</string>
-  <string name="take_picture">Lanzar cámara</string>
-  <string name="plugin_photo_desc">Lanzar la aplicación de la cámara para facilitar tomar y transferir imágenes</string>
   <string name="no_app_for_opening">No se encontró ninguna aplicación adecuada para abrir este archivo</string>
   <string name="remote_keyboard_service">Teclado remoto de KDE Connect</string>
   <string name="presenter_pointer">Puntero</string>

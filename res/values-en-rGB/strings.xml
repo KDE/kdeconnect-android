@@ -302,8 +302,6 @@
   <string name="block_contents">Block contents of notifications</string>
   <string name="block_images">Block images in notifications</string>
   <string name="notification_channel_receivenotification">Notifications from other devices</string>
-  <string name="take_picture">Launch camera</string>
-  <string name="plugin_photo_desc">Launch the camera app to ease taking and transferring pictures</string>
   <string name="no_app_for_opening">No suitable app found to open this file</string>
   <string name="remote_keyboard_service">KDE Connect Remote Keyboard</string>
   <string name="presenter_pointer">Pointer</string>

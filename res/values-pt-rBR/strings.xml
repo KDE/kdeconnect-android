@@ -303,8 +303,6 @@
   <string name="block_contents">Bloquear o conteúdo das notificações</string>
   <string name="block_images">Bloquear as imagens das notificações</string>
   <string name="notification_channel_receivenotification">Notificações dos outros dispositivos</string>
-  <string name="take_picture">Iniciar câmera</string>
-  <string name="plugin_photo_desc">Iniciar o aplicativo da câmera para facilitar a captura e transferência de fotos</string>
   <string name="no_app_for_opening">Não foi encontrado nenhum aplicativo adequado para abrir este arquivo</string>
   <string name="remote_keyboard_service">Teclado Remoto do KDE Connect</string>
   <string name="presenter_pointer">Ponteiro</string>

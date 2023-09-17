@@ -308,8 +308,6 @@
   <string name="block_contents">Blokuoti pranešimų turinį</string>
   <string name="block_images">Blokuoti pranešimuose paveiksliukus</string>
   <string name="notification_channel_receivenotification">Pranešimai iš kitų įrenginių</string>
-  <string name="take_picture">Paleisti kamerą</string>
-  <string name="plugin_photo_desc">Paleisti kameros programėlę, kad būtų palengvintas nuotraukų darymas ir persiuntimas</string>
   <string name="no_app_for_opening">Šio failo atvėrimui nerasta jokios tinkamos programėlės</string>
   <string name="remote_keyboard_service">KDE Connect nuotolinė klaviatūra</string>
   <string name="presenter_pointer">Rodyklė</string>

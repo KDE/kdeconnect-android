@@ -302,8 +302,6 @@
   <string name="block_contents">Estä ilmoitusten sisältö</string>
   <string name="block_images">Estä ilmoitusten kuvat</string>
   <string name="notification_channel_receivenotification">Muiden laitteiden ilmoitukset</string>
-  <string name="take_picture">Käynnistä kamera</string>
-  <string name="plugin_photo_desc">Helpota kuvien ottamista ja siirtämistä käynnistämällä kamerasovellus</string>
   <string name="no_app_for_opening">Tämän tiedoston avaamiseen sopivaa sovellusta ei löytynyt</string>
   <string name="remote_keyboard_service">KDE Connect -etänäppäimistö</string>
   <string name="presenter_pointer">Osoitin</string>

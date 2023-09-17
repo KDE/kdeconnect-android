@@ -323,8 +323,6 @@
   <string name="block_contents">Blokiraj vsebine obvestil</string>
   <string name="block_images">Blokiraj slike v obvestilih</string>
   <string name="notification_channel_receivenotification">Obvestila ostalih naprav</string>
-  <string name="take_picture">Zaženi kamero</string>
-  <string name="plugin_photo_desc">Zaženite aplikacijo za kamero, da olajšate fotografiranje in prenos fotografij</string>
   <string name="no_app_for_opening">Ni primerne aplikacije za odpiranje te datoteke</string>
   <string name="remote_keyboard_service">Oddaljena tipkovnica KDE Connect</string>
   <string name="presenter_pointer">Kazalec</string>

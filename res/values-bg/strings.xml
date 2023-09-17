@@ -307,8 +307,6 @@
   <string name="block_contents">Блокиране на съдържанието на известията</string>
   <string name="block_images">Блокиране на изображения в известията</string>
   <string name="notification_channel_receivenotification">Известия от други устройства</string>
-  <string name="take_picture">Стартиране на камерата</string>
-  <string name="plugin_photo_desc">Стартирайте приложението за камера, за да улесните правенето и прехвърлянето на снимки</string>
   <string name="no_app_for_opening">Не е намерено подходящо приложение за отваряне на този файл</string>
   <string name="remote_keyboard_service">Отдалечена клавиатура KDE Connect</string>
   <string name="presenter_pointer">Показалец</string>

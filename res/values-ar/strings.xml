@@ -187,7 +187,6 @@
   <string name="block_contents">امنح محتويات الإخطارات</string>
   <string name="block_images">امنع الصور في الإخطارات</string>
   <string name="notification_channel_receivenotification">إخطارات من أجهزة أخرى</string>
-  <string name="take_picture">شغّل الكاميرا</string>
   <string name="presenter_pointer">المؤشر</string>
   <string name="trusted_networks">الشّبكات الموثوقة</string>
   <string name="add_trusted_network">أضف %s</string>

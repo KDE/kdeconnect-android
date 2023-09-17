@@ -261,7 +261,6 @@
   <string name="block_contents">Loka á efni tilkynninga</string>
   <string name="block_images">Loka á myndir í tilkynningum</string>
   <string name="notification_channel_receivenotification">Tilkynningar frá öðrum tækjum</string>
-  <string name="take_picture">Ræsa myndavél</string>
   <string name="no_app_for_opening">Ekkert hentugt forrit fannst til að opna þessa skrá</string>
   <string name="remote_keyboard_service">Fjartengt lyklaborð KDE Connect</string>
   <string name="presenter_pointer">Bendill</string>

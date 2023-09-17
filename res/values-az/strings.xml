@@ -302,8 +302,6 @@
   <string name="block_contents">Bildirişlərin məzmununu bloklamaq</string>
   <string name="block_images">Bildirişlərin şəkillərini bloklamaq</string>
   <string name="notification_channel_receivenotification">Digar cihazlardan bilsirişlər</string>
-  <string name="take_picture">Kameranı açmaq</string>
-  <string name="plugin_photo_desc">Şəkillər çəkmək və göndərməyi asanlaşdırmaq üçün kamera tətbiqini başladın</string>
   <string name="no_app_for_opening">Bu faylı açmaq üçün uyğun tətbiq tapılmadı</string>
   <string name="remote_keyboard_service">KDE Connect Uzaq Klaviaturası</string>
   <string name="presenter_pointer">Kursor</string>

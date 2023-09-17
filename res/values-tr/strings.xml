@@ -307,8 +307,6 @@
   <string name="block_contents">Bildirimlerin içeriğini engelle</string>
   <string name="block_images">Bildirimlerde görüntüleri engelle</string>
   <string name="notification_channel_receivenotification">Diğer aygıtlardan gelen bildirimler</string>
-  <string name="take_picture">Kamerayı başlat</string>
-  <string name="plugin_photo_desc">Fotoğraf çekmeyi ve aktarmayı kolaylaştırmak için kamera uygulamasını başlatın</string>
   <string name="no_app_for_opening">Bu dosyayı açmak için uygun bir uygulama bulunamadı</string>
   <string name="remote_keyboard_service">KDE Bağlan Uzaktan Klavye</string>
   <string name="presenter_pointer">İşaretçi</string>

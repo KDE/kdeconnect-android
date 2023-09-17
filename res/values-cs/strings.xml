@@ -318,8 +318,6 @@
   <string name="block_contents">Blokovat obsah oznámení</string>
   <string name="block_images">Blokovat obrázky v oznámení</string>
   <string name="notification_channel_receivenotification">Oznámení z ostatních zařízení</string>
-  <string name="take_picture">Spustit fotoaparát</string>
-  <string name="plugin_photo_desc">Spusťte aplikaci fotoaparátu pro snadné zachytávání s přenos obrázků</string>
   <string name="no_app_for_opening">Pro otevření tohoto souboru nebyla nalezena vhodná aplikace</string>
   <string name="remote_keyboard_service">Vzdálená klávesnice pro KDE Connect</string>
   <string name="presenter_pointer">Ukazatel</string>

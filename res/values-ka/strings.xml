@@ -219,7 +219,6 @@
   <string name="set_privacy_options">თქვენი კონფიდენციალობის პარამეტრების დაყენება</string>
   <string name="block_contents">გაფრთხილების შემცველობის დაბლოკვა</string>
   <string name="block_images">გაფრთხილებებში გამოსახულებების დაბლოკვა</string>
-  <string name="take_picture">კამერის გაშვება</string>
   <string name="presenter_pointer">კურსორი</string>
   <string name="trusted_networks">სანდო ქსელები</string>
   <string name="add_trusted_network">%1s-ის დაყენება</string>

@@ -290,8 +290,6 @@
   <string name="block_contents">Értesítések tartalmának blokkolása</string>
   <string name="block_images">Képek blokkolása az értesítésekben</string>
   <string name="notification_channel_receivenotification">Értesítések más eszközökről</string>
-  <string name="take_picture">Kamera indítása</string>
-  <string name="plugin_photo_desc">A kamera alkalmazás indítása képek készítésének és átvitelének megkönnyítésére</string>
   <string name="no_app_for_opening">Nem található alkalmazás a fájl megnyitásához</string>
   <string name="remote_keyboard_service">KDE Connect távoli billentyűzet</string>
   <string name="presenter_pointer">Mutató</string>

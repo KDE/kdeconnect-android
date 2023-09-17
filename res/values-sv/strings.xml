@@ -307,8 +307,6 @@
   <string name="block_contents">Blockera underrättelsernas innehåll</string>
   <string name="block_images">Blockera bilder i underrättelser</string>
   <string name="notification_channel_receivenotification">Underrättelser från andra apparater</string>
-  <string name="take_picture">Starta kamera</string>
-  <string name="plugin_photo_desc">Starta kameraprogrammet för att förenkla att ta och överföra bilder</string>
   <string name="no_app_for_opening">Inget lämpligt program hittades för att öppna filen</string>
   <string name="remote_keyboard_service">KDE-anslut fjärrtangentbord</string>
   <string name="presenter_pointer">Pekare</string>

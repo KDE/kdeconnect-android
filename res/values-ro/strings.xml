@@ -298,8 +298,6 @@
   <string name="block_contents">Blochează conținutul notificărilor</string>
   <string name="block_images">Blochează imaginile din notificări</string>
   <string name="notification_channel_receivenotification">Notificări de pe alte dispozitive</string>
-  <string name="take_picture">Lansează aparatul foto</string>
-  <string name="plugin_photo_desc">Lansează aplicația de aparat foto pentru a facilita obținerea și transferul pozelor</string>
   <string name="no_app_for_opening">Nu a fost găsită nicio aplicație care să deschidă acest fișier</string>
   <string name="remote_keyboard_service">Tastatura de la distanță KDE Connect</string>
   <string name="presenter_pointer">Indicator</string>
