@@ -133,9 +133,10 @@ public class DeviceTest {
     public void testDeviceType() {
         assertEquals(DeviceType.PHONE, DeviceType.fromString(DeviceType.PHONE.toString()));
         assertEquals(DeviceType.TABLET, DeviceType.fromString(DeviceType.TABLET.toString()));
-        assertEquals(DeviceType.COMPUTER, DeviceType.fromString(DeviceType.COMPUTER.toString()));
+        assertEquals(DeviceType.DESKTOP, DeviceType.fromString(DeviceType.DESKTOP.toString()));
+        assertEquals(DeviceType.LAPTOP, DeviceType.fromString(DeviceType.LAPTOP.toString()));
         assertEquals(DeviceType.TV, DeviceType.fromString(DeviceType.TV.toString()));
-        assertEquals(DeviceType.COMPUTER, DeviceType.fromString("invalid"));
+        assertEquals(DeviceType.DESKTOP, DeviceType.fromString("invalid"));
     }
 
     // Basic paired device testing

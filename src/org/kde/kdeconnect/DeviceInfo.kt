@@ -102,13 +102,14 @@ class DeviceInfo(
 }
 
 enum class DeviceType {
-    PHONE, TABLET, COMPUTER, TV;
+    PHONE, TABLET, DESKTOP, LAPTOP, TV;
 
     override fun toString() =
         when (this) {
             TABLET -> "tablet"
             PHONE -> "phone"
             TV -> "tv"
+            LAPTOP -> "laptop"
             else -> "desktop"
         }
 
@@ -120,7 +121,8 @@ enum class DeviceType {
             PHONE -> R.drawable.ic_device_phone_32dp
             TABLET -> R.drawable.ic_device_tablet_32dp
             TV -> R.drawable.ic_device_tv_32dp
-            else -> R.drawable.ic_device_laptop_32dp
+            LAPTOP -> R.drawable.ic_device_laptop_32dp
+            else -> R.drawable.ic_device_desktop_32dp
         }
 
     companion object {
@@ -130,7 +132,8 @@ enum class DeviceType {
                 "phone" -> PHONE
                 "tablet" -> TABLET
                 "tv" -> TV
-                else -> COMPUTER
+                "laptop" -> LAPTOP
+                else -> DESKTOP
             }
     }
 }
