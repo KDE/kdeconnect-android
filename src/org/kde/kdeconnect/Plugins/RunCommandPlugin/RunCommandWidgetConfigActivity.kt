@@ -22,6 +22,7 @@ import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.WidgetRemoteCommandPluginDialogBinding
+import java.util.stream.Collectors
 import kotlin.streams.toList
 
 class RunCommandWidgetConfigActivity : AppCompatActivity() {
@@ -44,7 +45,7 @@ class RunCommandWidgetConfigActivity : AppCompatActivity() {
         val binding = WidgetRemoteCommandPluginDialogBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val pairedDevices = KdeConnect.getInstance().devices.values.stream().filter(Device::isPaired).toList()
+        val pairedDevices = KdeConnect.getInstance().devices.values.stream().filter(Device::isPaired).collect(Collectors.toList());
 
         binding.runCommandsDeviceList.adapter = object : ArrayAdapter<Device>(this, 0, pairedDevices) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
