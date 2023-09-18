@@ -299,8 +299,6 @@
   <string name="block_contents">阻止通知内容</string>
   <string name="block_images">阻止通知图像</string>
   <string name="notification_channel_receivenotification">来自其他设备的通知</string>
-  <string name="take_picture">启动相机</string>
-  <string name="plugin_photo_desc">启动相机应用程序以方便拍摄和转移图片</string>
   <string name="no_app_for_opening">没有找到合适的应用程序打开此文件</string>
   <string name="remote_keyboard_service">KDE Connect 远程键盘</string>
   <string name="presenter_pointer">指针</string>
