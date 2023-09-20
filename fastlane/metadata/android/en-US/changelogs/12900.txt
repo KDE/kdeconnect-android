@@ -1,0 +1,7 @@
+1.29
+* Added MDNS device discovery
+* Fixed crash opening the Run Command widget settings
+* Added more fine-grained notification channels
+* Added a confirmation before copying contacts
+* Long-tapping the "Send clipboard" quick settings tile now opens the app
+* Removed the photo plugin
