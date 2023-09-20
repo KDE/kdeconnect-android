@@ -98,6 +98,8 @@ public class SslHelper {
             return;
         }
 
+        Log.i("SslHelper", "Key algorithm: " + publicKey.getAlgorithm());
+
         String deviceId = DeviceHelper.getDeviceId(context);
 
         boolean needsToGenerateCertificate = false;
@@ -147,7 +149,9 @@ public class SslHelper {
                         nameBuilder.build(),
                         publicKey
                 );
-                ContentSigner contentSigner = new JcaContentSignerBuilder("SHA256WithRSA").build(privateKey);
+                String keyAlgorithm = privateKey.getAlgorithm();
+                String signatureAlgorithm = "RSA".equals(keyAlgorithm)? "SHA512withRSA" : "SHA512withECDSA";
+                ContentSigner contentSigner = new JcaContentSignerBuilder(signatureAlgorithm).build(privateKey);
                 byte[] certificateBytes = certificateBuilder.build(contentSigner).getEncoded();
                 certificate = parseCertificate(certificateBytes);
 

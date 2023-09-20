@@ -8,7 +8,9 @@ package org.kde.kdeconnect.Helpers.SecurityHelpers;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.preference.PreferenceManager;
+import android.security.keystore.KeyProperties;
 import android.util.Base64;
 import android.util.Log;
 
@@ -18,6 +20,7 @@ import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.security.spec.ECGenParameterSpec;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 
@@ -29,10 +32,20 @@ public class RsaHelper {
         if (!settings.contains("publicKey") || !settings.contains("privateKey")) {
 
             KeyPair keyPair;
+            String keyAlgorithm;
             try {
-                KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
-                keyGen.initialize(2048);
-                keyPair = keyGen.genKeyPair();
+                KeyPairGenerator keyGen;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    keyAlgorithm = KeyProperties.KEY_ALGORITHM_EC;
+                    keyGen = KeyPairGenerator.getInstance(keyAlgorithm);
+                    ECGenParameterSpec spec = new ECGenParameterSpec("secp256r1");
+                    keyGen.initialize(spec);
+                } else {
+                    keyAlgorithm = "RSA";
+                    keyGen = KeyPairGenerator.getInstance(keyAlgorithm);
+                    keyGen.initialize(2048);
+                }
+                keyPair = keyGen.generateKeyPair();
             } catch (Exception e) {
                 Log.e("KDE/initializeRsaKeys", "Exception", e);
                 return;
@@ -44,6 +57,7 @@ public class RsaHelper {
             SharedPreferences.Editor edit = settings.edit();
             edit.putString("publicKey", Base64.encodeToString(publicKey, 0).trim() + "\n");
             edit.putString("privateKey", Base64.encodeToString(privateKey, 0));
+            edit.putString("keyAlgorithm", keyAlgorithm);
             edit.apply();
 
         }
@@ -53,13 +67,17 @@ public class RsaHelper {
     public static PublicKey getPublicKey(Context context) throws GeneralSecurityException {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
         byte[] publicKeyBytes = Base64.decode(settings.getString("publicKey", ""), 0);
-        return KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(publicKeyBytes));
+        // For backwards compat: if no keyAlgorithm setting is set, it means it was generated using RSA
+        String keyAlgorithm = settings.getString("keyAlgorithm", "RSA");
+        return KeyFactory.getInstance(keyAlgorithm).generatePublic(new X509EncodedKeySpec(publicKeyBytes));
     }
 
     public static PrivateKey getPrivateKey(Context context) throws GeneralSecurityException {
-        SharedPreferences globalSettings = PreferenceManager.getDefaultSharedPreferences(context);
-        byte[] privateKeyBytes = Base64.decode(globalSettings.getString("privateKey", ""), 0);
-        return KeyFactory.getInstance("RSA").generatePrivate(new PKCS8EncodedKeySpec(privateKeyBytes));
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
+        byte[] privateKeyBytes = Base64.decode(settings.getString("privateKey", ""), 0);
+        // For backwards compat: if no keyAlgorithm setting is set, it means it was generated using RSA
+        String keyAlgorithm = settings.getString("keyAlgorithm", "RSA");
+        return KeyFactory.getInstance(keyAlgorithm).generatePrivate(new PKCS8EncodedKeySpec(privateKeyBytes));
     }
 
 
