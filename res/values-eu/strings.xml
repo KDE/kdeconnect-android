@@ -276,6 +276,9 @@
   <string name="notification_channel_default">Beste jakinarazpen batzuk</string>
   <string name="notification_channel_persistent">Adierazle iraunkorra</string>
   <string name="notification_channel_media_control">Euskarrien kontrola</string>
+  <string name="notification_channel_filetransfer">Sarrerako fitxategi transmisioa</string>
+  <string name="notification_channel_filetransfer_upload">Irteerako fitxategi transmisioa</string>
+  <string name="notification_channel_filetransfer_error">Fitxategi transmisio errorea</string>
   <string name="notification_channel_high_priority">Lehentasun handia</string>
   <string name="mpris_stop">Gelditu uneko jotzailea</string>
   <string name="copy_url_to_clipboard">Kopiatu URLa arbelera</string>
