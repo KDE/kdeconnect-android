@@ -274,6 +274,7 @@
   <string name="telephony_permission_explanation">Če želite videti telefonske klice na namizju, morate dati dovoljenje za dnevnike klicev in stanje telefona</string>
   <string name="telephony_optional_permission_explanation">Če želite namesto telefonske številke videti ime stika, morate omogočiti dostop do stikov telefona</string>
   <string name="contacts_permission_explanation">Če želite knjigo stikov deliti z namizjem, morate dati dovoljenje za dostop do stikov</string>
+  <string name="contacts_per_device_confirmation">Vaši telefonski stiki bodo prekopirani na to napravo, da jih lahko uporablja KDE Connect SMS in druge aplikacije.</string>
   <string name="select_ringtone">Izberite melodijo zvonjenja</string>
   <string name="telephony_pref_blocked_title">Blokirane številke</string>
   <string name="telephony_pref_blocked_dialog_desc">Ne prikazuj klicev in SMS s teh številk. Navedite po eno telefonsko številko v vsaki vrsti</string>

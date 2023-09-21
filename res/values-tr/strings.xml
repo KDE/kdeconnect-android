@@ -13,7 +13,7 @@
   <string name="pref_plugin_connectivity_report_desc">Ağ sinyal gücünü ve durumunu bildirin</string>
   <string name="pref_plugin_sftp">Dosya sistemi gösterme</string>
   <string name="pref_plugin_sftp_desc">Bu aygıtın dosya sistemine uzaktan göz atılmasına izin verir</string>
-  <string name="pref_plugin_clipboard">Pano eşitleme</string>
+  <string name="pref_plugin_clipboard">Pano eşzamanlama</string>
   <string name="pref_plugin_clipboard_desc">Pano içeriğini paylaş</string>
   <string name="pref_plugin_clipboard_sent">Pano Gönderildi</string>
   <string name="pref_plugin_mousepad">Uzaktan giriş</string>
@@ -26,11 +26,11 @@
   <string name="pref_plugin_mpris_desc">Ortam oynatıcınız için uzaktan denetim sağlar</string>
   <string name="pref_plugin_runcommand">Komut Çalıştır</string>
   <string name="pref_plugin_runcommand_desc">Telefon veya tabletten uzak komutları tetikle</string>
-  <string name="pref_plugin_contacts">Rehber Eşitleyici</string>
-  <string name="pref_plugin_contacts_desc">Aygıtın rehberini eşitle</string>
+  <string name="pref_plugin_contacts">Kişiler Eşzamanlayıcısı</string>
+  <string name="pref_plugin_contacts_desc">Aygıtın rehberini eşzamanlamaya izin ver</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Ping gönder ve al</string>
-  <string name="pref_plugin_notifications">Bildirim eşitleme</string>
+  <string name="pref_plugin_notifications">Bildirim eşzamanlama</string>
   <string name="pref_plugin_notifications_desc">Bildirimlerinize, diğer aygıtlardan erişin</string>
   <string name="pref_plugin_receive_notifications">Bildirimleri al</string>
   <string name="pref_plugin_receive_notifications_desc">Bildirimleri diğer aygıtlardan al ve Android üzerinde göster</string>
@@ -206,7 +206,7 @@
   <string name="share">Paylaş</string>
   <string name="share_received_file">Paylaş \"%s\"</string>
   <string name="title_activity_notification_filter">Bildirim süzgeci</string>
-  <string name="filter_apps_info">Bildirimler, seçili uygulamalar için eşitlenecektir.</string>
+  <string name="filter_apps_info">Bildirimler, seçili uygulamalar için eşzamanlanacaktır.</string>
   <string name="show_notification_if_screen_off">Yalnızca ekran kapalıysa bildirimler gönder</string>
   <string name="add_device_dialog_title">Aygıt ekle</string>
   <string name="add_device_hint">Makine adı veya IP adresi</string>
@@ -257,7 +257,8 @@
   <string name="telepathy_permission_explanation">Masaüstünde SMS yazma ve okuma yapmak için SMS izni gereklidir</string>
   <string name="telephony_permission_explanation">Masaüstünde telefon görüşmelerini görmek için telefon görüşmesi kayıtlarına ve telefon durumuna izin vermeniz gerekir</string>
   <string name="telephony_optional_permission_explanation">Telefon numarası yerine kişi adı görebilmek için telefonun kişilerine erişim gereklidir</string>
-  <string name="contacts_permission_explanation">Rehberinizi masaüstüyle paylaşmak için rehbere izin vermeniz gerekir</string>
+  <string name="contacts_permission_explanation">Kişilerinizi masaüstüyle paylaşmak için kişiler izni vermeniz gerekir</string>
+  <string name="contacts_per_device_confirmation">Telefondaki kişileriniz bu aygıta kopyalanacak; böylece KDE Bağlan ve başka uygulamalar tarafından kullanılabilecekler.</string>
   <string name="select_ringtone">Bir zil sesi seç</string>
   <string name="telephony_pref_blocked_title">Engellenen numaralar</string>
   <string name="telephony_pref_blocked_dialog_desc">Bu numaralardan gelen aramaları ve SMS\'leri gösterme. Lütfen her satıra bir numara belirtin</string>
@@ -278,6 +279,7 @@
   <string name="notification_channel_media_control">Ortam denetimi</string>
   <string name="notification_channel_filetransfer">Gelen dosya aktarımı</string>
   <string name="notification_channel_filetransfer_upload">Giden dosya aktarımı</string>
+  <string name="notification_channel_filetransfer_error">Dosya aktarımı hatası</string>
   <string name="notification_channel_high_priority">Yüksek öncelik</string>
   <string name="mpris_stop">Geçerli oynatıcıyı durdur</string>
   <string name="copy_url_to_clipboard">URL\'yi panoya kopyala</string>

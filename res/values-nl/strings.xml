@@ -258,6 +258,7 @@
   <string name="telephony_permission_explanation">Om telefoonoproepen te zien op het bureaublad moet u toestemming geven tot telefoonoproeplogs en telefoonstatus</string>
   <string name="telephony_optional_permission_explanation">Om een naam van een contactpersoon te zien in plaats van een telefoonnummer moet u toegang geven tot de contacten in uw telefoon</string>
   <string name="contacts_permission_explanation">Om uw contactpersoennboek te delen met het bureaublad moet u contacten rechten geven</string>
+  <string name="contacts_per_device_confirmation">Uw telefooncontacten zullen gekopieerd worden naar dit apparaat, ze kunnen dus gebruikt worden door de toepassing KDE Connect SMS en andere toepassingen.</string>
   <string name="select_ringtone">Selecteer een ringtone</string>
   <string name="telephony_pref_blocked_title">Geblokkeerde nummers</string>
   <string name="telephony_pref_blocked_dialog_desc">Geen oproepen en SMSen vanaf deze nummers tonen. Specificeer één nummer per regel</string>

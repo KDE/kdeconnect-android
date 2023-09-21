@@ -239,7 +239,7 @@
   <string name="pref_plugin_telepathy">Envia un SMS</string>
   <string name="pref_plugin_telepathy_desc">Envia missatges de text des de l\'escriptori</string>
   <string name="pref_plugin_telepathy_mms">Envia un MMS</string>
-  <string name="pref_plugin_telepathy_mms_desc">Per a poder enviar MMS des del KDE Connect cal establir-la com a aplicació predeterminada per a SMS.</string>
+  <string name="pref_plugin_telepathy_mms_desc">Per a poder enviar MMS des del KDE Connect cal establir-la com a aplicació predeterminada d\'SMS.</string>
   <string name="findmyphone_title">Troba el meu telèfon</string>
   <string name="findmyphone_title_tablet">Troba la meva tauleta</string>
   <string name="findmyphone_title_tv">Troba el meu televisor</string>
@@ -258,6 +258,7 @@
   <string name="telephony_permission_explanation">Per a veure les trucades telefòniques des de l\'escriptori, haureu de donar permís d\'accés al registre de trucades telefòniques i a l\'estat del telèfon</string>
   <string name="telephony_optional_permission_explanation">Per a veure un nom de contacte en comptes d\'un número de telèfon, haureu de donar permís als contactes del telèfon</string>
   <string name="contacts_permission_explanation">Per a compartir els vostres contactes amb l\'escriptori, caldrà que els hi doneu permís</string>
+  <string name="contacts_per_device_confirmation">Els contactes del telèfon es copiaran en aquest dispositiu, de manera que puguin ser utilitzats per l\'aplicació d\'SMS del KDE Connect i altres aplicacions.</string>
   <string name="select_ringtone">Seleccioneu un to de la trucada</string>
   <string name="telephony_pref_blocked_title">Nombres blocats</string>
   <string name="telephony_pref_blocked_dialog_desc">No es mostren ni les trucades ni els SMS d\'aquests números. Especifiqueu un número per línia</string>
@@ -389,7 +390,7 @@
   <string name="apple_support">Suport de macOS. Treballant en el suport d\'iOS</string>
   <string name="bug_fixes_and_general_improvements">Esmenes d\'errors i millores generals</string>
   <string name="samoilenko_yuri_task">Implementació d\'SFTP, esmenes d\'errors i millores generals</string>
-  <string name="aniket_kumar_task">Millores en el connector SMS</string>
+  <string name="aniket_kumar_task">Millores en el connector d\'SMS</string>
   <string name="alex_fiestas_task">Millores en el connector de contactes</string>
   <string name="maxim_leshchenko_task">Millores en la IU i ha creat aquesta pàgina</string>
   <string name="holger_kaelberer_task">Connector de teclat remot i esmenes d\'errors</string>
