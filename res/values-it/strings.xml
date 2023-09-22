@@ -258,6 +258,7 @@
   <string name="telephony_permission_explanation">Per vedere le chiamate telefoniche dal desktop devi dare l\'autorizzazione per accedere al registro delle chiamate e allo stato del telefono</string>
   <string name="telephony_optional_permission_explanation">Per vedere il nome di un contatto invece del numero di telefono devi dare accesso alla rubrica del telefono</string>
   <string name="contacts_permission_explanation">Per condividere la tua rubrica con il desktop, devi concedere l\'autorizzazione per i contatti</string>
+  <string name="contacts_per_device_confirmation">I contatti del tuo telefono saranno copiati su questo dispositivo, in modo che possano essere utilizzati dall\'applicazione KDE Connect SMS e da altre applicazioni.</string>
   <string name="select_ringtone">Seleziona una suoneria</string>
   <string name="telephony_pref_blocked_title">Numeri bloccati</string>
   <string name="telephony_pref_blocked_dialog_desc">Non mostrare le chiamate e gli SMS da questi numeri. Specifica un numero per riga</string>
@@ -278,6 +279,7 @@
   <string name="notification_channel_media_control">Controllo multimediale</string>
   <string name="notification_channel_filetransfer">Trasferimento di file in arrivo</string>
   <string name="notification_channel_filetransfer_upload">Trasferimento di file in uscita</string>
+  <string name="notification_channel_filetransfer_error">Errore di trasferimento del file</string>
   <string name="notification_channel_high_priority">Priorità alta</string>
   <string name="mpris_stop">Ferma il lettore attuale</string>
   <string name="copy_url_to_clipboard">Copia l\'URL negli appunti</string>
