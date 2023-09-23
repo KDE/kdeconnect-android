@@ -258,6 +258,7 @@
   <string name="telephony_permission_explanation">För att se telefonsamtal på skrivbordet måste du ge rättigheter för telefonsamtalsloggar och telefontillstånd</string>
   <string name="telephony_optional_permission_explanation">För att se ett kontaktnamn istället för ett telefonnummer måste du ge tillgång till telefonens kontakter</string>
   <string name="contacts_permission_explanation">För att dela kontaktlistan med skrivbordet måste du ge rättigheter för kontakter</string>
+  <string name="contacts_per_device_confirmation">Dina telefonkontakter kopieras över till den här apparaten, så att de kan användas av SMS-programmet i KDE-anslut och andra program.</string>
   <string name="select_ringtone">Välj en ringsignal</string>
   <string name="telephony_pref_blocked_title">Blockerade nummer</string>
   <string name="telephony_pref_blocked_dialog_desc">Visa inte samtal och SMS från dessa nummer. Ange ett nummer per rad.</string>
@@ -278,6 +279,7 @@
   <string name="notification_channel_media_control">Kontroll av media</string>
   <string name="notification_channel_filetransfer">Inkommande filöverföring</string>
   <string name="notification_channel_filetransfer_upload">Utgående filöverföring</string>
+  <string name="notification_channel_filetransfer_error">Filöverföringsfel</string>
   <string name="notification_channel_high_priority">Hög prioritet</string>
   <string name="mpris_stop">Stoppa aktuell spelare</string>
   <string name="copy_url_to_clipboard">Kopiera webbadress till klippbordet</string>
