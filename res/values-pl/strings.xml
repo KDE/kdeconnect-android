@@ -97,6 +97,7 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Wysyłaj jako naciśnięcia klawiszy</string>
   <string name="mouse_receiver_plugin_description">Odbiera ruchy myszy z innego urządzenia do sterowania tym urządzeniem</string>
   <string name="mouse_receiver_plugin_name">Odbieranie myszy</string>
+  <string name="mouse_receiver_no_permissions">Aby móc otrzymywać dotyk zdalnie musisz udzielić uprawnień Dostępności tak, aby mogły one w pełni sterować twoim urządzeniem</string>
   <string name="view_status_title">Stan</string>
   <string name="battery_status_format">Bateria: %d%%</string>
   <string name="battery_status_low_format">Bateria: %d%% niski poziom</string>
@@ -107,6 +108,7 @@
   <string name="device_menu_plugins">Ustawienia wtyczek</string>
   <string name="device_menu_unpair">Odparuj</string>
   <string name="pair_new_device">Sparuj nowe urządzenie</string>
+  <string name="cancel_pairing">Przerwij parowanie</string>
   <string name="unknown_device">Nieznane urządzenie</string>
   <string name="error_not_reachable">Urządzenie nieosiągalne</string>
   <string name="error_already_paired">Urządzenie już sparowano</string>
@@ -197,6 +199,7 @@
     <item>1 minuta</item>
     <item>2 minuty</item>
   </string-array>
+  <string name="mpris_notifications_explanation">Uprawnienia powiadomień są potrzebne, aby móc pokazywać zdalne odtwarzacze na belce powiadomień</string>
   <string name="mpris_notification_settings_title">Pokaż powiadomienia sterowania mediami</string>
   <string name="mpris_notification_settings_summary">Steruje odtwarzaczami bez otwierania KDE Connect</string>
   <string name="share_to">Udostępnij urządzeniu...</string>
@@ -266,10 +269,12 @@
   <string name="optional_permission_explanation">Musisz przydzielić dodatkowe uprawnienia, aby włączyć wszystkie funkcje</string>
   <string name="plugins_need_optional_permission">Niektóre wtyczki mają ograniczone możliwości ze względu na ograniczone uprawnienia (stuknij, aby dowiedzieć się więcej)</string>
   <string name="share_optional_permission_explanation">Aby odbierać pliki musisz zezwolić na dostęp do pamięci</string>
+  <string name="share_notifications_explanation">Aby widzieć postęp podczas wysyłania i pobierania plików musisz zezwolić na powiadomienia</string>
   <string name="telepathy_permission_explanation">Aby czytać i pisać esemesy na innym urządzeniu, należy nadać uprawnienia do esemesów</string>
   <string name="telephony_permission_explanation">Aby widzieć rozmowy telefoniczne na innym urządzeniu, należy nadać uprawnienia do dziennika rozmów i stanu telefonu</string>
   <string name="telephony_optional_permission_explanation">Aby widzieć nazwę kontaktu zamiast numeru telefonu, należy zezwolić na dostęp do kontaktów telefonu</string>
   <string name="contacts_permission_explanation">Aby współdzielić swoją książkę adresową z innym urządzeniem, musisz nadać uprawnienia do kontaktów</string>
+  <string name="contacts_per_device_confirmation">Twoje kontakty telefoniczne zostaną skopiowane na to urządzenie, aby aplikacja do SMSów KDE Connect i inne mogły ich używać.</string>
   <string name="select_ringtone">Wybierz dzwonek</string>
   <string name="telephony_pref_blocked_title">Zablokowane numery</string>
   <string name="telephony_pref_blocked_dialog_desc">Nie pokazuj rozmów, ani SMSów z tych numerów. Podawaj jeden numer na wiersz</string>
@@ -288,6 +293,9 @@
   <string name="notification_channel_default">Inne powiadomienia</string>
   <string name="notification_channel_persistent">Nieznikający wskaźnik</string>
   <string name="notification_channel_media_control">Sterowanie multimediami</string>
+  <string name="notification_channel_filetransfer">Przychodzący plik</string>
+  <string name="notification_channel_filetransfer_upload">Wychodzący plik</string>
+  <string name="notification_channel_filetransfer_error">Błąd przesyłania pliku</string>
   <string name="notification_channel_high_priority">Wysoki priorytet</string>
   <string name="mpris_stop">Zatrzymaj bieżący odtwarzacz</string>
   <string name="copy_url_to_clipboard">Skopiuj adres URL do schowka</string>
@@ -406,4 +414,9 @@
   <string name="everyone_else">Inni którzy współtworzyli KDE Connect na przestrzeni lat</string>
   <string name="send_clipboard">Wysyłanie schowka</string>
   <string name="tap_to_execute">Stuknij, aby wykonać</string>
+  <string name="plugin_stats">Statystyki wtyczek</string>
+  <string name="enable_udp_broadcast">Włącz wykrywanie urządzeń UDP</string>
+  <string name="receive_notifications_permission_explanation">Należy zezwolić na powiadomienia, aby móc je otrzymywać z innych urządzeń</string>
+  <string name="findmyphone_notifications_explanation">Uprawnienia powiadomień są potrzebne, aby telefon mógł dzwonić, gdy aplikacja działa w tle</string>
+  <string name="no_notifications">Powiadomienia są wyłączone, więc nie otrzymasz żadnych próśb o sparowanie.</string>
 </resources>

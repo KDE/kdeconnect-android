@@ -258,6 +258,7 @@
   <string name="telephony_permission_explanation">Para ver as chamadas de teléfono no escritorio ten que dar permiso aos rexistros de chamadas telefónicas e ao estado do teléfono</string>
   <string name="telephony_optional_permission_explanation">Para ver o nome dun contacto en vez dun número de teléfono ten que dar acceso aos contactos do teléfono.</string>
   <string name="contacts_permission_explanation">Para compartir o caderno de contactos co escritorio ten que dar permiso de contactos</string>
+  <string name="contacts_per_device_confirmation">Os contactos do teléfono copiaranse neste dispositivo para que os poidan usar a aplicación de SMS de KDE Connect e outras aplicacións.</string>
   <string name="select_ringtone">Seleccione un ton de chamada</string>
   <string name="telephony_pref_blocked_title">Números bloqueados</string>
   <string name="telephony_pref_blocked_dialog_desc">Non amosar chamadas nin SMS destes números. Indique un número por liña.</string>
@@ -278,6 +279,7 @@
   <string name="notification_channel_media_control">Control de reprodución</string>
   <string name="notification_channel_filetransfer">Transferencia de ficheiros entrante</string>
   <string name="notification_channel_filetransfer_upload">Transferencia de ficheiros saíntes</string>
+  <string name="notification_channel_filetransfer_error">Erro de transferencia de ficheiro</string>
   <string name="notification_channel_high_priority">Prioridade alta</string>
   <string name="mpris_stop">Deter o reprodutor actual</string>
   <string name="copy_url_to_clipboard">Copiar o URL no portapapeis</string>

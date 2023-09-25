@@ -1,10 +1,11 @@
 El KDE Connect proporciona un conjunt de característiques per a integrar el flux de treball entre dispositius:
 
+- Transferiu fitxers entre els vostres dispositius.
+- Accediu als fitxers del telèfon mòbil des de l'ordinador, sense cables.
 - Porta-retalls compartit: copieu i enganxeu entre els dispositius.
-- Compartiu fitxers i URL a l'ordinador des de qualsevol aplicació.
-- Obteniu notificacions de trucades entrants i missatges SMS al vostre PC.
+- Obteniu les notificacions de trucades entrants i missatges a l'ordinador.
 - Ratolí tàctil virtual: utilitzeu la pantalla del telèfon com a ratolí tàctil de l'ordinador.
-- Sincronització de notificacions: llegiu les notificacions de l'Android a l'escriptori.
+- Sincronització de notificacions: accediu a les notificacions del telèfon des de l'ordinador i contesteu els missatges.
 - Control remot multimèdia: utilitzeu el telèfon com a control remot dels reproductors multimèdia Linux.
 - Connexió Wi-Fi: no cal connexió USB ni Bluetooth.
 - Encriptatge TLS d'extrem a extrem: la informació és segura.

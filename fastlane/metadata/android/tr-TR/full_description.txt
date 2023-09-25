@@ -1,7 +1,8 @@
 KDE Bağlan, iş akışınızı aygıtlar arasında tümleştirmek için bir dizi özellik sağlar:
 
+- Aygıtlarınız arasında dosyalar paylaşın.
+- Telefonunuzdaki dosyalara bilgisayarınızdan, kablolar olmadan erişin.
 - Paylaşılan pano: Aygıtlarınız arasında kopyalayıp yapıştırın.
-- Dosyaları ve URL'leri herhangi bir uygulamadan bilgisayarınıza paylaşın.
 - Bilgisayarınıza gelen aramalar ve SMS iletileri için bildirimler alın.
 - Sanal dokunmatik yüzey: Telefon ekranınızı bilgisayarınızın dokunmatik yüzeyi olarak kullanın.
 - Bildirim eşzamanlaması: Android bildirimlerinizi masaüstünden okuyun.

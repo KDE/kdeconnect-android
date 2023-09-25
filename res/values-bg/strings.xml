@@ -258,6 +258,7 @@
   <string name="telephony_permission_explanation">За да виждате телефонни обаждания на работния плот, трябва да дадете разрешение за телефонни обаждания дневници и състояние на телефона</string>
   <string name="telephony_optional_permission_explanation">За да видите име на контакт вместо телефонен номер, трябва да дадете достъп до контактите на телефона</string>
   <string name="contacts_permission_explanation">За да споделите книгата си с контакти с десктопа, трябва да дадете разрешение за контакти разрешение</string>
+  <string name="contacts_per_device_confirmation">Телефонните ви контакти ще бъдат копирани на това устройство, така че те могат да бъдат използвани от приложението за SMS на KDE Connect и от други програми.</string>
   <string name="select_ringtone">Избор на мелодия на звънене</string>
   <string name="telephony_pref_blocked_title">Блокирани номера</string>
   <string name="telephony_pref_blocked_dialog_desc">Не показвайте обажданията и SMS от тези номера. Моля, посочете по един номер за линия</string>
@@ -278,6 +279,7 @@
   <string name="notification_channel_media_control">Контрол на медиите</string>
   <string name="notification_channel_filetransfer">Прехвърляне на входящ файл</string>
   <string name="notification_channel_filetransfer_upload">Прехвърляне на изходящ файл</string>
+  <string name="notification_channel_filetransfer_error">Грешка при прехвърляне на файл</string>
   <string name="notification_channel_high_priority">Висок приоритет</string>
   <string name="mpris_stop">Спиране на текущия плейър</string>
   <string name="copy_url_to_clipboard">Копиране на URL в клипборда</string>
