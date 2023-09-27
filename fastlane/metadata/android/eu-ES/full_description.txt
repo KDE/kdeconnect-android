@@ -1,10 +1,11 @@
 «KDE Connect»ek zure lan-fluxua gailuen artean bateratzeko ezaugarri multzo bat eskaintzen du:
 
+- Zure gailuen arteko fitxategi transferentziak.
+- Atzitu zure telefonoko fitxategiak zure ordenagailutik, haririk gabe.
 - Arbela partekatua: Gailu batetik bestera kopiatu eta itsatsi.
-- Partekatu fitxategiak eta URLak zure ordenagailuarekin edozein aplikaziotatik.
-- Jaso zure ordenagailuan sarrerako deien eta SMS mezuen jakinarazpenak.
+- Jaso zure ordenagailuan sarrerako deien eta mezuen jakinarazpenak.
 - Alegiazko ukimen-sagua: Erabili zure telefonoaren pantaila zure ordenagailuaren ukimen-sagu gisa.
-- Jakinarazpenak sinkronizatzea: Irakurri zure Androideko jakinarazpenak zure mahaigainetik.
+- Jakinarazpenak sinkronizatzea: Atzitu zure telefonoko jakinarazpenak zure ordenagailutik eta erantzun mezuei.
 - Multimediaren urrutiko agintea: Erabili zure telefonoa Linuxeko euskarri jotzaileen urrutiko aginte gisa.
 - Wi-Fi konexioa: Ez da USB kablerik edo bluetooth-ik behar.
 - Muturren arteko TLS zifratzea: Zure informazioa seguru dago.
