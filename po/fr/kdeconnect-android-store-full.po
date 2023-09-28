@@ -1,3 +1,4 @@
+#
 #. extracted from ./metadata/android/en-US/full_description.txt
 msgid ""
 msgstr ""
