@@ -18,6 +18,7 @@ import org.apache.sshd.server.PasswordAuthenticator;
 import org.apache.sshd.server.PublickeyAuthenticator;
 import org.apache.sshd.server.command.ScpCommandFactory;
 import org.apache.sshd.server.kex.DHG14;
+import org.apache.sshd.server.kex.ECDHP256;
 import org.apache.sshd.server.kex.ECDHP384;
 import org.apache.sshd.server.session.ServerSession;
 import org.apache.sshd.server.sftp.SftpSubsystem;
@@ -62,8 +63,10 @@ class SimpleSftpServer {
     void initialize(Context context, Device device) throws GeneralSecurityException {
 
         sshd.setKeyExchangeFactories(Arrays.asList(
-                new ECDHP384.Factory(), // This is the best we have in mina-sshd 0.14.0 -- Upgrading is non-trivial
-                new DHG14.Factory() // Left for backwards-compatibility, but should probably be removed
+                new ECDHP256.Factory(), // ecdh-sha2-nistp256
+                new ECDHP384.Factory(), // ecdh-sha2-nistp384
+                new DHG14_256.Factory(), // diffie-hellman-group14-sha256
+                new DHG14.Factory() // diffie-hellman-group14-sha1. Left for backwards-compatibility.
         ));
 
         //Reuse this device keys for the ssh connection as well
