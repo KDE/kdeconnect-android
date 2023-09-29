@@ -183,6 +183,7 @@
     <item>1 minute</item>
     <item>2 minutes</item>
   </string-array>
+  <string name="mpris_notifications_explanation">Les permissions pour les notifications sont nécessaires pour afficher des supports distants dans le panneau des notifications</string>
   <string name="mpris_notification_settings_title">Afficher la notification de contrôle du lecteur multimédia</string>
   <string name="mpris_notification_settings_summary">Vous permet de contrôler vos lecteurs multimédia sans ouvrir KDE Connect.</string>
   <string name="share_to">Partager vers…</string>
@@ -252,10 +253,12 @@
   <string name="optional_permission_explanation">Vous devez accorder des permissions supplémentaires pour activer toutes les fonctionnalités</string>
   <string name="plugins_need_optional_permission">Certaines fonctionnalités de modules externes sont désactivées faute de permissions suffisantes (tapez pour plus d\'informations) :</string>
   <string name="share_optional_permission_explanation">Pour la réception de fichiers, vous devez autoriser un accès en écriture.</string>
+  <string name="share_notifications_explanation">Pour afficher l\'avancement lors de l\'envoi et de la réception de fichiers, vous devez autoriser les notifications</string>
   <string name="telepathy_permission_explanation">Pour lire et écrire des SMS depuis votre ordinateur, veuillez permettre l\'accès aux SMS</string>
   <string name="telephony_permission_explanation">Pour voir les appels depuis votre ordinateur, veuillez permettre l\'accès au journal des appels et à l\'état du téléphone</string>
   <string name="telephony_optional_permission_explanation">Pour voir le nom du contact au lieu du numéro de téléphone, veuillez permettre l\'accès aux contacts du téléphone</string>
   <string name="contacts_permission_explanation">Pour partager votre carnet de contacts avec votre ordinateur, veuillez permettre l\'accès aux contacts du téléphone</string>
+  <string name="contacts_per_device_confirmation">Vos contacts téléphoniques seront copiés sur ce périphérique. Ainsi, ils pourront être utilisés par l\'application « SMS » de KDEConnect et d\'autres applications.</string>
   <string name="select_ringtone">Sélectionnez une sonnerie</string>
   <string name="telephony_pref_blocked_title">Numéros bloqués</string>
   <string name="telephony_pref_blocked_dialog_desc">Ne pas afficher les appels et les SMS provenant de ces numéros. Veuillez renseigner un numéro par ligne</string>
@@ -274,6 +277,9 @@
   <string name="notification_channel_default">Autres notifications</string>
   <string name="notification_channel_persistent">Notification persistante</string>
   <string name="notification_channel_media_control">Contrôle multimédia</string>
+  <string name="notification_channel_filetransfer">Réception en cours d\'un fichier</string>
+  <string name="notification_channel_filetransfer_upload">Envoi en cours d\'un fichier</string>
+  <string name="notification_channel_filetransfer_error">Erreur de transfert de fichiers</string>
   <string name="notification_channel_high_priority">Haute priorité</string>
   <string name="mpris_stop">Arrêter le lecteur actuel</string>
   <string name="copy_url_to_clipboard">Copier l\'URL dans le presse-papiers</string>
@@ -393,4 +399,8 @@
   <string name="send_clipboard">Envoyer le presse-papier</string>
   <string name="tap_to_execute">Tapotez pour lancer</string>
   <string name="plugin_stats">Statistiques des modules externes</string>
+  <string name="enable_udp_broadcast">Activer la découverte de périphériques « UDP »</string>
+  <string name="receive_notifications_permission_explanation">Les notifications doivent être autorisées pour en recevoir d\'autres périphériques</string>
+  <string name="findmyphone_notifications_explanation">Les permissions pour les notifications sont nécessaires pour que le téléphone puisse sonner lorsque l\'application s\'exécute en tâche de fond</string>
+  <string name="no_notifications">Les notifications sont désactivées,. Vous ne recevrez pas de notifications d\'appairages entrants.</string>
 </resources>
