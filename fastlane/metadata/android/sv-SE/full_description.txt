@@ -1,10 +1,11 @@
 KDE-anslut tillhandahåller en uppsättning funktioner för att integrera ditt arbetsflöde mellan apparater:
 
+- Överför filer mellan apparater.
+- Kom åt filer på telefonen från datorn, utan sladdar.
 - Delat klippbord: kopiera och klistra in mellan dina apparater.
-- Dela filer och webbadresser till din dator från valfritt program.
 - Få underrättelse om inkommande samtal och SMS på din dator.
 - Virtuell pekplatta: Använd din telefonskärm som din dators pekplatta.
-- Synkronisering av underrättelser: Läs dina Android-underrättelser från skrivbordet.
+- Synkronisering av underrättelser: Läs telefonens underrättelser från datorn och svara på textmeddelanden.
 - Multimediafjärrkontroll: Använd din telefon som fjärrkontroll för Linux-mediaspelare.
 - WIFI-anslutning: Ingen USB-kabel eller Blåtand behövs.
 - TLS-kryptering hela vägen: Din information är säker.
