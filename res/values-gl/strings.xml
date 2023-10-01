@@ -321,7 +321,7 @@
   <string name="location_permission_needed_desc">KDE Connect necesita o permiso de localización en segundo planto para saber a que rede WiFi se conectou incluso cando a aplicación está en segundo plano. Isto é porque o nome das redes WiFi ao redor seu podería usarse para descubrir a súa localización, aínda que KDE Connect non faga tal cousa.</string>
   <string name="clipboard_android_x_incompat">Android 10 retirou o acceso ao portapapeis a todas as aplicacións. Desactivarase este complemento.</string>
   <string name="mpris_open_url">Continuar reproducindo aquí</string>
-  <string name="cant_open_url">Non se pode abrir o URL para continuar reproducindo</string>
+  <string name="cant_open_url">Non é posíbel abrir o URL para continuar reproducindo</string>
   <string name="bigscreen_home">Inicio</string>
   <string name="bigscreen_up">Subir</string>
   <string name="bigscreen_left">Esquerda</string>
