@@ -13,6 +13,9 @@ import android.util.Log;
 import org.apache.sshd.SshServer;
 import org.apache.sshd.common.file.nativefs.NativeFileSystemFactory;
 import org.apache.sshd.common.keyprovider.AbstractKeyPairProvider;
+import org.apache.sshd.common.signature.SignatureDSA;
+import org.apache.sshd.common.signature.SignatureECDSA;
+import org.apache.sshd.common.signature.SignatureRSA;
 import org.apache.sshd.common.util.SecurityUtils;
 import org.apache.sshd.server.PasswordAuthenticator;
 import org.apache.sshd.server.PublickeyAuthenticator;
@@ -20,6 +23,7 @@ import org.apache.sshd.server.command.ScpCommandFactory;
 import org.apache.sshd.server.kex.DHG14;
 import org.apache.sshd.server.kex.ECDHP256;
 import org.apache.sshd.server.kex.ECDHP384;
+import org.apache.sshd.server.kex.ECDHP521;
 import org.apache.sshd.server.session.ServerSession;
 import org.apache.sshd.server.sftp.SftpSubsystem;
 import org.kde.kdeconnect.Device;
@@ -62,11 +66,21 @@ class SimpleSftpServer {
 
     void initialize(Context context, Device device) throws GeneralSecurityException {
 
+        sshd.setSignatureFactories(Arrays.asList(
+            new SignatureECDSA.NISTP256Factory(),
+            new SignatureECDSA.NISTP384Factory(),
+            new SignatureECDSA.NISTP521Factory(),
+            new SignatureDSA.Factory(),
+            new SignatureRSASHA256.Factory(),
+            new SignatureRSA.Factory() // Insecure SHA1, left for backwards compatibility
+        ));
+
         sshd.setKeyExchangeFactories(Arrays.asList(
-                new ECDHP256.Factory(), // ecdh-sha2-nistp256
-                new ECDHP384.Factory(), // ecdh-sha2-nistp384
+                new ECDHP256.Factory(),  // ecdh-sha2-nistp256
+                new ECDHP384.Factory(),  // ecdh-sha2-nistp384
+                new ECDHP521.Factory(),  // ecdh-sha2-nistp521
                 new DHG14_256.Factory(), // diffie-hellman-group14-sha256
-                new DHG14.Factory() // diffie-hellman-group14-sha1. Left for backwards-compatibility.
+                new DHG14.Factory()      // Insecure diffie-hellman-group14-sha1, left for backwards-compatibility.
         ));
 
         //Reuse this device keys for the ssh connection as well
