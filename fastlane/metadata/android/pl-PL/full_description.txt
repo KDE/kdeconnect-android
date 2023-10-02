@@ -1,0 +1,21 @@
+KDE Connect daje kila możliwości umożliwiających uwspólnienie ciągów pracy na przestrzeni urządzeń:
+
+- Przenoszenie plików pomiędzy twoimi urządzeniami.
+- Dostęp do plików na twoim telefonie z twojego komputera bez kabli.
+- Współdzielony schowek: kopiuj i wklejaj pomiędzy swoimi urządzeniami.
+- Odbieraj powiadomienia o przychodzących rozmowach i wiadomościach na swoim komputerze.
+- Klawiatura wirtualna: Używaj ekranu swojego telefonu jako gładzika swojego komputera.
+- Synchronizacja powiadomień: Uzyskuj dostęp do powiadomień na swoim telefonie ze zwojego komputera i odpowiadaj na wiadomości.
+- Pilot do multimediów: Używaj swojego telefonu jako pilota do odtwarzaczy multimedialnych na Linuksie.
+- Połączenie WiFi: nie jest potrzebny żaden kabel USB czy bluetooth.
+- Szyfrowanie TLS koniec-do-końca: twoje dane są bezpieczne.
+
+Pamiętaj, że musisz wgrać KDE Connect na swój komputer, aby ta aplikacja zadziałała i utrzymywać jej wersję zgodnie z wersją na Androidzie, aby móc korzystać z jej najnowszych możliwości.
+
+Powiadomienie o wrażliwych uprawnieniach:
+* Uprawnienia dostępności: Wymagane, aby inne urządzenie mogło obsługiwać twój telefon z Androidem, jeśli chcesz skorzystać z możliwości Zdalnej Obsługi.
+* Uprawnienia do położenia w tle: Wymagane, aby wiedzieć do jakiej sieci WiFi jesteś podłączony, jeśli używasz możliwości Zaufanych Sieci.
+
+KDE Connect nigdy nie wysyła żadnych danych do KDE, ani w żadne inne miejsce. KDE Connect wysyła dane z jednego urządzenia na inne bezpośrednio przy użyciu miejscowej sieci, nigdy przez internet i przy wykorzystaniu szyfrowania koniec-do-końca.
+
+Ta aplikacja jest częścią projektu o otwartym kodzie i istnieje dzięki wszystkim ludziom, którzy dołożyli do niej swoją cegiełkę. Odwiedź stronę sieciową, aby pobrać jej kod źródłowy.
