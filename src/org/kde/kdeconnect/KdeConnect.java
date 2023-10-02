@@ -9,6 +9,7 @@ package org.kde.kdeconnect;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -23,6 +24,8 @@ import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect.UserInterface.ThemeUtil;
+import org.kde.kdeconnect_tp.BuildConfig;
+import org.slf4j.impl.HandroidLoggerAdapter;
 
 import java.security.cert.CertificateException;
 import java.util.Set;
@@ -49,6 +52,7 @@ public class KdeConnect extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
+        setupSL4JLogging();
         Log.d("KdeConnect/Application", "onCreate");
         ThemeUtil.setUserPreferredTheme(this);
         DeviceHelper.initializeDeviceId(this);
@@ -58,6 +62,12 @@ public class KdeConnect extends Application {
         NotificationHelper.initializeChannels(this);
         LifecycleHelper.initializeObserver();
         loadRememberedDevicesFromSettings();
+    }
+
+    private void setupSL4JLogging() {
+        HandroidLoggerAdapter.DEBUG = BuildConfig.DEBUG;
+        HandroidLoggerAdapter.ANDROID_API_LEVEL = Build.VERSION.SDK_INT;
+        HandroidLoggerAdapter.APP_NAME = "KDEConnect";
     }
 
     @Override

@@ -174,6 +174,7 @@ dependencies {
     implementation(libs.androidx.gridlayout)
     implementation(libs.material)
     implementation(libs.disklrucache) //For caching album art bitmaps
+    implementation(libs.slf4j.handroid)
 
     implementation(libs.apache.sshd.core)
     implementation(libs.apache.mina.core) //For some reason, makes sshd-core:0.14.0 work without NIO, which isn't available until Android 8 (api 26)

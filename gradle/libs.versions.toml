@@ -38,6 +38,7 @@ sshdCore = "0.14.0"
 swiperefreshlayout = "1.1.0"
 uiToolingPreview = "1.5.1"
 univocityParsers = "2.9.1"
+sl4j = "2.0.4"
 
 [libraries]
 accompanist-themeadapter-material3 = { module = "com.google.accompanist:accompanist-themeadapter-material3", version.ref = "accompanistThemeadapterMaterial3" }
@@ -84,6 +85,7 @@ powermock-module-junit4 = { module = "org.powermock:powermock-module-junit4", ve
 reactive-streams = { module = "org.reactivestreams:reactive-streams", version.ref = "reactiveStreams" }
 rxjava = { module = "io.reactivex.rxjava2:rxjava", version.ref = "rxjava" }
 univocity-parsers = { module = "com.univocity:univocity-parsers", version.ref = "univocityParsers" }
+slf4j-handroid = { group = "com.gitlab.mvysny.slf4j", name = "slf4j-handroid", version.ref = "sl4j" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
