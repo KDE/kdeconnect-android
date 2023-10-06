@@ -384,7 +384,8 @@ internal object AlbumArtCache {
 
             //So notify the mpris plugins of the fetched art
             for (mpris in registeredPlugins) {
-                mpris.fetchedAlbumArt(url.toString())
+                val stringUrl = url.toString()
+                mpris.fetchedAlbumArt(stringUrl)
             }
         } else {
             //Mark the fetch as failed in the memory cache
