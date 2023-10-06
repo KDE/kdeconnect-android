@@ -28,6 +28,7 @@ import java.net.MalformedURLException
 import java.net.URL
 import java.net.URLDecoder
 import java.security.MessageDigest
+import java.util.concurrent.CopyOnWriteArrayList
 
 /**
  * Handles the cache for album art
@@ -67,7 +68,7 @@ internal object AlbumArtCache {
     /**
      * A list of plugins to notify on fetched album art
      */
-    private val registeredPlugins = ArrayList<MprisPlugin>()
+    private val registeredPlugins = CopyOnWriteArrayList<MprisPlugin>()
 
     /**
      * Initializes the disk cache. Needs to be called at least once before trying to use the cache
