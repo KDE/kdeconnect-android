@@ -175,6 +175,7 @@
     <item>1분</item>
     <item>2분</item>
   </string-array>
+  <string name="mpris_notifications_explanation">알림 서랍에 원격 미디어를 표시하려면 알림 권한이 필요합니다</string>
   <string name="mpris_notification_settings_title">미디어 제어 알림 표시</string>
   <string name="mpris_notification_settings_summary">KDE Connect를 열지 않고 미디어 재생기 제어</string>
   <string name="share_to">다음으로 공유…</string>
@@ -244,10 +245,12 @@
   <string name="optional_permission_explanation">모든 기능을 사용하려면 추가 권한이 필요합니다</string>
   <string name="plugins_need_optional_permission">일부 플러그인은 권한이 없어서 비활성화되었습니다(정보를 보려면 누르기):</string>
   <string name="share_optional_permission_explanation">공유된 파일을 받으려면 저장소 접근을 허가해야 합니다</string>
+  <string name="share_notifications_explanation">파일을 보내거나 받을 때 진행 상황을 보려면 알림을 허용해야 합니다</string>
   <string name="telepathy_permission_explanation">데스크톱에서 문자 메시지를 읽고 보내려면 문자 메시지 접근 권한이 필요합니다</string>
   <string name="telephony_permission_explanation">데스크톱에서 통화와 문자 메시지를 보려면 통화 기록 및 휴대폰 상태 접근 권한이 필요합니다</string>
   <string name="telephony_optional_permission_explanation">전화번호 대신 연락처에 등록된 이름을 보려면 주소록 접근 권한이 필요합니다</string>
   <string name="contacts_permission_explanation">데스크톱과 주소록을 공유하려면 주소록 접근 권한이 필요합니다</string>
+  <string name="contacts_per_device_confirmation">휴대폰 연락처를 이 장치로 복사하여 KDE Connect SMS 앱이나 기타 앱에서 사용할 수 있습니다.</string>
   <string name="select_ringtone">벨소리 선택</string>
   <string name="telephony_pref_blocked_title">차단된 번호</string>
   <string name="telephony_pref_blocked_dialog_desc">다음 번호에서 걸려 온 통화나 보낸 문자를 표시하지 않습니다. 한 줄당 하나의 번호를 지정하십시오</string>
@@ -266,6 +269,9 @@
   <string name="notification_channel_default">기타 알림</string>
   <string name="notification_channel_persistent">항상 표시된 표시기</string>
   <string name="notification_channel_media_control">미디어 제어</string>
+  <string name="notification_channel_filetransfer">받는 파일 전송 요청</string>
+  <string name="notification_channel_filetransfer_upload">보내는 파일 전송</string>
+  <string name="notification_channel_filetransfer_error">파일 전송 오류</string>
   <string name="notification_channel_high_priority">높은 우선 순위</string>
   <string name="mpris_stop">현재 재생기 정지</string>
   <string name="copy_url_to_clipboard">클립보드로 URL 복사</string>
@@ -385,4 +391,8 @@
   <string name="send_clipboard">클립보드 보내기</string>
   <string name="tap_to_execute">실행하려면 누르십시오</string>
   <string name="plugin_stats">플러그인 통계</string>
+  <string name="enable_udp_broadcast">UDP 서비스 발견 활성화</string>
+  <string name="receive_notifications_permission_explanation">다른 장치에서 알림을 받으려면 알림을 허용해야 합니다</string>
+  <string name="findmyphone_notifications_explanation">앱이 백그라운드에서 실행 중일 때 장치를 울리게 하려면 알림 권한이 필요합니다</string>
+  <string name="no_notifications">알림이 비활성화되어 있습니다. 들어오는 페어링 알림을 받을 수 없습니다</string>
 </resources>
