@@ -250,6 +250,7 @@
   <string name="telephony_permission_explanation">要桌面上查看手机通话记录，您需要授予访问通话记录和手机状态的权限</string>
   <string name="telephony_optional_permission_explanation">要查看联系人姓名而非电话号码，您需要授予访问手机通讯录的权限</string>
   <string name="contacts_permission_explanation">要与桌面共享通讯薄，您需要给予联系人权限</string>
+  <string name="contacts_per_device_confirmation">您的手机联系人将被复制到此设备，以便让 KDE Connect 短信应用和其他应用使用。</string>
   <string name="select_ringtone">选择铃声</string>
   <string name="telephony_pref_blocked_title">已屏蔽的号码</string>
   <string name="telephony_pref_blocked_dialog_desc">不要显示来自这些号码的电话和短信。一行一个号码</string>
@@ -270,6 +271,7 @@
   <string name="notification_channel_media_control">媒体控制</string>
   <string name="notification_channel_filetransfer">正在传入的文件传输</string>
   <string name="notification_channel_filetransfer_upload">正在传出的文件传输</string>
+  <string name="notification_channel_filetransfer_error">文件传输出错</string>
   <string name="notification_channel_high_priority">高优先级</string>
   <string name="mpris_stop">停止但前播放器</string>
   <string name="copy_url_to_clipboard">复制 URL 到剪贴板</string>
