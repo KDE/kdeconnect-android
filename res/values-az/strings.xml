@@ -97,6 +97,7 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Düymə vuruşu kimi göndərmək</string>
   <string name="mouse_receiver_plugin_description">Uzaqdakı siçanın hərəkətini qəbul etmək</string>
   <string name="mouse_receiver_plugin_name">Siçanı qəbul edən</string>
+  <string name="mouse_receiver_no_permissions">Cihazı tam idarə edə bilməklə toxunuşları məsafədən ala bilmək üçün \"Xüsusi imkanlar\" funksiyasına icazələri qəbul etməlisiniz</string>
   <string name="view_status_title">Vəziyyət</string>
   <string name="battery_status_format">Batareya: %d%%</string>
   <string name="battery_status_low_format">Batareya: %d%% Zəif batareya</string>
@@ -182,6 +183,7 @@
     <item>1 dəqiqə</item>
     <item>2 dəqiqə</item>
   </string-array>
+  <string name="mpris_notifications_explanation">Bildirişlər çəkməcəsində məsafədəki medianı göstərmək üçün bildiriş icazələri lazımdır</string>
   <string name="mpris_notification_settings_title">Media idarəetmə bildirişlərini göstərmək</string>
   <string name="mpris_notification_settings_summary">KDE Connect açmadan media oynadıcınızın idarəsinə icazə vermək</string>
   <string name="share_to">Paylaşmaq...</string>
@@ -251,10 +253,12 @@
   <string name="optional_permission_explanation">Bütün funksiyaların işləməsi üçün əlavə icazələr verməlisiniz</string>
   <string name="plugins_need_optional_permission">Bəzi qoşmalarda icazə çatışmamazlığı səbəbindən bir sıra imkanlar söndürülmüşdür (daha çox məlumat üçün toxunun)</string>
   <string name="share_optional_permission_explanation">Faylları qəbul etmək üçün yaddaşa girişə icazə verilməlidirü</string>
+  <string name="share_notifications_explanation">Göndərmə və qəbul etmə gedişatını görə bilmək üçün bildirişlərə icazə verməlisiniz</string>
   <string name="telepathy_permission_explanation">İş Masanızdan telefonunuzdakı SMS\'ləri oxumaq və SMS göndərmək üçün SMS\'ə girişə icazə verməlisiniz</string>
   <string name="telephony_permission_explanation">İş Masanızda telefon zənglərini görmək üçün Zəng Tarixçəsinə və Zəng yığımı vəziyyətinə icazə verməlisiniz</string>
   <string name="telephony_optional_permission_explanation">Telefon nömrəsi əvəzinə əlaqənin adını görmək üçün Əlaqə Kitabçasına girişə icazə verməlisiniz</string>
   <string name="contacts_permission_explanation">İş masası vasitəsi ilə əlaqələr kitabçasını paylaşmaq üçün əlaqələra girişə icazə verməlisiniz</string>
+  <string name="contacts_per_device_confirmation">Telefon əlaqələriniz bu cihaza kopyalanacaq, belə ki, onlar KDE Connect SMS və başqa tətbiqlər tərəfindən istifadə oluna bilər.</string>
   <string name="select_ringtone">Zəng səsini seçmək</string>
   <string name="telephony_pref_blocked_title">Əngəllənmiş nömrələr</string>
   <string name="telephony_pref_blocked_dialog_desc">Bu nömrədən SMS və zənglər göstərilməsin. Hər sətirdə bir nömrə göstərin</string>
