@@ -258,6 +258,7 @@
   <string name="telephony_permission_explanation">மேசைக்கணினியிலிருந்து அழைப்புகளைக் காண நீங்கள் அழைப்பு வரலாறு மற்றும் தொலைபேசி நிலைக்கான அனுமதியைத் தர வேண்டும்</string>
   <string name="telephony_optional_permission_explanation">தொலைபேசி எண்ணுக்குப் பதிலாக நபரின் பெயரைக் காண நீங்கள் தொடர்புகளை அணுகும் அனுமதியைத் தர வேண்டும்</string>
   <string name="contacts_permission_explanation">உங்கள் தொடர்பு பட்டியலை மேசைக்கணினியுடன் பகிர நீங்கள் தொடர்புகளை அணுகுவதற்கான அனுமதியை தர வேண்டும்</string>
+  <string name="contacts_per_device_confirmation">கே.டீ.யீ. கனெக்ட் குறுஞ்செய்தி செயலியும் மற்ற செயலிகளும் பயன்படுத்தக்கூடிய வகையில் உங்கள் கைபேசியிலுள்ள தொடர்புகள் இச்சாதனத்திற்கு நகலெடுக்கப்படும்.</string>
   <string name="select_ringtone">மணியோசையைத் தேர்ந்தெடு</string>
   <string name="telephony_pref_blocked_title">தடுக்கப்பட்ட எண்கள்</string>
   <string name="telephony_pref_blocked_dialog_desc">இந்த எண்களிலிருந்து அழைப்புகள் மற்றும் SMS-கள் காட்டப்படா. வரிக்கு ஓர் எண்ணை மட்டும் குறிப்பிடவும்</string>
@@ -276,6 +277,9 @@
   <string name="notification_channel_default">பிற அறிவிப்புகள்</string>
   <string name="notification_channel_persistent">விடாப்பிடி அறிவிப்பு</string>
   <string name="notification_channel_media_control">ஊடக கட்டுப்பாடு</string>
+  <string name="notification_channel_filetransfer">உள்வரும் கோப்பு</string>
+  <string name="notification_channel_filetransfer_upload">வெளிசெல்லும் கோப்பு</string>
+  <string name="notification_channel_filetransfer_error">கோப்பு இடமாற்ற சிக்கல்</string>
   <string name="notification_channel_high_priority">அதிக முன்னுரிமை</string>
   <string name="mpris_stop">தற்போதைய இயக்கியை நிறுத்து</string>
   <string name="copy_url_to_clipboard">முகவரியை பிடிப்புப்பலகையில் நகலெடு</string>
