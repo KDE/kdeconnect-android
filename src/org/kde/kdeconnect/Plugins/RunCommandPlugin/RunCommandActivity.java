@@ -23,6 +23,7 @@ import androidx.core.content.ContextCompat;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.KdeConnect;
 import org.kde.kdeconnect.UserInterface.List.ListAdapter;
 import org.kde.kdeconnect_tp.R;
@@ -52,8 +53,7 @@ public class RunCommandActivity extends AppCompatActivity {
         commandItems = new ArrayList<>();
         for (JSONObject obj : plugin.getCommandList()) {
             try {
-                commandItems.add(new CommandEntry(obj.getString("name"),
-                        obj.getString("command"), obj.getString("key")));
+                commandItems.add(new CommandEntry(obj));
             } catch (JSONException e) {
                 Log.e("RunCommand", "Error parsing JSON", e);
             }
@@ -71,8 +71,8 @@ public class RunCommandActivity extends AppCompatActivity {
         if (!plugin.canAddCommand()) {
             text += "\n" + getString(R.string.addcommand_explanation2);
         }
-        binding.addComandExplanation.setText(text);
-        binding.addComandExplanation.setVisibility(commandItems.isEmpty() ? View.VISIBLE : View.GONE);
+        binding.addCommandExplanation.setText(text);
+        binding.addCommandExplanation.setVisibility(commandItems.isEmpty() ? View.VISIBLE : View.GONE);
     }
 
     @Override
@@ -87,21 +87,25 @@ public class RunCommandActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         deviceId = getIntent().getStringExtra("deviceId");
-        RunCommandPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId,RunCommandPlugin.class);
-        if (plugin != null) {
-            if (plugin.canAddCommand()) {
-                binding.addCommandButton.show();
-            } else {
-                binding.addCommandButton.hide();
+        Device device = KdeConnect.getInstance().getDevice(deviceId);
+        if (device != null) {
+            getSupportActionBar().setSubtitle(device.getName());
+            RunCommandPlugin plugin = device.getPlugin(RunCommandPlugin.class);
+            if (plugin != null) {
+                if (plugin.canAddCommand()) {
+                    binding.addCommandButton.show();
+                } else {
+                    binding.addCommandButton.hide();
+                }
+                binding.addCommandButton.setOnClickListener(v -> {
+                    plugin.sendSetupPacket();
+                    new AlertDialog.Builder(RunCommandActivity.this)
+                            .setTitle(R.string.add_command)
+                            .setMessage(R.string.add_command_description)
+                            .setPositiveButton(R.string.ok, null)
+                            .show();
+                });
             }
-            binding.addCommandButton.setOnClickListener(v -> {
-                plugin.sendSetupPacket();
-                new AlertDialog.Builder(RunCommandActivity.this)
-                        .setTitle(R.string.add_command)
-                        .setMessage(R.string.add_command_description)
-                        .setPositiveButton(R.string.ok, null)
-                        .show();
-            });
         }
         updateView();
     }

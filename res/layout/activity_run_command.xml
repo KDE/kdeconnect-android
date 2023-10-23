@@ -43,7 +43,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
             app:layout_anchorGravity="bottom|end" />
 
         <TextView
-            android:id="@+id/add_comand_explanation"
+            android:id="@+id/add_command_explanation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

@@ -20,19 +20,22 @@ import org.kde.kdeconnect_tp.R
 
 internal class RunCommandWidgetDataProvider(private val context: Context, val intent: Intent?) : RemoteViewsFactory {
 
-    private lateinit var deviceId : String
+    private var deviceId : String? = null
     private var widgetId : Int = AppWidgetManager.INVALID_APPWIDGET_ID
 
     override fun onCreate() {
         widgetId = intent?.getIntExtra(EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID) ?: AppWidgetManager.INVALID_APPWIDGET_ID
         if (widgetId == AppWidgetManager.INVALID_APPWIDGET_ID) {
-            Log.e("KDEConnect/Widget", "RunCommandWidgetDataProvider: No widget id extra set")
+            Log.e("KDEConnect/Widget", "RunCommandWidgetDataProvider: No widget id extra was set")
             return
         }
-        deviceId = loadWidgetDeviceIdPref(context, widgetId)!!
+        deviceId = loadWidgetDeviceIdPref(context, widgetId)
     }
 
-    override fun onDataSetChanged() {}
+    override fun onDataSetChanged() {
+        deviceId = loadWidgetDeviceIdPref(context, widgetId)
+    }
+
     override fun onDestroy() {}
 
     private fun getPlugin(): RunCommandPlugin? {
@@ -48,7 +51,11 @@ internal class RunCommandWidgetDataProvider(private val context: Context, val in
 
         val plugin : RunCommandPlugin? = getPlugin()
         if (plugin == null) {
-            Log.e("getViewAt", "RunCommandWidgetDataProvider: Plugin not found");
+            // Either the deviceId was null, or the plugin is not available.
+            if (deviceId != null) {
+                Log.e("getViewAt", "RunCommandWidgetDataProvider: Plugin not found")
+            }
+            // Return a new, not-configured layout as a fallback
             return remoteView
         }
 

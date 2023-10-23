@@ -13,6 +13,7 @@ import android.graphics.drawable.Icon
 import android.os.Build
 import android.service.controls.Control
 import android.service.controls.ControlsProviderService
+import android.service.controls.DeviceTypes
 import android.service.controls.actions.CommandAction
 import android.service.controls.actions.ControlAction
 import android.service.controls.templates.StatelessTemplate
@@ -23,16 +24,16 @@ import io.reactivex.Flowable
 import io.reactivex.processors.ReplayProcessor
 import org.json.JSONArray
 import org.json.JSONException
+import org.json.JSONObject
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect.UserInterface.MainActivity
 import org.kde.kdeconnect_tp.R
 import org.reactivestreams.FlowAdapters
-import java.util.*
 import java.util.concurrent.Flow
 import java.util.function.Consumer
 
-private class CommandEntryWithDevice(name: String, cmd: String, key: String, val device: Device) : CommandEntry(name, cmd, key)
+private class CommandEntryWithDevice(o: JSONObject, val device: Device) : CommandEntry(o)
 
 @RequiresApi(Build.VERSION_CODES.R)
 class RunCommandControlsProviderService : ControlsProviderService() {
@@ -56,23 +57,13 @@ class RunCommandControlsProviderService : ControlsProviderService() {
         for (controlId in controlIds) {
             val commandEntry = getCommandByControlId(controlId)
             if (commandEntry != null && commandEntry.device.isReachable) {
-                updatePublisher.onNext(Control.StatefulBuilder(controlId, getIntent(commandEntry.device))
-                        .setTitle(commandEntry.name)
-                        .setSubtitle(commandEntry.command)
-                        .setStructure(commandEntry.device.name)
+                updatePublisher.onNext(createStatefulBuilder(commandEntry, controlId)
                         .setStatus(Control.STATUS_OK)
                         .setStatusText(getString(R.string.tap_to_execute))
-                        .setControlTemplate(StatelessTemplate(commandEntry.key))
-                        .setCustomIcon(Icon.createWithResource(this, R.drawable.run_command_plugin_icon_24dp))
                         .build())
             } else if (commandEntry != null && commandEntry.device.isPaired && !commandEntry.device.isReachable) {
-                updatePublisher.onNext(Control.StatefulBuilder(controlId, getIntent(commandEntry.device))
-                        .setTitle(commandEntry.name)
-                        .setSubtitle(commandEntry.command)
-                        .setStructure(commandEntry.device.name)
+                updatePublisher.onNext(createStatefulBuilder(commandEntry, controlId)
                         .setStatus(Control.STATUS_DISABLED)
-                        .setControlTemplate(StatelessTemplate(commandEntry.key))
-                        .setCustomIcon(Icon.createWithResource(this, R.drawable.run_command_plugin_icon_24dp))
                         .build())
             } else {
                 updatePublisher.onNext(Control.StatefulBuilder(controlId, getIntent(commandEntry?.device))
@@ -101,14 +92,9 @@ class RunCommandControlsProviderService : ControlsProviderService() {
                     consumer.accept(ControlAction.RESPONSE_FAIL)
                 }
 
-                updatePublisher.onNext(Control.StatefulBuilder(controlId, getIntent(commandEntry.device))
-                        .setTitle(commandEntry.name)
-                        .setSubtitle(commandEntry.command)
-                        .setStructure(commandEntry.device.name)
+                updatePublisher.onNext(createStatefulBuilder(commandEntry, controlId)
                         .setStatus(Control.STATUS_OK)
                         .setStatusText(getString(R.string.tap_to_execute))
-                        .setControlTemplate(StatelessTemplate(commandEntry.key))
-                        .setCustomIcon(Icon.createWithResource(this, R.drawable.run_command_plugin_icon_24dp))
                         .build())
             }
         }
@@ -126,7 +112,7 @@ class RunCommandControlsProviderService : ControlsProviderService() {
 
             for (index in 0 until jsonArray.length()) {
                 val jsonObject = jsonArray.getJSONObject(index)
-                commandList.add(CommandEntryWithDevice(jsonObject.getString("name"), jsonObject.getString("command"), jsonObject.getString("key"), device))
+                commandList.add(CommandEntryWithDevice(jsonObject, device))
             }
 
             commandList
@@ -151,7 +137,7 @@ class RunCommandControlsProviderService : ControlsProviderService() {
             if (plugin != null) {
                 for (jsonObject in plugin.commandList) {
                     try {
-                        commandList.add(CommandEntryWithDevice(jsonObject.getString("name"), jsonObject.getString("command"), jsonObject.getString("key"), device))
+                        commandList.add(CommandEntryWithDevice(jsonObject, device))
                     } catch (error: JSONException) {
                         Log.e("RunCommand", "Error parsing JSON", error)
                     }
@@ -171,7 +157,7 @@ class RunCommandControlsProviderService : ControlsProviderService() {
 
         val commandList = if (device.isReachable) {
             device.getPlugin(RunCommandPlugin::class.java)?.commandList?.map { jsonObject ->
-                CommandEntryWithDevice(jsonObject.getString("name"), jsonObject.getString("command"), jsonObject.getString("key"), device)
+                CommandEntryWithDevice(jsonObject, device)
             }
         } else {
             getSavedCommandsList(device)
@@ -187,9 +173,29 @@ class RunCommandControlsProviderService : ControlsProviderService() {
         }
     }
 
+    private fun createStatefulBuilder(commandEntry: CommandEntryWithDevice, controlId: String): Control.StatefulBuilder {
+        if (!this::sharedPreferences.isInitialized) {
+            sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        }
+        val useNameForTitle = sharedPreferences.getBoolean(getString(R.string.set_runcommand_name_as_title), true)
+
+        return Control.StatefulBuilder(controlId, getIntent(commandEntry.device))
+                .setTitle(if (useNameForTitle) commandEntry.name else commandEntry.command)
+                .setSubtitle(if (useNameForTitle) commandEntry.command else commandEntry.name)
+                .setStructure(commandEntry.device.name)
+                .setControlTemplate(StatelessTemplate(commandEntry.key))
+                .setDeviceType(DeviceTypes.TYPE_ROUTINE)
+                .setCustomIcon(Icon.createWithResource(this, R.drawable.run_command_plugin_icon_24dp))
+    }
+
     private fun getIntent(device: Device?): PendingIntent {
-        val intent = Intent(Intent.ACTION_MAIN).setClass(this, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        intent.putExtra(MainActivity.EXTRA_DEVICE_ID, device?.deviceId)
+        val target = if (device?.isReachable == true) RunCommandActivity::class else MainActivity::class
+
+        val intent = Intent(Intent.ACTION_MAIN)
+                .setClass(this, target.java)
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                .putExtra(MainActivity.EXTRA_DEVICE_ID, device?.deviceId)
+
         return PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
     }
 }

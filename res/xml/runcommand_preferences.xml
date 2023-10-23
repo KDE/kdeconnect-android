@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+SPDX-FileCopyrightText: 2023 Philip Cohn-Cort <cliabhach@gmail.com>
+
+SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
+-->
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:keep="@xml/runcommand_preferences">
+
+    <org.kde.kdeconnect.Helpers.LongSummaryPreferenceCategory
+        android:title="@string/runcommand_category_device_controls_title"
+        android:key="@string/runcommand_category_device_controls"
+        android:summary="@string/runcommand_device_controls_summary"
+        >
+
+        <SwitchPreference
+            android:id="@+id/runcommand_name_as_title_preference"
+            android:defaultValue="true"
+            android:key="@string/set_runcommand_name_as_title"
+            android:summary="Name -> title"
+            android:summaryOff="Name -> subtitle"
+            android:title="@string/runcommand_name_as_title_title"
+            />
+
+    </org.kde.kdeconnect.Helpers.LongSummaryPreferenceCategory>
+
+</PreferenceScreen>

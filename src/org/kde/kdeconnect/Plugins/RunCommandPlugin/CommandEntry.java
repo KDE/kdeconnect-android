@@ -6,10 +6,18 @@
 
 package org.kde.kdeconnect.Plugins.RunCommandPlugin;
 
+import androidx.annotation.NonNull;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.kde.kdeconnect.UserInterface.List.EntryItem;
 
 class CommandEntry extends EntryItem {
     private final String key;
+
+    public CommandEntry(@NonNull JSONObject o) throws JSONException {
+        this(o.getString("name"), o.getString("command"), o.getString("key"));
+    }
 
     public CommandEntry(String name, String cmd, String key) {
         super(name, cmd);

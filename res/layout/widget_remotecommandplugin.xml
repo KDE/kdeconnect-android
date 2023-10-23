@@ -16,13 +16,14 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     tools:ignore="RtlSymmetry">
 
     <LinearLayout
-        android:id="@+id/runcommandWidgetTitleHeader"
+        android:id="@+id/widget_title_wrapper"
         android:background="@color/on_secondary"
         android:gravity="center_vertical|start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
+            android:id="@+id/widget_title_icon"
             android:padding="8dip"
             android:paddingEnd="6dip"
             android:layout_width="wrap_content"
@@ -33,7 +34,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
             tools:ignore="UseAppTint"/> <!-- can't use app:tint in RemoteView -->
 
         <TextView
-            android:id="@+id/runcommandWidgetTitle"
+            android:id="@+id/widget_title_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="marquee"
@@ -45,7 +46,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     </LinearLayout>
 
     <ListView
-        android:id="@+id/run_commands_list"
+        android:id="@+id/widget_command_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:addStatesFromChildren="true"
@@ -53,7 +54,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
         android:orientation="vertical" />
 
     <TextView
-        android:id="@+id/not_reachable_message"
+        android:id="@+id/widget_error_text"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:drawablePadding="8dip"

@@ -18,20 +18,22 @@ import android.util.Log;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.preference.PreferenceManager;
 
+import org.apache.commons.collections4.iterators.IteratorIterable;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
+import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Iterator;
 
 @PluginFactory.LoadablePlugin
 public class RunCommandPlugin extends Plugin {
@@ -79,6 +81,17 @@ public class RunCommandPlugin extends Plugin {
     }
 
     @Override
+    public boolean hasSettings() {
+        return true;
+    }
+
+    @Nullable
+    @Override
+    public PluginSettingsFragment getSettingsFragment(Activity activity) {
+        return PluginSettingsFragment.newInstance(getPluginKey(), R.xml.runcommand_preferences);
+    }
+
+    @Override
     public @DrawableRes int getIcon() {
         return R.drawable.run_command_plugin_icon_24dp;
     }
@@ -98,20 +111,14 @@ public class RunCommandPlugin extends Plugin {
             try {
                 commandItems.clear();
                 JSONObject obj = new JSONObject(np.getString("commandList"));
-                Iterator<String> keys = obj.keys();
-                while (keys.hasNext()) {
-                    String s = keys.next();
+                for (String s : new IteratorIterable<>(obj.keys())) {
                     JSONObject o = obj.getJSONObject(s);
                     o.put("key", s);
                     commandList.add(o);
 
                     try {
                         commandItems.add(
-                                new CommandEntry(
-                                        o.getString("name"),
-                                        o.getString("command"),
-                                        o.getString("key")
-                                )
+                                new CommandEntry(o)
                         );
                     } catch (JSONException e) {
                         Log.e("RunCommand", "Error parsing JSON", e);
@@ -128,7 +135,9 @@ public class RunCommandPlugin extends Plugin {
                         array.put(command);
                     }
 
-                    sharedPreferences.edit().putString(KEY_COMMANDS_PREFERENCE + device.getDeviceId(), array.toString()).apply();
+                    sharedPreferences.edit()
+                            .putString(KEY_COMMANDS_PREFERENCE + device.getDeviceId(), array.toString())
+                            .apply();
                 }
 
                 forceRefreshWidgets(context);
@@ -189,7 +198,7 @@ public class RunCommandPlugin extends Plugin {
         return context.getString(R.string.pref_plugin_runcommand);
     }
 
-    public boolean canAddCommand(){
+    public boolean canAddCommand() {
         return canAddCommand;
     }
 
