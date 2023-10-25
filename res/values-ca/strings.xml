@@ -287,7 +287,11 @@
   <string name="runcommand_notreachable">No es pot accedir al dispositiu</string>
   <string name="runcommand_notpaired">El dispositiu no està aparellat</string>
   <string name="runcommand_nosuchdevice">El dispositiu no existeix</string>
-  <string name="runcommand_noruncommandplugin">Aquest dispositiu no té el connector d\'executar ordres activat</string>
+  <string name="runcommand_noruncommandplugin">Aquest dispositiu no té activat el connector d\'executar ordres</string>
+  <string name="runcommand_category_device_controls_title">Controls del dispositiu</string>
+  <string name="runcommand_device_controls_summary">Si el vostre dispositiu admet controls de dispositiu, les ordres que hàgiu configurat apareixeran allí.</string>
+  <string name="set_runcommand_name_as_title">estableix_nom_ordre_executar_com_a_títol</string>
+  <string name="runcommand_name_as_title_title">Mostra el nom com a títol</string>
   <string name="pref_plugin_findremotedevice">Cerca el dispositiu remot</string>
   <string name="pref_plugin_findremotedevice_desc">Truca al dispositiu remot</string>
   <string name="ring">Truca</string>

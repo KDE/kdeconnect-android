@@ -288,6 +288,10 @@
   <string name="runcommand_notpaired">Aygıt eşleştirilmedi</string>
   <string name="runcommand_nosuchdevice">Böyle bir aygıt yok</string>
   <string name="runcommand_noruncommandplugin">Bu aygıtta Komut Çalıştır Eklentisi etkin değil</string>
+  <string name="runcommand_category_device_controls_title">Aygıt Denetimleri</string>
+  <string name="runcommand_device_controls_summary">Aygıtınız Aygıt Denetimleri\'ni destekliyorsa yapılandırdığınız komutlar orada görünür.</string>
+  <string name="set_runcommand_name_as_title">çalıştırılacak_komut_adını_başlık_olarak_ayarla</string>
+  <string name="runcommand_name_as_title_title">Adı başlık olarak göster</string>
   <string name="pref_plugin_findremotedevice">Uzak aygıtı bul</string>
   <string name="pref_plugin_findremotedevice_desc">Uzak aygıtı çaldır</string>
   <string name="ring">Zil sesi</string>

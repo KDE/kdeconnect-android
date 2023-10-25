@@ -304,6 +304,10 @@
   <string name="runcommand_notpaired">Пристрій не пов’язано</string>
   <string name="runcommand_nosuchdevice">Такого пристрою не існує</string>
   <string name="runcommand_noruncommandplugin">Для цього пристрою не увімкнено додаток виконання команд</string>
+  <string name="runcommand_category_device_controls_title">Керування пристроєм</string>
+  <string name="runcommand_device_controls_summary">Якщо на вашому пристрої передбачено підтримку засобів керування пристроєм, тут буде показано налаштовані вами команди.</string>
+  <string name="set_runcommand_name_as_title">set_runcommand_name_as_title</string>
+  <string name="runcommand_name_as_title_title">Показувати назву як заголовок</string>
   <string name="pref_plugin_findremotedevice">Знайти віддалений пристрій</string>
   <string name="pref_plugin_findremotedevice_desc">Дзвінок на вашому віддаленому пристрої</string>
   <string name="ring">Дзвінок</string>

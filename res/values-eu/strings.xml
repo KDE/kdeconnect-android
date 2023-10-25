@@ -288,6 +288,10 @@
   <string name="runcommand_notpaired">Gailua ez dago parekatua</string>
   <string name="runcommand_nosuchdevice">Ez dago halako gailurik</string>
   <string name="runcommand_noruncommandplugin">Gailu honek ez dauka gaituta «Exekutatu Komandoa» plugina</string>
+  <string name="runcommand_category_device_controls_title">Gailuaren aginteak</string>
+  <string name="runcommand_device_controls_summary">Zure gailuak Gailuen Aginteak onartzen baditu, konfiguratu dituzun komandoak hemen agertuko dira.</string>
+  <string name="set_runcommand_name_as_title">ezarri_exekuziokomando_izena_titulu_gisa</string>
+  <string name="runcommand_name_as_title_title">Erakutsi izena titulu gisa</string>
   <string name="pref_plugin_findremotedevice">Aurkitu urruneko gailua</string>
   <string name="pref_plugin_findremotedevice_desc">Jo zure urruneko gailuaren tonua</string>
   <string name="ring">Tonua jo</string>

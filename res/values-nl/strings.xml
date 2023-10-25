@@ -288,6 +288,10 @@
   <string name="runcommand_notpaired">Apparaat is niet gepaard</string>
   <string name="runcommand_nosuchdevice">Dit apparaat bestaat niet</string>
   <string name="runcommand_noruncommandplugin">Dit apparaat heeft de \"Run Command Plugin\" niet ingeschakeld</string>
+  <string name="runcommand_category_device_controls_title">Besturing van apparaat</string>
+  <string name="runcommand_device_controls_summary">Als uw apparaat besturing ondersteunt, zullen commando\'s die u hebt geconfigureerd daar verschijnen.</string>
+  <string name="set_runcommand_name_as_title">set_runcommand_name_as_title</string>
+  <string name="runcommand_name_as_title_title">Naam als titel tonen</string>
   <string name="pref_plugin_findremotedevice">Apparaat op afstand zoeken</string>
   <string name="pref_plugin_findremotedevice_desc">Maak een oproep naar uw apparaat op afstand</string>
   <string name="ring">Oproep doen</string>

@@ -304,6 +304,10 @@
   <string name="runcommand_notpaired">Naprava ni uparjena</string>
   <string name="runcommand_nosuchdevice">Ni take naprave</string>
   <string name="runcommand_noruncommandplugin">Ta naprava nima omogočenega vtičnika za zagonski ukaz</string>
+  <string name="runcommand_category_device_controls_title">Nadzor naprave</string>
+  <string name="runcommand_device_controls_summary">Če vaša naprava podpira nadzor naprave, se tam prikažejo ukazi, ki ste jih konfigurirali.</string>
+  <string name="set_runcommand_name_as_title">nastavi_ukaz_ime_kot_naslov</string>
+  <string name="runcommand_name_as_title_title">Prikaži ime kot naslov</string>
   <string name="pref_plugin_findremotedevice">Najdi oddaljeno napravo</string>
   <string name="pref_plugin_findremotedevice_desc">Zazvonite vašo oddaljeno napravo</string>
   <string name="ring">Zazvoni</string>
