@@ -288,6 +288,10 @@
   <string name="runcommand_notpaired">Apparat inte ihopparad</string>
   <string name="runcommand_nosuchdevice">Det finns ingen sådan apparat</string>
   <string name="runcommand_noruncommandplugin">Apparaten har inte insticksprogrammet Kör kommando aktiverat</string>
+  <string name="runcommand_category_device_controls_title">Apparatkontroller</string>
+  <string name="runcommand_device_controls_summary">Om apparaten stöder apparatkontroller, visas kommandon som har ställts in där.</string>
+  <string name="set_runcommand_name_as_title">set_runcommand_name_as_title</string>
+  <string name="runcommand_name_as_title_title">Visa namn som rubrik</string>
   <string name="pref_plugin_findremotedevice">Hitta extern apparat</string>
   <string name="pref_plugin_findremotedevice_desc">Ring till extern apparat</string>
   <string name="ring">Ring</string>
