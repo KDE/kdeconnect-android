@@ -6,13 +6,17 @@
 
 package org.kde.kdeconnect;
 
+import android.Manifest;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
@@ -23,6 +27,7 @@ import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
+import org.kde.kdeconnect.UserInterface.MainActivity;
 import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import org.kde.kdeconnect_tp.BuildConfig;
 import org.slf4j.impl.HandroidLoggerAdapter;
@@ -62,6 +67,7 @@ public class KdeConnect extends Application {
         NotificationHelper.initializeChannels(this);
         LifecycleHelper.initializeObserver();
         loadRememberedDevicesFromSettings();
+
     }
 
     private void setupSL4JLogging() {

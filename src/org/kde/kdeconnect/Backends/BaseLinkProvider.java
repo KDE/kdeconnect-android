@@ -55,4 +55,5 @@ public abstract class BaseLinkProvider {
     public abstract void onNetworkChange(@Nullable Network network);
     public abstract String getName();
 
+    public abstract int getPriority();
 }

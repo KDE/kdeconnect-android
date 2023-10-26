@@ -39,6 +39,7 @@ import org.kde.kdeconnect.UserInterface.About.AboutFragment
 import org.kde.kdeconnect.UserInterface.About.getApplicationAboutData
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.ActivityMainBinding
+import java.util.LinkedList
 
 private const val MENU_ENTRY_ADD_DEVICE = 1 //0 means no-selection
 private const val MENU_ENTRY_SETTINGS = 2
@@ -195,13 +196,19 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
             }
         }
 
+        val missingPermissions = mutableListOf<String>()
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             val permissionResult = ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
             if (permissionResult != PackageManager.PERMISSION_GRANTED) {
                 if (!ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.POST_NOTIFICATIONS)) {
-                    ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.POST_NOTIFICATIONS), RESULT_NOTIFICATIONS_ENABLED)
+                    missingPermissions.add(Manifest.permission.POST_NOTIFICATIONS)
                 }
             }
+        }
+
+        if(missingPermissions.size > 0){
+            ActivityCompat.requestPermissions(this, missingPermissions.toTypedArray(), RESULT_NOTIFICATIONS_ENABLED)
         }
     }
 

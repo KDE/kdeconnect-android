@@ -2,7 +2,7 @@
  * SPDX-FileCopyrightText: 2016 Saikrishna Arcot <saiarcot895@gmail.com>
  *
  * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
-*/
+ */
 
 package org.kde.kdeconnect.Backends.BluetoothBackend;
 
@@ -14,8 +14,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.net.Network;
+import android.os.ParcelUuid;
 import android.os.Parcelable;
+import android.preference.PreferenceManager;
 import android.util.Base64;
 import android.util.Log;
 
@@ -29,6 +32,7 @@ import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.Helpers.ThreadHelper;
 import org.kde.kdeconnect.NetworkPacket;
+import org.kde.kdeconnect.UserInterface.SettingsFragment;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -39,6 +43,7 @@ import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 import java.util.UUID;
 
@@ -58,6 +63,8 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
     private ServerRunnable serverRunnable;
     private ClientRunnable clientRunnable;
 
+    private Random randomiser;
+
     private void addLink(NetworkPacket identityPacket, BluetoothLink link) throws CertificateException {
         String deviceId = identityPacket.getString("deviceId");
         Log.i("BluetoothLinkProvider", "addLink to " + deviceId);
@@ -66,7 +73,9 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
             Log.e("BluetoothLinkProvider", "oldLink == link. This should not happen!");
             return;
         }
-        visibleDevices.put(deviceId, link);
+        synchronized (visibleDevices) {
+            visibleDevices.put(deviceId, link);
+        }
         onConnectionReceived(link);
         link.startListening();
         link.packetReceived(identityPacket);
@@ -79,6 +88,7 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
     public BluetoothLinkProvider(Context context) {
         this.context = context;
 
+        this.randomiser = new Random();
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (bluetoothAdapter == null) {
             Log.e("BluetoothLinkProvider", "No bluetooth adapter found.");
@@ -87,6 +97,10 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
 
     @Override
     public void onStart() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        if (!preferences.getBoolean(SettingsFragment.KEY_BLUETOOTH_ENABLED, false)) {
+            return;
+        }
         if (bluetoothAdapter == null) {
             return;
         }
@@ -100,6 +114,8 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
             return;
         }
 
+        Log.i("BluetoothLinkProvider", "onStart called");
+
         //This handles the case when I'm the existing device in the network and receive a hello package
         clientRunnable = new ClientRunnable();
         ThreadHelper.execute(clientRunnable);
@@ -111,6 +127,8 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
 
     @Override
     public void onNetworkChange(@Nullable Network network) {
+        Log.i("BluetoothLinkProvider", "onNetworkChange called");
+
         onStop();
         onStart();
     }
@@ -120,7 +138,7 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
         if (bluetoothAdapter == null || clientRunnable == null || serverRunnable == null) {
             return;
         }
-
+        Log.i("BluetoothLinkProvider", "onStop called");
         clientRunnable.stopProcessing();
         serverRunnable.stopProcessing();
     }
@@ -130,9 +148,20 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
         return "BluetoothLinkProvider";
     }
 
+    @Override
+    public int getPriority() {
+        return 10;
+    }
+
     public void disconnectedLink(BluetoothLink link, BluetoothDevice remoteAddress) {
-        sockets.remove(remoteAddress);
-        visibleDevices.remove(link.getDeviceId());
+
+        Log.i("BluetoothLinkProvider", "disconnectedLink called");
+        synchronized (sockets) {
+            sockets.remove(remoteAddress);
+        }
+        synchronized (visibleDevices) {
+            visibleDevices.remove(link.getDeviceId());
+        }
         onConnectionLost(link);
     }
 
@@ -158,15 +187,18 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
             } catch (IOException e) {
                 Log.e("KDEConnect", "Exception", e);
                 return;
+            } catch (SecurityException e) {
+                Log.e("KDEConnect", "Security Exception for CONNECT", e);
+                return;
             }
 
-            while (continueProcessing) {
-                try {
+            try {
+                while (continueProcessing) {
                     BluetoothSocket socket = serverSocket.accept();
                     connect(socket);
-                } catch (Exception e) {
-                    Log.e("BTLinkProvider/Server", "Bluetooth error", e);
                 }
+            } catch (Exception e) {
+                Log.d("BTLinkProvider/Server", "Bluetooth Server error", e);
             }
         }
 
@@ -199,6 +231,7 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
 
                 DeviceInfo myDeviceInfo = DeviceHelper.getDeviceInfo(context);
                 NetworkPacket np = myDeviceInfo.toIdentityPacket();
+
                 np.set("certificate", Base64.encodeToString(SslHelper.certificate.getEncoded(), 0));
 
                 byte[] message = np.serialize().getBytes(Charsets.UTF_8);
@@ -226,29 +259,38 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
 
                 Log.i("BTLinkProvider/Server", "Received identity packet");
 
-                String certificateString = identityPacket.getString("certificate");
-                byte[] certificateBytes = Base64.decode(certificateString, 0);
-                Certificate certificate = SslHelper.parseCertificate(certificateBytes);
+                String PemEncodedCertificateString = identityPacket.getString("certificate");
+                String base64CertificateString = PemEncodedCertificateString
+                        .replace("-----BEGIN CERTIFICATE-----\n","")
+                        .replace("-----END CERTIFICATE-----\n","");
+                byte[] PEMEncodedCertificateBytes = Base64.decode(base64CertificateString, 0);
+                Certificate certificate = SslHelper.parseCertificate(PEMEncodedCertificateBytes);
 
                 DeviceInfo deviceInfo = DeviceInfo.fromIdentityPacketAndCert(identityPacket, certificate);
-
+                Log.i("BTLinkProvider/Server", "About to create link");
                 BluetoothLink link = new BluetoothLink(context, connection,
                         inputStream, outputStream, socket.getRemoteDevice(),
                         deviceInfo, BluetoothLinkProvider.this);
+                Log.i("BTLinkProvider/Server", "About to addLink");
                 addLink(identityPacket, link);
+                Log.i("BTLinkProvider/Server", "Link Added");
             } catch (Exception e) {
                 synchronized (sockets) {
                     sockets.remove(socket.getRemoteDevice());
+                    Log.i("BTLinkProvider/Server", "Exception thrown, removing socket", e);
                 }
                 throw e;
             }
         }
     }
 
+    public static class ClientRunnableSingleton {
+
+        private static  Map<BluetoothDevice, Thread> connectionThreads = new HashMap<>();
+    }
     private class ClientRunnable extends BroadcastReceiver implements Runnable {
 
         private boolean continueProcessing = true;
-        private final Map<BluetoothDevice, Thread> connectionThreads = new HashMap<>();
 
         void stopProcessing() {
             continueProcessing = false;
@@ -256,31 +298,57 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
 
         @Override
         public void run() {
+            Log.i("ClientRunnable", "run called");
             IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_UUID);
             context.registerReceiver(this, filter);
-
+            Log.i("ClientRunnable", "receiver registered");
             if (continueProcessing) {
-                connectToDevices();
+                Log.i("ClientRunnable", "before connectToDevices");
+                discoverDeviceServices();
+                Log.i("ClientRunnable", "after connectToDevices");
                 try {
                     Thread.sleep(15000);
                 } catch (InterruptedException ignored) {
                 }
             }
 
+            Log.i("ClientRunnable", "unregisteringReceiver");
             context.unregisterReceiver(this);
         }
 
-        private void connectToDevices() {
+        /**
+         * Tell Android to use ServiceDiscoveryProtocol to update the
+         * list of available UUIDs associated with Bluetooth devices
+         * that are bluetooth-paired-but-not-yet-kde-paired
+         */
+        private void discoverDeviceServices() {
+
+            Log.i("ClientRunnable", "connectToDevices called");
+
             Set<BluetoothDevice> pairedDevices = bluetoothAdapter.getBondedDevices();
+            if(pairedDevices == null) {
+                return;
+            }
+
             Log.i("BluetoothLinkProvider", "Bluetooth adapter paired devices: " + pairedDevices.size());
 
-            // Loop through paired devices
+            // Loop through Bluetooth paired devices
             for (BluetoothDevice device : pairedDevices) {
+                // If a socket exists for this, then it has been paired in KDE
                 if (sockets.containsKey(device)) {
                     continue;
                 }
 
+                Log.i("ClientRunnable", "Calling fetchUuidsWithSdp for device: "+device);
+
                 device.fetchUuidsWithSdp();
+                ParcelUuid[] deviceUuids = device.getUuids();
+
+                if(deviceUuids != null){
+                    for(ParcelUuid thisUuid : deviceUuids) {
+                        Log.i("ClientRunnable", "device "+device + " uuid: "+ thisUuid);
+                    }
+                }
             }
         }
 
@@ -309,14 +377,14 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
         }
 
         private void connectToDevice(BluetoothDevice device) {
-            if (!connectionThreads.containsKey(device) || !connectionThreads.get(device).isAlive()) {
-                Thread connectionThread = new Thread(new ClientConnect(device));
-                connectionThread.start();
-                connectionThreads.put(device, connectionThread);
+            synchronized (ClientRunnableSingleton.connectionThreads) {
+                if (!ClientRunnableSingleton.connectionThreads.containsKey(device) || !ClientRunnableSingleton.connectionThreads.get(device).isAlive()) {
+                    Thread connectionThread = new Thread(new ClientConnect(device));
+                    connectionThread.start();
+                    ClientRunnableSingleton.connectionThreads.put(device, connectionThread);
+                }
             }
         }
-
-
     }
 
     private class ClientConnect implements Runnable {
@@ -335,11 +403,20 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
         private void connectToDevice() {
             BluetoothSocket socket;
             try {
+                Log.i("BTLinkProvider/Client", "Cancelling Discovery");
+                bluetoothAdapter.cancelDiscovery();
+                Log.i("BTLinkProvider/Client", "Creating RFCommSocket to Service Record");
                 socket = device.createRfcommSocketToServiceRecord(SERVICE_UUID);
+                Log.i("BTLinkProvider/Client", "Connecting to ServiceRecord Socket");
                 socket.connect();
-                sockets.put(device, socket);
+                synchronized (sockets) {
+                    sockets.put(device, socket);
+                }
             } catch (IOException e) {
                 Log.e("BTLinkProvider/Client", "Could not connect to KDE Connect service on " + device.getAddress(), e);
+                return;
+            } catch (SecurityException e){
+                Log.e("BTLinkProvider/Client", "Security Exception connecting to " + device.getAddress(), e);
                 return;
             }
 
@@ -348,18 +425,24 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
             try {
                 //Delay to let bluetooth initialize stuff correctly
                 Thread.sleep(500);
+
                 ConnectionMultiplexer connection = new ConnectionMultiplexer(socket);
                 OutputStream outputStream = connection.getDefaultOutputStream();
                 InputStream inputStream = connection.getDefaultInputStream();
 
+                Log.i("BTLinkProvider/Client", "Device: " + device.getAddress() +" Before inputStream.read()");
                 int character;
                 StringBuilder sb = new StringBuilder();
                 while (sb.lastIndexOf("\n") == -1 && (character = inputStream.read()) != -1) {
                     sb.append((char) character);
                 }
+                Log.i("BTLinkProvider/Client", "Device: " + device.getAddress() +" Before sb.toString()");
 
                 String message = sb.toString();
+                Log.i("BTLinkProvider/Client", "Device: " + device.getAddress() +" Before unserialize (message: '"+message+"')");
                 final NetworkPacket identityPacket = NetworkPacket.unserialize(message);
+
+                Log.i("BTLinkProvider/Client", "Device: " + device.getAddress() +" After unserialize");
 
                 if (!identityPacket.getType().equals(NetworkPacket.PACKET_TYPE_IDENTITY)) {
                     Log.e("BTLinkProvider/Client", "1 Expecting an identity packet");
@@ -382,9 +465,12 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
 
                 Log.i("BTLinkProvider/Client", "identity packet received, creating link");
 
-                String certificateString = identityPacket.getString("certificate");
-                byte[] certificateBytes = Base64.decode(certificateString, 0);
-                Certificate certificate = SslHelper.parseCertificate(certificateBytes);
+                String PemEncodedCertificateString = identityPacket.getString("certificate");
+                String base64CertificateString = PemEncodedCertificateString
+                        .replace("-----BEGIN CERTIFICATE-----\n","")
+                        .replace("-----END CERTIFICATE-----\n","");
+                byte[] PEMEncodedCertificateBytes = Base64.decode(base64CertificateString, 0);
+                Certificate certificate = SslHelper.parseCertificate(PEMEncodedCertificateBytes);
                 DeviceInfo deviceInfo = DeviceInfo.fromIdentityPacketAndCert(identityPacket, certificate);
 
                 final BluetoothLink link = new BluetoothLink(context, connection, inputStream, outputStream,
@@ -393,6 +479,8 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
                 DeviceInfo myDeviceInfo = DeviceHelper.getDeviceInfo(context);
                 NetworkPacket np2 = myDeviceInfo.toIdentityPacket();
                 np2.set("certificate", Base64.encodeToString(SslHelper.certificate.getEncoded(), 0));
+
+                Log.i("BTLinkProvider/Client", "about to send packet np2");
 
                 link.sendPacket(np2, new Device.SendPacketStatusCallback() {
                     @Override
@@ -409,8 +497,12 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
 
                     }
                 }, true);
+
             } catch (Exception e) {
                 Log.e("BTLinkProvider/Client", "Connection lost/disconnected on " + device.getAddress(), e);
+                synchronized (sockets) {
+                    sockets.remove(device, socket);
+                }
             }
         }
     }

@@ -189,10 +189,4 @@ public class BluetoothLink extends BaseLink {
             return false;
         }
     }
-
-    /*
-    public boolean isConnected() {
-        return socket.isConnected();
-    }
-*/
 }

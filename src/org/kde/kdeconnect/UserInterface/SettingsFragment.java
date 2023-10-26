@@ -6,6 +6,8 @@
 
 package org.kde.kdeconnect.UserInterface;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -20,6 +22,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.preference.EditTextPreference;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
@@ -38,6 +41,7 @@ import org.kde.kdeconnect_tp.R;
 public class SettingsFragment extends PreferenceFragmentCompat {
 
     public static final String KEY_UDP_BROADCAST_ENABLED = "udp_broadcast_enabled";
+    public static final String KEY_BLUETOOTH_ENABLED = "bluetooth_enabled";
     public static final String KEY_APP_THEME = "theme_pref";
 
     private EditTextPreference renameDevice;
@@ -177,6 +181,18 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         udpBroadcastDiscovery.setKey(KEY_UDP_BROADCAST_ENABLED);
         udpBroadcastDiscovery.setTitle(R.string.enable_udp_broadcast);
         screen.addPreference(udpBroadcastDiscovery);
+
+        final TwoStatePreference enableBluetoothSupport = new SwitchPreference(context);
+        enableBluetoothSupport.setDefaultValue(false);
+        enableBluetoothSupport.setKey(KEY_BLUETOOTH_ENABLED);
+        enableBluetoothSupport.setTitle("Enable bluetooth (beta)");
+        enableBluetoothSupport.setOnPreferenceChangeListener((preference, newValue) -> {
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && (boolean)newValue) {
+                    ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.BLUETOOTH_CONNECT, Manifest.permission.BLUETOOTH_SCAN}, 2);
+                }
+                return true;
+        });
+        screen.addPreference(enableBluetoothSupport);
 
         // More settings text
         Preference moreSettingsText = new Preference(context);

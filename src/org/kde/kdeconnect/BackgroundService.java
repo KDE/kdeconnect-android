@@ -32,6 +32,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
+import org.kde.kdeconnect.Backends.BluetoothBackend.BluetoothLinkProvider;
 import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
 import org.kde.kdeconnect.Helpers.NotificationHelper;
 import org.kde.kdeconnect.Plugins.ClibpoardPlugin.ClipboardFloatingActivity;
@@ -82,7 +83,7 @@ public class BackgroundService extends Service {
     private void registerLinkProviders() {
         linkProviders.add(new LanLinkProvider(this));
 //        linkProviders.add(new LoopbackLinkProvider(this));
-//        linkProviders.add(new BluetoothLinkProvider(this));
+        linkProviders.add(new BluetoothLinkProvider(this));
     }
 
     public void onNetworkChange(@Nullable Network network) {

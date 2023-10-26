@@ -40,4 +40,7 @@ public class LoopbackLinkProvider extends BaseLinkProvider {
     public String getName() {
         return "LoopbackLinkProvider";
     }
+
+    @Override
+    public int getPriority() { return 0; }
 }

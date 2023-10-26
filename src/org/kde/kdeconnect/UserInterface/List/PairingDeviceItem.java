@@ -39,6 +39,7 @@ public class PairingDeviceItem implements ListAdapter.Item {
         final ListItemWithIconEntryBinding binding = ListItemWithIconEntryBinding.inflate(layoutInflater);
 
         binding.listItemEntryIcon.setImageDrawable(device.getIcon());
+//        binding.listItemEntryTitle.setText(device.getName() + " " + device.getConnectivityType());
         binding.listItemEntryTitle.setText(device.getName());
 
         if (device.compareProtocolVersion() != 0) {

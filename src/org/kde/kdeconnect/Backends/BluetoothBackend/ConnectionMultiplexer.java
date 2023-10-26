@@ -7,6 +7,7 @@
 package org.kde.kdeconnect.Backends.BluetoothBackend;
 
 import android.bluetooth.BluetoothSocket;
+import android.util.Log;
 
 import org.kde.kdeconnect.Helpers.ThreadHelper;
 
@@ -245,7 +246,7 @@ public final class ConnectionMultiplexer implements Closeable {
                 channel.doClose();
             }
             channels.clear();
-            if (socket.isConnected()) {
+            if (socket != null && socket.isConnected()) {
                 try {
                     socket.close();
                 } catch (IOException ignored) {
@@ -438,6 +439,16 @@ public final class ConnectionMultiplexer implements Closeable {
             }
         }
 
+
+        public String byteArrayToHexString(final byte[] bytes) {
+            StringBuilder sb = new StringBuilder();
+            for(byte b : bytes){
+                sb.append(String.format("0x%02x ", b&0xff));
+            }
+            return sb.toString();
+        }
+
+
         private void read_message() throws IOException {
             byte[] data = new byte[BUFFER_SIZE];
             read_buffer(data, 19);
@@ -451,6 +462,10 @@ public final class ConnectionMultiplexer implements Closeable {
             UUID channel_id = new UUID(channel_id_msb, channel_id_lsb);
 
             if (!receivedProtocolVersion && type != MESSAGE_PROTOCOL_VERSION) {
+                Log.w("ConnectionMultiplexer", "Received invalid message '" + message+"'");
+                Log.w("ConnectionMultiplexer", "'data_buffer:("+byteArrayToHexString(data)+") ");
+                Log.w("ConnectionMultiplexer", "as string: '"+(new String(data, "UTF-8"))+"' ");
+
                 throw new IOException("Did not receive protocol version message!");
             }
 
@@ -538,11 +553,15 @@ public final class ConnectionMultiplexer implements Closeable {
         public void run() {
             while (true) {
                 synchronized (lock) {
-                    if (!open) return;
+                    if (!open) {
+                        Log.w("ConnectionMultiplexer", "connection not open, returning");
+                        return;
+                    }
                 }
                 try {
                     read_message();
                 } catch (IOException e) {
+                    Log.w("ConnectionMultiplexer", "run caught IOException", e);
                     handleException(e);
                     return;
                 }

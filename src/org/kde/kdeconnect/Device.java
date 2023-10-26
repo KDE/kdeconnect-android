@@ -37,7 +37,10 @@ import org.kde.kdeconnect_tp.R;
 import java.io.IOException;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Vector;
 import java.util.concurrent.ConcurrentHashMap;
@@ -61,6 +64,7 @@ public class Device implements BaseLink.PacketReceiver {
     private MultiValuedMap<String, String> pluginsByIncomingInterface = new ArrayListValuedHashMap<>();
     private final SharedPreferences settings;
     private final CopyOnWriteArrayList<PluginsChangedListener> pluginsChangedListeners = new CopyOnWriteArrayList<>();
+    private String connectivityType;
 
     public boolean supportsPacketType(String type) {
         if (deviceInfo.incomingCapabilities == null) {
@@ -68,6 +72,10 @@ public class Device implements BaseLink.PacketReceiver {
         } else {
             return deviceInfo.incomingCapabilities.contains(type);
         }
+    }
+
+    public String getConnectivityType() {
+        return connectivityType;
     }
 
     public interface PluginsChangedListener {
@@ -84,6 +92,7 @@ public class Device implements BaseLink.PacketReceiver {
         this.deviceInfo = DeviceInfo.loadFromSettings(context, deviceId, settings);
         this.pairingHandler = new PairingHandler(this, pairingCallback, PairingHandler.PairState.Paired);
         this.supportedPlugins = new Vector<>(PluginFactory.getAvailablePlugins()); // Assume all are supported until we receive capabilities
+        this.connectivityType =  "";
         Log.i("Device","Loading trusted device: " + deviceInfo.name);
     }
 
@@ -98,6 +107,7 @@ public class Device implements BaseLink.PacketReceiver {
         this.settings = context.getSharedPreferences(deviceInfo.id, Context.MODE_PRIVATE);
         this.pairingHandler = new PairingHandler(this, pairingCallback, PairingHandler.PairState.NotPaired);
         this.supportedPlugins = new Vector<>(PluginFactory.getAvailablePlugins()); // Assume all are supported until we receive capabilities
+        this.connectivityType = link.getLinkProvider().getName();
         Log.i("Device","Creating untrusted device: "+ deviceInfo.name);
         addLink(link);
     }
@@ -302,7 +312,14 @@ public class Device implements BaseLink.PacketReceiver {
             packetQueue = new DevicePacketQueue(this);
         }
         //FilesHelper.LogOpenFileCount();
+
         links.add(link);
+
+        List linksToSort = Arrays.asList(links.toArray());
+        Collections.sort(linksToSort, (Comparator<BaseLink>) (o1, o2) -> Integer.compare(o2.getLinkProvider().getPriority(), o1.getLinkProvider().getPriority()));
+        links.clear();
+        links.addAll(linksToSort);
+
         link.addPacketReceiver(this);
 
         boolean hasChanges = updateDeviceInfo(link.getDeviceInfo());

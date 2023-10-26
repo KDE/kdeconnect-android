@@ -494,4 +494,7 @@ public class LanLinkProvider extends BaseLinkProvider {
         return "LanLinkProvider";
     }
 
+    @Override
+    public int getPriority() { return 20; }
+
 }
