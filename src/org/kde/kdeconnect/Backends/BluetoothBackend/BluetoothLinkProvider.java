@@ -39,6 +39,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.Reader;
+import java.nio.ByteBuffer;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.util.HashMap;
@@ -52,6 +53,7 @@ import kotlin.text.Charsets;
 public class BluetoothLinkProvider extends BaseLinkProvider {
 
     private static final UUID SERVICE_UUID = UUID.fromString("185f3df4-3268-4e3f-9fca-d4d5059915bd");
+    private static final UUID BYTE_REVERSED_SERVICE_UUID = new UUID(Long.reverseBytes(SERVICE_UUID.getLeastSignificantBits()), Long.reverseBytes(SERVICE_UUID.getMostSignificantBits()));
     private static final int REQUEST_ENABLE_BT = 48;
 
     private final Context context;
@@ -327,6 +329,7 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
 
             Set<BluetoothDevice> pairedDevices = bluetoothAdapter.getBondedDevices();
             if(pairedDevices == null) {
+                Log.i("BluetoothLinkProvider", "Paired Devices is NULL");
                 return;
             }
 
@@ -356,19 +359,24 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             if (BluetoothDevice.ACTION_UUID.equals(action)) {
+                Log.i("BluetoothLinkProvider", "Action matches");
+
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 Parcelable[] activeUuids = intent.getParcelableArrayExtra(BluetoothDevice.EXTRA_UUID);
 
                 if (sockets.containsKey(device)) {
+                    Log.i("BluetoothLinkProvider", "sockets contains device");
                     return;
                 }
 
                 if (activeUuids == null) {
+                    Log.i("BluetoothLinkProvider", "activeUuids is null");
                     return;
                 }
 
                 for (Parcelable uuid : activeUuids) {
-                    if (uuid.toString().equals(SERVICE_UUID.toString())) {
+                    if (uuid.toString().equals(SERVICE_UUID.toString()) || uuid.toString().equals(BYTE_REVERSED_SERVICE_UUID.toString())) {
+                        Log.i("BluetoothLinkProvider", "calling connectToDevice for device: " + device.getAddress());
                         connectToDevice(device);
                         return;
                     }

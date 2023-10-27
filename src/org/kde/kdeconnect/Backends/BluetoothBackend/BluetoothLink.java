@@ -133,9 +133,7 @@ public class BluetoothLink extends BaseLink {
 
     private void sendMessage(NetworkPacket np) throws JSONException, IOException {
         byte[] message = np.serialize().getBytes(Charsets.UTF_8);
-        Log.i("BluetoothLink", "Beginning to send message");
         output.write(message);
-        Log.i("BluetoothLink", "Finished sending message");
     }
 
     @WorkerThread
