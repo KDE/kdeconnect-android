@@ -288,6 +288,10 @@
   <string name="runcommand_notpaired">Le périphérique n\'est pas associé</string>
   <string name="runcommand_nosuchdevice">Ce périphérique n\'existe pas</string>
   <string name="runcommand_noruncommandplugin">Le module externe Exécuter une commande n\'est pas activé sur ce périphérique</string>
+  <string name="runcommand_category_device_controls_title">Contrôles de périphérique</string>
+  <string name="runcommand_device_controls_summary">Si votre périphérique prend en charge les commandes de périphérique, les commandes que vous avez configurées y apparaîtront.</string>
+  <string name="set_runcommand_name_as_title">set_runcommand_name_as_title</string>
+  <string name="runcommand_name_as_title_title">Afficher un nom comme titre</string>
   <string name="pref_plugin_findremotedevice">Trouver un périphérique distant</string>
   <string name="pref_plugin_findremotedevice_desc">Faire sonner votre périphérique distant</string>
   <string name="ring">Faire sonner</string>
