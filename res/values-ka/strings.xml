@@ -93,7 +93,7 @@
   <string name="encryption_info_title">დაშიფვრის ინფორმაცია</string>
   <string name="pair_requested">დაწყვილების მოთხოვნა</string>
   <plurals name="incoming_files_text">
-    <item quantity="one">File: %1$s</item>
+    <item quantity="one">File: %1s</item>
     <item quantity="other">(File %2$d of %3$d) : %1$s</item>
   </plurals>
   <plurals name="outgoing_files_text">
@@ -204,6 +204,7 @@
   <string name="runcommand_notreachable">მოწყობილობა მიუწვდომელია</string>
   <string name="runcommand_notpaired">მოწყობილობა დაწყვილებული არაა</string>
   <string name="runcommand_nosuchdevice">მოწყობილობა არ არსებობს</string>
+  <string name="runcommand_category_device_controls_title">მოწყობილობის კონტროლი</string>
   <string name="pref_plugin_findremotedevice">დაშორებული მოწყობილობის პოვნა</string>
   <string name="pref_plugin_findremotedevice_desc">თქვენს დაშორებულ მოწყობილობაზე დარეკვა</string>
   <string name="ring">ზარი</string>
@@ -282,6 +283,7 @@
   <string name="open_compose_send">ტექსტის შედგენა</string>
   <string name="maintainer_and_developer">პროგრამისტი და წამყვანი</string>
   <string name="developer">პროგრამისტი</string>
+  <string name="bug_fixes_and_general_improvements">შეცდომების გასწორება, ზოგადი განვითარება</string>
   <string name="aniket_kumar_task">SMS-ის დამატების გაუმჯობესება</string>
   <string name="alex_fiestas_task">კონტაქტების დამატების გაუმჯობესება</string>
   <string name="send_clipboard">ბუფერის გაგზავნა</string>

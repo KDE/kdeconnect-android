@@ -288,6 +288,10 @@
   <string name="runcommand_notpaired">Il dispositivo non è associato</string>
   <string name="runcommand_nosuchdevice">Non c\'è alcun dispositivo</string>
   <string name="runcommand_noruncommandplugin">Questo dispositivo non ha l\'estensione Esegui comando abilitata</string>
+  <string name="runcommand_category_device_controls_title">Controlli del dispositivo</string>
+  <string name="runcommand_device_controls_summary">Se il tuo dispositivo supporta Controlli del dispositivo, i comandi che hai configurato appariranno qui.</string>
+  <string name="set_runcommand_name_as_title">set_runcommand_name_as_title</string>
+  <string name="runcommand_name_as_title_title">Mostra il nome come titolo</string>
   <string name="pref_plugin_findremotedevice">Trova il dispositivo remoto</string>
   <string name="pref_plugin_findremotedevice_desc">Fai squillare il dispositivo remoto</string>
   <string name="ring">Squilla</string>
