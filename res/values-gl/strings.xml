@@ -27,7 +27,7 @@
   <string name="pref_plugin_runcommand">Executar unha orde</string>
   <string name="pref_plugin_runcommand_desc">Activar ordes remotas desde o teléfono ou tableta.</string>
   <string name="pref_plugin_contacts">Sincronizador de contactos</string>
-  <string name="pref_plugin_contacts_desc">Permitir sincronizar o caderno de contactos do dispositivo</string>
+  <string name="pref_plugin_contacts_desc">Permitir sincronizar a axenda de contactos do dispositivo</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Envíe e reciba pings</string>
   <string name="pref_plugin_notifications">Sincronización de notificacións</string>
@@ -47,7 +47,7 @@
   <string name="send_ping">Enviar un ping</string>
   <string name="open_mpris_controls">Control multimedia</string>
   <string name="remotekeyboard_editing_only_title">Xestionar teclas remotas só ao editar.</string>
-  <string name="remotekeyboard_not_connected">Non hai ningunha conexión de teclado remoto activa, estableza unha en kdeconnect.</string>
+  <string name="remotekeyboard_not_connected">Non hai ningunha conexión de teclado remoto activa, estabeleza unha en kdeconnect.</string>
   <string name="remotekeyboard_connected">A conexión de teclado remoto está activa.</string>
   <string name="remotekeyboard_multiple_connections">Hai máis dunha conexión de teclado remoto, seleccione o dispositivo para configurar.</string>
   <string name="open_mousepad">Entrada remota</string>
@@ -257,7 +257,7 @@
   <string name="telepathy_permission_explanation">Para ler e escribir SMS desde o escritorio ten que dar permiso de SMS.</string>
   <string name="telephony_permission_explanation">Para ver as chamadas de teléfono no escritorio ten que dar permiso aos rexistros de chamadas telefónicas e ao estado do teléfono</string>
   <string name="telephony_optional_permission_explanation">Para ver o nome dun contacto en vez dun número de teléfono ten que dar acceso aos contactos do teléfono.</string>
-  <string name="contacts_permission_explanation">Para compartir o caderno de contactos co escritorio ten que dar permiso de contactos</string>
+  <string name="contacts_permission_explanation">Para compartir a axenda de contactos co escritorio ten que dar permiso de contactos</string>
   <string name="contacts_per_device_confirmation">Os contactos do teléfono copiaranse neste dispositivo para que os poidan usar a aplicación de SMS de KDE Connect e outras aplicacións.</string>
   <string name="select_ringtone">Seleccione un ton de chamada</string>
   <string name="telephony_pref_blocked_title">Números bloqueados</string>
@@ -288,6 +288,10 @@
   <string name="runcommand_notpaired">O dispositivo non está emparellado</string>
   <string name="runcommand_nosuchdevice">Non hai tal dispositivo</string>
   <string name="runcommand_noruncommandplugin">O dispositivo non ten o complemento de «Executar unha orde» activado</string>
+  <string name="runcommand_category_device_controls_title">Controis de dispositivo</string>
+  <string name="runcommand_device_controls_summary">Se o dispositivo permite controis de dispositivo, as ordes que configure aparecerán alí.</string>
+  <string name="set_runcommand_name_as_title">set_runcommand_name_as_title</string>
+  <string name="runcommand_name_as_title_title">Amosar o nome como título</string>
   <string name="pref_plugin_findremotedevice">Atopar un dispositivo remoto</string>
   <string name="pref_plugin_findremotedevice_desc">Facer soar o dispositivo remoto</string>
   <string name="ring">Facer soar</string>

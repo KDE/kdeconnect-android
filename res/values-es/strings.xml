@@ -288,6 +288,10 @@
   <string name="runcommand_notpaired">El dispositivo no está vinculado</string>
   <string name="runcommand_nosuchdevice">No se encuentra ese dispositivo</string>
   <string name="runcommand_noruncommandplugin">Este dispositivo no tiene el complemento para ejecutar órdenes activado</string>
+  <string name="runcommand_category_device_controls_title">Controles del dispositivo</string>
+  <string name="runcommand_device_controls_summary">Si su dispositivo reconoce los controles de dispositivo, las órdenes que haya configurado aparecerán aquí.</string>
+  <string name="set_runcommand_name_as_title">mostrar_nombre_de_la_orden_como_título</string>
+  <string name="runcommand_name_as_title_title">Mostrar nombre como título</string>
   <string name="pref_plugin_findremotedevice">Encontrar dispositivo remoto</string>
   <string name="pref_plugin_findremotedevice_desc">Hacer sonar el dispositivo remoto</string>
   <string name="ring">Hacer sonar</string>
