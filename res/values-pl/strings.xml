@@ -304,6 +304,10 @@
   <string name="runcommand_notpaired">Urządzenie jest niesparowane</string>
   <string name="runcommand_nosuchdevice">Nie ma takiego urządzenia</string>
   <string name="runcommand_noruncommandplugin">To urządzenie nie ma włączonej wtyczki wykonywania poleceń</string>
+  <string name="runcommand_category_device_controls_title">Sterowanie urządzeniem</string>
+  <string name="runcommand_device_controls_summary">Jeśli twoje urządzeni obsługuje sterowanie nim, to polecenia, które ustawiłeś, pojawią się tutaj.</string>
+  <string name="set_runcommand_name_as_title">ustaw_nazwę_polecenia_jako_tytuł</string>
+  <string name="runcommand_name_as_title_title">Pokaż nazwę jako tytuł</string>
   <string name="pref_plugin_findremotedevice">Poszukiwania innego urządzenia</string>
   <string name="pref_plugin_findremotedevice_desc">Dzwoni z tego urządzenia na inne urządzenie</string>
   <string name="ring">Zadzwoń</string>
