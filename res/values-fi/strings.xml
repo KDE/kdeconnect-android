@@ -183,6 +183,7 @@
     <item>1 minuutti</item>
     <item>2 minuuttia</item>
   </string-array>
+  <string name="mpris_notifications_explanation">Ilmoituskäyttöoikeus vaaditaan etämedian näyttämiseksi ilmoitussovelmassa</string>
   <string name="mpris_notification_settings_title">Näytä mediasäädinilmoitukset</string>
   <string name="mpris_notification_settings_summary">Sallii mediasoitintesi hallinnan KDE Connectia avaamatta</string>
   <string name="share_to">Jaa…</string>
@@ -252,10 +253,12 @@
   <string name="optional_permission_explanation">Kaikkien toimintojen käyttämiseksi sinun on annettava lisäkäyttöoikeuksia</string>
   <string name="plugins_need_optional_permission">Jotkin liitännäisten ominaisuudet eivät ole käytössä puuttuvien käyttöoikeuksien takia (lisätietoa napsauttamalla):</string>
   <string name="share_optional_permission_explanation">Talletustilan käyttö on sallittava tiedostojen vastaanottamiseksi</string>
+  <string name="share_notifications_explanation">Ilmoitukset on otetettava käyttöön, jotta tiedostojen siirron etenemisen voi näyttää</string>
   <string name="telepathy_permission_explanation">Lukeaksesi ja lähettääksesi tekstiviestejä työpöydältä sinun on annettava käyttöoikeudet tekstiviesteihin</string>
   <string name="telephony_permission_explanation">Puhelujen näyttäminen työpöydällä vaatii käyttöoikeuden puhelulokiin ja puhelimen tilaan</string>
   <string name="telephony_optional_permission_explanation">Puhelimen yhteystietoihin on annettava käyttöoikeudet, jotta voit nähdä yhteystiedoissa nimet puhelinnumerojen sijaan</string>
   <string name="contacts_permission_explanation">Käyttääksesi yhteystietoja työpöydältä sinun on annettava yhteystietojen käyttöoikeudet</string>
+  <string name="contacts_per_device_confirmation">Puhelimen yhteystiedot kopioidaan tälle laitteelle, jotta KDE Connectin tekstiviesti- ja muut sovellukset voivat käyttää niitä.</string>
   <string name="select_ringtone">Valitse soittoääni</string>
   <string name="telephony_pref_blocked_title">Estetyt numerot</string>
   <string name="telephony_pref_blocked_dialog_desc">Älä näytä soittoja äläkä tekstiviestejä näistä numeroista. Anna numero per rivi.</string>
@@ -274,6 +277,9 @@
   <string name="notification_channel_default">Muut ilmoitukset</string>
   <string name="notification_channel_persistent">Pysyvä ilmaisin</string>
   <string name="notification_channel_media_control">Mediaohjaimet</string>
+  <string name="notification_channel_filetransfer">Saapuva tiedostonsiirto</string>
+  <string name="notification_channel_filetransfer_upload">Lähtevä tiedostonsiirto</string>
+  <string name="notification_channel_filetransfer_error">Tiedostonsiirtovirhe</string>
   <string name="notification_channel_high_priority">Korkea etusija</string>
   <string name="mpris_stop">Pysäytä nykyinen soitin</string>
   <string name="copy_url_to_clipboard">Kopioi verkko-osoite leikepöydälle</string>
@@ -393,4 +399,8 @@
   <string name="send_clipboard">Lähetä leikepöytä</string>
   <string name="tap_to_execute">Suorita napauttamalla</string>
   <string name="plugin_stats">Liitännäisen tilastot</string>
+  <string name="enable_udp_broadcast">Käytä UDP-laitehakua</string>
+  <string name="receive_notifications_permission_explanation">Ilmoitukset tulee sallia, jotta niitä voi vastaanottaa muilta laitteilta</string>
+  <string name="findmyphone_notifications_explanation">Ilmoituskäyttöoikeus vaaditaan, jotta puhelin voisi soida sovelluksen toimiessa taustalla</string>
+  <string name="no_notifications">Ilmoitukset eivät ole käytössä, joten paritusilmoituksia ei vastaanoteta.</string>
 </resources>
