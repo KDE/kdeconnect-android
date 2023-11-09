@@ -288,6 +288,10 @@
   <string name="runcommand_notpaired">Устройството не е сдвоено</string>
   <string name="runcommand_nosuchdevice">Няма такова устройство</string>
   <string name="runcommand_noruncommandplugin">Това устройство няма активиран плъгин за изпълнение на команди</string>
+  <string name="runcommand_category_device_controls_title">Контроли на устройство</string>
+  <string name="runcommand_device_controls_summary">Ако устройството ви поддържа Контроли, конфигурираните от вас команди ще се появяват там.</string>
+  <string name="set_runcommand_name_as_title">set_runcommand_name_as_title</string>
+  <string name="runcommand_name_as_title_title">Показване на името като заглавие</string>
   <string name="pref_plugin_findremotedevice">Намиране на отдалечено устройство</string>
   <string name="pref_plugin_findremotedevice_desc">Позвъняване на отдалеченото устройство</string>
   <string name="ring">Позвъняване</string>
