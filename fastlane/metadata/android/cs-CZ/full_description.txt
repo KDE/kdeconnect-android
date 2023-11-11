@@ -1,15 +1,16 @@
 KDE Connect poskytuje sadu vlastností pro vzájemnou integraci vašich zařízení:
 
+- Přenášejte soubory mezi zařízeními.
+- Přistupujte bezdrátově k souborům na vašem počítači
 - Sdílená schránka: kopírujte a vkládejte z jednoho zařízení na druhé.
-- Sdílejte soubory a odkazy z jakékoliv aplikace na váš počítač.
 - Přijímejte upozornění na příchozí hovory nebo SMS na vašem PC.
 - Virtuální touchpad: Používejte obrazovku svého telefonu jako touchpad počítače.
-- Synchronizace upozornění: Čtěte upozornění z vašeho Androidu na počítači.
+- Synchronizace upozornění: Čtěte upozornění z vašeho telefonu na počítači.
 - Vzdálené ovládání multimédií: Používejte svůj telefon jako ovladač přehrávače na Linuxu.
 - Připojení WiFi: Není potřeba kabel USB ani Bluetooth.
 - Koncové šifrování TLS: Vaše informace jsou v bezpečí.
 
-Prosím pamatujte, že pro správnou funkci této aplikace je nutné abyste na vašem počítači měli nainstalován KDE Connect a udržovali jej aktuální zde i na Androidu.
+Prosím pamatujte, že pro správnou funkci této aplikace je nutné abyste na vašem počítači měli nainstalován KDE Connect a udržovali jej aktuální na počítači i na Androidu.
 
 Informace o citlivých oprávněních:
 * Oprávnění přístupnosti: Nutné pro příjem vstupu z jiného zařízení aby mohlo ovládat váš telefon Android pokud používáte vlastnost Vzdálený vstup.

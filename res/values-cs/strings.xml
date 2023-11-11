@@ -289,6 +289,9 @@
   <string name="notification_channel_default">Ostatní oznámení</string>
   <string name="notification_channel_persistent">Stálý ukazatel</string>
   <string name="notification_channel_media_control">Ovládání médií</string>
+  <string name="notification_channel_filetransfer">Příchozí přenos souboru</string>
+  <string name="notification_channel_filetransfer_upload">Odchozí přenos souboru</string>
+  <string name="notification_channel_filetransfer_error">Chyba v přenosu souboru</string>
   <string name="notification_channel_high_priority">Vysoká priorita</string>
   <string name="mpris_stop">Zastavit současný přehrávač</string>
   <string name="copy_url_to_clipboard">Kopírovat URL do schránky</string>
@@ -297,6 +300,8 @@
   <string name="runcommand_notpaired">Zařízení není spárováno</string>
   <string name="runcommand_nosuchdevice">Není zde žádné takové zařízení</string>
   <string name="runcommand_noruncommandplugin">Toto zařízení nemá povolený modul pro spouštění příkazů</string>
+  <string name="runcommand_category_device_controls_title">Ovládání zařízení</string>
+  <string name="runcommand_name_as_title_title">Zobrazit název jako popisek</string>
   <string name="pref_plugin_findremotedevice">Najít vzdálené zařízení</string>
   <string name="pref_plugin_findremotedevice_desc">Prozvonit vzdálené zařízení</string>
   <string name="ring">Prozvonit</string>
@@ -405,4 +410,6 @@
   <string name="send_clipboard">Poslat schránku</string>
   <string name="tap_to_execute">Pro spuštění ťukněte sem</string>
   <string name="plugin_stats">Statistiky modulů</string>
+  <string name="enable_udp_broadcast">Povolit prohledávání sítě UDP</string>
+  <string name="receive_notifications_permission_explanation">Je potřeba povolit oznámení aby e šlo přijímat z ostatních zařízení</string>
 </resources>
