@@ -118,6 +118,7 @@
   <string name="notification_channel_high_priority">Prioritate alte</string>
   <string name="copy_url_to_clipboard">Copia URL a area de transferentia</string>
   <string name="runcommand_notpaired">Dispositivo non es associate</string>
+  <string name="runcommand_category_device_controls_title">Controlos de dispositivo</string>
   <string name="pref_plugin_systemvolume">Volumine de systema</string>
   <string name="mute">Surdina</string>
   <string name="all">Omne</string>
