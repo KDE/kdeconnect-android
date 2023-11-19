@@ -304,6 +304,10 @@
   <string name="runcommand_notpaired">המכשיר לא מצומד</string>
   <string name="runcommand_nosuchdevice">אין כזה מכשיר</string>
   <string name="runcommand_noruncommandplugin">תוסף הרצת הפקודות לא פעיל במכשיר הזה</string>
+  <string name="runcommand_category_device_controls_title">שליטה במכשירים</string>
+  <string name="runcommand_device_controls_summary">אם המכשיר שלך תומך בשליטה בהתקנים, הפקודות שהוגדרת תופענה כאן.</string>
+  <string name="set_runcommand_name_as_title">הגדרת_שם_פקודת_ההרצה_ככותרת</string>
+  <string name="runcommand_name_as_title_title">הצגת השם ככותרת</string>
   <string name="pref_plugin_findremotedevice">איתור מכשיר מרוחק</string>
   <string name="pref_plugin_findremotedevice_desc">צלצול המכשיר המרוחק שלך</string>
   <string name="ring">צלצול</string>

@@ -277,6 +277,9 @@
   <string name="notification_channel_default">Digər bildirişlər</string>
   <string name="notification_channel_persistent">"Daimi  göstərici"</string>
   <string name="notification_channel_media_control">Media İdarəsi</string>
+  <string name="notification_channel_filetransfer">Daxil olan fayl köçürməsi</string>
+  <string name="notification_channel_filetransfer_upload">Göndərilən fayl köçürməsi</string>
+  <string name="notification_channel_filetransfer_error">Fayl köçürülməsi xətası</string>
   <string name="notification_channel_high_priority">Yüksək üstünlük</string>
   <string name="mpris_stop">Cari pleyeri dayandırmaq</string>
   <string name="copy_url_to_clipboard">URL\'u mübadilə buferinə kopyalamaq</string>
@@ -285,6 +288,10 @@
   <string name="runcommand_notpaired">Cihaz qoşulmayıb</string>
   <string name="runcommand_nosuchdevice">Belə cihaz yoxdur</string>
   <string name="runcommand_noruncommandplugin">Bu cihazda aktiv edilmiş Əmr Başlatma Əlavəsi yoxdur</string>
+  <string name="runcommand_category_device_controls_title">Cihazın idarə edilməsi</string>
+  <string name="runcommand_device_controls_summary">Əgər cihazınız idarəetməni dəstəkləyirsə, təyin etdiyiniz əmrlər burada görünəcək.</string>
+  <string name="set_runcommand_name_as_title">set_runcommand_name_as_title</string>
+  <string name="runcommand_name_as_title_title">Adı başlıq kimi göstərin</string>
   <string name="pref_plugin_findremotedevice">Uzaq cihazı tapmaq</string>
   <string name="pref_plugin_findremotedevice_desc">Uzaq cihazınıza zəng göndərin</string>
   <string name="ring">Zəng</string>
@@ -396,4 +403,8 @@
   <string name="send_clipboard">Mübadilə yaddaşını göndərin</string>
   <string name="tap_to_execute">İcra etmək üçün vurun</string>
   <string name="plugin_stats">Plaqin statistikası</string>
+  <string name="enable_udp_broadcast">UDP cihaz aşkarlamasını aktiv edin</string>
+  <string name="receive_notifications_permission_explanation">Başqa cihazdan bildirişlər almaq üçün onlara icazə vermək lazımdır</string>
+  <string name="findmyphone_notifications_explanation">Tətbiq arxa planda işləyən zaman telefonun zəng çala bilməsi üçün bildirişlərə icazə vermək lazımdır</string>
+  <string name="no_notifications">Bildirişlər söndürülüb, cihazınız daxil olan bildirişləri qəbul etməyəcək.</string>
 </resources>

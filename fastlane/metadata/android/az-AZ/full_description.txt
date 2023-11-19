@@ -1,14 +1,22 @@
 KDE connect cihazlarınız arasında inteqrasiya üçün funksiyalar dəstini təqdim edir:
 
-- Mübadilə yaddaşının paylaşılması: cihazlarınız arasında kopyalayın və yerləşdirin.
-- İstənilən tətbiqdən komputeriniz ilə URL ünvanlarını və faylları paylaşın.
-- Kompyyuterinizdə gələn zənglər və SMS ismarıcları haqqında bildirişlər alın.
+- Faylların cihazlar arasında köçürülməsi.
+- Heç bir kabel qoşulmadan telefonunuzdakı fayllara compyuterinizdə baxmaq.
+- Mübadilə yaddaşını paylaşmaq: cihazlarınız arasında kopyalama və yerləşdirmə.
+- Daxil olan zəng və ismarıc bildirişlərini komputerdə göstərmək
 - Virtual toxunma paneli: Telefonunuzun ektranını kompyuterin toxunma paneli kimi istifdə edin.
-- Bildirişlərin eyniləşdirilməsi: Android bildirişlərinizi kompyuterinizin iş masasından ozuyun.
+- Bildirişlərin eyniləşdirilməsi: Telefon bildirişlərini kompyuterinizdə göstərmək və ismarıclara cavab vermək.
 - Multimedianın məsafədən idarə edilməsi: Linux media oxuducusunu telefonunuzdan idarə edin.
 - WiFi bağlantısı: USB qoşulması və ya Bluetooth qoşulmasına ehtiyyac yoxdur.
 - Ucdan-uca TLC şifrələmə: məlumatlarınızın təhlükəsizliyi qorunur.
 
-Nəzərə alın ki, bu tətbiqin işləməsi üçün kompyuterinizə KDE Connect-i quraşdırmalısınız və sonuncu funksiyaların işləməsi üçün İş masası və Android versiyalarını sonuncu versiyaya eyni şəkildə yeniləməlisiniz.
+Nəzərə alın ki, bu tətbiqin işləməsi üçün kompyuterinizə KDE Connect-i quraşdırmalısınız və sonuncu funksiyaların işləməsi üçün masaüstü və Android versiyalarını sonuncu versiyaya eyni şəkildə yeniləməlisiniz.
+
+Həssas icazələr haqqında məlumat:
+*Giriş imkanı icazələri: Əgər uzaqdan daxiletmə funksiyasından istifadə edirsinizsə Android cihazınızı idarə etmək üçün başqa cihazlardan daxil olanları qəbul etmək tələb olunur.
+*Məkanın arxa fonda istifadəsinə icazə: Əgər etibarlı şəbəkə funksiyasından
+istifadə edirsinizsə hansı WiFi şəbəkəsinə qoşulduğunuzu bilməniz tələb olunur
+
+KDE Connect heç bir halda məlumatları KDE-yə və ya üçüncü tərəfə ötürmür. KDE Connect məlumatları bir cihazdan başqasına internet istifadə etmədən və ucdan-uca şifrələmədən istifadə edərək yerli şəbəkə üzərindən göndərir.
 
 Bu tətbiq açıq qaynaq layihəsinin bir hissəsidir və ona töhvə verənlərin sayəsində mövcuddur. Mənbə kodunu əldə etmək üçün veb-səhifəyə daxil olun.
