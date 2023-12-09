@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="kde_connect">KDE Connect</string>
+  <string name="manifest_label_share">Odoslať do zariadenia</string>
   <string name="foreground_notification_no_devices">Nepripojené k žiadnemu zariadeniu</string>
   <string name="foreground_notification_devices">Pripojené k: %s</string>
   <string name="foreground_notification_send_clipboard">Odoslať schránku</string>
@@ -54,6 +55,12 @@
   <string name="mousepad_sensitivity_settings_title">Nastaviť citlivosť touchpadu</string>
   <string name="mousepad_acceleration_profile_settings_title">Nastaviť zrýchlenie ukazovateľa</string>
   <string name="mousepad_scroll_direction_title">Obrátiť smer rolovania</string>
+  <string-array name="mousepad_tap_entries">
+    <item>Ľavý klik</item>
+    <item>Pravý klik</item>
+    <item>Stredný klik</item>
+    <item>Nič</item>
+  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Najpomalšia</item>
     <item>Pomalá</item>
@@ -260,6 +267,7 @@
   <string name="pref_plugin_mprisreceiver_desc">Ovláda multimediálne prehrávače vášho telefónu z iného zariadenia</string>
   <string name="notification_channel_default">Ostatné upozornenia</string>
   <string name="notification_channel_media_control">Multimediálny ovládač</string>
+  <string name="notification_channel_filetransfer">Prichádzajúci prenos súboru</string>
   <string name="notification_channel_high_priority">Vysoká priorita</string>
   <string name="mpris_stop">Zastaviť aktuálny prehrávač</string>
   <string name="copy_url_to_clipboard">Kopírovať URL do schránky</string>
@@ -352,6 +360,11 @@
   <string name="kde_be_free">KDE - Buďte voľní!</string>
   <string name="kde">KDE</string>
   <string name="konqi">Konqi</string>
+  <string name="clear_compose">Vyčistiť</string>
+  <string name="send_compose">Poslať</string>
+  <string name="maintainer_and_developer">Správca a vývojár</string>
   <string name="developer">Vývojár</string>
+  <string name="bug_fixes_and_general_improvements">Opravy chýb a všeobecné vylepšenia</string>
   <string name="holger_kaelberer_task">Zásuvný modul vzdialenej klávesnice a opravy chýb</string>
+  <string name="send_clipboard">Odoslať schránku</string>
 </resources>
