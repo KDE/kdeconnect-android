@@ -1,11 +1,12 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="kde_connect">KDE 連線</string>
+  <string name="manifest_label_share">傳送到裝置</string>
   <string name="foreground_notification_no_devices">沒有連線到任何裝置</string>
   <string name="foreground_notification_devices">已連線到：%s</string>
   <string name="foreground_notification_send_clipboard">傳送剪貼簿</string>
   <string name="pref_plugin_telephony">電話通知器</string>
-  <string name="pref_plugin_telephony_desc">傳送未接來電的通知</string>
+  <string name="pref_plugin_telephony_desc">傳送來電通知</string>
   <string name="pref_plugin_battery">電池報告</string>
   <string name="pref_plugin_battery_desc">定期回報電池狀態</string>
   <string name="pref_plugin_connectivity_report_desc">回報網路訊號強度與狀態</string>
@@ -49,11 +50,23 @@
   <string name="remotekeyboard_connected">遠端鍵盤連線為啟用狀態</string>
   <string name="remotekeyboard_multiple_connections">這裡有兩個以上的遠端鍵盤連結，選擇一個裝置以設定。</string>
   <string name="open_mousepad">遠端輸入</string>
+  <string name="mousepad_info">在您的智慧型手機的螢幕上移動手指來控制電腦螢幕的游標。按一下表示滑鼠的左鍵，使用兩隻/三隻手指頭按一下來表示滑鼠的右鍵/中鍵。使用兩隻手指頭捲動。長按則表示要拖拉。可以在外掛程式設定裡啟用陀螺儀滑鼠功能</string>
+  <string name="mousepad_keyboard_input_not_supported">配對裝置不支援鍵盤輸入</string>
+  <string name="mousepad_single_tap_settings_title">設定單指輕點的動作</string>
   <string name="mousepad_double_tap_settings_title">設定兩隻手指頭按一下的動作</string>
   <string name="mousepad_triple_tap_settings_title">設定三隻手指頭按一下的動作</string>
   <string name="mousepad_sensitivity_settings_title">設定觸碰板的靈敏度</string>
+  <string name="mousepad_mouse_buttons_title">顯示滑鼠按鈕</string>
   <string name="mousepad_acceleration_profile_settings_title">設定指針加速度</string>
   <string name="mousepad_scroll_direction_title">滾動方向相反</string>
+  <string name="gyro_mouse_enabled_title">啟用陀螺儀滑鼠</string>
+  <string name="gyro_mouse_sensitivity_title">陀螺儀靈敏度</string>
+  <string-array name="mousepad_tap_entries">
+    <item>點擊左鍵</item>
+    <item>點擊右鍵</item>
+    <item>點擊中鍵</item>
+    <item>無</item>
+  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>慢</item>
     <item>最慢</item>
@@ -73,12 +86,28 @@
   <string name="sendkeystrokes_textbox_hint">傳送鍵盤輸入至主機</string>
   <string name="sendkeystrokes_disabled_toast">已停用傳送鍵盤輸入的功能——請至「設定」裡啟動</string>
   <string name="sendkeystrokes_wrong_data">無效的檔案類型——需為 text/x-keystrokes</string>
+  <string name="sendkeystrokes_sent_text">已傳送按鍵組合 %1$s 至裝置 %2$s</string>
+  <string name="sendkeystrokes_pref_category_summary">這個模組讓其他應用程式可以分享文字片段，並作為鍵盤輸入傳送至連線的主機</string>
+  <string name="sendkeystrokes_pref_category_title">傳送鍵盤輸入</string>
+  <string name="sendkeystrokes_pref_enabled">啟用鍵盤輸入傳送</string>
+  <string name="sendkeystrokes_pref_enabled_summary">接收 MIME 類型為 \'text/x-keystrokes\' 的資料</string>
+  <string name="sendkeystrokes_safe_text_enabled">馬上傳送安全文字</string>
+  <string name="sendkeystrokes_safe_text_enabled_summary">不另行確認直接傳送簡短而只有數字的字串</string>
+  <string name="pref_plugin_mousepad_send_keystrokes">作為鍵盤輸入傳送</string>
+  <string name="mouse_receiver_plugin_description">接收遠端滑鼠移動</string>
+  <string name="mouse_receiver_plugin_name">滑鼠接收</string>
+  <string name="mouse_receiver_no_permissions">要接收遠端觸控輸入，您需要提供完全控制裝置的協助工具權限</string>
+  <string name="view_status_title">狀態</string>
+  <string name="battery_status_format">電池：%d%%</string>
+  <string name="battery_status_low_format">電池：%d%% 低電量</string>
+  <string name="battery_status_charging_format">電池：%d%% 充電中</string>
   <string name="category_connected_devices">已連結的裝置</string>
   <string name="category_not_paired_devices">可連結的裝置</string>
   <string name="category_remembered_devices">已記住的裝置</string>
   <string name="device_menu_plugins">外掛程式設定</string>
   <string name="device_menu_unpair">取消配對</string>
   <string name="pair_new_device">配對新裝置</string>
+  <string name="cancel_pairing">取消配對</string>
   <string name="unknown_device">不明的裝置</string>
   <string name="error_not_reachable">裝置無法連結</string>
   <string name="error_already_paired">裝置已經配對</string>
@@ -87,6 +116,8 @@
   <string name="error_canceled_by_other_peer">被其他同等功能應用中斷</string>
   <string name="encryption_info_title">加密資訊</string>
   <string name="encryption_info_msg_no_ssl">其他的裝置沒有使用新版本的KDE連線，使用傳統的加密模式。</string>
+  <string name="my_device_fingerprint">您裝置憑證的 SHA256 指紋是：</string>
+  <string name="remote_device_fingerprint">遠端裝置憑證的 SHA256 指紋是：</string>
   <string name="pair_requested">已請求配對</string>
   <string name="pairing_request_from">來自 %1s 的配對請求</string>
   <plurals name="incoming_file_title">
@@ -131,6 +162,8 @@
   <string name="mpris_rew">往後</string>
   <string name="mpris_ff">快轉</string>
   <string name="mpris_next">下一首</string>
+  <string name="mpris_loop">重複播放</string>
+  <string name="mpris_shuffle">隨機播放</string>
   <string name="mpris_volume">音量</string>
   <string name="mpris_time_settings_title">往前/往後按鍵</string>
   <string name="mpris_time_settings_summary">調整按下時往前 / 往後的時間</string>
@@ -141,6 +174,7 @@
     <item>1 分鐘</item>
     <item>2 分鐘</item>
   </string-array>
+  <string name="mpris_notifications_explanation">需要通知權限來在通知欄內顯示遠端媒體</string>
   <string name="mpris_notification_settings_title">顯示媒體控制項通知</string>
   <string name="mpris_notification_settings_summary">允許控制您的媒體播放器而不需要開啟 KDE 連線</string>
   <string name="share_to">分享給…</string>
@@ -164,6 +198,7 @@
   <string name="share_received_file">分享「%s」</string>
   <string name="title_activity_notification_filter">通知過濾器</string>
   <string name="filter_apps_info">將會同步選取 App 的通知。</string>
+  <string name="show_notification_if_screen_off">只在螢幕關閉時傳送通知</string>
   <string name="add_device_dialog_title">新增裝置</string>
   <string name="add_device_hint">主機名稱或 IP 位址</string>
   <string name="sftp_preference_configured_storage_locations">已設定儲存空間位置</string>
@@ -178,8 +213,11 @@
   <string name="sftp_action_mode_menu_delete">刪除</string>
   <string name="sftp_no_storage_locations_configured">未設定儲存空間位置</string>
   <string name="sftp_saf_permission_explanation">若要遠端存取檔案，您需先設定儲存空間位置</string>
+  <string name="sftp_manage_storage_permission_explanation">要允許遠端存取本裝置的檔案，您需要先允許 KDE 連線管理儲存裝置。</string>
   <string name="no_players_connected">沒有發現播放器</string>
   <string name="send_files">傳送檔案</string>
+  <string name="block_notification_contents">阻擋通知內容</string>
+  <string name="block_notification_images">阻擋通知圖片</string>
   <string name="pairing_title">KDE 連線裝置</string>
   <string name="pairing_description">在您相同網域當中，有其他有執行KDE連線的裝置會出現在這裡。</string>
   <string name="device_rename_title">重新命名裝置</string>
@@ -191,6 +229,8 @@
   <string name="no_file_browser">沒有安裝此檔案的瀏覽程式</string>
   <string name="pref_plugin_telepathy">傳送簡訊</string>
   <string name="pref_plugin_telepathy_desc">傳送文字簡訊到您的電腦桌面</string>
+  <string name="pref_plugin_telepathy_mms">傳送 MMS</string>
+  <string name="pref_plugin_telepathy_mms_desc">要能夠從 KDE 連線傳送 MMS 您需要先將其設為預設簡訊應用程式。</string>
   <string name="findmyphone_title">尋找我的手機</string>
   <string name="findmyphone_title_tablet">尋找我的平板</string>
   <string name="findmyphone_title_tv">尋找我的電視</string>
@@ -200,12 +240,16 @@
   <string name="close">關閉</string>
   <string name="plugins_need_permission">部份的外掛程式需要權限才能運作（按一下以取得更多資訊）</string>
   <string name="permission_explanation">這外掛程式需要權限以運作</string>
+  <string name="all_permissions_granted">已提供所有權限 🎉</string>
   <string name="optional_permission_explanation">你需要授予延伸的權限以啟用所有的功能</string>
   <string name="plugins_need_optional_permission">部份的外掛程式因為缺乏權限，而導致功能被停用。（按一下以了解更多資訊）：</string>
+  <string name="share_optional_permission_explanation">要接收檔案您需要允許存取儲存裝置</string>
+  <string name="share_notifications_explanation">要能夠看到傳送或接收檔案時的進度您需要允許通知</string>
   <string name="telepathy_permission_explanation">為了要在您的個人電腦上讀取與撰寫簡訊，你需要提供簡訊的權限。</string>
   <string name="telephony_permission_explanation">為了要在桌面上檢視手機通話，您需要提供手機通話記錄及手機狀態的權限。</string>
   <string name="telephony_optional_permission_explanation">為了要讓聯絡人名稱取代手機號碼，您需要提供手機通訊錄的權限。</string>
   <string name="contacts_permission_explanation">為了要與電腦分享您的通訊錄，您必須提供「聯絡人」的權限</string>
+  <string name="contacts_per_device_confirmation">您的電話通訊錄將會被複製到這個裝置，讓它們能夠被 KDE 連線簡訊應用程式和其他應用程式所使用。</string>
   <string name="select_ringtone">選擇一個鈴聲</string>
   <string name="telephony_pref_blocked_title">已封鎖號碼</string>
   <string name="telephony_pref_blocked_dialog_desc">不顯示這些號碼的來電與簡訊。請在一行指定一個電話號碼。</string>
@@ -222,7 +266,9 @@
   <string name="pref_plugin_mprisreceiver">控制媒體播放器</string>
   <string name="pref_plugin_mprisreceiver_desc">從另外一個裝置操控您手機的媒體播放器</string>
   <string name="notification_channel_default">其他通知</string>
+  <string name="notification_channel_persistent">持續性指示器</string>
   <string name="notification_channel_media_control">多媒體控制</string>
+  <string name="notification_channel_filetransfer_error">檔案傳輸錯誤</string>
   <string name="notification_channel_high_priority">高優先度</string>
   <string name="mpris_stop">停止目前播放器</string>
   <string name="copy_url_to_clipboard">複製 URL 至剪貼簿</string>
@@ -231,6 +277,10 @@
   <string name="runcommand_notpaired">裝置未配對</string>
   <string name="runcommand_nosuchdevice">此處沒有裝置</string>
   <string name="runcommand_noruncommandplugin">裝置未啟用「執行指令外掛程式」</string>
+  <string name="runcommand_category_device_controls_title">裝置控制</string>
+  <string name="runcommand_device_controls_summary">如果您的裝置支援「裝置控制」，您已設定的指令將會出現在那裡。</string>
+  <string name="set_runcommand_name_as_title">set_runcommand_name_as_title</string>
+  <string name="runcommand_name_as_title_title">將名稱作為標題顯示</string>
   <string name="pref_plugin_findremotedevice">尋找遠端裝置</string>
   <string name="pref_plugin_findremotedevice_desc">使遠端裝置響鈴</string>
   <string name="ring">響鈴</string>
@@ -261,6 +311,7 @@
   <string name="empty_trusted_networks_list_text">您尚未加入任何信任網路</string>
   <string name="allow_all_networks_text">全部允許</string>
   <string name="location_permission_needed_title">需要權限</string>
+  <string name="location_permission_needed_desc">KDE 連線需要背景位置權限，才能在背景執行時也能知道您目前所連線的 WiFi 網路。這是因為您週遭的 WiFi 網路名稱可以被用來推斷您的位置，即使這不是 KDE 連線在做的事情。</string>
   <string name="clipboard_android_x_incompat">Android 10 已移除所有應用程式的剪貼簿存取權限。此外掛程式將停用。</string>
   <string name="mpris_open_url">繼續在此播放</string>
   <string name="cant_open_url">無法開啟 URL 以繼續播放</string>
@@ -275,12 +326,19 @@
   <string name="pref_plugin_bigscreen_desc">本裝置將作為 Plasma 全覽螢幕的遠端控制器</string>
   <string name="bigscreen_optional_permission_explanation">為了與電腦共享手機麥克風端的音效輸入，需要您允許本軟體存取手機的音源輸入權限</string>
   <string name="bigscreen_speech_extra_prompt">聲控功能</string>
+  <string name="message_reply_label">回覆</string>
+  <string name="mark_as_read_label">標記為已讀</string>
+  <string name="user_display_name">您</string>
+  <string name="set_default_sms_app_title">傳送 MMS</string>
+  <string name="set_group_message_as_mms_title">傳送群組 MMS</string>
+  <string name="set_long_text_as_mms_title">用 MMS 傳送較長簡訊</string>
+  <string name="convert_to_mms_after_title">轉換為 MMS</string>
   <string-array name="convert_to_mms_after_entries">
-    <item>After one message</item>
-    <item>After two messages</item>
-    <item>After three messages</item>
-    <item>After four messages</item>
-    <item>After five messages</item>
+    <item>一封訊息後</item>
+    <item>兩封訊息後</item>
+    <item>三封訊息後</item>
+    <item>四封訊息後</item>
+    <item>五封訊息後</item>
   </string-array>
   <string name="theme_dialog_title">選擇主題</string>
   <string-array name="theme_list">
@@ -288,4 +346,48 @@
     <item>亮色</item>
     <item>暗色</item>
   </string-array>
+  <string-array name="theme_list_v28">
+    <item>系統預設值</item>
+    <item>亮色</item>
+    <item>暗色</item>
+  </string-array>
+  <string name="report_bug">回報問題</string>
+  <string name="donate">贊助</string>
+  <string name="source_code">原始碼</string>
+  <string name="licenses">授權條款</string>
+  <string name="website">網站</string>
+  <string name="about">關於</string>
+  <string name="authors">作者群</string>
+  <string name="thanks_to">感謝</string>
+  <string name="easter_egg">Easter Egg</string>
+  <string name="email_contributor">發信給貢獻者\n%s</string>
+  <string name="visit_contributors_homepage">造訪貢獻者的首頁\n%s</string>
+  <string name="version">版本 %s</string>
+  <string name="about_kde">關於 KDE</string>
+  <string name="kde_be_free">KDE ─ 擁抱自由！</string>
+  <string name="kde">KDE</string>
+  <string name="konqi">Konqi</string>
+  <string name="click_here_to_type">按這裡來打字</string>
+  <string name="clear_compose">清除</string>
+  <string name="send_compose">傳送</string>
+  <string name="compose_send_title">撰寫傳送</string>
+  <string name="open_compose_send">撰寫簡訊</string>
+  <string name="maintainer_and_developer">維護者和開發者</string>
+  <string name="developer">開發者</string>
+  <string name="apple_support">macOS 支援。正在開發 iOS 支援</string>
+  <string name="bug_fixes_and_general_improvements">錯誤修正與一般改進</string>
+  <string name="samoilenko_yuri_task">SFTP 的實作、錯誤修正與一般改進</string>
+  <string name="aniket_kumar_task">簡訊外掛程式的改善</string>
+  <string name="alex_fiestas_task">聯絡人外掛程式的改善</string>
+  <string name="maxim_leshchenko_task">使用者介面的改善，以及這個關於頁面</string>
+  <string name="holger_kaelberer_task">遠端鍵盤外掛程式與問題修正</string>
+  <string name="saikrishna_arcot_task">在遠端輸入外掛程式中對於鍵盤的支援、錯誤修正與一般改進</string>
+  <string name="everyone_else">其他所有這些年來向 KDE 連線貢獻的人們</string>
+  <string name="send_clipboard">傳送剪貼簿</string>
+  <string name="tap_to_execute">按一下執行</string>
+  <string name="plugin_stats">外掛程式統計</string>
+  <string name="enable_udp_broadcast">啟用 UDP 裝置探索</string>
+  <string name="receive_notifications_permission_explanation">需要允許通知才能接收來自其他裝置的通知</string>
+  <string name="findmyphone_notifications_explanation">需要通知權限讓應用程式在背景時也能讓手機響鈴</string>
+  <string name="no_notifications">通知已停用，您不會接收到送來的配對請求。</string>
 </resources>
