@@ -9,6 +9,7 @@
   <string name="pref_plugin_telephony_desc">傳送來電通知</string>
   <string name="pref_plugin_battery">電池報告</string>
   <string name="pref_plugin_battery_desc">定期回報電池狀態</string>
+  <string name="pref_plugin_connectivity_report">連線報告</string>
   <string name="pref_plugin_connectivity_report_desc">回報網路訊號強度與狀態</string>
   <string name="pref_plugin_sftp">顯示檔案系統</string>
   <string name="pref_plugin_sftp_desc">同意讓遠端可以瀏覽檔案系統</string>
@@ -268,6 +269,7 @@
   <string name="notification_channel_default">其他通知</string>
   <string name="notification_channel_persistent">持續性指示器</string>
   <string name="notification_channel_media_control">多媒體控制</string>
+  <string name="notification_channel_filetransfer_upload">檔案傳出</string>
   <string name="notification_channel_filetransfer_error">檔案傳輸錯誤</string>
   <string name="notification_channel_high_priority">高優先度</string>
   <string name="mpris_stop">停止目前播放器</string>
@@ -372,6 +374,10 @@
   <string name="send_compose">傳送</string>
   <string name="compose_send_title">撰寫傳送</string>
   <string name="open_compose_send">撰寫簡訊</string>
+  <string name="about_kde_about">&lt;h1&gt;關於&lt;/h1&gt;&lt;p&gt;KDE 是一個由眾多軟體工程師、藝術作業者、文字作業者、翻譯人員和其他有志於&lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;自由軟體&lt;/a&gt;事業的人們組成的世界性社群。KDE 做出了 Plasma 桌面環境、數百個應用程式和支援它們的軟體函式庫。&lt;/p&gt;&lt;p&gt;KDE 團隊不受任何單獨的團體、公司或機構控制。我們的目標是一同為製作世界上最好的自由軟體而努力。我們歡迎任何人&lt;a href=https://community.kde.org/Get_Involved&gt;加入並作出貢獻&lt;/a&gt;——包含您。&lt;/p&gt;請造訪 &lt;a href=&amp;quot;https://www.kde.org/&amp;quot;&gt;https://www.kde.org/&lt;/a&gt; 來了解有關 KDE 社群與我們所做的軟體的更多資訊。</string>
+  <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;回報問題或希望功能&lt;/h1&gt;&lt;p&gt;軟體總是可以改善，而 KDE 團隊準備好繼續此項工作。不過您 — 作為使用者 — 需要在有東西沒有正常運作或是可以更好的時候告訴我們。&lt;/p&gt;&lt;p&gt;KDE 有一個問題追蹤系統。請造訪 &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; 或是從關於頁面使用「回報問題」按鈕來回報問題。&lt;/p&gt;如果您有改善的建議，您也可以使用問題追蹤系統來寫下您的希望。此時請使用「Wishlist」（願望清單）作為問題的嚴重程度。</string>
+  <string name="about_kde_join_kde">&lt;h1&gt;加入 KDE&lt;/h1&gt;&lt;p&gt;您不需要是軟體工程師也能加入 KDE 團隊。您可以加入翻譯團隊來翻譯程式的介面。您可以提供圖形、佈景主題、音效，或幫忙撰寫文件，看您喜歡做哪一項。&lt;/p&gt;&lt;p&gt;請參考 &lt;a href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/Get_Involved&lt;/a&gt; 上的資訊看看您能幫上什麼忙。&lt;/p&gt;如果您需要更多資訊或說明文件，請參照 &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/&lt;/a&gt;，上面會有一些能幫忙您的資訊。</string>
+  <string name="about_kde_support_kde">&lt;h1&gt;支援 KDE&lt;/h1&gt;&lt;p&gt;KDE 是可免費取得的，這件事永遠不會改變，但創造 KDE 的工作並不是免費的。&lt;/p&gt;&lt;p&gt;為了支援開發，KDE 社群組織了 KDE eV，一個在德國創辦的非營利組織。KDE e.V. 是 KDE 社群在法津和財政方面的代表。關於 KDE e.V. 的詳細資訊請參見 &lt;a href=https://ev.kde.org/&gt;https://ev.kde.org/&lt;/a&gt;。&lt;/p&gt;&lt;p&gt;KDE 團隊需要各種支持，包含財政上的支持。大部分捐獻是用作補償成員和其他人在貢獻 KDE 時所用的經費，此外還有用於法律支持與大型研討會等等的經費。&lt;/p&gt;&lt;p&gt;我們鼓勵您透過捐獻來支持 KDE。捐贈方法在 &lt;a href=https://www.kde.org/community/donations/&gt;https://www.kde.org/community/donations/&lt;/a&gt; 有列出。&lt;/p&gt;我們事先感謝您對 KDE 的支持。</string>
   <string name="maintainer_and_developer">維護者和開發者</string>
   <string name="developer">開發者</string>
   <string name="apple_support">macOS 支援。正在開發 iOS 支援</string>
