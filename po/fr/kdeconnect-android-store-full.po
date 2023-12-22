@@ -1,5 +1,5 @@
 #
-# SPDX-FileCopyrightText: 2023 Xavier BESNARD <xavier.besnard@neuf.fr>
+# SPDX-FileCopyrightText: 2023 Xavier Besnard <xavier.besnard@kde.org>
 #. extracted from ./metadata/android/en-US/full_description.txt
 msgid ""
 msgstr ""
