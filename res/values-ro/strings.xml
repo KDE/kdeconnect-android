@@ -51,12 +51,17 @@
   <string name="remotekeyboard_connected">Conexiunea de tastatură la distanță e activă</string>
   <string name="remotekeyboard_multiple_connections">Sunt mai multe conexiuni de tastatură la distanță, alegeți dispozitivul de configurat</string>
   <string name="open_mousepad">Introducere de la distanță</string>
+  <string name="mousepad_info">Mișcați un deget pe ecran pentru a muta cursorul mausului. Atingeți pentru clic, folosiți două/trei degete pentru butoanele drept și mijlociu. Folosiți două degete pentru a derula. Apăsați lung pentru tragere-și-lăsare. Funcționalitatea de maus giroscopic poate fi activată în preferințele extensiei.</string>
+  <string name="mousepad_keyboard_input_not_supported">Apăsarea de taste nu e susținută de către dispozitivul asociat</string>
   <string name="mousepad_single_tap_settings_title">Stabilește acțiunea de atingere cu un deget</string>
   <string name="mousepad_double_tap_settings_title">Stabilește acțiunea de atingere cu două degete</string>
   <string name="mousepad_triple_tap_settings_title">Stabilește acțiunea de atingere cu trei degete</string>
   <string name="mousepad_sensitivity_settings_title">Stabilește sensibilitatea zonei tactile</string>
+  <string name="mousepad_mouse_buttons_title">Arată butoanele mausului</string>
   <string name="mousepad_acceleration_profile_settings_title">Stabilește accelerația indicatorului</string>
   <string name="mousepad_scroll_direction_title">Inversează direcția derulării</string>
+  <string name="gyro_mouse_enabled_title">Activează mausul giroscopic</string>
+  <string name="gyro_mouse_sensitivity_title">Sensibilitate giroscop</string>
   <string-array name="mousepad_tap_entries">
     <item>Clic stâng</item>
     <item>Clic drept</item>
@@ -92,6 +97,7 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Trimite ca apăsări de taste</string>
   <string name="mouse_receiver_plugin_description">Primește mișcări de maus de la distanță</string>
   <string name="mouse_receiver_plugin_name">Receptor pentru maus</string>
+  <string name="mouse_receiver_no_permissions">Pentru a primi atingeri de la distanță, trebuie să acordați permisiunile de accesibilitate ce permit controlul deplin asupra dispozitivului</string>
   <string name="view_status_title">Stare</string>
   <string name="battery_status_format">Acumulator: %d%%</string>
   <string name="battery_status_low_format">Acumulator: %d%% Acumulator scăzut</string>
@@ -102,6 +108,7 @@
   <string name="device_menu_plugins">Configurare extensii</string>
   <string name="device_menu_unpair">Dezasociază</string>
   <string name="pair_new_device">Asociază dispozitiv nou</string>
+  <string name="cancel_pairing">Abandonează asocierea</string>
   <string name="unknown_device">Dispozitiv necunoscut</string>
   <string name="error_not_reachable">Dispozitivul nu e accesibil</string>
   <string name="error_already_paired">Dispozitiv asociat deja</string>
@@ -184,6 +191,7 @@
     <item>1 minut</item>
     <item>2 minute</item>
   </string-array>
+  <string name="mpris_notifications_explanation">Permisiunea pentru notificări e necesară pentru a arăta piesele distante în sertarul cu notificări</string>
   <string name="mpris_notification_settings_title">Arată notificare cu control multimedia</string>
   <string name="mpris_notification_settings_summary">Permite controlul lectorilor multimedia fără a deschide KDE Connect</string>
   <string name="share_to">Partajează cu...</string>
@@ -222,8 +230,11 @@
   <string name="sftp_action_mode_menu_delete">Șterge</string>
   <string name="sftp_no_storage_locations_configured">Niciun loc de stocare configurat</string>
   <string name="sftp_saf_permission_explanation">Pentru a accesa fișiere de la distanță, trebuie să configurați locuri de stocare</string>
+  <string name="sftp_manage_storage_permission_explanation">Pentru a permite accesul de la distanță la fișierele de pe acest dispozitiv, trebuie să permiteți KDE Connect să gestioneze stocarea.</string>
   <string name="no_players_connected">Niciun program de redare găsit</string>
   <string name="send_files">Trimite fișiere</string>
+  <string name="block_notification_contents">Blochează conținutul notificărilor</string>
+  <string name="block_notification_images">Blochează imaginile notificărilor</string>
   <string name="pairing_title">Dispozitive KDE Connect</string>
   <string name="pairing_description">Aici ar trebui să apară alte dispozitive ce rulează KDE Connect în aceeași rețea.</string>
   <string name="device_rename_title">Redenumește dispozitivul</string>
@@ -246,12 +257,16 @@
   <string name="close">Închide</string>
   <string name="plugins_need_permission">Unele extensii necesită permisiuni pentru a funcționa (atingeți pentru informații suplimentare):</string>
   <string name="permission_explanation">Această extensie are nevoie de permisiuni ca să lucreze</string>
+  <string name="all_permissions_granted">Toate permisiunile au fost acordate 🎉</string>
   <string name="optional_permission_explanation">Trebuie să acordați permisiuni suplimentare pentru activarea tuturor funcțiilor</string>
   <string name="plugins_need_optional_permission">Unele extensii au caracteristici dezactivate din cauza lipsei permisiunilor (atingeți pentru informații suplimentare):</string>
+  <string name="share_optional_permission_explanation">Pentru a primi fișiere, trebuie să permiteți accesul la stocare</string>
+  <string name="share_notifications_explanation">Pentru a vedea progresul transferurilor de fișiere, trebuie să permiteți notificările</string>
   <string name="telepathy_permission_explanation">Pentru a citi și scrie SMS de pe calculatorul de birou, trebuie să acordați permisiuni asupra SMS-urilor</string>
   <string name="telephony_permission_explanation">Pentru a vedea apelurile pe calculatorul de birou, trebuie să acordați permisiuni asupra jurnalului de apeluri și stării telefonului</string>
   <string name="telephony_optional_permission_explanation">Pentru a vedea numele contactului în locul numărului de telefon, trebuie să permiteți accesul la contactele telefonului.</string>
   <string name="contacts_permission_explanation">Pentru a vă partaja agenda de contacte cu biroul, trebuie să permiteți accesul la contacte</string>
+  <string name="contacts_per_device_confirmation">"Contactele de pe telefon vor fi copiate pe acest dispozitiv, astfel încât să poată fi folosite de aplicația KDE Connect pentru SMS și alte aplicații. "</string>
   <string name="select_ringtone">Alegeți tonul de apel</string>
   <string name="telephony_pref_blocked_title">Numere blocate</string>
   <string name="telephony_pref_blocked_dialog_desc">Nu arăta apeluri și SMS de la aceste numere. Specificați un număr pe linie</string>
@@ -268,7 +283,11 @@
   <string name="pref_plugin_mprisreceiver">Control lector multimedia</string>
   <string name="pref_plugin_mprisreceiver_desc">Controlați programele multimedia din telefon de pe alt dispozitiv</string>
   <string name="notification_channel_default">Alte notificări</string>
+  <string name="notification_channel_persistent">Indicator persistent</string>
   <string name="notification_channel_media_control">Control multimedia</string>
+  <string name="notification_channel_filetransfer">Transfer de fișiere de intrare</string>
+  <string name="notification_channel_filetransfer_upload">Transfer de fișiere de ieșire</string>
+  <string name="notification_channel_filetransfer_error">Eroare la transferul fișierului</string>
   <string name="notification_channel_high_priority">Prioritate ridicată</string>
   <string name="mpris_stop">Oprește lectorul actual</string>
   <string name="copy_url_to_clipboard">Copiază URL în clipboard</string>
@@ -277,6 +296,10 @@
   <string name="runcommand_notpaired">Dispozitivul nu e asociat</string>
   <string name="runcommand_nosuchdevice">Nu există un asemenea dispozitiv</string>
   <string name="runcommand_noruncommandplugin">Acest dispozitiv nu are extensia „Rulează comandă” activată</string>
+  <string name="runcommand_category_device_controls_title">Controale dispozitiv</string>
+  <string name="runcommand_device_controls_summary">Dacă dispozitivul susține Controale Dispozitiv, comenzile definite vor apărea aici.</string>
+  <string name="set_runcommand_name_as_title">set_runcommand_name_as_title</string>
+  <string name="runcommand_name_as_title_title">Arată denumirea ca titlu</string>
   <string name="pref_plugin_findremotedevice">Găsește dispozitivul distant</string>
   <string name="pref_plugin_findremotedevice_desc">Sună dispozitivul distant</string>
   <string name="ring">Sună</string>
@@ -307,6 +330,7 @@
   <string name="empty_trusted_networks_list_text">Încă nu ați adăugat nicio rețea de încredere</string>
   <string name="allow_all_networks_text">Permite toate</string>
   <string name="location_permission_needed_title">Permisiune cerută</string>
+  <string name="location_permission_needed_desc">KDE Connect necesită permisiunea de localizare în fundal pentru a ști rețeaua WiFi la care v-ați conectat chiar și atunci când aplicația e în fundal. Aceasta se datorează faptului că denumirile rețelelor din jur ar putea fi folosite pentru a vă localiza, chiar dacă aceasta nu e ceva ce face KDE Connect.</string>
   <string name="clipboard_android_x_incompat">Android 10 a eliminat accesul la clipboard pentru toate aplicațiile. Această extensie va fi dezactivată.</string>
   <string name="mpris_open_url">Continuă redarea aici</string>
   <string name="cant_open_url">URL-ul nu poate fi deschis pentru a continua redarea</string>
@@ -367,9 +391,11 @@
   <string name="click_here_to_type">Atingeți aici pentru a tasta</string>
   <string name="clear_compose">Curăță</string>
   <string name="send_compose">Expediază</string>
+  <string name="compose_send_title">Compune și expediază</string>
   <string name="open_compose_send">Compune textul</string>
   <string name="about_kde_about">&lt;h1&gt;Despre&lt;/h1&gt; &lt;p&gt;KDE este o comunitate mondială de programatori, artiști, scriitori, traducători și creatori dedicați dezvoltării &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;programelor libere&lt;/a&gt;. KDE produce mediul de birou Plasma, sute de aplicații și multe biblioteci software ce le susțin. KDE este o întreprindere bazată pe cooperare: nicio entitate nu-i controlează direcția sau produsele. Dimpotrivă, colaborăm pentru a atinge scopul comun de a construi cele mai bune programe libere din lume. Toți sunt bineveniți să &lt;a href=https://community.kde.org/Get_Involved&gt;se alăture și să contribuie&lt;/a&gt; la KDE, inclusiv dumneavoastră. Vizitați &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; pentru informații suplimentare despre comunitatea KDE și programele pe care le producem.</string>
   <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Raportați defecte sau dorințe&lt;/h1&gt; &lt;p&gt;Programele pot fi îmbunătățite întotdeauna și echipa KDE este gata să o facă. Pentru aceasta, dumneavoastră, utilizatorul, trebuie să ne comunicați când ceva nu merge cum trebuie sau poate fi făcut mai bine.&lt;/p&gt; &lt;p&gt;KDE are un sistem de urmărire a defectelor. Vizitați &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; sau folosiți dialogul „Raportează defect” din meniul „Ajutor” pentru a comunica defecte.&lt;/p&gt; Dacă aveți sugestii pentru îmbunătățiri, sunteți invitat să utilizați sistemul de urmărire a defectelor și să vă înregistrați dorința. Asigurați-vă că folosiți prioritatea numită „Dorință”.</string>
+  <string name="about_kde_join_kde">&lt;h1&gt;Alăturați-vă KDE&lt;/h1&gt; &lt;p&gt;Nu trebuie să fiți neapărat un programator ca să fiți un membru al echipei KDE. Vă puteți alătura echipei care traduce interfețele programelor. Puteți să faceți imagini, tematici, sunete, și să îmbunătățiți documentația. Dumneavoastră decideți!&lt;/p&gt; &lt;p&gt;Vizitați &lt;a href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/Get_Involved&lt;/a&gt; pentru informații despre proiectele la care puteți participa.&lt;/p&gt; Dacă aveți nevoie de mai multe informații sau documentație, atunci o vizită la &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/&lt;/a&gt; vă va oferi tot ceea de ce aveți nevoie.</string>
   <string name="about_kde_support_kde">&lt;h1&gt;Sprijiniți KDE&lt;/h1&gt; &lt;p&gt;Programele KDE sunt și vor fi pentru totdeauna disponibile gratuit, dar crearea acestora nu e gratuită.&lt;/p&gt; &lt;p&gt;Pentru a susține dezvoltarea, comunitatea KDE a format Asociația KDE – o organizație non-profit fondată juridic în Germania. KDE e.V. reprezintă comunitatea KDE în chestiuni juridice și financiare. Vizitați &lt;a href=https://ev.kde.org/&gt;https://ev.kde.org/&lt;/a&gt; pentru informații KDE e.V.&lt;/p&gt; &lt;p&gt;KDE beneficiază de multe feluri de sprijin, inclusiv financiar. Fondurile sunt utilizate pentru a rambursa cheltuielile membrilor și ale altora, făcute pentru contribuția la KDE. Fondurile suplimentare sunt folosite pentru chestiuni juridice și pentru organizarea unor conferințe și întâlniri&lt;/p&gt; &lt;p&gt; Vă încurajăm să ajutați KDE printr-o donație financiară, folosind una din modalitățile descrise la &lt;a href=https://www.kde.org/community/donations/&gt;https://www.kde.org/community/donations/&lt;/a&gt;.&lt;/p&gt; Vă mulțumim anticipat pentru sprijinul dumneavoastră.</string>
   <string name="maintainer_and_developer">Responsabil și dezvoltator</string>
   <string name="developer">Dezvoltator</string>
@@ -384,4 +410,9 @@
   <string name="everyone_else">Toți cei care au contribuit la KDE Connect de-a lungul anilor</string>
   <string name="send_clipboard">Trimite clipboard</string>
   <string name="tap_to_execute">Atingeți pentru a executa</string>
+  <string name="plugin_stats">Statistici pentru extensii</string>
+  <string name="enable_udp_broadcast">Activează descoperirea UDP</string>
+  <string name="receive_notifications_permission_explanation">Notificările trebuiesc permise pentru a le primi de pe alte dispozitive</string>
+  <string name="findmyphone_notifications_explanation">Permisiunea pentru notificări e necesară pentru ca telefonul să poată suna când aplicația e în fundal</string>
+  <string name="no_notifications">Notificările sunt dezactivate, nu veți primi notificări pentru cererile de asociere.</string>
 </resources>
