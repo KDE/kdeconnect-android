@@ -511,13 +511,6 @@ public class Device implements BaseLink.PacketReceiver {
     @WorkerThread
     public boolean sendPacketBlocking(@NonNull final NetworkPacket np, @NonNull final SendPacketStatusCallback callback, boolean sendPayloadFromSameThread) {
 
-        /*
-        if (!m_outgoingCapabilities.contains(np.getType()) && !NetworkPacket.protocolPacketTypes.contains(np.getType())) {
-            Log.e("Device/sendPacket", "Plugin tried to send an undeclared packet: " + np.getType());
-            Log.w("Device/sendPacket", "Declared outgoing packet types: " + Arrays.toString(m_outgoingCapabilities.toArray()));
-        }
-        */
-
         boolean success = false;
         for (final BaseLink link : links) {
             if (link == null) continue;
