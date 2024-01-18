@@ -53,6 +53,7 @@ public class MousePadActivity
     private float mCurrentSensitivity;
     private float displayDpiMultiplier;
     private int scrollDirection = 1;
+    private double scrollCoefficient = 1.0;
     private boolean allowGyro = false;
     private boolean gyroEnabled = false;
     private int gyroscopeSensitivity = 100;
@@ -364,7 +365,7 @@ public class MousePadActivity
 
         isScrolling = true;
 
-        accumulatedDistanceY += distanceY;
+        accumulatedDistanceY += distanceY * scrollCoefficient;
         if (accumulatedDistanceY > MinDistanceToSendScroll || accumulatedDistanceY < -MinDistanceToSendScroll) {
             sendScroll(scrollDirection * accumulatedDistanceY);
 
@@ -519,6 +520,10 @@ public class MousePadActivity
         } else {
             scrollDirection = 1;
         }
+
+        int scrollSensitivity = prefs.getInt(getString(R.string.mousepad_scroll_sensitivity), 100);
+        if (scrollSensitivity == 0) scrollSensitivity = 1;
+        scrollCoefficient = Math.pow((scrollSensitivity / 100f), 1.5);
 
         allowGyro = isGyroSensorAvailable() && prefs.getBoolean(getString(R.string.gyro_mouse_enabled), false);
         if (allowGyro) gyroscopeSensitivity = prefs.getInt(getString(R.string.gyro_mouse_sensitivity), 100);

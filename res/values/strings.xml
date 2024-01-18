@@ -80,6 +80,8 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="mousepad_acceleration_profile_key" translatable="false">mousepad_acceleration_profile_key</string>
     <string name="mousepad_scroll_direction_title">Reverse Scrolling Direction</string>
     <string name="mousepad_scroll_direction" translatable="false">mousepad_scroll_direction</string>
+    <string name="mousepad_scroll_sensitivity" translatable="false">mousepad_scroll_sensitivity</string>
+    <string name="mousepad_scroll_sensitivity_title">Scroll sensitivity</string>
     <string name="gyro_mouse_enabled" translatable="false">gyro_mouse_enabled</string>
     <string name="mousepad_mouse_buttons_enabled_pref" translatable="false">mouse_buttons_enabled</string>
     <string name="gyro_mouse_enabled_title">Enable gyroscope mouse</string>

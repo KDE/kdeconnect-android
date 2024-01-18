@@ -63,6 +63,13 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
         android:key="@string/mousepad_scroll_direction"
         android:title="@string/mousepad_scroll_direction_title" />
 
+    <SeekBarPreference
+        android:id="@+id/mousepad_scroll_sensitivity_pref"
+        android:defaultValue="100"
+        android:key="@string/mousepad_scroll_sensitivity"
+        android:title="@string/mousepad_scroll_sensitivity_title"
+        android:layout_width="wrap_content" />
+
 
     <SwitchPreference
         android:id="@+id/gyro_mouse_enabled"
