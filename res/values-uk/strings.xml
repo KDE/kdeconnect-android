@@ -60,6 +60,7 @@
   <string name="mousepad_mouse_buttons_title">Показати кнопки миші</string>
   <string name="mousepad_acceleration_profile_settings_title">Встановити прискорення вказівника</string>
   <string name="mousepad_scroll_direction_title">Зворотний напрямок гортання</string>
+  <string name="mousepad_scroll_sensitivity_title">Чутливість до гортання</string>
   <string name="gyro_mouse_enabled_title">Увімкнути гіроскопічну мишу</string>
   <string name="gyro_mouse_sensitivity_title">Чутливість гіроскопа</string>
   <string-array name="mousepad_tap_entries">

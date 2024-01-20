@@ -60,6 +60,7 @@
   <string name="mousepad_mouse_buttons_title">Mostra els botons del ratolí</string>
   <string name="mousepad_acceleration_profile_settings_title">Estableix l\'acceleració de l\'apuntador</string>
   <string name="mousepad_scroll_direction_title">Inverteix la direcció del desplaçament</string>
+  <string name="mousepad_scroll_sensitivity_title">Sensibilitat del desplaçament</string>
   <string name="gyro_mouse_enabled_title">Activa el ratolí giroscòpic</string>
   <string name="gyro_mouse_sensitivity_title">Sensibilitat del giroscopi</string>
   <string-array name="mousepad_tap_entries">

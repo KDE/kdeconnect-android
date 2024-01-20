@@ -60,6 +60,7 @@
   <string name="mousepad_mouse_buttons_title">Prikaži miškine gumbe</string>
   <string name="mousepad_acceleration_profile_settings_title">Nastavi pospeške kazalca</string>
   <string name="mousepad_scroll_direction_title">Smer povratnega drsenja</string>
+  <string name="mousepad_scroll_sensitivity_title">Občutljivost drsenja</string>
   <string name="gyro_mouse_enabled_title">Omogoči žiroskopsko miško</string>
   <string name="gyro_mouse_sensitivity_title">Občutljivost žiroskopa</string>
   <string-array name="mousepad_tap_entries">

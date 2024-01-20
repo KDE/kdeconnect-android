@@ -60,6 +60,7 @@
   <string name="mousepad_mouse_buttons_title">Muisknoppen tonen</string>
   <string name="mousepad_acceleration_profile_settings_title">Aanwijzerversnelling instellen</string>
   <string name="mousepad_scroll_direction_title">Schuifrichting omdraaien</string>
+  <string name="mousepad_scroll_sensitivity_title">Gevoeligheid voor schuiven</string>
   <string name="gyro_mouse_enabled_title">Gyroscoopmuis inschakelen</string>
   <string name="gyro_mouse_sensitivity_title">Gyroscoopgevoeligheid</string>
   <string-array name="mousepad_tap_entries">

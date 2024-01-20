@@ -56,12 +56,13 @@
   <string name="mousepad_single_tap_settings_title">Tek parmak dokunma eylemini ayarla</string>
   <string name="mousepad_double_tap_settings_title">İki parmak dokunma eylemini ayarla</string>
   <string name="mousepad_triple_tap_settings_title">Üç parmak dokunma eylemini ayarla</string>
-  <string name="mousepad_sensitivity_settings_title">Dokunmatik yüzey hassasiyetini ayarla</string>
+  <string name="mousepad_sensitivity_settings_title">Dokunmatik yüzey duyarlılığını ayarla</string>
   <string name="mousepad_mouse_buttons_title">Fare düğmelerini göster</string>
   <string name="mousepad_acceleration_profile_settings_title">İşaretçi ivmesini ayarla</string>
   <string name="mousepad_scroll_direction_title">Sarma Yönünü Tersine Çevir</string>
+  <string name="mousepad_scroll_sensitivity_title">Sarma duyarlılığı</string>
   <string name="gyro_mouse_enabled_title">Jiroskop fareyi etkinleştir</string>
-  <string name="gyro_mouse_sensitivity_title">Jiroskop hassasiyeti</string>
+  <string name="gyro_mouse_sensitivity_title">Jiroskop duyarlılığı</string>
   <string-array name="mousepad_tap_entries">
     <item>Sol tık</item>
     <item>Sağ tık</item>
@@ -71,8 +72,8 @@
   <string-array name="mousepad_sensitivity_entries">
     <item>En Yavaş</item>
     <item>En Yavaşın Üstü</item>
-    <item>Varsayıla</item>
-    <item>Varsayılan Üstü</item>
+    <item>Öntanımlı</item>
+    <item>Öntanımlının Üstü</item>
     <item>En Hızlı</item>
   </string-array>
   <string-array name="mousepad_acceleration_profile_entries">
