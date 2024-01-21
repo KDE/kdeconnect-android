@@ -60,6 +60,7 @@
   <string name="mousepad_mouse_buttons_title">הצגת כפתורי עכבר</string>
   <string name="mousepad_acceleration_profile_settings_title">הגדרת האצת סמן</string>
   <string name="mousepad_scroll_direction_title">היפוך כיוון הגלילה</string>
+  <string name="mousepad_scroll_sensitivity_title">רגישות גלילה</string>
   <string name="gyro_mouse_enabled_title">הפעלת עכבר גירוסקופי</string>
   <string name="gyro_mouse_sensitivity_title">רגישות גירוסקופ</string>
   <string-array name="mousepad_tap_entries">
