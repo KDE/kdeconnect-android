@@ -60,6 +60,7 @@
   <string name="mousepad_mouse_buttons_title">显示鼠标按钮</string>
   <string name="mousepad_acceleration_profile_settings_title">设置指针加速度</string>
   <string name="mousepad_scroll_direction_title">反转滚动方向</string>
+  <string name="mousepad_scroll_sensitivity_title">滚动灵敏度</string>
   <string name="gyro_mouse_enabled_title">启用陀螺仪鼠标</string>
   <string name="gyro_mouse_sensitivity_title">陀螺仪灵敏度</string>
   <string-array name="mousepad_tap_entries">

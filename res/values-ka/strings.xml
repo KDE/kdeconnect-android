@@ -46,6 +46,7 @@
   <string name="mousepad_mouse_buttons_title">თაგუნას ღილაკების ჩვენება</string>
   <string name="mousepad_acceleration_profile_settings_title">კურსორის აჩქარების დაყენება</string>
   <string name="mousepad_scroll_direction_title">აწევ-ჩამოწევის მიმართულების რევერსი</string>
+  <string name="mousepad_scroll_sensitivity_title">ჩოჩიის მგრძნობელობა</string>
   <string name="gyro_mouse_enabled_title">გიროსკოპის თაგუნას დაჩართვა</string>
   <string name="gyro_mouse_sensitivity_title">გიროსკოპის მგრძნობელობა</string>
   <string-array name="mousepad_tap_entries">
