@@ -60,6 +60,7 @@
   <string name="mousepad_mouse_buttons_title">Amosar os botóns do rato</string>
   <string name="mousepad_acceleration_profile_settings_title">Definir a aceleración do punteiro</string>
   <string name="mousepad_scroll_direction_title">Inverter a dirección de desprazamento</string>
+  <string name="mousepad_scroll_sensitivity_title">Sensibilidade de desprazamento</string>
   <string name="gyro_mouse_enabled_title">Activar o rato de xiroscopio</string>
   <string name="gyro_mouse_sensitivity_title">Sensibilidade de xiroscopio</string>
   <string-array name="mousepad_tap_entries">

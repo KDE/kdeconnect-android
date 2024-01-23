@@ -60,6 +60,7 @@
   <string name="mousepad_mouse_buttons_title">Mostrar botones del ratón</string>
   <string name="mousepad_acceleration_profile_settings_title">Establecer la aceleración del puntero</string>
   <string name="mousepad_scroll_direction_title">Invertir dirección de desplazamiento</string>
+  <string name="mousepad_scroll_sensitivity_title">Sensibilidad del desplazamiento</string>
   <string name="gyro_mouse_enabled_title">Activar ratón giroscópico</string>
   <string name="gyro_mouse_sensitivity_title">Sensibilidad del giroscopio</string>
   <string-array name="mousepad_tap_entries">

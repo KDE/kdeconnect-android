@@ -60,6 +60,7 @@
   <string name="mousepad_mouse_buttons_title">顯示滑鼠按鈕</string>
   <string name="mousepad_acceleration_profile_settings_title">設定指針加速度</string>
   <string name="mousepad_scroll_direction_title">滾動方向相反</string>
+  <string name="mousepad_scroll_sensitivity_title">捲動靈敏度</string>
   <string name="gyro_mouse_enabled_title">啟用陀螺儀滑鼠</string>
   <string name="gyro_mouse_sensitivity_title">陀螺儀靈敏度</string>
   <string-array name="mousepad_tap_entries">
@@ -269,6 +270,7 @@
   <string name="notification_channel_default">其他通知</string>
   <string name="notification_channel_persistent">持續性指示器</string>
   <string name="notification_channel_media_control">多媒體控制</string>
+  <string name="notification_channel_filetransfer">檔案傳入</string>
   <string name="notification_channel_filetransfer_upload">檔案傳出</string>
   <string name="notification_channel_filetransfer_error">檔案傳輸錯誤</string>
   <string name="notification_channel_high_priority">高優先度</string>
