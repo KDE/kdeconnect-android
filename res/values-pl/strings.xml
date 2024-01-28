@@ -60,6 +60,7 @@
   <string name="mousepad_mouse_buttons_title">Pokaż przyciski myszy</string>
   <string name="mousepad_acceleration_profile_settings_title">Ustaw przyspieszenie wskaźnika</string>
   <string name="mousepad_scroll_direction_title">Odwróć stronę przewijania</string>
+  <string name="mousepad_scroll_sensitivity_title">Czułość przewijania</string>
   <string name="gyro_mouse_enabled_title">Włącz mysz żyroskopową</string>
   <string name="gyro_mouse_sensitivity_title">Czułość żyroskopu</string>
   <string-array name="mousepad_tap_entries">
