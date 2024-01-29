@@ -323,7 +323,7 @@
   <string name="empty_trusted_networks_list_text">Encara no heu afegit cap xarxa de confiança</string>
   <string name="allow_all_networks_text">Permet totes</string>
   <string name="location_permission_needed_title">Es requereix permís</string>
-  <string name="location_permission_needed_desc">El KDE Connect necessita el permís d\'ubicació en segon pla per conèixer la xarxa WiFi a la qual esteu connectat fins i tot quan l\'aplicació està en segon pla. Això és perquè el nom de les xarxes Wi-Fi que hi ha al voltant es podria utilitzar per a trobar la vostra ubicació, fins i tot quan això no és el que fa el KDE Connect.</string>
+  <string name="location_permission_needed_desc">El KDE Connect necessita el permís d\'ubicació en segon pla per a conèixer la xarxa Wi-Fi a la qual esteu connectat fins i tot quan l\'aplicació està en segon pla. Això és perquè el nom de les xarxes Wi-Fi que hi ha al voltant es podria utilitzar per a trobar la vostra ubicació, fins i tot quan això no és el que fa el KDE Connect.</string>
   <string name="clipboard_android_x_incompat">L\'Android 10 ha tret l\'accés al porta-retalls a totes les aplicacions. Aquest connector estarà inhabilitat.</string>
   <string name="mpris_open_url">Continua reproduint aquí</string>
   <string name="cant_open_url">No s\'ha pogut obrir l\'URL per a continuar reproduint</string>

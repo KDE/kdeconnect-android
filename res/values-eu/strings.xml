@@ -60,6 +60,7 @@
   <string name="mousepad_mouse_buttons_title">Erakutsi saguaren botoiak</string>
   <string name="mousepad_acceleration_profile_settings_title">Ezarri erakuslearen azelerazio</string>
   <string name="mousepad_scroll_direction_title">Alderantzikatu korritzearen norabidea</string>
+  <string name="mousepad_scroll_sensitivity_title">Kiribiltze sentikortasuna</string>
   <string name="gyro_mouse_enabled_title">Gaitu giroskopio-sagua</string>
   <string name="gyro_mouse_sensitivity_title">Giroskopioaren sentikortasuna</string>
   <string-array name="mousepad_tap_entries">
