@@ -1,16 +1,16 @@
 # Translation of kdeconnect-android-store-full.po to Catalan
-# Copyright (C) 2023 This_file_is_part_of_KDE
+# Copyright (C) 2023-2024 This_file_is_part_of_KDE
 # This file is distributed under the license LGPL version 2.1 or
 # version 3 or later versions approved by the membership of KDE e.V.
 #
-# Josep M. Ferrer <txemaq@gmail.com>, 2023.
+# Josep M. Ferrer <txemaq@gmail.com>, 2023, 2024.
 #. extracted from ./metadata/android/en-US/full_description.txt
 msgid ""
 msgstr ""
 "Project-Id-Version: kdeconnect-android\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-11-05 12:31+0000\n"
-"PO-Revision-Date: 2023-09-24 10:41+0200\n"
+"PO-Revision-Date: 2024-01-28 19:39+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -76,10 +76,10 @@ msgstr ""
 "característiques.\n"
 "\n"
 "Informació dels permisos confidencials:\n"
-"* Permís d'accessibilitat: requerit per rebre l'entrada des d'un altre "
-"dispositiu per controlar el telèfon Android, si utilitzeu la característica "
-"d'entrada remota.\n"
-"* Permís d'ubicació en segon pla: requerit per saber a quina xarxa WiFi "
+"* Permís d'accessibilitat: requerit per a rebre l'entrada des d'un altre "
+"dispositiu per a controlar el telèfon Android, si utilitzeu la "
+"característica d'entrada remota.\n"
+"* Permís d'ubicació en segon pla: requerit per a saber a quina xarxa Wi-Fi "
 "esteu connectat, si utilitzeu la característica xarxes de confiança.\n"
 "\n"
 "El KDE Connect mai envia cap informació a KDE ni a cap tercer. El KDE "
@@ -88,5 +88,5 @@ msgstr ""
 "extrem.\n"
 "\n"
 "Aquesta aplicació forma part d'un projecte de codi obert i existeix gràcies "
-"a totes les persones que hi han contribuït. Visiteu el lloc web per "
+"a totes les persones que hi han contribuït. Visiteu el lloc web per a "
 "aconseguir el codi font.\n"
