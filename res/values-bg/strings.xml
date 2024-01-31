@@ -60,6 +60,7 @@
   <string name="mousepad_mouse_buttons_title">Показване на бутони на мишката</string>
   <string name="mousepad_acceleration_profile_settings_title">Задаване на ускорение на показалеца</string>
   <string name="mousepad_scroll_direction_title">Обръщане на посоката на превъртане</string>
+  <string name="mousepad_scroll_sensitivity_title">Чувствителност на превъртането</string>
   <string name="gyro_mouse_enabled_title">Активиране на жироскопската мишка</string>
   <string name="gyro_mouse_sensitivity_title">Чувствителност на жироскопа</string>
   <string-array name="mousepad_tap_entries">

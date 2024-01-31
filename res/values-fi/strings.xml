@@ -288,6 +288,10 @@
   <string name="runcommand_notpaired">Laitetta ei ole kytketty pariksi</string>
   <string name="runcommand_nosuchdevice">Tätä laitetta ei ole</string>
   <string name="runcommand_noruncommandplugin">Laitteen Suorita komento -liitännäinen ei ole käytössä</string>
+  <string name="runcommand_category_device_controls_title">Laiteohjaimet</string>
+  <string name="runcommand_device_controls_summary">Jos laite tukee laiteohjaimia, määrittämäsi komennot ilmestyvät tähän.</string>
+  <string name="set_runcommand_name_as_title">aseta_komennon_nimi_otsikoksi</string>
+  <string name="runcommand_name_as_title_title">Nämä otsikkona nimi</string>
   <string name="pref_plugin_findremotedevice">Etsi etälaite</string>
   <string name="pref_plugin_findremotedevice_desc">Soita etälaitteeseen</string>
   <string name="ring">Soita</string>
