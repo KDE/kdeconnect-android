@@ -60,6 +60,7 @@
   <string name="mousepad_mouse_buttons_title">マウスボタンを表示</string>
   <string name="mousepad_acceleration_profile_settings_title">ポインタの速度を設定</string>
   <string name="mousepad_scroll_direction_title">スクロールの方向を反転</string>
+  <string name="mousepad_scroll_sensitivity_title">スクロールの感度</string>
   <string name="gyro_mouse_enabled_title">空中マウスを有効化</string>
   <string name="gyro_mouse_sensitivity_title">ジャイロスコープの感度</string>
   <string-array name="mousepad_tap_entries">
@@ -175,6 +176,7 @@
     <item>1 分</item>
     <item>2 分</item>
   </string-array>
+  <string name="mpris_notifications_explanation">通知ドロアにメディア情報を表示するためには、通知の許可が必要です。</string>
   <string name="mpris_notification_settings_title">メディア操作の通知を表示</string>
   <string name="mpris_notification_settings_summary">KDE Connect を開かずにメディアプレーヤーをコントロール可能にします</string>
   <string name="share_to">共有先...</string>
@@ -244,10 +246,12 @@
   <string name="optional_permission_explanation">すべての機能を有効にするには、追加の権限を付与する必要があります</string>
   <string name="plugins_need_optional_permission">権限が不足しているため、いくつかのプラグインの機能は無効化されています (タップして詳細情報を表示):</string>
   <string name="share_optional_permission_explanation">ファイルを受信するにはストレージへのアクセスを許可する必要があります</string>
+  <string name="share_notifications_explanation">ファイル送受信の進捗情報を確認するには、通知を許可する必要があります。</string>
   <string name="telepathy_permission_explanation">デスクトップから SMS を送受信するには SMS の権限を付与する必要があります</string>
   <string name="telephony_permission_explanation">デスクトップで通話を表示するために、電話の状態と通話履歴の権限を付与する必要があります</string>
   <string name="telephony_optional_permission_explanation">電話番号の代わりに連絡先名を見るには、端末の連絡先へのアクセスを許可する必要があります</string>
-  <string name="contacts_permission_explanation">連絡先をデスクトップと共有するためには、連絡先の権限を付与する必要があります</string>
+  <string name="contacts_permission_explanation">連絡先をデスクトップと共有するには、連絡先の権限を付与する必要があります</string>
+  <string name="contacts_per_device_confirmation">携帯電話に保存されている連絡先はこのデバイスにコピーされ、KDE Connect SMS app などのアプリで使用できるようになります。</string>
   <string name="select_ringtone">着信音を選択</string>
   <string name="telephony_pref_blocked_title">ブロックされた番号</string>
   <string name="telephony_pref_blocked_dialog_desc">これらの番号からの通話と SMS を表示しません。一行に1つの電話番号を指定してください</string>
@@ -266,6 +270,9 @@
   <string name="notification_channel_default">他の通知</string>
   <string name="notification_channel_persistent">永続的なインジケータ</string>
   <string name="notification_channel_media_control">メディアの操作</string>
+  <string name="notification_channel_filetransfer">ファイル受信</string>
+  <string name="notification_channel_filetransfer_upload">ファイル送信</string>
+  <string name="notification_channel_filetransfer_error">ファイル転送エラー</string>
   <string name="notification_channel_high_priority">高い優先度</string>
   <string name="mpris_stop">現在のプレーヤーを停止</string>
   <string name="copy_url_to_clipboard">URL をクリップボードにコピー</string>
@@ -274,6 +281,10 @@
   <string name="runcommand_notpaired">デバイスはペアリングされていません</string>
   <string name="runcommand_nosuchdevice">そのようなデバイスはありません</string>
   <string name="runcommand_noruncommandplugin">このデバイスは「コマンドを実行」プラグインを有効にしていません</string>
+  <string name="runcommand_category_device_controls_title">デバイスの操作</string>
+  <string name="runcommand_device_controls_summary">あなたのデバイスが「デバイスの操作」をサポートする場合、設定したコマンドがそこに表示されます。</string>
+  <string name="set_runcommand_name_as_title">set_runcommand_name_as_title</string>
+  <string name="runcommand_name_as_title_title">名前をタイトルとして表示</string>
   <string name="pref_plugin_findremotedevice">リモートデバイスを探す</string>
   <string name="pref_plugin_findremotedevice_desc">リモートデバイスを鳴動させる</string>
   <string name="ring">鳴らす</string>
@@ -288,7 +299,7 @@
   <string name="settings_more_settings_text">デバイスごとの設定はデバイス内の「プラグイン設定」にあります</string>
   <string name="setting_persistent_notification">永続的な通知を表示</string>
   <string name="setting_persistent_notification_oreo">永続的な通知</string>
-  <string name="setting_persistent_notification_description">タップして通知設定内で有効化/無効化します</string>
+  <string name="setting_persistent_notification_description">タップして通知設定内で有効化/無効化</string>
   <string name="extra_options">追加オプション</string>
   <string name="privacy_options">プライバシーオプション</string>
   <string name="set_privacy_options">プライバシーオプションを設定</string>
@@ -360,6 +371,8 @@
   <string name="kde_be_free">KDE - Be Free!</string>
   <string name="kde">KDE</string>
   <string name="konqi">Konqi</string>
+  <string name="rise_up">上へ</string>
+  <string name="rise_down">下へ</string>
   <string name="click_here_to_type">タップしてタイプ</string>
   <string name="clear_compose">クリア</string>
   <string name="send_compose">送信</string>
@@ -379,4 +392,8 @@
   <string name="send_clipboard">クリップボードを送信</string>
   <string name="tap_to_execute">タップして実行</string>
   <string name="plugin_stats">プラグイン統計</string>
+  <string name="enable_udp_broadcast">UDP デバイス検知を有効化</string>
+  <string name="receive_notifications_permission_explanation">他のデバイスからの通知を受け取るためには、通知を許可する必要があります。</string>
+  <string name="findmyphone_notifications_explanation">アプリがバックグラウンドで動作しているときに携帯電話を鳴動させるには、通知の許可が必要です。</string>
+  <string name="no_notifications">通知は無効化されています。ペア要求通知は受信されません。</string>
 </resources>
