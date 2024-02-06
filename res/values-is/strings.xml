@@ -42,18 +42,26 @@
   <string name="cancel">Hætta við</string>
   <string name="open_settings">Opna stillingar</string>
   <string name="no_permissions">Þú verður að gefa heimild til að fá aðgang að tilkynningum</string>
+  <string name="no_permissions_remotekeyboard">Til að taka við lyklaáslætti þarftu að virkja fjartengt lyklaborð KDE-tenginga</string>
   <string name="send_ping">"Senda ping-beiðni "</string>
   <string name="open_mpris_controls">Margmiðlunarstýring</string>
   <string name="remotekeyboard_editing_only_title">Aðeins meðhöndla fjartengda lykla við breytingar/ritun</string>
   <string name="remotekeyboard_not_connected">Engin fjartenging lyklaborðs er virk, virkjaðu eina slíka í KDE Connect</string>
   <string name="remotekeyboard_connected">Fjartenging lyklaborðs er virk</string>
+  <string name="remotekeyboard_multiple_connections">Það eru fleiri en ein tenging fjartengds lyklaborðs, veldu það tæki sem á að stilla</string>
   <string name="open_mousepad">Fjartengd ritun</string>
+  <string name="mousepad_info">Færðu fingur á skjánum til að færa bendilinn. Pikkaðu til að smella og notaðu tvo/þrjá fingur sem hægri- og miðjuhnappa. Notaðu tvo fingur til að skruna. Ýttu lengi til að draga-sleppa. Snúningsskynjaraeiginleika músar er hægt að virkja í stillingum viðbótarinnar</string>
+  <string name="mousepad_keyboard_input_not_supported">Lyklaborðsinnsláttur er ekki studdur af paraða tækinu</string>
   <string name="mousepad_single_tap_settings_title">Stilla aðgerð við pikk með einum fingri</string>
   <string name="mousepad_double_tap_settings_title">Stilla aðgerð við pikk með tveimur fingrum</string>
   <string name="mousepad_triple_tap_settings_title">Stilla aðgerð við pikk með þremur fingrum</string>
   <string name="mousepad_sensitivity_settings_title">Stilla næmni snertiplatta</string>
+  <string name="mousepad_mouse_buttons_title">Birta músarhnappa</string>
   <string name="mousepad_acceleration_profile_settings_title">Stilla hröðun bendils</string>
   <string name="mousepad_scroll_direction_title">Öfug skrunstefna</string>
+  <string name="mousepad_scroll_sensitivity_title">Næmni skruns</string>
+  <string name="gyro_mouse_enabled_title">Virkja mús með snúningsnema</string>
+  <string name="gyro_mouse_sensitivity_title">Næmni snúningsnema</string>
   <string-array name="mousepad_tap_entries">
     <item>Vinstri músarsmellur</item>
     <item>Hægri músarsmellur</item>
@@ -81,6 +89,7 @@
   <string name="sendkeystrokes_sent_text">Sendi %1$s til tækisins %2$s</string>
   <string name="sendkeystrokes_pref_category_title">Senda lyklaáslátt</string>
   <string name="sendkeystrokes_pref_enabled">Virkja sendingu lyklaásláttar</string>
+  <string name="sendkeystrokes_pref_enabled_summary">Hlusta eftir gögnum með MIME-tegund \'text/x-keystrokes\'</string>
   <string name="sendkeystrokes_safe_text_enabled">Senda öruggan texta strax</string>
   <string name="sendkeystrokes_safe_text_enabled_summary">Senda stutta strengi einungis með tölum án staðfestingar</string>
   <string name="pref_plugin_mousepad_send_keystrokes">Senda sem lyklaáslátt</string>
@@ -96,6 +105,7 @@
   <string name="device_menu_plugins">Stillingar á forritsviðbót</string>
   <string name="device_menu_unpair">Afpara</string>
   <string name="pair_new_device">Para nýtt tæki</string>
+  <string name="cancel_pairing">Hætta við pörun</string>
   <string name="unknown_device">Óþekkt tæki</string>
   <string name="error_not_reachable">Tæki er ekki aðgengilegt</string>
   <string name="error_already_paired">Tæki er þegar parað</string>
@@ -103,6 +113,7 @@
   <string name="error_canceled_by_user">Hætt við af notanda</string>
   <string name="error_canceled_by_other_peer">Hætt við af hinum notandanum</string>
   <string name="encryption_info_title">Upplýsingar um dulritun</string>
+  <string name="encryption_info_msg_no_ssl">Hitt tækið notar ekki nýlega útgáfu af KDE-tengingar, notast við eldri dulritunaraðferð.</string>
   <string name="my_device_fingerprint">SHA256-fingrafar af skilríki tækisins þíns er:</string>
   <string name="remote_device_fingerprint">SHA256-fingrafar af skilríki fjartengda tækisins er:</string>
   <string name="pair_requested">Beðið um pörun</string>
@@ -169,6 +180,8 @@
     <item>1 mínúta</item>
     <item>2 mínútur</item>
   </string-array>
+  <string name="mpris_notification_settings_title">Birta tilkynningar fyrir margmiðlunarstýringar</string>
+  <string name="mpris_notification_settings_summary">Gerir kleift að stýra margmiðlunarspilurunum þínum án þess að opna KDE-tengingar</string>
   <string name="share_to">Deila með…</string>
   <string name="protocol_version_newer">Þetta tæki notar nýrri útgáfu samskiptastaðals</string>
   <string name="plugin_settings_with_name">Stillingar %s</string>
@@ -188,6 +201,8 @@
   <string name="share">Deila</string>
   <string name="share_received_file">Deila \"%s\"</string>
   <string name="title_activity_notification_filter">Tilkynningasía</string>
+  <string name="filter_apps_info">Tilkynningar verða samstilltar fyrir völdu forritin.</string>
+  <string name="show_notification_if_screen_off">Senda tilkynningar einungis ef slökkt er á skjánum</string>
   <string name="add_device_dialog_title">Bæta við tæki</string>
   <string name="add_device_hint">Vélarheiti eða IP vistfang</string>
   <string name="sftp_preference_configured_storage_locations">Stilltar geymslustaðsetningar</string>
@@ -206,9 +221,11 @@
   <string name="block_notification_contents">Loka á efni í tilkynningum</string>
   <string name="block_notification_images">Loka á myndir í tilkynningum</string>
   <string name="pairing_title">KDE Connect tæki</string>
+  <string name="pairing_description">Önnur tæki sem keyra KDE-tengingar á sama netkerfi ættu að birtast hér.</string>
   <string name="device_rename_title">Endurnefna tæki</string>
   <string name="device_rename_confirm">Endurnefna</string>
   <string name="refresh">Endurlesa</string>
+  <string name="unreachable_description">Ekki næst í paraða tækið. Gakktu úr skugga um að það sé tengt inn á sama netkerfi.</string>
   <string name="no_file_browser">Það eru engir skráavafrar uppsettir.</string>
   <string name="pref_plugin_telepathy">Senda SMS</string>
   <string name="pref_plugin_telepathy_desc">Sendu textaskilaboð úr tölvunni þinni</string>
@@ -220,6 +237,8 @@
   <string name="findmyphone_found">Fann það</string>
   <string name="open">Opna</string>
   <string name="close">Loka</string>
+  <string name="all_permissions_granted">Allar heimildir veittar 🎉</string>
+  <string name="share_optional_permission_explanation">Til að taka við skrám þarftu að veita aðgang að geymslurými</string>
   <string name="select_ringtone">Veldu hringitón</string>
   <string name="telephony_pref_blocked_title">Útilokuð símanúmer</string>
   <string name="mpris_coverart_description">Umslagsmyndefni núverandi gagnamiðils</string>
@@ -232,9 +251,13 @@
   <string name="addcommand_explanation2">Þú getur bætt við nýjum skipunum í stillingum KDE Connect</string>
   <string name="add_command_description">Þú getur bætt við skipunum á skjáborðinu</string>
   <string name="pref_plugin_mprisreceiver">Margmiðlunarstýring</string>
+  <string name="pref_plugin_mprisreceiver_desc">Stýrðu margmiðlunarspilurum símans þíns frá öðru tæki</string>
   <string name="notification_channel_default">Aðrar tilkynningar</string>
   <string name="notification_channel_persistent">Viðvarandi gaumvísir</string>
   <string name="notification_channel_media_control">Margmiðlunarstýring</string>
+  <string name="notification_channel_filetransfer">Skráaflutningur inn</string>
+  <string name="notification_channel_filetransfer_upload">Skráaflutningur út</string>
+  <string name="notification_channel_filetransfer_error">Villa í skráaflutningi</string>
   <string name="notification_channel_high_priority">Hár forgangur</string>
   <string name="mpris_stop">Stöðva virkan spilara</string>
   <string name="copy_url_to_clipboard">Afrita slóð á klippispjaldið</string>
@@ -242,6 +265,8 @@
   <string name="runcommand_notreachable">Tækið er ekki aðgengilegt</string>
   <string name="runcommand_notpaired">Tækið er ekki parað</string>
   <string name="runcommand_nosuchdevice">Það er ekkert slíkt tæki</string>
+  <string name="runcommand_category_device_controls_title">Stýringar tækis</string>
+  <string name="runcommand_name_as_title_title">Sýna nafn sem titil</string>
   <string name="pref_plugin_findremotedevice">Finna fjartengt tæki</string>
   <string name="pref_plugin_findremotedevice_desc">Hringdu fjartengda tækinu</string>
   <string name="ring">Hringur</string>
@@ -255,6 +280,7 @@
   <string name="settings_more_settings_title">Fleiri stillingar</string>
   <string name="setting_persistent_notification">Birta viðvarandi tilkynningu</string>
   <string name="setting_persistent_notification_oreo">Viðvarandi tilkynning</string>
+  <string name="setting_persistent_notification_description">Ýttu til að gera virkt/óvirkt í stillingum tilkynninga</string>
   <string name="extra_options">Fleiri valkostir</string>
   <string name="privacy_options">Valkostir friðhelgi</string>
   <string name="set_privacy_options">Valkostir friðhelgi þinnar</string>
@@ -270,6 +296,7 @@
   <string name="empty_trusted_networks_list_text">Þú hefur ekki ennþá bætt við neinum treystum netkerfum</string>
   <string name="allow_all_networks_text">Leyfa allt</string>
   <string name="location_permission_needed_title">Krafist er heimildar</string>
+  <string name="clipboard_android_x_incompat">Android 10 fjarlægði aðgang allra forrita að klippispjaldinu. Þessi viðbót verður gerð óvirk.</string>
   <string name="mpris_open_url">Halda áfram spilun hér</string>
   <string name="cant_open_url">Næ ekki að opna slóð til að halda áfram spilun</string>
   <string name="bigscreen_home">Heim</string>
@@ -323,9 +350,12 @@
   <string name="kde_be_free">KDE - Vertu frjáls!</string>
   <string name="kde">KDE</string>
   <string name="konqi">Konqi</string>
+  <string name="rise_up">Ris upp</string>
+  <string name="rise_down">Ris niður</string>
   <string name="click_here_to_type">Ýttu hér til að skrifa</string>
   <string name="clear_compose">Hreinsa</string>
   <string name="send_compose">Senda</string>
+  <string name="compose_send_title">Semja og senda</string>
   <string name="open_compose_send">Semja texta</string>
   <string name="maintainer_and_developer">Umsjónarmaður og forritari</string>
   <string name="developer">Forritari</string>
@@ -339,4 +369,7 @@
   <string name="everyone_else">Allir aðrir sem hafa lagt af mörkum til KDE Connect í gegnum árin</string>
   <string name="send_clipboard">Senda klippispjald</string>
   <string name="tap_to_execute">Pikkaðu til að keyra</string>
+  <string name="plugin_stats">Tölfræði forritsviðbótar</string>
+  <string name="enable_udp_broadcast">Virkja UDP-uppgötvun tækis</string>
+  <string name="receive_notifications_permission_explanation">Leyfa þarf tilkynningar til að geta tekið við þeim frá öðrum tækjum</string>
 </resources>
