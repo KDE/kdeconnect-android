@@ -60,6 +60,7 @@
   <string name="mousepad_mouse_buttons_title">சுட்டி பட்டன்களைக் காட்டு</string>
   <string name="mousepad_acceleration_profile_settings_title">சுட்டிக்குறியின் வேகவளர்ச்சியை அமை</string>
   <string name="mousepad_scroll_direction_title">உருளல் திசையை புரட்டு</string>
+  <string name="mousepad_scroll_sensitivity_title">உருளலுக்கான உணர்வுத்திறம்</string>
   <string name="gyro_mouse_enabled_title">சுழல்காட்டி சுட்டியை இயக்கு</string>
   <string name="gyro_mouse_sensitivity_title">சுழல்காட்டியின் உணர்வுத்திறம்</string>
   <string-array name="mousepad_tap_entries">
