@@ -60,6 +60,7 @@
   <string name="mousepad_mouse_buttons_title">Arată butoanele mausului</string>
   <string name="mousepad_acceleration_profile_settings_title">Stabilește accelerația indicatorului</string>
   <string name="mousepad_scroll_direction_title">Inversează direcția derulării</string>
+  <string name="mousepad_scroll_sensitivity_title">Sensibilitatea derulării</string>
   <string name="gyro_mouse_enabled_title">Activează mausul giroscopic</string>
   <string name="gyro_mouse_sensitivity_title">Sensibilitate giroscop</string>
   <string-array name="mousepad_tap_entries">
