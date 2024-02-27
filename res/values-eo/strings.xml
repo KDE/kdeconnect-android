@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="kde_connect">KDE Connect</string>
+  <string name="foreground_notification_send_clipboard">Sendi Tondujon</string>
+  <string name="pref_plugin_mousepad">Fora enigo</string>
+  <string name="pref_plugin_runcommand">Lanĉi Komandon</string>
+  <string name="pref_plugin_ping">Ping</string>
+  <string name="pref_plugin_ping_desc">Sendi kaj ricevi ping-ojn</string>
+  <string name="pref_plugin_receive_notifications">Ricevi sciigojn</string>
+  <string name="pref_plugin_sharereceiver">Kunhavigi kaj ricevi</string>
+  <string name="ok">Bone</string>
+  <string name="cancel">Nuligi</string>
+  <string name="send_ping">Sendi ping</string>
+  <string name="open_mpris_controls">Mastrumo de Aŭdvidaĵoj</string>
+  <string name="open_mousepad">Fora enigo</string>
+  <string-array name="mousepad_tap_entries">
+    <item>Left click</item>
+    <item>Right click</item>
+    <item>Middle click</item>
+    <item>Nenio</item>
+  </string-array>
+  <string-array name="mousepad_sensitivity_entries">
+    <item>Slowest</item>
+    <item>Above Slowest</item>
+    <item>Defaŭlta</item>
+    <item>Above Default</item>
+    <item>Plej rapida</item>
+  </string-array>
+  <string-array name="mousepad_acceleration_profile_entries">
+    <item>No Acceleration</item>
+    <item>Weakest</item>
+    <item>Weaker</item>
+    <item>Ujo</item>
+    <item>Stronger</item>
+    <item>Strongest</item>
+  </string-array>
+  <string name="view_status_title">Statuso</string>
+  <string name="device_menu_unpair">Malparigi</string>
+  <string name="unknown_device">Nekonata aparato</string>
+  <string name="error_not_reachable">Aparato ne atingebla</string>
+  <string name="error_timed_out">Tempo elĉerpita</string>
+  <string name="error_canceled_by_other_peer">Nuligite de alia kunulo</string>
+  <string name="pair_requested">Parigo alpetiĝis</string>
+  <string name="tap_to_open">Frapetu por malfermi</string>
+  <string name="pairing_accept">Akcepti</string>
+  <string name="pairing_reject">Malakcepti</string>
+  <string name="settings">Agordoj</string>
+  <string name="mpris_play">Ludi</string>
+  <string name="mpris_pause">Paŭzi</string>
+  <string name="mpris_previous">Antaŭa</string>
+  <string name="mpris_rew">Rebobeni</string>
+  <string name="mpris_next">Sekva</string>
+  <string name="mpris_loop">Bukli</string>
+  <string name="mpris_shuffle">Miksi</string>
+  <string name="mpris_volume">Laŭteco</string>
+  <string-array name="mpris_time_entries">
+    <item>10 seconds</item>
+    <item>20 seconds</item>
+    <item>30 seconds</item>
+    <item>1 minuton</item>
+    <item>2 minutoj</item>
+  </string-array>
+  <string name="undo">Malfari</string>
+  <string name="share">Kunhavigi</string>
+  <string name="sftp_storage_preference_display_name">Montra nomo</string>
+  <string name="sftp_action_mode_menu_delete">Forigi</string>
+  <string name="device_rename_confirm">Alinomi</string>
+  <string name="refresh">Refreŝigi</string>
+  <string name="pref_plugin_telepathy">Sendi SMS</string>
+  <string name="open">Malfermi</string>
+  <string name="close">Fermi</string>
+  <string name="presenter_fullscreen">Plenekrane</string>
+  <string name="notification_channel_filetransfer">Envenanta dosiertransigo</string>
+  <string name="notification_channel_high_priority">Alta prioritato</string>
+  <string name="ring">Ringo</string>
+  <string name="pref_plugin_systemvolume">Sistema volumo</string>
+  <string name="mute">Silentigi</string>
+  <string name="all">Ĉiuj</string>
+  <string name="devices">Aparatoj</string>
+  <string name="settings_rename">Aparatnomo</string>
+  <string name="presenter_pointer">Montrilo</string>
+  <string name="bigscreen_home">Hejmo</string>
+  <string name="bigscreen_up">Supren</string>
+  <string name="bigscreen_left">Maldekstra</string>
+  <string name="bigscreen_select">Elekti</string>
+  <string name="bigscreen_right">Dekstra</string>
+  <string name="bigscreen_down">Malsupren</string>
+  <string name="bigscreen_speech_extra_prompt">Parolado</string>
+  <string name="user_display_name">Vi</string>
+  <string-array name="convert_to_mms_after_entries">
+    <item>After one message</item>
+    <item>After two messages</item>
+    <item>After three messages</item>
+    <item>After four messages</item>
+    <item>After five messages</item>
+  </string-array>
+  <string-array name="theme_list">
+    <item>Set by Battery Saver</item>
+    <item>Lumo</item>
+    <item>Mallumo</item>
+  </string-array>
+  <string-array name="theme_list_v28">
+    <item>Sistema Defaŭlto</item>
+    <item>Lumo</item>
+    <item>Mallumo</item>
+  </string-array>
+  <string name="report_bug">Raporti Cimon</string>
+  <string name="donate">Doni</string>
+  <string name="source_code">Fontkodo</string>
+  <string name="licenses">Licencoj</string>
+  <string name="website">Retejo</string>
+  <string name="about">Pri</string>
+  <string name="authors">Aŭtoroj</string>
+  <string name="thanks_to">Dankon al</string>
+  <string name="about_kde">Pri KDE</string>
+  <string name="kde">KDE</string>
+  <string name="konqi">Konĉja</string>
+  <string name="clear_compose">Viŝi</string>
+  <string name="send_compose">Sendi</string>
+  <string name="developer">Ellaboranto</string>
+  <string name="bug_fixes_and_general_improvements">Cimokorektoj kaj ĝeneralaj plibonigoj</string>
+  <string name="send_clipboard">Sendi tondujon</string>
+</resources>
