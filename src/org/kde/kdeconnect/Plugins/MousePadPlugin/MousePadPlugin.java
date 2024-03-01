@@ -134,6 +134,12 @@ public class MousePadPlugin extends Plugin {
         device.sendPacket(np);
     }
 
+    public void sendSingleRelease() {
+        NetworkPacket np = new NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST);
+        np.set("singlerelease", true);
+        device.sendPacket(np);
+    }
+
     public void sendScroll(float dx, float dy) {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST);
         np.set("scroll", true);

@@ -48,6 +48,7 @@ public class MousePadActivity
 
     private float mPrevX;
     private float mPrevY;
+    boolean dragging = false;
     private float mCurrentSensitivity;
     private float displayDpiMultiplier;
     private int scrollDirection = 1;
@@ -382,6 +383,7 @@ public class MousePadActivity
             return;
         }
         plugin.sendSingleHold();
+        dragging = true;
     }
 
     @Override
@@ -468,7 +470,12 @@ public class MousePadActivity
             finish();
             return;
         }
-        plugin.sendLeftClick();
+        if (dragging) {
+            plugin.sendSingleRelease();
+            dragging = false;
+        } else {
+            plugin.sendLeftClick();
+        }
     }
 
     private void sendMiddleClick() {
