@@ -133,10 +133,12 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener {
                         KdeButton(
                             onClick = { plugin.sendPrevious() },
                             modifier = Modifier.fillMaxSize().weight(1f),
+                            contentDescription = getString(R.string.mpris_previous),
                             icon = Icons.Default.ArrowBack,
                         )
                         KdeButton(
                             onClick = { plugin.sendNext() },
+                            contentDescription = getString(R.string.mpris_next),
                             modifier = Modifier.fillMaxSize().weight(1f),
                             icon = Icons.Default.ArrowForward,
                         )
@@ -176,20 +178,25 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener {
 
         var dropdownShownState by remember { mutableStateOf(false) }
 
-        KdeTopAppBar(navIconOnClick = { onBackPressedDispatcher.onBackPressed() }, actions = {
-            IconButton(onClick = { dropdownShownState = true }) {
-                Icon(Icons.Default.MoreVert, stringResource(R.string.extra_options))
+        KdeTopAppBar(
+            title = stringResource(R.string.pref_plugin_presenter),
+            navIconOnClick = { onBackPressedDispatcher.onBackPressed() },
+            navIconDescription = getString(androidx.appcompat.R.string.abc_action_bar_up_description),
+            actions = {
+                IconButton(onClick = { dropdownShownState = true }) {
+                    Icon(Icons.Default.MoreVert, stringResource(R.string.extra_options))
+                }
+                DropdownMenu(expanded = dropdownShownState, onDismissRequest = { dropdownShownState = false }) {
+                    DropdownMenuItem(
+                        onClick = { plugin.sendFullscreen() },
+                        text = { Text(stringResource(R.string.presenter_fullscreen)) },
+                    )
+                    DropdownMenuItem(
+                        onClick = { plugin.sendEsc() },
+                        text = { Text(stringResource(R.string.presenter_exit)) },
+                    )
+                }
             }
-            DropdownMenu(expanded = dropdownShownState, onDismissRequest = { dropdownShownState = false }) {
-                DropdownMenuItem(
-                    onClick = { plugin.sendFullscreen() },
-                    text = { Text(stringResource(R.string.presenter_fullscreen)) },
-                )
-                DropdownMenuItem(
-                    onClick = { plugin.sendEsc() },
-                    text = { Text(stringResource(R.string.presenter_exit)) },
-                )
-            }
-        })
+        )
     }
 }

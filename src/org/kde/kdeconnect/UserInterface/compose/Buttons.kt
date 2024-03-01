@@ -51,6 +51,7 @@ fun KdeButton(
     modifier: Modifier = Modifier,
     colors: ButtonColors = ButtonDefaults.buttonColors(),
     text: String? = null,
+    contentDescription: String? = null,
     icon: ImageVector? = null,
 ) {
     //TODO uncomment when button is widely used
@@ -69,7 +70,7 @@ fun KdeButton(
         colors = colors,
 //        interactionSource = interactionSource,
         content = {
-            icon?.let { Icon(imageVector = it, contentDescription = text) }
+            icon?.let { Icon(imageVector = it, contentDescription = contentDescription ?: text) }
             text?.let { Text(it, maxLines = 1, overflow = Ellipsis) }
         }
     )
@@ -83,6 +84,7 @@ fun IconButtonPreview() {
         Modifier.width(120.dp),
         ButtonDefaults.buttonColors(Color.Gray, Color.DarkGray),
         "Button Text",
+        null,
         Icons.Default.Build,
     )
 }

@@ -14,5 +14,6 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/mouse_cursor"
+        android:importantForAccessibility="no"
         android:src="@drawable/mouse_pointer" />
 </RelativeLayout>

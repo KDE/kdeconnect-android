@@ -14,11 +14,12 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     android:layout_height="match_parent"
     tools:context="org.kde.kdeconnect.Plugins.MprisPlugin.MprisActivity">
 
+    <!-- Keep in sync with toolbar.xml, copied here because it needs the nested TabLayout -->
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize" />

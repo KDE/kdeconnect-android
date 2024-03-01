@@ -30,9 +30,9 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
-                android:contentDescription="@string/device_icon_description"
                 android:src="@drawable/ic_device_laptop_32dp"
                 android:layout_marginBottom="12dp"
+                android:importantForAccessibility="no"
                 app:tint="?attr/colorOnSurface" />
 
         <TextView

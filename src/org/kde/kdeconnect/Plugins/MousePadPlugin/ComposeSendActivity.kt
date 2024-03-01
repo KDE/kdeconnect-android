@@ -95,6 +95,7 @@ class ComposeSendActivity : AppCompatActivity() {
                     KdeTopAppBar(
                         title = stringResource(R.string.compose_send_title),
                         navIconOnClick = { onBackPressedDispatcher.onBackPressed() },
+                        navIconDescription = getString(androidx.appcompat.R.string.abc_action_bar_up_description),
                         actions = {
                             KdeTextButton(
                                 modifier = Modifier.padding(horizontal = 8.dp),

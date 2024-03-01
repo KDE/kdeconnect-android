@@ -30,6 +30,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
             android:layout_gravity="top"
             android:paddingTop="@dimen/nav_header_vertical_spacing"
             android:paddingBottom="4dp"
+            android:importantForAccessibility="no"
             tools:srcCompat="@drawable/ic_device_phone_32dp" />
 
         <LinearLayout

@@ -30,7 +30,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
             android:layout_height="wrap_content"
             android:tint="@color/text_color"
             android:src="@drawable/ic_kde_24dp"
-            android:contentDescription="@string/device_icon_description"
+            android:importantForAccessibility="no"
             tools:ignore="UseAppTint"/> <!-- can't use app:tint in RemoteView -->
 
         <TextView

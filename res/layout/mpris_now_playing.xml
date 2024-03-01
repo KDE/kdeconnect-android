@@ -19,7 +19,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
         android:layout_height="@dimen/mpris_now_playing_album_height"
         android:layout_margin="25dp"
         android:layout_weight="@integer/mpris_now_playing_album_weight"
-        android:contentDescription="@string/mpris_coverart_description"
+        android:importantForAccessibility="no"
         android:scaleType="fitCenter" />
 
     <include

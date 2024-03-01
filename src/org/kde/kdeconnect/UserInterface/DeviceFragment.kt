@@ -23,6 +23,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.role
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.*
@@ -113,7 +117,7 @@ class DeviceFragment : Fragment() {
         requirePairingBinding().pairButton.setOnClickListener {
             with(requirePairingBinding()) {
                 pairButton.visibility = View.GONE
-                pairMessage.text = null
+                pairMessage.text = getString(R.string.pair_requested)
                 pairVerification.visibility = View.VISIBLE
                 pairVerification.text = SslHelper.getVerificationKey(SslHelper.certificate, device?.certificate)
                 pairProgress.visibility = View.VISIBLE
@@ -306,6 +310,7 @@ class DeviceFragment : Fragment() {
         }
 
         override fun pairingSuccessful() {
+            requirePairingBinding().pairMessage.announceForAccessibility(getString(R.string.pair_succeeded))
             mActivity?.runOnUiThread { refreshUI() }
         }
 
@@ -383,7 +388,7 @@ class DeviceFragment : Fragment() {
     fun PluginButton(plugin : Plugin, modifier: Modifier) {
         Card(
             shape = MaterialTheme.shapes.medium,
-            modifier = modifier,
+            modifier = modifier.semantics { role = Role.Button },
             onClick = { plugin.startMainActivity(mActivity) }
         ) {
             Column(
@@ -435,7 +440,7 @@ class DeviceFragment : Fragment() {
     fun PluginsWithoutPermissions(title : String, plugins: Collection<Plugin>, action : (plugin: Plugin) -> Unit) {
         Text(
             text = title,
-            modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp)
+            modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp).semantics { heading() }
         )
         plugins.forEach { plugin ->
             Text(
@@ -444,6 +449,7 @@ class DeviceFragment : Fragment() {
                     .fillMaxWidth()
                     .clickable { action(plugin) }
                     .padding(start = 28.dp, end = 16.dp, top = 12.dp, bottom = 12.dp)
+                    .semantics { role = Role.Button }
             )
         }
     }
