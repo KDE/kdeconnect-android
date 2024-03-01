@@ -48,8 +48,6 @@ public class MousePadActivity
 
     private float mPrevX;
     private float mPrevY;
-    private float mCurrentX;
-    private float mCurrentY;
     private float mCurrentSensitivity;
     private float displayDpiMultiplier;
     private int scrollDirection = 1;
@@ -299,8 +297,8 @@ public class MousePadActivity
                 mPrevY = event.getY();
                 break;
             case MotionEvent.ACTION_MOVE:
-                mCurrentX = event.getX();
-                mCurrentY = event.getY();
+                float mCurrentX = event.getX();
+                float mCurrentY = event.getY();
 
                 MousePadPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, MousePadPlugin.class);
                 if (plugin == null) {
