@@ -7,13 +7,16 @@
 package org.kde.kdeconnect.Plugins.SharePlugin;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.webkit.URLUtil;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
@@ -26,11 +29,14 @@ import org.kde.kdeconnect_tp.databinding.ActivityShareBinding;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 
 public class ShareActivity extends AppCompatActivity {
     private ActivityShareBinding binding;
+    private SharedPreferences mSharedPrefs;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -75,9 +81,14 @@ public class ShareActivity extends AppCompatActivity {
         items.add(section);
 
         for (Device d : devices) {
-            if (d.isReachable() && d.isPaired()) {
+            // Show the paired devices even if they are unreachable
+            if (d.isPaired()) {
                 devicesList.add(d);
-                items.add(new EntryItemWithIcon(d.getName(), d.getIcon()));
+                String deviceName = d.getName();
+                if (!d.isReachable()) {
+                    deviceName += " " + getString(R.string.unreachable_device);
+                }
+                items.add(new EntryItemWithIcon(deviceName, d.getIcon()));
                 section.isEmpty = false;
             }
         }
@@ -86,11 +97,33 @@ public class ShareActivity extends AppCompatActivity {
         binding.devicesListLayout.devicesList.setOnItemClickListener((adapterView, view, i, l) -> {
             Device device = devicesList.get(i - 1); //NOTE: -1 because of the title!
             SharePlugin plugin = KdeConnect.getInstance().getDevicePlugin(device.getDeviceId(), SharePlugin.class);
-            if (plugin != null) {
+            if (!device.isReachable()) {
+                // Store the intent to be delivered once device becomes online
+                storeIntentForFutureDelivery(device, intent);
+            } else if (plugin != null) {
                 plugin.share(intent);
             }
             finish();
         });
+    }
+
+    private void storeIntentForFutureDelivery(Device device, Intent intent) {
+        Bundle extras = intent.getExtras();
+        if (extras != null) {
+            String text = extras.getString(Intent.EXTRA_TEXT);
+            // Only if text is a URL, store it in the cache
+            if (URLUtil.isHttpUrl(text) || URLUtil.isHttpsUrl(text)) {
+                // Add to previous string set
+                Set<String> oldUrlSet = mSharedPrefs.getStringSet(KdeConnect.KEY_UNREACHABLE_URL_LIST + device.getDeviceId(), null);
+                // According to the API docs, we should not directly modify the set returned above
+                Set<String> newUrlSet = new HashSet<>();
+                newUrlSet.add(intent.toUri(0));
+                if (oldUrlSet != null) {
+                    newUrlSet.addAll(oldUrlSet);
+                }
+                mSharedPrefs.edit().putStringSet(KdeConnect.KEY_UNREACHABLE_URL_LIST + device.getDeviceId(), newUrlSet).apply();
+            }
+        }
     }
 
     @Override
@@ -99,6 +132,8 @@ public class ShareActivity extends AppCompatActivity {
 
         binding = ActivityShareBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        mSharedPrefs = PreferenceManager.getDefaultSharedPreferences (this);
 
         setSupportActionBar(binding.toolbarLayout.toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);

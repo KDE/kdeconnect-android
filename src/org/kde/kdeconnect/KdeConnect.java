@@ -6,17 +6,15 @@
 
 package org.kde.kdeconnect;
 
-import android.Manifest;
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.os.Build;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
+import androidx.preference.PreferenceManager;
 
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
@@ -27,11 +25,12 @@ import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
-import org.kde.kdeconnect.UserInterface.MainActivity;
+import org.kde.kdeconnect.Plugins.SharePlugin.SharePlugin;
 import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import org.kde.kdeconnect_tp.BuildConfig;
 import org.slf4j.impl.HandroidLoggerAdapter;
 
+import java.net.URISyntaxException;
 import java.security.cert.CertificateException;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -42,6 +41,10 @@ import java.util.concurrent.ConcurrentHashMap;
  * It provides a ConnectionReceiver that the BackgroundService uses to ping this class every time a new DeviceLink is created.
  */
 public class KdeConnect extends Application {
+
+    public static final String KEY_UNREACHABLE_URL_LIST = "key_unreachable_url_list";
+
+    private SharedPreferences mSharedPrefs;
 
     public interface DeviceListChangedCallback {
         void onDeviceListChanged();
@@ -57,6 +60,7 @@ public class KdeConnect extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
+        mSharedPrefs = PreferenceManager.getDefaultSharedPreferences (this);
         setupSL4JLogging();
         Log.d("KdeConnect/Application", "onCreate");
         ThemeUtil.setUserPreferredTheme(this);
@@ -171,6 +175,8 @@ public class KdeConnect extends Application {
             Device device = devices.get(link.getDeviceId());
             if (device != null) {
                 device.addLink(link);
+                // Deliver URLs previously shared to this device now that it's connected
+                deliverPreviouslySentIntents(device);
             } else {
                 device = new Device(KdeConnect.this, link);
                 devices.put(link.getDeviceId(), device);
@@ -196,6 +202,26 @@ public class KdeConnect extends Application {
             onDeviceListChanged();
         }
     };
+
+    private void deliverPreviouslySentIntents(Device device) {
+        Set<String> currentUrlSet = mSharedPrefs.getStringSet(KEY_UNREACHABLE_URL_LIST + device.getDeviceId(), null);
+        SharePlugin plugin = getDevicePlugin(device.getDeviceId(), SharePlugin.class);
+        if (currentUrlSet != null && plugin != null) {
+            for (String url : currentUrlSet) {
+                Intent intent;
+                try {
+                    intent = Intent.parseUri(url, 0);
+                } catch (URISyntaxException ex) {
+                    Log.e("KDE/deliverPreviouslySentIntents", "Malformed URI");
+                    continue;
+                }
+                if (intent != null) {
+                    plugin.share(intent);
+                }
+            }
+            mSharedPrefs.edit().putStringSet(KEY_UNREACHABLE_URL_LIST + device.getDeviceId(), null).apply();
+        }
+    }
 
     public BaseLinkProvider.ConnectionReceiver getConnectionListener() {
         return connectionListener;
