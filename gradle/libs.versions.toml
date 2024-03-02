@@ -1,5 +1,4 @@
 [versions]
-accompanistThemeadapterMaterial3 = "0.32.0"
 activityCompose = "1.8.2"
 androidDesugarJdkLibs = "2.0.4"
 androidGradlePlugin = "8.3.0"
@@ -41,7 +40,6 @@ univocityParsers = "2.9.1"
 sl4j = "2.0.4"
 
 [libraries]
-accompanist-themeadapter-material3 = { module = "com.google.accompanist:accompanist-themeadapter-material3", version.ref = "accompanistThemeadapterMaterial3" }
 android-desugarJdkLibs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
 android-smsmms = { module = "org.kde.invent.sredman:android-smsmms", version.ref = "androidSmsmms" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }

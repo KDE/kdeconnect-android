@@ -155,7 +155,6 @@ dependencies {
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.activity.compose)
-    implementation(libs.accompanist.themeadapter.material3) // TODO: Remove deprecated library https://google.github.io/accompanist/themeadapter-material3/
     implementation(libs.androidx.constraintlayout.compose)
 
     implementation(libs.androidx.compose.ui.tooling.preview)

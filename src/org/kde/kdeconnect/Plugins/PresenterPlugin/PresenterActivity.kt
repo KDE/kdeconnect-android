@@ -33,9 +33,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.media.VolumeProviderCompat
-import com.google.accompanist.themeadapter.material3.Mdc3Theme
 import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect.UserInterface.compose.KdeButton
+import org.kde.kdeconnect.UserInterface.compose.KdeTheme
 import org.kde.kdeconnect.UserInterface.compose.KdeTopAppBar
 import org.kde.kdeconnect_tp.R
 
@@ -115,7 +115,7 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener {
 
         val sensorManager = LocalContext.current.getSystemService(SENSOR_SERVICE) as? SensorManager
 
-        Mdc3Theme {
+        KdeTheme(this) {
             Scaffold(topBar = { PresenterAppBar() }) {
                 Column(
                     modifier = Modifier.fillMaxSize().padding(it).padding(16.dp),

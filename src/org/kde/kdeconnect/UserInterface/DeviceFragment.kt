@@ -31,7 +31,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.*
 import androidx.fragment.app.Fragment
-import com.google.accompanist.themeadapter.material3.Mdc3Theme
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.kde.kdeconnect.BackgroundService
 import org.kde.kdeconnect.Device
@@ -44,6 +43,7 @@ import org.kde.kdeconnect.Plugins.MprisPlugin.MprisPlugin
 import org.kde.kdeconnect.Plugins.Plugin
 import org.kde.kdeconnect.Plugins.PresenterPlugin.PresenterPlugin
 import org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandPlugin
+import org.kde.kdeconnect.UserInterface.compose.KdeTheme
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.ActivityDeviceBinding
 import org.kde.kdeconnect_tp.databinding.ViewPairErrorBinding
@@ -288,7 +288,7 @@ class DeviceFragment : Fragment() {
                     requireDeviceBinding().deviceView.visibility = View.VISIBLE
                     requireDeviceBinding().deviceViewCompose.apply {
                         setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
-                        setContent { Mdc3Theme { PluginList(device) } }
+                        setContent { KdeTheme(context) { PluginList(device) } }
                     }
                     displayBatteryInfoIfPossible()
                 } else {
