@@ -264,7 +264,6 @@
   <string name="telephony_pref_blocked_title">Números bloqueados</string>
   <string name="telephony_pref_blocked_dialog_desc">Non amosar chamadas nin SMS destes números. Indique un número por liña.</string>
   <string name="mpris_coverart_description">Portada da obra actual.</string>
-  <string name="device_icon_description">Icona do dispositivo.</string>
   <string name="settings_icon_description">Icona da configuración.</string>
   <string name="presenter_fullscreen">Pantalla completa</string>
   <string name="presenter_exit">Saír da presentación</string>

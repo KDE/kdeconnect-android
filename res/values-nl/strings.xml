@@ -52,6 +52,7 @@
   <string name="remotekeyboard_multiple_connections">Er is meer dan een verbinding met een toetsenbord op afstand, selecteer het te configureren apparaat</string>
   <string name="open_mousepad">Invoer op afstand</string>
   <string name="mousepad_info">Veeg met een vinger op het scherm om de muiscursor te verplaatsen. Tik om te klikken en gebruik twee/drie vingers voor rechter en middelste knop. Twee vingers gebruiken voor schuiven. Druk lang voor slepen en loslaten. Functionaliteit van gyro-muis kan ingeschakeld worden vanuit voorkeuren in plug-in</string>
+  <string name="mousepad_info_no_gestures">Veeg met een vinger op het scherm om de muiscursor te verplaatsen, tik om te klikken</string>
   <string name="mousepad_keyboard_input_not_supported">Toetsenbordinvoer wordt niet ondersteund door het gepaarde apparaat</string>
   <string name="mousepad_single_tap_settings_title">Tikactie met één vinger instellen</string>
   <string name="mousepad_double_tap_settings_title">Tikactie met twee vingers instellen</string>
@@ -121,6 +122,7 @@
   <string name="my_device_fingerprint">De SHA256 vingerafdruk van het certificaat van uw apparaat is:</string>
   <string name="remote_device_fingerprint">De SHA256 vingerafdruk van het certificaat van het apparaat op afstand is:</string>
   <string name="pair_requested">Paarvorming gevraagd</string>
+  <string name="pair_succeeded">Paarvorming is gelukt</string>
   <string name="pairing_request_from">Verzoek om een paar te maken van %1s</string>
   <plurals name="incoming_file_title">
     <item quantity="one">%1$d bestand wordt ontvangen vanaf %2$s</item>
@@ -158,6 +160,7 @@
   <string name="received_file_text">Tap om \'%1s\' te openen</string>
   <string name="cannot_create_file">Kan bestand %s niet aanmaken</string>
   <string name="tap_to_answer">Tap om te antwoorden</string>
+  <string name="left_click">Linker muisklik verzenden</string>
   <string name="right_click">Verstuur een rechter muisklik</string>
   <string name="middle_click">Verstuur een middelste muisklik</string>
   <string name="show_keyboard">Toetsenbord tonen</string>
@@ -264,7 +267,6 @@
   <string name="telephony_pref_blocked_title">Geblokkeerde nummers</string>
   <string name="telephony_pref_blocked_dialog_desc">Geen oproepen en SMSen vanaf deze nummers tonen. Specificeer één nummer per regel</string>
   <string name="mpris_coverart_description">Cover-illustratie van huidige media</string>
-  <string name="device_icon_description">Apparaatpictogram</string>
   <string name="settings_icon_description">Pictogram voor instellingen</string>
   <string name="presenter_fullscreen">Volledig scherm</string>
   <string name="presenter_exit">Presentatie beëindigen</string>

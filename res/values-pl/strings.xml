@@ -280,7 +280,6 @@
   <string name="telephony_pref_blocked_title">Zablokowane numery</string>
   <string name="telephony_pref_blocked_dialog_desc">Nie pokazuj rozmów, ani SMSów z tych numerów. Podawaj jeden numer na wiersz</string>
   <string name="mpris_coverart_description">Okładka dla bieżących multimediów</string>
-  <string name="device_icon_description">Ikona urządzenia</string>
   <string name="settings_icon_description">Ikona ustawień</string>
   <string name="presenter_fullscreen">Pełny ekran</string>
   <string name="presenter_exit">Zakończ prezentację</string>

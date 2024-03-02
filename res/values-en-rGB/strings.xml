@@ -259,7 +259,6 @@
   <string name="telephony_pref_blocked_title">Blocked numbers</string>
   <string name="telephony_pref_blocked_dialog_desc">Don\'t show calls and SMS from these numbers. Please specify one number per line</string>
   <string name="mpris_coverart_description">Cover art of current media</string>
-  <string name="device_icon_description">Device icon</string>
   <string name="settings_icon_description">Settings icon</string>
   <string name="presenter_fullscreen">Full-screen</string>
   <string name="presenter_exit">Exit presentation</string>

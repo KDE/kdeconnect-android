@@ -52,6 +52,7 @@
   <string name="remotekeyboard_multiple_connections">Hi ha més d\'una connexió amb un teclat remot, seleccioneu el dispositiu per a configurar-lo</string>
   <string name="open_mousepad">Entrada remota</string>
   <string name="mousepad_info">Moveu un dit per la pantalla per a moure el cursor del ratolí. Toqueu per a un clic, i empreu dos/tres dits per als botons dret i mig. Useu 2 dits per a desplaçar. Empreu un toc llarg per a arrossegar i deixar anar. La funcionalitat giroscòpica dels ratolins es pot activar des de les preferències del connector</string>
+  <string name="mousepad_info_no_gestures">Moveu un dit a la pantalla per a moure el cursor del ratolí, toqueu per a fer un clic.</string>
   <string name="mousepad_keyboard_input_not_supported">El dispositiu aparellat no permet l\'entrada de teclat</string>
   <string name="mousepad_single_tap_settings_title">Estableix l\'acció de tocar amb un dit</string>
   <string name="mousepad_double_tap_settings_title">Estableix l\'acció de tocar amb dos dits</string>
@@ -121,6 +122,7 @@
   <string name="my_device_fingerprint">L\'empremta digital SHA256 del certificat del vostre dispositiu és:</string>
   <string name="remote_device_fingerprint">L\'empremta digital SHA256 del certificat del dispositiu remot és:</string>
   <string name="pair_requested">S\'ha demanat aparellar</string>
+  <string name="pair_succeeded">S\'ha aparellat correctament</string>
   <string name="pairing_request_from">S\'ha demanat aparellar des de %1s</string>
   <plurals name="incoming_file_title">
     <item quantity="one">S\'està rebent %1$d fitxer des de %2$s</item>
@@ -158,6 +160,7 @@
   <string name="received_file_text">Toqueu per a obrir «%1s»</string>
   <string name="cannot_create_file">No s\'ha pogut crear el fitxer %s</string>
   <string name="tap_to_answer">Toqueu per a respondre</string>
+  <string name="left_click">Envia un clic esquerre</string>
   <string name="right_click">Envia un clic dret</string>
   <string name="middle_click">Envia un clic del mig</string>
   <string name="show_keyboard">Mostra el teclat</string>
@@ -264,7 +267,6 @@
   <string name="telephony_pref_blocked_title">Nombres blocats</string>
   <string name="telephony_pref_blocked_dialog_desc">No es mostren ni les trucades ni els SMS d\'aquests números. Especifiqueu un número per línia</string>
   <string name="mpris_coverart_description">Caràtula del fitxer multimèdia actual</string>
-  <string name="device_icon_description">Icona del dispositiu</string>
   <string name="settings_icon_description">Icona d\'arranjament</string>
   <string name="presenter_fullscreen">Pantalla completa</string>
   <string name="presenter_exit">Surt de la presentació</string>

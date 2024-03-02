@@ -260,7 +260,6 @@
   <string name="telephony_pref_blocked_title">Números bloqueados</string>
   <string name="telephony_pref_blocked_dialog_desc">Não mostrar as chamadas e SMS destes números. Indique um número por linha.</string>
   <string name="mpris_coverart_description">Capa da mídia atual</string>
-  <string name="device_icon_description">Ícone do dispositivo</string>
   <string name="settings_icon_description">Ícone de configurações</string>
   <string name="presenter_fullscreen">Tela inteira</string>
   <string name="presenter_exit">Sair da apresentação</string>

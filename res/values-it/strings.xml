@@ -264,7 +264,6 @@
   <string name="telephony_pref_blocked_title">Numeri bloccati</string>
   <string name="telephony_pref_blocked_dialog_desc">Non mostrare le chiamate e gli SMS da questi numeri. Specifica un numero per riga</string>
   <string name="mpris_coverart_description">Copertina del media attuale</string>
-  <string name="device_icon_description">Icona dispositivo</string>
   <string name="settings_icon_description">Icona impostazioni</string>
   <string name="presenter_fullscreen">Schermo intero</string>
   <string name="presenter_exit">Esci dalla presentazione</string>

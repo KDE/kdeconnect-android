@@ -263,7 +263,6 @@
   <string name="telephony_pref_blocked_title">Əngəllənmiş nömrələr</string>
   <string name="telephony_pref_blocked_dialog_desc">Bu nömrədən SMS və zənglər göstərilməsin. Hər sətirdə bir nömrə göstərin</string>
   <string name="mpris_coverart_description">Mövcud medianın üz qabığı</string>
-  <string name="device_icon_description">Cihaın nişanı</string>
   <string name="settings_icon_description">Ayarlar nişanı</string>
   <string name="presenter_fullscreen">Tam_Ekran</string>
   <string name="presenter_exit">Təqdimatdan çıxış</string>

@@ -109,7 +109,6 @@
   <string name="pref_plugin_telepathy_mms">Invia MMS</string>
   <string name="open">Aperi</string>
   <string name="close">Claude</string>
-  <string name="device_icon_description">Icone de dispositivo</string>
   <string name="settings_icon_description">Icone de Preferentias</string>
   <string name="presenter_fullscreen">Schermo plen</string>
   <string name="notification_channel_media_control">Controlo de multimedia</string>

@@ -280,7 +280,6 @@
   <string name="telephony_pref_blocked_title">מספרים חסומים</string>
   <string name="telephony_pref_blocked_dialog_desc">לא להציג הודעות ושיחות מהמספרים האלה. נא לציין מספר טלפון אחד בכל שורה</string>
   <string name="mpris_coverart_description">עטיפת האלבום של המדיה הנוכחית</string>
-  <string name="device_icon_description">סמל מכשיר</string>
   <string name="settings_icon_description">סמל הגדרות</string>
   <string name="presenter_fullscreen">מסך מלא</string>
   <string name="presenter_exit">יציאה ממצגת</string>

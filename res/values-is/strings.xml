@@ -242,7 +242,6 @@
   <string name="select_ringtone">Veldu hringitón</string>
   <string name="telephony_pref_blocked_title">Útilokuð símanúmer</string>
   <string name="mpris_coverart_description">Umslagsmyndefni núverandi gagnamiðils</string>
-  <string name="device_icon_description">Táknmynd tækis</string>
   <string name="settings_icon_description">Stillingatáknmynd</string>
   <string name="presenter_fullscreen">Skjáfylli</string>
   <string name="presenter_exit">Fara úr kynningu</string>

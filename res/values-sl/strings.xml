@@ -52,6 +52,7 @@
   <string name="remotekeyboard_multiple_connections">Obstaja več kot ena povezava na oddaljeno tipkovnico, izberite napravo in nastavitve</string>
   <string name="open_mousepad">Oddaljeni input</string>
   <string name="mousepad_info">Premaknite prst po zaslonu da bi premikali miško. Tapnite za klik in uporabite dva/tri prste za desni in srednji gumb. Za pomikanje uporabite dva prsta. Uporabite dolg pritisk za povleci in spusti. Žiroskopsko zmožnost miške lahko omogočite iz nastavitve vtičnika</string>
+  <string name="mousepad_info_no_gestures">Premaknite prst po zaslonu, da premaknete kazalec miške, tapnite za klik.</string>
   <string name="mousepad_keyboard_input_not_supported">Vnos s tipkovnice ni podprt na sparjeni napravi</string>
   <string name="mousepad_single_tap_settings_title">Nastavite akcijo tapkanja enega prsta</string>
   <string name="mousepad_double_tap_settings_title">Nastavite akcijo tapkanja dveh prstov</string>
@@ -121,6 +122,7 @@
   <string name="my_device_fingerprint">Prstni odtis SHA256 certifikata vaše naprave je:</string>
   <string name="remote_device_fingerprint">Prstni odtis SHA256 certifikata oddaljene naprave je:</string>
   <string name="pair_requested">Zahtevan je par</string>
+  <string name="pair_succeeded">Uparjanje je uspelo</string>
   <string name="pairing_request_from">Zahtevek za uparjanje od %1s</string>
   <plurals name="incoming_file_title">
     <item quantity="one">Prejemanje %1$d datoteke od %2$s</item>
@@ -129,10 +131,10 @@
     <item quantity="other">Prejemanje %1$d datotek od %2$s</item>
   </plurals>
   <plurals name="incoming_files_text">
-    <item quantity="one">(Datoteka %2$d od %3$d) : %1$s</item>
+    <item quantity="one">(Datoteke %2$d od %3$d) : %1$s</item>
     <item quantity="two">(Datoteka %2$d od %3$d) : %1$s</item>
-    <item quantity="few">(Datoteka %2$d od %3$d) : %1$s</item>
-    <item quantity="other">(Datoteka %2$d od %3$d) : %1$s</item>
+    <item quantity="few">(Datoteki %2$d od %3$d) : %1$s</item>
+    <item quantity="other">(Datoteke %2$d od %3$d) : %1$s</item>
   </plurals>
   <plurals name="outgoing_file_title">
     <item quantity="one">Pošiljanje %1$d datoteke na %2$s</item>
@@ -174,6 +176,7 @@
   <string name="received_file_text">Tapkaj, da odpreš \'%1s\'</string>
   <string name="cannot_create_file">Ni mogoče ustvariti datoteke %s</string>
   <string name="tap_to_answer">Tapkaj za odgovor</string>
+  <string name="left_click">Pošlji levi klik</string>
   <string name="right_click">Pošlji desni klik</string>
   <string name="middle_click">Pošlji sredinski klik</string>
   <string name="show_keyboard">Pokaži tipkovnico</string>
@@ -280,7 +283,6 @@
   <string name="telephony_pref_blocked_title">Blokirane številke</string>
   <string name="telephony_pref_blocked_dialog_desc">Ne prikazuj klicev in SMS s teh številk. Navedite po eno telefonsko številko v vsaki vrsti</string>
   <string name="mpris_coverart_description">Naslovnica trenutnega medija</string>
-  <string name="device_icon_description">Ikona naprave</string>
   <string name="settings_icon_description">Ikona nastavitev</string>
   <string name="presenter_fullscreen">Polni zaslon</string>
   <string name="presenter_exit">Izhod iz predstavitve</string>

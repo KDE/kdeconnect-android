@@ -276,7 +276,6 @@
   <string name="telephony_pref_blocked_title">Blokovaná čísla</string>
   <string name="telephony_pref_blocked_dialog_desc">Nezobrazovat volání a SMS z těchto čísel. Prosím, zadejte pouze jedno slovo na řádek.</string>
   <string name="mpris_coverart_description">Obal současného média</string>
-  <string name="device_icon_description">Ikona zařízení</string>
   <string name="settings_icon_description">Ikona nastavení</string>
   <string name="presenter_fullscreen">Celá obrazovka</string>
   <string name="presenter_exit">Ukončit prezentaci</string>

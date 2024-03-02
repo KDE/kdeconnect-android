@@ -264,7 +264,6 @@
   <string name="telephony_pref_blocked_title">Estetyt numerot</string>
   <string name="telephony_pref_blocked_dialog_desc">Älä näytä soittoja äläkä tekstiviestejä näistä numeroista. Anna numero per rivi.</string>
   <string name="mpris_coverart_description">Nykyisen median kansikuva</string>
-  <string name="device_icon_description">Laitekuvake</string>
   <string name="settings_icon_description">Asetuskuvake</string>
   <string name="presenter_fullscreen">Koko näyttö</string>
   <string name="presenter_exit">Poistu esitystilasta</string>

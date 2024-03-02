@@ -256,7 +256,6 @@
   <string name="telephony_pref_blocked_title">已屏蔽的号码</string>
   <string name="telephony_pref_blocked_dialog_desc">不要显示来自这些号码的电话和短信。一行一个号码</string>
   <string name="mpris_coverart_description">当前媒体的封面艺术</string>
-  <string name="device_icon_description">设备图标</string>
   <string name="settings_icon_description">设置图标</string>
   <string name="presenter_fullscreen">全屏</string>
   <string name="presenter_exit">退出演示</string>

@@ -264,7 +264,6 @@
   <string name="telephony_pref_blocked_title">Блокирани номера</string>
   <string name="telephony_pref_blocked_dialog_desc">Не показвайте обажданията и SMS от тези номера. Моля, посочете по един номер за линия</string>
   <string name="mpris_coverart_description">Обложка на текущата медия</string>
-  <string name="device_icon_description">Икона на устройство</string>
   <string name="settings_icon_description">Икона за настройки</string>
   <string name="presenter_fullscreen">Цял екран</string>
   <string name="presenter_exit">Изход от презентацията</string>

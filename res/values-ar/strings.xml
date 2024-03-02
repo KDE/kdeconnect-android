@@ -157,7 +157,6 @@
   <string name="select_ringtone">اختر النغمة</string>
   <string name="telephony_pref_blocked_title">أرقام محظورة</string>
   <string name="mpris_coverart_description">الصورة الفنية للوسيط الحالي</string>
-  <string name="device_icon_description">أيقونة الجهاز</string>
   <string name="settings_icon_description">أيقونة الإعدادات</string>
   <string name="presenter_fullscreen">ملء الشّاشة</string>
   <string name="presenter_exit">اخرج من العرض التقديمي</string>

@@ -256,7 +256,6 @@
   <string name="telephony_pref_blocked_title">ブロックされた番号</string>
   <string name="telephony_pref_blocked_dialog_desc">これらの番号からの通話と SMS を表示しません。一行に1つの電話番号を指定してください</string>
   <string name="mpris_coverart_description">現在のメディアのカバーアート</string>
-  <string name="device_icon_description">デバイスアイコン</string>
   <string name="settings_icon_description">設定アイコン</string>
   <string name="presenter_fullscreen">フルスクリーン</string>
   <string name="presenter_exit">プレゼンテーションを終了</string>

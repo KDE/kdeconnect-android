@@ -272,7 +272,6 @@
   <string name="telephony_pref_blocked_title">Numere blocate</string>
   <string name="telephony_pref_blocked_dialog_desc">Nu arăta apeluri și SMS de la aceste numere. Specificați un număr pe linie</string>
   <string name="mpris_coverart_description">Coperta piesei actuale</string>
-  <string name="device_icon_description">Pictogramă dispozitiv</string>
   <string name="settings_icon_description">Pictogramă configurări</string>
   <string name="presenter_fullscreen">Ecran complet</string>
   <string name="presenter_exit">Părăsește prezentarea</string>

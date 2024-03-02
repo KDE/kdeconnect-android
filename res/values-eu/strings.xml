@@ -264,7 +264,6 @@
   <string name="telephony_pref_blocked_title">Blokeatutako zenbakiak</string>
   <string name="telephony_pref_blocked_dialog_desc">Ez erakutsi zenbaki hauen deiak eta SMSak. Zehaztu zenbaki bat lerroko</string>
   <string name="mpris_coverart_description">Uneko euskarriaren azaleko irudia</string>
-  <string name="device_icon_description">Gailuaren ikonoa</string>
   <string name="settings_icon_description">Ezarpenen ikonoa</string>
   <string name="presenter_fullscreen">Pantaila-betea</string>
   <string name="presenter_exit">Irten aurkezpenetik</string>

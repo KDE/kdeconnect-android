@@ -254,7 +254,6 @@
   <string name="telephony_pref_blocked_title">Blokované čísla</string>
   <string name="telephony_pref_blocked_dialog_desc">Z týchto čísel sa nebudú zobrazovať hovori ani správy SMS. Prosím, určte jedno číslo na riadok</string>
   <string name="mpris_coverart_description">Obrázok obalu aktuálneho média</string>
-  <string name="device_icon_description">Ikona zariadenia</string>
   <string name="settings_icon_description">Ikona nastavení</string>
   <string name="presenter_fullscreen">Na celú obrazovku</string>
   <string name="presenter_exit">Ukončiť prezentáciu</string>

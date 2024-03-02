@@ -264,7 +264,6 @@
   <string name="telephony_pref_blocked_title">தடுக்கப்பட்ட எண்கள்</string>
   <string name="telephony_pref_blocked_dialog_desc">இந்த எண்களிலிருந்து அழைப்புகள் மற்றும் SMS-கள் காட்டப்படா. வரிக்கு ஓர் எண்ணை மட்டும் குறிப்பிடவும்</string>
   <string name="mpris_coverart_description">தற்போதைய ஊடகத்தின் அட்டை படம்</string>
-  <string name="device_icon_description">சாதன சின்னம்</string>
   <string name="settings_icon_description">அமைப்புகளுக்கான சின்னம்</string>
   <string name="presenter_fullscreen">முழுத்திரை</string>
   <string name="presenter_exit">வில்லைக்காட்சியிலிருந்து வெளியேறு</string>

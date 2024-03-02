@@ -185,7 +185,6 @@
   <string name="select_ringtone">"ზარის  არჩევა"</string>
   <string name="telephony_pref_blocked_title">დაბლოკილი ნომრები</string>
   <string name="mpris_coverart_description">მიმდინარე მედიის ყდა</string>
-  <string name="device_icon_description">მოწყობილობის ხატულა</string>
   <string name="settings_icon_description">პარამეტრების ხატულა</string>
   <string name="presenter_fullscreen">მთელ ეკრანზე</string>
   <string name="presenter_exit">პრეზენტაციიდან გასვლა</string>

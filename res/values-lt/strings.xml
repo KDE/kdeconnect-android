@@ -265,7 +265,6 @@
   <string name="telephony_pref_blocked_title">Užblokuoti numeriai</string>
   <string name="telephony_pref_blocked_dialog_desc">Nerodyti skambučių ir SMS žinučių iš šių numerių. Nurodykite kiekvienoje eilutėje po vieną</string>
   <string name="mpris_coverart_description">Dabartinės įvairialypės terpės iliustracija</string>
-  <string name="device_icon_description">Įrenginio piktograma</string>
   <string name="settings_icon_description">Nuostatų piktograma</string>
   <string name="presenter_fullscreen">Visas ekranas</string>
   <string name="presenter_exit">Išeiti iš pristatymo</string>

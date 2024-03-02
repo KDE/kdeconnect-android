@@ -52,6 +52,7 @@
   <string name="remotekeyboard_multiple_connections">Birden çok uzak klavye bağlantısı mevcut, yapılandırmak istediğiniz aygıtı seçin</string>
   <string name="open_mousepad">Uzaktan giriş</string>
   <string name="mousepad_info">İmleç denetimi için parmağınızı ekranda hareket ettirin. Tıklamak için hafifçe vurun, sağ ve orta düğmeler için iki/üç parmağınızı kullanın. Sarmak için 2 parmağınızı kullanın. Bırakıp sürüklemek için uzun basın. Cayro fare işlevi, eklenti tercihlerinden etkinleştirilebilir</string>
+  <string name="mousepad_info_no_gestures">Fare imlecini hareket ettirmek için ekranda parmağınızı hareket ettirin, tıklamak için dokunun.</string>
   <string name="mousepad_keyboard_input_not_supported">Klavye girişi, eşlenen aygıt tarafından desteklenmiyor</string>
   <string name="mousepad_single_tap_settings_title">Tek parmak dokunma eylemini ayarla</string>
   <string name="mousepad_double_tap_settings_title">İki parmak dokunma eylemini ayarla</string>
@@ -121,6 +122,7 @@
   <string name="my_device_fingerprint">Aygıt sertifikanızın SHA256 parmak izi:</string>
   <string name="remote_device_fingerprint">Uzak aygıt sertifikanızın SHA256 parmak izi:</string>
   <string name="pair_requested">Eşleşme talep edildi</string>
+  <string name="pair_succeeded">Eşleşme başarılı</string>
   <string name="pairing_request_from">%1s için eşleşme talebi</string>
   <plurals name="incoming_file_title">
     <item quantity="one">%2$s içinden %1$d dosya alınıyor</item>
@@ -158,6 +160,7 @@
   <string name="received_file_text">\'%1s\' açmak için dokunun</string>
   <string name="cannot_create_file">Dosya oluşturulamıyor %s</string>
   <string name="tap_to_answer">Cevap için dokunun</string>
+  <string name="left_click">Sol Tık Gönder</string>
   <string name="right_click">Sağ Tık Gönder</string>
   <string name="middle_click">Orta Tık Gönder</string>
   <string name="show_keyboard">Klavyeyi Göster</string>
@@ -264,7 +267,6 @@
   <string name="telephony_pref_blocked_title">Engellenen numaralar</string>
   <string name="telephony_pref_blocked_dialog_desc">Bu numaralardan gelen aramaları ve SMS\'leri gösterme. Lütfen her satıra bir numara belirtin</string>
   <string name="mpris_coverart_description">Geçerli ortamın kapak resmi</string>
-  <string name="device_icon_description">Aygıt simgesi</string>
   <string name="settings_icon_description">Ayarlar simgesi</string>
   <string name="presenter_fullscreen">Tam ekran</string>
   <string name="presenter_exit">Sunumdan çık</string>

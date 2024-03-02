@@ -239,7 +239,6 @@
   <string name="telephony_pref_blocked_title">Αριθμοί σε φραγή</string>
   <string name="telephony_pref_blocked_dialog_desc">Να μην εμφανίζονται κλήσεις ή SMS από αυτούς τους αριθμούς. Καθορίστε έναν αριθμό ανά γραμμή</string>
   <string name="mpris_coverart_description">Καλλιτεχνικό εξώφυλλο των πολυμέσων</string>
-  <string name="device_icon_description">Εικονίδιο συσκευής</string>
   <string name="settings_icon_description">Εικονίδιο ρυθμίσεων</string>
   <string name="presenter_fullscreen">Πλήρης οθόνη</string>
   <string name="presenter_exit">Έξοδος από την παρουσίαση</string>

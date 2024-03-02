@@ -256,7 +256,6 @@
   <string name="telephony_pref_blocked_title">已封鎖號碼</string>
   <string name="telephony_pref_blocked_dialog_desc">不顯示這些號碼的來電與簡訊。請在一行指定一個電話號碼。</string>
   <string name="mpris_coverart_description">目前媒體的專輯圖像</string>
-  <string name="device_icon_description">裝置圖示</string>
   <string name="settings_icon_description">設定圖示</string>
   <string name="presenter_fullscreen">全螢幕</string>
   <string name="presenter_exit">離開簡報模式</string>
