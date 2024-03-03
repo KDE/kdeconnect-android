@@ -31,7 +31,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="pref_plugin_clipboard_sent">Clipboard Sent</string>
     <string name="pref_plugin_mousepad">Remote input</string>
     <string name="pref_plugin_mousepad_desc">Use your phone or tablet as a touchpad and keyboard</string>
-    <string name="pref_plugin_presenter">Slideshow remote</string>
+    <string name="pref_plugin_presenter">Presentation remote</string>
     <string name="pref_plugin_presenter_desc">Use your device to change slides in a presentation</string>
     <string name="pref_plugin_remotekeyboard">Receive remote keypresses</string>
     <string name="pref_plugin_remotekeyboard_desc">Receive keypress events from remote devices</string>
