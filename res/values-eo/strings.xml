@@ -41,7 +41,44 @@
   <string name="error_timed_out">Tempo elĉerpita</string>
   <string name="error_canceled_by_other_peer">Nuligite de alia kunulo</string>
   <string name="pair_requested">Parigo alpetiĝis</string>
+  <string name="pair_succeeded">Parigo sukcesis</string>
+  <string name="pairing_request_from">Pariga alpeto de %1s</string>
+  <plurals name="incoming_file_title">
+    <item quantity="one">Ricevante %1$d dosieron de %2$s</item>
+    <item quantity="other">Ricevante %1$d dosierojn de %2$s</item>
+  </plurals>
+  <plurals name="incoming_files_text">
+    <item quantity="one">Dosiero: %1s</item>
+    <item quantity="other">(Dosiero %2$d el %3$d) : %1$s</item>
+  </plurals>
+  <plurals name="outgoing_file_title">
+    <item quantity="one">Sendante %1$d dosieron al %2$s</item>
+    <item quantity="other">Sendante %1$d dosierojn al %2$s</item>
+  </plurals>
+  <plurals name="outgoing_files_text">
+    <item quantity="one">Dosiero: %1$s</item>
+    <item quantity="other">(Dosiero %2$d el %3$d) : %1$s</item>
+  </plurals>
+  <plurals name="received_files_title">
+    <item quantity="one">Ricevis dosieron de %1$s</item>
+    <item quantity="other">Ricevis %2$d dosierojn de %1$s</item>
+  </plurals>
+  <plurals name="received_files_fail_title">
+    <item quantity="one">Malsukcesis ricevi dosieron de %1$s</item>
+    <item quantity="other">Malsukcesis ricevi %2$d el %3$d dosierojn de %1$s</item>
+  </plurals>
+  <plurals name="sent_files_title">
+    <item quantity="one">Sendis dosieron al %1$s</item>
+    <item quantity="other">Sendis %2$d dosierojn al %1$s</item>
+  </plurals>
+  <plurals name="send_files_fail_title">
+    <item quantity="one">Malsukcesis sendi dosieron al %1$s</item>
+    <item quantity="other">Malsukcesis sendi %2$d el %3$d dosieroj al %1$s</item>
+  </plurals>
   <string name="tap_to_open">Frapetu por malfermi</string>
+  <string name="received_file_text">Frapeti por malfermi \'%1s\'</string>
+  <string name="cannot_create_file">Ne eblas krei dosieron %s</string>
+  <string name="tap_to_answer">Frapeti por respondi</string>
   <string name="pairing_accept">Akcepti</string>
   <string name="pairing_reject">Malakcepti</string>
   <string name="settings">Agordoj</string>

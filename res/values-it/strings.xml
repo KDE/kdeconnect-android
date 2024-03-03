@@ -52,6 +52,7 @@
   <string name="remotekeyboard_multiple_connections">Ci sono più connessioni di tastiere remote, seleziona il dispositivo da configurare</string>
   <string name="open_mousepad">Impulso remoto</string>
   <string name="mousepad_info">Muovi un dito sullo schermo per spostare il puntatore del mouse. Tocca per un clic e usa due/tre dita per i pulsanti destro e centrale. Utilizza 2 dita per scorrere. Utilizza una pressione lunga per trascinare e rilasciare. È possibile abilitare la funzionalità del mouse giroscopico dalle preferenze dell\'estensione</string>
+  <string name="mousepad_info_no_gestures">Sposta un dito sullo schermo per spostare il cursore del mouse, tocca per un clic.</string>
   <string name="mousepad_keyboard_input_not_supported">Immissione da tastiera non supportata dal dispositivo associato</string>
   <string name="mousepad_single_tap_settings_title">Imposta azione per il tocco a un dito</string>
   <string name="mousepad_double_tap_settings_title">Imposta azione per il tocco a due dita</string>
@@ -121,6 +122,7 @@
   <string name="my_device_fingerprint">L\'impronta digitale SHA256 del certificato di dispositivo è:</string>
   <string name="remote_device_fingerprint">L\'impronta digitale SHA256 del certificato del dispositivo remoto è:</string>
   <string name="pair_requested">Richiesta di associazione</string>
+  <string name="pair_succeeded">Associazione riuscita</string>
   <string name="pairing_request_from">Richiesta associazione da %1s</string>
   <plurals name="incoming_file_title">
     <item quantity="one">Ricezione di %1$d file da %2$s</item>
@@ -158,6 +160,7 @@
   <string name="received_file_text">Tocca per aprire «%1s»</string>
   <string name="cannot_create_file">Impossibile creare il file %s</string>
   <string name="tap_to_answer">Tocca per rispondere</string>
+  <string name="left_click">Invia clic tasto sinistro</string>
   <string name="right_click">Invia clic tasto destro</string>
   <string name="middle_click">Invia clic tasto centrale</string>
   <string name="show_keyboard">Mostra tastiera</string>
