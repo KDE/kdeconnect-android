@@ -52,6 +52,7 @@
   <string name="remotekeyboard_multiple_connections">Plusieurs connexions à des claviers sans fil sont disponibles, sélectionnez le périphérique à configurer</string>
   <string name="open_mousepad">Contrôle distant</string>
   <string name="mousepad_info">Faites glisser votre doigt sur l\'écran pour déplacer le pointeur de la souris. Tapotez pour cliquer et utilisez deux / trois doigts pour les clics droit et centre. Utilisez 2 doigts pour faire un défilement. Faites un appui prolongé pour réaliser un glisser-déposer. La fonctionnalité de gyroscope de souris peut être activée à partir des préférences de module externe.</string>
+  <string name="mousepad_info_no_gestures">Faites glisser un doigt sur l\'écran pour déplacer le pointeur de souris. Tapotez sur l\'écran pour effectuer un clic.</string>
   <string name="mousepad_keyboard_input_not_supported">La saisie par le clavier n\'est pas pris en charge par le périphérique appairée.</string>
   <string name="mousepad_single_tap_settings_title">Définir une action pour tapotage avec un doigt</string>
   <string name="mousepad_double_tap_settings_title">Action pour l\'appui à deux doigts</string>
@@ -121,6 +122,7 @@
   <string name="my_device_fingerprint">L\'empreinte SHA256 du certificat de votre périphérique est :</string>
   <string name="remote_device_fingerprint">L\'empreinte « SHA256 » du certificat du périphérique distant est :</string>
   <string name="pair_requested">Paire demandée</string>
+  <string name="pair_succeeded">Appairage effectué avec succès</string>
   <string name="pairing_request_from">Demande d\'association provenant de %1s</string>
   <plurals name="incoming_file_title">
     <item quantity="one">%1$d fichier reçu de %2$s</item>
@@ -158,6 +160,7 @@
   <string name="received_file_text">Appuyez pour ouvrir %1s</string>
   <string name="cannot_create_file">Impossible de créer le fichier %s</string>
   <string name="tap_to_answer">Cliquer pour répondre</string>
+  <string name="left_click">Envoyer un clic gauche</string>
   <string name="right_click">Envoyer un clic droit</string>
   <string name="middle_click">Envoyer un clic central</string>
   <string name="show_keyboard">Afficher le clavier</string>
