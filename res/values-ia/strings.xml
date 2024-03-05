@@ -15,7 +15,6 @@
   <string name="pref_plugin_clipboard_desc">Comparti le contento de area de transferentia</string>
   <string name="pref_plugin_clipboard_sent">Area de transferentia inviate</string>
   <string name="pref_plugin_mousepad">Entrata remote</string>
-  <string name="pref_plugin_presenter">"Sequentia de diapositivas  remote"</string>
   <string name="pref_plugin_presenter_desc">Usa tu dispositivo per cambiar diapositivas in un presentation</string>
   <string name="pref_plugin_mpris">Controlos de Multimedia</string>
   <string name="pref_plugin_runcommand">Executa commando</string>

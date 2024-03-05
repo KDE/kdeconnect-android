@@ -18,7 +18,6 @@
   <string name="pref_plugin_clipboard_sent">לוח הגזירים נשלח</string>
   <string name="pref_plugin_mousepad">שליטה מרחוק</string>
   <string name="pref_plugin_mousepad_desc">להשתמש בטלפון או במחשב הלוח כמשטח מגע ומקלדת</string>
-  <string name="pref_plugin_presenter">שלט מצגת</string>
   <string name="pref_plugin_presenter_desc">שימוש במכשיר שלך כדי לעבור בין שקפים במצגת</string>
   <string name="pref_plugin_remotekeyboard">קבלת לחיצות מרחוק</string>
   <string name="pref_plugin_remotekeyboard_desc">קבלת אירועי מקלדת ממכשיר מרוחק</string>

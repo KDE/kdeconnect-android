@@ -18,7 +18,6 @@
   <string name="pref_plugin_clipboard_sent">クリップボードが送信されました</string>
   <string name="pref_plugin_mousepad">リモート入力</string>
   <string name="pref_plugin_mousepad_desc">スマートフォンやタブレットをタッチパッドやキーボードとして利用</string>
-  <string name="pref_plugin_presenter">スライドショーのリモコン</string>
   <string name="pref_plugin_presenter_desc">デバイスを使ってプレゼンテーションのスライドを操作</string>
   <string name="pref_plugin_remotekeyboard">リモートからキー入力を受信</string>
   <string name="pref_plugin_remotekeyboard_desc">リモートデバイスからキーイベントを受信</string>

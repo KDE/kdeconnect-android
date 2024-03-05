@@ -18,7 +18,6 @@
   <string name="pref_plugin_clipboard_sent">Zwischenablage versendet</string>
   <string name="pref_plugin_mousepad">Ferneingabe</string>
   <string name="pref_plugin_mousepad_desc">Das Gerät als Touchpad und/oder Tastatur verwenden</string>
-  <string name="pref_plugin_presenter">Fernbedienung für Präsentationen</string>
   <string name="pref_plugin_presenter_desc">Das Gerät zum Wechseln der Folien einer Präsentation verwenden</string>
   <string name="pref_plugin_remotekeyboard">Empfänger für Tastatureingaben</string>
   <string name="pref_plugin_remotekeyboard_desc">Tastatureingaben entfernter Geräte empfangen</string>

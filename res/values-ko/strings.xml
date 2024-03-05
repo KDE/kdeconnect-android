@@ -18,7 +18,6 @@
   <string name="pref_plugin_clipboard_sent">클립보드 보냄</string>
   <string name="pref_plugin_mousepad">원격 입력</string>
   <string name="pref_plugin_mousepad_desc">내 휴대폰이나 태블릿을 터치패드와 키보드로 사용하기</string>
-  <string name="pref_plugin_presenter">슬라이드 쇼 리모콘</string>
   <string name="pref_plugin_presenter_desc">내 장치로 프레젠테이션 슬라이드 전환하기</string>
   <string name="pref_plugin_remotekeyboard">원격 키 입력 받기</string>
   <string name="pref_plugin_remotekeyboard_desc">원격 장치의 키 입력 이벤트 받기</string>

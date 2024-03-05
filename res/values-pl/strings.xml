@@ -18,7 +18,6 @@
   <string name="pref_plugin_clipboard_sent">Wysłano ze schowka</string>
   <string name="pref_plugin_mousepad">Obsługa zdalna</string>
   <string name="pref_plugin_mousepad_desc">Używa telefonu lub tabletu jako gładzika i klawiatury do sterowania innym urządzeniem</string>
-  <string name="pref_plugin_presenter">Sterowanie prezentacją</string>
   <string name="pref_plugin_presenter_desc">Przełącza strony przy użyciu telefonu</string>
   <string name="pref_plugin_remotekeyboard">Odbieranie klawiszy</string>
   <string name="pref_plugin_remotekeyboard_desc">Odbiera naciśnięcia klawiszy z innego urządzenia do sterowania tym urządzeniem</string>

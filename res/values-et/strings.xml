@@ -15,7 +15,6 @@
   <string name="pref_plugin_clipboard_sent">Lõikepuhvrist saadud</string>
   <string name="pref_plugin_mousepad">Kaugsisestus</string>
   <string name="pref_plugin_mousepad_desc">Telefoni või tahvli kasutamine puuteplaadi ja klaviatuurina</string>
-  <string name="pref_plugin_presenter">Slaidiseansi pult</string>
   <string name="pref_plugin_presenter_desc">Seadme kasutamine esitluse slaidide vahetamiseks</string>
   <string name="pref_plugin_remotekeyboard">Kaugklahvivajutuste vastuvõtmine</string>
   <string name="pref_plugin_remotekeyboard_desc">Kaugseadmete klahvivajutuste vastuvõtmine</string>

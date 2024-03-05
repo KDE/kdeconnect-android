@@ -18,7 +18,7 @@
   <string name="pref_plugin_clipboard_sent">S\'ha enviat al porta-retalls</string>
   <string name="pref_plugin_mousepad">Entrada remota</string>
   <string name="pref_plugin_mousepad_desc">Usa el vostre telèfon o tauleta com un ratolí tàctil i un teclat</string>
-  <string name="pref_plugin_presenter">Presentació de diapositives remota</string>
+  <string name="pref_plugin_presenter">Presentació remota</string>
   <string name="pref_plugin_presenter_desc">Usa el dispositiu per a canviar les diapositives d\'una presentació</string>
   <string name="pref_plugin_remotekeyboard">Rep les pulsacions remotes de tecles</string>
   <string name="pref_plugin_remotekeyboard_desc">Rep els esdeveniments de pulsacions de tecla des de dispositius remots</string>

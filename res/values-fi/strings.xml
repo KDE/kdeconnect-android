@@ -18,7 +18,6 @@
   <string name="pref_plugin_clipboard_sent">Leikepöytä lähetetty</string>
   <string name="pref_plugin_mousepad">Kauko-ohjaus</string>
   <string name="pref_plugin_mousepad_desc">Käytä puhelinta tai tablettia hiirenä ja näppäimistönä</string>
-  <string name="pref_plugin_presenter">Etädiaesitys</string>
   <string name="pref_plugin_presenter_desc">Käytä laitettasi esitysdiojen vaihtamiseen</string>
   <string name="pref_plugin_remotekeyboard">Vastaanota etänäppäinpainallukset</string>
   <string name="pref_plugin_remotekeyboard_desc">Vastaanottaa etälaitteiden näppäinpainallustapahtumat</string>

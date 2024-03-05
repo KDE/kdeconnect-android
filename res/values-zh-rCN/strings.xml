@@ -18,7 +18,6 @@
   <string name="pref_plugin_clipboard_sent">剪贴板已发送</string>
   <string name="pref_plugin_mousepad">远程输入</string>
   <string name="pref_plugin_mousepad_desc">将您的手机用或平板电脑用作触摸板和键盘</string>
-  <string name="pref_plugin_presenter">幻灯片遥控器</string>
   <string name="pref_plugin_presenter_desc">使用移动设备切换幻灯片</string>
   <string name="pref_plugin_remotekeyboard">接收远程按键</string>
   <string name="pref_plugin_remotekeyboard_desc">从远程设备接收按键事件</string>

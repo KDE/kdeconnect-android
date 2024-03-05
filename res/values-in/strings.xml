@@ -18,7 +18,6 @@
   <string name="pref_plugin_clipboard_sent">Papan Klip Terkirim</string>
   <string name="pref_plugin_mousepad">Masukan jarak jauh</string>
   <string name="pref_plugin_mousepad_desc">Gunakan ponsel atau tablet Anda sebagai touchpad dan keyboard</string>
-  <string name="pref_plugin_presenter">Remot salindia</string>
   <string name="pref_plugin_presenter_desc">Gunakan peranti Anda untuk mengubah slide dalam sebuah presentasi</string>
   <string name="pref_plugin_remotekeyboard">Terima penekanan tombol jarak jauh</string>
   <string name="pref_plugin_remotekeyboard_desc">Terima peristiwa penekanan tombol dari peranti jarak jauh</string>

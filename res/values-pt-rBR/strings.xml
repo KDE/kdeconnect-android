@@ -18,7 +18,6 @@
   <string name="pref_plugin_clipboard_sent">Área de transferência enviada</string>
   <string name="pref_plugin_mousepad">Introdução de dados remota</string>
   <string name="pref_plugin_mousepad_desc">Use seu celular ou tablet como mouse e teclado</string>
-  <string name="pref_plugin_presenter">Apresentação de slides remota</string>
   <string name="pref_plugin_presenter_desc">Use o seu dispositivo para mudar os slides de uma apresentação</string>
   <string name="pref_plugin_remotekeyboard">Receber pressionamento de teclas remoto</string>
   <string name="pref_plugin_remotekeyboard_desc">Recebe os eventos de pressionamento de teclas dos dispositivos remotos</string>

@@ -18,7 +18,7 @@
   <string name="pref_plugin_clipboard_sent">Klembord verzonden</string>
   <string name="pref_plugin_mousepad">Invoer op afstand</string>
   <string name="pref_plugin_mousepad_desc">Uw telefoon of tablet gebruiken als een touchpad en toetsenbord</string>
-  <string name="pref_plugin_presenter">Diavoorstelling op afstand</string>
+  <string name="pref_plugin_presenter">Presentatie op afstand</string>
   <string name="pref_plugin_presenter_desc">Uw apparaat gebruiken om dia\'s te wisselen in een presentatie</string>
   <string name="pref_plugin_remotekeyboard">Toetsaanslagen van afstand ontvangen</string>
   <string name="pref_plugin_remotekeyboard_desc">Toetsaanslaggebeurtenissen ontvangen van externe apparaten</string>
