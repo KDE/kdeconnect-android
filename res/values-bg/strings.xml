@@ -18,6 +18,7 @@
   <string name="pref_plugin_clipboard_sent">Изпратено съдържание на клипборда</string>
   <string name="pref_plugin_mousepad">Отдалечено входно устройство</string>
   <string name="pref_plugin_mousepad_desc">Използване на телефона като тъчпад и клавиатура</string>
+  <string name="pref_plugin_presenter">Отдалечена презентация</string>
   <string name="pref_plugin_presenter_desc">Използвайте устройството си за прелистване на слайдовете на презентация</string>
   <string name="pref_plugin_remotekeyboard">Отдалечени клавишни набирания</string>
   <string name="pref_plugin_remotekeyboard_desc">Получаване на клавишни набирания от отдалечено устройство</string>
@@ -51,6 +52,7 @@
   <string name="remotekeyboard_multiple_connections">Има повече от една отдалечена връзка за клавиатура, изберете устройството за конфигуриране</string>
   <string name="open_mousepad">Отдалечен вход</string>
   <string name="mousepad_info">Преместете пръст на екрана, за да преместите курсора на мишката. Докоснете за щракване и използвайте два/три пръста за десни и средни бутони. Използвайте 2 пръста за превъртане.Използвайте дълго натискане за влачене. Функцията на жироскопската мишка може да бъде активирана в настройките на плъгина</string>
+  <string name="mousepad_info_no_gestures">Движете пръста си по екрана, за да преместите курсора на мишката, и докоснете, за да щракнете.</string>
   <string name="mousepad_keyboard_input_not_supported">Въвеждането от клавиатурата не се поддържа от сдвоеното устройство</string>
   <string name="mousepad_single_tap_settings_title">Задаване на действие с натискане с един пръст</string>
   <string name="mousepad_double_tap_settings_title">Задаване на действие за докосване с два пръста</string>
@@ -120,6 +122,7 @@
   <string name="my_device_fingerprint">SHA256 отпечатък на сертификата на вашето устройство е:</string>
   <string name="remote_device_fingerprint">SHA256 отпечатък на сертификата на отдалеченото устройство е:</string>
   <string name="pair_requested">Заявено е сдвояване</string>
+  <string name="pair_succeeded">Сдвояването е успешно</string>
   <string name="pairing_request_from">Заявено е сдвояване от %1s</string>
   <plurals name="incoming_file_title">
     <item quantity="one">Получаване на %1$d файл от %2$s</item>
@@ -157,6 +160,7 @@
   <string name="received_file_text">Докоснете, за да отворите \'%1s\'</string>
   <string name="cannot_create_file">Не може да се създаде файл %s</string>
   <string name="tap_to_answer">Докоснете за да отговорите</string>
+  <string name="left_click">Изпращане на щракване с ляв бутон</string>
   <string name="right_click">Изпращане на щракване с десен бутон</string>
   <string name="middle_click">Изпращане на средно щракване</string>
   <string name="show_keyboard">Показване на клавиатурата</string>

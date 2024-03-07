@@ -18,7 +18,7 @@
   <string name="pref_plugin_clipboard_sent">Utklippstavle send</string>
   <string name="pref_plugin_mousepad">Fjernstyring</string>
   <string name="pref_plugin_mousepad_desc">Bruk telefonen eller nettbrettet som styreplate og tastatur</string>
-  <string name="pref_plugin_presenter">Fjernstyring av lysbiletvising</string>
+  <string name="pref_plugin_presenter">Fjernkontroll av presentasjon</string>
   <string name="pref_plugin_presenter_desc">Bruk eininga til å byta lysbilete i presentasjonar</string>
   <string name="pref_plugin_remotekeyboard">Ta imot eksterne tastetrykk</string>
   <string name="pref_plugin_remotekeyboard_desc">Ta imot tastetrykk frå eksterne einingar</string>
@@ -260,7 +260,6 @@
   <string name="telephony_pref_blocked_title">Blokkerte nummer</string>
   <string name="telephony_pref_blocked_dialog_desc">Ikkje vis oppringingar eller SMS-ar frå desse telefonnummera. Skriv inn eitt telefonnummer per linje.</string>
   <string name="mpris_coverart_description">Omslagsbilete til gjeldande mediefil</string>
-  <string name="device_icon_description">Einingsikon</string>
   <string name="settings_icon_description">Innstillingsikon</string>
   <string name="presenter_fullscreen">Fullskjerm</string>
   <string name="presenter_exit">Avslutt presentasjon</string>
