@@ -18,6 +18,7 @@
   <string name="pref_plugin_clipboard_sent">Presse-papiers envoyé</string>
   <string name="pref_plugin_mousepad">Contrôle distant</string>
   <string name="pref_plugin_mousepad_desc">Utilisez votre téléphone ou tablette comme un pavé tactile et un clavier</string>
+  <string name="pref_plugin_presenter">Télécommande de présentation</string>
   <string name="pref_plugin_presenter_desc">Utilisez votre appareil pour changer les diapositives d\'une présentation</string>
   <string name="pref_plugin_remotekeyboard">Recevoir les appuis de touches distants</string>
   <string name="pref_plugin_remotekeyboard_desc">Recevoir les appuis de touches des périphériques distants</string>

@@ -18,6 +18,7 @@
   <string name="pref_plugin_clipboard_sent">לוח הגזירים נשלח</string>
   <string name="pref_plugin_mousepad">שליטה מרחוק</string>
   <string name="pref_plugin_mousepad_desc">להשתמש בטלפון או במחשב הלוח כמשטח מגע ומקלדת</string>
+  <string name="pref_plugin_presenter">מצב מצגת</string>
   <string name="pref_plugin_presenter_desc">שימוש במכשיר שלך כדי לעבור בין שקפים במצגת</string>
   <string name="pref_plugin_remotekeyboard">קבלת לחיצות מרחוק</string>
   <string name="pref_plugin_remotekeyboard_desc">קבלת אירועי מקלדת ממכשיר מרוחק</string>
@@ -51,6 +52,7 @@
   <string name="remotekeyboard_multiple_connections">ישנן כמה מקלדות מרוחקות מחוברות, נא לבחור את המכשיר להגדרה</string>
   <string name="open_mousepad">שליטה מרחוק</string>
   <string name="mousepad_info">החלקת האצבע על המסך תזיז את סמן העכבר. נקישה תלחץ, שימוש ב־2/3 אצבעות לכפתורים הימני והאמצעי. 2 אצבעות משמשות לגלילה. לחיצה ארוכה כדי לגרור ולהשליך. אפשר להפעיל יכולת עכבר גירוסקופי מהעדפות התוסף</string>
+  <string name="mousepad_info_no_gestures">יש להזיז את האצבע על גבי המסך כדי להזיז את זמן העכבר, נגיעה גוררת לחיצת עכבר.</string>
   <string name="mousepad_keyboard_input_not_supported">אין תמיכה בקלט מקלדת במכשיר המצומד</string>
   <string name="mousepad_single_tap_settings_title">הגדרת פעולת נקישה באצבע אחת</string>
   <string name="mousepad_double_tap_settings_title">הגדרת פעולה לנקישת שתי אצבעות</string>
@@ -120,6 +122,7 @@
   <string name="my_device_fingerprint">טביעת אצבע ב־SHA256 של אישור המכשיר שלך היא:</string>
   <string name="remote_device_fingerprint">טביעת אצבע ב־SHA256 של אישור המכשיר המרוחק היא:</string>
   <string name="pair_requested">התקבלה בקשת צימוד</string>
+  <string name="pair_succeeded">הצימוד הצליח</string>
   <string name="pairing_request_from">בקשת צימוד מאת %1s</string>
   <plurals name="incoming_file_title">
     <item quantity="one">התקבל קובץ %1$d מהמכשיר %2$s</item>
@@ -173,6 +176,7 @@
   <string name="received_file_text">נקישה לפתיחת ‚%1s’</string>
   <string name="cannot_create_file">לא ניתן ליצור את הקובץ %s</string>
   <string name="tap_to_answer">נקישה למענה</string>
+  <string name="left_click">שליחת לחיצה ימנית</string>
   <string name="right_click">שליחת לחיצה ימנית</string>
   <string name="middle_click">שליחת לחיצה אמצעית (גלגלת)</string>
   <string name="show_keyboard">הצגת מקלדת</string>

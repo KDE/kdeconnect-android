@@ -61,6 +61,7 @@
   <string name="error_timed_out">Expirate</string>
   <string name="error_canceled_by_other_peer">Cancellate per altere pare</string>
   <string name="pair_requested">Coppiar requirite</string>
+  <string name="pair_succeeded">"Coppiar  succedite"</string>
   <plurals name="outgoing_file_title">
     <item quantity="one">"Inviante file %1$d   a  %2$s"</item>
     <item quantity="other">Invia %1$d files %2$s</item>
@@ -70,6 +71,7 @@
     <item quantity="other">"Inviate %2$d  files a %1$s"</item>
   </plurals>
   <string name="tap_to_open">Tocca per aperir</string>
+  <string name="left_click">Invia Click sinistre</string>
   <string name="pairing_accept">Accepta</string>
   <string name="pairing_reject">Rejecta</string>
   <string name="settings">Preferentias</string>
@@ -193,4 +195,7 @@
   <string name="send_clipboard">Invia Area de transferentia</string>
   <string name="tap_to_execute">Toccaper executar</string>
   <string name="plugin_stats">"Statisticas de plugin "</string>
+  <string name="receive_notifications_permission_explanation">Notificationes necessita esser permettite a reciper los ex altere dispositivos</string>
+  <string name="findmyphone_notifications_explanation">Le permission de notificationes es necessari assi que le telephono pote sonar quando le app es in le fundo</string>
+  <string name="no_notifications">Notificatione es dishabilitate, tu nonrecipera notificatioones de association in arrivata.</string>
 </resources>

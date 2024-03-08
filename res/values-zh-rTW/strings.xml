@@ -18,6 +18,7 @@
   <string name="pref_plugin_clipboard_sent">已傳送剪貼簿</string>
   <string name="pref_plugin_mousepad">遠端輸入</string>
   <string name="pref_plugin_mousepad_desc">使用您的智慧型手機或者平板來模擬觸碰板與鍵盤</string>
+  <string name="pref_plugin_presenter">簡報遙控</string>
   <string name="pref_plugin_presenter_desc">使用您的裝置來切換簡報中的投影片</string>
   <string name="pref_plugin_remotekeyboard">接收遠端按鍵輸入</string>
   <string name="pref_plugin_remotekeyboard_desc">從遠端裝置接收按鍵輸入活動</string>
@@ -51,6 +52,7 @@
   <string name="remotekeyboard_multiple_connections">這裡有兩個以上的遠端鍵盤連結，選擇一個裝置以設定。</string>
   <string name="open_mousepad">遠端輸入</string>
   <string name="mousepad_info">在您的智慧型手機的螢幕上移動手指來控制電腦螢幕的游標。按一下表示滑鼠的左鍵，使用兩隻/三隻手指頭按一下來表示滑鼠的右鍵/中鍵。使用兩隻手指頭捲動。長按則表示要拖拉。可以在外掛程式設定裡啟用陀螺儀滑鼠功能</string>
+  <string name="mousepad_info_no_gestures">在螢幕上移動手指來移動滑鼠游標，輕點來進行點擊。</string>
   <string name="mousepad_keyboard_input_not_supported">配對裝置不支援鍵盤輸入</string>
   <string name="mousepad_single_tap_settings_title">設定單指輕點的動作</string>
   <string name="mousepad_double_tap_settings_title">設定兩隻手指頭按一下的動作</string>
@@ -120,6 +122,7 @@
   <string name="my_device_fingerprint">您裝置憑證的 SHA256 指紋是：</string>
   <string name="remote_device_fingerprint">遠端裝置憑證的 SHA256 指紋是：</string>
   <string name="pair_requested">已請求配對</string>
+  <string name="pair_succeeded">配對成功</string>
   <string name="pairing_request_from">來自 %1s 的配對請求</string>
   <plurals name="incoming_file_title">
     <item quantity="other">正在從 %2$s 接收 %1$d 個檔案</item>
@@ -149,6 +152,7 @@
   <string name="received_file_text">按一下開啟 \'%1s\'</string>
   <string name="cannot_create_file">無法建立 %s 檔案</string>
   <string name="tap_to_answer">按一下即可回應</string>
+  <string name="left_click">傳送左鍵按一下</string>
   <string name="right_click">傳送右鍵按一下</string>
   <string name="middle_click">傳送中鍵按一下</string>
   <string name="show_keyboard">顯示鍵盤</string>
