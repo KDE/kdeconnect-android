@@ -18,6 +18,7 @@
   <string name="pref_plugin_clipboard_sent">剪贴板已发送</string>
   <string name="pref_plugin_mousepad">远程输入</string>
   <string name="pref_plugin_mousepad_desc">将您的手机用或平板电脑用作触摸板和键盘</string>
+  <string name="pref_plugin_presenter">演示遥控</string>
   <string name="pref_plugin_presenter_desc">使用移动设备切换幻灯片</string>
   <string name="pref_plugin_remotekeyboard">接收远程按键</string>
   <string name="pref_plugin_remotekeyboard_desc">从远程设备接收按键事件</string>
@@ -51,6 +52,7 @@
   <string name="remotekeyboard_multiple_connections">发现多个远程键盘连接，请选择要配置的设备</string>
   <string name="open_mousepad">远程输入</string>
   <string name="mousepad_info">在屏幕上移动手指来移动光标。轻击代表左键，双指或三指点击代表右键或中键。用双指滚动。用长按来拖放。基于陀螺仪的空中鼠标功能可以在插件的首选项中启用。</string>
+  <string name="mousepad_info_no_gestures">在屏幕上移动手指来移动鼠标光标，手指轻点来进行鼠标键点击。</string>
   <string name="mousepad_keyboard_input_not_supported">配对的设备不支持键盘输入</string>
   <string name="mousepad_single_tap_settings_title">设置单指点击操作</string>
   <string name="mousepad_double_tap_settings_title">设置双指点击操作</string>
@@ -120,6 +122,7 @@
   <string name="my_device_fingerprint">您的设备证书的 SHA256 指纹是：</string>
   <string name="remote_device_fingerprint">远程设备证书的 SHA256 指纹是：</string>
   <string name="pair_requested">已请求配对</string>
+  <string name="pair_succeeded">配对成功</string>
   <string name="pairing_request_from">来自 %1s 的配对请求</string>
   <plurals name="incoming_file_title">
     <item quantity="other">正在从 %2$s 接收 %1$d 个文件</item>
@@ -149,6 +152,7 @@
   <string name="received_file_text">点击打开“%1s”</string>
   <string name="cannot_create_file">无法创建文件 %s</string>
   <string name="tap_to_answer">点击应答</string>
+  <string name="left_click">发送左键点击</string>
   <string name="right_click">发送右键点击</string>
   <string name="middle_click">发送中键点击</string>
   <string name="show_keyboard">显示键盘</string>
