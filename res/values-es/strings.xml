@@ -18,6 +18,7 @@
   <string name="pref_plugin_clipboard_sent">Enviado al portapapeles</string>
   <string name="pref_plugin_mousepad">Entrada remota</string>
   <string name="pref_plugin_mousepad_desc">Usar su teléfono o tableta como teclado y teclado táctil</string>
+  <string name="pref_plugin_presenter">Presentación remota</string>
   <string name="pref_plugin_presenter_desc">Use su dispositivo para cambiar las diapositivas de una presentación</string>
   <string name="pref_plugin_remotekeyboard">Recibir pulsaciones de teclas remotas</string>
   <string name="pref_plugin_remotekeyboard_desc">Recibir eventos de pulsación de teclas desde dispositivos remotos</string>
