@@ -18,6 +18,7 @@
   <string name="pref_plugin_clipboard_sent">Appunti inviati</string>
   <string name="pref_plugin_mousepad">Impulso remoto</string>
   <string name="pref_plugin_mousepad_desc">Usa il tuo telefono o il tablet come touchpad e tastiera</string>
+  <string name="pref_plugin_presenter">Presentazione remota</string>
   <string name="pref_plugin_presenter_desc">Utilizza il tuo dispositivo per cambiare le diapositive in una presentazione</string>
   <string name="pref_plugin_remotekeyboard">Ricevi pressioni dei tasti da remoto</string>
   <string name="pref_plugin_remotekeyboard_desc">Ricevi eventi di pressione dei tasti da dispositivi remoti</string>
