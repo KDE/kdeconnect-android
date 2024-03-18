@@ -52,6 +52,7 @@
   <string name="remotekeyboard_multiple_connections">Det finst meir enn eitt eksternt tastatursamband (vel eining å setja opp)</string>
   <string name="open_mousepad">Fjernstyring</string>
   <string name="mousepad_info">Dra ein finger over skjermen for å flytta peikaren på datamaskina. Trykk for å klikka, og bruk to eller tre fingrar for høvesvis høgre- og midtknappen. Bruk to fingrar for å rulla. Trykk lenge for å dra og sleppa. Funksjonalitet for gyromus kan du slå på i programtillegg-innstillingane.</string>
+  <string name="mousepad_info_no_gestures">Flytt fingeren over skjermen for å flytta musepeikaren, og trykk for å klikka med musa.</string>
   <string name="mousepad_keyboard_input_not_supported">Tekst frå tastaturet er ikkje støtta av den para eininga</string>
   <string name="mousepad_single_tap_settings_title">Vel handling for éinfingertrykk</string>
   <string name="mousepad_double_tap_settings_title">Vel handling for tofingertrykk</string>
@@ -60,6 +61,7 @@
   <string name="mousepad_mouse_buttons_title">Vis museknappar</string>
   <string name="mousepad_acceleration_profile_settings_title">Vel peikarakselerasjon</string>
   <string name="mousepad_scroll_direction_title">Omvend rulleretning</string>
+  <string name="mousepad_scroll_sensitivity_title">Rullefølsemd</string>
   <string name="gyro_mouse_enabled_title">Slå på gyromus</string>
   <string name="gyro_mouse_sensitivity_title">Gyroskop-følsemd</string>
   <string-array name="mousepad_tap_entries">
@@ -120,6 +122,7 @@
   <string name="my_device_fingerprint">SHA-256-fingeravtrykket til einingssertifikatet er:</string>
   <string name="remote_device_fingerprint">SHA-256-fingeravtrykket til fjerneiningssertifikatet er:</string>
   <string name="pair_requested">Paringsførespurnad</string>
+  <string name="pair_succeeded">Paring fullført</string>
   <string name="pairing_request_from">Paringsførespurnad frå %1s</string>
   <plurals name="incoming_file_title">
     <item quantity="one">Fekk %1$d fil frå %2$s</item>
@@ -157,6 +160,7 @@
   <string name="received_file_text">Trykk for å opna «%1s»</string>
   <string name="cannot_create_file">Klarte ikkje oppretta fila %s</string>
   <string name="tap_to_answer">Trykk for å svara</string>
+  <string name="left_click">Send venstreklikk</string>
   <string name="right_click">Send høgreklikk</string>
   <string name="middle_click">Send midtklikk</string>
   <string name="show_keyboard">Vis tastatur</string>
@@ -273,6 +277,9 @@
   <string name="notification_channel_default">Andre varslingar</string>
   <string name="notification_channel_persistent">Evigvarande varsling</string>
   <string name="notification_channel_media_control">Mediestyring</string>
+  <string name="notification_channel_filetransfer">Innkommande filoverføring</string>
+  <string name="notification_channel_filetransfer_upload">Utgåande filoverføring</string>
+  <string name="notification_channel_filetransfer_error">Feil ved filoverføring</string>
   <string name="notification_channel_high_priority">Høg prioritet</string>
   <string name="mpris_stop">Stopp gjeldande avspelar</string>
   <string name="copy_url_to_clipboard">Kopier adresse til utklippstavla</string>
@@ -281,6 +288,7 @@
   <string name="runcommand_notpaired">Eininga er ikkje para</string>
   <string name="runcommand_nosuchdevice">Eininga finst ikkje</string>
   <string name="runcommand_noruncommandplugin">Eininga har ikkje «Køyr kommando»-tillegget slått på</string>
+  <string name="runcommand_name_as_title_title">Vis namn som tittel</string>
   <string name="pref_plugin_findremotedevice">Finn ekstern eining</string>
   <string name="pref_plugin_findremotedevice_desc">Ring til ekstern eining</string>
   <string name="ring">Ring</string>
@@ -376,6 +384,7 @@
   <string name="open_compose_send">Skriv tekst</string>
   <string name="about_kde_about">&lt;h1&gt;Om&lt;/h1&gt; &lt;p&gt;KDE er eit verdsfemnande fellesskap av eldsjeler som programmerer, teiknar, komponerer, dokumenterer, set om eller hjelper til på andre måtar med utvikling av &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;fri programvare&lt;/a&gt;. Me har laga brukarflata Plasma, hundrevis av program og dei mange programbiblioteka desse byggjer på.&lt;/p&gt; &lt;p&gt;KDE er eit fellesskap der inga einskild gruppe, firma eller organisasjon har eigarskap til produkta eller styrer retninga den vidare utviklinga skal gå i. Derimot arbeider me saman om å oppnå vårt felles mål om å laga fri programvare i verdsklasse. Alle er &lt;a href=https://community.kde.org/Get_Involved&gt;velkomne til å bidra&lt;/a&gt; – du òg.&lt;/p&gt;Du finn meir informasjon om KDE og programma me utviklar på &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt;.</string>
   <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Meld frå om feil eller ønskje&lt;/h1&gt; &lt;p&gt;Ein kan alltid forbetra programvare, og KDE-gruppa arbeider heile tida for det. Men du, som brukar, må melda frå til oss når noko ikkje verkar slik du forventar, eller når noko kunne vore gjort betre.&lt;/p&gt; &lt;p&gt;KDE har eit feilsporingssystem. Gå til &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; eller vel «Meld frå om feil» på «Om»-sida for å melda frå om feil.&lt;/p&gt; Om du har framlegg til forbetringar, kan du gjerne registrera òg desse i feilsporingssystemet. Sjå då til at du har markert feilrapporten med «Wishlist».</string>
+  <string name="about_kde_join_kde">&lt;h1&gt;Vert med i KDE&lt;/h1&gt; &lt;p&gt;Du treng ikkje vera programutviklar for å hjelpa til med KDE. Du kan arbeida med omsetjingar, laga grafikk, tema, lydar eller betre hjelpetekstar. Her er noko for alle!&lt;/p&gt; &lt;p&gt;På &lt;a href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/Get_Involved&lt;/a&gt; finn du informasjon om nokre prosjekt du kan delta i.&lt;/p&gt; Om du vil ha meir informasjon eller dokumentasjon, finn du det du treng på &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/&lt;/a&gt;.</string>
   <string name="about_kde_support_kde">&lt;h1&gt;Støtt KDE&lt;/h1&gt; &lt;p&gt;KDE-programma er, og vil alltid vera, gratis, men det er slett ikkje gratis å laga eller vedlikehalda dei.&lt;/p&gt; &lt;p&gt;For å støtta utviklingsarbeidet har KDE-fellesskapet derfor oppretta KDE e.V., ein ideell organisasjon registrert i Tyskland. KDE e.V. representerer KDE-fellesskapet i juridiske og finansielle saker. På &lt;a href=https://ev.kde.org/&gt;https://ev.kde.org/&lt;/a&gt; finn du meir informasjon om organisasjonen.&lt;/p&gt; &lt;p&gt;Både økonomisk og annan type støtte er til stor hjelp. Pengane går med til å dekkja utgifter medlemmane våre har ved utviklinga av KDE-programma, samt til juridisk bistand og til organisering av konferansar og møte.&lt;/p&gt; &lt;p&gt;På &lt;a href=https://www.kde.org/community/donations/&gt;https://www.kde.org/community/donations/&lt;/a&gt;.&lt;/p&gt; kan du lesa om korleis du kan bidra.&lt;/p&gt; &lt;p&gt;På førehand tusen takk for støtta di.</string>
   <string name="maintainer_and_developer">Vedlikehaldar og utviklar</string>
   <string name="developer">Utviklar</string>
@@ -391,4 +400,6 @@
   <string name="send_clipboard">Send utklippstavla</string>
   <string name="tap_to_execute">Tapp for å utføra handlinga</string>
   <string name="plugin_stats">Programtillegg-statistikk</string>
+  <string name="enable_udp_broadcast">Slå på einingsoppdaging via UDP</string>
+  <string name="receive_notifications_permission_explanation">Du må tillata varslingar for å kunna frå varslingar frå andre einingar</string>
 </resources>
