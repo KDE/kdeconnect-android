@@ -14,7 +14,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-class Sink {
+public class Sink {
 
     interface UpdateListener {
         void updateSink(@NonNull Sink sink);

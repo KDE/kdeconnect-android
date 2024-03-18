@@ -381,9 +381,9 @@ internal object AlbumArtCache {
             Log.e("KDE/Mpris/AlbumArtCache", "Problem with the disk cache", e)
         }
         if (success) {
-            //Now it's in the disk cache, the getAlbumArt() function should be able to read it
+            // Now it's in the disk cache, the getAlbumArt() function should be able to read it
 
-            //So notify the mpris plugins of the fetched art
+            // So notify the mpris plugins of the fetched art
             for (mpris in registeredPlugins) {
                 val stringUrl = url.toString()
                 mpris.fetchedAlbumArt(stringUrl)

@@ -16,7 +16,7 @@ import org.kde.kdeconnect.Plugins.SystemVolumePlugin.SystemVolumePlugin.SinkList
 import kotlin.math.ceil
 import kotlin.math.floor
 
-internal class SystemVolumeProvider private constructor(plugin: SystemVolumePlugin) :
+class SystemVolumeProvider private constructor(plugin: SystemVolumePlugin) :
         VolumeProviderCompat(VOLUME_CONTROL_ABSOLUTE, DEFAULT_MAX_VOLUME, 0),
         SinkListener,
         UpdateListener {
