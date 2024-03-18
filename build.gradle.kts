@@ -13,6 +13,7 @@ buildscript {
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.dependencyLicenseReport)
 }
 
@@ -183,7 +184,7 @@ dependencies {
     implementation(libs.bcpkix.jdk15on) //For SSL certificate generation
 
     implementation(libs.classindex)
-    annotationProcessor(libs.classindex)
+    kapt(libs.classindex)
 
     // The android-smsmms library is the only way I know to handle MMS in Android
     // (Shouldn't a phone OS make phone things easy?)
