@@ -19,18 +19,25 @@ import org.kde.kdeconnect.NetworkPacket
  * @see BatteryPlugin.isLowBattery
  */
 data class DeviceBatteryInfo(
-        val currentCharge: Int,
-        val isCharging: Boolean,
-        val thresholdEvent: Int,
+    val currentCharge: Int,
+    val isCharging: Boolean,
+    val thresholdEvent: Int,
 ) {
-
-    /**
-     * For use with packets of type [BatteryPlugin.PACKET_TYPE_BATTERY].
-     */
-    constructor(np: NetworkPacket) :
-            this(
-                    np.getInt("currentCharge"),
-                    np.getBoolean("isCharging"),
-                    np.getInt("thresholdEvent", 0)
+    companion object {
+        /**
+         * For use with packets of type [BatteryPlugin.PACKET_TYPE_BATTERY].
+         *
+         * @throws IllegalArgumentException if the packet type is not [BatteryPlugin.PACKET_TYPE_BATTERY].
+         */
+        fun fromPacket(np: NetworkPacket): DeviceBatteryInfo {
+            require(np.type == BatteryPlugin.PACKET_TYPE_BATTERY) {
+                "Packet type must be PACKET_TYPE_BATTERY"
+            }
+            return DeviceBatteryInfo(
+                np.getInt("currentCharge"),
+                np.getBoolean("isCharging"),
+                np.getInt("thresholdEvent", 0)
             )
+        }
+    }
 }
