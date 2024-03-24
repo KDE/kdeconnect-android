@@ -18,6 +18,7 @@
   <string name="pref_plugin_clipboard_sent">Wysłano ze schowka</string>
   <string name="pref_plugin_mousepad">Obsługa zdalna</string>
   <string name="pref_plugin_mousepad_desc">Używa telefonu lub tabletu jako gładzika i klawiatury do sterowania innym urządzeniem</string>
+  <string name="pref_plugin_presenter">Pilot do prezentacji</string>
   <string name="pref_plugin_presenter_desc">Przełącza strony przy użyciu telefonu</string>
   <string name="pref_plugin_remotekeyboard">Odbieranie klawiszy</string>
   <string name="pref_plugin_remotekeyboard_desc">Odbiera naciśnięcia klawiszy z innego urządzenia do sterowania tym urządzeniem</string>
@@ -51,6 +52,7 @@
   <string name="remotekeyboard_multiple_connections">Nawiązano więcej niż jedno połączenie zdalnej klawiatury, wybierz urządzenie do ustawienia</string>
   <string name="open_mousepad">Zdalne sterowanie</string>
   <string name="mousepad_info">Przesuwanie palcem po ekranie przesuwa wskaźnik myszy. Stuknięcie jednym, dwoma i trzema palcami wywołuje odpowiednio naciśnięcie lewym, prawym i środkowym przyciskiem myszy. Dwa palce przewijają. Długie naciśnięcie rozpoczyna czynność przeciągania i upuszczania. Zachowania żyroskopowe myszy mogą być włączone z poziomu ustawień wtyczki.</string>
+  <string name="mousepad_info_no_gestures">Przesuń palcem po ekranie, aby przesunąć wskaźnikiem myszy, dotknij, aby kliknąć.</string>
   <string name="mousepad_keyboard_input_not_supported">Wpisywanie z klawiatury jest nieobsługiwane przez sparowane urządzenie</string>
   <string name="mousepad_single_tap_settings_title">Ustaw działanie po stuknięciu jednym palcem</string>
   <string name="mousepad_double_tap_settings_title">Ustaw działanie po stuknięciu dwoma palcami</string>
@@ -119,8 +121,9 @@
   <string name="encryption_info_msg_no_ssl">Drugie urządzenie nie używa ostatniej wersji KDE Connect, użyto przestarzałego szyfrowania.</string>
   <string name="my_device_fingerprint">Odcisk palca SHA256 certyfikatu twojego urządzenia to:</string>
   <string name="remote_device_fingerprint">Odcisk palca SHA256 certyfikatu twojego zdalnego urządzenia to:</string>
-  <string name="pair_requested">Zażądano parowania</string>
-  <string name="pairing_request_from">Żądanie parowania z %1s</string>
+  <string name="pair_requested">Poproszono o sparowanie</string>
+  <string name="pair_succeeded">Parowanie udane</string>
+  <string name="pairing_request_from">Prośba o sparowanie z %1s</string>
   <plurals name="incoming_file_title">
     <item quantity="one">Pobieranie %1$d pliku z %2$s</item>
     <item quantity="few">Pobieranie %1$d plików z %2$s</item>
@@ -173,11 +176,12 @@
   <string name="received_file_text">Stuknij, aby otworzyć „%1s”</string>
   <string name="cannot_create_file">Nie można utworzyć pliku %s</string>
   <string name="tap_to_answer">Stuknij, aby odpowiedzieć</string>
-  <string name="right_click">Wyślij naciskając prawym</string>
-  <string name="middle_click">Wyślij naciskając środkowym</string>
+  <string name="left_click">Wyślij kliknięcie lewym</string>
+  <string name="right_click">Wyślij kliknięcie prawym</string>
+  <string name="middle_click">Wyślij kliknięcie środkowym</string>
   <string name="show_keyboard">Pokaż klawiaturę</string>
   <string name="device_not_paired">Urządzenie niesparowane</string>
-  <string name="request_pairing">Zażądaj sparowania</string>
+  <string name="request_pairing">Prośba o sparowanie</string>
   <string name="pairing_accept">Przyjmij</string>
   <string name="pairing_reject">Odrzuć</string>
   <string name="settings">Ustawienia</string>
