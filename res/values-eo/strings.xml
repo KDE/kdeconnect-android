@@ -1,45 +1,116 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="kde_connect">KDE Connect</string>
+  <string name="manifest_label_share">Sendi al Aparato</string>
+  <string name="foreground_notification_no_devices">Ne konektita al iu ajn aparato</string>
+  <string name="foreground_notification_devices">Konektita al: %s</string>
   <string name="foreground_notification_send_clipboard">Sendi Tondujon</string>
+  <string name="pref_plugin_telephony">Telefona sciiganto</string>
+  <string name="pref_plugin_telephony_desc">Sendi sciigojn pri envenantaj vokoj</string>
+  <string name="pref_plugin_battery">Bateria raporto</string>
+  <string name="pref_plugin_battery_desc">Periode raporti staton de la baterio</string>
+  <string name="pref_plugin_connectivity_report">Raporto pri konektebleco</string>
+  <string name="pref_plugin_connectivity_report_desc">Raporti retan signalforton kaj staton</string>
+  <string name="pref_plugin_sftp">Dosiersistemo elmontras</string>
+  <string name="pref_plugin_sftp_desc">Permesas foliumi la dosiersistemon de ĉi tiu aparato malproksime</string>
+  <string name="pref_plugin_clipboard">Sinkronigo de tondujo</string>
+  <string name="pref_plugin_clipboard_desc">Kunhavigi la enhavon de la tondujo</string>
+  <string name="pref_plugin_clipboard_sent">Clipboard Sendita</string>
   <string name="pref_plugin_mousepad">Fora enigo</string>
+  <string name="pref_plugin_mousepad_desc">Uzu vian telefonon aŭ tablojdon kiel tuŝplaton kaj klavaron</string>
+  <string name="pref_plugin_presenter_desc">Uzu vian aparaton por ŝanĝi lumbildojn en prezento</string>
+  <string name="pref_plugin_remotekeyboard">Ricevi forajn klavojn</string>
+  <string name="pref_plugin_remotekeyboard_desc">Ricevi klavopremajn eventojn de foraj aparatoj</string>
+  <string name="pref_plugin_mpris">Plurmedia regiloj</string>
+  <string name="pref_plugin_mpris_desc">Provizas teleregilon por via plurmedia ludilo</string>
   <string name="pref_plugin_runcommand">Lanĉi Komandon</string>
+  <string name="pref_plugin_runcommand_desc">Ekigi forajn komandojn de via telefono aŭ tablojdo</string>
+  <string name="pref_plugin_contacts">Sinkronigilo de Kontaktoj</string>
+  <string name="pref_plugin_contacts_desc">Permesi sinkronigi la kontaktlibron de la aparato</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Sendi kaj ricevi ping-ojn</string>
+  <string name="pref_plugin_notifications">Sinkronigo de sciigo</string>
+  <string name="pref_plugin_notifications_desc">Aliru viajn sciigojn de aliaj aparatoj</string>
   <string name="pref_plugin_receive_notifications">Ricevi sciigojn</string>
+  <string name="pref_plugin_receive_notifications_desc">Ricevi sciigojn de la alia aparato kaj montri ilin en Android</string>
   <string name="pref_plugin_sharereceiver">Kunhavigi kaj ricevi</string>
+  <string name="pref_plugin_sharereceiver_desc">Kunhavigi dosierojn kaj URL-ojn inter aparatoj</string>
+  <string name="device_list_empty">Neniuj aparatoj</string>
   <string name="ok">Bone</string>
+  <string name="sad_ok">AGNOSK :(</string>
   <string name="cancel">Nuligi</string>
+  <string name="open_settings">Malfermi agordojn</string>
+  <string name="no_permissions">Vi devas doni permeson aliri sciigojn</string>
   <string name="send_ping">Sendi ping</string>
   <string name="open_mpris_controls">Mastrumo de Aŭdvidaĵoj</string>
+  <string name="remotekeyboard_editing_only_title">Pritrakti forajn klavojn nur dum redaktado</string>
+  <string name="remotekeyboard_connected">Fora klavara konekto estas aktiva</string>
   <string name="open_mousepad">Fora enigo</string>
+  <string name="mousepad_keyboard_input_not_supported">Klavara enigo ne subtenata de la parigita aparato</string>
+  <string name="mousepad_single_tap_settings_title">Agordi unufingran frapet-agon</string>
+  <string name="mousepad_double_tap_settings_title">Agordi dufingran frapet-agon</string>
+  <string name="mousepad_triple_tap_settings_title">Agordi trifingran frapet-agon</string>
+  <string name="mousepad_sensitivity_settings_title">Agordi la sentemon de la tuŝplato</string>
+  <string name="mousepad_mouse_buttons_title">Montri musbutonojn</string>
+  <string name="mousepad_acceleration_profile_settings_title">Agordi montrilo-akcelon</string>
+  <string name="mousepad_scroll_direction_title">Inversa Scrolling Direkto</string>
+  <string name="mousepad_scroll_sensitivity_title">Scroll-sentemo</string>
+  <string name="gyro_mouse_enabled_title">Ebligi giroskopan muson</string>
+  <string name="gyro_mouse_sensitivity_title">Giroskopa sentemo</string>
   <string-array name="mousepad_tap_entries">
-    <item>Left click</item>
-    <item>Right click</item>
-    <item>Middle click</item>
+    <item>Maldekstre klako</item>
+    <item>Dekstre klaku</item>
+    <item>Meza klako</item>
     <item>Nenio</item>
   </string-array>
   <string-array name="mousepad_sensitivity_entries">
-    <item>Slowest</item>
-    <item>Above Slowest</item>
+    <item>Plej malrapida</item>
+    <item>Supre Plej Malrapida</item>
     <item>Defaŭlta</item>
-    <item>Above Default</item>
+    <item>Supre Defaŭlte</item>
     <item>Plej rapida</item>
   </string-array>
   <string-array name="mousepad_acceleration_profile_entries">
-    <item>No Acceleration</item>
-    <item>Weakest</item>
-    <item>Weaker</item>
+    <item>Neniu Akcelo</item>
+    <item>Plej malforta</item>
+    <item>Pli malforta</item>
     <item>Ujo</item>
-    <item>Stronger</item>
-    <item>Strongest</item>
+    <item>Pli forta</item>
+    <item>Plej forte</item>
   </string-array>
+  <string name="sendkeystrokes_send_to">Sendi klavopremojn al</string>
+  <string name="sendkeystrokes_textbox_hint">Sendi klavopremojn al gastiganto</string>
+  <string name="sendkeystrokes_disabled_toast">Sendi klavopremojn estas malŝaltita - ebligu ĝin en la agordoj</string>
+  <string name="sendkeystrokes_wrong_data">Nevalida mimspeco - devas esti \'teksto/x-klavopremoj\'</string>
+  <string name="sendkeystrokes_sent_text">Sendis %1$s al aparato %2$s</string>
+  <string name="sendkeystrokes_pref_category_title">Sendi klavopremojn</string>
+  <string name="sendkeystrokes_pref_enabled">Ebligi la sendon de klavopremoj</string>
+  <string name="sendkeystrokes_pref_enabled_summary">Aŭskulti datumojn kun mimo-tipo \'teksto/x-klavopremoj\'</string>
+  <string name="sendkeystrokes_safe_text_enabled">Sendi sekuran tekston tuj</string>
+  <string name="sendkeystrokes_safe_text_enabled_summary">Sendi mallongajn nur-nombrajn ĉenojn sen konfirmo</string>
+  <string name="pref_plugin_mousepad_send_keystrokes">Sendi kiel klavopremojn</string>
+  <string name="mouse_receiver_plugin_description">Ricevi foran musan movon</string>
+  <string name="mouse_receiver_plugin_name">Musa ricevilo</string>
   <string name="view_status_title">Statuso</string>
+  <string name="battery_status_format">Baterio: %d%%</string>
+  <string name="battery_status_low_format">Baterio: %d%% Malalta Baterio</string>
+  <string name="battery_status_charging_format">Baterio: %d%% ŝarĝo</string>
+  <string name="category_connected_devices">Konektitaj aparatoj</string>
+  <string name="category_not_paired_devices">Disponeblaj aparatoj</string>
+  <string name="category_remembered_devices">Memoritaj aparatoj</string>
+  <string name="device_menu_plugins">Kromagordoj</string>
   <string name="device_menu_unpair">Malparigi</string>
+  <string name="pair_new_device">Parigi novan aparaton</string>
+  <string name="cancel_pairing">Nuligi parigon</string>
   <string name="unknown_device">Nekonata aparato</string>
   <string name="error_not_reachable">Aparato ne atingebla</string>
+  <string name="error_already_paired">Aparato jam parigita</string>
   <string name="error_timed_out">Tempo elĉerpita</string>
+  <string name="error_canceled_by_user">Nuligite de uzanto</string>
   <string name="error_canceled_by_other_peer">Nuligite de alia kunulo</string>
+  <string name="encryption_info_title">Ĉifrada Informo</string>
+  <string name="my_device_fingerprint">SHA256-fingrospuro de via aparato-atestilo estas:</string>
+  <string name="remote_device_fingerprint">SHA256-fingrospuro de atestilo de fora aparato estas:</string>
   <string name="pair_requested">Parigo alpetiĝis</string>
   <string name="pair_succeeded">Parigo sukcesis</string>
   <string name="pairing_request_from">Pariga alpeto de %1s</string>
@@ -79,6 +150,11 @@
   <string name="received_file_text">Frapeti por malfermi \'%1s\'</string>
   <string name="cannot_create_file">Ne eblas krei dosieron %s</string>
   <string name="tap_to_answer">Frapeti por respondi</string>
+  <string name="right_click">Sendi Dekstran Klakon</string>
+  <string name="middle_click">Sendi Mezan Klakon</string>
+  <string name="show_keyboard">Montri Klavaron</string>
+  <string name="device_not_paired">Aparato ne parigita</string>
+  <string name="request_pairing">Peti parigon</string>
   <string name="pairing_accept">Akcepti</string>
   <string name="pairing_reject">Malakcepti</string>
   <string name="settings">Agordoj</string>
@@ -86,53 +162,169 @@
   <string name="mpris_pause">Paŭzi</string>
   <string name="mpris_previous">Antaŭa</string>
   <string name="mpris_rew">Rebobeni</string>
+  <string name="mpris_ff">Rapide antaŭen</string>
   <string name="mpris_next">Sekva</string>
   <string name="mpris_loop">Bukli</string>
   <string name="mpris_shuffle">Miksi</string>
   <string name="mpris_volume">Laŭteco</string>
+  <string name="mpris_time_settings_title">Antaŭen/revenigi butonojn</string>
+  <string name="mpris_time_settings_summary">Alĝustigi la tempon por rapide antaŭen/revenigi kiam premate</string>
   <string-array name="mpris_time_entries">
-    <item>10 seconds</item>
-    <item>20 seconds</item>
-    <item>30 seconds</item>
+    <item>10 sekundoj</item>
+    <item>20 sekundoj</item>
+    <item>30 sekundoj</item>
     <item>1 minuton</item>
     <item>2 minutoj</item>
   </string-array>
+  <string name="mpris_notification_settings_title">Montri sciigon pri rego de amaskomunikiloj</string>
+  <string name="mpris_notification_settings_summary">Permesu mastrumi viajn plurmediajn ludilojn sen malfermi KDE Connect</string>
+  <string name="share_to">Kunhavigi al…</string>
+  <string name="protocol_version_newer">Ĉi tiu aparato uzas pli novan protokolversion</string>
+  <string name="plugin_settings_with_name">%s agordoj</string>
+  <string name="invalid_device_name">Nevalida aparato nomo</string>
+  <string name="shareplugin_text_saved">Ricevita teksto, konservita en tondujo</string>
+  <string name="custom_devices_settings">Propra aparato listo</string>
+  <string name="custom_device_list">Aldoni aparatojn per IP</string>
+  <string name="custom_device_deleted">Propra aparato forigita</string>
+  <string name="custom_device_fab_hint">Aldoni aparaton</string>
   <string name="undo">Malfari</string>
+  <string name="share_notification_preference">Bruaj sciigoj</string>
+  <string name="share_notification_preference_summary">Vibri kaj ludi sonon kiam vi ricevas dosieron</string>
+  <string name="share_destination_customize">Agordi cel-dosierujon</string>
+  <string name="share_destination_customize_summary_disabled">Ricevitaj dosieroj aperos en Elŝutoj</string>
+  <string name="share_destination_customize_summary_enabled">Dosieroj estos konservitaj en la suba dosierujo</string>
+  <string name="share_destination_folder_preference">Destina dosierujo</string>
   <string name="share">Kunhavigi</string>
+  <string name="share_received_file">Kunhavigi \"%s\"</string>
+  <string name="title_activity_notification_filter">Filtrilo pri sciigo</string>
+  <string name="filter_apps_info">Sciigoj estos sinkronigitaj por la elektitaj programoj.</string>
+  <string name="show_notification_if_screen_off">Sendi sciigojn nur se la ekrano estas malŝaltita</string>
+  <string name="add_device_dialog_title">Aldoni aparaton</string>
+  <string name="add_device_hint">Gastnomo aŭ IP-adreso</string>
+  <string name="sftp_preference_configured_storage_locations">Agorditaj konservejoj</string>
+  <string name="sftp_preference_add_storage_location_title">Aldoni konservejon</string>
+  <string name="sftp_preference_edit_storage_location">Redakti konservan lokon</string>
+  <string name="sftp_storage_preference_storage_location">Loko de konservado</string>
+  <string name="sftp_storage_preference_storage_location_already_configured">Ĉi tiu loko jam estis agordita</string>
+  <string name="sftp_storage_preference_click_to_select">klaku por elekti</string>
   <string name="sftp_storage_preference_display_name">Montra nomo</string>
+  <string name="sftp_storage_preference_display_name_already_used">Ĉi tiu montra nomo jam estas uzata</string>
+  <string name="sftp_storage_preference_display_name_cannot_be_empty">Montrnomo ne povas esti malplena</string>
   <string name="sftp_action_mode_menu_delete">Forigi</string>
+  <string name="sftp_no_storage_locations_configured">Neniuj konservejoj agordis</string>
+  <string name="sftp_saf_permission_explanation">Por aliri dosierojn malproksime vi devas agordi konservadlokojn</string>
+  <string name="no_players_connected">Neniuj ludantoj trovitaj</string>
+  <string name="send_files">Sendi dosierojn</string>
+  <string name="block_notification_contents">Bloki sciigan enhavon</string>
+  <string name="block_notification_images">Bloki sciigajn bildojn</string>
+  <string name="pairing_title">KDE Konekti Aparatojn</string>
+  <string name="device_rename_title">Alinomi la aparaton</string>
   <string name="device_rename_confirm">Alinomi</string>
   <string name="refresh">Refreŝigi</string>
+  <string name="on_non_trusted_message">Ne en fidinda reto: aŭtomalkovro estas malŝaltita.</string>
+  <string name="no_file_browser">Ne estas instalitaj dosieraj retumiloj.</string>
   <string name="pref_plugin_telepathy">Sendi SMS</string>
+  <string name="pref_plugin_telepathy_desc">Sendi tekstmesaĝojn de via labortablo</string>
+  <string name="pref_plugin_telepathy_mms">Sendi MMS</string>
+  <string name="findmyphone_title">Trovi mian telefonon</string>
+  <string name="findmyphone_title_tablet">Trovi mian tableton</string>
+  <string name="findmyphone_title_tv">Trovi mian televidilon</string>
+  <string name="findmyphone_description">Sonorigas ĉi tiun aparaton por ke vi povu trovi ĝin</string>
+  <string name="findmyphone_found">Trovis ĝin</string>
   <string name="open">Malfermi</string>
   <string name="close">Fermi</string>
+  <string name="plugins_need_permission">Iuj Kromaĵoj bezonas permesojn por funkcii (frapu por pliaj informoj):</string>
+  <string name="permission_explanation">Ĉi tiu kromaĵo bezonas permesojn por funkcii</string>
+  <string name="all_permissions_granted">Ĉiuj permesoj donitaj 🎉</string>
+  <string name="optional_permission_explanation">Vi devas doni kromajn permesojn por ebligi ĉiujn funkciojn</string>
+  <string name="share_optional_permission_explanation">Por ricevi dosierojn vi devas permesi konservan aliron</string>
+  <string name="select_ringtone">Elekti sonoron</string>
+  <string name="telephony_pref_blocked_title">Blokitaj nombroj</string>
+  <string name="mpris_coverart_description">Kovrilo de aktuala aŭdvidaĵo</string>
+  <string name="settings_icon_description">Piktogramo de agordoj</string>
   <string name="presenter_fullscreen">Plenekrane</string>
+  <string name="presenter_exit">Eliri prezenton</string>
+  <string name="add_command">Aldoni komandon</string>
+  <string name="addcommand_explanation">Ne estas komandoj registritaj</string>
+  <string name="addcommand_explanation2">Vi povas aldoni novajn komandojn en la KDE Connect System Settings</string>
+  <string name="add_command_description">Vi povas aldoni komandojn sur la labortablo</string>
+  <string name="pref_plugin_mprisreceiver">Media Player Regado</string>
+  <string name="pref_plugin_mprisreceiver_desc">Mastrumi la plurmediajn ludilojn de via telefono de alia aparato</string>
+  <string name="notification_channel_default">Aliaj sciigoj</string>
+  <string name="notification_channel_persistent">Konstanta indikilo</string>
+  <string name="notification_channel_media_control">Media-mastrumo</string>
   <string name="notification_channel_filetransfer">Envenanta dosiertransigo</string>
+  <string name="notification_channel_filetransfer_upload">Eliranta dosiertransigo</string>
+  <string name="notification_channel_filetransfer_error">Eraro pri dosiertransigo</string>
   <string name="notification_channel_high_priority">Alta prioritato</string>
+  <string name="mpris_stop">Halti la nunan ludanton</string>
+  <string name="copy_url_to_clipboard">Kopii URL al tondujo</string>
+  <string name="clipboard_toast">Kopiita al tondujo</string>
+  <string name="runcommand_notreachable">La aparato ne estas atingebla</string>
+  <string name="runcommand_notpaired">La aparato ne estas parigita</string>
+  <string name="runcommand_nosuchdevice">Ne ekzistas tia aparato</string>
+  <string name="runcommand_noruncommandplugin">Ĉi tiu aparato ne havas la Run Command Plugin ebligita</string>
+  <string name="runcommand_category_device_controls_title">Aparataj Regiloj</string>
+  <string name="set_runcommand_name_as_title">set_runcommand_name_as_title</string>
+  <string name="runcommand_name_as_title_title">Montri nomon kiel titolon</string>
+  <string name="pref_plugin_findremotedevice">Trovi malproksiman aparaton</string>
+  <string name="pref_plugin_findremotedevice_desc">Sonigi vian fora aparato</string>
   <string name="ring">Ringo</string>
   <string name="pref_plugin_systemvolume">Sistema volumo</string>
+  <string name="pref_plugin_systemvolume_desc">Mastrumi la sisteman laŭtecon de la fora aparato</string>
   <string name="mute">Silentigi</string>
   <string name="all">Ĉiuj</string>
   <string name="devices">Aparatoj</string>
   <string name="settings_rename">Aparatnomo</string>
+  <string name="settings_dark_mode">Malhela etoso</string>
+  <string name="settings_more_settings_title">Pli da agordoj</string>
+  <string name="setting_persistent_notification">Montri konstantan sciigon</string>
+  <string name="setting_persistent_notification_oreo">Konstanta sciigo</string>
+  <string name="setting_persistent_notification_description">Frapi por aktivigi/malŝalti en Sciigaj agordoj</string>
+  <string name="extra_options">Kromaj opcioj</string>
+  <string name="privacy_options">Privatecaj elektoj</string>
+  <string name="set_privacy_options">Agordu viajn privatecajn elektojn</string>
+  <string name="block_contents">Bloki enhavon de sciigoj</string>
+  <string name="block_images">Bloki bildojn en sciigoj</string>
+  <string name="notification_channel_receivenotification">Sciigoj de aliaj aparatoj</string>
+  <string name="no_app_for_opening">Neniu taŭga aplikaĵo trovita por malfermi ĉi tiun dosieron</string>
+  <string name="remote_keyboard_service">KDE Konekti Foran Klavaron</string>
   <string name="presenter_pointer">Montrilo</string>
+  <string name="trusted_networks">Fidindaj retoj</string>
+  <string name="trusted_networks_desc">Limigi aŭtomatan malkovron al konataj retoj</string>
+  <string name="add_trusted_network">Aldoni %1s</string>
+  <string name="empty_trusted_networks_list_text">Vi ankoraŭ ne aldonis neniun fidindan reton</string>
+  <string name="allow_all_networks_text">Permesi ĉion</string>
+  <string name="location_permission_needed_title">Permeso bezonata</string>
+  <string name="mpris_open_url">Daŭre ludi ĉi tie</string>
+  <string name="cant_open_url">Ne povas malfermi URL por daŭrigi ludadon</string>
   <string name="bigscreen_home">Hejmo</string>
   <string name="bigscreen_up">Supren</string>
   <string name="bigscreen_left">Maldekstra</string>
   <string name="bigscreen_select">Elekti</string>
   <string name="bigscreen_right">Dekstra</string>
   <string name="bigscreen_down">Malsupren</string>
+  <string name="bigscreen_mic">Mikrofono</string>
+  <string name="pref_plugin_bigscreen">Grandekrana fora</string>
+  <string name="pref_plugin_bigscreen_desc">Uzu vian aparaton kiel fora por Plasma Bigscreen</string>
   <string name="bigscreen_speech_extra_prompt">Parolado</string>
+  <string name="message_reply_label">RESPONDO</string>
+  <string name="mark_as_read_label">MARKI KIEL LEGITA</string>
   <string name="user_display_name">Vi</string>
+  <string name="set_default_sms_app_title">Sendi MMS</string>
+  <string name="set_group_message_as_mms_title">Sendi grupajn MMS</string>
+  <string name="set_long_text_as_mms_title">Sendi longan tekston kiel MMS</string>
+  <string name="convert_to_mms_after_title">Konverti al MMS</string>
   <string-array name="convert_to_mms_after_entries">
-    <item>After one message</item>
-    <item>After two messages</item>
-    <item>After three messages</item>
-    <item>After four messages</item>
-    <item>After five messages</item>
+    <item>Post unu mesaĝo</item>
+    <item>Post du mesaĝoj</item>
+    <item>Post tri mesaĝoj</item>
+    <item>Post kvar mesaĝoj</item>
+    <item>Post kvin mesaĝoj</item>
   </string-array>
+  <string name="theme_dialog_title">Elekti etoson</string>
   <string-array name="theme_list">
-    <item>Set by Battery Saver</item>
+    <item>Agordita de Bateria Ŝparanto</item>
     <item>Lumo</item>
     <item>Mallumo</item>
   </string-array>
@@ -149,12 +341,32 @@
   <string name="about">Pri</string>
   <string name="authors">Aŭtoroj</string>
   <string name="thanks_to">Dankon al</string>
+  <string name="easter_egg">Paska Ovo</string>
+  <string name="version">Versio %s</string>
   <string name="about_kde">Pri KDE</string>
+  <string name="kde_be_free">KDE - Estu Libera!</string>
   <string name="kde">KDE</string>
   <string name="konqi">Konĉja</string>
+  <string name="rise_up">Leviĝi</string>
+  <string name="rise_down">Leviĝi Malsupren</string>
+  <string name="click_here_to_type">Frapetu ĉi tie por tajpi</string>
   <string name="clear_compose">Viŝi</string>
   <string name="send_compose">Sendi</string>
+  <string name="compose_send_title">Verki sendon</string>
+  <string name="open_compose_send">Verki tekston</string>
+  <string name="maintainer_and_developer">Prizorganto kaj programisto</string>
   <string name="developer">Ellaboranto</string>
+  <string name="apple_support">subteno de macOS. Laborante pri iOS-subteno</string>
   <string name="bug_fixes_and_general_improvements">Cimokorektoj kaj ĝeneralaj plibonigoj</string>
+  <string name="samoilenko_yuri_task">SFTP-efektivigo, korektoj de cimoj kaj ĝeneralaj plibonigoj</string>
+  <string name="aniket_kumar_task">Pliboniĝoj de aldonaĵo de SMS</string>
+  <string name="alex_fiestas_task">Pliboniĝoj de aldonaĵo de Kontaktoj</string>
+  <string name="maxim_leshchenko_task">UI-plibonigoj kaj ĉi tiu pri paĝo</string>
+  <string name="holger_kaelberer_task">Fora klavara kromaĵo kaj korektoj de cimoj</string>
+  <string name="everyone_else">Ĉiuj aliaj, kiuj kontribuis al KDE Connect tra la jaroj</string>
   <string name="send_clipboard">Sendi tondujon</string>
+  <string name="tap_to_execute">Frapi por plenumi</string>
+  <string name="plugin_stats">Statistiko de kromprogramoj</string>
+  <string name="enable_udp_broadcast">Ebligi UDP-aparatan malkovron</string>
+  <string name="receive_notifications_permission_explanation">Sciigoj devas esti permesitaj ricevi ilin de aliaj aparatoj</string>
 </resources>
