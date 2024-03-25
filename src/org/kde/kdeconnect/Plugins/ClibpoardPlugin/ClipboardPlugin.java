@@ -77,7 +77,9 @@ public class ClipboardPlugin extends Plugin {
                     return false;
                 }
 
-                ClipboardListener.instance(context).setText(content);
+                if (np.has("content")) { // change clipboard if content is in NetworkPacket
+                    ClipboardListener.instance(context).setText(content);
+                }
                 return true;
         }
         throw new UnsupportedOperationException("Unknown packet type: " + np.getType());
