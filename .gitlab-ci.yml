@@ -15,11 +15,11 @@ variables:
 default:
   tags:
     - Linux
-  image: eclipse-temurin:17-jdk-focal
+  image: ubuntu:22.04
   before_script:
     # Prepare system for use of sdkmanager
     - apt-get --quiet update --yes
-    - apt-get --quiet install --yes wget tar unzip lib32stdc++6 lib32z1
+    - apt-get --quiet install --yes wget tar unzip lib32stdc++6 lib32z1 openjdk-17-jdk-headless
     - wget --quiet --output-document=android-sdk.zip https://dl.google.com/android/repository/commandlinetools-linux-10406996_latest.zip
     # Create the directory structure around cmdline-tools that sdkmanager is expecting
     - mkdir -p sdk/cmdline-tools
