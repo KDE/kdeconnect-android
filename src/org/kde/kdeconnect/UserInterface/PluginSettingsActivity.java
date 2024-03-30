@@ -104,7 +104,7 @@ public class PluginSettingsActivity
             return false; // PacketStats not working in API < 24
         }
         menu.add(R.string.plugin_stats).setOnMenuItemClickListener(item -> {
-            String stats = DeviceStats.getStatsForDevice(deviceId);
+            String stats = DeviceStats.INSTANCE.getStatsForDevice(deviceId);
             AlertDialog alertDialog = new MaterialAlertDialogBuilder(PluginSettingsActivity.this)
                     .setTitle(R.string.plugin_stats)
                     .setPositiveButton(R.string.ok, (dialog, which) -> dialog.dismiss())

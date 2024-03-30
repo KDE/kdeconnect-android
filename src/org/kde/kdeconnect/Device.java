@@ -371,7 +371,7 @@ public class Device implements BaseLink.PacketReceiver {
     @Override
     public void onPacketReceived(@NonNull NetworkPacket np) {
 
-        DeviceStats.countReceived(getDeviceId(), np.getType());
+        DeviceStats.INSTANCE.countReceived(getDeviceId(), np.getType());
 
         if (NetworkPacket.PACKET_TYPE_PAIR.equals(np.getType())) {
             Log.i("KDE/Device", "Pair packet");
@@ -519,7 +519,7 @@ public class Device implements BaseLink.PacketReceiver {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            DeviceStats.countSent(getDeviceId(), np.getType(), success);
+            DeviceStats.INSTANCE.countSent(getDeviceId(), np.getType(), success);
             if (success) break;
         }
 
