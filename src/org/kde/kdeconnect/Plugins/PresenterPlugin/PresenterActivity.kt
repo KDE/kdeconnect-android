@@ -50,7 +50,7 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener {
     }
     private val powerManager by lazy { getSystemService(POWER_SERVICE) as PowerManager }
     private val plugin: PresenterPlugin by lazy {
-        KdeConnect.getInstance().getDevicePlugin(intent.getStringExtra("deviceId"), PresenterPlugin::class.java)
+        KdeConnect.getInstance().getDevicePlugin(intent.getStringExtra("deviceId"), PresenterPlugin::class.java)!!
     }
 
     //TODO: make configurable
