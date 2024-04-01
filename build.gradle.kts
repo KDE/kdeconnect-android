@@ -1,6 +1,8 @@
 import com.github.jk1.license.LicenseReportExtension
 import com.github.jk1.license.render.ReportRenderer
 import com.github.jk1.license.render.TextReportRenderer
+import java.io.FileNotFoundException
+import java.util.Properties
 
 buildscript {
     dependencies {
@@ -97,8 +99,18 @@ android {
     }
     buildTypes {
         getByName("debug") {
-            isMinifyEnabled = true
-            isShrinkResources = true
+            // We minify by default even on debug builds. This has helped us catch issues where minification would remove files that were actually used (eg: via reflection).
+            // If you want to locally disable this behavior to speed-up the build, add a line `disableMinifyDebug=true` to your `local.properties` file.
+            val reader = try {
+                rootProject.file("local.properties").reader()
+            } catch (e: FileNotFoundException) {
+                null
+            }
+            val properties = reader?.use { Properties().apply { load(it) } }
+            val disableMinifyDebug = properties?.getProperty("disableMinifyDebug")?.toBoolean() ?: false
+
+            isMinifyEnabled = !disableMinifyDebug
+            isShrinkResources = !disableMinifyDebug
             signingConfig = signingConfigs.getByName("debug")
         }
         // keep minifyEnabled false above for faster builds; set to 'true'
