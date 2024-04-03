@@ -34,6 +34,7 @@ import org.kde.kdeconnect_tp.R;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Objects;
 
 @PluginFactory.LoadablePlugin
 public class RunCommandPlugin extends Plugin {
@@ -136,7 +137,7 @@ public class RunCommandPlugin extends Plugin {
                     }
 
                     sharedPreferences.edit()
-                            .putString(KEY_COMMANDS_PREFERENCE + device.getDeviceId(), array.toString())
+                            .putString(KEY_COMMANDS_PREFERENCE + getDevice().getDeviceId(), array.toString())
                             .apply();
                 }
 
@@ -150,7 +151,7 @@ public class RunCommandPlugin extends Plugin {
                 aCallback.update();
             }
 
-            device.onPluginsChanged();
+            getDevice().onPluginsChanged();
 
             canAddCommand = np.getBoolean("canAddCommand", false);
 
@@ -172,13 +173,13 @@ public class RunCommandPlugin extends Plugin {
     public void runCommand(String cmdKey) {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_RUNCOMMAND_REQUEST);
         np.set("key", cmdKey);
-        device.sendPacket(np);
+        getDevice().sendPacket(np);
     }
 
     private void requestCommandList() {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_RUNCOMMAND_REQUEST);
         np.set("requestCommandList", true);
-        device.sendPacket(np);
+        getDevice().sendPacket(np);
     }
 
     @Override
@@ -189,7 +190,7 @@ public class RunCommandPlugin extends Plugin {
     @Override
     public void startMainActivity(Activity parentActivity) {
         Intent intent = new Intent(parentActivity, RunCommandActivity.class);
-        intent.putExtra("deviceId", device.getDeviceId());
+        intent.putExtra("deviceId", getDevice().getDeviceId());
         parentActivity.startActivity(intent);
     }
 
@@ -205,7 +206,7 @@ public class RunCommandPlugin extends Plugin {
     void sendSetupPacket() {
         NetworkPacket np = new NetworkPacket(RunCommandPlugin.PACKET_TYPE_RUNCOMMAND_REQUEST);
         np.set("setup", true);
-        device.sendPacket(np);
+        getDevice().sendPacket(np);
     }
 
 }

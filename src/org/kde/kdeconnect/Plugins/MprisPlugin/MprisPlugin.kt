@@ -177,13 +177,14 @@ class MprisPlugin : Plugin() {
     private var supportAlbumArtPayload = false
     private val playerStatusUpdated = ConcurrentHashMap<String, Callback>()
     private val playerListUpdated = ConcurrentHashMap<String, Callback>()
+    override val displayName: String
+        get() = context.resources.getString(R.string.pref_plugin_mpris)
 
-    override fun getDisplayName(): String = context.resources.getString(R.string.pref_plugin_mpris)
-
-    override fun getDescription(): String = context.resources.getString(R.string.pref_plugin_mpris_desc)
+    override val description: String
+        get() = context.resources.getString(R.string.pref_plugin_mpris_desc)
 
     @DrawableRes
-    override fun getIcon(): Int = R.drawable.mpris_plugin_action_24dp
+    override val icon: Int = R.drawable.mpris_plugin_action_24dp
 
     override fun hasSettings(): Boolean = true
 
@@ -327,9 +328,9 @@ class MprisPlugin : Plugin() {
         return true
     }
 
-    override fun getSupportedPacketTypes(): Array<String> = arrayOf(PACKET_TYPE_MPRIS)
+    override val supportedPacketTypes: Array<String> = arrayOf(PACKET_TYPE_MPRIS)
 
-    override fun getOutgoingPacketTypes(): Array<String> = arrayOf(PACKET_TYPE_MPRIS_REQUEST)
+    override val outgoingPacketTypes: Array<String> = arrayOf(PACKET_TYPE_MPRIS_REQUEST)
 
     fun setPlayerStatusUpdatedHandler(id: String, h: Callback) {
         playerStatusUpdated[id] = h
@@ -394,7 +395,8 @@ class MprisPlugin : Plugin() {
         parentActivity.startActivity(intent)
     }
 
-    override fun getActionName(): String = context.getString(R.string.open_mpris_controls)
+    override val actionName: String
+        get() = context.getString(R.string.open_mpris_controls)
 
     fun fetchedAlbumArt(url: String) {
         if (players.values.stream().anyMatch { player -> url == player.albumArtUrl }) {
@@ -426,13 +428,13 @@ class MprisPlugin : Plugin() {
         return false
     }
 
-    override fun getOptionalPermissions(): Array<String> = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+    override val optionalPermissions: Array<String> = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
         arrayOf(Manifest.permission.POST_NOTIFICATIONS)
     } else {
         arrayOf()
     }
 
-    override fun getOptionalPermissionExplanation(): Int = R.string.mpris_notifications_explanation
+    override val optionalPermissionExplanation: Int = R.string.mpris_notifications_explanation
 
     companion object {
         const val DEVICE_ID_KEY: String = "deviceId"

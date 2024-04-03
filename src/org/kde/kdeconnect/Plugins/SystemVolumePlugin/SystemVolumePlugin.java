@@ -20,6 +20,7 @@ import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 @PluginFactory.LoadablePlugin
@@ -95,27 +96,27 @@ public class SystemVolumePlugin extends Plugin {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_SYSTEMVOLUME_REQUEST);
         np.set("volume", volume);
         np.set("name", name);
-        device.sendPacket(np);
+        getDevice().sendPacket(np);
     }
 
     void sendMute(String name, boolean mute) {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_SYSTEMVOLUME_REQUEST);
         np.set("muted", mute);
         np.set("name", name);
-        device.sendPacket(np);
+        getDevice().sendPacket(np);
     }
 
     void sendEnable(String name) {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_SYSTEMVOLUME_REQUEST);
         np.set("enabled", true);
         np.set("name", name);
-        device.sendPacket(np);
+        getDevice().sendPacket(np);
     }
 
     void requestSinkList() {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_SYSTEMVOLUME_REQUEST);
         np.set("requestSinks", true);
-        device.sendPacket(np);
+        getDevice().sendPacket(np);
     }
 
     @Override

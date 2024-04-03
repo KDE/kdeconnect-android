@@ -144,7 +144,7 @@ public class ConnectivityReportPlugin extends Plugin {
                 }
 
                 serializeSignalStrengths();
-                device.sendPacket(connectivityInfo);
+                getDevice().sendPacket(connectivityInfo);
                 //Log.i("ConnectivityReport", "signalStrength of #" + subID + " updated to " + level);
             }
 
@@ -157,7 +157,7 @@ public class ConnectivityReportPlugin extends Plugin {
                 }
 
                 serializeSignalStrengths();
-                device.sendPacket(connectivityInfo);
+                getDevice().sendPacket(connectivityInfo);
                 //Log.i("ConnectivityReport", "networkType of #" + subID + " updated to " + networkTypeToString(networkType));
             }
         };

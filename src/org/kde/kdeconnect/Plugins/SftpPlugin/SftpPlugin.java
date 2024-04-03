@@ -38,6 +38,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 @PluginFactory.LoadablePlugin
 public class SftpPlugin extends Plugin implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -92,7 +93,7 @@ public class SftpPlugin extends Plugin implements SharedPreferences.OnSharedPref
                     .setMessage(R.string.sftp_saf_permission_explanation)
                     .setPositiveButton(R.string.ok)
                     .setNegativeButton(R.string.cancel)
-                    .setDeviceId(device.getDeviceId())
+                    .setDeviceId(getDevice().getDeviceId())
                     .setPluginKey(getPluginKey())
                     .create();
         }
@@ -101,8 +102,8 @@ public class SftpPlugin extends Plugin implements SharedPreferences.OnSharedPref
     @Override
     public void onDestroy() {
         server.stop();
-        if (preferences != null) {
-            preferences.unregisterOnSharedPreferenceChangeListener(this);
+        if (getPreferences() != null) {
+            getPreferences().unregisterOnSharedPreferenceChangeListener(this);
         }
     }
 
@@ -111,7 +112,7 @@ public class SftpPlugin extends Plugin implements SharedPreferences.OnSharedPref
         if (np.getBoolean("startBrowsing")) {
             if (!server.isInitialized()) {
                 try {
-                    server.initialize(context, device);
+                    server.initialize(context, getDevice());
                 } catch (GeneralSecurityException e) {
                     throw new RuntimeException(e);
                 }
@@ -134,7 +135,7 @@ public class SftpPlugin extends Plugin implements SharedPreferences.OnSharedPref
                 } else {
                     NetworkPacket np2 = new NetworkPacket(PACKET_TYPE_SFTP);
                     np2.set("errorMessage", context.getString(R.string.sftp_no_storage_locations_configured));
-                    device.sendPacket(np2);
+                    getDevice().sendPacket(np2);
                     return true;
                 }
                 removeChildren(storageInfoList);
@@ -142,8 +143,8 @@ public class SftpPlugin extends Plugin implements SharedPreferences.OnSharedPref
             }
 
             if (server.start()) {
-                if (preferences != null) {
-                    preferences.registerOnSharedPreferenceChangeListener(this);
+                if (getPreferences() != null) {
+                    getPreferences().registerOnSharedPreferenceChangeListener(this);
                 }
 
                 NetworkPacket np2 = new NetworkPacket(PACKET_TYPE_SFTP);
@@ -165,7 +166,7 @@ public class SftpPlugin extends Plugin implements SharedPreferences.OnSharedPref
                     np2.set("pathNames", pathNames);
                 }
 
-                device.sendPacket(np2);
+                getDevice().sendPacket(np2);
 
                 return true;
             }

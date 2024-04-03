@@ -30,6 +30,8 @@ import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect.UserInterface.MainActivity;
 import org.kde.kdeconnect_tp.R;
 
+import java.util.Objects;
+
 @PluginFactory.LoadablePlugin
 public class PingPlugin extends Plugin {
 
@@ -84,7 +86,7 @@ public class PingPlugin extends Plugin {
         NotificationManager notificationManager = ContextCompat.getSystemService(context, NotificationManager.class);
 
         Notification noti = new NotificationCompat.Builder(context, NotificationHelper.Channels.DEFAULT)
-                .setContentTitle(device.getName())
+                .setContentTitle(getDevice().getName())
                 .setContentText(message)
                 .setContentIntent(resultPendingIntent)
                 .setTicker(message)
@@ -107,8 +109,8 @@ public class PingPlugin extends Plugin {
 
     @Override
     public void startMainActivity(Activity activity) {
-        if (device != null) {
-            device.sendPacket(new NetworkPacket(PACKET_TYPE_PING));
+        if (isDeviceInitialized()) {
+            getDevice().sendPacket(new NetworkPacket(PACKET_TYPE_PING));
         }
     }
 

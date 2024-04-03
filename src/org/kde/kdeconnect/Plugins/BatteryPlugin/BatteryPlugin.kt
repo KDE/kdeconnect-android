@@ -32,11 +32,11 @@ class BatteryPlugin : Plugin() {
     var remoteBatteryInfo: DeviceBatteryInfo? = null
         private set
 
-    override fun getDisplayName(): String =
-        context.resources.getString(R.string.pref_plugin_battery)
+    override val displayName: String
+        get() = context.resources.getString(R.string.pref_plugin_battery)
 
-    override fun getDescription(): String =
-        context.resources.getString(R.string.pref_plugin_battery_desc)
+    override val description: String
+        get() = context.resources.getString(R.string.pref_plugin_battery_desc)
 
     private val receiver: BroadcastReceiver = object : BroadcastReceiver() {
         var wasLowBattery: Boolean = false // will trigger a low battery notification when the device is connected
@@ -102,9 +102,11 @@ class BatteryPlugin : Plugin() {
         return true
     }
 
-    override fun getSupportedPacketTypes(): Array<String> = arrayOf(PACKET_TYPE_BATTERY)
+    override val supportedPacketTypes: Array<String>
+        get() = arrayOf(PACKET_TYPE_BATTERY)
 
-    override fun getOutgoingPacketTypes(): Array<String> = arrayOf(PACKET_TYPE_BATTERY)
+    override val outgoingPacketTypes: Array<String>
+        get() = arrayOf(PACKET_TYPE_BATTERY)
 
     companion object {
         const val PACKET_TYPE_BATTERY = "kdeconnect.battery"

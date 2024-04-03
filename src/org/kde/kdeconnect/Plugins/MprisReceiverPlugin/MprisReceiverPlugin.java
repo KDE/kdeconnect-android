@@ -33,6 +33,7 @@ import org.kde.kdeconnect_tp.R;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -205,7 +206,7 @@ public class MprisReceiverPlugin extends Plugin {
     private void sendPlayerList() {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_MPRIS);
         np.set("playerList", players.keySet());
-        device.sendPacket(np);
+        getDevice().sendPacket(np);
     }
 
     @Override
@@ -231,7 +232,7 @@ public class MprisReceiverPlugin extends Plugin {
         np.set("canGoNext", player.canGoNext());
         np.set("canSeek", player.canSeek());
         np.set("volume", player.getVolume());
-        device.sendPacket(np);
+        getDevice().sendPacket(np);
     }
 
     @Override

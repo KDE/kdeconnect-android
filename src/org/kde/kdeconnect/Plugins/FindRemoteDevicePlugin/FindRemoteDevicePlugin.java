@@ -42,8 +42,8 @@ public class FindRemoteDevicePlugin extends Plugin {
 
     @Override
     public void startMainActivity(Activity activity) {
-        if (device != null) {
-            device.sendPacket(new NetworkPacket(FindMyPhonePlugin.PACKET_TYPE_FINDMYPHONE_REQUEST));
+        if (isDeviceInitialized()) {
+            getDevice().sendPacket(new NetworkPacket(FindMyPhonePlugin.PACKET_TYPE_FINDMYPHONE_REQUEST));
         }
     }
 

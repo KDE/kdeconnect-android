@@ -163,7 +163,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_NOTIFICATION);
         np.set("id", id);
         np.set("isCancel", true);
-        device.sendPacket(np);
+        getDevice().sendPacket(np);
         currentNotifications.remove(id);
     }
 
@@ -265,7 +265,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             np.set("text", extractText(notification, conversation));
         }
 
-        device.sendPacket(np);
+        getDevice().sendPacket(np);
     }
 
     private String extractText(Notification notification, Pair<String, String> conversation) {

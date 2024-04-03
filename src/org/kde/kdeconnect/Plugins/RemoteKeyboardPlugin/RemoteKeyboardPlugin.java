@@ -33,6 +33,7 @@ import org.kde.kdeconnect.UserInterface.StartActivityAlertDialogFragment;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.concurrent.locks.ReentrantLock;
 
 @PluginFactory.LoadablePlugin
@@ -106,7 +107,7 @@ public class RemoteKeyboardPlugin extends Plugin implements SharedPreferences.On
 
     @Override
     public boolean onCreate() {
-        Log.d("RemoteKeyboardPlugin", "Creating for device " + device.getName());
+        Log.d("RemoteKeyboardPlugin", "Creating for device " + getDevice().getName());
         acquireInstances();
         try {
             instances.add(this);
@@ -138,7 +139,7 @@ public class RemoteKeyboardPlugin extends Plugin implements SharedPreferences.On
             releaseInstances();
         }
 
-        Log.d("RemoteKeyboardPlugin", "Destroying for device " + device.getName());
+        Log.d("RemoteKeyboardPlugin", "Destroying for device " + getDevice().getName());
     }
 
     @Override
@@ -394,7 +395,7 @@ public class RemoteKeyboardPlugin extends Plugin implements SharedPreferences.On
             if (np.has("alt"))
                 reply.set("alt", np.getBoolean("alt"));
             reply.set("isAck", true);
-            device.sendPacket(reply);
+            getDevice().sendPacket(reply);
         }
 
         return true;
@@ -404,11 +405,11 @@ public class RemoteKeyboardPlugin extends Plugin implements SharedPreferences.On
         Log.d("RemoteKeyboardPlugin", "Keyboardstate changed to " + state);
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_MOUSEPAD_KEYBOARDSTATE);
         np.set("state", state);
-        device.sendPacket(np);
+        getDevice().sendPacket(np);
     }
 
     String getDeviceId() {
-        return device.getDeviceId();
+        return getDevice().getDeviceId();
     }
 
     @Override

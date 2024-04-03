@@ -25,11 +25,7 @@ import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect.UserInterface.AlertDialogFragment;
 import org.kde.kdeconnect_tp.R;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @PluginFactory.LoadablePlugin
 public class ContactsPlugin extends Plugin {
@@ -116,7 +112,7 @@ public class ContactsPlugin extends Plugin {
         if (!arePermissionsGranted(getRequiredPermissions())) {
             return false;
         }
-        return preferences.getBoolean("acceptedToTransferContacts", false);
+        return getPreferences().getBoolean("acceptedToTransferContacts", false);
     }
 
     @Override
@@ -137,8 +133,8 @@ public class ContactsPlugin extends Plugin {
         dialog.setCallback(new AlertDialogFragment.Callback() {
             @Override
             public void onPositiveButtonClicked() {
-                preferences.edit().putBoolean("acceptedToTransferContacts", true).apply();
-                device.reloadPluginsFromSettings();
+                Objects.requireNonNull(getPreferences()).edit().putBoolean("acceptedToTransferContacts", true).apply();
+                Objects.requireNonNull(getDevice()).reloadPluginsFromSettings();
             }
         });
         return dialog;
@@ -159,7 +155,7 @@ public class ContactsPlugin extends Plugin {
     private VCardBuilder addVCardMetadata(VCardBuilder vcard, uID uID) throws ContactNotFoundException {
         // Append the device ID line
         // Unclear if the deviceID forms a valid name per the vcard spec. Worry about that later..
-        vcard.appendLine("X-KDECONNECT-ID-DEV-" + device.getDeviceId(),
+        vcard.appendLine("X-KDECONNECT-ID-DEV-" + getDevice().getDeviceId(),
                 uID.toString());
 
         // Build the timestamp line
@@ -198,7 +194,7 @@ public class ContactsPlugin extends Plugin {
 
         reply.set("uids", uIDs);
 
-        device.sendPacket(reply);
+        getDevice().sendPacket(reply);
 
         return true;
     }
@@ -245,7 +241,7 @@ public class ContactsPlugin extends Plugin {
         // Add the valid uIDs to the packet
         reply.set("uids", uIDsAsStrings);
 
-        device.sendPacket(reply);
+        getDevice().sendPacket(reply);
 
         return true;
     }

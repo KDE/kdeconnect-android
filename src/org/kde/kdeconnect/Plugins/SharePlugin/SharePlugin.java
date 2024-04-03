@@ -40,6 +40,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 
 /**
  * A Plugin for sharing and receiving files and uris.
@@ -110,7 +111,7 @@ public class SharePlugin extends Plugin {
     @Override
     public void startMainActivity(Activity parentActivity) {
         Intent intent = new Intent(parentActivity, SendFileActivity.class);
-        intent.putExtra("deviceId", device.getDeviceId());
+        intent.putExtra("deviceId", getDevice().getDeviceId());
         parentActivity.startActivity(intent);
     }
 
@@ -180,7 +181,7 @@ public class SharePlugin extends Plugin {
         if (hasNumberOfFiles && !isOpen && receiveFileJob != null) {
             job = receiveFileJob;
         } else {
-            job = new CompositeReceiveFileJob(device, receiveFileJobCallback);
+            job = new CompositeReceiveFileJob(getDevice(), receiveFileJobCallback);
         }
 
         if (!hasNumberOfFiles) {
@@ -207,7 +208,7 @@ public class SharePlugin extends Plugin {
         CompositeUploadFileJob job;
 
         if (uploadFileJob == null) {
-            job = new CompositeUploadFileJob(device, this.receiveFileJobCallback);
+            job = new CompositeUploadFileJob(getDevice(), this.receiveFileJobCallback);
         } else {
             job = uploadFileJob;
         }
@@ -257,7 +258,7 @@ public class SharePlugin extends Plugin {
             } else {
                 np.set("text", text);
             }
-            device.sendPacket(np);
+            getDevice().sendPacket(np);
         } else {
             Log.e("SharePlugin", "There's nothing we know how to share");
         }

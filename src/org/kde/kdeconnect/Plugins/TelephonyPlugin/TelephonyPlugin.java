@@ -34,6 +34,7 @@ import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.Map;
+import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -177,12 +178,12 @@ public class TelephonyPlugin extends Plugin {
             case TelephonyManager.CALL_STATE_RINGING:
                 unmuteRinger();
                 np.set("event", "ringing");
-                device.sendPacket(np);
+                getDevice().sendPacket(np);
                 break;
 
             case TelephonyManager.CALL_STATE_OFFHOOK: //Ongoing call
                 np.set("event", "talking");
-                device.sendPacket(np);
+                getDevice().sendPacket(np);
                 break;
 
             case TelephonyManager.CALL_STATE_IDLE:
@@ -190,7 +191,7 @@ public class TelephonyPlugin extends Plugin {
 
                     //Resend a cancel of the last event (can either be "ringing" or "talking")
                     lastPacket.set("isCancel", "true");
-                    device.sendPacket(lastPacket);
+                    getDevice().sendPacket(lastPacket);
 
                     if (isMuted) {
                         Timer timer = new Timer();
@@ -207,7 +208,7 @@ public class TelephonyPlugin extends Plugin {
                         np.set("event", "missedCall");
                         np.set("phoneNumber", lastPacket.getString("phoneNumber", null));
                         np.set("contactName", lastPacket.getString("contactName", null));
-                        device.sendPacket(np);
+                        getDevice().sendPacket(np);
                     }
                 }
                 break;

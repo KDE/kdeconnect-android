@@ -51,10 +51,7 @@ import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
 import org.kde.kdeconnect_tp.BuildConfig;
 import org.kde.kdeconnect_tp.R;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
@@ -303,7 +300,7 @@ public class SMSPlugin extends Plugin {
         mostRecentTimestampLock.unlock();
 
         // Send the alert about the update
-        device.sendPacket(constructBulkMessagePacket(messages));
+        getDevice().sendPacket(constructBulkMessagePacket(messages));
     }
 
     /**
@@ -360,7 +357,7 @@ public class SMSPlugin extends Plugin {
         }
 
 
-        device.sendPacket(np);
+        getDevice().sendPacket(np);
     }
 
     @Override
@@ -468,7 +465,7 @@ public class SMSPlugin extends Plugin {
                 );
 
                 if (networkPacket != null) {
-                    device.sendPacket(networkPacket);
+                    getDevice().sendPacket(networkPacket);
                 }
                 break;
         }
@@ -515,7 +512,7 @@ public class SMSPlugin extends Plugin {
 
         for (SMSHelper.Message message : conversations) {
             NetworkPacket partialReply = constructBulkMessagePacket(Collections.singleton(message));
-            device.sendPacket(partialReply);
+            getDevice().sendPacket(partialReply);
         }
 
         return true;
@@ -542,7 +539,7 @@ public class SMSPlugin extends Plugin {
 
         NetworkPacket reply = constructBulkMessagePacket(conversation);
 
-        device.sendPacket(reply);
+        getDevice().sendPacket(reply);
 
         return true;
     }

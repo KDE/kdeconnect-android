@@ -25,6 +25,8 @@ import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect_tp.R;
 
+import java.util.Objects;
+
 @PluginFactory.LoadablePlugin
 public class BigscreenPlugin extends Plugin {
 
@@ -33,7 +35,7 @@ public class BigscreenPlugin extends Plugin {
 
     @Override
     public boolean isCompatible() {
-        return device.getDeviceType().equals(DeviceType.TV) && super.isCompatible();
+        return getDevice().getDeviceType().equals(DeviceType.TV) && super.isCompatible();
     }
 
     @Override
@@ -74,7 +76,7 @@ public class BigscreenPlugin extends Plugin {
     @Override
     public void startMainActivity(Activity parentActivity) {
         Intent intent = new Intent(parentActivity, BigscreenActivity.class);
-        intent.putExtra("deviceId", device.getDeviceId());
+        intent.putExtra("deviceId", getDevice().getDeviceId());
         parentActivity.startActivity(intent);
     }
 
@@ -103,44 +105,44 @@ public class BigscreenPlugin extends Plugin {
     public void sendLeft() {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST);
         np.set("specialKey", SpecialKeysMap.get(KeyEvent.KEYCODE_DPAD_LEFT));
-        device.sendPacket(np);
+        getDevice().sendPacket(np);
     }
 
     public void sendRight() {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST);
         np.set("specialKey", SpecialKeysMap.get(KeyEvent.KEYCODE_DPAD_RIGHT));
-        device.sendPacket(np);
+        getDevice().sendPacket(np);
     }
 
     public void sendUp() {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST);
         np.set("specialKey", SpecialKeysMap.get(KeyEvent.KEYCODE_DPAD_UP));
-        device.sendPacket(np);
+        getDevice().sendPacket(np);
     }
 
     public void sendDown() {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST);
         np.set("specialKey", SpecialKeysMap.get(KeyEvent.KEYCODE_DPAD_DOWN));
-        device.sendPacket(np);
+        getDevice().sendPacket(np);
     }
 
     public void sendSelect() {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST);
         np.set("specialKey", SpecialKeysMap.get(KeyEvent.KEYCODE_ENTER));
-        device.sendPacket(np);
+        getDevice().sendPacket(np);
     }
 
     public void sendHome() {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST);
         np.set("alt", true);
         np.set("specialKey", SpecialKeysMap.get(KeyEvent.KEYCODE_F4));
-        device.sendPacket(np);
+        getDevice().sendPacket(np);
     }
 
     public void sendSTT(String content) {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_BIGSCREEN_STT);
         np.set("type", "stt");
         np.set("content", content);
-        device.sendPacket(np);
+        getDevice().sendPacket(np);
     }
 }

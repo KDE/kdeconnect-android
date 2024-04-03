@@ -29,6 +29,7 @@ import org.kde.kdeconnect.UserInterface.MainActivity;
 import org.kde.kdeconnect_tp.R;
 
 import java.io.InputStream;
+import java.util.Objects;
 
 @PluginFactory.LoadablePlugin
 public class ReceiveNotificationsPlugin extends Plugin {
@@ -56,7 +57,7 @@ public class ReceiveNotificationsPlugin extends Plugin {
         // request all existing notifications
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_NOTIFICATION_REQUEST);
         np.set("request", true);
-        device.sendPacket(np);
+        getDevice().sendPacket(np);
         return true;
     }
 

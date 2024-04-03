@@ -187,7 +187,7 @@ class DeviceFragment : Fragment() {
         for (p in plugins) {
             if (p.displayInContextMenu()) {
                 menu.add(p.actionName).setOnMenuItemClickListener {
-                    p.startMainActivity(mActivity)
+                    p.startMainActivity(mActivity!!)
                     true
                 }
             }
@@ -389,7 +389,7 @@ class DeviceFragment : Fragment() {
         Card(
             shape = MaterialTheme.shapes.medium,
             modifier = modifier.semantics { role = Role.Button },
-            onClick = { plugin.startMainActivity(mActivity) }
+            onClick = { plugin.startMainActivity(mActivity!!) }
         ) {
             Column(
                 verticalArrangement = Arrangement.spacedBy(10.dp),
