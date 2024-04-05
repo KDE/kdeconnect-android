@@ -15,7 +15,6 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     app:cardCornerRadius="8dp"
     app:cardElevation="0dp"
     app:contentPadding="8dp"
-    app:strokeColor="@color/card_stroke_color"
     app:strokeWidth="1dp">
 
     <LinearLayout
@@ -50,8 +49,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/mute"
                 android:scaleType="fitXY"
-                android:src="@drawable/ic_volume_black"
-                app:tint="?attr/colorHighContrast" />
+                android:src="@drawable/ic_volume_black"/>
 
             <SeekBar
                 android:id="@+id/systemvolume_seek"

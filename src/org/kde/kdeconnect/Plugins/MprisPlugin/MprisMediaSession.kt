@@ -369,7 +369,6 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
             .setContentIntent(piOpenActivity)
             .setSmallIcon(R.drawable.ic_play_white)
             .setShowWhen(false)
-            .setColor(ContextCompat.getColor(context!!, R.color.primary))
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             .setSubText(device.name)
 

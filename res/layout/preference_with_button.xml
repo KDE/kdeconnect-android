@@ -65,7 +65,7 @@
         android:layout_width="1dp"
         android:layout_height="32dp"
         android:layout_gravity="center"
-        android:background="?divider"
+        android:background="?colorPrimary"
         />
     <!-- Preference will place its actual preference widget here. -->
     <LinearLayout
@@ -76,6 +76,5 @@
         android:gravity="center"
         android:padding="16dp"
         android:orientation="vertical"
-        tools:background="@color/primary"
         />
 </LinearLayout>

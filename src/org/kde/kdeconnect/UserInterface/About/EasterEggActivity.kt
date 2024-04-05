@@ -59,10 +59,6 @@ class EasterEggActivity : AppCompatActivity(), SensorEventListener {
             if (!isAlreadyLongClicked) {
                 isAlreadyLongClicked = true
 
-                binding!!.easterEggLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.activity_background))
-                binding!!.logo.setColorFilter(ContextCompat.getColor(this, R.color.text_color))
-                binding!!.angle.setTextColor(ContextCompat.getColor(this, R.color.text_color))
-
                 var typedArray = this.theme.obtainStyledAttributes(intArrayOf(android.R.attr.statusBarColor))
                 window.statusBarColor = typedArray.getColor(0, Color.WHITE)
                 window.navigationBarColor = typedArray.getColor(0, Color.WHITE)

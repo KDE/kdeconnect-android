@@ -8,28 +8,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <!-- NoActionBar because we use a Toolbar widget as ActionBar -->
     <style name="KdeConnectThemeBase" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- The main color attributes -->
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryDark">@color/primaryDark</item>
-        <item name="colorSecondary">@color/primary</item>
-        <item name="colorOnSecondary">@color/on_secondary</item>
-        <item name="colorHighContrast">@color/on_high_contrast</item>
-        <!-- TODO: The 2 items below change too much (eg snackbar text is now black, should be white) -->
-        <item name="android:textColorPrimary">@color/text_color_primary</item>
-        <item name="android:textColor">@color/text_color</item>
-
-        <!--For android below 23 api-->
-        <item name="android:statusBarColor">@android:color/black</item>
-
         <!-- Drawable definitions and overrides -->
-        <item name="divider">?colorHighContrast</item>
-
-        <!-- Style overrides -->
-        <item name="actionModeStyle">@style/Widget.Material3.ActionMode</item>
-        <item name="toolbarStyle">@style/Widget.Material3.Toolbar</item>
-
-        <!-- Theme overrides -->
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
-        <item name="popupTheme">@style/ThemeOverlay.AppCompat.DayNight</item>
 
         <item name="materialCardViewStyle">@style/KdeConnectCardStyle</item>
 
@@ -47,13 +26,11 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <style name="KdeConnectTheme.NoActionBar" parent="KdeConnectThemeBase.NoActionBar" />
 
     <style name="KdeConnectTheme.Toolbar" parent="Widget.AppCompat.Toolbar">
-        <item name="android:background">@color/toolbar_color</item>
     </style>
 
     <style name="KdeConnectDialogStyle" parent="ThemeOverlay.Material3.MaterialAlertDialog">
         <item name="android:layout" tools:ignore="PrivateResource">@layout/m3_alert_dialog</item>
         <item name="dialogCornerRadius" tools:ignore="PrivateResource">@dimen/m3_alert_dialog_corner_size</item>
-        <item name="android:colorBackground">?colorSurface</item>
     </style>
 
     <style name="KdeConnectCardStyle" parent="@style/Widget.Material3.CardView.Elevated"/>
@@ -61,14 +38,6 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <style name="KdeConnectCardStyle.Filled" parent="@style/Widget.Material3.CardView.Filled"/>
 
     <style name="MainNavigationView">
-        <item name="android:background">@drawable/state_list_drawer_background</item>
-        <item name="itemBackground">@drawable/state_list_drawer_background</item>
-        <item name="itemIconTint">@color/state_list_drawer_text</item>
-        <item name="itemTextColor">@color/state_list_drawer_text</item>
-    </style>
-
-    <style name="DisableableButton" parent="ThemeOverlay.AppCompat">
-        <item name="colorButtonNormal">@drawable/disableable_button</item>
     </style>
 
     <style name="KdeConnectButton.IconButton" parent="Widget.Material3.Button.IconButton.Filled">
@@ -82,7 +51,6 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     </style>
 
     <style name="ActionModeStyle" parent="Widget.AppCompat.ActionMode">
-        <item name="background">@color/primaryDark</item>
     </style>
     <style name="Theme.Transparent" parent="@style/Theme.AppCompat.NoActionBar">
         <item name="android:windowIsTranslucent">true</item>
@@ -106,6 +74,5 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
         <item name="android:drawablePadding">4dp</item>
         <item name="android:gravity">center</item>
         <item name="android:textSize">12sp</item>
-        <item name="drawableTint">@color/text_color</item>
     </style>
 </resources>

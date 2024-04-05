@@ -6,12 +6,9 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
 
 <resources>
     <!-- A high-contrast color for important visual elements (for less important elements, use colorControlNormal instead) -->
-    <attr name="colorHighContrast" format="color" />
-
     <declare-styleable name="AutoGridLayout">
         <!-- The width of one column. Used to align -->
         <attr name="columnWidth" format="dimension" />
-
         <!-- I think that everything is clear from the name -->
         <attr name="changeColumnCountIfTheyHaveOnlyOneElement" format="boolean" />
     </declare-styleable>

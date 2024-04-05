@@ -38,8 +38,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
                 android:text="@string/kde_be_free"
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 app:drawableLeftCompat="@drawable/ic_kde_48dp"
-                app:drawableStartCompat="@drawable/ic_kde_48dp"
-                app:drawableTint="@color/text_color" />
+                app:drawableStartCompat="@drawable/ic_kde_48dp"/>
 
             <com.google.android.material.card.MaterialCardView
                 xmlns:card_view="https://schemas.android.com/apk/res-auto"

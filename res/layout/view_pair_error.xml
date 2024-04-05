@@ -30,9 +30,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
             android:importantForAccessibility="no"
             android:paddingEnd="8dip"
             android:paddingStart="0dip"
-            android:src="@drawable/ic_error_outline_48dp"
-            app:tint="?attr/colorHighContrast"
-            tools:ignore="UnusedAttribute" />
+            android:src="@drawable/ic_error_outline_48dp" />
 
         <TextView
             android:id="@+id/not_reachable_message"

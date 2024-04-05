@@ -56,7 +56,6 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
         android:contentDescription="@string/visit_contributors_homepage"
         android:src="@drawable/ic_baseline_web_24"
         android:visibility="gone"
-        app:tint="@color/text_color"
         tools:visibility="visible" />
 
 </LinearLayout>

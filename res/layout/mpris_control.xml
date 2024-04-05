@@ -198,8 +198,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
             android:layout_weight="0"
             android:contentDescription="@string/mpris_volume"
             android:maxWidth="30dip"
-            android:src="@drawable/ic_volume_black"
-            app:tint="?attr/colorHighContrast" />
+            android:src="@drawable/ic_volume_black"/>
 
 
         <SeekBar

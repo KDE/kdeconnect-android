@@ -276,7 +276,6 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
         if (albumArt == null) {
             val drawable = ContextCompat.getDrawable(requireContext(), R.drawable.ic_album_art_placeholder)!!
             val placeholder_art = DrawableCompat.wrap(drawable)
-            DrawableCompat.setTint(placeholder_art, ContextCompat.getColor(requireContext(), R.color.primary))
             activityMprisBinding.albumArt.setImageDrawable(placeholder_art)
         } else {
             activityMprisBinding.albumArt.setImageBitmap(albumArt)
