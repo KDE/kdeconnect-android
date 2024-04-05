@@ -198,7 +198,7 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
 
                 mprisControlBinding.playerSpinner.onItemSelectedListener =
                     object : AdapterView.OnItemSelectedListener {
-                        override fun onItemSelected(arg0: AdapterView<*>?, arg1: View, pos: Int, id: Long) {
+                        override fun onItemSelected(arg0: AdapterView<*>?, arg1: View?, pos: Int, id: Long) {
                             if (pos >= playerList.size) return
 
                             val player = playerList[pos]
