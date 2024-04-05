@@ -9,6 +9,7 @@ package org.kde.kdeconnect
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Base64
+import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import org.kde.kdeconnect.Helpers.DeviceHelper
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper
@@ -120,8 +121,9 @@ enum class DeviceType {
         }
 
     fun getIcon(context: Context) =
-        ContextCompat.getDrawable(context, toDrawableId())
+        ContextCompat.getDrawable(context, toDrawableId())!!
 
+    @DrawableRes
     private fun toDrawableId() =
         when (this) {
             PHONE -> R.drawable.ic_device_phone_32dp
