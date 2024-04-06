@@ -24,6 +24,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -108,6 +109,15 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
         devicesListBinding.refreshListLayout.setOnRefreshListener(this::refreshDevicesAction);
 
         return devicesListBinding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        // Configure focus order for Accessibility, for touchpads, and for TV remotes
+        // (allow focus of items in the device list)
+        devicesListBinding.devicesList.setItemsCanFocus(true);
     }
 
     @Override
