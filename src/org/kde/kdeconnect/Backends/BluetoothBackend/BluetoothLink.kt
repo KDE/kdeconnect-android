@@ -144,7 +144,7 @@ class BluetoothLink(context: Context?, connection: ConnectionMultiplexer, input:
                         val buffer = ByteArray(BUFFER_LENGTH)
                         var bytesRead: Int
                         var progress: Long = 0
-                        val stream = np.payload.inputStream
+                        val stream = np.payload!!.inputStream!!
                         while (stream.read(buffer).also { bytesRead = it } != -1) {
                             progress += bytesRead.toLong()
                             payloadStream.write(buffer, 0, bytesRead)

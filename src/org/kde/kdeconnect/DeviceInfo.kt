@@ -60,8 +60,8 @@ class DeviceInfo(
             np.set("deviceName", name)
             np.set("protocolVersion", protocolVersion)
             np.set("deviceType", type.toString())
-            np.set("incomingCapabilities", incomingCapabilities)
-            np.set("outgoingCapabilities", outgoingCapabilities)
+            np.set("incomingCapabilities", incomingCapabilities!!)
+            np.set("outgoingCapabilities", outgoingCapabilities!!)
         }
 
     companion object {
