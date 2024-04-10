@@ -58,6 +58,8 @@ import java.util.concurrent.Future;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+import kotlin.sequences.Sequence;
+
 @PluginFactory.LoadablePlugin
 @SuppressLint("InlinedApi")
 public class SMSPlugin extends Plugin {
@@ -418,12 +420,12 @@ public class SMSPlugin extends Plugin {
                 String textMessage = np.getString("messageBody");
                 subID = np.getLong("subID", -1);
 
-                List<SMSHelper.Address> addressList = SMSHelper.jsonArrayToAddressList(np.getJSONArray("addresses"));
+                List<SMSHelper.Address> addressList = SMSHelper.jsonArrayToAddressList(context, np.getJSONArray("addresses"));
                 if (addressList == null) {
                     // If the List of Address is null, then the SMS_REQUEST packet is
                     // most probably from the older version of the desktop app.
                     addressList = new ArrayList<>();
-                    addressList.add(new SMSHelper.Address(np.getString("phoneNumber")));
+                    addressList.add(new SMSHelper.Address(context, np.getString("phoneNumber")));
                 }
                 List<SMSHelper.Attachment> attachedFiles = SMSHelper.jsonArrayToAttachmentsList(np.getJSONArray("attachments"));
 
@@ -508,9 +510,10 @@ public class SMSPlugin extends Plugin {
     @WorkerThread
     private boolean handleRequestAllConversations(NetworkPacket packet) {
         haveMessagesBeenRequested = true;
-        Iterable<SMSHelper.Message> conversations = SMSHelper.getConversations(this.context);
+        Iterator<SMSHelper.Message> conversations = SMSHelper.getConversations(this.context).iterator();
 
-        for (SMSHelper.Message message : conversations) {
+        while (conversations.hasNext()) {
+            SMSHelper.Message message = conversations.next();
             NetworkPacket partialReply = constructBulkMessagePacket(Collections.singleton(message));
             getDevice().sendPacket(partialReply);
         }

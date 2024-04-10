@@ -125,7 +125,7 @@ public class SmsMmsUtils {
             // If the message is going to more than one target (to allow the user to send a message to themselves)
             if (addressList.size() > 1) {
                 // Remove the user's phone number if present in the list of recipients
-                addressList.removeIf(address -> sendingPhoneNumber.isMatchingPhoneNumber(address.address));
+                addressList.removeIf(address -> sendingPhoneNumber.isMatchingPhoneNumber(address.getAddress()));
             }
         }
 
@@ -161,9 +161,9 @@ public class SmsMmsUtils {
 
             // If there are any attachment files add those into the message
             for (SMSHelper.Attachment attachedFile : attachedFiles) {
-                byte[] file = Base64.decode(attachedFile.getBase64EncodedFile(), Base64.DEFAULT);
-                String mimeType = attachedFile.getMimeType();
-                String fileName = attachedFile.getUniqueIdentifier();
+                byte[] file = Base64.decode(attachedFile.base64EncodedFile, Base64.DEFAULT);
+                String mimeType = attachedFile.mimeType;
+                String fileName = attachedFile.uniqueIdentifier;
                 message.addMedia(file, mimeType, fileName);
             }
 
@@ -347,18 +347,17 @@ public class SmsMmsUtils {
      * Returns the Address of the sender of the MMS message.
      * @return                   sender's Address
      */
-    public static SMSHelper.Address getMmsFrom(MultimediaMessagePdu msg) {
+    public static SMSHelper.Address getMmsFrom(Context context, MultimediaMessagePdu msg) {
         if (msg == null) { return null; }
         EncodedStringValue encodedStringValue = msg.getFrom();
-        SMSHelper.Address from = new SMSHelper.Address(encodedStringValue.getString());
-        return from;
+        return new SMSHelper.Address(context, encodedStringValue.getString());
     }
 
     /**
      * returns a List of Addresses of all the recipients of a MMS message.
      * @return          List of Addresses of all recipients of an MMS message
      */
-    public static List<SMSHelper.Address> getMmsTo(MultimediaMessagePdu msg) {
+    public static List<SMSHelper.Address> getMmsTo(Context context, MultimediaMessagePdu msg) {
         if (msg == null) { return null; }
         StringBuilder toBuilder = new StringBuilder();
         EncodedStringValue[] to = msg.getTo();
@@ -380,13 +379,13 @@ public class SmsMmsUtils {
             built = built.substring(2);
         }
 
-        return stripDuplicatePhoneNumbers(built);
+        return stripDuplicatePhoneNumbers(context, built);
     }
 
     /**
      * Removes duplicate addresses from the string and returns List of Addresses
      */
-    public static List<SMSHelper.Address> stripDuplicatePhoneNumbers(String phoneNumbers) {
+    public static List<SMSHelper.Address> stripDuplicatePhoneNumbers(Context context, String phoneNumbers) {
         if (phoneNumbers == null) {
             return null;
         }
@@ -398,7 +397,7 @@ public class SmsMmsUtils {
         for (String number : numbers) {
             // noinspection SuspiciousMethodCalls
             if (!uniqueNumbers.contains(number.trim())) {
-                uniqueNumbers.add(new SMSHelper.Address(number.trim()));
+                uniqueNumbers.add(new SMSHelper.Address(context, number.trim()));
             }
         }
 
@@ -430,7 +429,7 @@ public class SmsMmsUtils {
      * @return           Returns the image as a bitmap
      */
     public static Bitmap getMmsImage(Context context, long id) {
-        Uri partURI = ContentUris.withAppendedId(SMSHelper.getMMSPartUri(), id);
+        Uri partURI = ContentUris.withAppendedId(SMSHelper.mMSPartUri, id);
         Bitmap bitmap = null;
 
         try (InputStream inputStream = context.getContentResolver().openInputStream(partURI)) {
@@ -449,7 +448,7 @@ public class SmsMmsUtils {
      * @return           returns the byteArray of the attachment
      */
     public static byte[] loadAttachment(Context context, long id) {
-        Uri partURI = ContentUris.withAppendedId(SMSHelper.getMMSPartUri(), id);
+        Uri partURI = ContentUris.withAppendedId(SMSHelper.mMSPartUri, id);
         byte[] byteArray = new byte[0];
 
         // Open inputStream from the specified URI
