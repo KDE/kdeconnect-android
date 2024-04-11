@@ -14,10 +14,10 @@ import java.io.InputStream
 import java.net.Socket
 import kotlin.concurrent.Volatile
 
-data class NetworkPacket(
+class NetworkPacket private constructor(
     val id: Long,
     val type: String,
-    val mBody: JSONObject,
+    private val mBody: JSONObject,
     var payload: Payload?,
     var payloadTransferInfo: JSONObject,
 ) {
