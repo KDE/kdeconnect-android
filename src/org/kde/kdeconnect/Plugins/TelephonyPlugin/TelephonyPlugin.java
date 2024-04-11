@@ -204,10 +204,10 @@ public class TelephonyPlugin extends Plugin {
                     }
 
                     //Emit a missed call notification if needed
-                    if ("ringing".equals(lastPacket.getString("event", null))) {
+                    if ("ringing".equals(lastPacket.getString("event"))) {
                         np.set("event", "missedCall");
-                        np.set("phoneNumber", lastPacket.getString("phoneNumber", null));
-                        np.set("contactName", lastPacket.getString("contactName", null));
+                        np.set("phoneNumber", lastPacket.getStringOrNull("phoneNumber"));
+                        np.set("contactName", lastPacket.getStringOrNull("contactName"));
                         getDevice().sendPacket(np);
                     }
                 }

@@ -42,6 +42,11 @@ class NetworkPacket private constructor(
         return mBody.optString(key, "")
     }
 
+    fun getStringOrNull(key: String): String? {
+        return if (mBody.has(key)) mBody.getString(key)
+        else null
+    }
+
     fun getString(key: String, defaultValue: String): String {
         return mBody.optString(key, defaultValue)
     }
