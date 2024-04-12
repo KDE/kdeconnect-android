@@ -31,13 +31,18 @@ import org.kde.kdeconnect.Helpers.RandomHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.security.GeneralSecurityException;
 import java.security.KeyPair;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import static org.kde.kdeconnect.Helpers.SecurityHelpers.ConstantTimeCompareKt.constantTimeCompare;
 
 class SimpleSftpServer {
     private static final int STARTPORT = 1739;
@@ -114,7 +119,7 @@ class SimpleSftpServer {
 
     public boolean start() {
         if (!started) {
-            passwordAuth.password = RandomHelper.randomString(28);
+            regeneratePassword();
 
             port = STARTPORT;
             while (!started) {
@@ -149,8 +154,10 @@ class SimpleSftpServer {
         return started;
     }
 
-    String getPassword() {
-        return passwordAuth.password;
+    String regeneratePassword() {
+        String password = RandomHelper.randomString(28);
+        passwordAuth.setPassword(password);
+        return password;
     }
 
     int getPort() {
@@ -163,11 +170,25 @@ class SimpleSftpServer {
 
     static class SimplePasswordAuthenticator implements PasswordAuthenticator {
 
-        String password;
+        MessageDigest sha;
+        {
+            try {
+                sha = MessageDigest.getInstance("SHA-256");
+            } catch (NoSuchAlgorithmException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        public void setPassword(String password) {
+            sha.digest(password.getBytes(StandardCharsets.UTF_8));
+        }
+
+        byte[] passwordHash;
 
         @Override
         public boolean authenticate(String user, String password, ServerSession session) {
-            return user.equals(SimpleSftpServer.USER) && password.equals(this.password);
+            byte[] receivedPasswordHash = sha.digest(password.getBytes(StandardCharsets.UTF_8));
+            return user.equals(SimpleSftpServer.USER) && constantTimeCompare(passwordHash, receivedPasswordHash);
         }
     }
 

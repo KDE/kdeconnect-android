@@ -152,7 +152,7 @@ public class SftpPlugin extends Plugin implements SharedPreferences.OnSharedPref
                 np2.set("ip", NetworkHelper.getLocalIpAddress().getHostAddress());
                 np2.set("port", server.getPort());
                 np2.set("user", SimpleSftpServer.USER);
-                np2.set("password", server.getPassword());
+                np2.set("password", server.regeneratePassword());
 
                 //Kept for compatibility, in case "multiPaths" is not possible or the other end does not support it
                 if (paths.size() == 1) {
