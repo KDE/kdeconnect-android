@@ -11,6 +11,7 @@ import org.json.JSONObject
 import java.io.ByteArrayInputStream
 import java.io.IOException
 import java.io.InputStream
+import java.lang.RuntimeException
 import java.net.Socket
 import kotlin.concurrent.Volatile
 
@@ -216,7 +217,11 @@ class NetworkPacket private constructor(
             jo.put("payloadTransferInfo", payloadTransferInfo)
         }
         // QJSon does not escape slashes, but Java JSONObject does. Converting to QJson format.
-        return jo.toString().replace("\\/", "/") + "\n"
+        try {
+            return jo.toString().replace("\\/", "/") + "\n"
+        } catch (e : OutOfMemoryError) {
+            throw RuntimeException("OOM serializing packet of type $type", e)
+        }
     }
 
     val payloadSize: Long
