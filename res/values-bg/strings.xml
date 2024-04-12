@@ -227,7 +227,7 @@
   <string name="sftp_no_storage_locations_configured">Няма конфигурирани места за съхранение</string>
   <string name="sftp_saf_permission_explanation">За да получите достъп до файлове от разстояние, трябва да конфигурирате местата за съхранение</string>
   <string name="sftp_manage_storage_permission_explanation">За да разрешите отдалечен достъп до файловете на това устройство, трябва да разрешите KDE Connect да управлява хранилището.</string>
-  <string name="no_players_connected">Не са открити играчи</string>
+  <string name="no_players_connected">Няма възпроизвеждане на медия</string>
   <string name="send_files">Изпращане на файлове</string>
   <string name="block_notification_contents">Блокиране на съдържанието в известията</string>
   <string name="block_notification_images">Блокиране на изображения в известията</string>
@@ -328,7 +328,7 @@
   <string name="location_permission_needed_desc">KDE Connect се нуждае от разрешение за местоположението във фонов режим, за да познава WiFi към която сте свързани, дори когато приложението е във фонов режим. Това е така, защото имената на WiFi мрежите около вас могат да бъдат използвани за намиране на вашето местоположение, дори когато KDE Connect не прави това.</string>
   <string name="clipboard_android_x_incompat">Android 10 премахна достъпа до клипборда за всички приложения. Тази приставка ще бъде деактивирана.</string>
   <string name="mpris_open_url">Продължете да играете тук</string>
-  <string name="cant_open_url">Не мога да отворя URL адреса, за да продължа играта</string>
+  <string name="cant_open_url">Не може да се отвори URL адреса, за да се продължи играта</string>
   <string name="bigscreen_home">Домашен адрес</string>
   <string name="bigscreen_up">Преместване нагоре</string>
   <string name="bigscreen_left">Ляво</string>
