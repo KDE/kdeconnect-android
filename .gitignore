@@ -12,3 +12,4 @@ classes/
 !debug.keystore
 .directory
 GPUCache/
+release/
