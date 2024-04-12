@@ -360,7 +360,11 @@ public class Device implements BaseLink.PacketReceiver {
 
         if (deviceInfo.outgoingCapabilities != newDeviceInfo.outgoingCapabilities ||
                 deviceInfo.incomingCapabilities != newDeviceInfo.incomingCapabilities) {
-            if (newDeviceInfo.outgoingCapabilities != null && newDeviceInfo.incomingCapabilities != null) {
+            if (newDeviceInfo.outgoingCapabilities != null
+                    && !newDeviceInfo.outgoingCapabilities.isEmpty()
+                    && newDeviceInfo.incomingCapabilities != null
+                    && !newDeviceInfo.incomingCapabilities.isEmpty()
+            ) {
                 hasChanges = true;
                 Log.i("updateDeviceInfo", "Updating supported plugins according to new capabilities");
                 supportedPlugins = new Vector<>(PluginFactory.pluginsForCapabilities(newDeviceInfo.incomingCapabilities, newDeviceInfo.outgoingCapabilities));
