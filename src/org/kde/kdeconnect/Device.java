@@ -474,7 +474,8 @@ public class Device implements BaseLink.PacketReceiver {
         if (packetQueue == null) {
             callback.onFailure(new Exception("Device disconnected!"));
         } else {
-            packetQueue.addPacket(np, replaceID, callback);
+            // TODO: Migrate to coroutine version (addPacket)
+            packetQueue.addPacketSync(np, replaceID, callback);
         }
     }
 
@@ -488,7 +489,8 @@ public class Device implements BaseLink.PacketReceiver {
         if (packetQueue == null) {
             return null;
         } else {
-            return packetQueue.getAndRemoveUnsentPacket(replaceID);
+            // TODO: Migrate to coroutine version (getAndRemoveUnsentPacket)
+            return packetQueue.getAndRemoveUnsentPacketSync(replaceID);
         }
     }
 
