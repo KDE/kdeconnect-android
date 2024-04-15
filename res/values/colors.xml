@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="launcher_background">#3daee9</color>
+
+    <!-- Whenever possible, don't hardcode colors here and rely on the default ones (eg: from the system or user theme) -->
+
+</resources>

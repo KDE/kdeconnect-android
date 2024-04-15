@@ -12,6 +12,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     android:theme="@style/KdeConnectTheme"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
+    android:background="?colorSurface"
     tools:ignore="RtlSymmetry">
 
     <LinearLayout
@@ -28,6 +29,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_kde_24dp"
+            android:tint="?attr/colorOnSecondary"
             android:importantForAccessibility="no"
             tools:ignore="UseAppTint"/> <!-- can't use app:tint in RemoteView -->
 
@@ -39,6 +41,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
             android:text="@string/kde_connect"
             android:fadingEdge="horizontal"
             android:singleLine="true"
+            android:textColor="?attr/colorOnSecondary"
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </LinearLayout>
 
