@@ -6,11 +6,12 @@
 
 package org.kde.kdeconnect.Plugins.SharePlugin;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.Manifest;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 import androidx.core.content.ContextCompat;
+import androidx.preference.PreferenceManager;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -37,10 +39,11 @@ import org.kde.kdeconnect.async.BackgroundJobHandler;
 import org.kde.kdeconnect_tp.R;
 
 import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Objects;
+import java.util.Set;
 
 /**
  * A Plugin for sharing and receiving files and uris.
@@ -68,10 +71,41 @@ public class SharePlugin extends Plugin {
     private CompositeUploadFileJob uploadFileJob;
     private final Callback receiveFileJobCallback;
 
+    public static final String KEY_UNREACHABLE_URL_LIST = "key_unreachable_url_list";
+    private SharedPreferences mSharedPrefs;
+
     public SharePlugin() {
         backgroundJobHandler = BackgroundJobHandler.newFixedThreadPoolBackgroundJobHander(5);
         handler = new Handler(Looper.getMainLooper());
         receiveFileJobCallback = new Callback();
+    }
+
+    @Override
+    public boolean onCreate() {
+        super.onCreate();
+        mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+        // Deliver URLs previously shared to this device now that it's connected
+        deliverPreviouslySentIntents();
+        return true;
+    }
+
+    private void deliverPreviouslySentIntents() {
+        Set<String> currentUrlSet = mSharedPrefs.getStringSet(KEY_UNREACHABLE_URL_LIST + device.getDeviceId(), null);
+        if (currentUrlSet != null) {
+            for (String url : currentUrlSet) {
+                Intent intent;
+                try {
+                    intent = Intent.parseUri(url, 0);
+                } catch (URISyntaxException ex) {
+                    Log.e("SharePlugin", "Malformed URI");
+                    continue;
+                }
+                if (intent != null) {
+                    share(intent);
+                }
+            }
+            mSharedPrefs.edit().putStringSet(KEY_UNREACHABLE_URL_LIST + device.getDeviceId(), null).apply();
+        }
     }
 
     @Override
@@ -338,5 +372,14 @@ public class SharePlugin extends Plugin {
                 }
             }
         }
+    }
+
+    @Override
+    public void onDeviceUnpaired(Context context, String deviceId) {
+        Log.i("KDE/SharePlugin", "onDeviceUnpaired deviceId = " + deviceId);
+        if (mSharedPrefs == null) {
+            mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+        }
+        mSharedPrefs.edit().remove(KEY_UNREACHABLE_URL_LIST + deviceId).apply();
     }
 }

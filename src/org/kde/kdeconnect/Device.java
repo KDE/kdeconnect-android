@@ -241,6 +241,8 @@ public class Device implements BaseLink.PacketReceiver {
                 cb.unpaired();
             }
 
+            notifyPluginsOfDeviceUnpaired(context, deviceInfo.id);
+
             reloadPluginsFromSettings();
         }
     };
@@ -639,6 +641,25 @@ public class Device implements BaseLink.PacketReceiver {
     public boolean isPluginEnabled(String pluginKey) {
         boolean enabledByDefault = PluginFactory.getPluginInfo(pluginKey).isEnabledByDefault();
         return settings.getBoolean(pluginKey, enabledByDefault);
+    }
+
+    public void notifyPluginsOfDeviceUnpaired(Context context, String deviceId) {
+        for (String pluginKey : supportedPlugins) {
+            Plugin plugin = getPlugin(pluginKey);
+            if (plugin != null) {
+                plugin.onDeviceUnpaired(context, deviceId);
+            } else {
+                // This is a hacky way to temporarily create plugins just so that they can be notified of the
+                // device being unpaired. This else part will only come into picture when 1) the user tries to
+                // unpair a device while that device is not reachable or 2) the plugin was never initialized
+                // for this device, e.g., the plugins that need additional permissions from the user, and those
+                // permissions were never granted.
+                plugin = PluginFactory.instantiatePluginForDevice(context, pluginKey, this);
+                if (plugin != null) {
+                    plugin.onDeviceUnpaired(context, deviceId);
+                }
+            }
+        }
     }
 
     public void reloadPluginsFromSettings() {

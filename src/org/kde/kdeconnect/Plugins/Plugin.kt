@@ -272,6 +272,8 @@ abstract class Plugin {
         return arePermissionsGranted(optionalPermissions)
     }
 
+    open fun onDeviceUnpaired(context: Context, deviceId: String) {}
+
     open val minSdk: Int = Build.VERSION_CODES.BASE
 
     companion object {
