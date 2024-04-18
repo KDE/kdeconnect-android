@@ -186,7 +186,6 @@
   <string name="mpris_notifications_explanation">Urruneko euskarria jakinarazpen tiraderan erakusteko jakinarazpen-baimena behar da</string>
   <string name="mpris_notification_settings_title">Erakutsi euskarri kontrolaren jakinarazpena</string>
   <string name="mpris_notification_settings_summary">Utzi zure euskarri-jotzaileak kontrolatzen KDE Connect ireki gabe</string>
-  <string name="share_to">Partekatu honekin...</string>
   <string name="protocol_version_newer">Gailu honek protokoloaren bertsio berriago bat erabiltzen du</string>
   <string name="plugin_settings_with_name">%s ezarpenak</string>
   <string name="invalid_device_name">Gailuaren izen baliogabea</string>

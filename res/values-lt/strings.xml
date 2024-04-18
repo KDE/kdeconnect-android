@@ -194,7 +194,6 @@
   </string-array>
   <string name="mpris_notification_settings_title">Rodyti įvairialypės terpės valdymo pranešimus</string>
   <string name="mpris_notification_settings_summary">Leisti valdyti medijos leistuves neatveriant KDE Connect</string>
-  <string name="share_to">Bendrinti su…</string>
   <string name="protocol_version_newer">Šis įrenginys naudoja naujesnę protokolo versiją</string>
   <string name="plugin_settings_with_name">%s nuostatos</string>
   <string name="invalid_device_name">Netinkamas įrenginio pavadinimas</string>

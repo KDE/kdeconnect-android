@@ -185,7 +185,6 @@
   <string name="mpris_notifications_explanation">Bildirişlər çəkməcəsində məsafədəki medianı göstərmək üçün bildiriş icazələri lazımdır</string>
   <string name="mpris_notification_settings_title">Media idarəetmə bildirişlərini göstərmək</string>
   <string name="mpris_notification_settings_summary">KDE Connect açmadan media oynadıcınızın idarəsinə icazə vermək</string>
-  <string name="share_to">Paylaşmaq...</string>
   <string name="protocol_version_newer">Bu cihaz yeni protokol versiyası istifadə edir</string>
   <string name="plugin_settings_with_name">%s ayarları</string>
   <string name="invalid_device_name">Səhv cihaz adı</string>

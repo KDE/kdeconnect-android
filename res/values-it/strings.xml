@@ -190,7 +190,6 @@
   <string name="mpris_notifications_explanation">L\'autorizzazione alle notifiche è necessaria per mostrare i media remoti nel riquadro delle notifiche</string>
   <string name="mpris_notification_settings_title">Mostra la notifica del controllo multimediale</string>
   <string name="mpris_notification_settings_summary">Consenti di controllare i lettori multimediali senza aprire KDE Connect</string>
-  <string name="share_to">Condividi con…</string>
   <string name="protocol_version_newer">Questo dispositivo usa una nuova versione del protocollo di rete</string>
   <string name="plugin_settings_with_name">Impostazioni di %s</string>
   <string name="invalid_device_name">Nome dispositivo non valido</string>

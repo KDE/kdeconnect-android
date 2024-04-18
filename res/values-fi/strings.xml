@@ -186,7 +186,6 @@
   <string name="mpris_notifications_explanation">Ilmoituskäyttöoikeus vaaditaan etämedian näyttämiseksi ilmoitussovelmassa</string>
   <string name="mpris_notification_settings_title">Näytä mediasäädinilmoitukset</string>
   <string name="mpris_notification_settings_summary">Sallii mediasoitintesi hallinnan KDE Connectia avaamatta</string>
-  <string name="share_to">Jaa…</string>
   <string name="protocol_version_newer">Laite käyttää uudempaa yhteyskäytäntöversiota</string>
   <string name="plugin_settings_with_name">%s-asetukset</string>
   <string name="invalid_device_name">Virheellinen laitenimi</string>

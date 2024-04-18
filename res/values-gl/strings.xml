@@ -190,7 +190,6 @@
   <string name="mpris_notifications_explanation">Necesítase o permiso de notificacións para amosar medios remotos no caixón de notificacións.</string>
   <string name="mpris_notification_settings_title">Amosar a notificación de control de reprodución.</string>
   <string name="mpris_notification_settings_summary">Permitir controlar os reprodutores sen abrir KDE Connect</string>
-  <string name="share_to">Compartir con…</string>
   <string name="protocol_version_newer">Este dispositivo usa unha versión máis nova do protocolo.</string>
   <string name="plugin_settings_with_name">Configuración de %s</string>
   <string name="invalid_device_name">Nome de dispositivo incorrecto</string>

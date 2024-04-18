@@ -177,7 +177,6 @@
   </string-array>
   <string name="mpris_notification_settings_title">Médiavezérlő értesítéseinek megjelenítése</string>
   <string name="mpris_notification_settings_summary">Lehetővé teszi a médialejátszók vezérlését a KDE Connect megnyitása nélkül</string>
-  <string name="share_to">Megosztás…</string>
   <string name="protocol_version_newer">Ez az eszköz egy újabb protokollverziót használ</string>
   <string name="plugin_settings_with_name">%s beállításai</string>
   <string name="invalid_device_name">Érvénytelen eszköznév</string>

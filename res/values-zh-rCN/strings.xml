@@ -182,7 +182,6 @@
   <string name="mpris_notifications_explanation">在通知栏中显示远程媒体需要通知权限</string>
   <string name="mpris_notification_settings_title">显示媒体控制通知</string>
   <string name="mpris_notification_settings_summary">不打开 KDE Connect 也能在常驻通知中控制媒体播放器</string>
-  <string name="share_to">分享到...</string>
   <string name="protocol_version_newer">此设备使用较新版本的协议</string>
   <string name="plugin_settings_with_name">%s设置</string>
   <string name="invalid_device_name">无效的设备名</string>

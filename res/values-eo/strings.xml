@@ -178,7 +178,6 @@
   </string-array>
   <string name="mpris_notification_settings_title">Montri sciigon pri rego de amaskomunikiloj</string>
   <string name="mpris_notification_settings_summary">Permesu mastrumi viajn plurmediajn ludilojn sen malfermi KDE Connect</string>
-  <string name="share_to">Kunhavigi al…</string>
   <string name="protocol_version_newer">Ĉi tiu aparato uzas pli novan protokolversion</string>
   <string name="plugin_settings_with_name">%s agordoj</string>
   <string name="invalid_device_name">Nevalida aparato nomo</string>

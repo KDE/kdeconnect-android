@@ -181,7 +181,6 @@
   </string-array>
   <string name="mpris_notification_settings_title">Birta tilkynningar fyrir margmiðlunarstýringar</string>
   <string name="mpris_notification_settings_summary">Gerir kleift að stýra margmiðlunarspilurunum þínum án þess að opna KDE-tengingar</string>
-  <string name="share_to">Deila með…</string>
   <string name="protocol_version_newer">Þetta tæki notar nýrri útgáfu samskiptastaðals</string>
   <string name="plugin_settings_with_name">Stillingar %s</string>
   <string name="invalid_device_name">Ógilt heiti tækis</string>

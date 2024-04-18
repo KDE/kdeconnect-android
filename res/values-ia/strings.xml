@@ -91,7 +91,6 @@
     <item>1 minuta</item>
     <item>2 minutas</item>
   </string-array>
-  <string name="share_to">Comparti a…</string>
   <string name="custom_device_fab_hint">Adde un dispositivo</string>
   <string name="undo">Annulla</string>
   <string name="share">Comparti</string>

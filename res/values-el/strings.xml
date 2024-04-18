@@ -169,7 +169,6 @@
   </string-array>
   <string name="mpris_notification_settings_title">Εμφάνιση ειδοποίησης κονσόλας πολυμέσων</string>
   <string name="mpris_notification_settings_summary">Να επιτρέπεται ο έλεγχος των αναπαραφωγέων πολυμέσων χωρίς άνοιγμα του KDE Connect</string>
-  <string name="share_to">Διαμοιρασμός με…</string>
   <string name="protocol_version_newer">Η συσκευή αυτή χρησιμοποιεί νεότερη έκδοση πρωτοκόλλου</string>
   <string name="plugin_settings_with_name">%s ρυθμίσεις</string>
   <string name="invalid_device_name">Μη έγκυρο όνομα συσκευής</string>

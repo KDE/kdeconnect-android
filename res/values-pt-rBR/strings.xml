@@ -184,7 +184,6 @@
   </string-array>
   <string name="mpris_notification_settings_title">Mostrar a notificação do controle multimídia</string>
   <string name="mpris_notification_settings_summary">Permite controlar os seus reprodutores de mídias sem abrir o KDE Connect</string>
-  <string name="share_to">Compartilhar com...</string>
   <string name="protocol_version_newer">Este dispositivo usa uma versão mais recente do protocolo</string>
   <string name="plugin_settings_with_name">Configurações de %s</string>
   <string name="invalid_device_name">Nome do dispositivo inválido</string>

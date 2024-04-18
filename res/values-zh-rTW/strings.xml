@@ -182,7 +182,6 @@
   <string name="mpris_notifications_explanation">需要通知權限來在通知欄內顯示遠端媒體</string>
   <string name="mpris_notification_settings_title">顯示媒體控制項通知</string>
   <string name="mpris_notification_settings_summary">允許控制您的媒體播放器而不需要開啟 KDE 連線</string>
-  <string name="share_to">分享給…</string>
   <string name="protocol_version_newer">此裝置使用較新的通訊協定</string>
   <string name="plugin_settings_with_name">%s 設定</string>
   <string name="invalid_device_name">無效的裝置名稱</string>

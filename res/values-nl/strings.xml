@@ -190,7 +190,9 @@
   <string name="mpris_notifications_explanation">Het recht op meldingen is nodig om media op afstand te tonen in de meldingenschuiflade</string>
   <string name="mpris_notification_settings_title">Mediabesturingsmelding tonen</string>
   <string name="mpris_notification_settings_summary">Staat besturing van uw mediaspelers toe zonder KDE Connect te openen</string>
-  <string name="share_to">Delen met...</string>
+  <string name="share_to">Delen met…</string>
+  <string name="unreachable_device">%s (niet bereikbaar)</string>
+  <string name="unreachable_device_url_share_text">URL\'s gedeeld met een niet bereikbaar apparaat zullen er afgeleverd worden wanneer deze bereikbaar wordt.\n\n</string>
   <string name="protocol_version_newer">Dit apparaat gebruikt een nieuwere protocolversie</string>
   <string name="plugin_settings_with_name">Instellingen van %s</string>
   <string name="invalid_device_name">Ongeldige apparaatnaam</string>

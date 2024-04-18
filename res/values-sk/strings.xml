@@ -184,7 +184,6 @@
   </string-array>
   <string name="mpris_notification_settings_title">Zobraziť upozornenie ovládania médií</string>
   <string name="mpris_notification_settings_summary">Umožní ovládanie vašich multimediálnych prehrávačov bez otvorenia aplikácie KDE Connect</string>
-  <string name="share_to">Zdieľať do…</string>
   <string name="protocol_version_newer">Toto zariadenie používa novšiu verziu protokolu</string>
   <string name="plugin_settings_with_name">Nastavenia modulu %s</string>
   <string name="invalid_device_name">Neplatný názov zariadenia</string>

@@ -186,7 +186,6 @@
   <string name="mpris_notifications_explanation">தொலை ஊடக இயக்கிகளை அறிவிப்புகளில் காட்டுவதற்கு அறிவிப்புகள் அனுமதி தேவை</string>
   <string name="mpris_notification_settings_title">ஊடக கட்டுப்பாடு அறிவிப்பைக் காட்டு</string>
   <string name="mpris_notification_settings_summary">கே.டீ.யீ. கனெக்டைத் திறக்காமல் ஊடக இயக்கிகளைக் கட்டுப்படுத்த உதவும்</string>
-  <string name="share_to">இதற்கு பகிர்...</string>
   <string name="protocol_version_newer">இச்சாதனம் புதிய நெறிமுறை பதிப்பைப் பயன்படுத்துகிறது</string>
   <string name="plugin_settings_with_name">%s அமைப்புகள்</string>
   <string name="invalid_device_name">முறையற்ற சாதன பெயர்</string>

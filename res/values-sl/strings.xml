@@ -137,8 +137,8 @@
     <item quantity="other">(Datoteke %2$d od %3$d) : %1$s</item>
   </plurals>
   <plurals name="outgoing_file_title">
-    <item quantity="one">Pošiljanje %1$d datoteke na %2$s</item>
-    <item quantity="two">Pošiljanje %1$d datotek na %2$s</item>
+    <item quantity="one">Pošiljanje %1$d datotek na %2$s</item>
+    <item quantity="two">Pošiljanje %1$d datoteke na %2$s</item>
     <item quantity="few">Pošiljanje %1$d datotek na %2$s</item>
     <item quantity="other">Pošiljanje %1$d datotek na %2$s</item>
   </plurals>
@@ -207,6 +207,8 @@
   <string name="mpris_notification_settings_title">Pokaži obvestilo o nadzoru medija</string>
   <string name="mpris_notification_settings_summary">Dovoli nadzor nad predvajalniki medijev, ne da bi odprli KDE Connect</string>
   <string name="share_to">Deli z…</string>
+  <string name="unreachable_device">%s (Nedosegljiva)</string>
+  <string name="unreachable_device_url_share_text">URL-ji, ki so v skupni rabi z nedosegljivo napravo, ji bodo dostavljeni, ko postane dosegljiva.\n\n</string>
   <string name="protocol_version_newer">Ta naprava uporablja novejšo različico protokola</string>
   <string name="plugin_settings_with_name">Nastavitve %s</string>
   <string name="invalid_device_name">Neveljavno ime naprave</string>

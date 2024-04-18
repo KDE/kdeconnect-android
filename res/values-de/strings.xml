@@ -181,7 +181,6 @@
   </string-array>
   <string name="mpris_notification_settings_title">Benachrichtigung zur Medienkontrolle anzeigen</string>
   <string name="mpris_notification_settings_summary">Die Steuerung der Medienwiedergabe auch dann erlauben wenn KDE Connect nicht geöffnet ist</string>
-  <string name="share_to">Freigeben für ...</string>
   <string name="protocol_version_newer">Dieses Gerät verwendet eine neuere Protokollversion</string>
   <string name="plugin_settings_with_name">%s-Einstellungen</string>
   <string name="invalid_device_name">Ungültiger Gerätename</string>

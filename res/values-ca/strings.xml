@@ -191,6 +191,8 @@
   <string name="mpris_notification_settings_title">Mostra les notificacions dels reproductors</string>
   <string name="mpris_notification_settings_summary">Permet controlar els reproductors multimèdia sense obrir el KDE Connect</string>
   <string name="share_to">Comparteix amb…</string>
+  <string name="unreachable_device">%s (no s\'hi pot accedir)</string>
+  <string name="unreachable_device_url_share_text">Els URL compartits amb un dispositiu no accessible es lliuraran un cop s\'hi pugui accedir.\n\n</string>
   <string name="protocol_version_newer">Aquest dispositiu usa una versió nova del protocol</string>
   <string name="plugin_settings_with_name">Configuració del %s</string>
   <string name="invalid_device_name">El nom del dispositiu no és vàlid</string>

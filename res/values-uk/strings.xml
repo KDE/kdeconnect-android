@@ -206,7 +206,9 @@
   <string name="mpris_notifications_explanation">Для показу віддалених носіїв даних на панелі сповіщень потрібні права доступу до сповіщень</string>
   <string name="mpris_notification_settings_title">Показувати сповіщення щодо керування відтворенням</string>
   <string name="mpris_notification_settings_summary">Уможливлює керування відтворенням мультимедійних даних без відкриття KDE Connect</string>
-  <string name="share_to">Використовувати спільно з…</string>
+  <string name="share_to">Оприлюднити на…</string>
+  <string name="unreachable_device">%s (недоступний)</string>
+  <string name="unreachable_device_url_share_text">Адреси, які оприлюднено на недоступному пристрої, буде надіслано, щойно пристрій стане доступним.\n\n</string>
   <string name="protocol_version_newer">На цьому пристрої використовується новіша версія протоколу</string>
   <string name="plugin_settings_with_name">Параметри %s</string>
   <string name="invalid_device_name">Некоректна назва пристрою</string>

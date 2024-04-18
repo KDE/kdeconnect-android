@@ -190,7 +190,9 @@
   <string name="mpris_notifications_explanation">Bildirim izni, bildirim çekmecesinde uzak konum ortamını göstermek için gereklidir</string>
   <string name="mpris_notification_settings_title">Ortam denetim bildirimini göster</string>
   <string name="mpris_notification_settings_summary">KDE Bağlan\'ı açmadan ortam oynatıcılarınızı denetlemenize izin verin</string>
-  <string name="share_to">Paylaş…</string>
+  <string name="share_to">Şuraya Paylaş…</string>
+  <string name="unreachable_device">%s (Erişilebilir değil)</string>
+  <string name="unreachable_device_url_share_text">Erişilemeyen bir aygıta gönderilen URL’ler, aygıt erişilebilir olduğunda teslim edilir.\n\n</string>
   <string name="protocol_version_newer">Bu aygıt, daha yeni bir protokol sürümü kullanıyor</string>
   <string name="plugin_settings_with_name">%s ayarları</string>
   <string name="invalid_device_name">Geçersiz aygıt adı</string>

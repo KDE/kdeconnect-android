@@ -115,7 +115,6 @@
     <item>دقيقة واحدة</item>
     <item>دقيقتان</item>
   </string-array>
-  <string name="share_to">شارك مع...</string>
   <string name="protocol_version_newer">يستخدم هذا الجهاز إصدار ميفاق أحدث</string>
   <string name="plugin_settings_with_name">إعدادات %s</string>
   <string name="invalid_device_name">اسم جهاز غير صالح</string>

@@ -206,7 +206,6 @@
   <string name="mpris_notifications_explanation">Uprawnienia powiadomień są potrzebne, aby móc pokazywać zdalne odtwarzacze na belce powiadomień</string>
   <string name="mpris_notification_settings_title">Pokaż powiadomienia sterowania mediami</string>
   <string name="mpris_notification_settings_summary">Steruje odtwarzaczami bez otwierania KDE Connect</string>
-  <string name="share_to">Udostępnij urządzeniu...</string>
   <string name="protocol_version_newer">Urządzenie to używa nowszej wersji protokołu</string>
   <string name="plugin_settings_with_name">Ustawienia %s</string>
   <string name="invalid_device_name">Nieprawidłowa nazwa urządzenia</string>

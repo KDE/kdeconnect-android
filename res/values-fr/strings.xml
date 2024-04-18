@@ -190,7 +190,6 @@
   <string name="mpris_notifications_explanation">Les permissions pour les notifications sont nécessaires pour afficher des supports distants dans le panneau des notifications</string>
   <string name="mpris_notification_settings_title">Afficher la notification de contrôle du lecteur multimédia</string>
   <string name="mpris_notification_settings_summary">Vous permet de contrôler vos lecteurs multimédia sans ouvrir KDE Connect.</string>
-  <string name="share_to">Partager vers…</string>
   <string name="protocol_version_newer">Le périphérique utilise une version plus récente du protocole</string>
   <string name="plugin_settings_with_name">Configuration %s</string>
   <string name="invalid_device_name">Nom de périphérique non valable</string>

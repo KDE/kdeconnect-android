@@ -145,7 +145,6 @@
   </string-array>
   <string name="mpris_notification_settings_title">Meedia juhtimise märguannete näitamine</string>
   <string name="mpris_notification_settings_summary">Meediamängija juhtimise võimaldamine ilma KDE Connecti avamata</string>
-  <string name="share_to">Jaga ...</string>
   <string name="protocol_version_newer">See seade kasutab uuemat protokolli versiooni</string>
   <string name="plugin_settings_with_name">%s seadistused</string>
   <string name="invalid_device_name">Vigane seadme nimi</string>

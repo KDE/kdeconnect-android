@@ -169,7 +169,6 @@
   </string-array>
   <string name="mpris_notification_settings_title">Tampilkan notifikasi kendali media</string>
   <string name="mpris_notification_settings_summary">Memungkinkan pengendalian pemutar media Anda tanpa membuka KDE Connect</string>
-  <string name="share_to">Berbagi Ke...</string>
   <string name="protocol_version_newer">Perangkat ini menggunakan sebuah versi protokol baru</string>
   <string name="plugin_settings_with_name">Pengesetan %s</string>
   <string name="invalid_device_name">Nama peranti tak absah</string>

@@ -178,7 +178,6 @@
   <string name="mpris_notifications_explanation">通知ドロアにメディア情報を表示するためには、通知の許可が必要です。</string>
   <string name="mpris_notification_settings_title">メディア操作の通知を表示</string>
   <string name="mpris_notification_settings_summary">KDE Connect を開かずにメディアプレーヤーをコントロール可能にします</string>
-  <string name="share_to">共有先...</string>
   <string name="protocol_version_newer">このデバイスはより新しいプロトコルバージョンを使用しています</string>
   <string name="plugin_settings_with_name">%s 設定</string>
   <string name="invalid_device_name">不正なデバイス名</string>

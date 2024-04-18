@@ -194,7 +194,6 @@
   <string name="mpris_notifications_explanation">Permisiunea pentru notificări e necesară pentru a arăta piesele distante în sertarul cu notificări</string>
   <string name="mpris_notification_settings_title">Arată notificare cu control multimedia</string>
   <string name="mpris_notification_settings_summary">Permite controlul lectorilor multimedia fără a deschide KDE Connect</string>
-  <string name="share_to">Partajează cu...</string>
   <string name="protocol_version_newer">Acest dispozitiv folosește o versiune mai nouă a protocolului</string>
   <string name="plugin_settings_with_name">Configurări „%s”</string>
   <string name="invalid_device_name">Denumire nevalidă a dispozitivului</string>
