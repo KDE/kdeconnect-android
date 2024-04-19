@@ -190,6 +190,9 @@
   <string name="mpris_notifications_explanation">Разрешението за нотификации е необходимо, за да се показват отдалечени медии в чекмеджето за известия</string>
   <string name="mpris_notification_settings_title">Показване на известие за управление на медиите</string>
   <string name="mpris_notification_settings_summary">Разрешаване на управлението на медийните плейъри, без да отваряте KDE Connect</string>
+  <string name="share_to">Споделяне към...</string>
+  <string name="unreachable_device">%s (не е достъпно)</string>
+  <string name="unreachable_device_url_share_text">URL адресите, споделени към недостъпно устройство, ще бъдат доставени до него, когато то стане достъпно.\n\n</string>
   <string name="protocol_version_newer">Това устройство използва по-нова версия на протокола</string>
   <string name="plugin_settings_with_name">%s настройки</string>
   <string name="invalid_device_name">Невалидно име на устройство</string>

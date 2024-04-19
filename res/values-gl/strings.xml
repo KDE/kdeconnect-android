@@ -112,7 +112,7 @@
   <string name="pair_new_device">Emparellar cun novo dispositivo</string>
   <string name="cancel_pairing">Cancelar o emparellamento</string>
   <string name="unknown_device">Dispositivo descoñecido</string>
-  <string name="error_not_reachable">Dispositivo fóra do alcance</string>
+  <string name="error_not_reachable">O dispositivo está inaccesíbel.</string>
   <string name="error_already_paired">O dispositivo xa está emparellado.</string>
   <string name="error_timed_out">Esgotouse o tempo límite</string>
   <string name="error_canceled_by_user">Cancelouno a persoa usuaria.</string>
@@ -190,6 +190,9 @@
   <string name="mpris_notifications_explanation">Necesítase o permiso de notificacións para amosar medios remotos no caixón de notificacións.</string>
   <string name="mpris_notification_settings_title">Amosar a notificación de control de reprodución.</string>
   <string name="mpris_notification_settings_summary">Permitir controlar os reprodutores sen abrir KDE Connect</string>
+  <string name="share_to">Compartir con…</string>
+  <string name="unreachable_device">%s (inaccesíbel)</string>
+  <string name="unreachable_device_url_share_text">Os URL que se compartan cun dispositivo inaccesíbel entregaranse cando o dispositivo estea accesíbel.\n\n</string>
   <string name="protocol_version_newer">Este dispositivo usa unha versión máis nova do protocolo.</string>
   <string name="plugin_settings_with_name">Configuración de %s</string>
   <string name="invalid_device_name">Nome de dispositivo incorrecto</string>
@@ -235,7 +238,7 @@
   <string name="device_rename_title">Renomear o dispositivo</string>
   <string name="device_rename_confirm">Renomear</string>
   <string name="refresh">Actualizar</string>
-  <string name="unreachable_description">Este dispositivo emparellado está fóra do alcance. Asegúrese de que está conectado á mesma rede.</string>
+  <string name="unreachable_description">Este dispositivo emparellado está inaccesíbel. Asegúrese de que está conectado á mesma rede.</string>
   <string name="no_wifi">Non ten conexión a unha rede Wi-Fi así que pode que non vexa ningún dispositivo. Prema aquí para activar a Wi-Fi.</string>
   <string name="on_non_trusted_message">Non é unha rede de confianza: desactivouse o descubrimento automático.</string>
   <string name="no_file_browser">Non hai navegadores de ficheiros instalados.</string>
@@ -286,7 +289,7 @@
   <string name="mpris_stop">Deter o reprodutor actual</string>
   <string name="copy_url_to_clipboard">Copiar o URL no portapapeis</string>
   <string name="clipboard_toast">Copiouse no portapapeis</string>
-  <string name="runcommand_notreachable">O dispositivo está fóra de alcance</string>
+  <string name="runcommand_notreachable">O dispositivo está inaccesíbel.</string>
   <string name="runcommand_notpaired">O dispositivo non está emparellado</string>
   <string name="runcommand_nosuchdevice">Non hai tal dispositivo</string>
   <string name="runcommand_noruncommandplugin">O dispositivo non ten o complemento de «Executar unha orde» activado</string>
