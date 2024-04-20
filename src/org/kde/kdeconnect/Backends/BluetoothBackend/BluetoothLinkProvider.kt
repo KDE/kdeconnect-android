@@ -231,21 +231,25 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
         }
 
         override fun run() {
-            Log.i("ClientRunnable", "run called")
-            val filter = IntentFilter(BluetoothDevice.ACTION_UUID)
-            context.registerReceiver(this, filter)
-            Log.i("ClientRunnable", "receiver registered")
-            if (continueProcessing) {
-                Log.i("ClientRunnable", "before connectToDevices")
-                discoverDeviceServices()
-                Log.i("ClientRunnable", "after connectToDevices")
-                try {
-                    Thread.sleep(15000)
-                } catch (ignored: InterruptedException) {
+            try {
+                Log.i("ClientRunnable", "run called")
+                val filter = IntentFilter(BluetoothDevice.ACTION_UUID)
+                context.registerReceiver(this, filter)
+                Log.i("ClientRunnable", "receiver registered")
+                if (continueProcessing) {
+                    Log.i("ClientRunnable", "before connectToDevices")
+                    discoverDeviceServices()
+                    Log.i("ClientRunnable", "after connectToDevices")
+                    try {
+                        Thread.sleep(15000)
+                    } catch (ignored: InterruptedException) {
+                    }
                 }
+                Log.i("ClientRunnable", "unregisteringReceiver")
+                context.unregisterReceiver(this)
+            } catch (se: SecurityException) {
+                Log.w("BluetoothLinkProvider", se)
             }
-            Log.i("ClientRunnable", "unregisteringReceiver")
-            context.unregisterReceiver(this)
         }
 
         /**
