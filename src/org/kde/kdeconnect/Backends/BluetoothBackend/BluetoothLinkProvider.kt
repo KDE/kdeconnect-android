@@ -136,6 +136,11 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
                 return
             } catch (e: SecurityException) {
                 Log.e("KDEConnect", "Security Exception for CONNECT", e)
+
+                val prefenceEditor = PreferenceManager.getDefaultSharedPreferences(context).edit()
+                prefenceEditor.putBoolean(SettingsFragment.KEY_BLUETOOTH_ENABLED, false)
+                prefenceEditor.apply()
+
                 return
             }
             try {
@@ -249,6 +254,7 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
                 context.unregisterReceiver(this)
             } catch (se: SecurityException) {
                 Log.w("BluetoothLinkProvider", se)
+
             }
         }
 
