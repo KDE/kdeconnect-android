@@ -189,7 +189,6 @@
   </string-array>
   <string name="mpris_notification_settings_title">Vis varsling med avspelingskontrollar</string>
   <string name="mpris_notification_settings_summary">Tillat å kontrollera mediespelarar utan å opna KDE Connect</string>
-  <string name="share_to">Del til …</string>
   <string name="protocol_version_newer">Denne eininga brukar ein nyare protokollversjon</string>
   <string name="plugin_settings_with_name">%s-innstillingar</string>
   <string name="invalid_device_name">Ugyldig einingsnamn</string>

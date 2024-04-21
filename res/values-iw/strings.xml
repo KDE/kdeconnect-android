@@ -206,6 +206,9 @@
   <string name="mpris_notifications_explanation">צריך הרשאת התראות כדי להציג מדיה מרוחק במגירת ההתראות</string>
   <string name="mpris_notification_settings_title">הצגת התראות בקרת מדיה</string>
   <string name="mpris_notification_settings_summary">לאפשר שליטה בנגני המדיה שלך מבלי לפתוח את KDE Connect</string>
+  <string name="share_to">שיתוף אל…</string>
+  <string name="unreachable_device">%s (לא נגיש)</string>
+  <string name="unreachable_device_url_share_text">כתובות שותפו להתקן בלתי נגיש והן תועברנה אליו ברגע שישוב להיות נגיש.\n\n</string>
   <string name="protocol_version_newer">המכשיר משתמש בגרסה חדשה יותר</string>
   <string name="plugin_settings_with_name">הגדרות %s</string>
   <string name="invalid_device_name">שם המכשיר שגוי</string>
