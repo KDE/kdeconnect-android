@@ -15,6 +15,7 @@
   <string name="pref_plugin_clipboard_desc">Comparti le contento de area de transferentia</string>
   <string name="pref_plugin_clipboard_sent">Area de transferentia inviate</string>
   <string name="pref_plugin_mousepad">Entrata remote</string>
+  <string name="pref_plugin_presenter">Presentation Remote</string>
   <string name="pref_plugin_presenter_desc">Usa tu dispositivo per cambiar diapositivas in un presentation</string>
   <string name="pref_plugin_mpris">Controlos de Multimedia</string>
   <string name="pref_plugin_runcommand">Executa commando</string>
@@ -72,6 +73,7 @@
   </plurals>
   <string name="tap_to_open">Tocca per aperir</string>
   <string name="left_click">Invia Click sinistre</string>
+  <string name="show_keyboard">Monstra Claviero</string>
   <string name="pairing_accept">Accepta</string>
   <string name="pairing_reject">Rejecta</string>
   <string name="settings">Preferentias</string>
@@ -91,6 +93,8 @@
     <item>1 minuta</item>
     <item>2 minutas</item>
   </string-array>
+  <string name="share_to">Comparti a…</string>
+  <string name="unreachable_device">%s (non attingibile)</string>
   <string name="custom_device_fab_hint">Adde un dispositivo</string>
   <string name="undo">Annulla</string>
   <string name="share">Comparti</string>
