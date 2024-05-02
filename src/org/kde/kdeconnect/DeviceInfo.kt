@@ -89,7 +89,7 @@ class DeviceInfo(
         fun fromIdentityPacketAndCert(identityPacket: NetworkPacket, certificate: Certificate) =
             with(identityPacket) {
                 DeviceInfo(
-                    id = getString("deviceId"),
+                    id = getString("deviceId"), // Redundant: We could read this from the certificate instead
                     name = getString("deviceName", "unknown"),
                     type = DeviceType.fromString(getString("deviceType", "desktop")),
                     certificate = certificate,
