@@ -7,12 +7,20 @@ package org.kde.kdeconnect.Plugins.MprisPlugin
 
 import android.Manifest
 import android.app.Activity
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Build
 import android.util.Log
 import androidx.annotation.DrawableRes
+import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
+import androidx.preference.PreferenceManager
+import org.kde.kdeconnect.Helpers.NotificationHelper
+import org.kde.kdeconnect.Helpers.VideoUrlsHelper
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.Plugins.MprisPlugin.AlbumArtCache.deregisterPlugin
 import org.kde.kdeconnect.Plugins.MprisPlugin.AlbumArtCache.getAlbumArt
@@ -243,6 +251,7 @@ class MprisPlugin : Plugin() {
         if (np.has("player")) {
             val playerStatus = players[np.getString("player")]
             if (playerStatus != null) {
+                val wasPlaying = playerStatus.isPlaying
                 //Note: title, artist and album will not be available for all desktop clients
                 playerStatus.title = np.getString("title", playerStatus.title)
                 playerStatus.artist = np.getString("artist", playerStatus.artist)
@@ -286,6 +295,11 @@ class MprisPlugin : Plugin() {
                         playerStatusUpdated.remove(key)
                     }
                 }
+
+                // Check to see if a stream has stopped playing and we should deliver a notification
+                if (np.has("isPlaying") && !playerStatus.isPlaying && wasPlaying) {
+                    showContinueWatchingNotification(playerStatus)
+                }
             }
         }
 
@@ -309,8 +323,13 @@ class MprisPlugin : Plugin() {
                 val oldPlayer = it.key
                 val found = newPlayerList.stream().anyMatch { newPlayer -> newPlayer == oldPlayer }
                 if (!found) {
-                    iter.remove()
+                    // Player got removed
                     equals = false
+                    iter.remove()
+                    val playerStatus = it.value
+                    if (playerStatus.isPlaying) {
+                        showContinueWatchingNotification(playerStatus)
+                    }
                 }
             }
             if (!equals) {
@@ -326,6 +345,34 @@ class MprisPlugin : Plugin() {
         }
 
         return true
+    }
+
+    private fun showContinueWatchingNotification(playerStatus: MprisPlayer) {
+        val prefs = PreferenceManager.getDefaultSharedPreferences(context)
+        if (prefs.getBoolean(context.getString(R.string.mpris_keepwatching_key), true) &&
+            (playerStatus.url.startsWith("http://") || playerStatus.url.startsWith("https://"))
+        ) {
+            try {
+                val url = VideoUrlsHelper.formatUriWithSeek(playerStatus.url, playerStatus.position).toString()
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                val pendingIntent = PendingIntent.getActivity(device.context, 0, browserIntent, PendingIntent.FLAG_IMMUTABLE)
+
+                val notificationManager = ContextCompat.getSystemService(device.context, NotificationManager::class.java)
+                val builder = NotificationCompat.Builder(device.context, NotificationHelper.Channels.CONTINUEWATCHING)
+                    .setContentTitle(context.resources.getString(R.string.kde_connect))
+                    .setSmallIcon(R.drawable.ic_play_white)
+                    .setTimeoutAfter(3000)
+                    .setContentIntent(pendingIntent)
+                    .setContentText(context.resources.getString(R.string.mpris_keepwatching) + " " + playerStatus.title)
+                NotificationHelper.notifyCompat(
+                    notificationManager,
+                    System.currentTimeMillis().toInt(),
+                    builder.build()
+                )
+            } catch (e: MalformedURLException) {
+                e.printStackTrace();
+            }
+        }
     }
 
     override val supportedPacketTypes: Array<String> = arrayOf(PACKET_TYPE_MPRIS)

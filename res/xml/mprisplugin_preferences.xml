@@ -28,4 +28,11 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
         android:summary="@string/mpris_notification_settings_summary"
         android:title="@string/mpris_notification_settings_title" />
 
+    <SwitchPreference
+        android:id="@+id/mpris_keepwatching_preference"
+        android:defaultValue="true"
+        android:key="@string/mpris_keepwatching_key"
+        android:summary="@string/mpris_keepwatching_settings_summary"
+        android:title="@string/mpris_keepwatching_settings_title" />
+
 </PreferenceScreen>

@@ -35,6 +35,8 @@ public class NotificationHelper {
 
         public final static String RECEIVENOTIFICATION = "receive";
         public final static String HIGHPRIORITY = "highpriority";
+        public final static String CONTINUEWATCHING = "continuewatching";
+
     }
 
     public static void notifyCompat(NotificationManager notificationManager, int notificationId, Notification notification) {
@@ -87,14 +89,23 @@ public class NotificationHelper {
                 .Builder(Channels.RECEIVENOTIFICATION, NotificationManagerCompat.IMPORTANCE_DEFAULT)
                 .setName(context.getString(R.string.notification_channel_receivenotification))
                 .build();
-        final NotificationChannelCompat highPriorityChannel = new NotificationChannelCompat
+        final NotificationChannelCompat continueWatchingChannel = new NotificationChannelCompat
                 .Builder(Channels.HIGHPRIORITY, NotificationManagerCompat.IMPORTANCE_HIGH)
                 .setName(context.getString(R.string.notification_channel_high_priority))
                 .build();
-
+        /* This notification should be highly visible *only* if the user looks at their phone */
+        /* It should not be a distraction. It should be a convenient button to press          */
+        final NotificationChannelCompat highPriorityChannel = new NotificationChannelCompat
+                .Builder(Channels.CONTINUEWATCHING, NotificationManagerCompat.IMPORTANCE_HIGH)
+                .setName(context.getString(R.string.notification_channel_keepwatching))
+                .setVibrationEnabled(false)
+                .setLightsEnabled(false)
+                .setSound(null, null)
+                .build();
         final List<NotificationChannelCompat> channels = Arrays.asList(persistentChannel,
                 defaultChannel, mediaChannel, fileTransferDownloadChannel, fileTransferUploadChannel,
-                fileTransferErrorChannel, receiveNotificationChannel, highPriorityChannel);
+                fileTransferErrorChannel, receiveNotificationChannel, highPriorityChannel,
+                continueWatchingChannel);
 
         NotificationManagerCompat.from(context).createNotificationChannelsCompat(channels);
 
@@ -102,7 +113,7 @@ public class NotificationHelper {
         // Use this to deprecate old channels.
         NotificationManagerCompat.from(context).deleteUnlistedNotificationChannels(
                 channels.stream()
-                        .map(notificationChannelCompat -> notificationChannelCompat.getId())
+                        .map(NotificationChannelCompat::getId)
                         .collect(Collectors.toList()));
     }
 

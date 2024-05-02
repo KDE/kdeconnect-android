@@ -569,4 +569,11 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="findmyphone_notifications_explanation">The notifications permission is needed so the phone can ring when the app is in the background</string>
     <string name="no_notifications">Notifications are disabled, you won\'t receive incoming pair notifications.</string>
 
+
+    <string name="mpris_keepwatching">Continue playing</string>
+    <string name="mpris_keepwatching_key" translatable="false">mpris_keepwatching_enabled</string>
+    <string name="mpris_keepwatching_settings_title">Continue playing</string>
+    <string name="mpris_keepwatching_settings_summary">Show a silent notification to continue playing on this device after closing media</string>
+    <string name="notification_channel_keepwatching">Continue playing</string>
+
 </resources>
