@@ -131,7 +131,7 @@
     <item quantity="other">Prejemanje %1$d datotek od %2$s</item>
   </plurals>
   <plurals name="incoming_files_text">
-    <item quantity="one">(Datoteke %2$d od %3$d) : %1$s</item>
+    <item quantity="one">(Datotek %2$d od %3$d) : %1$s</item>
     <item quantity="two">(Datoteka %2$d od %3$d) : %1$s</item>
     <item quantity="few">(Datoteki %2$d od %3$d) : %1$s</item>
     <item quantity="other">(Datoteke %2$d od %3$d) : %1$s</item>
@@ -428,4 +428,8 @@
   <string name="receive_notifications_permission_explanation">Morate imeti dovoljenje za obvestila, če jih želite sprejemati iz drugih naprav</string>
   <string name="findmyphone_notifications_explanation">Potrebno je dovoljenje za obvestila, da lahko telefon zazvoni, ko je aplikacija v ozadju</string>
   <string name="no_notifications">Obvestila so onemogočena, ne boste prejemali obvestil o dohodnih parih.</string>
+  <string name="mpris_keepwatching">Nadaljuj s predvajanjem</string>
+  <string name="mpris_keepwatching_settings_title">Nadaljuj s predvajanjem</string>
+  <string name="mpris_keepwatching_settings_summary">Pokaži tiho obvestilo za nadaljevanje predvajanja v tej napravi po zaprtju predstavnosti</string>
+  <string name="notification_channel_keepwatching">Nadaljuj s predvajanjem</string>
 </resources>

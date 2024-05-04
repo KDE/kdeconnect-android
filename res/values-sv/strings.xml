@@ -18,6 +18,7 @@
   <string name="pref_plugin_clipboard_sent">Klippbordet skickat</string>
   <string name="pref_plugin_mousepad">Extern inmatning</string>
   <string name="pref_plugin_mousepad_desc">Använd telefonen eller surfplattan som mus och tangentbord</string>
+  <string name="pref_plugin_presenter">Fjärrkontroll för presentation</string>
   <string name="pref_plugin_presenter_desc">Använd apparaten för att byta bilder i en presentation</string>
   <string name="pref_plugin_remotekeyboard">Ta emot externa tangentnedtryckningar</string>
   <string name="pref_plugin_remotekeyboard_desc">Ta emot tangentnedtryckningar från externa apparater</string>
@@ -51,6 +52,7 @@
   <string name="remotekeyboard_multiple_connections">Det finns mer än en anslutning till externt tangentbord, välj apparat att anpassa</string>
   <string name="open_mousepad">Extern inmatning</string>
   <string name="mousepad_info">Flytta fingret på skärmen för att röra muspekaren. Rör för att klicka, och använd två eller tre fingrar för höger- och mittenknapparna. Använd två fingrar för att panorera. Använd en längre beröring för drag och släpp. Musens gyroskopiska funktion kan aktiveras från insticksprogrammets inställningar.</string>
+  <string name="mousepad_info_no_gestures">Flytta ett finger på skärmen för att flytta muspekaren, rör för att klicka.</string>
   <string name="mousepad_keyboard_input_not_supported">Tangentbordsinmatning stöds inte av den ihopparade apparaten</string>
   <string name="mousepad_single_tap_settings_title">Ställ in åtgärd vid en fingerberöring</string>
   <string name="mousepad_double_tap_settings_title">Ställ in åtgärd vid två fingerberöringar</string>
@@ -59,6 +61,7 @@
   <string name="mousepad_mouse_buttons_title">Visa musknappar</string>
   <string name="mousepad_acceleration_profile_settings_title">Ställ in pekaracceleration</string>
   <string name="mousepad_scroll_direction_title">Omvänd rullningsriktning</string>
+  <string name="mousepad_scroll_sensitivity_title">Rullningskänslighet</string>
   <string name="gyro_mouse_enabled_title">Aktivera gyroskopisk mus</string>
   <string name="gyro_mouse_sensitivity_title">Gyroskop-känslighet</string>
   <string-array name="mousepad_tap_entries">
@@ -119,6 +122,7 @@
   <string name="my_device_fingerprint">SHA256-fingeravtryck för din apparats certifikat är:</string>
   <string name="remote_device_fingerprint">SHA256-fingeravtryck för den andra apparatens certifikat är:</string>
   <string name="pair_requested">Ihopparning begärd</string>
+  <string name="pair_succeeded">Ihopparning lyckades</string>
   <string name="pairing_request_from">Begäran om ihopparning från %1s</string>
   <plurals name="incoming_file_title">
     <item quantity="one">Tar emot %1$d fil från %2$s</item>
@@ -156,6 +160,7 @@
   <string name="received_file_text">Rör för att öppna \'%1s\'</string>
   <string name="cannot_create_file">Kan inte skapa filen %s</string>
   <string name="tap_to_answer">Rör för att svara</string>
+  <string name="left_click">Skicka vänsterklick</string>
   <string name="right_click">Skicka högerklick</string>
   <string name="middle_click">Skicka mittenklick</string>
   <string name="show_keyboard">Visa tangentbord</string>
@@ -185,6 +190,9 @@
   <string name="mpris_notifications_explanation">Underrättelserättigheter krävs för att visa fjärrmedia i underrättelselådan</string>
   <string name="mpris_notification_settings_title">Visa underrättelser om mediastyrning</string>
   <string name="mpris_notification_settings_summary">Tillåt att styra mediaspelare utan att KDE-anslut öppnas</string>
+  <string name="share_to">Dela med…</string>
+  <string name="unreachable_device">%s (kan inte nås)</string>
+  <string name="unreachable_device_url_share_text">Webbadress som delas med en apparat som inte kan nås levereras till den när den väl blir möjlig att nå.\n\n</string>
   <string name="protocol_version_newer">Apparaten använder en nyare protokollversion</string>
   <string name="plugin_settings_with_name">Inställningar av %s</string>
   <string name="invalid_device_name">Ogiltigt apparatnamn</string>
@@ -404,4 +412,8 @@
   <string name="receive_notifications_permission_explanation">Underrättelser måste vara tillåtna för att kunna ta emot dem från andra apparater</string>
   <string name="findmyphone_notifications_explanation">Underrättelserättigheter krävs så att telefonen kan ringa när programmet är i bakgrunden</string>
   <string name="no_notifications">Underrättelser är inaktiverade, så en underrättelse om inkommande begäran att para ihop inte tas emot.</string>
+  <string name="mpris_keepwatching">Fortsätt spela</string>
+  <string name="mpris_keepwatching_settings_title">Fortsätt spela</string>
+  <string name="mpris_keepwatching_settings_summary">Visa en tyst underrättelse för att fortsätta spela på apparaten efter att media har stängts.</string>
+  <string name="notification_channel_keepwatching">Fortsätt spela</string>
 </resources>

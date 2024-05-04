@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="kde_connect">KDE Connect</string>
+  <string name="kde_connect">KDEConnect</string>
   <string name="manifest_label_share">Envoyer vers un périphérique</string>
   <string name="foreground_notification_no_devices">Connecté à aucun périphérique</string>
   <string name="foreground_notification_devices">Connecté à : %s</string>
@@ -43,7 +43,7 @@
   <string name="open_settings">Accéder aux paramètres</string>
   <string name="no_permissions">Vous devez accorder la permission d\'accéder aux notifications</string>
   <string name="no_permission_mprisreceiver">Pour pouvoir contrôler vos lecteurs multimédia, veuillez permettre l\'accès aux notifications</string>
-  <string name="no_permissions_remotekeyboard">Vous devez activer le Clavier à distance KDE Connect pour recevoir les appuis sur les touches</string>
+  <string name="no_permissions_remotekeyboard">Vous devez activer le Clavier à distance KDEConnect pour recevoir les appuis sur les touches</string>
   <string name="send_ping">Envoyer un « Ping »</string>
   <string name="open_mpris_controls">Contrôles multimédia</string>
   <string name="remotekeyboard_editing_only_title">Gérer les appuis de touches à distance uniquement lors de l\'édition</string>
@@ -88,12 +88,12 @@
   <string name="sendkeystrokes_send_to">Envoyez les appuis de touches vers</string>
   <string name="sendkeystrokes_textbox_hint">Envoyez les appuis de touches vers l\'hôte</string>
   <string name="sendkeystrokes_disabled_toast">L\'envoi des appuis de touches est désactivé. Veuillez l\'activer dans la configuration.</string>
-  <string name="sendkeystrokes_wrong_data">Type « MIME » non valable. Doit être « text/x-keystrokes »</string>
+  <string name="sendkeystrokes_wrong_data">Type « MIME » non valable. Doit être « text / x-keystrokes »</string>
   <string name="sendkeystrokes_sent_text">%1s envoyés vers le périphérique %2s</string>
   <string name="sendkeystrokes_pref_category_summary">Ce module permet aux autres applications de partager des portions de texte comme des appuis de touches, qui seront envoyées vers l\'hôte connecté.</string>
   <string name="sendkeystrokes_pref_category_title">Envoyez les appuis de touches</string>
   <string name="sendkeystrokes_pref_enabled">Autoriser l\'envoi des appuis de touches</string>
-  <string name="sendkeystrokes_pref_enabled_summary">Attendre des données avec le type « MIME » « text/x-keystrokes »</string>
+  <string name="sendkeystrokes_pref_enabled_summary">Attendre des données avec le type « MIME » « text / x-keystrokes »</string>
   <string name="sendkeystrokes_safe_text_enabled">Envoyez du texte confirmé immédiatement</string>
   <string name="sendkeystrokes_safe_text_enabled_summary">Envoyez des chaînes courtes uniquement numériques sans confirmation</string>
   <string name="pref_plugin_mousepad_send_keystrokes">Envoyez comme appuis de touches</string>
@@ -118,7 +118,7 @@
   <string name="error_canceled_by_user">Annulé par l\'utilisateur</string>
   <string name="error_canceled_by_other_peer">Annulé par un autre homologue</string>
   <string name="encryption_info_title">Informations de chiffrement</string>
-  <string name="encryption_info_msg_no_ssl">Ce périphérique n\'utilise pas une version récente de KDE Connect qui utilise l\'ancienne méthode de chiffrement.</string>
+  <string name="encryption_info_msg_no_ssl">Ce périphérique n\'utilise pas une version récente de KDEConnect qui utilise l\'ancienne méthode de chiffrement.</string>
   <string name="my_device_fingerprint">L\'empreinte SHA256 du certificat de votre périphérique est :</string>
   <string name="remote_device_fingerprint">L\'empreinte « SHA256 » du certificat du périphérique distant est :</string>
   <string name="pair_requested">Paire demandée</string>
@@ -189,7 +189,7 @@
   </string-array>
   <string name="mpris_notifications_explanation">Les permissions pour les notifications sont nécessaires pour afficher des supports distants dans le panneau des notifications</string>
   <string name="mpris_notification_settings_title">Afficher la notification de contrôle du lecteur multimédia</string>
-  <string name="mpris_notification_settings_summary">Vous permet de contrôler vos lecteurs multimédia sans ouvrir KDE Connect.</string>
+  <string name="mpris_notification_settings_summary">Vous permet de contrôler vos lecteurs multimédia sans ouvrir KDEConnect.</string>
   <string name="share_to">Partager vers…</string>
   <string name="unreachable_device">%s (Inaccessible)</string>
   <string name="unreachable_device_url_share_text">Les URL partagées vers un appareil inaccessible lui seront transmises une fois qu’il re-deviendra accessible.\n\n</string>
@@ -228,13 +228,13 @@
   <string name="sftp_action_mode_menu_delete">Supprimer</string>
   <string name="sftp_no_storage_locations_configured">Aucun emplacement stockage n\'est configuré</string>
   <string name="sftp_saf_permission_explanation">Vous devez configurer des emplacements de stockage pour accéder aux fichiers à distance</string>
-  <string name="sftp_manage_storage_permission_explanation">Pour permettre l\'accès à distance aux fichiers sur ce périphérique, vous devez autoriser KDE Connect à gérer l\'enregistrement.</string>
+  <string name="sftp_manage_storage_permission_explanation">Pour permettre l\'accès à distance aux fichiers sur ce périphérique, vous devez autoriser KDEConnect à gérer l\'enregistrement.</string>
   <string name="no_players_connected">Aucun lecteur trouvé</string>
   <string name="send_files">Envoyer des fichiers</string>
   <string name="block_notification_contents">Bloquer les contenus de notifications</string>
   <string name="block_notification_images">Bloquer les images de notifications</string>
-  <string name="pairing_title">Périphériques KDE Connect</string>
-  <string name="pairing_description">Les autres périphériques utilisant KDE Connect dans votre réseau apparaissent ici.</string>
+  <string name="pairing_title">Périphériques KDEConnect</string>
+  <string name="pairing_description">Les autres périphériques utilisant KDEConnect dans votre réseau apparaissent ici.</string>
   <string name="device_rename_title">Renommer le périphérique</string>
   <string name="device_rename_confirm">Renommer</string>
   <string name="refresh">Mettre à jour</string>
@@ -275,7 +275,7 @@
   <string name="presenter_lock_tip">Vous pouvez verrouiller votre appareil et utiliser les touches de volume pour passer d\'une diapositive à l\'autre</string>
   <string name="add_command">Ajouter une commande</string>
   <string name="addcommand_explanation">Aucune commande enregistrée</string>
-  <string name="addcommand_explanation2">Vous pouvez ajouter de nouvelles commandes dans la configuration système de KDE Connect</string>
+  <string name="addcommand_explanation2">Vous pouvez ajouter de nouvelles commandes dans la configuration système de KDEConnect</string>
   <string name="add_command_description">Vous pouvez ajouter des commandes sur votre ordinateur</string>
   <string name="pref_plugin_mprisreceiver">Contrôle du lecteur multimédia</string>
   <string name="pref_plugin_mprisreceiver_desc">Contrôlez les lecteurs multimédia de votre téléphone depuis un autre appareil</string>
@@ -319,7 +319,7 @@
   <string name="block_images">Bloquer les images des notifications</string>
   <string name="notification_channel_receivenotification">Notifications provenant d\'autres périphériques</string>
   <string name="no_app_for_opening">Aucune application adaptée trouvée pour ouvrir ce fichier.</string>
-  <string name="remote_keyboard_service">Clavier à distance KDE Connect</string>
+  <string name="remote_keyboard_service">Clavier à distance KDEConnect</string>
   <string name="presenter_pointer">Pointeur</string>
   <string name="trusted_networks">Réseaux de confiance</string>
   <string name="trusted_networks_desc">Restreindre la découverte automatique aux réseaux connus</string>
@@ -396,7 +396,7 @@
   <string name="about_kde_support_kde">&lt;h1&gt;Soutenir KDE&lt;/h1&gt; &lt;p&gt; Les logiciels de KDE sont et seront toujours disponibles gratuitement. Cependant, leur création n\'est pas gratuite. &lt;p&gt;Pour soutenir le développement, la communauté KDE a créée KDE e.V., une organisation à but non lucratif, légalement fondée en Allemagne. KDE e.V. représente la communauté KDE pour les questions juridiques et financières. Veuillez consulter la page &lt;a href=https://ev.kde.org/&gt;https://ev.kde.org/&lt;/a&gt; pour plus d\'informations sur KDE e.V.&lt;/p&gt; &lt;p&gt;KDE bénéficie de plusieurs types de contributions, y compris financières. Nous utilisons les fonds pour rembourser les membres et d\'autres personnes pour les dépenses qu\'ils engagent pour leurs contributions. D\'autres fonds sont utilisés pour le soutien juridique et l\'organisation de conférences et de réunions. Nous aimerions vous encourager à soutenir nos efforts par un don financier, en utilisant l\'un des moyens décrits sur la page &lt;a href=https://www.kde.org/community/donations/&gt;https://www.kde.org/community/donations/&lt;/a&gt;. &lt;/p&gt; Nous vous remercions par avance pour votre soutien.</string>
   <string name="maintainer_and_developer">Mainteneur et développeur</string>
   <string name="developer">Développeur</string>
-  <string name="apple_support">Prise en charge de MacOS. Travail en cours sur la prise en charge de iOS.</string>
+  <string name="apple_support">Prise en charge de macOS. Travail en cours sur la prise en charge de iOS.</string>
   <string name="bug_fixes_and_general_improvements">Correction de bogues et améliorations générales</string>
   <string name="samoilenko_yuri_task">Implémentation de SFTP, corrections de bogues et améliorations générales</string>
   <string name="aniket_kumar_task">Améliorations du module externe pour SMS</string>
@@ -404,7 +404,7 @@
   <string name="maxim_leshchenko_task">Améliorations de l\'interface utilisateur et de cette page d\'à propos</string>
   <string name="holger_kaelberer_task">Corrections du module externe de clavier sans fil et de bogues</string>
   <string name="saikrishna_arcot_task">Prise en charge de l\'utilisation du clavier dans le module d\'entrée à distance, corrections de bogues et améliorations générales</string>
-  <string name="everyone_else">Toutes les autres personnes ayant contribué à « KDE Connect » depuis plusieurs années</string>
+  <string name="everyone_else">"Toutes les autres personnes ayant contribué  KDEConnect depuis plusieurs années"</string>
   <string name="send_clipboard">Envoyer le presse-papier</string>
   <string name="tap_to_execute">Tapotez pour lancer</string>
   <string name="plugin_stats">Statistiques des modules externes</string>

@@ -428,4 +428,8 @@
   <string name="receive_notifications_permission_explanation">Для отримання сповіщень з інших пристроїв має бути уможливлено показ сповіщень</string>
   <string name="findmyphone_notifications_explanation">Для уможливлення дзвінків, коли програма перебуває у фоновому режимі, потрібні права доступу до сповіщень</string>
   <string name="no_notifications">Показ сповіщень вимкнено, ви не отримуватимете сповіщень щодо вхідних запитів на пов\'язування пристроїв.</string>
+  <string name="mpris_keepwatching">Продовжити відтворення</string>
+  <string name="mpris_keepwatching_settings_title">Продовжити відтворення</string>
+  <string name="mpris_keepwatching_settings_summary">Показати беззвучне сповіщення для продовження відтворення на цьому пристрої після закриття носія</string>
+  <string name="notification_channel_keepwatching">Продовжити відтворення</string>
 </resources>
