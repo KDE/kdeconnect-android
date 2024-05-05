@@ -412,4 +412,8 @@
   <string name="receive_notifications_permission_explanation">Debe permitir notificacións para recibilas doutros dispositivos.</string>
   <string name="findmyphone_notifications_explanation">Necesita o permiso de notificacións para que o teléfono poda soar cando a aplicación está en segundo plano.</string>
   <string name="no_notifications">As notificacións están desactivadas, non recibirá notificacións entrantes de emparellamento.</string>
+  <string name="mpris_keepwatching">Continuar reproducindo</string>
+  <string name="mpris_keepwatching_settings_title">Continuar reproducindo</string>
+  <string name="mpris_keepwatching_settings_summary">Amosar unha notificación silenciosa para continuar reproducindo neste dispositivo tras pechar o contido multimedia.</string>
+  <string name="notification_channel_keepwatching">Continuar reproducindo</string>
 </resources>

@@ -409,4 +409,8 @@
   <string name="receive_notifications_permission_explanation">Sciigoj devas esti permesitaj ricevi ilin de aliaj aparatoj</string>
   <string name="findmyphone_notifications_explanation">La sciiga permeso estas necesa por ke la telefono povu sonori kiam la app estas en la fono</string>
   <string name="no_notifications">Sciigoj estas malŝaltitaj, vi ne ricevos alvenantajn parajn sciigojn.</string>
+  <string name="mpris_keepwatching">Daŭrigi ludadon</string>
+  <string name="mpris_keepwatching_settings_title">Daŭrigi ludadon</string>
+  <string name="mpris_keepwatching_settings_summary">Montri silentan sciigon por daŭrigi ludadon en ĉi tiu aparato post fermo de datumportilo</string>
+  <string name="notification_channel_keepwatching">Daŭrigi ludadon</string>
 </resources>

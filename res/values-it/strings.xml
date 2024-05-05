@@ -412,4 +412,8 @@
   <string name="receive_notifications_permission_explanation">Le notifiche devono essere consentite per riceverle da altri dispositivi</string>
   <string name="findmyphone_notifications_explanation">L\'autorizzazione alle notifiche è necessaria affinché il telefono possa squillare quando l\'applicazione è sullo sfondo</string>
   <string name="no_notifications">Le notifiche sono disabilitate, non riceverai notifiche di associazione in arrivo.</string>
+  <string name="mpris_keepwatching">Continua la riproduzione</string>
+  <string name="mpris_keepwatching_settings_title">Continua la riproduzione</string>
+  <string name="mpris_keepwatching_settings_summary">Mostra una notifica silenziosa per continuare a giocare su questo dispositivo dopo aver chiuso il supporto multimediale</string>
+  <string name="notification_channel_keepwatching">Continua la riproduzione</string>
 </resources>
