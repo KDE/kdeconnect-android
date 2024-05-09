@@ -189,6 +189,8 @@
   </string-array>
   <string name="mpris_notification_settings_title">Vis varsling med avspelingskontrollar</string>
   <string name="mpris_notification_settings_summary">Tillat å kontrollera mediespelarar utan å opna KDE Connect</string>
+  <string name="share_to">Del til …</string>
+  <string name="unreachable_device">%s (får ikkje kontakt med)</string>
   <string name="protocol_version_newer">Denne eininga brukar ein nyare protokollversjon</string>
   <string name="plugin_settings_with_name">%s-innstillingar</string>
   <string name="invalid_device_name">Ugyldig einingsnamn</string>
@@ -401,4 +403,6 @@
   <string name="plugin_stats">Programtillegg-statistikk</string>
   <string name="enable_udp_broadcast">Slå på einingsoppdaging via UDP</string>
   <string name="receive_notifications_permission_explanation">Du må tillata varslingar for å kunna frå varslingar frå andre einingar</string>
+  <string name="mpris_keepwatching_settings_title">Hald fram avspeling</string>
+  <string name="notification_channel_keepwatching">Hald fram avspeling</string>
 </resources>
