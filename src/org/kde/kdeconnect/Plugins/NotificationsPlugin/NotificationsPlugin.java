@@ -303,10 +303,8 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         try {
             Context foreignContext = context.createPackageContext(statusBarNotification.getPackageName(), 0);
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && notification.getLargeIcon() != null) {
+            if (notification.getLargeIcon() != null) {
                 return iconToBitmap(foreignContext, notification.getLargeIcon());
-            } else if (notification.largeIcon != null) {
-                return notification.largeIcon;
             }
 
             PackageManager pm = context.getPackageManager();
@@ -398,7 +396,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         return res;
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
     private Bitmap iconToBitmap(Context foreignContext, Icon icon) {
         if (icon == null) return null;
 

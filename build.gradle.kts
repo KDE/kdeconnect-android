@@ -43,7 +43,7 @@ android {
     namespace = "org.kde.kdeconnect_tp"
     compileSdk = 34
     defaultConfig {
-        minSdk = 21
+        minSdk = 23
         targetSdk = 33
         proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
     }

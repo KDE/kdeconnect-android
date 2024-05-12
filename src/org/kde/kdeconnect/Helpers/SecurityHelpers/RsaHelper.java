@@ -35,16 +35,10 @@ public class RsaHelper {
             String keyAlgorithm;
             try {
                 KeyPairGenerator keyGen;
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    keyAlgorithm = KeyProperties.KEY_ALGORITHM_EC;
-                    keyGen = KeyPairGenerator.getInstance(keyAlgorithm);
-                    ECGenParameterSpec spec = new ECGenParameterSpec("secp256r1");
-                    keyGen.initialize(spec);
-                } else {
-                    keyAlgorithm = "RSA";
-                    keyGen = KeyPairGenerator.getInstance(keyAlgorithm);
-                    keyGen.initialize(2048);
-                }
+                keyAlgorithm = KeyProperties.KEY_ALGORITHM_EC;
+                keyGen = KeyPairGenerator.getInstance(keyAlgorithm);
+                ECGenParameterSpec spec = new ECGenParameterSpec("secp256r1");
+                keyGen.initialize(spec);
                 keyPair = keyGen.generateKeyPair();
             } catch (Exception e) {
                 Log.e("KDE/initializeRsaKeys", "Exception", e);

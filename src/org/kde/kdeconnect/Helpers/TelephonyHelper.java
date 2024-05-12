@@ -37,7 +37,6 @@ public class TelephonyHelper {
      * Get all subscriptionIDs of the device
      * As far as I can tell, this is essentially a way of identifying particular SIM cards
      */
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     public static List<Integer> getActiveSubscriptionIDs(
             @NonNull Context context)
             throws SecurityException {
@@ -73,7 +72,6 @@ public class TelephonyHelper {
      * This lets you identify additions/removals of SIM cards.
      * Make sure to call `cancelActiveSubscriptionIDsListener` with the return value of this once you're done.
      */
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     public static OnSubscriptionsChangedListener listenActiveSubscriptionIDs(
             @NonNull Context context, SubscriptionCallback onAdd, SubscriptionCallback onRemove) {
         SubscriptionManager sm = ContextCompat.getSystemService(context, SubscriptionManager.class);
@@ -117,7 +115,6 @@ public class TelephonyHelper {
     /**
      * Cancels a listener created by `listenActiveSubscriptionIDs`
      */
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     public static void cancelActiveSubscriptionIDsListener(@NonNull Context context, @NonNull OnSubscriptionsChangedListener listener) {
         SubscriptionManager sm = ContextCompat.getSystemService(context, SubscriptionManager.class);
         if (sm == null) {
@@ -139,44 +136,26 @@ public class TelephonyHelper {
     public static @NonNull List<LocalPhoneNumber> getAllPhoneNumbers(
             @NonNull Context context)
             throws SecurityException {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP_MR1) {
-            // Single-sim case
-            // From https://stackoverflow.com/a/25131061/3723163
-            // Android added support for multi-sim devices in Lollypop v5.1 (api 22)
-            // See: https://developer.android.com/about/versions/android-5.1.html#multisim
-            // There were vendor-specific implmentations before then, but those are very difficult to support
-            // S/O Reference: https://stackoverflow.com/a/28571835/3723163
-            TelephonyManager telephonyManager = ContextCompat.getSystemService(context,
-                    TelephonyManager.class);
-            if (telephonyManager == null) {
-                // I don't know why or when this happens...
-                Log.w(LOGGING_TAG, "Could not get TelephonyManager");
-                return Collections.emptyList();
-            }
-            LocalPhoneNumber phoneNumber = getPhoneNumber(telephonyManager);
-            return Collections.singletonList(phoneNumber);
-        } else {
-            // Potentially multi-sim case
-            SubscriptionManager subscriptionManager = ContextCompat.getSystemService(context,
-                    SubscriptionManager.class);
-            if (subscriptionManager == null) {
-                // I don't know why or when this happens...
-                Log.w(LOGGING_TAG, "Could not get SubscriptionManager");
-                return Collections.emptyList();
-            }
-            List<SubscriptionInfo> subscriptionInfos = subscriptionManager.getActiveSubscriptionInfoList();
-            if (subscriptionInfos == null) {
-                // This happens when there is no SIM card inserted
-                Log.w(LOGGING_TAG, "Could not get SubscriptionInfos");
-                return Collections.emptyList();
-            }
-            List<LocalPhoneNumber> phoneNumbers = new ArrayList<>(subscriptionInfos.size());
-            for (SubscriptionInfo info : subscriptionInfos) {
-                LocalPhoneNumber thisPhoneNumber = new LocalPhoneNumber(info.getNumber(), info.getSubscriptionId());
-                phoneNumbers.add(thisPhoneNumber);
-            }
-            return phoneNumbers.stream().filter(localPhoneNumber -> localPhoneNumber.number != null).collect(Collectors.toList());
+        // Potentially multi-sim
+        SubscriptionManager subscriptionManager = ContextCompat.getSystemService(context,
+                SubscriptionManager.class);
+        if (subscriptionManager == null) {
+            // I don't know why or when this happens...
+            Log.w(LOGGING_TAG, "Could not get SubscriptionManager");
+            return Collections.emptyList();
         }
+        List<SubscriptionInfo> subscriptionInfos = subscriptionManager.getActiveSubscriptionInfoList();
+        if (subscriptionInfos == null) {
+            // This happens when there is no SIM card inserted
+            Log.w(LOGGING_TAG, "Could not get SubscriptionInfos");
+            return Collections.emptyList();
+        }
+        List<LocalPhoneNumber> phoneNumbers = new ArrayList<>(subscriptionInfos.size());
+        for (SubscriptionInfo info : subscriptionInfos) {
+            LocalPhoneNumber thisPhoneNumber = new LocalPhoneNumber(info.getNumber(), info.getSubscriptionId());
+            phoneNumbers.add(thisPhoneNumber);
+        }
+        return phoneNumbers.stream().filter(localPhoneNumber -> localPhoneNumber.number != null).collect(Collectors.toList());
     }
 
     /**
@@ -245,14 +224,7 @@ public class TelephonyHelper {
 
         Uri telephonyCarriersUri = Telephony.Carriers.CONTENT_URI;
 
-        Uri telephonyCarriersPreferredApnUri;
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
-            telephonyCarriersPreferredApnUri = Uri.withAppendedPath(telephonyCarriersUri, "/preferapn/subId/" + subscriptionId);
-        } else {
-            // Ignore subID for devices before that existed
-            telephonyCarriersPreferredApnUri = Uri.withAppendedPath(telephonyCarriersUri, "/preferapn/");
-        }
+        Uri telephonyCarriersPreferredApnUri = Uri.withAppendedPath(telephonyCarriersUri, "/preferapn/subId/" + subscriptionId);
 
         try (Cursor cursor = context.getContentResolver().query(
                 telephonyCarriersPreferredApnUri,

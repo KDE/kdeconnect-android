@@ -221,11 +221,7 @@ public class TelephonyPlugin extends Plugin {
     private void unmuteRinger() {
         if (isMuted) {
             AudioManager am = ContextCompat.getSystemService(context, AudioManager.class);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                am.setStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_UNMUTE, 0);
-            } else {
-                am.setStreamMute(AudioManager.STREAM_RING, false);
-            }
+            am.setStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_UNMUTE, 0);
             isMuted = false;
         }
     }
@@ -233,11 +229,7 @@ public class TelephonyPlugin extends Plugin {
     private void muteRinger() {
         if (!isMuted) {
             AudioManager am = ContextCompat.getSystemService(context, AudioManager.class);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                am.setStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_MUTE, 0);
-            } else {
-                am.setStreamMute(AudioManager.STREAM_RING, true);
-            }
+            am.setStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_MUTE, 0);
             isMuted = true;
         }
     }
@@ -310,14 +302,10 @@ public class TelephonyPlugin extends Plugin {
 
     @Override
     public @NonNull String[] getRequiredPermissions() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            return new String[]{
-                    Manifest.permission.READ_PHONE_STATE,
-                    Manifest.permission.READ_CALL_LOG,
-            };
-        } else {
-            return ArrayUtils.EMPTY_STRING_ARRAY;
-        }
+        return new String[]{
+                Manifest.permission.READ_PHONE_STATE,
+                Manifest.permission.READ_CALL_LOG,
+        };
     }
 
     @Override

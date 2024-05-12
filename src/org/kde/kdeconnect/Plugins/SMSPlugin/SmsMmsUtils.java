@@ -176,12 +176,7 @@ public class SmsMmsUtils {
             if (transaction.checkMMS(message)) {
                 Log.v("", "Sending new MMS");
                 //transaction.sendNewMessage(message, Transaction.NO_THREAD_ID);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
-                    sendMmsMessageNative(context, message, settings);
-                } else {
-                    // Cross fingers and hope Klinker's library works for this case
-                    transaction.sendNewMessage(message, Transaction.NO_THREAD_ID);
-                }
+                sendMmsMessageNative(context, message, settings);
             } else {
                 Log.v(SENDING_MESSAGE, "Sending new SMS");
                 transaction.sendNewMessage(message, Transaction.NO_THREAD_ID);
@@ -200,7 +195,6 @@ public class SmsMmsUtils {
      * @param message
      * @param klinkerSettings
      */
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     protected static void sendMmsMessageNative(Context context, Message message, Settings klinkerSettings) {
         ArrayList<MMSPart> data = new ArrayList<>();
 

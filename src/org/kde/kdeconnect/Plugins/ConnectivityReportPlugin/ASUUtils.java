@@ -11,33 +11,6 @@ import android.telephony.CellInfo;
 import android.telephony.SignalStrength;
 
 public class ASUUtils {
-    /**
-     * Implementation of SignalStrength.toLevel usable from API Level 7+
-     */
-    public static int signalStrengthToLevel(SignalStrength signalStrength) {
-        int level;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            level = signalStrength.getLevel();
-        } else {
-            // Should work on all supported versions, uses copied functions from modern SDKs
-            // Needs testing
-
-            int gsmLevel = signalStrength.getGsmSignalStrength();
-            if (gsmLevel >= 0 && gsmLevel <= 31) {
-                // Convert getGsmSignalStrength range (0..31) to getLevel range (0..4)
-                gsmLevel = gsmLevel * 4 / 31;
-            } else {
-                gsmLevel = 0;
-            }
-
-            int cdmaLevel = getCdmaLevel(signalStrength.getCdmaDbm(), signalStrength.getCdmaEcio());
-            int evdoLevel = getEvdoLevel(signalStrength.getEvdoDbm(), signalStrength.getEvdoSnr());
-
-            level = Math.max(gsmLevel, Math.max(cdmaLevel, evdoLevel));
-        }
-        return level;
-    }
-
 
     /**
      * Get cdma as level 0..4

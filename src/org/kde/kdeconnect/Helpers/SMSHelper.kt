@@ -222,9 +222,6 @@ object SMSHelper {
      * @param context android.content.Context running the request.
      */
     private fun getSubscriptionIdSupport(uri: Uri, context: Context): Boolean {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP_MR1) {
-            return false
-        }
         // Some (Xiaomi) devices running >= Android Lollipop (SDK 22+) don't support
         // `Telephony.Sms.SUBSCRIPTION_ID`, so additional check is needed.
         // It may be possible to use "sim_id" instead of "sub_id" on these devices
@@ -1109,7 +1106,6 @@ object SMSHelper {
              * These columns are for determining what SIM card the message belongs to, and therefore
              * are only defined on Android versions with multi-sim capabilities
              */
-            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
             val multiSIMColumns = arrayOf(Telephony.Sms.SUBSCRIPTION_ID)
         }
     }

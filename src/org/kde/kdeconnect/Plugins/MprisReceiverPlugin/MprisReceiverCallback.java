@@ -15,7 +15,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 
-@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
 class MprisReceiverCallback extends MediaController.Callback {
 
     private static final String TAG = "MprisReceiver";

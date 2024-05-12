@@ -136,7 +136,7 @@ public class ConnectivityReportPlugin extends Plugin {
         return new PhoneStateListener() {
             @Override
             public void onSignalStrengthsChanged(SignalStrength signalStrength) {
-                int level = ASUUtils.signalStrengthToLevel(signalStrength);
+                int level = signalStrength.getLevel();
                 SubscriptionState state = states.get(subID);
 
                 if (state != null) {

@@ -38,7 +38,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @PluginFactory.LoadablePlugin
-@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
 public class MprisReceiverPlugin extends Plugin {
     private final static String PACKET_TYPE_MPRIS = "kdeconnect.mpris";
     private final static String PACKET_TYPE_MPRIS_REQUEST = "kdeconnect.mpris.request";
