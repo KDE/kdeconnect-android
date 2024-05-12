@@ -108,7 +108,7 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
         // it can trigger a background fetch from the internet that will eventually update the preference
         PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this)
         val deviceName = DeviceHelper.getDeviceName(this)
-        mNavViewDeviceType?.setImageDrawable(DeviceHelper.getDeviceType(this).getIcon(this))
+        mNavViewDeviceType?.setImageDrawable(DeviceHelper.deviceType.getIcon(this))
         mNavViewDeviceName.text = deviceName
         mNavigationView.setNavigationItemSelectedListener { menuItem: MenuItem ->
             mCurrentMenuEntry = menuItem.itemId

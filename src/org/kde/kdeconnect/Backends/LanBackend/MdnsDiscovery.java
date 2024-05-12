@@ -131,7 +131,7 @@ public class MdnsDiscovery {
         // Each field (key + value) needs to be < 255 bytes. All the fields combined need to be < 1300 bytes.
         // Also, on Android Lollipop those fields aren't resolved.
         String deviceName = DeviceHelper.getDeviceName(context);
-        String deviceType = DeviceHelper.getDeviceType(context).toString();
+        String deviceType = DeviceHelper.getDeviceType().toString();
         String protocolVersion = Integer.toString(DeviceHelper.ProtocolVersion);
         serviceInfo.setAttribute("id", deviceId);
         serviceInfo.setAttribute("name", deviceName);
