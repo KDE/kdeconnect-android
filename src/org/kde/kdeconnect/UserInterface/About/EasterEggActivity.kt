@@ -29,7 +29,6 @@ class EasterEggActivity : AppCompatActivity(), SensorEventListener {
     private var binding: ActivityEasterEggBinding? = null
     private lateinit var sensorManager: SensorManager
     private val animator = ValueAnimator()
-    private var isAlreadyLongClicked = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,10 +38,7 @@ class EasterEggActivity : AppCompatActivity(), SensorEventListener {
 
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_NOSENSOR
 
-        // Make the status bar blue to make the Easter Egg beautiful
-        window.statusBarColor = KDE_ICON_BACKGROUND_COLOR
-        window.navigationBarColor = KDE_ICON_BACKGROUND_COLOR
-        setLightSystemWindowsEnabled(false)
+        setBgColor(KDE_ICON_BACKGROUND_COLOR)
 
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
         if (hasAccelerometer()) {
@@ -56,21 +52,6 @@ class EasterEggActivity : AppCompatActivity(), SensorEventListener {
 
         // Make Easter Egg more fun
         binding!!.easterEggLayout.setOnLongClickListener {
-            if (!isAlreadyLongClicked) {
-                isAlreadyLongClicked = true
-
-                var typedArray = this.theme.obtainStyledAttributes(intArrayOf(android.R.attr.statusBarColor))
-                window.statusBarColor = typedArray.getColor(0, Color.WHITE)
-                window.navigationBarColor = typedArray.getColor(0, Color.WHITE)
-
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                    typedArray = this.theme.obtainStyledAttributes(intArrayOf(android.R.attr.windowLightStatusBar))
-                    setLightSystemWindowsEnabled(typedArray.getBoolean(0, true))
-                }
-
-                typedArray.recycle()
-            }
-
             val icon = intArrayOf(
                     R.drawable.ic_action_keyboard_24dp, R.drawable.ic_action_refresh_24dp,
                     R.drawable.ic_action_image_edit_24dp, R.drawable.ic_arrow_upward_black_24dp,
@@ -101,10 +82,10 @@ class EasterEggActivity : AppCompatActivity(), SensorEventListener {
 
             if (icon == R.drawable.konqi) {
                 binding!!.logo.clearColorFilter()
-                binding!!.easterEggLayout.setBackgroundColor(KONQI_BACKGROUND_COLOR)
-                window.statusBarColor = KONQI_BACKGROUND_COLOR
-                window.navigationBarColor = KONQI_BACKGROUND_COLOR
-                isAlreadyLongClicked = false
+                setBgColor(KONQI_BACKGROUND_COLOR)
+            } else {
+                binding!!.logo.setColorFilter(ContextCompat.getColor(this, android.R.color.white))
+                setBgColor(KDE_ICON_BACKGROUND_COLOR)
             }
 
             binding!!.logo.setImageResource(icon)
@@ -113,25 +94,12 @@ class EasterEggActivity : AppCompatActivity(), SensorEventListener {
         }
     }
 
-    private fun hasAccelerometer(): Boolean = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) != null
-
-    private fun setLightSystemWindowsEnabled(enabled: Boolean) {
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-            if (enabled) {
-                window.decorView.systemUiVisibility = window.decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            } else {
-                window.decorView.systemUiVisibility = window.decorView.systemUiVisibility and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv()
-            }
-        }
-
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            if (enabled) {
-                window.decorView.systemUiVisibility = window.decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
-            } else {
-                window.decorView.systemUiVisibility = window.decorView.systemUiVisibility and View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR.inv()
-            }
-        }
+    private fun setBgColor(color : Int) {
+        binding!!.easterEggLayout.setBackgroundColor(color)
+        window.statusBarColor = color
+        window.navigationBarColor = color
     }
+    private fun hasAccelerometer(): Boolean = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) != null
 
     override fun onResume() {
         super.onResume()
@@ -154,7 +122,7 @@ class EasterEggActivity : AppCompatActivity(), SensorEventListener {
             val axisY = event.values[1]
 
             val angle = (atan2(axisX, axisY) / (PI / 180)).toInt()
-            binding!!.angle.text = angle.toString() + "°"
+            binding!!.angle.text = "$angle°"
 
             animator.setFloatValues(binding!!.logo.rotation, angle.toFloat())
             animator.start()
