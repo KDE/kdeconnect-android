@@ -114,12 +114,12 @@ class DeviceFragment : Fragment() {
             this.refreshDevicesAction()
         }
 
+        requirePairingBinding().pairVerification.text = SslHelper.getVerificationKey(SslHelper.certificate, device?.certificate)
+
         requirePairingBinding().pairButton.setOnClickListener {
             with(requirePairingBinding()) {
                 pairButton.visibility = View.GONE
                 pairMessage.text = getString(R.string.pair_requested)
-                pairVerification.visibility = View.VISIBLE
-                pairVerification.text = SslHelper.getVerificationKey(SslHelper.certificate, device?.certificate)
                 pairProgress.visibility = View.VISIBLE
             }
             device?.requestPairing()
@@ -314,8 +314,6 @@ class DeviceFragment : Fragment() {
             mActivity?.runOnUiThread {
                 with(requirePairingBinding()) {
                     pairMessage.text = error
-                    pairVerification.text = null
-                    pairVerification.visibility = View.GONE
                     pairProgress.visibility = View.GONE
                     pairButton.visibility = View.VISIBLE
                     pairRequestButtons.visibility = View.GONE
@@ -328,7 +326,6 @@ class DeviceFragment : Fragment() {
             mActivity?.runOnUiThread {
                 with(requirePairingBinding()) {
                     pairMessage.setText(R.string.device_not_paired)
-                    pairVerification.visibility = View.GONE
                     pairProgress.visibility = View.GONE
                     pairButton.visibility = View.VISIBLE
                     pairRequestButtons.visibility = View.GONE

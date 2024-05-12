@@ -40,7 +40,6 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
         android:drawablePadding="5dp"
         android:layout_marginBottom="8dip"
         android:importantForAccessibility="no"
-        android:visibility="gone"
         android:textAppearance="?android:attr/textAppearanceMedium"
         app:drawableStartCompat="@drawable/ic_key" />
 
