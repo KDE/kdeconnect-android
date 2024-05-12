@@ -5,34 +5,16 @@
 */
 package org.kde.kdeconnect
 
-import android.util.Log
 import org.json.JSONException
 import org.junit.Assert
-import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
 import org.kde.kdeconnect.DeviceInfo.Companion.fromIdentityPacketAndCert
-import org.kde.kdeconnect.Helpers.DeviceHelper
 import org.kde.kdeconnect.NetworkPacket.Companion.unserialize
-import org.mockito.ArgumentMatchers
 import org.mockito.Mockito
 import org.mockito.internal.util.collections.Sets
-import org.powermock.api.mockito.PowerMockito
-import org.powermock.core.classloader.annotations.PrepareForTest
-import org.powermock.modules.junit4.PowerMockRunner
 import java.security.cert.Certificate
 
-@RunWith(PowerMockRunner::class)
-@PrepareForTest(DeviceHelper::class, Log::class)
 class NetworkPacketTest {
-    @Before
-    fun setUp() {
-        PowerMockito.mockStatic(DeviceHelper::class.java)
-        PowerMockito.`when`(DeviceHelper.getDeviceId(ArgumentMatchers.any())).thenReturn("123")
-        PowerMockito.`when`(DeviceHelper.getDeviceType(ArgumentMatchers.any())).thenReturn(DeviceType.PHONE)
-
-        PowerMockito.mockStatic(Log::class.java)
-    }
 
     @Test
     @Throws(JSONException::class)
