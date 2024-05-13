@@ -281,9 +281,6 @@ class NetworkPacket private constructor(
         const val PACKET_TYPE_IDENTITY: String = "kdeconnect.identity"
         const val PACKET_TYPE_PAIR: String = "kdeconnect.pair"
 
-        const val PACKET_REPLACEID_MOUSEMOVE: Int = 0
-        const val PACKET_REPLACEID_PRESENTERPOINTER: Int = 1
-
         @JvmStatic
         @Throws(JSONException::class)
         fun unserialize(s: String): NetworkPacket {

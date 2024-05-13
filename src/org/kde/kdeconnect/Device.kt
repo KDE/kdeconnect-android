@@ -18,6 +18,12 @@ import androidx.annotation.VisibleForTesting
 import androidx.annotation.WorkerThread
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.launch
 import org.apache.commons.collections4.MultiValuedMap
 import org.apache.commons.collections4.multimap.ArrayListValuedHashMap
 import org.kde.kdeconnect.Backends.BaseLink
@@ -56,7 +62,6 @@ class Device : PacketReceiver {
     var pairingHandler: PairingHandler
     private val pairingCallbacks = CopyOnWriteArrayList<PairingCallback>()
     private val links = CopyOnWriteArrayList<BaseLink>()
-    private var packetQueue: DevicePacketQueue? = null
     var supportedPlugins: List<String>
         private set
     val loadedPlugins: ConcurrentMap<String, Plugin> = ConcurrentHashMap()
@@ -65,6 +70,9 @@ class Device : PacketReceiver {
     private var pluginsByIncomingInterface: MultiValuedMap<String, String> = ArrayListValuedHashMap()
     private val settings: SharedPreferences
     private val pluginsChangedListeners: MutableList<PluginsChangedListener> = CopyOnWriteArrayList()
+    class NetworkPacketWithCallback(val np : NetworkPacket, val callback: SendPacketStatusCallback)
+    private val sendChannel = Channel<NetworkPacketWithCallback>(Channel.UNLIMITED)
+    private var sendCoroutine : Job? = null
 
     /**
      * Constructor for remembered, already-trusted devices.
@@ -275,10 +283,9 @@ class Device : PacketReceiver {
         get() = links.isNotEmpty()
 
     fun addLink(link: BaseLink) {
-        if (links.isEmpty()) {
-            packetQueue = DevicePacketQueue(this)
+        if (sendCoroutine == null) {
+            launchSendCoroutine()
         }
-
         // FilesHelper.LogOpenFileCount();
         links.add(link)
 
@@ -306,9 +313,15 @@ class Device : PacketReceiver {
         )
         if (links.isEmpty()) {
             reloadPluginsFromSettings()
-            if (packetQueue != null) {
-                packetQueue!!.disconnected()
-                packetQueue = null
+            sendCoroutine?.cancel(CancellationException("Device disconnected"))
+            sendCoroutine = null
+        }
+    }
+
+    private fun launchSendCoroutine() {
+        sendCoroutine = CoroutineScope(Dispatchers.IO).launch {
+            for (item in sendChannel) {
+                sendPacketBlocking(item.np, item.callback)
             }
         }
     }
@@ -410,48 +423,25 @@ class Device : PacketReceiver {
         }
     }
 
-    @AnyThread
-    fun sendPacket(np: NetworkPacket) = sendPacket(np, -1, defaultCallback)
-
-    @AnyThread
-    fun sendPacket(np: NetworkPacket, replaceID: Int) = sendPacket(np, replaceID, defaultCallback)
-
-    @WorkerThread
-    fun sendPacketBlocking(np: NetworkPacket): Boolean = sendPacketBlocking(np, defaultCallback)
-
-    @AnyThread
-    fun sendPacket(np: NetworkPacket, callback: SendPacketStatusCallback) = sendPacket(np, -1, callback)
-
     /**
      * Send a packet to the device asynchronously
      * @param np The packet
-     * @param replaceID If positive, replaces all unsent packets with the same replaceID
      * @param callback A callback for success/failure
      */
     @AnyThread
-    fun sendPacket(np: NetworkPacket, replaceID: Int, callback: SendPacketStatusCallback) {
-        val packetQueue = packetQueue ?: run {
-            callback.onFailure(Exception("Device disconnected!"))
-            return
-        }
-        // TODO: Migrate to coroutine version (addPacket)
-        packetQueue.addPacket(np, replaceID, callback)
+    fun sendPacket(np: NetworkPacket, callback: SendPacketStatusCallback) {
+        sendChannel.trySend(NetworkPacketWithCallback(np, callback))
     }
 
-    /**
-     * Check if we still have an unsent packet in the queue with the given ID.
-     * If so, remove it from the queue and return it
-     * @param replaceID The replace ID (must be positive)
-     * @return The found packet, or null
-     */
-    fun getAndRemoveUnsentPacket(replaceID: Int): NetworkPacket? {
-        // TODO: Migrate to coroutine version (getAndRemoveUnsentPacket)
-        return packetQueue?.getAndRemoveUnsentPacket(replaceID)
-    }
+    @AnyThread
+    fun sendPacket(np: NetworkPacket) = sendPacket(np, defaultCallback)
 
     @WorkerThread
     fun sendPacketBlocking(np: NetworkPacket, callback: SendPacketStatusCallback): Boolean =
         sendPacketBlocking(np, callback, false)
+
+    @WorkerThread
+    fun sendPacketBlocking(np: NetworkPacket): Boolean = sendPacketBlocking(np, defaultCallback, false)
 
     /**
      * Send `np` over one of this device's connected [.links].

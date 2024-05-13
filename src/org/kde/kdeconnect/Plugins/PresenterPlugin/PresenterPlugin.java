@@ -111,21 +111,13 @@ public class PresenterPlugin extends Plugin {
     }
 
     public void sendPointer(float xDelta, float yDelta) {
-        NetworkPacket np = getDevice().getAndRemoveUnsentPacket(NetworkPacket.PACKET_REPLACEID_PRESENTERPOINTER);
-        if (np == null) {
-            np = new NetworkPacket(PACKET_TYPE_PRESENTER);
-        } else {
-            // TODO: In my tests we never get here. Decide if it's worth keeping the logic to replace unsent packets.
-            xDelta += np.getInt("dx");
-            yDelta += np.getInt("dy");
-        }
+        NetworkPacket np = new NetworkPacket(PACKET_TYPE_PRESENTER);
         np.set("dx", xDelta);
         np.set("dy", yDelta);
-        getDevice().sendPacket(np, NetworkPacket.PACKET_REPLACEID_PRESENTERPOINTER);
+        getDevice().sendPacket(np);
     }
 
     public void stopPointer() {
-        getDevice().getAndRemoveUnsentPacket(NetworkPacket.PACKET_REPLACEID_PRESENTERPOINTER);
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_PRESENTER);
         np.set("stop", true);
         getDevice().sendPacket(np);

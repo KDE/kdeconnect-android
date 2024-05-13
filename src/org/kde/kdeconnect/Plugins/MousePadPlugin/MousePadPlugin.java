@@ -91,19 +91,10 @@ public class MousePadPlugin extends Plugin {
     }
 
     public void sendMouseDelta(float dx, float dy) {
-        NetworkPacket np = getDevice().getAndRemoveUnsentPacket(NetworkPacket.PACKET_REPLACEID_MOUSEMOVE);
-        if (np == null) {
-            np = new NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST);
-        } else {
-            // TODO: In my tests we never get here. Decide if it's worth keeping the logic to replace unsent packets.
-            dx += np.getInt("dx");
-            dy += np.getInt("dx");
-        }
-
+        NetworkPacket np = new NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST);
         np.set("dx", dx);
         np.set("dy", dy);
-
-        getDevice().sendPacket(np, NetworkPacket.PACKET_REPLACEID_MOUSEMOVE);
+        getDevice().sendPacket(np);
     }
 
     public void sendLeftClick() {
