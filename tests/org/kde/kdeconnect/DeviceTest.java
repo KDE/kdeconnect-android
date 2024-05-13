@@ -24,31 +24,36 @@ import android.util.Log;
 
 import androidx.core.content.ContextCompat;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.kde.kdeconnect.Backends.LanBackend.LanLink;
 import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
+import org.mockito.MockedStatic;
 import org.mockito.Mockito;
-import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.util.Arrays;
 import java.util.HashSet;
 
-@RunWith(PowerMockRunner.class)
-@PrepareForTest({Base64.class, Log.class, PreferenceManager.class, ContextCompat.class})
 public class DeviceTest {
 
     private Context context;
+
+    MockedStatic<Base64> mockBase64;
+    MockedStatic<PreferenceManager> preferenceManager;
+    MockedStatic<ContextCompat> contextCompat;
+
+    @After
+    public void tearDown() {
+        mockBase64.close();
+        preferenceManager.close();
+        contextCompat.close();
+    }
 
     // Creating a paired device before each test case
     @Before
@@ -76,11 +81,11 @@ public class DeviceTest {
 
         this.context = Mockito.mock(Context.class);
 
-        PowerMockito.mockStatic(Base64.class);
-        PowerMockito.when(Base64.encodeToString(any(), anyInt())).thenAnswer(invocation -> java.util.Base64.getMimeEncoder().encodeToString((byte[]) invocation.getArguments()[0]));
-        PowerMockito.when(Base64.decode(anyString(), anyInt())).thenAnswer(invocation -> java.util.Base64.getMimeDecoder().decode((String) invocation.getArguments()[0]));
+        mockBase64 = Mockito.mockStatic(Base64.class);
+        mockBase64.when(() -> Base64.encodeToString(any(byte[].class), anyInt())).thenAnswer(invocation -> java.util.Base64.getMimeEncoder().encodeToString((byte[]) invocation.getArguments()[0]));
+        mockBase64.when(() -> Base64.decode(anyString(), anyInt())).thenAnswer(invocation -> java.util.Base64.getMimeDecoder().decode((String) invocation.getArguments()[0]));
 
-        PowerMockito.mockStatic(Log.class);
+        Mockito.mockStatic(Log.class).close();
 
         //Store device information needed to create a Device object in a future
         MockSharedPreference deviceSettings = new MockSharedPreference();
@@ -101,13 +106,14 @@ public class DeviceTest {
         Mockito.when(context.getSharedPreferences(eq("unpairedTestDevice"), eq(Context.MODE_PRIVATE))).thenReturn(untrustedSettings);
 
         //Default shared prefs, including our own private key
-        PowerMockito.mockStatic(PreferenceManager.class);
+        preferenceManager = Mockito.mockStatic(PreferenceManager.class);
         MockSharedPreference defaultSettings = new MockSharedPreference();
-        PowerMockito.when(PreferenceManager.getDefaultSharedPreferences(any())).thenReturn(defaultSettings);
+        preferenceManager.when(() -> PreferenceManager.getDefaultSharedPreferences(any(Context.class))).thenReturn(defaultSettings);
+
         RsaHelper.initialiseRsaKeys(context);
 
-        PowerMockito.mockStatic(ContextCompat.class);
-        PowerMockito.when(ContextCompat.getSystemService(context, NotificationManager.class)).thenReturn(Mockito.mock(NotificationManager.class));
+        contextCompat = Mockito.mockStatic(ContextCompat.class);
+        contextCompat.when(() -> ContextCompat.getSystemService(context, NotificationManager.class)).thenReturn(Mockito.mock(NotificationManager.class));
     }
 
     @Test
@@ -151,7 +157,8 @@ public class DeviceTest {
         assertNotNull(device.deviceInfo.certificate);
     }
 
-    public void testPairingDone() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException, CertificateException {
+    @Test
+    public void testPairingDone() throws CertificateException {
 
         NetworkPacket fakeNetworkPacket = new NetworkPacket(NetworkPacket.PACKET_TYPE_IDENTITY);
         String deviceId = "unpairedTestDevice";
@@ -194,9 +201,7 @@ public class DeviceTest {
         assertEquals(device.getDeviceType(), DeviceType.PHONE);
         assertNotNull(device.deviceInfo.certificate);
 
-        Method method = PairingHandler.class.getDeclaredMethod("pairingDone");
-        method.setAccessible(true);
-        method.invoke(device.pairingHandler);
+        device.pairingHandler.pairingDone();
 
         assertTrue(device.isPaired());
 

@@ -6,6 +6,7 @@
 package org.kde.kdeconnect
 
 import android.util.Log
+import androidx.annotation.VisibleForTesting
 import kotlinx.coroutines.*
 import org.kde.kdeconnect_tp.R
 import kotlin.time.Duration.Companion.seconds
@@ -155,7 +156,8 @@ class PairingHandler(private val device: Device, private val callback: PairingCa
         callback.pairingFailed(device.context.getString(R.string.error_canceled_by_user))
     }
 
-    private fun pairingDone() {
+    @VisibleForTesting
+    fun pairingDone() {
         Log.i("PairingHandler", "Pairing done")
         state = PairState.Paired
         kotlin.runCatching {

@@ -219,10 +219,7 @@ dependencies {
 
     // Testing
     testImplementation(libs.junit)
-    testImplementation(libs.powermock.core)
-    testImplementation(libs.powermock.module.junit4)
-    testImplementation(libs.powermock.api.mockito2)
-    testImplementation(libs.mockito.core) // powermock isn't compatible with mockito 4
+    testImplementation(libs.mockito.core)
     testImplementation(libs.jsonassert)
 
     // For device controls
