@@ -13,11 +13,11 @@ public class DevicePacketQueueTest {
 
         DevicePacketQueue queue = new DevicePacketQueue(device, false);
 
-        queue.addPacketSync(new NetworkPacket("Test"), 0, callback);
-        queue.addPacketSync(new NetworkPacket("Test1"), 1, callback);
+        queue.addPacket(new NetworkPacket("Test"), 0, callback);
+        queue.addPacket(new NetworkPacket("Test1"), 1, callback);
 
-        assertNotNull(queue.getAndRemoveUnsentPacketSync(0));
-        assertNotNull(queue.getAndRemoveUnsentPacketSync(1));
+        assertNotNull(queue.getAndRemoveUnsentPacket(0));
+        assertNotNull(queue.getAndRemoveUnsentPacket(1));
     }
 
     @Test
@@ -27,11 +27,11 @@ public class DevicePacketQueueTest {
 
         DevicePacketQueue queue = new DevicePacketQueue(device, false);
 
-        queue.addPacketSync(new NetworkPacket("Test"), -1, callback);
-        queue.addPacketSync(new NetworkPacket("Test1"), -1, callback);
+        queue.addPacket(new NetworkPacket("Test"), -1, callback);
+        queue.addPacket(new NetworkPacket("Test1"), -1, callback);
 
-        assertNotNull(queue.getAndRemoveUnsentPacketSync(-1));
-        assertNotNull(queue.getAndRemoveUnsentPacketSync(-1));
+        assertNotNull(queue.getAndRemoveUnsentPacket(-1));
+        assertNotNull(queue.getAndRemoveUnsentPacket(-1));
     }
 
     @Test
@@ -41,10 +41,10 @@ public class DevicePacketQueueTest {
 
         DevicePacketQueue queue = new DevicePacketQueue(device, false);
 
-        queue.addPacketSync(new NetworkPacket("Test"), 1, callback);
-        queue.addPacketSync(new NetworkPacket("Test1"), 1, callback);
+        queue.addPacket(new NetworkPacket("Test"), 1, callback);
+        queue.addPacket(new NetworkPacket("Test1"), 1, callback);
 
-        assertNotNull(queue.getAndRemoveUnsentPacketSync(1));
-        assertNull(queue.getAndRemoveUnsentPacketSync(1));
+        assertNotNull(queue.getAndRemoveUnsentPacket(1));
+        assertNull(queue.getAndRemoveUnsentPacket(1));
     }
 }
