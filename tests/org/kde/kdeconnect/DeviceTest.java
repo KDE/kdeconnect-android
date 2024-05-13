@@ -20,7 +20,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Base64;
-import android.util.Log;
 
 import androidx.core.content.ContextCompat;
 
@@ -84,8 +83,6 @@ public class DeviceTest {
         mockBase64 = Mockito.mockStatic(Base64.class);
         mockBase64.when(() -> Base64.encodeToString(any(byte[].class), anyInt())).thenAnswer(invocation -> java.util.Base64.getMimeEncoder().encodeToString((byte[]) invocation.getArguments()[0]));
         mockBase64.when(() -> Base64.decode(anyString(), anyInt())).thenAnswer(invocation -> java.util.Base64.getMimeDecoder().decode((String) invocation.getArguments()[0]));
-
-        Mockito.mockStatic(Log.class).close();
 
         //Store device information needed to create a Device object in a future
         MockSharedPreference deviceSettings = new MockSharedPreference();
