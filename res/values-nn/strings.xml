@@ -187,10 +187,12 @@
     <item>1 minutt</item>
     <item>2 minutt</item>
   </string-array>
+  <string name="mpris_notifications_explanation">Varslingsløyvet trengst for å visa medieavspeling i varslingssenteret</string>
   <string name="mpris_notification_settings_title">Vis varsling med avspelingskontrollar</string>
   <string name="mpris_notification_settings_summary">Tillat å kontrollera mediespelarar utan å opna KDE Connect</string>
   <string name="share_to">Del til …</string>
   <string name="unreachable_device">%s (får ikkje kontakt med)</string>
+  <string name="unreachable_device_url_share_text">Adresser delte til ei utilgjengeleg eining vert leverte når eininga vert tilgjengeleg att.\n\n</string>
   <string name="protocol_version_newer">Denne eininga brukar ein nyare protokollversjon</string>
   <string name="plugin_settings_with_name">%s-innstillingar</string>
   <string name="invalid_device_name">Ugyldig einingsnamn</string>
@@ -257,10 +259,12 @@
   <string name="optional_permission_explanation">Du må gje utvida løyve for at alle funksjonane skal fungera</string>
   <string name="plugins_need_optional_permission">På grunn av manglande løyve vil desse funksjonane ikkje verka (trykk på dei for meir informasjon):</string>
   <string name="share_optional_permission_explanation">For å kunna ta imot filer må du gje tilgangsløyve til lagringsområdet</string>
+  <string name="share_notifications_explanation">For å kunna sjå framdrift ved sending og mottak av filer må du gje appen varslingsløyve</string>
   <string name="telepathy_permission_explanation">For å kunna lesa og skriva tekstmeldingar frå datamaskina må du gje appen tilgang til SMS</string>
   <string name="telephony_permission_explanation">For å kunna sjå telefonsamtalar på datamaskina må du gje appen tilgang til samtaleloggar og telefonstatus</string>
   <string name="telephony_optional_permission_explanation">For å kunna sjå namn på kontaktar i staden for berre telefonnummeret må du gje appen tilgang til kontaktlista di</string>
   <string name="contacts_permission_explanation">For å kunna dela adresseboka di med datamaskina må du gje appen lese- og skriveløyve til adresseboka</string>
+  <string name="contacts_per_device_confirmation">Telefonkontaktane dine vert kopiert over til denne eininga, slik at dei kan brukast av KDE Connect SMS-appen og andre appar.</string>
   <string name="select_ringtone">Vel ringjetone</string>
   <string name="telephony_pref_blocked_title">Blokkerte nummer</string>
   <string name="telephony_pref_blocked_dialog_desc">Ikkje vis oppringingar eller SMS-ar frå desse telefonnummera. Skriv inn eitt telefonnummer per linje.</string>
@@ -289,6 +293,9 @@
   <string name="runcommand_notpaired">Eininga er ikkje para</string>
   <string name="runcommand_nosuchdevice">Eininga finst ikkje</string>
   <string name="runcommand_noruncommandplugin">Eininga har ikkje «Køyr kommando»-tillegget slått på</string>
+  <string name="runcommand_category_device_controls_title">Einingsstyring</string>
+  <string name="runcommand_device_controls_summary">Vis eininga støttar einingsstyring, vil kommandoar du har sette opp, visast her.</string>
+  <string name="set_runcommand_name_as_title">set_runcommand_name_as_title</string>
   <string name="runcommand_name_as_title_title">Vis namn som tittel</string>
   <string name="pref_plugin_findremotedevice">Finn ekstern eining</string>
   <string name="pref_plugin_findremotedevice_desc">Ring til ekstern eining</string>
@@ -403,6 +410,10 @@
   <string name="plugin_stats">Programtillegg-statistikk</string>
   <string name="enable_udp_broadcast">Slå på einingsoppdaging via UDP</string>
   <string name="receive_notifications_permission_explanation">Du må tillata varslingar for å kunna frå varslingar frå andre einingar</string>
+  <string name="findmyphone_notifications_explanation">Varslingsløyvet trengst for at telefonen skal kunna ringja når appen er i bakgrunnsmodus</string>
+  <string name="no_notifications">Varslingar er slåtte av, så du vil ikkje få varsling om parings­førespurnadar.</string>
+  <string name="mpris_keepwatching">Hald fram avspeling</string>
   <string name="mpris_keepwatching_settings_title">Hald fram avspeling</string>
+  <string name="mpris_keepwatching_settings_summary">Vis ei stille varsling om framhald av medie­avspeling på eininga etter avspelingsstopp</string>
   <string name="notification_channel_keepwatching">Hald fram avspeling</string>
 </resources>
