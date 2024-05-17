@@ -204,21 +204,17 @@ class DeviceFragment : Fragment() {
             builder.setPositiveButton(requireContext().resources.getString(R.string.ok)) { dialog, _ ->
                 dialog.dismiss()
             }
-            if (device.certificate == null) {
-                builder.setMessage(R.string.encryption_info_msg_no_ssl)
-            } else {
-                builder.setMessage(
-                    "${
-                        requireContext().resources.getString(R.string.my_device_fingerprint)
-                    } \n ${
-                        SslHelper.getCertificateHash(SslHelper.certificate)
-                    } \n\n ${
-                        requireContext().resources.getString(R.string.remote_device_fingerprint)
-                    } \n ${
-                        SslHelper.getCertificateHash(device.certificate)
-                    }"
-                )
-            }
+            builder.setMessage(
+                "${
+                    requireContext().resources.getString(R.string.my_device_fingerprint)
+                } \n ${
+                    SslHelper.getCertificateHash(SslHelper.certificate)
+                } \n\n ${
+                    requireContext().resources.getString(R.string.remote_device_fingerprint)
+                } \n ${
+                    SslHelper.getCertificateHash(device.certificate)
+                }"
+            )
             menu.add(R.string.encryption_info_title).setOnMenuItemClickListener {
                 builder.show()
                 true

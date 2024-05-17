@@ -178,7 +178,6 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="error_canceled_by_user">Canceled by user</string>
     <string name="error_canceled_by_other_peer">Canceled by other peer</string>
     <string name="encryption_info_title">Encryption Info</string>
-    <string name="encryption_info_msg_no_ssl">The other device doesn\'t use a recent version of KDE Connect, using the legacy encryption method.</string>
     <string name="my_device_fingerprint">SHA256 fingerprint of your device certificate is:</string>
     <string name="remote_device_fingerprint">SHA256 fingerprint of remote device certificate is:</string>
     <string name="pair_requested">Pair requested</string>
