@@ -182,8 +182,8 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="remote_device_fingerprint">SHA256 fingerprint of remote device certificate is:</string>
     <string name="pair_requested">Pair requested</string>
     <string name="pair_succeeded">Pair succeeded</string>
-    <string name="pairing_request_from">Pairing request from %1s</string>
-    <string name="pairing_verification_code" translatable="false">🔑%1s...</string>
+    <string name="pairing_verification_code" translatable="false">🔑 %1s</string>
+    <string name="pairing_request_from">Pairing request from "%1s"</string>
     <plurals name="incoming_file_title">Receiving file from %1s>
         <item quantity="one">Receiving %1$d file from %2$s</item>
         <item quantity="other">Receiving %1$d files from %2$s</item>

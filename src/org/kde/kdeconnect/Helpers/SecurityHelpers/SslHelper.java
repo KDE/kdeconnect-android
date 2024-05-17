@@ -298,7 +298,7 @@ public class SslHelper {
             for (byte value : hash) {
                 formatter.format("%02x", value);
             }
-            return formatter.toString();
+            return formatter.toString().substring(0,8).toUpperCase(Locale.ROOT);
         } catch(Exception e) {
             e.printStackTrace();
             return "error";
