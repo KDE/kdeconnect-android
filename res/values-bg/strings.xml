@@ -118,7 +118,6 @@
   <string name="error_canceled_by_user">Отхвърлена от потребителя</string>
   <string name="error_canceled_by_other_peer">Отказана от другата страна</string>
   <string name="encryption_info_title">Информация за криптиране</string>
-  <string name="encryption_info_msg_no_ssl">Другото устройство не използва последна версия на KDE Connect, като използва остарял метод на криптиране.</string>
   <string name="my_device_fingerprint">SHA256 отпечатък на сертификата на вашето устройство е:</string>
   <string name="remote_device_fingerprint">SHA256 отпечатък на сертификата на отдалеченото устройство е:</string>
   <string name="pair_requested">Заявено е сдвояване</string>

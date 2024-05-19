@@ -118,7 +118,6 @@
   <string name="error_canceled_by_user">בוטל על ידי המשתמש</string>
   <string name="error_canceled_by_other_peer">בוטל מהצד השני</string>
   <string name="encryption_info_title">פרטי הצפנה</string>
-  <string name="encryption_info_msg_no_ssl">המכשיר השני לא משתמש בגרסה עדכנית של KDE Connect, ייעשה שימוש בשיטת ההצפנה המיושנת.</string>
   <string name="my_device_fingerprint">טביעת אצבע ב־SHA256 של אישור המכשיר שלך היא:</string>
   <string name="remote_device_fingerprint">טביעת אצבע ב־SHA256 של אישור המכשיר המרוחק היא:</string>
   <string name="pair_requested">התקבלה בקשת צימוד</string>

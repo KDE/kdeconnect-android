@@ -116,7 +116,6 @@
   <string name="error_canceled_by_user">பயனரால் ரத்து செய்யப்பட்டது</string>
   <string name="error_canceled_by_other_peer">மறு சாதனத்தால் ரத்து செய்யப்பட்டது</string>
   <string name="encryption_info_title">மறையாக்க விவரங்கள்</string>
-  <string name="encryption_info_msg_no_ssl">மறு சாதனம் கே.டீ.யீ. கனெக்டின் சமீபமான பதிப்பை பயன்படுத்தவில்லை. பழைய மறையாக்க முறை பயன்படுத்தப்படுகிறது.</string>
   <string name="my_device_fingerprint">உங்கள் சாதனச் சான்றிதழின் SHA256 சரிகாண்தொகை:</string>
   <string name="remote_device_fingerprint">தொலை சாதனச் சான்றிதழின் SHA256 சரிகாண்தொகை:</string>
   <string name="pair_requested">இணைப்பு கோரப்பட்டது</string>

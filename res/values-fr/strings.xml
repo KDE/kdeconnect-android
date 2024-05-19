@@ -118,7 +118,6 @@
   <string name="error_canceled_by_user">Annulé par l\'utilisateur</string>
   <string name="error_canceled_by_other_peer">Annulé par un autre homologue</string>
   <string name="encryption_info_title">Informations de chiffrement</string>
-  <string name="encryption_info_msg_no_ssl">Ce périphérique n\'utilise pas une version récente de KDEConnect qui utilise l\'ancienne méthode de chiffrement.</string>
   <string name="my_device_fingerprint">L\'empreinte SHA256 du certificat de votre périphérique est :</string>
   <string name="remote_device_fingerprint">L\'empreinte « SHA256 » du certificat du périphérique distant est :</string>
   <string name="pair_requested">Paire demandée</string>

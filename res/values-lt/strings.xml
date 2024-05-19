@@ -109,7 +109,6 @@
   <string name="error_canceled_by_user">Naudotojas atsisakė</string>
   <string name="error_canceled_by_other_peer">Lygiarangis atsisakė</string>
   <string name="encryption_info_title">Šifravimo informacija</string>
-  <string name="encryption_info_msg_no_ssl">Kitas įrenginys nenaudoja paskiausios KDE Connect versijos, naudojamas pasenęs šifravimo metodas.</string>
   <string name="my_device_fingerprint">Jūsų įrenginio liudijimo SHA256 kontrolinis kodas yra:</string>
   <string name="remote_device_fingerprint">Nuotolinio įrenginio liudijimo SHA256 kontrolinis kodas yra:</string>
   <string name="pair_requested">Užklaustas suporavimas</string>

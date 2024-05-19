@@ -116,7 +116,6 @@
   <string name="error_canceled_by_user">사용자가 취소함</string>
   <string name="error_canceled_by_other_peer">다른 쪽에서 취소함</string>
   <string name="encryption_info_title">암호화 정보</string>
-  <string name="encryption_info_msg_no_ssl">다른 장치에서 KDE Connect의 최근 버전을 실행하고 있지 않아서 레거시 암호화를 사용합니다.</string>
   <string name="my_device_fingerprint">내 장치 인증서의 SHA256 지문:</string>
   <string name="remote_device_fingerprint">원격 장치 인증서의 SHA256 지문:</string>
   <string name="pair_requested">연결 요청됨</string>

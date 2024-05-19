@@ -118,7 +118,6 @@
   <string name="error_canceled_by_user">使用者中斷</string>
   <string name="error_canceled_by_other_peer">被其他同等功能應用中斷</string>
   <string name="encryption_info_title">加密資訊</string>
-  <string name="encryption_info_msg_no_ssl">其他的裝置沒有使用新版本的KDE連線，使用傳統的加密模式。</string>
   <string name="my_device_fingerprint">您裝置憑證的 SHA256 指紋是：</string>
   <string name="remote_device_fingerprint">遠端裝置憑證的 SHA256 指紋是：</string>
   <string name="pair_requested">已請求配對</string>

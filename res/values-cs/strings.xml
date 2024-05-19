@@ -118,7 +118,6 @@
   <string name="error_canceled_by_user">Přerušeno uživatelem</string>
   <string name="error_canceled_by_other_peer">Přerušeno druhým uživatelem</string>
   <string name="encryption_info_title">Informace o šifrování</string>
-  <string name="encryption_info_msg_no_ssl">Druhé zařízení nepoužívá poslední verzi KDE Connect. Bude použita stará metoda šifrování.</string>
   <string name="my_device_fingerprint">Otisk SHA256 certifikátu vašeho zařízení je:</string>
   <string name="remote_device_fingerprint">Otisk certifikátu SHA256 vzdáleného zařízení je:</string>
   <string name="pair_requested">Bylo vyžádáno párování</string>

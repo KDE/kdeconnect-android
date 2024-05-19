@@ -108,7 +108,6 @@
   <string name="error_canceled_by_user">Dibatalkan oleh pengguna</string>
   <string name="error_canceled_by_other_peer">Dibatalkan oleh kawan lain</string>
   <string name="encryption_info_title">Info Enkripsi</string>
-  <string name="encryption_info_msg_no_ssl">Perangkat lain tidaklah menggunakan KDE Connect yang berversi saat ini, menggunakan metode enkripsi kuno.</string>
   <string name="my_device_fingerprint">Sidik jari SHA256 pada sertifikat peranti adalah:</string>
   <string name="remote_device_fingerprint">Sidik jari SHA256 pada sertifikat peranti jarak jauh adalah:</string>
   <string name="pair_requested">Meminta sanding</string>

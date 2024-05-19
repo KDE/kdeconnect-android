@@ -108,7 +108,6 @@
   <string name="error_canceled_by_user">Megszakítva a felhasználó által</string>
   <string name="error_canceled_by_other_peer">A másik partner megszakította</string>
   <string name="encryption_info_title">Titkosítási információk</string>
-  <string name="encryption_info_msg_no_ssl">A másik eszköz nem használja a KDE Connect legújabb verzióját, régi titkosítási módszert lesz használva.</string>
   <string name="my_device_fingerprint">Az eszköz tanúsítványának SHA256 ujjlenyomata:</string>
   <string name="remote_device_fingerprint">A távoli eszköz tanúsítványának SHA256 ujjlenyomata:</string>
   <string name="pair_requested">Párosítás kérve</string>

@@ -118,7 +118,6 @@
   <string name="error_canceled_by_user">Скасовано користувачем</string>
   <string name="error_canceled_by_other_peer">Скасовано з іншого вузла пов’язування</string>
   <string name="encryption_info_title">Дані щодо шифрування</string>
-  <string name="encryption_info_msg_no_ssl">На сторонньому пристрої не використовується нова версія KDE Connect, у якій використовується застарілий спосіб шифрування.</string>
   <string name="my_device_fingerprint">Відбиток SHA256 сертифіката пристрою:</string>
   <string name="remote_device_fingerprint">Відбиток SHA256 сертифіката віддаленого пристрою:</string>
   <string name="pair_requested">Запит щодо пов’язування</string>

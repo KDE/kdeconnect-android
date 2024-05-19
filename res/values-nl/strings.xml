@@ -118,7 +118,6 @@
   <string name="error_canceled_by_user">Geannuleerd door gebruiker</string>
   <string name="error_canceled_by_other_peer">Geannuleerd door andere kant</string>
   <string name="encryption_info_title">Versleutelde informatie</string>
-  <string name="encryption_info_msg_no_ssl">Het andere apparaat gebruikt geen recente versie van KDE Connect, de verouderde versleutelingsmethode zal worden gebruikt.</string>
   <string name="my_device_fingerprint">De SHA256 vingerafdruk van het certificaat van uw apparaat is:</string>
   <string name="remote_device_fingerprint">De SHA256 vingerafdruk van het certificaat van het apparaat op afstand is:</string>
   <string name="pair_requested">Paarvorming gevraagd</string>

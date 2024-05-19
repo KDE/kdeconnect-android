@@ -112,7 +112,6 @@
   <string name="error_canceled_by_user">Hætt við af notanda</string>
   <string name="error_canceled_by_other_peer">Hætt við af hinum notandanum</string>
   <string name="encryption_info_title">Upplýsingar um dulritun</string>
-  <string name="encryption_info_msg_no_ssl">Hitt tækið notar ekki nýlega útgáfu af KDE-tengingar, notast við eldri dulritunaraðferð.</string>
   <string name="my_device_fingerprint">SHA256-fingrafar af skilríki tækisins þíns er:</string>
   <string name="remote_device_fingerprint">SHA256-fingrafar af skilríki fjartengda tækisins er:</string>
   <string name="pair_requested">Beðið um pörun</string>

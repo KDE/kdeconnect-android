@@ -116,7 +116,6 @@
   <string name="error_canceled_by_user">Anulat de către utilizator</string>
   <string name="error_canceled_by_other_peer">Anulat de către partener</string>
   <string name="encryption_info_title">Informații despre criptare</string>
-  <string name="encryption_info_msg_no_ssl">Celălalt dispozitiv nu folosește o versiune recentă de KDE Connect, se va folosi metoda de criptare moștenită.</string>
   <string name="my_device_fingerprint">Amprenta SHA256 a certificatului acestui dispozitiv e:</string>
   <string name="remote_device_fingerprint">Amprenta SHA256 a certificatului dispozitivului distant e:</string>
   <string name="pair_requested">Asociere cerută</string>

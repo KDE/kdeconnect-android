@@ -67,7 +67,6 @@
   <string name="error_canceled_by_user">Annulleret af brugeren</string>
   <string name="error_canceled_by_other_peer">Annulleret af modpart</string>
   <string name="encryption_info_title">Krypteringsinfo</string>
-  <string name="encryption_info_msg_no_ssl">Den anden enhed bruger ikke en nylig version af KDE Connect, og bruger dermed den forældede krypteringsmetode.</string>
   <string name="pair_requested">Anmodet om parring</string>
   <string name="pairing_request_from">Parringsanmodning fra %1s</string>
   <string name="received_file_text">Tap for at åbne \"%1s\"</string>

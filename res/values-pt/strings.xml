@@ -114,7 +114,6 @@
   <string name="error_canceled_by_user">Cancelado pelo utilizador</string>
   <string name="error_canceled_by_other_peer">Cancelado pela outra máquina</string>
   <string name="encryption_info_title">Dados de Encriptação</string>
-  <string name="encryption_info_msg_no_ssl">O outro dispositivo não usa uma versão recente do KDE Connect; será usado o método antigo de encriptação.</string>
   <string name="my_device_fingerprint">A impressão digital SHA256 do certificado do seu dispositivo é:</string>
   <string name="remote_device_fingerprint">A impressão digital SHA256 do certificado do dispositivo remoto é:</string>
   <string name="pair_requested">Emparelhamento pedido</string>

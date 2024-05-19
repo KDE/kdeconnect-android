@@ -118,7 +118,6 @@
   <string name="error_canceled_by_user">Preklical uporabnik</string>
   <string name="error_canceled_by_other_peer">Preklican od drugega vrstnika</string>
   <string name="encryption_info_title">Informacija o šifriranju</string>
-  <string name="encryption_info_msg_no_ssl">Druga naprava ne uporablja najnovejše različice KDE Connect, uporablja podedovano metodo šifriranja.</string>
   <string name="my_device_fingerprint">Prstni odtis SHA256 certifikata vaše naprave je:</string>
   <string name="remote_device_fingerprint">Prstni odtis SHA256 certifikata oddaljene naprave je:</string>
   <string name="pair_requested">Zahtevan je par</string>

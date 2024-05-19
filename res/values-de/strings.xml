@@ -112,7 +112,6 @@
   <string name="error_canceled_by_user">Abbruch durch Benutzer</string>
   <string name="error_canceled_by_other_peer">Abbruch durch Gegenstelle</string>
   <string name="encryption_info_title">Verschlüsselungsinformationen</string>
-  <string name="encryption_info_msg_no_ssl">Das andere Gerät verwendet eine ältere Version von KDE Connect. Daher muss eine veraltete Verschlüsselungsmethode verwendet werden</string>
   <string name="my_device_fingerprint">Der SHA256-Fingerabdruck Ihres Gerätezertifikats lautet:</string>
   <string name="remote_device_fingerprint">Der SHA256-Fingerabdruck des Gerätezertifikats der Gegenstelle lautet:</string>
   <string name="pair_requested">Verbindung angefordert</string>

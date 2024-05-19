@@ -118,7 +118,6 @@
   <string name="error_canceled_by_user">Nuligite de uzanto</string>
   <string name="error_canceled_by_other_peer">Nuligite de alia kunulo</string>
   <string name="encryption_info_title">Ĉifrada Informo</string>
-  <string name="encryption_info_msg_no_ssl">La alia aparato ne uzas lastatempan version de KDE Connect, uzante la heredan ĉifradan metodon.</string>
   <string name="my_device_fingerprint">SHA256-fingrospuro de via aparato-atestilo estas:</string>
   <string name="remote_device_fingerprint">SHA256-fingrospuro de atestilo de fora aparato estas:</string>
   <string name="pair_requested">Parigo alpetiĝis</string>
