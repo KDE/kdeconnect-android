@@ -65,7 +65,6 @@ open class Device : PacketReceiver { // Set as open to allow mocking in tests
     private var pluginsByIncomingInterface: MultiValuedMap<String, String> = ArrayListValuedHashMap()
     private val settings: SharedPreferences
     private val pluginsChangedListeners: MutableList<PluginsChangedListener> = CopyOnWriteArrayList()
-    private val connectivityType: String
 
     /**
      * Constructor for remembered, already-trusted devices.
@@ -77,7 +76,6 @@ open class Device : PacketReceiver { // Set as open to allow mocking in tests
         this.deviceInfo = loadFromSettings(context, deviceId, settings)
         this.pairingHandler = PairingHandler(this, pairingCallback, PairingHandler.PairState.Paired)
         this.supportedPlugins = Vector(PluginFactory.getAvailablePlugins()) // Assume all are supported until we receive capabilities
-        this.connectivityType = ""
         Log.i("Device", "Loading trusted device: ${deviceInfo.name}")
     }
 
@@ -92,7 +90,6 @@ open class Device : PacketReceiver { // Set as open to allow mocking in tests
         this.settings = context.getSharedPreferences(deviceInfo.id, Context.MODE_PRIVATE)
         this.pairingHandler = PairingHandler(this, pairingCallback, PairingHandler.PairState.NotPaired)
         this.supportedPlugins = Vector(PluginFactory.getAvailablePlugins()) // Assume all are supported until we receive capabilities
-        this.connectivityType = link.linkProvider.name
         Log.i("Device", "Creating untrusted device: " + deviceInfo.name)
         addLink(link)
     }
@@ -103,6 +100,9 @@ open class Device : PacketReceiver { // Set as open to allow mocking in tests
     fun interface PluginsChangedListener {
         fun onPluginsChanged(device: Device)
     }
+
+    val connectivityType: String?
+        get() = links.firstOrNull()?.name
 
     val name: String
         get() = deviceInfo.name
