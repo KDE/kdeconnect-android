@@ -355,10 +355,10 @@ class MprisPlugin : Plugin() {
             try {
                 val url = VideoUrlsHelper.formatUriWithSeek(playerStatus.url, playerStatus.position).toString()
                 val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                val pendingIntent = PendingIntent.getActivity(device.context, 0, browserIntent, PendingIntent.FLAG_IMMUTABLE)
+                val pendingIntent = PendingIntent.getActivity(context, 0, browserIntent, PendingIntent.FLAG_IMMUTABLE)
 
-                val notificationManager = ContextCompat.getSystemService(device.context, NotificationManager::class.java)
-                val builder = NotificationCompat.Builder(device.context, NotificationHelper.Channels.CONTINUEWATCHING)
+                val notificationManager = ContextCompat.getSystemService(context, NotificationManager::class.java)
+                val builder = NotificationCompat.Builder(context, NotificationHelper.Channels.CONTINUEWATCHING)
                     .setContentTitle(context.resources.getString(R.string.kde_connect))
                     .setSmallIcon(R.drawable.ic_play_white)
                     .setTimeoutAfter(3000)
