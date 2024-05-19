@@ -98,7 +98,7 @@ class KdeConnect : Application() {
             id
         }.filter { preferences.getBoolean(it, false) }.forEach {
             try {
-                val device = Device(this, it)
+                val device = Device(applicationContext, it)
                 devices[it] = device
                 device.addPairingCallback(devicePairingCallback)
             } catch (e: CertificateException) {
