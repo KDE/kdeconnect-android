@@ -172,7 +172,7 @@ public class DeviceTest {
         assertEquals(device.getDeviceType(), DeviceType.PHONE);
         assertEquals(device.getName(), "Test Device");
         assertTrue(device.isPaired());
-        assertNotNull(device.deviceInfo.certificate);
+        assertNotNull(device.getDeviceInfo().certificate);
     }
 
     @Test
@@ -217,9 +217,9 @@ public class DeviceTest {
         assertEquals(device.getDeviceId(), deviceId);
         assertEquals(device.getName(), "Unpaired Test Device");
         assertEquals(device.getDeviceType(), DeviceType.PHONE);
-        assertNotNull(device.deviceInfo.certificate);
+        assertNotNull(device.getDeviceInfo().certificate);
 
-        device.pairingHandler.pairingDone();
+        device.getPairingHandler().pairingDone();
 
         assertTrue(device.isPaired());
 
