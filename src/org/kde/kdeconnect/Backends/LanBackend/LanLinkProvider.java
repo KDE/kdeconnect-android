@@ -108,11 +108,6 @@ public class LanLinkProvider extends BaseLinkProvider {
             return;
         }
 
-        if (!networkPacket.getType().equals(NetworkPacket.PACKET_TYPE_IDENTITY)) {
-            Log.e("KDE/LanLinkProvider", "Expecting an identity packet instead of " + networkPacket.getType());
-            return;
-        }
-
         Log.i("KDE/LanLinkProvider", "identity packet received from a TCP connection from " + networkPacket.getString("deviceName"));
         identityPacketReceived(networkPacket, socket, LanLink.ConnectionStarted.Locally);
     }
@@ -132,11 +127,6 @@ public class LanLinkProvider extends BaseLinkProvider {
         }
 
         final String deviceId = identityPacket.getString("deviceId");
-        if (!identityPacket.getType().equals(NetworkPacket.PACKET_TYPE_IDENTITY)) {
-            Log.e("KDE/LanLinkProvider", "Expecting an UDP identity packet");
-            return;
-        }
-
         String myId = DeviceHelper.getDeviceId(context);
         if (deviceId.equals(myId)) {
             //Ignore my own broadcast
