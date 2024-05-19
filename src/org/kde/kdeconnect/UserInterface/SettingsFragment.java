@@ -7,14 +7,13 @@
 package org.kde.kdeconnect.UserInterface;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.TextUtils;
+import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +32,7 @@ import androidx.preference.TwoStatePreference;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import org.apache.commons.lang3.StringUtils;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.Helpers.NotificationHelper;
@@ -66,6 +66,10 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         renameDevice.setKey(DeviceHelper.KEY_DEVICE_NAME_PREFERENCE);
         renameDevice.setSelectable(true);
         renameDevice.setOnBindEditTextListener(TextView::setSingleLine);
+        renameDevice.setOnBindEditTextListener(editText -> editText.setFilters(new InputFilter[] {
+                (source, start, end, dest, dstart, dend) -> DeviceHelper.filterName(source.subSequence(start, end).toString()),
+                new InputFilter.LengthFilter(DeviceHelper.MAX_DEVICE_NAME_LENGTH),
+        }));
         String deviceName = DeviceHelper.getDeviceName(context);
         renameDevice.setTitle(R.string.settings_rename);
         renameDevice.setSummary(deviceName);
@@ -76,7 +80,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         renameDevice.setOnPreferenceChangeListener((preference, newValue) -> {
             String name = (String) newValue;
 
-            if (TextUtils.isEmpty(name)) {
+            if (StringUtils.isBlank(name)) {
                 if (getView() != null) {
                     Snackbar snackbar = Snackbar.make(getView(), R.string.invalid_device_name, Snackbar.LENGTH_LONG);
                     int currentTheme = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;

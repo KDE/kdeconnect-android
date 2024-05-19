@@ -125,6 +125,12 @@ public class LanLinkProvider extends BaseLinkProvider {
 
         String message = new String(packet.getData(), Charsets.UTF_8);
         final NetworkPacket identityPacket = NetworkPacket.unserialize(message);
+
+        if (!DeviceInfo.isValidIdentityPacket(identityPacket)) {
+            Log.w("KDE/LanLinkProvider", "Invalid identity packet received.");
+            return;
+        }
+
         final String deviceId = identityPacket.getString("deviceId");
         if (!identityPacket.getType().equals(NetworkPacket.PACKET_TYPE_IDENTITY)) {
             Log.e("KDE/LanLinkProvider", "Expecting an UDP identity packet");
@@ -191,6 +197,11 @@ public class LanLinkProvider extends BaseLinkProvider {
      */
     @WorkerThread
     private void identityPacketReceived(final NetworkPacket identityPacket, final Socket socket, final LanLink.ConnectionStarted connectionStarted) throws IOException {
+
+        if (!DeviceInfo.isValidIdentityPacket(identityPacket)) {
+            Log.w("KDE/LanLinkProvider", "Invalid identity packet received.");
+            return;
+        }
 
         String myId = DeviceHelper.getDeviceId(context);
         final String deviceId = identityPacket.getString("deviceId");

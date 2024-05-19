@@ -22,6 +22,7 @@ import android.util.Log
 import org.apache.commons.io.IOUtils
 import org.kde.kdeconnect.Backends.BaseLinkProvider
 import org.kde.kdeconnect.Device
+import org.kde.kdeconnect.DeviceInfo
 import org.kde.kdeconnect.DeviceInfo.Companion.fromIdentityPacketAndCert
 import org.kde.kdeconnect.Helpers.DeviceHelper
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper
@@ -44,6 +45,12 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
 
     @Throws(CertificateException::class)
     private fun addLink(identityPacket: NetworkPacket, link: BluetoothLink) {
+
+        if (!DeviceInfo.isValidIdentityPacket(identityPacket)) {
+            Log.w("KDE/LanLinkProvider", "Invalid identity packet received.")
+            return
+        }
+
         val deviceId = identityPacket.getString("deviceId")
         Log.i("BluetoothLinkProvider", "addLink to $deviceId")
         val oldLink = visibleDevices[deviceId]
@@ -369,6 +376,13 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
                     socket.close()
                     return
                 }
+
+                if (!DeviceInfo.isValidIdentityPacket(identityPacket)) {
+                    Log.w("KDE/LanLinkProvider", "Invalid identity packet received.")
+                    connection.close()
+                    return
+                }
+
                 Log.i("BTLinkProvider/Client", "Received identity packet")
                 val myId = DeviceHelper.getDeviceId(context)
                 if (identityPacket.getString("deviceId") == myId) {

@@ -133,6 +133,27 @@ public class DeviceTest {
     }
 
     @Test
+    public void testIsValidIdentityPacket() {
+        NetworkPacket np = new NetworkPacket(NetworkPacket.PACKET_TYPE_IDENTITY);
+        assertFalse(DeviceInfo.Companion.isValidIdentityPacket(np));
+
+        String validName = "MyDevice";
+        String validId = "123";
+        np.set("deviceName", validName);
+        np.set("deviceId", validId);
+        assertTrue(DeviceInfo.Companion.isValidIdentityPacket(np));
+
+        np.set("deviceName", "    ");
+        assertFalse(DeviceInfo.Companion.isValidIdentityPacket(np));
+        np.set("deviceName", "<><><><><><><><><>"); // Only invalid characters
+        assertFalse(DeviceInfo.Companion.isValidIdentityPacket(np));
+
+        np.set("deviceName", validName);
+        np.set("deviceId", "    ");
+        assertFalse(DeviceInfo.Companion.isValidIdentityPacket(np));
+    }
+
+    @Test
     public void testDeviceType() {
         assertEquals(DeviceType.PHONE, DeviceType.fromString(DeviceType.PHONE.toString()));
         assertEquals(DeviceType.TABLET, DeviceType.fromString(DeviceType.TABLET.toString()));

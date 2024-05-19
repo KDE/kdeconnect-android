@@ -10,6 +10,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.util.Base64
 import androidx.core.content.ContextCompat
+import org.kde.kdeconnect.Helpers.DeviceHelper
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper
 import org.kde.kdeconnect_tp.R
 import java.security.cert.Certificate
@@ -90,7 +91,7 @@ class DeviceInfo(
             with(identityPacket) {
                 DeviceInfo(
                     id = getString("deviceId"), // Redundant: We could read this from the certificate instead
-                    name = getString("deviceName", "unknown"),
+                    name = DeviceHelper.filterName(getString("deviceName", "unknown")),
                     type = DeviceType.fromString(getString("deviceType", "desktop")),
                     certificate = certificate,
                     protocolVersion = getInt("protocolVersion"),
@@ -98,6 +99,11 @@ class DeviceInfo(
                     outgoingCapabilities = getStringSet("outgoingCapabilities")
                 )
             }
+
+        @JvmStatic
+        fun isValidIdentityPacket(identityPacket: NetworkPacket): Boolean = with(identityPacket) {
+            DeviceHelper.filterName(getString("deviceName", "")).isNotBlank() && getString("deviceId", "").isNotBlank()
+        }
     }
 }
 

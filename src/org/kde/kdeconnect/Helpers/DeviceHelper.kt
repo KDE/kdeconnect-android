@@ -38,6 +38,9 @@ object DeviceHelper {
 
     private const val DEVICE_DATABASE = "https://storage.googleapis.com/play_public/supported_devices.csv"
 
+    private val NAME_INVALID_CHARACTERS_REGEX = "[\"',;:.!?()\\[\\]<>]".toRegex()
+    const val MAX_DEVICE_NAME_LENGTH = 32
+
     private val isTablet: Boolean by lazy {
         val config = Resources.getSystem().configuration
         //This assumes that the values for the screen sizes are consecutive, so XXLARGE > XLARGE > LARGE
@@ -119,8 +122,9 @@ object DeviceHelper {
     }
 
     fun setDeviceName(context: Context, name: String) {
+        val filteredName = filterName(name)
         val preferences = PreferenceManager.getDefaultSharedPreferences(context)
-        preferences.edit().putString(KEY_DEVICE_NAME_PREFERENCE, name).apply()
+        preferences.edit().putString(KEY_DEVICE_NAME_PREFERENCE, filteredName).apply()
     }
 
     fun initializeDeviceId(context: Context) {
@@ -160,4 +164,7 @@ object DeviceHelper {
             PluginFactory.getOutgoingCapabilities()
         )
     }
+
+    @JvmStatic
+    fun filterName(input: String): String = input.replace(NAME_INVALID_CHARACTERS_REGEX, "").take(MAX_DEVICE_NAME_LENGTH)
 }
