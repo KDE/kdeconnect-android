@@ -45,12 +45,6 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
 
     @Throws(CertificateException::class)
     private fun addLink(identityPacket: NetworkPacket, link: BluetoothLink) {
-
-        if (!DeviceInfo.isValidIdentityPacket(identityPacket)) {
-            Log.w("KDE/LanLinkProvider", "Invalid identity packet received.")
-            return
-        }
-
         val deviceId = identityPacket.getString("deviceId")
         Log.i("BluetoothLinkProvider", "addLink to $deviceId")
         val oldLink = visibleDevices[deviceId]
@@ -202,8 +196,8 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
                     }
                     val response = sb.toString()
                     val identityPacket = NetworkPacket.unserialize(response)
-                    if (identityPacket.type != NetworkPacket.PACKET_TYPE_IDENTITY) {
-                        Log.e("BTLinkProvider/Server", "2 Expecting an identity packet")
+                    if (!DeviceInfo.isValidIdentityPacket(identityPacket)) {
+                        Log.w("BTLinkProvider/Server", "Invalid identity packet received.")
                         return
                     }
                     Log.i("BTLinkProvider/Server", "Received identity packet")
@@ -371,14 +365,9 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
                 Log.i("BTLinkProvider/Client", "Device: " + device.address + " Before unserialize (message: '" + message + "')")
                 val identityPacket = NetworkPacket.unserialize(message)
                 Log.i("BTLinkProvider/Client", "Device: " + device.address + " After unserialize")
-                if (identityPacket.type != NetworkPacket.PACKET_TYPE_IDENTITY) {
-                    Log.e("BTLinkProvider/Client", "1 Expecting an identity packet")
-                    socket.close()
-                    return
-                }
 
                 if (!DeviceInfo.isValidIdentityPacket(identityPacket)) {
-                    Log.w("KDE/LanLinkProvider", "Invalid identity packet received.")
+                    Log.w("BTLinkProvider/Client", "Invalid identity packet received.")
                     connection.close()
                     return
                 }

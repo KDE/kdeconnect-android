@@ -103,7 +103,9 @@ class DeviceInfo(
 
         @JvmStatic
         fun isValidIdentityPacket(identityPacket: NetworkPacket): Boolean = with(identityPacket) {
-            DeviceHelper.filterName(getString("deviceName", "")).isNotBlank() && getString("deviceId", "").isNotBlank()
+            type == NetworkPacket.PACKET_TYPE_IDENTITY &&
+                DeviceHelper.filterName(getString("deviceName", "")).isNotBlank() &&
+                getString("deviceId", "").isNotBlank()
         }
     }
 }
