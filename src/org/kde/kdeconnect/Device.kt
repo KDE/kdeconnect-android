@@ -41,7 +41,7 @@ import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.ConcurrentMap
 import java.util.concurrent.CopyOnWriteArrayList
 
-open class Device : PacketReceiver { // Set as open to allow mocking in tests
+class Device : PacketReceiver {
     val context: Context
     @VisibleForTesting
     val deviceInfo: DeviceInfo
