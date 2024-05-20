@@ -9,7 +9,6 @@ buildscript {
     }
 }
 
-@Suppress("DSL_SCOPE_VIOLATION")    // TODO: remove once https://youtrack.jetbrains.com/issue/KTIJ-19369 is fixed
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
