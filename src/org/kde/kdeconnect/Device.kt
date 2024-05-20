@@ -74,7 +74,7 @@ open class Device : PacketReceiver { // Set as open to allow mocking in tests
         this.context = context
         this.settings = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE)
         this.deviceInfo = loadFromSettings(context, deviceId, settings)
-        this.pairingHandler = PairingHandler(this, pairingCallback, PairingHandler.PairState.Paired)
+        this.pairingHandler = PairingHandler(this, createDefaultPairingCallback(), PairingHandler.PairState.Paired)
         this.supportedPlugins = Vector(PluginFactory.getAvailablePlugins()) // Assume all are supported until we receive capabilities
         Log.i("Device", "Loading trusted device: ${deviceInfo.name}")
     }
@@ -88,7 +88,7 @@ open class Device : PacketReceiver { // Set as open to allow mocking in tests
         this.context = context
         this.deviceInfo = link.deviceInfo
         this.settings = context.getSharedPreferences(deviceInfo.id, Context.MODE_PRIVATE)
-        this.pairingHandler = PairingHandler(this, pairingCallback, PairingHandler.PairState.NotPaired)
+        this.pairingHandler = PairingHandler(this, createDefaultPairingCallback(), PairingHandler.PairState.NotPaired)
         this.supportedPlugins = Vector(PluginFactory.getAvailablePlugins()) // Assume all are supported until we receive capabilities
         Log.i("Device", "Creating untrusted device: " + deviceInfo.name)
         addLink(link)
@@ -153,7 +153,7 @@ open class Device : PacketReceiver { // Set as open to allow mocking in tests
         pairingHandler.cancelPairing()
     }
 
-    private fun defaultPairingCallback(): PairingCallback {
+    private fun createDefaultPairingCallback(): PairingCallback {
         return object : PairingCallback {
             override fun incomingPairRequest() {
                 displayPairingNotification()
@@ -202,8 +202,6 @@ open class Device : PacketReceiver { // Set as open to allow mocking in tests
             }
         }
     }
-
-    val pairingCallback: PairingCallback = defaultPairingCallback()
 
     //
     // Notification related methods used during pairing
