@@ -21,3 +21,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "kdeconnect-android"
+include(":baselineprofile")

@@ -15,6 +15,8 @@ plugins {
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.dependencyLicenseReport)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.android.test) apply false
+    alias(libs.plugins.baselineprofile)
 }
 
 val licenseResDir = File("$projectDir/build/dependency-license-res")
@@ -133,6 +135,9 @@ android {
 
 dependencies {
     coreLibraryDesugaring(libs.android.desugarJdkLibs)
+
+    implementation(libs.androidx.profileinstaller)
+    "baselineProfile"(project("baselineprofile"))
 
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.ui.tooling.preview)
