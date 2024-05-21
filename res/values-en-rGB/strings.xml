@@ -117,7 +117,6 @@
   <string name="my_device_fingerprint">SHA256 fingerprint of your device certificate is:</string>
   <string name="remote_device_fingerprint">SHA256 fingerprint of remote device certificate is:</string>
   <string name="pair_requested">Pair requested</string>
-  <string name="pairing_request_from">Pairing request from %1s</string>
   <plurals name="incoming_file_title">
     <item quantity="one">Receiving %1$d file from %2$s</item>
     <item quantity="other">Receiving %1$d files from %2$s</item>

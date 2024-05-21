@@ -119,7 +119,6 @@
   <string name="my_device_fingerprint">내 장치 인증서의 SHA256 지문:</string>
   <string name="remote_device_fingerprint">원격 장치 인증서의 SHA256 지문:</string>
   <string name="pair_requested">연결 요청됨</string>
-  <string name="pairing_request_from">%1s에서 연결 요청</string>
   <plurals name="incoming_file_title">
     <item quantity="other">%2$s에서 보낸 파일 %1$d개 받음</item>
   </plurals>

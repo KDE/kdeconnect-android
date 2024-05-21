@@ -122,7 +122,7 @@
   <string name="remote_device_fingerprint">Prstni odtis SHA256 certifikata oddaljene naprave je:</string>
   <string name="pair_requested">Zahtevan je par</string>
   <string name="pair_succeeded">Uparjanje je uspelo</string>
-  <string name="pairing_request_from">Zahtevek za uparjanje od %1s</string>
+  <string name="pairing_request_from">Zahtevek za uparjanje od \'%1s\'</string>
   <plurals name="incoming_file_title">
     <item quantity="one">Prejemanje %1$d datoteke od %2$s</item>
     <item quantity="two">Prejemanje %1$d datotek od %2$s</item>

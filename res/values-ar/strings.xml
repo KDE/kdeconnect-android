@@ -84,7 +84,6 @@
   <string name="error_canceled_by_other_peer">ألغاه ندّ آخر</string>
   <string name="encryption_info_title">معلومات التّعمية</string>
   <string name="pair_requested">طُلب الاقتران</string>
-  <string name="pairing_request_from">طلب اقتران من %1s</string>
   <string name="tap_to_open">اطرق لتفتح</string>
   <string name="received_file_text">المس لفتح \'%1s\'</string>
   <string name="tap_to_answer">المس للإجابة</string>

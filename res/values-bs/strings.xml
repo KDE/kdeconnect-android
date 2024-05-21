@@ -46,7 +46,6 @@
   <string name="error_canceled_by_user">Prekinuo korisnik</string>
   <string name="error_canceled_by_other_peer">Prekinuo drugi korisnik</string>
   <string name="pair_requested">Uparivanje zatraženo</string>
-  <string name="pairing_request_from">Uparivanje zatraženo od %1s</string>
   <string name="received_file_text">Kucni za otvaranje \'%1s\'</string>
   <string name="tap_to_answer">Kucni za odgovor</string>
   <string name="right_click">Pošalji Desni Klik</string>

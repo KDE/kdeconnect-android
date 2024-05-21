@@ -102,7 +102,6 @@
   <string name="my_device_fingerprint">Odtlačok SHA256 certifikátu vášho zariadenia je:</string>
   <string name="remote_device_fingerprint">Odtlačok SHA256 certifikátu vzdialeného zariadenia je:</string>
   <string name="pair_requested">Spárovanie vyžiadané</string>
-  <string name="pairing_request_from">Požiadavka na spárovanie zo zariadenia %1s</string>
   <plurals name="incoming_file_title">
     <item quantity="one">Prijíma sa %1$d súbor z %2$s</item>
     <item quantity="few">Prijímajú sa %1$d súbory z %2$s</item>

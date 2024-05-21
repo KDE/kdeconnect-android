@@ -122,7 +122,7 @@
   <string name="remote_device_fingerprint">L\'empremta digital SHA256 del certificat del dispositiu remot és:</string>
   <string name="pair_requested">S\'ha demanat aparellar</string>
   <string name="pair_succeeded">S\'ha aparellat correctament</string>
-  <string name="pairing_request_from">S\'ha demanat aparellar des de %1s</string>
+  <string name="pairing_request_from">S\'ha demanat aparellar des de «%1s»</string>
   <plurals name="incoming_file_title">
     <item quantity="one">S\'està rebent %1$d fitxer des de %2$s</item>
     <item quantity="other">S\'estan rebent %1$d fitxers des de %2$s</item>

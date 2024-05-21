@@ -115,7 +115,6 @@
   <string name="my_device_fingerprint">Der SHA256-Fingerabdruck Ihres Gerätezertifikats lautet:</string>
   <string name="remote_device_fingerprint">Der SHA256-Fingerabdruck des Gerätezertifikats der Gegenstelle lautet:</string>
   <string name="pair_requested">Verbindung angefordert</string>
-  <string name="pairing_request_from">Kopplungsanfrage von %1s</string>
   <plurals name="incoming_file_title">
     <item quantity="one">%1$d Datei von %2$s wird empfangen</item>
     <item quantity="other">%1$d Dateien von %2$s werden empfangen</item>

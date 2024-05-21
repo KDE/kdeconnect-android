@@ -112,7 +112,6 @@
   <string name="my_device_fingerprint">Jūsų įrenginio liudijimo SHA256 kontrolinis kodas yra:</string>
   <string name="remote_device_fingerprint">Nuotolinio įrenginio liudijimo SHA256 kontrolinis kodas yra:</string>
   <string name="pair_requested">Užklaustas suporavimas</string>
-  <string name="pairing_request_from">Suporavimo užklausa iš %1s</string>
   <plurals name="incoming_file_title">
     <item quantity="one">Gaunamas %1$d failas iš %2$s</item>
     <item quantity="few">Gaunami %1$d failai iš %2$s</item>

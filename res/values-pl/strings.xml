@@ -122,7 +122,6 @@
   <string name="remote_device_fingerprint">Odcisk palca SHA256 certyfikatu twojego zdalnego urządzenia to:</string>
   <string name="pair_requested">Poproszono o sparowanie</string>
   <string name="pair_succeeded">Parowanie udane</string>
-  <string name="pairing_request_from">Prośba o sparowanie z %1s</string>
   <plurals name="incoming_file_title">
     <item quantity="one">Pobieranie %1$d pliku z %2$s</item>
     <item quantity="few">Pobieranie %1$d plików z %2$s</item>

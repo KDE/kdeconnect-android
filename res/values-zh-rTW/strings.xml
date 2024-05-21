@@ -122,7 +122,6 @@
   <string name="remote_device_fingerprint">遠端裝置憑證的 SHA256 指紋是：</string>
   <string name="pair_requested">已請求配對</string>
   <string name="pair_succeeded">配對成功</string>
-  <string name="pairing_request_from">來自 %1s 的配對請求</string>
   <plurals name="incoming_file_title">
     <item quantity="other">正在從 %2$s 接收 %1$d 個檔案</item>
   </plurals>

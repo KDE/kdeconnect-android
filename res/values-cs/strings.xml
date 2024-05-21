@@ -122,7 +122,6 @@
   <string name="remote_device_fingerprint">Otisk certifikátu SHA256 vzdáleného zařízení je:</string>
   <string name="pair_requested">Bylo vyžádáno párování</string>
   <string name="pair_succeeded">Párování bylo úspěšné</string>
-  <string name="pairing_request_from">Požadavek o párování z %1s</string>
   <plurals name="incoming_file_title">
     <item quantity="one">Přijímám %1$d soubor z %2$s</item>
     <item quantity="few">Přijímám %1$d soubory z %2$s</item>

@@ -119,7 +119,6 @@
   <string name="my_device_fingerprint">உங்கள் சாதனச் சான்றிதழின் SHA256 சரிகாண்தொகை:</string>
   <string name="remote_device_fingerprint">தொலை சாதனச் சான்றிதழின் SHA256 சரிகாண்தொகை:</string>
   <string name="pair_requested">இணைப்பு கோரப்பட்டது</string>
-  <string name="pairing_request_from">%1s இலிருந்து இணைப்பு கோரிக்கை</string>
   <plurals name="incoming_file_title">
     <item quantity="one">%2$s இலிருந்து %1$d கோப்பு பெறப்படுகிறது</item>
     <item quantity="other">%2$s இருந்து %1$d கோப்புகள் பெறப்படுகின்றன</item>

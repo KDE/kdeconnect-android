@@ -118,7 +118,6 @@
   <string name="my_device_fingerprint">Cihazınızın sertifikatının SHA256 şifrə izi:</string>
   <string name="remote_device_fingerprint">Uzaq cihaz sertifikatının SHA256 şifrə izi:</string>
   <string name="pair_requested">Qoşulma soruşuldu</string>
-  <string name="pairing_request_from">%1s tərəfindən qoşulma sorğusu</string>
   <plurals name="incoming_file_title">
     <item quantity="one">%1$d fayl %2$s\'dn alınır</item>
     <item quantity="other">%1$d fayl %2$s\'dn alınır</item>

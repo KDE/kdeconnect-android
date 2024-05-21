@@ -122,7 +122,6 @@
   <string name="remote_device_fingerprint">远程设备证书的 SHA256 指纹是：</string>
   <string name="pair_requested">已请求配对</string>
   <string name="pair_succeeded">配对成功</string>
-  <string name="pairing_request_from">来自 %1s 的配对请求</string>
   <plurals name="incoming_file_title">
     <item quantity="other">正在从 %2$s 接收 %1$d 个文件</item>
   </plurals>

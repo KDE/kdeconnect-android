@@ -118,7 +118,6 @@
   <string name="my_device_fingerprint">A impressão digital SHA256 do certificado do seu dispositivo é:</string>
   <string name="remote_device_fingerprint">A impressão digital SHA256 do certificado do dispositivo remoto é:</string>
   <string name="pair_requested">Solicitação de emparelhamento</string>
-  <string name="pairing_request_from">Emparelhamento solicitado por %1s</string>
   <plurals name="incoming_file_title">
     <item quantity="one">Recebendo %1$d arquivo de %2$s</item>
     <item quantity="other">Recebendo %1$d arquivos de %2$s</item>

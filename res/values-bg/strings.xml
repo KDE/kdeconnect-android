@@ -122,7 +122,6 @@
   <string name="remote_device_fingerprint">SHA256 отпечатък на сертификата на отдалеченото устройство е:</string>
   <string name="pair_requested">Заявено е сдвояване</string>
   <string name="pair_succeeded">Сдвояването е успешно</string>
-  <string name="pairing_request_from">Заявено е сдвояване от %1s</string>
   <plurals name="incoming_file_title">
     <item quantity="one">Получаване на %1$d файл от %2$s</item>
     <item quantity="other">Получаване на %1$d файлове от %2$s</item>

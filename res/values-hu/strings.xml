@@ -111,7 +111,6 @@
   <string name="my_device_fingerprint">Az eszköz tanúsítványának SHA256 ujjlenyomata:</string>
   <string name="remote_device_fingerprint">A távoli eszköz tanúsítványának SHA256 ujjlenyomata:</string>
   <string name="pair_requested">Párosítás kérve</string>
-  <string name="pairing_request_from">Párosítási kérés innen: %1s</string>
   <plurals name="incoming_file_title">
     <item quantity="one">%1$d fájl fogadása innen: %2$s</item>
     <item quantity="other">%1$d fájl fogadása innen: %2$s</item>

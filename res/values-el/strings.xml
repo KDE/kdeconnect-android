@@ -103,7 +103,6 @@
   <string name="my_device_fingerprint">Το ίχνος SHA256 του πιστοποιητικού της συσκευής σας είναι:</string>
   <string name="remote_device_fingerprint">Το ίχνος SHA256 του πιστοποιητικού της απομακρυσμένης συσκευής είναι:</string>
   <string name="pair_requested">Ζητήθηκε σύζευξη</string>
-  <string name="pairing_request_from">Αίτημα σύζευξης από %1s</string>
   <plurals name="incoming_file_title">
     <item quantity="one">Ελήφθη %1$d αρχείο από %2$s`</item>
     <item quantity="other">Ελήφθησαν %1$d αρχεία από %2$s</item>

@@ -122,7 +122,7 @@
   <string name="remote_device_fingerprint">De SHA256 vingerafdruk van het certificaat van het apparaat op afstand is:</string>
   <string name="pair_requested">Paarvorming gevraagd</string>
   <string name="pair_succeeded">Paarvorming is gelukt</string>
-  <string name="pairing_request_from">Verzoek om een paar te maken van %1s</string>
+  <string name="pairing_request_from">Verzoek om een paar te maken van \'%1s\'</string>
   <plurals name="incoming_file_title">
     <item quantity="one">%1$d bestand wordt ontvangen vanaf %2$s</item>
     <item quantity="other">%1$d bestanden worden ontvangen vanaf %2$s</item>

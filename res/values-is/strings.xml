@@ -115,7 +115,6 @@
   <string name="my_device_fingerprint">SHA256-fingrafar af skilríki tækisins þíns er:</string>
   <string name="remote_device_fingerprint">SHA256-fingrafar af skilríki fjartengda tækisins er:</string>
   <string name="pair_requested">Beðið um pörun</string>
-  <string name="pairing_request_from">Beiðni um pörun frá %1s</string>
   <plurals name="incoming_file_title">
     <item quantity="one">Tek á móti %1$d skrá frá %2$s</item>
     <item quantity="other">Tek á móti %1$d skrám frá %2$s</item>

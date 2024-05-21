@@ -119,7 +119,6 @@
   <string name="my_device_fingerprint">Zure gailuaren ziurtagiriaren SHA256 hatz-marka:</string>
   <string name="remote_device_fingerprint">Urruneko gailuaren ziurtagiriaren SHA256 hatz-marka hau da:</string>
   <string name="pair_requested">Parekatzea eskatu da</string>
-  <string name="pairing_request_from">Parekatzeko eskaria %1s-tik</string>
   <plurals name="incoming_file_title">
     <item quantity="one">%2$s(e)tik fitxategi %1$d jasotzen</item>
     <item quantity="other">%2$s(e)tik %1$d fitxategi jasotzen</item>

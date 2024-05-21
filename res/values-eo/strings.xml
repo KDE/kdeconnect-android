@@ -122,7 +122,6 @@
   <string name="remote_device_fingerprint">SHA256-fingrospuro de atestilo de fora aparato estas:</string>
   <string name="pair_requested">Parigo alpetiĝis</string>
   <string name="pair_succeeded">Parigo sukcesis</string>
-  <string name="pairing_request_from">Pariga alpeto de %1s</string>
   <plurals name="incoming_file_title">
     <item quantity="one">Ricevante %1$d dosieron de %2$s</item>
     <item quantity="other">Ricevante %1$d dosierojn de %2$s</item>

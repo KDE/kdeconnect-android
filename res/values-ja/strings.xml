@@ -119,7 +119,6 @@
   <string name="my_device_fingerprint">このデバイスの証明書の SHA256 フィンガープリント:</string>
   <string name="remote_device_fingerprint">リモートデバイスの証明書の SHA256 フィンガープリント:</string>
   <string name="pair_requested">ペアリング要求済み</string>
-  <string name="pairing_request_from">%1s からペアリングを要求されました</string>
   <plurals name="incoming_file_title">
     <item quantity="other">%1$d ファイルを %2$s から受信しています</item>
   </plurals>

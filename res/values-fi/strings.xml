@@ -119,7 +119,6 @@
   <string name="my_device_fingerprint">Laitevarmenteen SHA256-sormenjälki on:</string>
   <string name="remote_device_fingerprint">Etälaitteen varmenteen SHA256-sormenjälki on:</string>
   <string name="pair_requested">Paripyyntö</string>
-  <string name="pairing_request_from">Paripyyntö laitteesta %1s</string>
   <plurals name="incoming_file_title">
     <item quantity="one">Vastaanotetaan %1$d tiedosto lähettäjältä %2$s</item>
     <item quantity="other">Vastaanotetaan %1$d tiedostoa lähettäjältä %2$s</item>

@@ -122,7 +122,6 @@
   <string name="remote_device_fingerprint">La huella digital SHA256 del certificado del dispositivo remoto es:</string>
   <string name="pair_requested">Vinculación solicitada</string>
   <string name="pair_succeeded">Vinculación exitosa</string>
-  <string name="pairing_request_from">Solicitud de vinculación de %1s</string>
   <plurals name="incoming_file_title">
     <item quantity="one">Recibiendo %1$d archivo desde %2$s</item>
     <item quantity="other">Recibiendo %1$d archivos desde %2$s</item>

@@ -119,7 +119,6 @@
   <string name="my_device_fingerprint">Amprenta SHA256 a certificatului acestui dispozitiv e:</string>
   <string name="remote_device_fingerprint">Amprenta SHA256 a certificatului dispozitivului distant e:</string>
   <string name="pair_requested">Asociere cerută</string>
-  <string name="pairing_request_from">Cerere de asociere de la %1s</string>
   <plurals name="incoming_file_title">
     <item quantity="one">Se primește %1$d fișier de la %2$s</item>
     <item quantity="few">Se primesc %1$d fișiere de la %2$s</item>
