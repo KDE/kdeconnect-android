@@ -14,6 +14,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.dependencyLicenseReport)
+    alias(libs.plugins.compose.compiler)
 }
 
 val licenseResDir = File("$projectDir/build/dependency-license-res")
@@ -48,10 +49,6 @@ android {
         viewBinding = true
         compose = true
         buildConfig = true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
 
     compileOptions {
