@@ -118,12 +118,10 @@
   <string name="error_canceled_by_user">Avbroten av brukar</string>
   <string name="error_canceled_by_other_peer">Avbroten av den andre eininga</string>
   <string name="encryption_info_title">Krypteringsinfo</string>
-  <string name="encryption_info_msg_no_ssl">Den andre eininga brukar ein gammal versjon av KDE Connect, med ein utdatert krypteringsmetode.</string>
   <string name="my_device_fingerprint">SHA-256-fingeravtrykket til einingssertifikatet er:</string>
   <string name="remote_device_fingerprint">SHA-256-fingeravtrykket til fjerneiningssertifikatet er:</string>
   <string name="pair_requested">Paringsførespurnad</string>
   <string name="pair_succeeded">Paring fullført</string>
-  <string name="pairing_request_from">Paringsførespurnad frå %1s</string>
   <plurals name="incoming_file_title">
     <item quantity="one">Fekk %1$d fil frå %2$s</item>
     <item quantity="other">Fekk %1$d filer frå %2$s</item>

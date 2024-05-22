@@ -122,6 +122,7 @@
   <string name="remote_device_fingerprint">远程设备证书的 SHA256 指纹是：</string>
   <string name="pair_requested">已请求配对</string>
   <string name="pair_succeeded">配对成功</string>
+  <string name="pairing_request_from">来自“%1s”的配对请求</string>
   <plurals name="incoming_file_title">
     <item quantity="other">正在从 %2$s 接收 %1$d 个文件</item>
   </plurals>
@@ -402,4 +403,8 @@
   <string name="receive_notifications_permission_explanation">需要允许通知才能从其他设备接收通知</string>
   <string name="findmyphone_notifications_explanation">需要通知权限，这样当应用程序处于后台时手机可以发出铃声</string>
   <string name="no_notifications">通知已禁用，您将不会收到传入的配对通知。</string>
+  <string name="mpris_keepwatching">继续播放</string>
+  <string name="mpris_keepwatching_settings_title">继续播放</string>
+  <string name="mpris_keepwatching_settings_summary">关闭媒体后显示一条用于继续在此设备上播放的静音通知</string>
+  <string name="notification_channel_keepwatching">继续播放</string>
 </resources>
