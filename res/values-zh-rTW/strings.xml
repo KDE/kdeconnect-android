@@ -122,6 +122,7 @@
   <string name="remote_device_fingerprint">遠端裝置憑證的 SHA256 指紋是：</string>
   <string name="pair_requested">已請求配對</string>
   <string name="pair_succeeded">配對成功</string>
+  <string name="pairing_request_from">來自「%1s」的配對請求</string>
   <plurals name="incoming_file_title">
     <item quantity="other">正在從 %2$s 接收 %1$d 個檔案</item>
   </plurals>
@@ -180,6 +181,9 @@
   <string name="mpris_notifications_explanation">需要通知權限來在通知欄內顯示遠端媒體</string>
   <string name="mpris_notification_settings_title">顯示媒體控制項通知</string>
   <string name="mpris_notification_settings_summary">允許控制您的媒體播放器而不需要開啟 KDE 連線</string>
+  <string name="share_to">分享給…</string>
+  <string name="unreachable_device">%s（無法連線）</string>
+  <string name="unreachable_device_url_share_text">分享給無法連線的裝置的網址會在該裝置重新連線後傳送給它。\n\n</string>
   <string name="protocol_version_newer">此裝置使用較新的通訊協定</string>
   <string name="plugin_settings_with_name">%s 設定</string>
   <string name="invalid_device_name">無效的裝置名稱</string>
@@ -397,4 +401,8 @@
   <string name="receive_notifications_permission_explanation">需要允許通知才能接收來自其他裝置的通知</string>
   <string name="findmyphone_notifications_explanation">需要通知權限讓應用程式在背景時也能讓手機響鈴</string>
   <string name="no_notifications">通知已停用，您不會接收到送來的配對請求。</string>
+  <string name="mpris_keepwatching">繼續播放</string>
+  <string name="mpris_keepwatching_settings_title">繼續播放</string>
+  <string name="mpris_keepwatching_settings_summary">關閉媒體之後在此裝置顯示繼續播放用的靜音通知</string>
+  <string name="notification_channel_keepwatching">繼續播放</string>
 </resources>
