@@ -122,6 +122,7 @@
   <string name="remote_device_fingerprint">Otisk certifikátu SHA256 vzdáleného zařízení je:</string>
   <string name="pair_requested">Bylo vyžádáno párování</string>
   <string name="pair_succeeded">Párování bylo úspěšné</string>
+  <string name="pairing_request_from">Požadavek o párování z \'%1s\'</string>
   <plurals name="incoming_file_title">
     <item quantity="one">Přijímám %1$d soubor z %2$s</item>
     <item quantity="few">Přijímám %1$d soubory z %2$s</item>
@@ -201,6 +202,7 @@
     <item>1 minuta</item>
     <item>2 minuty</item>
   </string-array>
+  <string name="mpris_notifications_explanation">Oprávnění k upozorněním je potřeba pro zobrazení vzdálených médií v upozorněních</string>
   <string name="mpris_notification_settings_title">Obrazit oznámení pro ovládání médií</string>
   <string name="mpris_notification_settings_summary">Umožnit ovládání přehrávače médií bez otevření KDE Connect</string>
   <string name="share_to">Sdílet s...</string>
@@ -271,10 +273,12 @@
   <string name="optional_permission_explanation">Pro zpřístupnění všech funkcí potřebujete další oprávnění</string>
   <string name="plugins_need_optional_permission">Některé moduly mají vypnuté vlastnosti, kvůli nedostatečným oprávněním (ťukněte pro více informací):</string>
   <string name="share_optional_permission_explanation">Pro příjem souborů je potřeba povolit přístup k úložišti</string>
+  <string name="share_notifications_explanation">Abyste mohli vidět průběh odesílání nebo přijímání souborů, potřebujete povolit upozornění</string>
   <string name="telepathy_permission_explanation">Pro čtení a psaní SMS z počítače musíte udělit oprávnění k SMS</string>
   <string name="telephony_permission_explanation">Pro zobrazení telefonátů v počítači musíte udělit oprávnění k záznamům telefonování a stavu telefonu</string>
   <string name="telephony_optional_permission_explanation">Pro zobrazení jména kontaktu u telefonního čísla je potřeba udělit oprávnění ke kontaktům v telefonu</string>
   <string name="contacts_permission_explanation">Pro sdílení knihy kontaktů s pracovním prostředím, musíte udělit přístup ke kontaktům</string>
+  <string name="contacts_per_device_confirmation">Kontakty vašeho zařízení budou zkopírovány do tohoto zařízení aby je bylo možné použít pro připojení aplikací pro SMS a dalších.</string>
   <string name="select_ringtone">Vybrat vyzváněcí tón</string>
   <string name="telephony_pref_blocked_title">Blokovaná čísla</string>
   <string name="telephony_pref_blocked_dialog_desc">Nezobrazovat volání a SMS z těchto čísel. Prosím, zadejte pouze jedno slovo na řádek.</string>
@@ -304,6 +308,7 @@
   <string name="runcommand_nosuchdevice">Není zde žádné takové zařízení</string>
   <string name="runcommand_noruncommandplugin">Toto zařízení nemá povolený modul pro spouštění příkazů</string>
   <string name="runcommand_category_device_controls_title">Ovládání zařízení</string>
+  <string name="runcommand_device_controls_summary">Pokud vaše zařízení podporuje Ovládání zařízení, zobrazí se zde příkazy, které jste nastavili.</string>
   <string name="runcommand_name_as_title_title">Zobrazit název jako popisek</string>
   <string name="pref_plugin_findremotedevice">Najít vzdálené zařízení</string>
   <string name="pref_plugin_findremotedevice_desc">Prozvonit vzdálené zařízení</string>
@@ -415,4 +420,9 @@
   <string name="plugin_stats">Statistiky modulů</string>
   <string name="enable_udp_broadcast">Povolit prohledávání sítě UDP</string>
   <string name="receive_notifications_permission_explanation">Je potřeba povolit oznámení aby e šlo přijímat z ostatních zařízení</string>
+  <string name="findmyphone_notifications_explanation">Oprávnění k upozorněním je potřeba aby telefon mohl zvonit když je aplikace na pozadí</string>
+  <string name="no_notifications">Upozornění jsou zakázána. Neuvidíte upozornění na párování.</string>
+  <string name="mpris_keepwatching">Pokračovat v přehrávání</string>
+  <string name="mpris_keepwatching_settings_title">Pokračovat v přehrávání</string>
+  <string name="notification_channel_keepwatching">Pokračovat v přehrávání</string>
 </resources>
