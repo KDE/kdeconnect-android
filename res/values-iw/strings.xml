@@ -122,6 +122,7 @@
   <string name="remote_device_fingerprint">טביעת אצבע ב־SHA256 של אישור המכשיר המרוחק היא:</string>
   <string name="pair_requested">התקבלה בקשת צימוד</string>
   <string name="pair_succeeded">הצימוד הצליח</string>
+  <string name="pairing_request_from">בקשת צימוד מאת ‚%1s’</string>
   <plurals name="incoming_file_title">
     <item quantity="one">התקבל קובץ %1$d מהמכשיר %2$s</item>
     <item quantity="two">התקבלו %1$d קבצים מהמכשיר %2$s</item>
