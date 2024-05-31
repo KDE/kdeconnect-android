@@ -122,6 +122,7 @@
   <string name="remote_device_fingerprint">Odcisk palca SHA256 certyfikatu twojego zdalnego urządzenia to:</string>
   <string name="pair_requested">Poproszono o sparowanie</string>
   <string name="pair_succeeded">Parowanie udane</string>
+  <string name="pairing_request_from">Prośba o sparowanie od \'%1s\'</string>
   <plurals name="incoming_file_title">
     <item quantity="one">Pobieranie %1$d pliku z %2$s</item>
     <item quantity="few">Pobieranie %1$d plików z %2$s</item>
@@ -204,6 +205,9 @@
   <string name="mpris_notifications_explanation">Uprawnienia powiadomień są potrzebne, aby móc pokazywać zdalne odtwarzacze na belce powiadomień</string>
   <string name="mpris_notification_settings_title">Pokaż powiadomienia sterowania mediami</string>
   <string name="mpris_notification_settings_summary">Steruje odtwarzaczami bez otwierania KDE Connect</string>
+  <string name="share_to">Udostępnij urządzeniu...</string>
+  <string name="unreachable_device">%s (nieosiągalne)</string>
+  <string name="unreachable_device_url_share_text">Adres URL udostępniony nieosiągalnemu urządzeniu zostanie do niego dostarczony zaraz po tym jak stanie się osiągalne.\n\n</string>
   <string name="protocol_version_newer">Urządzenie to używa nowszej wersji protokołu</string>
   <string name="plugin_settings_with_name">Ustawienia %s</string>
   <string name="invalid_device_name">Nieprawidłowa nazwa urządzenia</string>
@@ -423,4 +427,8 @@
   <string name="receive_notifications_permission_explanation">Należy zezwolić na powiadomienia, aby móc je otrzymywać z innych urządzeń</string>
   <string name="findmyphone_notifications_explanation">Uprawnienia powiadomień są potrzebne, aby telefon mógł dzwonić, gdy aplikacja działa w tle</string>
   <string name="no_notifications">Powiadomienia są wyłączone, więc nie otrzymasz żadnych próśb o sparowanie.</string>
+  <string name="mpris_keepwatching">Kontynuuj odtwarzanie</string>
+  <string name="mpris_keepwatching_settings_title">Kontynuuj odtwarzanie</string>
+  <string name="mpris_keepwatching_settings_summary">Pokaż ciche powiadomienie, aby kontynuować odtwarzanie na tym urządzeniu po zamknięciu mediów</string>
+  <string name="notification_channel_keepwatching">Kontynuuj odtwarzanie</string>
 </resources>

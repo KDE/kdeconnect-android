@@ -122,6 +122,7 @@
   <string name="remote_device_fingerprint">L\'impronta digitale SHA256 del certificato del dispositivo remoto è:</string>
   <string name="pair_requested">Richiesta di associazione</string>
   <string name="pair_succeeded">Associazione riuscita</string>
+  <string name="pairing_request_from">Richiesta di associazione da «%1s»</string>
   <plurals name="incoming_file_title">
     <item quantity="one">Ricezione di %1$d file da %2$s</item>
     <item quantity="other">Ricezione di %1$d file da %2$s</item>
