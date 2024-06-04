@@ -52,6 +52,7 @@ class Device : PacketReceiver {
     data class NetworkPacketWithCallback(val np : NetworkPacket, val callback: SendPacketStatusCallback)
 
     val context: Context
+
     @VisibleForTesting
     val deviceInfo: DeviceInfo
 
@@ -61,18 +62,43 @@ class Device : PacketReceiver {
      * We use the current time in milliseconds as the ID as default.
      */
     private var notificationId = 0
+
     @VisibleForTesting
     var pairingHandler: PairingHandler
-    private val pairingCallbacks = CopyOnWriteArrayList<PairingCallback>()
+
     private val links = CopyOnWriteArrayList<BaseLink>()
+
+    /**
+     * Plugins that have matching capabilities.
+     */
     var supportedPlugins: List<String>
         private set
+
+    /**
+     * Plugins that have been instantiated successfully. A subset of supportedPlugins.
+     */
     val loadedPlugins: ConcurrentMap<String, Plugin> = ConcurrentHashMap()
+
+    /**
+     * Plugins that have not been instantiated because of missing permissions.
+     * The supportedPlugins that aren't in loadedPlugins will be here.
+     */
     val pluginsWithoutPermissions: ConcurrentMap<String, Plugin> = ConcurrentHashMap()
+
+    /**
+     * Subset of loadedPlugins that, despite being able to run, will have some limitation because of missing permissions.
+     */
     val pluginsWithoutOptionalPermissions: ConcurrentMap<String, Plugin> = ConcurrentHashMap()
+
+    /**
+     * Same as loadedPlugins but indexed by incoming packet type
+     */
     private var pluginsByIncomingInterface: MultiValuedMap<String, String> = ArrayListValuedHashMap()
+
     private val settings: SharedPreferences
-    private val pluginsChangedListeners: MutableList<PluginsChangedListener> = CopyOnWriteArrayList()
+
+    private val pairingCallbacks = CopyOnWriteArrayList<PairingCallback>()
+    private val pluginsChangedListeners = CopyOnWriteArrayList<PluginsChangedListener>()
 
     private val sendChannel = Channel<NetworkPacketWithCallback>(Channel.UNLIMITED)
     private var sendCoroutine : Job? = null
@@ -616,11 +642,9 @@ class Device : PacketReceiver {
 
     fun onPluginsChanged() = pluginsChangedListeners.forEach { it.onPluginsChanged(this) }
 
-    fun addPluginsChangedListener(listener: PluginsChangedListener) =
-        pluginsChangedListeners.add(listener)
+    fun addPluginsChangedListener(listener: PluginsChangedListener) = pluginsChangedListeners.add(listener)
 
-    fun removePluginsChangedListener(listener: PluginsChangedListener) =
-        pluginsChangedListeners.remove(listener)
+    fun removePluginsChangedListener(listener: PluginsChangedListener) = pluginsChangedListeners.remove(listener)
 
     fun disconnect() {
         links.forEach(BaseLink::disconnect)
