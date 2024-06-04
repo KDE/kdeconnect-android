@@ -283,9 +283,16 @@ class Device : PacketReceiver {
         get() = links.isNotEmpty()
 
     fun addLink(link: BaseLink) {
-        if (sendCoroutine == null) {
-            launchSendCoroutine()
+        synchronized(sendChannel) {
+            if (sendCoroutine == null) {
+                sendCoroutine = CoroutineScope(Dispatchers.IO).launch {
+                    for (item in sendChannel) {
+                        sendPacketBlocking(item.np, item.callback)
+                    }
+                }
+            }
         }
+
         // FilesHelper.LogOpenFileCount();
         links.add(link)
 
@@ -313,15 +320,9 @@ class Device : PacketReceiver {
         )
         if (links.isEmpty()) {
             reloadPluginsFromSettings()
-            sendCoroutine?.cancel(CancellationException("Device disconnected"))
-            sendCoroutine = null
-        }
-    }
-
-    private fun launchSendCoroutine() {
-        sendCoroutine = CoroutineScope(Dispatchers.IO).launch {
-            for (item in sendChannel) {
-                sendPacketBlocking(item.np, item.callback)
+            synchronized(sendChannel) {
+                sendCoroutine?.cancel(CancellationException("Device disconnected"))
+                sendCoroutine = null
             }
         }
     }
