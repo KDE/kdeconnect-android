@@ -48,6 +48,9 @@ import java.util.concurrent.ConcurrentMap
 import java.util.concurrent.CopyOnWriteArrayList
 
 class Device : PacketReceiver {
+
+    data class NetworkPacketWithCallback(val np : NetworkPacket, val callback: SendPacketStatusCallback)
+
     val context: Context
     @VisibleForTesting
     val deviceInfo: DeviceInfo
@@ -70,7 +73,7 @@ class Device : PacketReceiver {
     private var pluginsByIncomingInterface: MultiValuedMap<String, String> = ArrayListValuedHashMap()
     private val settings: SharedPreferences
     private val pluginsChangedListeners: MutableList<PluginsChangedListener> = CopyOnWriteArrayList()
-    class NetworkPacketWithCallback(val np : NetworkPacket, val callback: SendPacketStatusCallback)
+
     private val sendChannel = Channel<NetworkPacketWithCallback>(Channel.UNLIMITED)
     private var sendCoroutine : Job? = null
 
