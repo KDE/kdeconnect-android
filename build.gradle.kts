@@ -107,19 +107,6 @@ android {
         checkReleaseBuilds = false
     }
 
-    testOptions {
-        unitTests.all {
-            it.jvmArgs = it.jvmArgs.orEmpty() + listOf(
-                    "--add-opens=java.base/java.lang=ALL-UNNAMED",
-                    "--add-opens=java.base/java.security=ALL-UNNAMED",
-                    "--add-opens=java.base/sun.security.rsa=ALL-UNNAMED",
-                    "--add-opens=java.base/sun.security.x509=ALL-UNNAMED",
-                    "--add-opens=java.base/java.util=ALL-UNNAMED",
-                    "--add-opens=java.base/java.lang.reflect=ALL-UNNAMED"
-            )
-        }
-    }
-
     applicationVariants.all {
         val variant = this
         logger.quiet("Found a variant called ${variant.name}")
@@ -133,7 +120,7 @@ android {
                     try {
                         val hash = "git rev-parse --short HEAD".runCommand(workingDir = rootDir)
                         val newName = "${project.name}-${variant.name}-${hash}.apk"
-                        logger.quiet("    Found an output file ${output.outputFile.name}, renaming to ${newName}")
+                        logger.quiet("    Found an output file ${output.outputFile.name}, renaming to $newName")
                         output.outputFileName = newName
                     } catch (ignored: Exception) {
                         logger.warn("Could not make use of the 'git' command-line tool. Output filenames will not be customized.")
