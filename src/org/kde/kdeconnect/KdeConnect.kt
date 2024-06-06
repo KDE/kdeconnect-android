@@ -147,11 +147,21 @@ class KdeConnect : Application() {
             Log.i("KDE/onConnectionLost", "removeLink, deviceId: ${link.deviceId}")
             if (device != null) {
                 device.removeLink(link)
-                if (!device.isReachable && !device.isPaired) {
-                    // Log.e("onConnectionLost","Removing connection device because it was not paired");
-                    devices.remove(link.deviceId)
-                    device.removePairingCallback(devicePairingCallback)
-                }
+                // FIXME: I commented out the code below that removes the Device from the `devices` array
+                //        because it didn't succeed in getting the Device garbage collected anyway. Ideally,
+                //        the `devices` array should be the only reference to each Device so that they get
+                //        GC'd after removing them from here, but there seem to be references leaking from
+                //        PairingFragment and PairingHandler that keep it alive. At least now, by keeping
+                //        them in `devices`, we reuse the same Device instance across discoveries of the
+                //        same device instead of creating a new object each time.
+                //        Also, if we ever fix this, there are two cases were we should be removing devices:
+                //            - When a device becomes unreachable, if it's unpaired (this case here)
+                //            - When a device becomes unpaired, if it's unreachable (not implemented ATM)
+                // if (!device.isReachable && !device.isPaired) {
+                //     Log.i("onConnectionLost","Removing device because it was not paired");
+                //     devices.remove(link.deviceId)
+                //     device.removePairingCallback(devicePairingCallback)
+                // }
             } else {
                 Log.d("KDE/onConnectionLost", "Removing connection to unknown device")
             }
