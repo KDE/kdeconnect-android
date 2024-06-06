@@ -356,7 +356,7 @@ class Device : PacketReceiver {
         }
     }
 
-    private fun updateDeviceInfo(newDeviceInfo: DeviceInfo): Boolean {
+    fun updateDeviceInfo(newDeviceInfo: DeviceInfo): Boolean {
         var hasChanges = false
         if (deviceInfo.name != newDeviceInfo.name || deviceInfo.type != newDeviceInfo.type) {
             hasChanges = true

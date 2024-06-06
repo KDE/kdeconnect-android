@@ -44,7 +44,7 @@ public class LanLink extends BaseLink {
         Locally, Remotely
     }
 
-    private final DeviceInfo deviceInfo;
+    private DeviceInfo deviceInfo;
 
     private volatile SSLSocket socket = null;
 
@@ -59,7 +59,9 @@ public class LanLink extends BaseLink {
     }
 
     //Returns the old socket
-    public SSLSocket reset(final SSLSocket newSocket) throws IOException {
+    public SSLSocket reset(final SSLSocket newSocket, final DeviceInfo deviceInfo) throws IOException {
+
+        this.deviceInfo = deviceInfo;
 
         SSLSocket oldSocket = socket;
         socket = newSocket;
@@ -103,8 +105,7 @@ public class LanLink extends BaseLink {
 
     public LanLink(@NonNull Context context, @NonNull DeviceInfo deviceInfo, @NonNull BaseLinkProvider linkProvider, @NonNull SSLSocket socket) throws IOException {
         super(context, linkProvider);
-        this.deviceInfo = deviceInfo;
-        reset(socket);
+        reset(socket, deviceInfo);
     }
 
     @Override

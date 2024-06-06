@@ -227,7 +227,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                 Certificate certificate = event.getPeerCertificates()[0];
                 DeviceInfo deviceInfo = DeviceInfo.fromIdentityPacketAndCert(identityPacket, certificate);
                 Log.i("KDE/LanLinkProvider", "Handshake as " + mode + " successful with " + deviceName + " secured with " + event.getCipherSuite());
-                addLink(sslSocket, deviceInfo);
+                addOrUpdateLink(sslSocket, deviceInfo);
             } catch (IOException e) {
                 Log.e("KDE/LanLinkProvider", "Handshake as " + mode + " failed with " + deviceName, e);
                 Device device = KdeConnect.getInstance().getDevice(deviceId);
@@ -249,9 +249,9 @@ public class LanLinkProvider extends BaseLinkProvider {
      *
      * @param socket           a new Socket, which should be used to send and receive packets from the remote device
      * @param deviceInfo       remote device info
-     * @throws IOException if an exception is thrown by {@link LanLink#reset(SSLSocket)}
+     * @throws IOException if an exception is thrown by {@link LanLink#reset(SSLSocket, DeviceInfo)}
      */
-    private void addLink(SSLSocket socket, DeviceInfo deviceInfo) throws IOException {
+    private void addOrUpdateLink(SSLSocket socket, DeviceInfo deviceInfo) throws IOException {
         LanLink link = visibleDevices.get(deviceInfo.id);
         if (link != null) {
             if (!link.getDeviceInfo().certificate.equals(deviceInfo.certificate)) {
@@ -260,7 +260,8 @@ public class LanLinkProvider extends BaseLinkProvider {
             }
             // Update existing link
             Log.d("KDE/LanLinkProvider", "Reusing same link for device " + deviceInfo.id);
-            final Socket oldSocket = link.reset(socket);
+            link.reset(socket, deviceInfo);
+            onDeviceInfoUpdated(deviceInfo);
         } else {
             // Create a new link
             Log.d("KDE/LanLinkProvider", "Creating a new link for device " + deviceInfo.id);

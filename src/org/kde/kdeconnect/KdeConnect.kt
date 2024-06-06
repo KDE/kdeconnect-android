@@ -167,6 +167,18 @@ class KdeConnect : Application() {
             }
             onDeviceListChanged()
         }
+
+        override fun onDeviceInfoUpdated(deviceInfo: DeviceInfo) {
+            val device = devices[deviceInfo.id]
+            if (device == null) {
+                Log.e("KdeConnect", "onDeviceInfoUpdated for an unknown device")
+                return
+            }
+            val hasChanges = device.updateDeviceInfo(deviceInfo)
+            if (hasChanges) {
+                onDeviceListChanged()
+            }
+        }
     }
 
     companion object {
