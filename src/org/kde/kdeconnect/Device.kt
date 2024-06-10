@@ -315,8 +315,8 @@ class Device : PacketReceiver {
         synchronized(sendChannel) {
             if (sendCoroutine == null) {
                 sendCoroutine = CoroutineScope(Dispatchers.IO).launch {
-                    for (item in sendChannel) {
-                        sendPacketBlocking(item.np, item.callback)
+                    for ((np, callback) in sendChannel) {
+                        sendPacketBlocking(np, callback)
                     }
                 }
             }
