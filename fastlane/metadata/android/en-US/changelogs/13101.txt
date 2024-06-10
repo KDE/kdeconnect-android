@@ -1,0 +1,11 @@
+1.31
+* Allow sharing URLs to disconnected devices, to be opened when they become available later
+* Show a notification to continue playing media on this device after stopping it on another device
+* Display a shortened version of the pairing verification key
+* Tweaks to the app theme
+
+1.30
+* Added Bluetooth support (beta)
+* Improved device controls
+* Added scroll sensitivity option to remote input
+* Accessibility improvements
