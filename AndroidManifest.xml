@@ -120,6 +120,9 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
+
+            <meta-data android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
         </activity>
         <activity
             android:name="org.kde.kdeconnect.UserInterface.PluginSettingsActivity"

@@ -22,13 +22,13 @@ import java.security.cert.CertificateException
  * DeviceInfo contains all the properties needed to instantiate a Device.
  */
 class DeviceInfo(
-    @JvmField val id : String,
-    @JvmField val certificate : Certificate,
-    @JvmField var name : String,
-    @JvmField var type : DeviceType,
-    @JvmField var protocolVersion : Int = 0,
-    @JvmField var incomingCapabilities : Set<String>? = null,
-    @JvmField var outgoingCapabilities : Set<String>? = null,
+    @JvmField val id: String,
+    @JvmField val certificate: Certificate,
+    @JvmField var name: String,
+    @JvmField var type: DeviceType,
+    @JvmField var protocolVersion: Int = 0,
+    @JvmField var incomingCapabilities: Set<String>? = null,
+    @JvmField var outgoingCapabilities: Set<String>? = null,
 ) {
 
     /**
@@ -40,7 +40,7 @@ class DeviceInfo(
         try {
             val encodedCertificate = Base64.encodeToString(certificate.encoded, 0)
 
-            with (settings.edit()) {
+            with(settings.edit()) {
                 putString("certificate", encodedCertificate)
                 putString("deviceName", name)
                 putString("deviceType", type.toString())
@@ -73,7 +73,7 @@ class DeviceInfo(
          */
         @JvmStatic
         @Throws(CertificateException::class)
-        fun loadFromSettings(context : Context, deviceId: String, settings: SharedPreferences) =
+        fun loadFromSettings(context: Context, deviceId: String, settings: SharedPreferences) =
             with(settings) {
                 DeviceInfo(
                     id = deviceId,
@@ -104,8 +104,8 @@ class DeviceInfo(
         @JvmStatic
         fun isValidIdentityPacket(identityPacket: NetworkPacket): Boolean = with(identityPacket) {
             type == NetworkPacket.PACKET_TYPE_IDENTITY &&
-                DeviceHelper.filterName(getString("deviceName", "")).isNotBlank() &&
-                getString("deviceId", "").isNotBlank()
+                    DeviceHelper.filterName(getString("deviceName", "")).isNotBlank() &&
+                    getString("deviceId", "").isNotBlank()
         }
     }
 }
@@ -126,13 +126,22 @@ enum class DeviceType {
         ContextCompat.getDrawable(context, toDrawableId())!!
 
     @DrawableRes
-    private fun toDrawableId() =
+    fun toDrawableId() =
         when (this) {
             PHONE -> R.drawable.ic_device_phone_32dp
             TABLET -> R.drawable.ic_device_tablet_32dp
             TV -> R.drawable.ic_device_tv_32dp
             LAPTOP -> R.drawable.ic_device_laptop_32dp
             else -> R.drawable.ic_device_desktop_32dp
+        }
+
+    fun toShortcutDrawableId() =
+        when (this) {
+            PHONE -> R.drawable.ic_device_phone_shortcut
+            TABLET -> R.drawable.ic_device_tablet_shortcut
+            TV -> R.drawable.ic_device_tv_shortcut
+            LAPTOP -> R.drawable.ic_device_laptop_shortcut
+            else -> R.drawable.ic_device_desktop_shortcut
         }
 
     companion object {

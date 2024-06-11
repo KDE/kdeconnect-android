@@ -24,6 +24,10 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.LocusIdCompat;
+import androidx.core.content.pm.ShortcutInfoCompat;
+import androidx.core.content.pm.ShortcutManagerCompat;
+import androidx.core.graphics.drawable.IconCompat;
 import androidx.preference.PreferenceManager;
 
 import org.apache.commons.lang3.ArrayUtils;
@@ -33,6 +37,7 @@ import org.kde.kdeconnect.Helpers.IntentHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
+import org.kde.kdeconnect.UserInterface.MainActivity;
 import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
 import org.kde.kdeconnect.async.BackgroundJob;
 import org.kde.kdeconnect.async.BackgroundJobHandler;
@@ -43,6 +48,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -84,9 +90,32 @@ public class SharePlugin extends Plugin {
     public boolean onCreate() {
         super.onCreate();
         mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+
+        Intent shortcutIntent = new Intent(context, MainActivity.class);
+        shortcutIntent.setAction(Intent.ACTION_VIEW);
+        shortcutIntent.putExtra(MainActivity.EXTRA_DEVICE_ID, device.getDeviceId());
+
+        IconCompat icon = IconCompat.createWithResource(context, device.getDeviceType().toShortcutDrawableId());
+
+        ShortcutInfoCompat shortcut = new ShortcutInfoCompat
+                .Builder(context, device.getDeviceId())
+                .setIntent(shortcutIntent)
+                .setIcon(icon)
+                .setShortLabel(device.getName())
+                .setCategories(Set.of("org.kde.kdeconnect.category.SHARE_TARGET"))
+                .setLocusId(new LocusIdCompat(device.getDeviceId()))
+                .build();
+        ShortcutManagerCompat.pushDynamicShortcut(context, shortcut);
+
         // Deliver URLs previously shared to this device now that it's connected
         deliverPreviouslySentIntents();
         return true;
+    }
+
+    @Override
+    public void onDestroy() {
+        ShortcutManagerCompat.removeLongLivedShortcuts(context, List.of(device.getDeviceId()));
+        super.onDestroy();
     }
 
     private void deliverPreviouslySentIntents() {

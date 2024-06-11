@@ -8,6 +8,7 @@ package org.kde.kdeconnect.Plugins.SharePlugin;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -160,7 +161,10 @@ public class ShareActivity extends AppCompatActivity {
         super.onStart();
 
         final Intent intent = getIntent();
-        final String deviceId = intent.getStringExtra("deviceId");
+        String deviceId = intent.getStringExtra("deviceId");
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && deviceId == null) {
+            deviceId = intent.getStringExtra(Intent.EXTRA_SHORTCUT_ID);
+        }
 
         if (deviceId != null) {
             SharePlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, SharePlugin.class);
