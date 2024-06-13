@@ -202,7 +202,7 @@ class ConnectionMultiplexer(socket: BluetoothSocket) : Closeable {
         socket!!.outputStream.write(data)
     }
 
-    private fun handleException(@Suppress("UNUSED_PARAMETER") ignored: IOException) {
+    private fun handleException(@Suppress("UNUSED_PARAMETER") ignored: Exception) {
         lock.withLock {
             open = false
             for (channel in channels.values) {
@@ -256,6 +256,8 @@ class ConnectionMultiplexer(socket: BluetoothSocket) : Closeable {
                 try {
                     socket!!.outputStream.write(data)
                 } catch (e: IOException) {
+                    handleException(e)
+                } catch (e: NullPointerException) {
                     handleException(e)
                 }
                 channel.lockCondition.signalAll()
