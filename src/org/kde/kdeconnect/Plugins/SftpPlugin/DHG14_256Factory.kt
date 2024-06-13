@@ -11,7 +11,7 @@ import org.apache.sshd.common.kex.AbstractDH
 import org.apache.sshd.common.kex.DHFactory
 import org.apache.sshd.common.kex.DHG
 import org.apache.sshd.common.kex.DHGroupData
-import org.apache.sshd.common.util.SecurityUtils
+import org.apache.sshd.common.util.security.SecurityUtils
 import java.math.BigInteger
 
 object DHG14_256Factory : DHFactory {

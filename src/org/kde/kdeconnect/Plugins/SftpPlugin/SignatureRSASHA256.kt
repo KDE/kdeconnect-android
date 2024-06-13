@@ -6,6 +6,7 @@
  */
 package org.kde.kdeconnect.Plugins.SftpPlugin
 
+import org.apache.sshd.common.session.SessionContext
 import org.apache.sshd.common.signature.AbstractSignature
 import org.apache.sshd.common.signature.Signature
 import org.apache.sshd.common.signature.SignatureFactory
@@ -23,22 +24,18 @@ class SignatureRSASHA256 : AbstractSignature("SHA256withRSA") {
     }
 
     @Throws(Exception::class)
-    override fun sign(): ByteArray {
+    override fun sign(session: SessionContext): ByteArray {
         return signature.sign()
     }
 
     @Throws(Exception::class)
-    override fun verify(sig: ByteArray): Boolean {
+    override fun verify(session: SessionContext, sig: ByteArray): Boolean {
         var data = sig
-        val encoding = extractEncodedSignature(data)
+        val encoding = extractEncodedSignature(data) { type ->
+            type == "rsa-sha2-256"
+        }
         if (encoding != null) {
-            val keyType = encoding.first
-            ValidateUtils.checkTrue(
-                "rsa-sha2-256" == keyType,
-                "Mismatched key type: %s",
-                keyType
-            )
-            data = encoding.second
+            data = encoding.value
         }
 
         return signature.verify(data)

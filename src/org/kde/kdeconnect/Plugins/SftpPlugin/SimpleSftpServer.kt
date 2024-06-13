@@ -9,20 +9,22 @@ package org.kde.kdeconnect.Plugins.SftpPlugin
 import android.content.Context
 import android.os.Build
 import android.util.Log
-import org.apache.sshd.common.NamedFactory
 import org.apache.sshd.common.file.nativefs.NativeFileSystemFactory
 import org.apache.sshd.common.kex.BuiltinDHFactories
 import org.apache.sshd.common.keyprovider.AbstractKeyPairProvider
+import org.apache.sshd.common.session.SessionContext
 import org.apache.sshd.common.signature.BuiltinSignatures
-import org.apache.sshd.common.util.SecurityUtils
-import org.apache.sshd.server.Command
+import org.apache.sshd.common.util.io.PathUtils
+import org.apache.sshd.common.util.security.SecurityUtils.SECURITY_PROVIDER_REGISTRARS
+import org.apache.sshd.scp.server.ScpCommandFactory
+import org.apache.sshd.server.ServerBuilder
 import org.apache.sshd.server.SshServer
 import org.apache.sshd.server.auth.password.PasswordAuthenticator
 import org.apache.sshd.server.auth.pubkey.PublickeyAuthenticator
-import org.apache.sshd.server.command.ScpCommandFactory
 import org.apache.sshd.server.kex.DHGServer
 import org.apache.sshd.server.session.ServerSession
-import org.apache.sshd.server.subsystem.sftp.SftpSubsystemFactory
+import org.apache.sshd.server.subsystem.SubsystemFactory
+import org.apache.sshd.sftp.server.SftpSubsystemFactory
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.Helpers.RandomHelper
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper
@@ -30,6 +32,7 @@ import org.kde.kdeconnect.Helpers.SecurityHelpers.constantTimeCompare
 import org.kde.kdeconnect.Plugins.SftpPlugin.saf.SafFileSystemFactory
 import java.io.IOException
 import java.nio.charset.StandardCharsets
+import java.nio.file.Path
 import java.security.GeneralSecurityException
 import java.security.KeyPair
 import java.security.MessageDigest
@@ -47,7 +50,7 @@ internal class SimpleSftpServer {
 
     var isInitialized: Boolean = false
 
-    private val sshd: SshServer = SshServer.setUpDefaultServer()
+    private lateinit var sshd: SshServer
 
     private var safFileSystemFactory: SafFileSystemFactory? = null
 
@@ -57,18 +60,18 @@ internal class SimpleSftpServer {
 
     @Throws(GeneralSecurityException::class)
     fun initialize(context: Context?, device: Device) {
-        sshd.signatureFactories =
-            listOf(
-                BuiltinSignatures.nistp256,
-                BuiltinSignatures.nistp384,
-                BuiltinSignatures.nistp521,
-                BuiltinSignatures.dsa,
-                SignatureRSASHA256.Factory,
-                BuiltinSignatures.rsa // Insecure SHA1, left for backwards compatibility
+        sshd = ServerBuilder.builder().apply {
+            signatureFactories(
+                listOf(
+                    BuiltinSignatures.nistp256,
+                    BuiltinSignatures.nistp384,
+                    BuiltinSignatures.nistp521,
+                    BuiltinSignatures.dsa,
+                    SignatureRSASHA256.Factory,
+                    BuiltinSignatures.rsa // Insecure SHA1, left for backwards compatibility
+                )
             )
-
-        sshd.keyExchangeFactories =
-            listOf(
+            keyExchangeFactories(listOf(
                 BuiltinDHFactories.ecdhp256,  // ecdh-sha2-nistp256
                 BuiltinDHFactories.ecdhp384,  // ecdh-sha2-nistp384
                 BuiltinDHFactories.ecdhp521,  // ecdh-sha2-nistp521
@@ -76,8 +79,17 @@ internal class SimpleSftpServer {
                 BuiltinDHFactories.dhg14, // Insecure diffie-hellman-group14-sha1, left for backwards-compatibility.
             ).map {
                 DHGServer.newFactory(it)
-            }
+            })
 
+            fileSystemFactory(
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    NativeFileSystemFactory()
+                } else {
+                    safFileSystemFactory = SafFileSystemFactory(context!!)
+                    safFileSystemFactory // FIXME: This is not working
+                }
+            )
+        }.build()
 
         // Reuse this device keys for the ssh connection as well
         val keyPair = KeyPair(
@@ -85,18 +97,12 @@ internal class SimpleSftpServer {
             RsaHelper.getPrivateKey(context)
         )
         sshd.keyPairProvider = object : AbstractKeyPairProvider() {
-            override fun loadKeys(): Iterable<KeyPair> = listOf(keyPair)
+            override fun loadKeys(session: SessionContext): Iterable<KeyPair> = listOf(keyPair)
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            sshd.fileSystemFactory = NativeFileSystemFactory()
-        } else {
-            safFileSystemFactory = SafFileSystemFactory(context!!)
-            sshd.fileSystemFactory = safFileSystemFactory // FIXME: This is not working
-        }
         sshd.commandFactory = ScpCommandFactory()
         sshd.subsystemFactories =
-            listOf<NamedFactory<Command>>(SftpSubsystemFactory())
+            listOf<SubsystemFactory>(SftpSubsystemFactory())
 
         keyAuth.deviceKey = device.certificate.publicKey
 
@@ -182,7 +188,8 @@ internal class SimpleSftpServer {
         const val USER: String = "kdeconnect"
 
         init {
-            SecurityUtils.setRegisterBouncyCastle(false)
+            System.setProperty(SECURITY_PROVIDER_REGISTRARS, "") // disable BouncyCastle
+            PathUtils.setUserHomeFolderResolver { Path.of("/") } // TODO: Remove it when SSHD Core is fixed
         }
     }
 }

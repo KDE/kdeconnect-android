@@ -8,10 +8,11 @@ package org.kde.kdeconnect.Plugins.SftpPlugin.saf
 
 import android.content.Context
 import android.util.Log
-import org.apache.sshd.common.session.Session
 import org.apache.sshd.common.file.FileSystemFactory
+import org.apache.sshd.common.session.SessionContext
 import org.kde.kdeconnect.Plugins.SftpPlugin.SftpPlugin
 import java.nio.file.FileSystem
+import java.nio.file.Path
 
 class SafFileSystemFactory(private val context: Context) : FileSystemFactory {
     private val provider = SafFileSystemProvider()
@@ -38,11 +39,13 @@ class SafFileSystemFactory(private val context: Context) : FileSystemFactory {
         }
     }
 
-    override fun createFileSystem(session: Session): FileSystem {
-        return SafFileSystem(provider, roots, session.username, context)
+    override fun createFileSystem(session: SessionContext?): FileSystem {
+        return SafFileSystem(provider, roots, session!!.username, context)
     }
 
     companion object {
         private const val TAG = "SafFileSystemFactory"
     }
+
+    override fun getUserHomeDir(session: SessionContext?): Path? = null
 }
