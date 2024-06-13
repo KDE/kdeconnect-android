@@ -1,6 +1,14 @@
+import com.android.build.api.instrumentation.AsmClassVisitorFactory
+import com.android.build.api.instrumentation.ClassContext
+import com.android.build.api.instrumentation.ClassData
+import com.android.build.api.instrumentation.InstrumentationParameters
+import com.android.build.api.instrumentation.InstrumentationScope
 import com.github.jk1.license.LicenseReportExtension
 import com.github.jk1.license.render.ReportRenderer
 import com.github.jk1.license.render.TextReportRenderer
+import org.objectweb.asm.ClassVisitor
+import org.objectweb.asm.MethodVisitor
+import org.objectweb.asm.Opcodes.CHECKCAST
 
 buildscript {
     dependencies {
@@ -128,6 +136,63 @@ android {
                 }
             }
         }
+    }
+}
+
+abstract class FixPosixFilePermissionClassVisitorFactory :
+    AsmClassVisitorFactory<FixPosixFilePermissionClassVisitorFactory.Params> {
+
+    override fun createClassVisitor(
+        classContext: ClassContext,
+        nextClassVisitor: ClassVisitor
+    ): ClassVisitor {
+        return object : ClassVisitor(instrumentationContext.apiVersion.get(), nextClassVisitor) {
+            override fun visitMethod(
+                access: Int,
+                name: String?,
+                descriptor: String?,
+                signature: String?,
+                exceptions: Array<out String>?
+            ): MethodVisitor {
+                if (name == "attributesToPermissions") { // org.apache.sshd.common.subsystem.sftp.SftpHelper.attributesToPermissions
+                    return object : MethodVisitor(instrumentationContext.apiVersion.get(), super.visitMethod(access, name, descriptor, signature, exceptions)) {
+                        override fun visitTypeInsn(opcode: Int, type: String?) {
+                            // We need to prevent Android Desugar modifying the `PosixFilePermission` classname.
+                            //
+                            // Android Desugar will replace `CHECKCAST java/nio/file/attribute/PosixFilePermission`
+                            // to `CHECKCAST j$/nio/file/attribute/PosixFilePermission`.
+                            // We need to replace it with `CHECKCAST java/lang/Enum` to prevent Android Desugar from modifying it.
+                            if (opcode == CHECKCAST && type == "java/nio/file/attribute/PosixFilePermission") {
+                                println("Bypass PosixFilePermission type check success.")
+                                // `Enum` is the superclass of `PosixFilePermission`.
+                                // Due to `Object` is not the superclass of `Enum`, we need to use `Enum` instead of `Object`.
+                                super.visitTypeInsn(opcode, "java/lang/Enum")
+                            } else {
+                                super.visitTypeInsn(opcode, type)
+                            }
+                        }
+                    }
+                }
+                return super.visitMethod(access, name, descriptor, signature, exceptions)
+            }
+        }
+    }
+
+    override fun isInstrumentable(classData: ClassData): Boolean {
+        return (classData.className == "org.apache.sshd.common.subsystem.sftp.SftpHelper").also {
+            if (it) println("SftpHelper Found! Instrumenting...")
+        }
+    }
+
+    interface Params : InstrumentationParameters
+}
+
+androidComponents {
+    onVariants { variant ->
+        variant.instrumentation.transformClassesWith(
+            FixPosixFilePermissionClassVisitorFactory::class.java,
+            InstrumentationScope.ALL
+        ) { }
     }
 }
 
