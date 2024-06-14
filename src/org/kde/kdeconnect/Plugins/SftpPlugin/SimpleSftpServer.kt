@@ -189,6 +189,10 @@ internal class SimpleSftpServer {
 
         init {
             System.setProperty(SECURITY_PROVIDER_REGISTRARS, "") // disable BouncyCastle
+            System.setProperty(
+                "org.apache.sshd.common.io.IoServiceFactoryFactory",
+                "org.apache.sshd.mina.MinaServiceFactoryFactory"
+            ) // Use MINA instead NIO2 due to compatibility issues
             PathUtils.setUserHomeFolderResolver { Path.of("/") } // TODO: Remove it when SSHD Core is fixed
         }
     }

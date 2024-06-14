@@ -76,6 +76,7 @@ apache-mina-core = { module = "org.apache.mina:mina-core", version.ref = "minaCo
 apache-sshd-core = { module = "org.apache.sshd:sshd-core", version.ref = "sshdCore" }
 apache-sshd-sftp = { module = "org.apache.sshd:sshd-sftp", version.ref = "sshdCore" }
 apache-sshd-scp = { module = "org.apache.sshd:sshd-scp", version.ref = "sshdCore" }
+apache-sshd-mina = { module = "org.apache.sshd:sshd-mina", version.ref = "sshdCore" }
 mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
 reactive-streams = { module = "org.reactivestreams:reactive-streams", version.ref = "reactiveStreams" }
 rxjava = { module = "io.reactivex.rxjava2:rxjava", version.ref = "rxjava" }
