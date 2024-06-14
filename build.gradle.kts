@@ -9,6 +9,7 @@ import com.github.jk1.license.render.TextReportRenderer
 import org.objectweb.asm.ClassVisitor
 import org.objectweb.asm.MethodVisitor
 import org.objectweb.asm.Opcodes.CHECKCAST
+import org.objectweb.asm.Opcodes.INVOKESTATIC
 
 buildscript {
     dependencies {
@@ -139,6 +140,9 @@ android {
     }
 }
 
+/**
+ * Fix PosixFilePermission class type check issue.
+ */
 abstract class FixPosixFilePermissionClassVisitorFactory :
     AsmClassVisitorFactory<FixPosixFilePermissionClassVisitorFactory.Params> {
 
@@ -155,7 +159,10 @@ abstract class FixPosixFilePermissionClassVisitorFactory :
                 exceptions: Array<out String>?
             ): MethodVisitor {
                 if (name == "attributesToPermissions") { // org.apache.sshd.sftp.common.SftpHelper.attributesToPermissions
-                    return object : MethodVisitor(instrumentationContext.apiVersion.get(), super.visitMethod(access, name, descriptor, signature, exceptions)) {
+                    return object : MethodVisitor(
+                        instrumentationContext.apiVersion.get(),
+                        super.visitMethod(access, name, descriptor, signature, exceptions)
+                    ) {
                         override fun visitTypeInsn(opcode: Int, type: String?) {
                             // We need to prevent Android Desugar modifying the `PosixFilePermission` classname.
                             //
@@ -187,10 +194,72 @@ abstract class FixPosixFilePermissionClassVisitorFactory :
     interface Params : InstrumentationParameters
 }
 
+/**
+ * Collections.unmodifiableXXX is not exist when Android API level is lower than 26.
+ * So we replace the call to Collections.unmodifiableXXX with the original collection by removing the call.
+ */
+abstract class FixCollectionsClassVisitorFactory :
+    AsmClassVisitorFactory<FixCollectionsClassVisitorFactory.Params> {
+    override fun createClassVisitor(
+        classContext: ClassContext,
+        nextClassVisitor: ClassVisitor
+    ): ClassVisitor {
+        return object : ClassVisitor(instrumentationContext.apiVersion.get(), nextClassVisitor) {
+            override fun visitMethod(
+                access: Int,
+                name: String?,
+                descriptor: String?,
+                signature: String?,
+                exceptions: Array<out String>?
+            ): MethodVisitor {
+                return object : MethodVisitor(
+                    instrumentationContext.apiVersion.get(),
+                    super.visitMethod(access, name, descriptor, signature, exceptions)
+                ) {
+                    override fun visitMethodInsn(
+                        opcode: Int,
+                        type: String?,
+                        name: String?,
+                        descriptor: String?,
+                        isInterface: Boolean
+                    ) {
+                        val backportClass = "org/kde/kdeconnect/Helpers/CollectionsBackport"
+
+                        if (opcode == INVOKESTATIC && type == "java/util/Collections") {
+                            val replaceRules = mapOf(
+                                "unmodifiableNavigableSet" to "(Ljava/util/NavigableSet;)Ljava/util/NavigableSet;",
+                                "unmodifiableSet" to "(Ljava/util/Set;)Ljava/util/Set;",
+                                "unmodifiableNavigableMap" to "(Ljava/util/NavigableMap;)Ljava/util/NavigableMap;",
+                                "emptyNavigableMap" to "()Ljava/util/NavigableMap;")
+                            if (name in replaceRules && descriptor == replaceRules[name]) {
+                                super.visitMethodInsn(opcode, backportClass, name, descriptor, isInterface)
+                                val calleeClass = classContext.currentClassData.className
+                                println("Replace Collections.$name call with CollectionsBackport.$name from $calleeClass success.")
+                                return
+                            }
+                        }
+                        super.visitMethodInsn(opcode, type, name, descriptor, isInterface)
+                    }
+                }
+            }
+        }
+    }
+
+    override fun isInstrumentable(classData: ClassData): Boolean {
+        return classData.className.startsWith("org.apache.sshd") // We only need to fix the Apache SSHD library
+    }
+
+    interface Params : InstrumentationParameters
+}
+
 androidComponents {
     onVariants { variant ->
         variant.instrumentation.transformClassesWith(
             FixPosixFilePermissionClassVisitorFactory::class.java,
+            InstrumentationScope.ALL
+        ) { }
+        variant.instrumentation.transformClassesWith(
+            FixCollectionsClassVisitorFactory::class.java,
             InstrumentationScope.ALL
         ) { }
     }
