@@ -79,7 +79,7 @@ class SftpPlugin : Plugin(), OnSharedPreferenceChangeListener {
     override fun onPacketReceived(np: NetworkPacket): Boolean {
         if (!np.getBoolean("startBrowsing")) return false
 
-        if (!server.isInitialized) {
+        if (!server.isInitialized || server.isClosed) {
             try {
                 server.initialize(context, device)
             } catch (e: GeneralSecurityException) {

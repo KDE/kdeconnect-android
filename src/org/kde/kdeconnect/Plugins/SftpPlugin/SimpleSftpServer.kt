@@ -24,15 +24,22 @@ import org.apache.sshd.server.auth.pubkey.PublickeyAuthenticator
 import org.apache.sshd.server.kex.DHGServer
 import org.apache.sshd.server.session.ServerSession
 import org.apache.sshd.server.subsystem.SubsystemFactory
+import org.apache.sshd.sftp.server.FileHandle
+import org.apache.sshd.sftp.server.SftpFileSystemAccessor
 import org.apache.sshd.sftp.server.SftpSubsystemFactory
+import org.apache.sshd.sftp.server.SftpSubsystemProxy
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.Helpers.RandomHelper
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper
 import org.kde.kdeconnect.Helpers.SecurityHelpers.constantTimeCompare
 import org.kde.kdeconnect.Plugins.SftpPlugin.saf.SafFileSystemFactory
+import org.kde.kdeconnect.Plugins.SftpPlugin.saf.SafPath
 import java.io.IOException
+import java.nio.channels.SeekableByteChannel
 import java.nio.charset.StandardCharsets
+import java.nio.file.OpenOption
 import java.nio.file.Path
+import java.nio.file.attribute.FileAttribute
 import java.security.GeneralSecurityException
 import java.security.KeyPair
 import java.security.MessageDigest
@@ -50,7 +57,9 @@ internal class SimpleSftpServer {
 
     var isInitialized: Boolean = false
 
-    private lateinit var sshd: SshServer
+    private var sshd: SshServer? = null
+    val isClosed: Boolean
+        get() = sshd!!.isClosed
 
     private var safFileSystemFactory: SafFileSystemFactory? = null
 
@@ -60,7 +69,7 @@ internal class SimpleSftpServer {
 
     @Throws(GeneralSecurityException::class)
     fun initialize(context: Context?, device: Device) {
-        sshd = ServerBuilder.builder().apply {
+        val sshd = ServerBuilder.builder().apply {
             signatureFactories(
                 listOf(
                     BuiltinSignatures.nistp256,
@@ -102,7 +111,23 @@ internal class SimpleSftpServer {
 
         sshd.commandFactory = ScpCommandFactory()
         sshd.subsystemFactories =
-            listOf<SubsystemFactory>(SftpSubsystemFactory())
+            listOf<SubsystemFactory>(SftpSubsystemFactory.Builder().apply {
+                withFileSystemAccessor(object: SftpFileSystemAccessor {
+                    override fun openFile(
+                        subsystem: SftpSubsystemProxy?,
+                        fileHandle: FileHandle?,
+                        file: Path?,
+                        handle: String?,
+                        options: MutableSet<out OpenOption>?,
+                        vararg attrs: FileAttribute<*>?
+                    ): SeekableByteChannel {
+                        if (file is SafPath) {
+                            return file.fileSystem.provider().newByteChannel(file, options, *attrs)
+                        }
+                        return super.openFile(subsystem, fileHandle, file, handle, options, *attrs)
+                    }
+                })
+            }.build())
 
         keyAuth.deviceKey = device.certificate.publicKey
 
@@ -110,6 +135,8 @@ internal class SimpleSftpServer {
         sshd.passwordAuthenticator = passwordAuth
 
         this.isInitialized = true
+
+        this.sshd = sshd
     }
 
     fun start(): Boolean {
@@ -119,8 +146,8 @@ internal class SimpleSftpServer {
             port = STARTPORT
             while (!isStarted) {
                 try {
-                    sshd.port = port
-                    sshd.start()
+                    sshd!!.port = port
+                    sshd!!.start()
                     isStarted = true
                 } catch (e: IOException) {
                     port++
@@ -139,7 +166,7 @@ internal class SimpleSftpServer {
     fun stop() {
         try {
             isStarted = false
-            sshd.stop(true)
+            sshd!!.stop(true)
         } catch (e: Exception) {
             Log.e("SFTP", "Exception while stopping the server", e)
         }
