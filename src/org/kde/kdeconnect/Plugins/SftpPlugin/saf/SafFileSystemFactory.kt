@@ -7,6 +7,7 @@
 package org.kde.kdeconnect.Plugins.SftpPlugin.saf
 
 import android.content.Context
+import android.net.Uri
 import android.util.Log
 import org.apache.sshd.common.file.FileSystemFactory
 import org.apache.sshd.common.session.SessionContext
@@ -15,8 +16,8 @@ import java.nio.file.FileSystem
 import java.nio.file.Path
 
 class SafFileSystemFactory(private val context: Context) : FileSystemFactory {
-    private val provider = SafFileSystemProvider()
-    private val roots: MutableMap<String, String?> = HashMap()
+    private val roots: MutableMap<String, Uri> = HashMap()
+    private val provider = SafFileSystemProvider(context, roots)
 
     fun initRoots(storageInfoList: List<SftpPlugin.StorageInfo>) {
         Log.i(TAG, "initRoots: $storageInfoList")
@@ -29,9 +30,11 @@ class SafFileSystemFactory(private val context: Context) : FileSystemFactory {
 //                        roots[curStorageInfo.displayName] = curStorageInfo.uri.path
 //                    }
                 }
+
                 curStorageInfo.isContentUri -> {
-                    roots[curStorageInfo.displayName] = curStorageInfo.uri.toString()
+                    roots[curStorageInfo.displayName] = curStorageInfo.uri
                 }
+
                 else -> {
                     Log.e(TAG, "Unknown storage URI type: $curStorageInfo")
                 }
@@ -40,7 +43,7 @@ class SafFileSystemFactory(private val context: Context) : FileSystemFactory {
     }
 
     override fun createFileSystem(session: SessionContext?): FileSystem {
-        return SafFileSystem(provider, roots, session!!.username, context)
+        return SafFileSystem(provider, roots, context)
     }
 
     companion object {
