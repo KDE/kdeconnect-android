@@ -12,6 +12,7 @@ import android.util.Log
 import org.apache.sshd.common.file.nativefs.NativeFileSystemFactory
 import org.apache.sshd.common.keyprovider.AbstractKeyPairProvider
 import org.apache.sshd.common.session.SessionContext
+import org.apache.sshd.common.util.OsUtils
 import org.apache.sshd.common.util.io.PathUtils
 import org.apache.sshd.common.util.security.SecurityUtils.SECURITY_PROVIDER_REGISTRARS
 import org.apache.sshd.scp.server.ScpCommandFactory
@@ -89,7 +90,7 @@ internal class SimpleSftpServer {
         sshd.commandFactory = ScpCommandFactory()
         sshd.subsystemFactories =
             listOf<SubsystemFactory>(SftpSubsystemFactory.Builder().apply {
-                withFileSystemAccessor(object: SftpFileSystemAccessor {
+                withFileSystemAccessor(object : SftpFileSystemAccessor {
                     override fun openFile(
                         subsystem: SftpSubsystemProxy?,
                         fileHandle: FileHandle?,
