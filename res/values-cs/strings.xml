@@ -424,5 +424,6 @@
   <string name="no_notifications">Upozornění jsou zakázána. Neuvidíte upozornění na párování.</string>
   <string name="mpris_keepwatching">Pokračovat v přehrávání</string>
   <string name="mpris_keepwatching_settings_title">Pokračovat v přehrávání</string>
+  <string name="mpris_keepwatching_settings_summary">Zobrazit tiché upozornění pro pokračování přehrávání na tomto zařízení po zavření médií</string>
   <string name="notification_channel_keepwatching">Pokračovat v přehrávání</string>
 </resources>
