@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2024 Vit Pelcak <vpelcak@suse.cz>
+# SPDX-FileCopyrightText: 2024 Vit Pelcak <vit@pelcak.org>
 #. extracted from ./metadata/android/en-US/short_description.txt
 msgid ""
 msgstr ""
