@@ -71,7 +71,18 @@ class SafFileSystemProvider(
         options: Set<OpenOption>,
         vararg attrs_: FileAttribute<*>
     ): SeekableByteChannel {
-        return newFileChannel(path, options, *attrs_)
+        val channel = newFileChannel(path, options, *attrs_)
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+            val clazz = Class.forName("j$.nio.channels.DesugarChannels")
+            val method = clazz.getDeclaredMethod(
+                "convertMaybeLegacyFileChannelFromLibrary",
+                FileChannel::class.java
+            )
+            return method.invoke(null, channel) as SeekableByteChannel
+        }
+
+        return channel
     }
 
     /**
@@ -176,6 +187,8 @@ class SafFileSystemProvider(
             override fun iterator(): MutableIterator<Path> {
                 val documentFile = dir.getDocumentFile(context)!!
                 return documentFile.listFiles().mapNotNull {
+                    if (it.uri.path?.endsWith(".android_secure") == true) return@mapNotNull null
+
                     val newPath = SafPath(dir.fileSystem, it.uri, null, dir.names + it.name!!)
                     if (filter.accept(newPath)) newPath else null
                 }.toMutableList().iterator()
@@ -240,17 +253,22 @@ class SafFileSystemProvider(
         val destParentUri = target.parent.getDocumentFile(context)!!.uri
 
         // 1. If dest parent is the same as source parent, rename the file
-        if (parentUri == destParentUri) {
-            try {
-                val newUri = DocumentsContract.renameDocument(
-                    context.contentResolver,
-                    sourceUri,
-                    target.names.last()
-                )
-                source.safUri = newUri!!
-                return
-            } catch (ignored: FileNotFoundException) {
-                // no-op: fallback to the next method
+        run firstStep@{
+            if (parentUri == destParentUri) {
+                try {
+                    val newUri = DocumentsContract.renameDocument(
+                        context.contentResolver,
+                        sourceUri,
+                        target.names.last()
+                    )
+                    if (newUri == null) { // renameDocument returns null on failure
+                        return@firstStep
+                    }
+                    source.safUri = newUri
+                    return
+                } catch (ignored: FileNotFoundException) {
+                    // no-op: fallback to the next method
+                }
             }
         }
 
