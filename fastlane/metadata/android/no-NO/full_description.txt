@@ -1,0 +1,21 @@
+KDE Connect tilbyr eit sett funksjonar som lèt deg enkelt arbeida på tvers av einingar:
+
+– Overfør filer mellom einingane
+– Få trådlaus tilgang til filer på telefonen frå datamaskina
+– Del utklippsbilete: kopier og lim inn mellom einingane
+– Vert varsla på datamaskina om innkommande samtalar og tekstmeldingar
+– Virtuell styreplate: bruk telefon­skjermen som styreplate for datamaskina
+– Synkronisering av varslingar: få tilgang til telefon­varslingar frå datamaskina og svar på meldingar
+– Fjernkontroll av medieavspeling: bruk telefonen til å styra Linux-baserte mediespelarar
+– Wi-Fi-tilkopling: du treng ikkje USB- eller Bluetooth-tilkopling
+– Ende-til-ende-kryptering: informasjonen din er trygg
+
+Merk at du må installera KDE Connect på datamaskina for å kunna bruka appen. Hugs å halda PC-versjonen oppdatert med Android-versjonen for tilgang til dei nyaste funksjonane.
+
+Informasjon om sensitive løyve:
+– Tilgjenge-løyve: Trengst for å kunna ta imot tastetrykk frå PC for å styra Android-eininga om du brukar funksjonen «Fjernstyring»
+– Bakgrunns­løyve til å sjå geografiske posisjon: Trengst for å veta kva Wi-Fi-nettverk du er tilkopla om du brukar funksjonen «Tiltrudde nettverk»
+
+KDE Connect sender aldri informasjon til KDE eller nokon tredjepart. Programmet sender data direkte mellom dei to einingane via lokalnettet, aldri via Internett og alltid med ende-til-ende-kryptering.
+
+Appen er ein del av eit fri programvare-prosjekt og er blitt til takka vera mange bidragsytarar. Gå til heimesida for å sjå kjeldekoden.
