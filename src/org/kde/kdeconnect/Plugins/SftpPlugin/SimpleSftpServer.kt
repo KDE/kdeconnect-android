@@ -12,7 +12,6 @@ import android.util.Log
 import org.apache.sshd.common.file.nativefs.NativeFileSystemFactory
 import org.apache.sshd.common.keyprovider.AbstractKeyPairProvider
 import org.apache.sshd.common.session.SessionContext
-import org.apache.sshd.common.util.OsUtils
 import org.apache.sshd.common.util.io.PathUtils
 import org.apache.sshd.common.util.security.SecurityUtils.SECURITY_PROVIDER_REGISTRARS
 import org.apache.sshd.scp.server.ScpCommandFactory
@@ -196,8 +195,14 @@ internal class SimpleSftpServer {
             System.setProperty(SECURITY_PROVIDER_REGISTRARS, "") // disable BouncyCastle
             System.setProperty(
                 "org.apache.sshd.common.io.IoServiceFactoryFactory",
-                "org.apache.sshd.mina.MinaServiceFactoryFactory"
-            ) // Use MINA instead NIO2 due to compatibility issues
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+                    // Use MINA instead NIO2 due to compatibility issues
+                    // Android 7.0 (API 24) and below have issues with NIO2
+                    "org.apache.sshd.mina.MinaServiceFactoryFactory"
+                } else {
+                    "org.apache.sshd.common.io.nio2.Nio2ServiceFactoryFactory"
+                }
+            )
             PathUtils.setUserHomeFolderResolver { Path.of("/") } // TODO: Remove it when SSHD Core is fixed
         }
     }
