@@ -296,7 +296,7 @@ dependencies {
     implementation(libs.apache.sshd.sftp)
     implementation(libs.apache.sshd.scp)
     implementation(libs.apache.sshd.mina)
-    implementation(libs.apache.mina.core) //For some reason, makes sshd-core:0.14.0 work without NIO, which isn't available until Android 8 (api 26)
+    implementation(libs.apache.mina.core)
 
     //implementation("com.github.bright:slf4android:0.1.6") { transitive = true } // For org.apache.sshd debugging
     implementation(libs.bcpkix.jdk15on) //For SSL certificate generation
