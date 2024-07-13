@@ -197,7 +197,8 @@ internal class SimpleSftpServer {
                 "org.apache.sshd.common.io.IoServiceFactoryFactory",
                 if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
                     // Use MINA instead NIO2 due to compatibility issues
-                    // Android 7.0 (API 24) and below have issues with NIO2
+                    // Android 7.1 (API 25) and below have issues with NIO2
+                    // When we require API 26, we can remove this and the Mina dependency.
                     "org.apache.sshd.mina.MinaServiceFactoryFactory"
                 } else {
                     "org.apache.sshd.common.io.nio2.Nio2ServiceFactoryFactory"
