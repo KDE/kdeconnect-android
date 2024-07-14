@@ -54,9 +54,9 @@ internal class SimpleSftpServer {
 
     var isInitialized: Boolean = false
 
-    private var sshd: SshServer? = null
+    private lateinit var sshd: SshServer
     val isClosed: Boolean
-        get() = sshd!!.isClosed
+        get() = ::sshd.isInitialized && sshd.isClosed
 
     private var safFileSystemFactory: SafFileSystemFactory? = null
 
@@ -123,8 +123,8 @@ internal class SimpleSftpServer {
             port = STARTPORT
             while (!isStarted) {
                 try {
-                    sshd!!.port = port
-                    sshd!!.start()
+                    sshd.port = port
+                    sshd.start()
                     isStarted = true
                 } catch (e: IOException) {
                     port++
@@ -143,7 +143,7 @@ internal class SimpleSftpServer {
     fun stop() {
         try {
             isStarted = false
-            sshd!!.stop(true)
+            sshd.stop(true)
         } catch (e: Exception) {
             Log.e("SFTP", "Exception while stopping the server", e)
         }
@@ -204,7 +204,11 @@ internal class SimpleSftpServer {
                     "org.apache.sshd.common.io.nio2.Nio2ServiceFactoryFactory"
                 }
             )
-            PathUtils.setUserHomeFolderResolver { Path.of("/") } // TODO: Remove it when SSHD Core is fixed
+            // Remove it when SSHD Core is fixed.
+            // Android has no user home folder, so we need to set it to something.
+            // `System.getProperty("user.home")` is not available on Android,
+            // but it exists in SSHD Core's `org.apache.sshd.common.util.io.PathUtils.LazyDefaultUserHomeFolderHolder`.
+            PathUtils.setUserHomeFolderResolver { Path.of("/") }
         }
     }
 }
