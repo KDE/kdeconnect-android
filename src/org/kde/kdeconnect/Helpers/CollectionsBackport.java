@@ -44,7 +44,7 @@ public final class CollectionsBackport {
         if (VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             return Collections.unmodifiableNavigableSet(s);
         } else {
-            return new UnmodifiableNavigableSetBackport<T>(s);
+            return new UnmodifiableNavigableSetBackport<>(s);
         }
     }
 
@@ -52,7 +52,7 @@ public final class CollectionsBackport {
         if (VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             return Collections.unmodifiableSet(s);
         } else {
-            return new UnmodifiableSetBackport(s);
+            return new UnmodifiableSetBackport<>(s);
         }
     }
 
@@ -60,7 +60,7 @@ public final class CollectionsBackport {
         if (VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             return Collections.unmodifiableCollection(c);
         } else {
-            return new UnmodifiableCollectionBackport(c);
+            return new UnmodifiableCollectionBackport<>(c);
         }
     }
 
@@ -72,19 +72,21 @@ public final class CollectionsBackport {
         }
     }
 
-    public static Map unmodifiableMap(Map m) {
+    public static <K, V> Map<K, V> unmodifiableMap(Map<K, V> m) {
         if (VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             return Collections.unmodifiableMap(m);
         } else {
-            return new UnmodifiableMapBackport(m);
+            return new UnmodifiableMapBackport<>(m);
         }
     }
 
     public static <T> NavigableSet<T> emptyNavigableSet() {
+        //noinspection unchecked
         return (NavigableSet<T>) UnmodifiableNavigableSetBackport.EMPTY_NAVIGABLE_SET;
     }
 
     public static <K, V> NavigableMap<K, V> emptyNavigableMap() {
+        //noinspection unchecked
         return (NavigableMap<K, V>) UnmodifiableNavigableMapBackport.EMPTY_NAVIGABLE_MAP;
     }
 
