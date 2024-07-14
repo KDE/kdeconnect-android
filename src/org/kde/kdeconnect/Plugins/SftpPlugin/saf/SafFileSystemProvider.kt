@@ -14,6 +14,7 @@ import android.provider.DocumentsContract
 import android.util.Log
 import java.io.FileNotFoundException
 import java.io.IOException
+import java.lang.reflect.Method
 import java.net.URI
 import java.nio.channels.FileChannel
 import java.nio.channels.SeekableByteChannel
@@ -74,12 +75,10 @@ class SafFileSystemProvider(
         val channel = newFileChannel(path, options, *attrs_)
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-            val clazz = Class.forName("j$.nio.channels.DesugarChannels")
-            val method = clazz.getDeclaredMethod(
-                "convertMaybeLegacyFileChannelFromLibrary",
-                FileChannel::class.java
-            )
-            return method.invoke(null, channel) as SeekableByteChannel
+            return convertMaybeLegacyFileChannelFromLibraryFunction.invoke(
+                null,
+                channel
+            ) as SeekableByteChannel
         }
 
         return channel
@@ -137,7 +136,10 @@ class SafFileSystemProvider(
                 StandardOpenOption.CREATE_NEW,
             ) -> {
                 val docFile = path.getDocumentFile(context) ?: run {
-                    if (options.contains(StandardOpenOption.CREATE) || options.contains(StandardOpenOption.CREATE_NEW)) {
+                    if (options.contains(StandardOpenOption.CREATE) || options.contains(
+                            StandardOpenOption.CREATE_NEW
+                        )
+                    ) {
                         val parent = path.parent.getDocumentFile(context)!!
                         parent.createFile(Files.probeContentType(path), path.names.last()).apply {
                             if (this == null) {
@@ -600,5 +602,13 @@ class SafFileSystemProvider(
 
     companion object {
         private const val TAG = "SafFileSystemProvider"
+
+        private val convertMaybeLegacyFileChannelFromLibraryFunction: Method by lazy {
+            val clazz = Class.forName("j$.nio.channels.DesugarChannels")
+            clazz.getDeclaredMethod(
+                "convertMaybeLegacyFileChannelFromLibrary",
+                FileChannel::class.java
+            )
+        }
     }
 }
