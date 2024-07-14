@@ -72,7 +72,7 @@ internal class SimpleSftpServer {
                     NativeFileSystemFactory()
                 } else {
                     safFileSystemFactory = SafFileSystemFactory(context!!)
-                    safFileSystemFactory // FIXME: This is not working
+                    safFileSystemFactory
                 }
             )
         }.build()
