@@ -19,8 +19,7 @@ class SafFileSystem(
     private val context: Context
 ) : BaseFileSystem<SafPath>(fileSystemProvider) {
     override fun close() {
-        // no-op
-        Log.v(TAG, "close")
+        throw UnsupportedOperationException("SAF does not support closing")
     }
 
     override fun isOpen(): Boolean = true
