@@ -44,19 +44,31 @@ import java.security.NoSuchAlgorithmException
 import java.security.PublicKey
 
 internal class SimpleSftpServer {
-    var port: Int = -1
-        private set
-    var isStarted: Boolean = false
-        private set
+    private lateinit var sshd: SshServer
+
+    val port: Int
+        get() {
+            if (!::sshd.isInitialized) return -1
+            return sshd.port
+        }
+
+    val isStarted: Boolean
+        get() {
+            if (!::sshd.isInitialized) return false
+            return sshd.isStarted
+        }
+
+    val isClosed: Boolean
+        get() {
+            if (!::sshd.isInitialized) return false
+            return sshd.isClosed
+        }
 
     private val passwordAuth = SimplePasswordAuthenticator()
     private val keyAuth = SimplePublicKeyAuthenticator()
 
-    var isInitialized: Boolean = false
-
-    private lateinit var sshd: SshServer
-    val isClosed: Boolean
-        get() = ::sshd.isInitialized && sshd.isClosed
+    val isInitialized: Boolean
+        get() = ::sshd.isInitialized
 
     private var safFileSystemFactory: SafFileSystemFactory? = null
 
@@ -65,13 +77,13 @@ internal class SimpleSftpServer {
     }
 
     @Throws(GeneralSecurityException::class)
-    fun initialize(context: Context?, device: Device) {
+    fun initialize(context: Context, device: Device) {
         val sshd = ServerBuilder.builder().apply {
             fileSystemFactory(
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                     NativeFileSystemFactory()
                 } else {
-                    safFileSystemFactory = SafFileSystemFactory(context!!)
+                    safFileSystemFactory = SafFileSystemFactory(context)
                     safFileSystemFactory
                 }
             )
@@ -111,38 +123,31 @@ internal class SimpleSftpServer {
         sshd.publickeyAuthenticator = keyAuth
         sshd.passwordAuthenticator = passwordAuth
 
-        this.isInitialized = true
-
         this.sshd = sshd
     }
 
     fun start(): Boolean {
-        if (!isStarted) {
-            regeneratePassword()
+        if (isStarted) return true
 
-            port = STARTPORT
-            while (!isStarted) {
-                try {
-                    sshd.port = port
-                    sshd.start()
-                    isStarted = true
-                } catch (e: IOException) {
-                    port++
-                    if (port >= ENDPORT) {
-                        port = -1
-                        Log.e("SftpServer", "No more ports available")
-                        return false
-                    }
-                }
+        regeneratePassword()
+
+        PORT_RANGE.forEach { port ->
+            try {
+                sshd.port = port
+                sshd.start()
+
+                return true
+            } catch (e: IOException) {
+                Log.w("SftpServer", "Failed to start server on port $port, trying next port", e)
             }
         }
 
-        return true
+        Log.e("SftpServer", "No more ports available")
+        return false
     }
 
     fun stop() {
         try {
-            isStarted = false
             sshd.stop(true)
         } catch (e: Exception) {
             Log.e("SFTP", "Exception while stopping the server", e)
@@ -150,30 +155,25 @@ internal class SimpleSftpServer {
     }
 
     fun regeneratePassword(): String {
-        val password = RandomHelper.randomString(28)
-        passwordAuth.setPassword(password)
-        return password
+        return RandomHelper.randomString(28).also {
+            passwordAuth.setPassword(it)
+        }
     }
 
     internal class SimplePasswordAuthenticator : PasswordAuthenticator {
-        private var sha: MessageDigest? = null
-
-        init {
-            try {
-                sha = MessageDigest.getInstance("SHA-256")
-            } catch (e: NoSuchAlgorithmException) {
-                throw RuntimeException(e)
-            }
+        private val sha: MessageDigest = try {
+            MessageDigest.getInstance("SHA-256")
+        } catch (e: NoSuchAlgorithmException) {
+            throw RuntimeException(e)
         }
+        private var passwordHash: ByteArray = byteArrayOf()
 
         fun setPassword(password: String) {
-            sha!!.digest(password.toByteArray(StandardCharsets.UTF_8))
+            passwordHash = sha.digest(password.toByteArray(StandardCharsets.UTF_8))
         }
 
-        var passwordHash: ByteArray = byteArrayOf()
-
         override fun authenticate(user: String, password: String, session: ServerSession): Boolean {
-            val receivedPasswordHash = sha!!.digest(password.toByteArray(StandardCharsets.UTF_8))
+            val receivedPasswordHash = sha.digest(password.toByteArray(StandardCharsets.UTF_8))
             return user == USER && constantTimeCompare(passwordHash, receivedPasswordHash)
         }
     }
@@ -182,12 +182,11 @@ internal class SimpleSftpServer {
         var deviceKey: PublicKey? = null
 
         override fun authenticate(user: String, key: PublicKey, session: ServerSession): Boolean =
-            deviceKey == key
+            user == USER && deviceKey == key
     }
 
     companion object {
-        private const val STARTPORT = 1739
-        private const val ENDPORT = 1764
+        private val PORT_RANGE = 1739..1764
 
         const val USER: String = "kdeconnect"
 
