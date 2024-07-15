@@ -379,13 +379,9 @@ class SafFileSystemProvider(
     ): V? {
         check(path is SafPath)
         if (path.isRoot()) {
-            if (type == BasicFileAttributeView::class.java) {
+            if (type == BasicFileAttributeView::class.java || type == PosixFileAttributeView::class.java) {
                 @Suppress("UNCHECKED_CAST")
                 return RootBasicFileAttributeView as V
-            }
-            if (type == PosixFileAttributeView::class.java) {
-                @Suppress("UNCHECKED_CAST")
-                return RootPosixFileAttributeView as V
             }
         }
 
@@ -505,7 +501,6 @@ class SafFileSystemProvider(
         attributes: String,
         vararg options: LinkOption?
     ): Map<String, Any?> {
-        // TODO: Implement readAttributes
         check(path is SafPath)
         if (path.isRoot()) {
             if (attributes == "basic" || attributes.startsWith("basic:")) {
@@ -571,16 +566,23 @@ class SafFileSystemProvider(
         when (attribute) {
             "basic:lastModifiedTime" -> {
                 check(value is FileTime)
-                path.getDocumentFile(context)?.let {
-                    val updateValues = ContentValues().apply {
-                        put(DocumentsContract.Document.COLUMN_LAST_MODIFIED, value.toMillis())
-                    }
-                    if (context.contentResolver.update(it.uri, updateValues, null, null) == 0) {
-                        throw IOException("Failed to set lastModifiedTime of $path")
-                    }
-                } ?: throw java.nio.file.NoSuchFileException(
-                    path.toString(),
-                ) // No kotlin.NoSuchFileException, they are different
+                val docFile = path.getDocumentFile(context)
+                    ?: throw java.nio.file.NoSuchFileException(
+                        path.toString(),
+                    ) // No kotlin.NoSuchFileException, they are different
+
+                if (context.contentResolver.update(
+                        docFile.uri,
+                        ContentValues().apply {
+                            put(DocumentsContract.Document.COLUMN_LAST_MODIFIED, value.toMillis())
+                        },
+                        null,
+                        null
+                    ) == 0
+                ) {
+                    throw IOException("Failed to set lastModifiedTime of $path")
+                }
+                return
             }
 
             "basic:lastAccessTime", "basic:creationTime" -> {
@@ -590,14 +592,15 @@ class SafFileSystemProvider(
 
             "posix:owner", "posix:group", "posix:permissions" -> {
                 Log.w(TAG, "set posix attribute $attribute not implemented")
+                // We can't throw an exception here because the SSHD server will crash
+                return
             }
 
             else -> {
                 Log.w(TAG, "setAttribute($path, $attribute, $value) not implemented")
+                // We can't throw an exception here because the SSHD server will crash
             }
         }
-        // TODO: Implement setAttribute
-        Log.w(TAG, "setAttribute($path, $attribute, $value) not implemented")
     }
 
     companion object {
