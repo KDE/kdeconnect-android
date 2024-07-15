@@ -131,6 +131,9 @@ class SafFileSystemProvider(
                 if (options.contains(StandardOpenOption.WRITE)) {
                     throw IllegalArgumentException("Cannot open a file for both reading and writing")
                 }
+                if (options.contains(StandardOpenOption.CREATE_NEW) || options.contains(StandardOpenOption.CREATE)) {
+                    createFile(path, options.contains(StandardOpenOption.CREATE_NEW))
+                }
                 val docFile = path.getDocumentFile(context)!!
                 return ParcelFileDescriptor.AutoCloseInputStream(
                     context.contentResolver.openFileDescriptor(docFile.uri, "r")!!
@@ -138,11 +141,11 @@ class SafFileSystemProvider(
             }
             // WRITE
             options.contains(StandardOpenOption.WRITE) -> {
-                val docFile =
-                    path.getDocumentFile(context) ?: throw IOException("Failed to create $path")
                 if (options.contains(StandardOpenOption.CREATE_NEW) || options.contains(StandardOpenOption.CREATE)) {
                     createFile(path, options.contains(StandardOpenOption.CREATE_NEW))
                 }
+                val docFile =
+                    path.getDocumentFile(context) ?: throw IOException("Failed to create $path")
                 check(docFile.exists())
                 val mode = when {
                     options.contains(StandardOpenOption.APPEND) -> "wa"
