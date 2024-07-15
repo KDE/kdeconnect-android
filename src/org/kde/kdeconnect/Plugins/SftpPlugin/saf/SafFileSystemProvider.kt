@@ -21,6 +21,7 @@ import java.nio.channels.SeekableByteChannel
 import java.nio.file.AccessMode
 import java.nio.file.CopyOption
 import java.nio.file.DirectoryStream
+import java.nio.file.FileAlreadyExistsException
 import java.nio.file.FileStore
 import java.nio.file.FileSystem
 import java.nio.file.Files
@@ -84,6 +85,22 @@ class SafFileSystemProvider(
         return channel
     }
 
+    private fun createFile(path: SafPath, failedWhenExists: Boolean): Uri {
+        if (path.isRoot()) {
+            throw IOException("Cannot create root directory")
+        }
+        if (failedWhenExists && Files.exists(path)) {
+            throw FileAlreadyExistsException(path.toString())
+        }
+        val parent = path.parent.getDocumentFile(context)
+            ?: throw IOException("Parent directory does not exist")
+        val docFile = parent.createFile(Files.probeContentType(path), path.names.last())
+            ?: throw IOException("Failed to create $path")
+        val uri = docFile.uri
+        path.safUri = uri
+        return uri
+    }
+
     /**
      * @see org.apache.sshd.sftp.server.FileHandle.getOpenOptions
      */
@@ -106,60 +123,40 @@ class SafFileSystemProvider(
             attrs_
         }
 
-        when (options) {
+        when {
             // READ
-            setOf(StandardOpenOption.READ) -> {
+            options.contains(StandardOpenOption.READ) -> {
+                if (options.contains(StandardOpenOption.WRITE)) {
+                    throw IllegalArgumentException("Cannot open a file for both reading and writing")
+                }
                 val docFile = path.getDocumentFile(context)!!
                 return ParcelFileDescriptor.AutoCloseInputStream(
                     context.contentResolver.openFileDescriptor(docFile.uri, "r")!!
                 ).channel
             }
-            // WRITE, TRUNCATE_EXISTING
-            // WRITE, CREATE
-            // WRITE, TRUNCATE_EXISTING, CREATE
-            // WRITE, CREATE_NEW
-            setOf(
-                StandardOpenOption.WRITE,
-                StandardOpenOption.TRUNCATE_EXISTING,
-            ),
-            setOf(
-                StandardOpenOption.WRITE,
-                StandardOpenOption.CREATE,
-            ),
-            setOf(
-                StandardOpenOption.WRITE,
-                StandardOpenOption.TRUNCATE_EXISTING,
-                StandardOpenOption.CREATE
-            ),
-            setOf(
-                StandardOpenOption.WRITE,
-                StandardOpenOption.CREATE_NEW,
-            ) -> {
-                val docFile = path.getDocumentFile(context) ?: run {
-                    if (options.contains(StandardOpenOption.CREATE) || options.contains(
-                            StandardOpenOption.CREATE_NEW
-                        )
-                    ) {
-                        val parent = path.parent.getDocumentFile(context)!!
-                        parent.createFile(Files.probeContentType(path), path.names.last()).apply {
-                            if (this == null) {
-                                throw IOException("Failed to create $path")
-                            }
-                            path.safUri = uri
-                        }
-                    } else {
-                        throw IOException("File not found: $path")
-                    }
-                } ?: throw IOException("Failed to create $path")
+            // WRITE
+            options.contains(StandardOpenOption.WRITE) -> {
+                val docFile =
+                    path.getDocumentFile(context) ?: throw IOException("Failed to create $path")
+                if (options.contains(StandardOpenOption.CREATE_NEW) || options.contains(StandardOpenOption.CREATE)) {
+                    createFile(path, options.contains(StandardOpenOption.CREATE_NEW))
+                }
                 check(docFile.exists())
+                val mode = when {
+                    options.contains(StandardOpenOption.APPEND) -> "wa"
+                    options.contains(StandardOpenOption.TRUNCATE_EXISTING) -> "wt"
+                    else -> "w"
+                }
                 return ParcelFileDescriptor.AutoCloseOutputStream(
-                    context.contentResolver.openFileDescriptor(docFile.uri, "rw")!!
+                    context.contentResolver.openFileDescriptor(docFile.uri, mode)!!
                 ).channel
             }
-            // TODO: Implement other options
+
+            else -> {
+                Log.w(TAG, "newFileChannel($path, $options, $attrs) not implemented")
+                throw IOException("newFileChannel($path, $options, $attrs) not implemented")
+            }
         }
-        Log.w(TAG, "newFileChannel($path, $options, $attrs) not implemented")
-        throw IOException("newFileChannel($path, $options, $attrs) not implemented")
     }
 
     override fun newDirectoryStream(
