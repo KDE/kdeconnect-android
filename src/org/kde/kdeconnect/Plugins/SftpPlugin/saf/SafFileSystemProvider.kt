@@ -12,6 +12,7 @@ import android.os.Build
 import android.os.ParcelFileDescriptor
 import android.provider.DocumentsContract
 import android.util.Log
+import org.kde.kdeconnect.Helpers.MediaStoreHelper
 import java.io.FileNotFoundException
 import java.io.IOException
 import java.lang.reflect.Method
@@ -97,6 +98,7 @@ class SafFileSystemProvider(
         val docFile = parent.createFile(Files.probeContentType(path), path.names.last())
             ?: throw IOException("Failed to create $path")
         val uri = docFile.uri
+        MediaStoreHelper.indexFile(context, uri)
         path.safUri = uri
         return uri
     }
@@ -221,6 +223,7 @@ class SafFileSystemProvider(
         if (!docFile.delete()) {
             throw IOException("Failed to delete $path")
         }
+        MediaStoreHelper.indexFile(context, docFile.uri)
     }
 
     override fun copy(source: Path, target: Path, vararg options: CopyOption) {
@@ -232,9 +235,12 @@ class SafFileSystemProvider(
                 source.toString(),
             ) // No kotlin.NoSuchFileException, they are different
 
-        val targetDocFile = target.parent.getDocumentFile(context)!!
-            .createFile(Files.probeContentType(source), target.names.last())
-            ?: throw IOException("Failed to create $target")
+        val targetDocFile = target.apply {
+            createFile(this, false)
+        }.getDocumentFile(context)
+            ?: throw java.nio.file.NoSuchFileException(
+                target.toString(),
+            ) // No kotlin.NoSuchFileException, they are different
 
         context.contentResolver.openOutputStream(targetDocFile.uri)?.use { os ->
             context.contentResolver.openInputStream(sourceDocFile.uri)?.use { is_ ->
@@ -263,6 +269,8 @@ class SafFileSystemProvider(
                     if (newUri == null) { // renameDocument returns null on failure
                         return@firstStep
                     }
+                    MediaStoreHelper.indexFile(context, sourceUri)
+                    MediaStoreHelper.indexFile(context, newUri)
                     source.safUri = newUri
                     return
                 } catch (ignored: FileNotFoundException) {
@@ -284,6 +292,8 @@ class SafFileSystemProvider(
                 parentUri,
                 destParentUri
             )
+            MediaStoreHelper.indexFile(context, sourceUri)
+            MediaStoreHelper.indexFile(context, newUri)
             source.safUri = newUri!!
             return
         }
