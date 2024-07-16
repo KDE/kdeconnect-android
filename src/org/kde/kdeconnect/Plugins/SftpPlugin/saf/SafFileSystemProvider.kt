@@ -414,7 +414,7 @@ class SafFileSystemProvider(
                 ) {
                     Log.w(
                         TAG,
-                        "setTimes($path, $lastModifiedTime, $lastAccessTime, $createTime) not implemented"
+                        "setTimes($path, $lastModifiedTime, $lastAccessTime, $createTime) for SAF is impossible. Ignored."
                     )
                 }
             } as V
@@ -434,7 +434,7 @@ class SafFileSystemProvider(
                 ) {
                     Log.w(
                         TAG,
-                        "setTimes($path, $lastModifiedTime, $lastAccessTime, $createTime) not implemented"
+                        "setTimes($path, $lastModifiedTime, $lastAccessTime, $createTime) for SAF is impossible. Ignored."
                     )
                 }
 
@@ -578,28 +578,7 @@ class SafFileSystemProvider(
     ) {
         check(path is SafPath)
         when (attribute) {
-            "basic:lastModifiedTime" -> {
-                check(value is FileTime)
-                val docFile = path.getDocumentFile(context)
-                    ?: throw java.nio.file.NoSuchFileException(
-                        path.toString(),
-                    ) // No kotlin.NoSuchFileException, they are different
-
-                if (context.contentResolver.update(
-                        docFile.uri,
-                        ContentValues().apply {
-                            put(DocumentsContract.Document.COLUMN_LAST_MODIFIED, value.toMillis())
-                        },
-                        null,
-                        null
-                    ) == 0
-                ) {
-                    throw IOException("Failed to set lastModifiedTime of $path")
-                }
-                return
-            }
-
-            "basic:lastAccessTime", "basic:creationTime" -> {
+            "basic:lastModifiedTime", "basic:lastAccessTime", "basic:creationTime" -> {
                 check(value is FileTime)
                 throw UnsupportedOperationException("$attribute is read-only")
             }
