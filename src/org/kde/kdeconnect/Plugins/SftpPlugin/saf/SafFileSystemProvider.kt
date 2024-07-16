@@ -389,9 +389,13 @@ class SafFileSystemProvider(
     ): V? {
         check(path is SafPath)
         if (path.isRoot()) {
-            if (type == BasicFileAttributeView::class.java || type == PosixFileAttributeView::class.java) {
+            if (type == BasicFileAttributeView::class.java) {
                 @Suppress("UNCHECKED_CAST")
                 return RootBasicFileAttributeView as V
+            }
+            if (type == PosixFileAttributeView::class.java) {
+                @Suppress("UNCHECKED_CAST")
+                return RootPosixFileAttributeView as V
             }
         }
 
