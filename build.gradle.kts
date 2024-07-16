@@ -142,6 +142,8 @@ android {
 
 /**
  * Fix PosixFilePermission class type check issue.
+ *
+ * It fixed the class cast exception when lib desugar enabled and minSdk < 26.
  */
 abstract class FixPosixFilePermissionClassVisitorFactory :
     AsmClassVisitorFactory<FixPosixFilePermissionClassVisitorFactory.Params> {
@@ -266,6 +268,10 @@ androidComponents {
 }
 
 dependencies {
+    // It has a bug that causes a crash when using PosixFilePermission and minSdk < 26.
+    // It has been used in SSHD Core.
+    // We have taken a workaround to fix it.
+    // See `FixPosixFilePermissionClassVisitorFactory` for more details.
     coreLibraryDesugaring(libs.android.desugarJdkLibsNio)
 
     implementation(libs.androidx.compose.material3)
