@@ -555,6 +555,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="maxim_leshchenko_task">UI improvements and this about page</string>
     <string name="holger_kaelberer_task">Remote keyboard plugin and bug fixes</string>
     <string name="saikrishna_arcot_task">Support for using the keyboard in the remote input plugin, bug fixes and general improvements</string>
+    <string name="shellwen_chen_task">Improve the security of SFTP, improve the maintainability of this project, bug fixes and general improvements</string>
     <string name="everyone_else">Everyone else who has contributed to KDE Connect over the years</string>
 
     <string name="send_clipboard">Send clipboard</string>
