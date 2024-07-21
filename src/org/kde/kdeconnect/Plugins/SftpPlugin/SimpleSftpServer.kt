@@ -147,6 +147,8 @@ internal class SimpleSftpServer {
     }
 
     fun stop() {
+        if (!::sshd.isInitialized) return
+
         try {
             sshd.stop(true)
         } catch (e: Exception) {
