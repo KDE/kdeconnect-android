@@ -31,6 +31,7 @@ import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper
 import org.kde.kdeconnect.Helpers.SecurityHelpers.constantTimeCompare
 import org.kde.kdeconnect.Plugins.SftpPlugin.saf.SafFileSystemFactory
 import org.kde.kdeconnect.Plugins.SftpPlugin.saf.SafPath
+import org.slf4j.impl.HandroidLoggerAdapter
 import java.io.IOException
 import java.nio.channels.SeekableByteChannel
 import java.nio.charset.StandardCharsets
@@ -210,6 +211,9 @@ internal class SimpleSftpServer {
             // `System.getProperty("user.home")` is not available on Android,
             // but it exists in SSHD Core's `org.apache.sshd.common.util.io.PathUtils.LazyDefaultUserHomeFolderHolder`.
             PathUtils.setUserHomeFolderResolver { Path.of("/") }
+
+            // Disable SSHD logging due to performance degradation and being very noisy even in development
+            HandroidLoggerAdapter.DEBUG = false
         }
     }
 }
