@@ -163,4 +163,8 @@ class MprisReceiverPlayer {
 
         return metadata.getLong(MediaMetadata.METADATA_KEY_DURATION);
     }
+
+    MediaMetadata getMetadata() {
+        return controller.getMetadata();
+    }
 }

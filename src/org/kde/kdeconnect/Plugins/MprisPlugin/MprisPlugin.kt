@@ -32,7 +32,6 @@ import org.kde.kdeconnect.Plugins.PluginFactory.LoadablePlugin
 import org.kde.kdeconnect.UserInterface.PluginSettingsFragment
 import org.kde.kdeconnect_tp.R
 import java.net.MalformedURLException
-import java.net.URL
 import java.util.concurrent.ConcurrentHashMap
 
 @LoadablePlugin
@@ -278,11 +277,10 @@ class MprisPlugin : Plugin() {
                 playerStatus.isGoPreviousAllowed = np.getBoolean("canGoPrevious", playerStatus.isGoPreviousAllowed)
                 playerStatus.seekAllowed = np.getBoolean("canSeek", playerStatus.seekAllowed)
                 val newAlbumArtUrlString = np.getString("albumArtUrl", playerStatus.albumArtUrl)
-                try {
-                    // Turn the url into canonical form (and check its validity)
-                    val newAlbumArtUrl = URL(newAlbumArtUrlString)
+                val newAlbumArtUrl = Uri.parse(newAlbumArtUrlString)
+                if (newAlbumArtUrl.scheme in AlbumArtCache.ALLOWED_SCHEMES) {
                     playerStatus.albumArtUrl = newAlbumArtUrl.toString()
-                } catch (ignored: MalformedURLException) {
+                } else {
                     Log.w("MprisControl", "Invalid album art URL: $newAlbumArtUrlString")
                     playerStatus.albumArtUrl = ""
                 }

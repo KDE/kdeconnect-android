@@ -23,6 +23,7 @@ import androidx.fragment.app.DialogFragment;
 
 import org.apache.commons.lang3.StringUtils;
 import org.kde.kdeconnect.Helpers.AppsHelper;
+import org.kde.kdeconnect.Helpers.ThreadHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.NotificationsPlugin.NotificationReceiver;
 import org.kde.kdeconnect.Plugins.Plugin;
@@ -49,12 +50,15 @@ public class MprisReceiverPlugin extends Plugin {
     private HashMap<String, MprisReceiverCallback> playerCbs;
     private MediaSessionChangeListener mediaSessionChangeListener;
 
+    public @NonNull String getDeviceId() {
+        return device.getDeviceId();
+    }
+
     @Override
     public boolean onCreate() {
 
         if (!hasPermission())
             return false;
-
         players = new HashMap<>();
         playerCbs = new HashMap<>();
         try {
@@ -103,7 +107,6 @@ public class MprisReceiverPlugin extends Plugin {
 
     @Override
     public boolean onPacketReceived(@NonNull NetworkPacket np) {
-
         if (np.getBoolean("requestPlayerList")) {
             sendPlayerList();
             return true;
@@ -116,6 +119,18 @@ public class MprisReceiverPlugin extends Plugin {
 
         if (null == player) {
             return false;
+        }
+        String artUrl = np.getString("albumArtUrl", "");
+        if (!artUrl.isEmpty()) {
+            String playerName = player.getName();
+            MprisReceiverCallback cb = playerCbs.get(playerName);
+            if (cb == null) {
+                Log.e(TAG, "no callback for " + playerName + " (player likely stopped)");
+                return false;
+            }
+            // run it on a different thread to avoid blocking
+            ThreadHelper.execute(() -> sendAlbumArt(playerName, cb, artUrl));
+            return true;
         }
 
         if (np.getBoolean("requestNowPlaying", false)) {
@@ -181,7 +196,7 @@ public class MprisReceiverPlugin extends Plugin {
                 return;
             }
             for (MprisReceiverPlayer p : players.values()) {
-                p.getController().unregisterCallback(playerCbs.get(p.getName()));
+                p.getController().unregisterCallback(Objects.requireNonNull(playerCbs.get(p.getName())));
             }
             playerCbs.clear();
             players.clear();
@@ -206,12 +221,44 @@ public class MprisReceiverPlugin extends Plugin {
     private void sendPlayerList() {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_MPRIS);
         np.set("playerList", players.keySet());
+        np.set("supportAlbumArtPayload", true);
         getDevice().sendPacket(np);
     }
 
     @Override
     public int getMinSdk() {
         return Build.VERSION_CODES.LOLLIPOP_MR1;
+    }
+
+    void sendAlbumArt(String playerName, @NonNull MprisReceiverCallback cb, @Nullable String requestedUrl) {
+        // NOTE: It is possible that the player gets killed in the middle of this method.
+        // The proper thing to do this case would be to abort the send - but that gets into the
+        //   territory of async cancellation or putting a lock.
+        // For now, we just continue to send the art- cb stores the bitmap, so it will be valid.
+        //   cb will get GC'd after this method completes.
+        String localArtUrl = cb.getArtUrl();
+        if (localArtUrl == null) {
+            Log.w(TAG, "art not found!");
+            return;
+        }
+        String artUrl = requestedUrl == null ? localArtUrl : requestedUrl;
+        if (requestedUrl != null && !requestedUrl.contentEquals(localArtUrl)) {
+            Log.w(TAG, "sendAlbumArt: Doesn't match current url");
+            Log.d(TAG, "current:   " + localArtUrl);
+            Log.d(TAG, "requested: " + requestedUrl);
+            return;
+        }
+        byte[] p = cb.getArtAsArray();
+        if (p == null) {
+            Log.w(TAG, "sendAlbumArt: Failed to get art stream");
+            return;
+        }
+        NetworkPacket np = new NetworkPacket(PACKET_TYPE_MPRIS);
+        np.setPayload(new NetworkPacket.Payload(p));
+        np.set("player", playerName);
+        np.set("transferringAlbumArt", true);
+        np.set("albumArtUrl", artUrl);
+        getDevice().sendPacket(np);
     }
 
     void sendMetadata(MprisReceiverPlayer player) {
@@ -232,6 +279,15 @@ public class MprisReceiverPlugin extends Plugin {
         np.set("canGoNext", player.canGoNext());
         np.set("canSeek", player.canSeek());
         np.set("volume", player.getVolume());
+        MprisReceiverCallback cb = playerCbs.get(player.getName());
+        assert cb != null;
+        String artUrl = cb.getArtUrl();
+        if (artUrl != null) {
+            np.set("albumArtUrl", artUrl);
+            Log.v(TAG, "Sending metadata with url " + artUrl);
+        } else {
+            Log.v(TAG, "Sending metadata without url ");
+        }
         getDevice().sendPacket(np);
     }
 

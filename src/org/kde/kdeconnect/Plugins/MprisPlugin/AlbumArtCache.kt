@@ -9,6 +9,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.ConnectivityManager
+import android.net.Uri
 import android.util.Log
 import androidx.collection.LruCache
 import androidx.core.content.getSystemService
@@ -24,7 +25,6 @@ import java.io.File
 import java.io.IOException
 import java.io.InputStream
 import java.net.HttpURLConnection
-import java.net.MalformedURLException
 import java.net.URL
 import java.net.URLDecoder
 import java.security.MessageDigest
@@ -53,12 +53,12 @@ internal object AlbumArtCache {
     /**
      * A list of urls yet to be fetched.
      */
-    private val fetchUrlList = ArrayList<URL>()
+    private val fetchUrlList = ArrayList<Uri>()
 
     /**
      * A list of urls currently being fetched
      */
-    private val isFetchingList = ArrayList<URL>()
+    private val isFetchingList = ArrayList<Uri>()
 
     /**
      * A integer indicating how many fetches are in progress.
@@ -69,6 +69,15 @@ internal object AlbumArtCache {
      * A list of plugins to notify on fetched album art
      */
     private val registeredPlugins = CopyOnWriteArrayList<MprisPlugin>()
+
+    @JvmStatic
+    val ALLOWED_SCHEMES = listOf("http", "https", "file", "kdeconnect")
+
+    /**
+     * A list of art url schemes that require a fetch from remote side.
+     */
+    @JvmStatic
+    private val REMOTE_FETCH_SCHEMES = listOf("file", "kdeconnect")
 
     /**
      * Initializes the disk cache. Needs to be called at least once before trying to use the cache
@@ -121,16 +130,10 @@ internal object AlbumArtCache {
         if (albumUrl.isNullOrEmpty()) {
             return null
         }
-        val url = try {
-            URL(albumUrl)
-        } catch (e: MalformedURLException) {
-            //Invalid url, so just return "no album art"
-            //Shouldn't happen (checked on receival of the url), but just to be sure
-            return null
-        }
+        val url = Uri.parse(albumUrl)
 
-        //We currently only support http(s) and file urls
-        if (url.protocol !in arrayOf("http", "https", "file")) {
+        //We currently only support http(s), file, and kdeconnect urls
+        if (url.scheme !in ALLOWED_SCHEMES) {
             return null
         }
 
@@ -175,8 +178,8 @@ internal object AlbumArtCache {
 
         /* If not found, we have not tried fetching it (recently), or a fetch is in-progress.
            Either way, just add it to the fetch queue and starting fetching it if no fetch is running. */
-        if ("file" == url.protocol) {
-            //Special-case file, since we need to fetch it from the remote
+        if (url.scheme in REMOTE_FETCH_SCHEMES) {
+            //Special-case file or kdeconnect, since we need to fetch it from the remote
             if (url in isFetchingList) return null
             if (!plugin.askTransferAlbumArt(albumUrl, player)) {
                 //It doesn't support transferring the art, so mark it as failed in the memory cache
@@ -193,7 +196,7 @@ internal object AlbumArtCache {
      *
      * @param url The url
      */
-    private fun fetchUrl(url: URL) {
+    private fun fetchUrl(url: Uri) {
         //We need the disk cache for this
         if (!this::diskCache.isInitialized) {
             Log.e("KDE/Mpris/AlbumArtCache", "The disk cache is not intialized!")
@@ -218,7 +221,7 @@ internal object AlbumArtCache {
      * Does the actual fetching and makes sure only not too many fetches are running at the same time
      */
     private fun initiateFetch() {
-        var url : URL;
+        var url : Uri;
         synchronized(fetchUrlList) {
             if (numFetching >= 2 || fetchUrlList.isEmpty()) return
             //Fetch the last-requested url first, it will probably be needed first
@@ -226,8 +229,8 @@ internal object AlbumArtCache {
             //Remove the url from the to-fetch list
             fetchUrlList.remove(url)
         }
-        if ("file" == url.protocol) {
-            throw AssertionError("Not file urls should be possible here!")
+        if (url.scheme in REMOTE_FETCH_SCHEMES) {
+            throw AssertionError("Only http(s) urls should be possible here!")
         }
 
         //Download the album art ourselves
@@ -266,7 +269,7 @@ internal object AlbumArtCache {
     /**
      * Transfer an asked-for album art payload to the disk cache.
      *
-     * @param albumUrl The url of the album art (should be a file:// url)
+     * @param albumUrl The url of the album art (must be one of the [REMOTE_FETCH_SCHEMES])
      * @param payload  The payload input stream
      */
     @JvmStatic
@@ -280,15 +283,10 @@ internal object AlbumArtCache {
             payload.close()
             return
         }
-        val url = try {
-            URL(albumUrl)
-        } catch (e: MalformedURLException) {
+        val url = Uri.parse(albumUrl)
+        if (url.scheme !in REMOTE_FETCH_SCHEMES) {
             //Shouldn't happen (checked on receival of the url), but just to be sure
-            payload.close()
-            return
-        }
-        if ("file" != url.protocol) {
-            //Shouldn't happen (otherwise we wouldn't have asked for the payload), but just to be sure
+            Log.e("KDE/Mpris/AlbumArtCache", "Got invalid art url with payload: $albumUrl")
             payload.close()
             return
         }
@@ -341,7 +339,7 @@ internal object AlbumArtCache {
      * @param payload      A NetworkPacket Payload (if from the connected device). null if fetched from http(s)
      * @param cacheItem    The disk cache item to edit
      */
-    private suspend fun fetchURL(url: URL, payload: Payload?, cacheItem: DiskLruCache.Editor) {
+    private suspend fun fetchURL(url: Uri, payload: Payload?, cacheItem: DiskLruCache.Editor) {
         var success = withContext(Dispatchers.IO) {
             //See if we need to open a http(s) connection here, or if we use a payload input stream
             val output = cacheItem.newOutputStream(0)
@@ -405,12 +403,13 @@ internal object AlbumArtCache {
      *
      * @return True if succeeded
      */
-    private fun openHttp(url: URL): InputStream? {
+    private fun openHttp(url: Uri): InputStream? {
         //Default android behaviour does not follow https -> http urls, so do this manually
-        if (url.protocol !in arrayOf("http", "https")) {
+        if (url.scheme !in arrayOf("http", "https")) {
             throw AssertionError("Invalid url: not http(s) in background album art fetch")
         }
-        var currentUrl = url
+        // TODO: Should use contentResolver from android instead of opening our own connection
+        var currentUrl = URL(url.toString())
         var connection: HttpURLConnection
         loop@ for (i in 0..4) {
             connection = currentUrl.openConnection() as HttpURLConnection
