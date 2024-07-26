@@ -201,4 +201,7 @@
   <string name="receive_notifications_permission_explanation">Notificationes necessita esser permettite a reciper los ex altere dispositivos</string>
   <string name="findmyphone_notifications_explanation">Le permission de notificationes es necessari assi que le telephono pote sonar quando le app es in le fundo</string>
   <string name="no_notifications">Notificatione es dishabilitate, tu nonrecipera notificatioones de association in arrivata.</string>
+  <string name="mpris_keepwatching">"Continua a executar "</string>
+  <string name="mpris_keepwatching_settings_title">Continua a executar</string>
+  <string name="notification_channel_keepwatching">Continua a executar</string>
 </resources>
