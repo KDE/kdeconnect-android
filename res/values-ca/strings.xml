@@ -403,6 +403,7 @@
   <string name="maxim_leshchenko_task">Millores en la IU i ha creat aquesta pàgina</string>
   <string name="holger_kaelberer_task">Connector de teclat remot i esmenes d\'errors</string>
   <string name="saikrishna_arcot_task">Suport per a usar el teclat en el connector d\'entrada remota, esmenes d\'errors i millores generals</string>
+  <string name="shellwen_chen_task">Millorar la seguretat d\'SFTP, millorar la mantenibilitat d\'aquest projecte, esmenes d\'errors i millores generals</string>
   <string name="everyone_else">Tothom qui ha contribuït al KDE Connect al llarg dels anys</string>
   <string name="send_clipboard">Envia el porta-retalls</string>
   <string name="tap_to_execute">Toqueu per a executar</string>

@@ -403,6 +403,7 @@
   <string name="maxim_leshchenko_task">Förbättringar av användargränssnitt och den här om-sidan</string>
   <string name="holger_kaelberer_task">Insticksprogram för fjärrtangentbord och felrättningar</string>
   <string name="saikrishna_arcot_task">Stöd för användning av tangentbordet i insticksprogrammet för fjärrinmatning, felrättningar och allmänna förbättringar</string>
+  <string name="shellwen_chen_task">Förbättra säkerheten för SFTP, förbättra projektets underhållbarhet, felrättningar och allmänna förbättringar</string>
   <string name="everyone_else">Alla andra som har bidragit till KDE-anslut under alla år</string>
   <string name="send_clipboard">Skicka klippbord</string>
   <string name="tap_to_execute">Rör för att köra</string>

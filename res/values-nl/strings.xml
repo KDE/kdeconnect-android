@@ -403,6 +403,7 @@
   <string name="maxim_leshchenko_task">Verbeteringen aan UI en deze info over pagina</string>
   <string name="holger_kaelberer_task">"Plug-in voor toetsenbord op afstand  en reparaties"</string>
   <string name="saikrishna_arcot_task">Ondersteuning voor gebruik van toetsenbord in de plug-in voor invoer op afstand, bugreparaties en algemene verbeteringen</string>
+  <string name="shellwen_chen_task">Verbeter de beveiliging van SFTP, verbeter de onderhoudbaarheid van dit project, reparaties van bugs en algemene verbeteringen</string>
   <string name="everyone_else">Ieder ander die over de jaren heeft bijgedragen aan KDE Connect</string>
   <string name="send_clipboard">Klembord verzenden</string>
   <string name="tap_to_execute">Tik om uit te voeren</string>
