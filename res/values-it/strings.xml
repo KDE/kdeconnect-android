@@ -403,6 +403,7 @@
   <string name="maxim_leshchenko_task">Miglioramenti all\'interfaccia utente e questa pagina informativa</string>
   <string name="holger_kaelberer_task">Estensione della tastiera remota e correzioni di bug</string>
   <string name="saikrishna_arcot_task">Supporto per l\'utilizzo della tastiera nell\'estensione di inserimento remoto, correzioni di bug e miglioramenti generali</string>
+  <string name="shellwen_chen_task">Migliora la sicurezza di SFTP, migliora la manutenibilità di questo progetto, correzioni di bug e miglioramenti generali</string>
   <string name="everyone_else">Tutti gli altri che hanno contribuito a KDE Connect nel corso degli anni</string>
   <string name="send_clipboard">Invia gli appunti</string>
   <string name="tap_to_execute">Tocca per eseguire</string>
