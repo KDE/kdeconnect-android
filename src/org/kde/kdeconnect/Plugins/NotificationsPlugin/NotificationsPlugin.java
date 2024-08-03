@@ -513,11 +513,17 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         if (!hasNotificationsPermission()) {
             return;
         }
-        StatusBarNotification[] notifications = service.getActiveNotifications();
-        if (notifications != null) { //Can happen only on API 23 and lower
-            for (StatusBarNotification notification : notifications) {
-                sendNotification(notification, true);
-            }
+        StatusBarNotification[] notifications;
+        try {
+            notifications = service.getActiveNotifications();
+        } catch (SecurityException e) {
+            return;
+        }
+        if (notifications == null) {
+            return; //Can happen only on API 23 and lower
+        }
+        for (StatusBarNotification notification : notifications) {
+            sendNotification(notification, true);
         }
     }
 

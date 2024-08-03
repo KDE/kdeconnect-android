@@ -49,12 +49,11 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener {
         if (offScreenControlsSupported) MediaSessionCompat(this, "kdeconnect") else null
     }
     private val powerManager by lazy { getSystemService(POWER_SERVICE) as PowerManager }
-    private val plugin: PresenterPlugin by lazy {
-        KdeConnect.getInstance().getDevicePlugin(intent.getStringExtra("deviceId"), PresenterPlugin::class.java)!!
-    }
+    private val plugin: PresenterPlugin = KdeConnect.getInstance().getDevicePlugin(intent.getStringExtra("deviceId"), PresenterPlugin::class.java)!!
 
     //TODO: make configurable
     private val sensitivity = 0.03f
+
     override fun onSensorChanged(event: SensorEvent?) {
         if (event?.sensor?.type == Sensor.TYPE_GYROSCOPE) {
             val xPos = -event.values[2] * sensitivity

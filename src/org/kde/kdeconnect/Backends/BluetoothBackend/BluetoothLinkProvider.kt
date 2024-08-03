@@ -255,6 +255,8 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
                 context.unregisterReceiver(this)
             } catch (se: SecurityException) {
                 Log.w("BluetoothLinkProvider", se)
+            } catch (ia: IllegalArgumentException) {
+                Log.w("BluetoothLinkProvider", ia) // Happens sometimes in unregisterReceiver
             }
         }
 
