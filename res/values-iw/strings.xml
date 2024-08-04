@@ -419,6 +419,7 @@
   <string name="maxim_leshchenko_task">שיפורי ממשק משתמש ועמוד על אודות הזה</string>
   <string name="holger_kaelberer_task">תוסף מקלדת מרוחקת ותיקוני תקלות</string>
   <string name="saikrishna_arcot_task">תמיכה בשימוש במקלדת בתוסף הקלט המרוחק, תיקוני תקלות ושיפורים כלליים</string>
+  <string name="shellwen_chen_task">שיפור האבטחה ב־SFTP, שיפור תחזוקתיות המיזם הזה, תיקוני תקלות ושיפורים כלליים</string>
   <string name="everyone_else">כל מי שתרם ל־KDE Connect לאורך השנים</string>
   <string name="send_clipboard">שליחת לוח גזירים</string>
   <string name="tap_to_execute">נגיעה תפעיל</string>
