@@ -137,10 +137,9 @@ public class SslHelper {
                 nameBuilder.addRDN(BCStyle.CN, deviceId);
                 nameBuilder.addRDN(BCStyle.OU, "KDE Connect");
                 nameBuilder.addRDN(BCStyle.O, "KDE");
-                final LocalDate localDate = LocalDate.now().minusYears(1);
-                final Instant notBefore = localDate.atStartOfDay(ZoneId.systemDefault()).toInstant();
-                final Instant notAfter = localDate.plusYears(10).atStartOfDay(ZoneId.systemDefault())
-                        .toInstant();
+                final LocalDate localDate = LocalDate.now();
+                final Instant notBefore = localDate.minusYears(1).atStartOfDay(ZoneId.systemDefault()).toInstant();
+                final Instant notAfter = localDate.plusYears(10).atStartOfDay(ZoneId.systemDefault()).toInstant();
                 X509v3CertificateBuilder certificateBuilder = new JcaX509v3CertificateBuilder(
                         nameBuilder.build(),
                         BigInteger.ONE,
