@@ -7,9 +7,9 @@ package org.kde.kdeconnect.Plugins.SftpPlugin.saf
 
 import android.content.Context
 import android.net.Uri
-import android.util.Log
 import androidx.documentfile.provider.DocumentFile
 import org.apache.sshd.common.file.util.BasePath
+import java.net.URI
 import java.nio.file.LinkOption
 
 class SafPath(
@@ -19,6 +19,10 @@ class SafPath(
 ) : BasePath<SafPath, SafFileSystem>(fileSystem, root, names) {
     override fun toRealPath(vararg options: LinkOption?): SafPath {
         return this.normalize()
+    }
+
+    override fun toUri(): URI {
+        return URI.create(safUri.toString()) ?: throw IllegalStateException("SafUri is null")
     }
 
     fun getDocumentFile(ctx: Context): DocumentFile? {

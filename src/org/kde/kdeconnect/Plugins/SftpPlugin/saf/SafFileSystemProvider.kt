@@ -98,7 +98,6 @@ class SafFileSystemProvider(
         val docFile = parent.createFile(Files.probeContentType(path), path.names.last())
             ?: throw IOException("Failed to create $path")
         val uri = docFile.uri
-        MediaStoreHelper.indexFile(context, uri)
         path.safUri = uri
         return uri
     }
@@ -226,7 +225,6 @@ class SafFileSystemProvider(
         if (!docFile.delete()) {
             throw IOException("Failed to delete $path")
         }
-        MediaStoreHelper.indexFile(context, docFile.uri)
     }
 
     override fun copy(source: Path, target: Path, vararg options: CopyOption) {
@@ -272,8 +270,6 @@ class SafFileSystemProvider(
                     if (newUri == null) { // renameDocument returns null on failure
                         return@firstStep
                     }
-                    MediaStoreHelper.indexFile(context, sourceUri)
-                    MediaStoreHelper.indexFile(context, newUri)
                     source.safUri = newUri
                     return
                 } catch (ignored: FileNotFoundException) {
@@ -295,8 +291,6 @@ class SafFileSystemProvider(
                 parentUri,
                 destParentUri
             )
-            MediaStoreHelper.indexFile(context, sourceUri)
-            MediaStoreHelper.indexFile(context, newUri)
             source.safUri = newUri!!
             return
         }

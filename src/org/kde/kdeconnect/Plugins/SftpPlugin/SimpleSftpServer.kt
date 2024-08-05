@@ -7,6 +7,7 @@
 package org.kde.kdeconnect.Plugins.SftpPlugin
 
 import android.content.Context
+import android.net.Uri
 import android.os.Build
 import android.util.Log
 import org.apache.sshd.common.file.nativefs.NativeFileSystemFactory
@@ -26,6 +27,7 @@ import org.apache.sshd.sftp.server.SftpFileSystemAccessor
 import org.apache.sshd.sftp.server.SftpSubsystemFactory
 import org.apache.sshd.sftp.server.SftpSubsystemProxy
 import org.kde.kdeconnect.Device
+import org.kde.kdeconnect.Helpers.MediaStoreHelper
 import org.kde.kdeconnect.Helpers.RandomHelper
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper
 import org.kde.kdeconnect.Helpers.SecurityHelpers.constantTimeCompare
@@ -33,10 +35,13 @@ import org.kde.kdeconnect.Plugins.SftpPlugin.saf.SafFileSystemFactory
 import org.kde.kdeconnect.Plugins.SftpPlugin.saf.SafPath
 import org.slf4j.impl.HandroidLoggerAdapter
 import java.io.IOException
+import java.nio.channels.Channel
 import java.nio.channels.SeekableByteChannel
 import java.nio.charset.StandardCharsets
+import java.nio.file.CopyOption
 import java.nio.file.OpenOption
 import java.nio.file.Path
+import java.nio.file.StandardOpenOption
 import java.nio.file.attribute.FileAttribute
 import java.security.GeneralSecurityException
 import java.security.KeyPair
@@ -103,6 +108,17 @@ internal class SimpleSftpServer {
         sshd.subsystemFactories =
             listOf<SubsystemFactory>(SftpSubsystemFactory.Builder().apply {
                 withFileSystemAccessor(object : SftpFileSystemAccessor {
+                    fun notifyMediaStore(path: Path) {
+                        kotlin.runCatching {
+                            val uri = Uri.parse(path.toUri().toString())
+                            MediaStoreHelper.indexFile(context, uri)
+                            uri
+                        }.fold(
+                            onSuccess = { Log.i(TAG, "Notified media store: $path, $it") },
+                            onFailure = { Log.w(TAG, "Failed to notify media store: $path", it) }
+                        )
+                    }
+
                     override fun openFile(
                         subsystem: SftpSubsystemProxy?,
                         fileHandle: FileHandle?,
@@ -115,6 +131,61 @@ internal class SimpleSftpServer {
                             return file.fileSystem.provider().newByteChannel(file, options, *attrs)
                         }
                         return super.openFile(subsystem, fileHandle, file, handle, options, *attrs)
+                    }
+
+                    override fun removeFile(
+                        subsystem: SftpSubsystemProxy?,
+                        path: Path?,
+                        isDirectory: Boolean
+                    ) {
+                        super.removeFile(subsystem, path, isDirectory)
+                        path?.let { notifyMediaStore(it) }
+                    }
+
+                    override fun copyFile(
+                        subsystem: SftpSubsystemProxy?,
+                        src: Path?,
+                        dst: Path?,
+                        opts: MutableCollection<CopyOption>?
+                    ) {
+                        super.copyFile(subsystem, src, dst, opts)
+                        dst?.let { notifyMediaStore(it) }
+                    }
+
+                    override fun renameFile(
+                        subsystem: SftpSubsystemProxy?,
+                        oldPath: Path?,
+                        newPath: Path?,
+                        opts: MutableCollection<CopyOption>?
+                    ) {
+                        super.renameFile(subsystem, oldPath, newPath, opts)
+                        oldPath?.let { notifyMediaStore(it) }
+                        newPath?.let { notifyMediaStore(it) }
+                    }
+
+                    override fun createLink(
+                        subsystem: SftpSubsystemProxy?,
+                        link: Path?,
+                        existing: Path?,
+                        symLink: Boolean
+                    ) {
+                        super.createLink(subsystem, link, existing, symLink)
+                        link?.let { notifyMediaStore(it) }
+                        existing?.let { notifyMediaStore(it) }
+                    }
+
+                    override fun closeFile(
+                        subsystem: SftpSubsystemProxy?,
+                        fileHandle: FileHandle?,
+                        file: Path?,
+                        handle: String?,
+                        channel: Channel?,
+                        options: MutableSet<out OpenOption>?
+                    ) {
+                        super.closeFile(subsystem, fileHandle, file, handle, channel, options)
+                        if (options?.contains(StandardOpenOption.WRITE) == true) {
+                            file?.let { notifyMediaStore(it) }
+                        }
                     }
                 })
             }.build())
@@ -189,8 +260,9 @@ internal class SimpleSftpServer {
     }
 
     companion object {
-        private val PORT_RANGE = 1739..1764
+        private const val TAG = "SimpleSftpServer"
 
+        private val PORT_RANGE = 1739..1764
         const val USER: String = "kdeconnect"
 
         init {
