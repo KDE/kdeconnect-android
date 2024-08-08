@@ -403,6 +403,7 @@
   <string name="maxim_leshchenko_task">Подобрения на потребителския интерфейс и тази страница за</string>
   <string name="holger_kaelberer_task">Плъгин за отдалечена клавиатура и поправки на грешки</string>
   <string name="saikrishna_arcot_task">Поддръжка за използване на клавиатура в плъгина за отдалечено въвеждане, поправки на грешки и общи подобрения</string>
+  <string name="shellwen_chen_task">Внедряване на SFTP, подобряване на възможностите за поддръжка на този проект, поправки на грешки и общи подобрения</string>
   <string name="everyone_else">Всички останали, които са допринесли за KDE Connect през годините</string>
   <string name="send_clipboard">Изпращане на клипборд</string>
   <string name="tap_to_execute">Докоснете, за да се изпълни</string>
