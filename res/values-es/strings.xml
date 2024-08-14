@@ -403,6 +403,7 @@
   <string name="maxim_leshchenko_task">Mejoras en la UI y la página «Acerca de»</string>
   <string name="holger_kaelberer_task">Complemento del teclado remoto y arreglos</string>
   <string name="saikrishna_arcot_task">Soporte para usar el teclado en el complemento de entrada remota, arreglos y mejoras generales</string>
+  <string name="shellwen_chen_task">Mejoras en la seguridad de SFTP, mejoras en la mantenibilidad del proyecto, arreglos de fallos y mejoras generales.</string>
   <string name="everyone_else">Todos los demás que han contribuido a KDE Connect a lo largo de su historia</string>
   <string name="send_clipboard">Enviar al portapapeles</string>
   <string name="tap_to_execute">Pulse para ejecutar</string>
