@@ -207,6 +207,7 @@
   <string name="mpris_notification_settings_summary">Umožnit ovládání přehrávače médií bez otevření KDE Connect</string>
   <string name="share_to">Sdílet s...</string>
   <string name="unreachable_device">%s (nedostupná)</string>
+  <string name="unreachable_device_url_share_text">URL sdílená s nedostupným zařízením budou zaslána jakmile se stane dostupným.\n\n</string>
   <string name="protocol_version_newer">Toto zařízení používá novější verzi protokolu</string>
   <string name="plugin_settings_with_name">Nastavení %s</string>
   <string name="invalid_device_name">Neplatný název zařízení</string>
@@ -414,6 +415,7 @@
   <string name="maxim_leshchenko_task">Vylepšení prostředí a tato stránka o aplikaci</string>
   <string name="holger_kaelberer_task">Vzdálené modul klávesnice a opravy chyb</string>
   <string name="saikrishna_arcot_task">Podpora použití klávesnice na vzdáleném vstupním modulu, opravy chyb a obecná zlepšení</string>
+  <string name="shellwen_chen_task">Vylepšení zabezpečení SFTP, zlepšení udržovatelnosti projektu, opravy chyb a obecná vylepšení</string>
   <string name="everyone_else">Každý kdo přispěl do KDE Connect během let</string>
   <string name="send_clipboard">Poslat schránku</string>
   <string name="tap_to_execute">Pro spuštění ťukněte sem</string>
