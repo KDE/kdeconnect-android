@@ -419,6 +419,7 @@
   <string name="maxim_leshchenko_task">Izboljšave uporabniškega vmesnika in ta stran o programu</string>
   <string name="holger_kaelberer_task">Vtičnik za oddaljeno tipkovnico in popravki napak</string>
   <string name="saikrishna_arcot_task">Podpora za uporabo tipkovnice vtičnika za oddaljen vnos, popravki napak in splošne izboljšave</string>
+  <string name="shellwen_chen_task">Izboljšanje varnosti SFTP, izboljšanje vzdržljivosti tega projekta, popravki napak in splošne izboljšave</string>
   <string name="everyone_else">Vsi ostali, ki so prispevali za KDE Connect v letih razvoja</string>
   <string name="send_clipboard">Pošlji odložišče</string>
   <string name="tap_to_execute">Tapkajte za izvedbo</string>
