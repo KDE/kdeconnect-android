@@ -6,7 +6,6 @@
 package org.kde.kdeconnect.UserInterface
 
 import android.Manifest
-import android.content.DialogInterface
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
@@ -49,11 +48,11 @@ class TrustedNetworksActivity : AppCompatActivity() {
             setDisplayShowHomeEnabled(true)
         }
 
-        trustedNetworks.addAll(trustedNetworkHelper.read())
+        trustedNetworks.addAll(trustedNetworkHelper.trustedNetworks)
 
         allowAllCheckBox.setOnCheckedChangeListener { _, isChecked ->
-            if (trustedNetworkHelper.hasPermissions()) {
-                trustedNetworkHelper.allAllowed(isChecked)
+            if (trustedNetworkHelper.hasPermissions) {
+                trustedNetworkHelper.allNetworksAllowed = isChecked
                 updateTrustedNetworkListView()
                 addNetworkButton()
             } else {
@@ -66,18 +65,18 @@ class TrustedNetworksActivity : AppCompatActivity() {
                     .create().show(supportFragmentManager, null)
             }
         }
-        allowAllCheckBox.isChecked = trustedNetworkHelper.allAllowed()
+        allowAllCheckBox.isChecked = trustedNetworkHelper.allNetworksAllowed
 
         updateTrustedNetworkListView()
     }
 
     private fun updateEmptyListMessage() {
-        val isVisible = trustedNetworks.isEmpty() && !trustedNetworkHelper.allAllowed()
+        val isVisible = trustedNetworks.isEmpty() && !trustedNetworkHelper.allNetworksAllowed
         binding.trustedNetworkListEmpty.visibility = if (isVisible) View.VISIBLE else View.GONE
     }
 
     private fun updateTrustedNetworkListView() {
-        val allAllowed = trustedNetworkHelper.allAllowed()
+        val allAllowed = trustedNetworkHelper.allNetworksAllowed
         updateEmptyListMessage()
         trustedNetworksView.visibility = if (allAllowed) View.GONE else View.VISIBLE
         if (allAllowed) {
@@ -91,7 +90,7 @@ class TrustedNetworksActivity : AppCompatActivity() {
                     .setMessage("Delete $targetItem ?")
                     .setPositiveButton("Yes") { _, _ ->
                         trustedNetworks.removeAt(position)
-                        trustedNetworkHelper.update(trustedNetworks)
+                        trustedNetworkHelper.trustedNetworks = trustedNetworks
                         (trustedNetworksView.adapter as ArrayAdapter<*>).notifyDataSetChanged()
                         addNetworkButton()
                         updateEmptyListMessage()
@@ -104,20 +103,19 @@ class TrustedNetworksActivity : AppCompatActivity() {
 
     private fun addNetworkButton() {
         val addButton = binding.button1
-        if (trustedNetworkHelper.allAllowed()) {
+        if (trustedNetworkHelper.allNetworksAllowed) {
             addButton.visibility = View.GONE
             return
         }
-        val currentSSID = trustedNetworkHelper.currentSSID()
-        if (currentSSID.isNotEmpty() && !trustedNetworks.contains(currentSSID)) {
-            val buttonText = getString(R.string.add_trusted_network, currentSSID)
-            addButton.text = buttonText
+        val currentSSID = trustedNetworkHelper.currentSSID
+        if (currentSSID != null && currentSSID !in trustedNetworks) {
+            addButton.text = getString(R.string.add_trusted_network, currentSSID)
             addButton.setOnClickListener { v ->
                 if (trustedNetworks.contains(currentSSID)) {
                     return@setOnClickListener
                 }
                 trustedNetworks.add(currentSSID)
-                trustedNetworkHelper.update(trustedNetworks)
+                trustedNetworkHelper.trustedNetworks = trustedNetworks
                 (trustedNetworksView.adapter as ArrayAdapter<*>).notifyDataSetChanged()
                 v.visibility = View.GONE
                 updateEmptyListMessage()
