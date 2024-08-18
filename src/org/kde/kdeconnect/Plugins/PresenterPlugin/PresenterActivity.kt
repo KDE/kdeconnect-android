@@ -49,7 +49,7 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener {
         if (offScreenControlsSupported) MediaSessionCompat(this, "kdeconnect") else null
     }
     private val powerManager by lazy { getSystemService(POWER_SERVICE) as PowerManager }
-    private val plugin: PresenterPlugin = KdeConnect.getInstance().getDevicePlugin(intent.getStringExtra("deviceId"), PresenterPlugin::class.java)!!
+    private lateinit var plugin : PresenterPlugin
 
     //TODO: make configurable
     private val sensitivity = 0.03f
@@ -69,6 +69,7 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        plugin = KdeConnect.getInstance().getDevicePlugin(intent.getStringExtra("deviceId"), PresenterPlugin::class.java)!!
         setContent { PresenterScreen() }
         createMediaSession()
     }
