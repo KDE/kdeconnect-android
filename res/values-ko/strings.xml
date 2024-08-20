@@ -18,6 +18,7 @@
   <string name="pref_plugin_clipboard_sent">클립보드 보냄</string>
   <string name="pref_plugin_mousepad">원격 입력</string>
   <string name="pref_plugin_mousepad_desc">내 휴대폰이나 태블릿을 터치패드와 키보드로 사용하기</string>
+  <string name="pref_plugin_presenter">프레젠테이션 리모콘</string>
   <string name="pref_plugin_presenter_desc">내 장치로 프레젠테이션 슬라이드 전환하기</string>
   <string name="pref_plugin_remotekeyboard">원격 키 입력 받기</string>
   <string name="pref_plugin_remotekeyboard_desc">원격 장치의 키 입력 이벤트 받기</string>
@@ -51,6 +52,7 @@
   <string name="remotekeyboard_multiple_connections">원격 키보드 연결이 여러 개 있습니다. 설정할 장치를 선택하십시오</string>
   <string name="open_mousepad">원격 입력</string>
   <string name="mousepad_info">화면에서 손가락을 움직이면 마우스 커서를 움직입니다. 화면을 누르면 왼쪽 단추를 누르고, 두 손가락과 세 손가락으로 누르면 오른쪽/가운데 단추를 누릅니다. 두 손가락을 사용하여 스크롤할 수 있습니다. 드래그 앤 드롭을 사용하려면 길게 누르십시오. 플러그인 설정에서 자이로 마우스를 활성화할 수 있습니다</string>
+  <string name="mousepad_info_no_gestures">화면에서 손가락을 움직이면 마우스 커서를 움직이며, 탭하면 클릭합니다.</string>
   <string name="mousepad_keyboard_input_not_supported">페어링된 장치에서 키보드 입력을 지원하지 않음</string>
   <string name="mousepad_single_tap_settings_title">한 손가락으로 눌렀을 때 동작 설정</string>
   <string name="mousepad_double_tap_settings_title">두 손가락으로 눌렀을 때 동작 설정</string>
@@ -119,6 +121,8 @@
   <string name="my_device_fingerprint">내 장치 인증서의 SHA256 지문:</string>
   <string name="remote_device_fingerprint">원격 장치 인증서의 SHA256 지문:</string>
   <string name="pair_requested">연결 요청됨</string>
+  <string name="pair_succeeded">연결 성공</string>
+  <string name="pairing_request_from">\'%1s\'에서 연결 요청</string>
   <plurals name="incoming_file_title">
     <item quantity="other">%2$s에서 보낸 파일 %1$d개 받음</item>
   </plurals>
@@ -147,6 +151,7 @@
   <string name="received_file_text">\'%1s\'을(를) 열려면 누르십시오</string>
   <string name="cannot_create_file">파일 %s을(를) 만들 수 없음</string>
   <string name="tap_to_answer">눌러서 응답하기</string>
+  <string name="left_click">왼쪽 단추 클릭 신호 보내기</string>
   <string name="right_click">오른쪽 단추 클릭 신호 보내기</string>
   <string name="middle_click">가운데 단추 클릭 신호 보내기</string>
   <string name="show_keyboard">키보드 표시</string>
@@ -176,6 +181,9 @@
   <string name="mpris_notifications_explanation">알림 서랍에 원격 미디어를 표시하려면 알림 권한이 필요합니다</string>
   <string name="mpris_notification_settings_title">미디어 제어 알림 표시</string>
   <string name="mpris_notification_settings_summary">KDE Connect를 열지 않고 미디어 재생기 제어</string>
+  <string name="share_to">다음으로 공유…</string>
+  <string name="unreachable_device">%s(접근할 수 없음)</string>
+  <string name="unreachable_device_url_share_text">접근할 수 없는 장치와 공유한 URL은 장치에 다시 접근할 수 있게 될 때 전달됩니다.\n\n</string>
   <string name="protocol_version_newer">이 장치의 프로토콜 버전이 더 새롭습니다</string>
   <string name="plugin_settings_with_name">%s 설정</string>
   <string name="invalid_device_name">잘못된 장치 이름</string>
@@ -387,6 +395,7 @@
   <string name="maxim_leshchenko_task">UI 개선과 정보 페이지</string>
   <string name="holger_kaelberer_task">원격 키보드 플러그인과 버그 수정</string>
   <string name="saikrishna_arcot_task">원격 입력 플러그인에서 키보드 사용 지원, 버그 수정과 개선</string>
+  <string name="shellwen_chen_task">SFTP 보안 개선, 프로젝트 관리 편의성 개선, 버그 수정과 개선</string>
   <string name="everyone_else">그 외 오랫동안 KDE Connect에 기여한 사람들</string>
   <string name="send_clipboard">클립보드 보내기</string>
   <string name="tap_to_execute">실행하려면 누르십시오</string>
@@ -395,4 +404,8 @@
   <string name="receive_notifications_permission_explanation">다른 장치에서 알림을 받으려면 알림을 허용해야 합니다</string>
   <string name="findmyphone_notifications_explanation">앱이 백그라운드에서 실행 중일 때 장치를 울리게 하려면 알림 권한이 필요합니다</string>
   <string name="no_notifications">알림이 비활성화되어 있습니다. 들어오는 페어링 알림을 받을 수 없습니다</string>
+  <string name="mpris_keepwatching">계속 재생</string>
+  <string name="mpris_keepwatching_settings_title">계속 재생</string>
+  <string name="mpris_keepwatching_settings_summary">미디어를 닫은 후 이 장치에서 계속 재생할 수 있는 조용한 알림 표시</string>
+  <string name="notification_channel_keepwatching">계속 재생</string>
 </resources>
