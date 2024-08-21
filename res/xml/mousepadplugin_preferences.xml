@@ -90,6 +90,15 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
         android:key="@string/mousepad_mouse_buttons_enabled_pref"
         android:title="@string/mousepad_mouse_buttons_title" />
 
+    <SwitchPreference
+        android:id="@+id/mousepad_double_tap_drag_enabled_pref"
+        android:defaultValue="true"
+        android:key="@string/mousepad_doubletap_drag_enabled_pref"
+        android:title="Drag and drop behavior"
+        android:summaryOn="@string/double_tap_to_drag"
+        android:summaryOff="@string/hold_to_drag"
+        />
+
 
     <org.kde.kdeconnect.Helpers.LongSummaryPreferenceCategory
         android:key="@string/sendkeystrokes_pref_category"
