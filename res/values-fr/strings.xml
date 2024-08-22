@@ -53,7 +53,7 @@
   <string name="open_mousepad">Contrôle distant</string>
   <string name="mousepad_info">Faites glisser votre doigt sur l\'écran pour déplacer le pointeur de la souris. Tapotez pour cliquer et utilisez deux / trois doigts pour les clics droit et centre. Utilisez 2 doigts pour faire un défilement. Faites un appui prolongé pour réaliser un glisser-déposer. La fonctionnalité de gyroscope de souris peut être activée à partir des préférences de module externe.</string>
   <string name="mousepad_info_no_gestures">Faites glisser un doigt sur l\'écran pour déplacer le pointeur de souris. Tapotez sur l\'écran pour effectuer un clic.</string>
-  <string name="mousepad_keyboard_input_not_supported">La saisie par le clavier n\'est pas pris en charge par le périphérique appairée.</string>
+  <string name="mousepad_keyboard_input_not_supported">La saisie par le clavier n\'est pas pris en charge par le périphérique associé.</string>
   <string name="mousepad_single_tap_settings_title">Définir une action pour tapotage avec un doigt</string>
   <string name="mousepad_double_tap_settings_title">Action pour l\'appui à deux doigts</string>
   <string name="mousepad_triple_tap_settings_title">Action pour l\'appui à trois doigts</string>
@@ -99,7 +99,7 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Envoyez comme appuis de touches</string>
   <string name="mouse_receiver_plugin_description">Recevoir les mouvements de la souri distante</string>
   <string name="mouse_receiver_plugin_name">Récepteur de souris</string>
-  <string name="mouse_receiver_no_permissions">Pour recevoir des entrées tactiles à distance, vous devez accorder des autorisations d’accessibilité pour contrôler entièrement votre périphérique</string>
+  <string name="mouse_receiver_no_permissions">Pour recevoir des entrées tactiles à distance, vous devez accorder des autorisations d\'accessibilité pour contrôler entièrement votre périphérique</string>
   <string name="view_status_title">État</string>
   <string name="battery_status_format">Batterie : %d %%</string>
   <string name="battery_status_low_format">Batterie : %d %% Batterie faible</string>
@@ -186,12 +186,12 @@
     <item>1 minute</item>
     <item>2 minutes</item>
   </string-array>
-  <string name="mpris_notifications_explanation">Les permissions pour les notifications sont nécessaires pour afficher des supports distants dans le panneau des notifications</string>
+  <string name="mpris_notifications_explanation">Les permissions pour les notifications sont nécessaires pour afficher des média distants dans le panneau des notifications.</string>
   <string name="mpris_notification_settings_title">Afficher la notification de contrôle du lecteur multimédia</string>
   <string name="mpris_notification_settings_summary">Vous permet de contrôler vos lecteurs multimédia sans ouvrir KDEConnect.</string>
   <string name="share_to">Partager vers…</string>
   <string name="unreachable_device">%s (Inaccessible)</string>
-  <string name="unreachable_device_url_share_text">Les URL partagées vers un appareil inaccessible lui seront transmises une fois qu’il re-deviendra accessible.\n\n</string>
+  <string name="unreachable_device_url_share_text">Les URL partagées vers un appareil inaccessible lui seront transmises une fois qu\'il re-deviendra accessible.\n\n</string>
   <string name="protocol_version_newer">Le périphérique utilise une version plus récente du protocole</string>
   <string name="plugin_settings_with_name">Configuration %s</string>
   <string name="invalid_device_name">Nom de périphérique non valable</string>
@@ -403,7 +403,8 @@
   <string name="maxim_leshchenko_task">Améliorations de l\'interface utilisateur et de cette page d\'à propos</string>
   <string name="holger_kaelberer_task">Corrections du module externe de clavier sans fil et de bogues</string>
   <string name="saikrishna_arcot_task">Prise en charge de l\'utilisation du clavier dans le module d\'entrée à distance, corrections de bogues et améliorations générales</string>
-  <string name="everyone_else">"Toutes les autres personnes ayant contribué  KDEConnect depuis plusieurs années"</string>
+  <string name="shellwen_chen_task">Implémentation de la sécurité de SFTP, amélioration de la maintenabilité de ce projet, corrections de bogues et améliorations générales</string>
+  <string name="everyone_else">Toutes les autres personnes ayant contribué à KDEConnect depuis plusieurs années</string>
   <string name="send_clipboard">Envoyer le presse-papier</string>
   <string name="tap_to_execute">Tapotez pour lancer</string>
   <string name="plugin_stats">Statistiques des modules externes</string>

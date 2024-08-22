@@ -6,7 +6,7 @@ KDEConnect fournit un ensemble de fonctionnalités pour intégrer votre flux de 
 - Apparition de notifications pour les appels et les messages entrants sur votre ordinateur.
 - Pavé tactile virtuel : utilisation de l'écran de votre téléphone comme pavé tactile pour votre ordinateur.
 - Synchronisation de vos notifications : accès à vos notifications téléphoniques depuis votre ordinateur et réponses aux messages.
-- Télé-commande multimédia : utilisation de votre téléphone comme télécommande pour les lecteurs de médias sous Linux.
+- Télé-commande multimédia : utilisation de votre téléphone comme télécommande pour les lecteurs de média sous Linux.
 - Connexion au Wifi : aucun connexion USB ou Bluetooth nécessaire.
 - Chiffrement « TLS » de bout en bout : vos informations sont en sécurité.
 
@@ -18,4 +18,4 @@ Informations sur les permissions sensibles :
 
 KDEConnect n'envoie jamais d'informations à KDE ni à aucun tiers. KDEConnect envoie des données d'un périphérique à un autre à l'aide du réseau local, mais jamais par Internet et en utilisant le chiffrement de bout en bout.
 
-Cette application fait partie d'un projet « Open source ». Il existe grâce à toutes les personnes qui y ont contribué.Visitez le site Internet pour accéder au code source.
+Cette application fait partie d'un projet « Open source ». Il existe grâce à toutes les personnes qui y ont contribué. Veuillez visiter le site Internet pour accéder au code source.
