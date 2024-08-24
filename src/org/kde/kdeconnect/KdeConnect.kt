@@ -22,6 +22,8 @@ import org.kde.kdeconnect.UserInterface.ThemeUtil
 import org.kde.kdeconnect_tp.BuildConfig
 import org.slf4j.impl.HandroidLoggerAdapter
 import java.security.cert.CertificateException
+import java.security.cert.X509Certificate
+import java.util.Date
 import java.util.concurrent.ConcurrentHashMap
 
 /*
@@ -90,7 +92,7 @@ class KdeConnect : Application() {
     }
 
     private fun loadRememberedDevicesFromSettings() {
-        // Log.e("BackgroundService", "Loading remembered trusted devices");
+        // Log.e("BackgroundService", "Loading remembered trusted devices")
         val preferences = getSharedPreferences("trusted_devices", MODE_PRIVATE)
         val trustedDevices: Set<String> = preferences.all.keys
         trustedDevices.map { id ->
@@ -99,6 +101,14 @@ class KdeConnect : Application() {
         }.filter { preferences.getBoolean(it, false) }.forEach {
             try {
                 val device = Device(applicationContext, it)
+                val now = Date()
+                val x509Cert = device.certificate as X509Certificate
+                if(now < x509Cert.notBefore) {
+                    throw CertificateException("Certificate not effective yet: "+x509Cert.notBefore)
+                }
+                else if(now > x509Cert.notAfter) {
+                    throw CertificateException("Certificate already expired: "+x509Cert.notAfter)
+                }
                 devices[it] = device
                 device.addPairingCallback(devicePairingCallback)
             } catch (e: CertificateException) {
@@ -109,6 +119,16 @@ class KdeConnect : Application() {
                 preferences.edit().remove(it).apply()
             }
         }
+    }
+    fun removeRememberedDevices() {
+        // Log.e("BackgroundService", "Removing remembered trusted devices")
+        val preferences = getSharedPreferences("trusted_devices", MODE_PRIVATE)
+        val trustedDevices: Set<String> = preferences.all.keys
+        trustedDevices.filter { preferences.getBoolean(it, false) }
+            .forEach {
+                Log.d("KdeConnect", "Removing devices: $it")
+                preferences.edit().remove(it).apply()
+            }
     }
 
     private val devicePairingCallback: PairingCallback = object : PairingCallback {
@@ -158,7 +178,7 @@ class KdeConnect : Application() {
                 //            - When a device becomes unreachable, if it's unpaired (this case here)
                 //            - When a device becomes unpaired, if it's unreachable (not implemented ATM)
                 // if (!device.isReachable && !device.isPaired) {
-                //     Log.i("onConnectionLost","Removing device because it was not paired");
+                //     Log.i("onConnectionLost","Removing device because it was not paired")
                 //     devices.remove(link.deviceId)
                 //     device.removePairingCallback(devicePairingCallback)
                 // }

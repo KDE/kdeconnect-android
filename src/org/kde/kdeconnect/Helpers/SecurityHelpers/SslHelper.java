@@ -26,6 +26,7 @@ import org.bouncycastle.operator.jcajce.JcaContentSignerBuilder;
 import org.bouncycastle.util.Arrays;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.Helpers.RandomHelper;
+import org.kde.kdeconnect.KdeConnect;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -104,7 +105,9 @@ public class SslHelper {
 
         boolean needsToGenerateCertificate = false;
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
+
         if (settings.contains("certificate")) {
+            final Date currDate = new Date();
             try {
                 SharedPreferences globalSettings = PreferenceManager.getDefaultSharedPreferences(context);
                 byte[] certificateBytes = Base64.decode(globalSettings.getString("certificate", ""), 0);
@@ -114,7 +117,14 @@ public class SslHelper {
                 if (!certDeviceId.equals(deviceId)) {
                     Log.e("KDE/SslHelper", "The certificate stored is from a different device id! (found: " + certDeviceId + " expected:" + deviceId + ")");
                     needsToGenerateCertificate = true;
-                } else {
+                }
+                else if(cert.getNotAfter().getTime() < currDate.getTime()) {
+                    Log.e("KDE/SslHelper", "The certificate expired: "+cert.getNotAfter());
+                    needsToGenerateCertificate = true;
+                } else if(cert.getNotBefore().getTime() > currDate.getTime()) {
+                    Log.e("KDE/SslHelper", "The certificate is not effective yet: "+cert.getNotBefore());
+                    needsToGenerateCertificate = true;
+                }else {
                     certificate = cert;
                 }
             } catch (Exception e) {
@@ -127,6 +137,7 @@ public class SslHelper {
         }
 
         if (needsToGenerateCertificate) {
+            KdeConnect.getInstance().removeRememberedDevices();
             Log.i("KDE/SslHelper", "Generating a certificate");
             try {
                 //Fix for https://issuetracker.google.com/issues/37095309
