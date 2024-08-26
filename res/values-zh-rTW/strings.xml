@@ -374,11 +374,15 @@
   <string name="kde_be_free">KDE ─ 擁抱自由！</string>
   <string name="kde">KDE</string>
   <string name="konqi">Konqi</string>
+  <string name="rise_up">往上</string>
+  <string name="rise_down">往下</string>
   <string name="click_here_to_type">按這裡來打字</string>
   <string name="clear_compose">清除</string>
   <string name="send_compose">傳送</string>
   <string name="compose_send_title">撰寫傳送</string>
   <string name="open_compose_send">撰寫簡訊</string>
+  <string name="double_tap_to_drag">雙擊來拖曳</string>
+  <string name="hold_to_drag">按住來拖曳</string>
   <string name="about_kde_about">&lt;h1&gt;關於&lt;/h1&gt;&lt;p&gt;KDE 是一個由眾多軟體工程師、藝術作業者、文字作業者、翻譯人員和其他有志於&lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;自由軟體&lt;/a&gt;事業的人們組成的世界性社群。KDE 做出了 Plasma 桌面環境、數百個應用程式和支援它們的軟體函式庫。&lt;/p&gt;&lt;p&gt;KDE 團隊不受任何單獨的團體、公司或機構控制。我們的目標是一同為製作世界上最好的自由軟體而努力。我們歡迎任何人&lt;a href=https://community.kde.org/Get_Involved&gt;加入並作出貢獻&lt;/a&gt;——包含您。&lt;/p&gt;請造訪 &lt;a href=&amp;quot;https://www.kde.org/&amp;quot;&gt;https://www.kde.org/&lt;/a&gt; 來了解有關 KDE 社群與我們所做的軟體的更多資訊。</string>
   <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;回報問題或希望功能&lt;/h1&gt;&lt;p&gt;軟體總是可以改善，而 KDE 團隊準備好繼續此項工作。不過您 — 作為使用者 — 需要在有東西沒有正常運作或是可以更好的時候告訴我們。&lt;/p&gt;&lt;p&gt;KDE 有一個問題追蹤系統。請造訪 &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; 或是從關於頁面使用「回報問題」按鈕來回報問題。&lt;/p&gt;如果您有改善的建議，您也可以使用問題追蹤系統來寫下您的希望。此時請使用「Wishlist」（願望清單）作為問題的嚴重程度。</string>
   <string name="about_kde_join_kde">&lt;h1&gt;加入 KDE&lt;/h1&gt;&lt;p&gt;您不需要是軟體工程師也能加入 KDE 團隊。您可以加入翻譯團隊來翻譯程式的介面。您可以提供圖形、佈景主題、音效，或幫忙撰寫文件，看您喜歡做哪一項。&lt;/p&gt;&lt;p&gt;請參考 &lt;a href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/Get_Involved&lt;/a&gt; 上的資訊看看您能幫上什麼忙。&lt;/p&gt;如果您需要更多資訊或說明文件，請參照 &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/&lt;/a&gt;，上面會有一些能幫忙您的資訊。</string>
@@ -393,6 +397,7 @@
   <string name="maxim_leshchenko_task">使用者介面的改善，以及這個關於頁面</string>
   <string name="holger_kaelberer_task">遠端鍵盤外掛程式與問題修正</string>
   <string name="saikrishna_arcot_task">在遠端輸入外掛程式中對於鍵盤的支援、錯誤修正與一般改進</string>
+  <string name="shellwen_chen_task">改善 SFTP 的安全性、改善本專案的易維護性、錯誤修正與一般改進</string>
   <string name="everyone_else">其他所有這些年來向 KDE 連線貢獻的人們</string>
   <string name="send_clipboard">傳送剪貼簿</string>
   <string name="tap_to_execute">按一下執行</string>
