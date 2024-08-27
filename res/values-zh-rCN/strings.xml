@@ -381,6 +381,8 @@
   <string name="send_compose">发送</string>
   <string name="compose_send_title">编写发送</string>
   <string name="open_compose_send">编写文本</string>
+  <string name="double_tap_to_drag">双击进行拖动</string>
+  <string name="hold_to_drag">按住进行拖动</string>
   <string name="about_kde_about">&lt;h1&gt;关于&lt;/h1&gt; &lt;p&gt;KDE 是由一群致力于&lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;自由软件&lt;/a&gt;事业的人们所组成的全球性协作社区。它的成员包括了来自世界各地的软件工程师、艺术工作者、文字工作者、翻译人员和其他创意人员。KDE 社区开发了 Plasma 桌面环境、数百款功能各异的应用软件、以及用于支持它们的大量程序库。&lt;/p&gt; &lt;p&gt;KDE 是一项立足于协作精神的事业，它的运作和产出不受任何单一个人或者机构的控制。我们的共同目标是为全世界带来高品质的自由软件。不管您来自何方，我们都欢迎您&lt;a href=https://community.kde.org/Get_Involved&gt;加入 KDE 并做出贡献&lt;/a&gt;。&lt;/p&gt;请访问 &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; 来了解 KDE 社区和软件的更多信息。</string>
   <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;报告程序缺陷和需求&lt;/h1&gt; &lt;p&gt;KDE 团队一直致力于改进软件的品质。为了做到这一点，倾听来自用户的反馈非常重要。如果您遇到了软件不能正常工作的情况，请务必告诉我们。如果您有关于改进软件的想法，也请与我们分享。&lt;/p&gt; &lt;p&gt;KDE 建有程序缺陷跟踪系统，请访问 &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; 或者使用“帮助”菜单中的“报告缺陷”对话框填写报告。&lt;/p&gt;如果您想要提出改进建议而不是报告程序缺陷，请确保在表格的 Severity (严重程度) 选单中选择“Wishlist (需求)”。</string>
   <string name="about_kde_join_kde">&lt;h1&gt;加入 KDE&lt;/h1&gt; &lt;p&gt;即使您不是软件开发人员，我们也欢迎您加入 KDE 的队伍！您可以加入各种语言的翻译团队来翻译软件的界面，您还可以制作图像、主题、音效，或者改进软件配套的文档……您的角色您来定！&lt;/p&gt; &lt;p&gt;请访问 &lt;a href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/Get_Involved&lt;/a&gt; 来物色您感兴趣的项目。&lt;/p&gt;如需了解更多相关信息和文档，请访问 &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/&lt;/a&gt;。</string>
