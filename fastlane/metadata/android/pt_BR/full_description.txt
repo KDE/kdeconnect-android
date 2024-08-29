@@ -1,20 +1,21 @@
 O KDE Connect fornece um conjunto de recursos para integrar seu fluxo de trabalho entre dispositivos:
 
+- Transfira arquivos entre seus dispositivos.
+- Acesse arquivos do seu computador no seu telefone, sem fios.
 - Área de transferência compartilhada: copie e cole entre seus dispositivos.
-- Compartilhe arquivos e URLs em seu computador a partir de qualquer app.
 - Receba notificações de chamadas recebidas e mensagens SMS no seu PC.
 - Touchpad virtual: use a tela do telefone como touchpad do computador.
-- Sincronização de notificações: leia as notificações do seu Android na área de trabalho.
-- Controle remoto multimídia: use seu telefone como controle remoto para reprodutores de mídia Linux.
+- Sincronização de notificações: acesse as notificações do seu telefone no seu computador e responda as mensagens.
+- Controle remoto multimídia: use seu telefone como controle remoto para reprodutores de mídia no Linux.
 - Conexão Wi-Fi: sem necessidade de cabos USB ou bluetooth.
 - Criptografia TLS de ponta a ponta: suas informações estão seguras.
 
 Observe que você precisará instalar o KDE Connect no seu computador para que este aplicativo funcione e mantenha a versão para desktop atualizada com a versão do Android para que os recursos mais recentes funcionem.
 
-Informações a respeito de permissões especiais :
+Informações sobre permissões sensíveis:
 * Permissão de acessibilidade: necessária para receber entrada de outro dispositivo para controlar seu telefone Android, se você usar o recurso de entrada remota.
 * Permissão de localização em segundo plano: necessária para saber a qual rede Wi-Fi você está conectado, se você usar o recurso de redes confiáveis.
 
-O KDE Connect nunca envia nenhuma informação ao KDE nem a terceiros. O KDE Connect envia dados de um dispositivo para outro diretamente usando a rede local, nunca pela Internet e usando criptografia de ponta a ponta.
+O KDE Connect nunca envia nenhuma informação ao KDE ou a terceiros. O KDE Connect envia dados de um dispositivo para outro diretamente usando a rede local, nunca pela Internet e usando criptografia de ponta a ponta.
 
 Este aplicativo faz parte de um projeto de código aberto e existe graças a todas as pessoas que contribuíram para ele. Visite o site para obter o código-fonte.
