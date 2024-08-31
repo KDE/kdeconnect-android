@@ -86,7 +86,7 @@ internal class SimpleSftpServer {
     fun initialize(context: Context, device: Device) {
         val sshd = ServerBuilder.builder().apply {
             fileSystemFactory(
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                if (SUPPORTS_NATIVEFS) {
                     NativeFileSystemFactory()
                 } else {
                     safFileSystemFactory = SafFileSystemFactory(context)
@@ -261,6 +261,8 @@ internal class SimpleSftpServer {
 
     companion object {
         private const val TAG = "SimpleSftpServer"
+
+        val SUPPORTS_NATIVEFS = Build.VERSION.SDK_INT >= Build.VERSION_CODES.R
 
         private val PORT_RANGE = 1739..1764
         const val USER: String = "kdeconnect"

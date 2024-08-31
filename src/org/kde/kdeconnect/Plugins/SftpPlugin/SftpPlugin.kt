@@ -41,7 +41,7 @@ class SftpPlugin : Plugin(), OnSharedPreferenceChangeListener {
     override fun onCreate(): Boolean = true
 
     override fun checkRequiredPermissions(): Boolean {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+        return if (SimpleSftpServer.SUPPORTS_NATIVEFS) {
             Environment.isExternalStorageManager()
         } else {
             SftpSettingsFragment.getStorageInfoList(context, this).size != 0
@@ -49,7 +49,7 @@ class SftpPlugin : Plugin(), OnSharedPreferenceChangeListener {
     }
 
     override val permissionExplanationDialog: AlertDialogFragment
-        get() = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+        get() = if (SimpleSftpServer.SUPPORTS_NATIVEFS) {
             StartActivityAlertDialogFragment.Builder()
                 .setTitle(displayName)
                 .setMessage(R.string.sftp_manage_storage_permission_explanation)
@@ -90,7 +90,7 @@ class SftpPlugin : Plugin(), OnSharedPreferenceChangeListener {
         val paths = mutableListOf<String>()
         val pathNames = mutableListOf<String>()
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+        if (SimpleSftpServer.SUPPORTS_NATIVEFS) {
             val volumes = context.getSystemService(
                 StorageManager::class.java
             ).storageVolumes
@@ -200,7 +200,7 @@ class SftpPlugin : Plugin(), OnSharedPreferenceChangeListener {
 
     override val outgoingPacketTypes: Array<String> = arrayOf(PACKET_TYPE_SFTP)
 
-    override fun hasSettings(): Boolean = Build.VERSION.SDK_INT < Build.VERSION_CODES.R
+    override fun hasSettings(): Boolean = !SimpleSftpServer.SUPPORTS_NATIVEFS
 
     override fun supportsDeviceSpecificSettings(): Boolean = true
 
