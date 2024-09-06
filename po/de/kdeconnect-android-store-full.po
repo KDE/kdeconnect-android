@@ -2,7 +2,7 @@
 #. extracted from ./metadata/android/en-US/full_description.txt
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: kdeconnect-android-store-full\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-11-05 12:31+0000\n"
 "PO-Revision-Date: 2023-06-07 19:50+0200\n"
