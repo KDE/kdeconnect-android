@@ -8,6 +8,7 @@
 
 package org.kde.kdeconnect.Plugins.SMSPlugin;
 
+import static androidx.core.content.ContextCompat.RECEIVER_EXPORTED;
 import static org.kde.kdeconnect.Plugins.TelephonyPlugin.TelephonyPlugin.PACKET_TYPE_TELEPHONY;
 
 import android.Manifest;
@@ -375,7 +376,7 @@ public class SMSPlugin extends Plugin {
 
         IntentFilter refreshFilter = new IntentFilter(Transaction.REFRESH);
         refreshFilter.setPriority(500);
-        context.registerReceiver(messagesUpdateReceiver, refreshFilter);
+        context.registerReceiver(messagesUpdateReceiver, refreshFilter, RECEIVER_EXPORTED);
 
         Looper helperLooper = SMSHelper.MessageLooper.getLooper();
         ContentObserver messageObserver = new MessageContentObserver(new Handler(helperLooper));
