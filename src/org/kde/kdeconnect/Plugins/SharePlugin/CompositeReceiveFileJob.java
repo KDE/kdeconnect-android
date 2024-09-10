@@ -88,7 +88,7 @@ public class CompositeReceiveFileJob extends BackgroundJob<Device, Void> {
     }
 
     private Device getDevice() {
-        return requestInfo;
+        return getRequestInfo();
     }
 
     boolean isRunning() { return isRunning; }
@@ -131,7 +131,7 @@ public class CompositeReceiveFileJob extends BackgroundJob<Device, Void> {
 
             isRunning = true;
 
-            while (!done && !canceled) {
+            while (!done && !isCancelled()) {
                 synchronized (lock) {
                     currentNetworkPacket = networkPacketList.get(0);
                 }
@@ -153,7 +153,7 @@ public class CompositeReceiveFileJob extends BackgroundJob<Device, Void> {
                     if ( received != currentNetworkPacket.getPayloadSize()) {
                         fileDocument.delete();
 
-                        if (!canceled) {
+                        if (!isCancelled()) {
                             throw new RuntimeException("Failed to receive: " + currentFileName + " received:" + received + " bytes, expected: " + currentNetworkPacket.getPayloadSize() + " bytes");
                         }
                     } else {
@@ -184,7 +184,7 @@ public class CompositeReceiveFileJob extends BackgroundJob<Device, Void> {
                     listIsEmpty = networkPacketList.isEmpty();
                 }
 
-                if (listIsEmpty && !canceled) {
+                if (listIsEmpty && !isCancelled()) {
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException ignored) {}
@@ -203,7 +203,7 @@ public class CompositeReceiveFileJob extends BackgroundJob<Device, Void> {
 
             isRunning = false;
 
-            if (canceled) {
+            if (isCancelled()) {
                 receiveNotification.cancel();
                 return;
             }
@@ -290,7 +290,7 @@ public class CompositeReceiveFileJob extends BackgroundJob<Device, Void> {
         int count;
         long received = 0;
 
-        while ((count = input.read(data)) >= 0 && !canceled) {
+        while ((count = input.read(data)) >= 0 && !isCancelled()) {
             received += count;
             totalReceived += count;
 

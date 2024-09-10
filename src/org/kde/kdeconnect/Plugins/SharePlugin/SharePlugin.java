@@ -81,7 +81,7 @@ public class SharePlugin extends Plugin {
     private SharedPreferences mSharedPrefs;
 
     public SharePlugin() {
-        backgroundJobHandler = BackgroundJobHandler.newFixedThreadPoolBackgroundJobHander(5);
+        backgroundJobHandler = BackgroundJobHandler.newFixedThreadPoolBackgroundJobHandler(5);
         handler = new Handler(Looper.getMainLooper());
         receiveFileJobCallback = new Callback();
     }

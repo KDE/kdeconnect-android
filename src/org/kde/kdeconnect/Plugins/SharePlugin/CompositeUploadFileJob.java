@@ -79,7 +79,7 @@ public class CompositeUploadFileJob extends BackgroundJob<Device, Void> {
         sendPacketStatusCallback = new SendPacketStatusCallback();
     }
 
-    private Device getDevice() { return requestInfo; }
+    private Device getDevice() { return getRequestInfo(); }
 
     @Override
     public void run() {
@@ -92,7 +92,7 @@ public class CompositeUploadFileJob extends BackgroundJob<Device, Void> {
         }
 
         try {
-            while (!done && !canceled) {
+            while (!done && !isCancelled()) {
                 synchronized (lock) {
                     currentNetworkPacket = networkPacketList.remove(0);
                 }
@@ -115,7 +115,7 @@ public class CompositeUploadFileJob extends BackgroundJob<Device, Void> {
                 }
             }
 
-            if (canceled) {
+            if (isCancelled()) {
                 uploadNotification.cancel();
             } else {
                 uploadNotification.setFinished(getDevice().getContext().getResources().getQuantityString(R.plurals.sent_files_title, currentFileNum, getDevice().getName(), currentFileNum));
