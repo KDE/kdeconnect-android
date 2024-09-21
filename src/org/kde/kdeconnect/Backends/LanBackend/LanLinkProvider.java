@@ -109,7 +109,14 @@ public class LanLinkProvider extends BaseLinkProvider {
         }
 
         Log.i("KDE/LanLinkProvider", "identity packet received from a TCP connection from " + networkPacket.getString("deviceName"));
-        identityPacketReceived(networkPacket, socket, LanLink.ConnectionStarted.Locally);
+
+        boolean deviceTrusted = isDeviceTrusted(networkPacket.getString("deviceId"));
+        if (!deviceTrusted && !TrustedNetworkHelper.isTrustedNetwork(context)) {
+            Log.i("KDE/LanLinkProvider", "Ignoring identity packet because the device is not trusted and I'm not on a trusted network.");
+            return;
+        }
+
+        identityPacketReceived(networkPacket, socket, LanLink.ConnectionStarted.Locally, deviceTrusted);
     }
 
     //I've received their broadcast and should connect to their TCP socket and send my identity.
@@ -149,6 +156,12 @@ public class LanLinkProvider extends BaseLinkProvider {
 
         Log.i("KDE/LanLinkProvider", "Broadcast identity packet received from " + identityPacket.getString("deviceName"));
 
+        boolean deviceTrusted = isDeviceTrusted(identityPacket.getString("deviceId"));
+        if (!deviceTrusted && !TrustedNetworkHelper.isTrustedNetwork(context)) {
+            Log.i("KDE/LanLinkProvider", "Ignoring identity packet because the device is not trusted and I'm not on a trusted network.");
+            return;
+        }
+
         SocketFactory socketFactory = SocketFactory.getDefault();
         Socket socket = socketFactory.createSocket(address, tcpPort);
         configureSocket(socket);
@@ -160,7 +173,7 @@ public class LanLinkProvider extends BaseLinkProvider {
         out.write(myIdentity.serialize().getBytes());
         out.flush();
 
-        identityPacketReceived(identityPacket, socket, LanLink.ConnectionStarted.Remotely);
+        identityPacketReceived(identityPacket, socket, LanLink.ConnectionStarted.Remotely, deviceTrusted);
     }
 
     private void configureSocket(Socket socket) {
@@ -169,6 +182,11 @@ public class LanLinkProvider extends BaseLinkProvider {
         } catch (SocketException e) {
             Log.e("LanLink", "Exception", e);
         }
+    }
+
+    private boolean isDeviceTrusted(String deviceId) {
+        SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
+        return preferences.getBoolean(deviceId, false);
     }
 
     /**
@@ -184,9 +202,10 @@ public class LanLinkProvider extends BaseLinkProvider {
      * @param identityPacket    identity of a remote device
      * @param socket            a new Socket, which should be used to receive packets from the remote device
      * @param connectionStarted which side started this connection
+     * @param deviceTrusted     whether the packet comes from a trusted device
      */
     @WorkerThread
-    private void identityPacketReceived(final NetworkPacket identityPacket, final Socket socket, final LanLink.ConnectionStarted connectionStarted) throws IOException {
+    private void identityPacketReceived(final NetworkPacket identityPacket, final Socket socket, final LanLink.ConnectionStarted connectionStarted, final boolean deviceTrusted) throws IOException {
 
         if (!DeviceInfo.isValidIdentityPacket(identityPacket)) {
             Log.w("KDE/LanLinkProvider", "Invalid identity packet received.");
@@ -203,10 +222,7 @@ public class LanLinkProvider extends BaseLinkProvider {
         // If I'm the TCP server I will be the SSL client and viceversa.
         final boolean clientMode = (connectionStarted == LanLink.ConnectionStarted.Locally);
 
-        SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
-        boolean isDeviceTrusted = preferences.getBoolean(deviceId, false);
-
-        if (isDeviceTrusted && !SslHelper.isCertificateStored(context, deviceId)) {
+        if (deviceTrusted && !SslHelper.isCertificateStored(context, deviceId)) {
             //Device paired with and old version, we can't use it as we lack the certificate
             Device device = KdeConnect.getInstance().getDevice(deviceId);
             if (device == null) {
@@ -214,13 +230,13 @@ public class LanLinkProvider extends BaseLinkProvider {
             }
             device.unpair();
             //Retry as unpaired
-            identityPacketReceived(identityPacket, socket, connectionStarted);
+            identityPacketReceived(identityPacket, socket, connectionStarted, deviceTrusted);
         }
 
         String deviceName = identityPacket.getString("deviceName", "unknown");
-        Log.i("KDE/LanLinkProvider", "Starting SSL handshake with " + deviceName + " trusted:" + isDeviceTrusted);
+        Log.i("KDE/LanLinkProvider", "Starting SSL handshake with " + deviceName + " trusted:" + deviceTrusted);
 
-        final SSLSocket sslSocket = SslHelper.convertToSslSocket(context, socket, deviceId, isDeviceTrusted, clientMode);
+        final SSLSocket sslSocket = SslHelper.convertToSslSocket(context, socket, deviceId, deviceTrusted, clientMode);
         sslSocket.addHandshakeCompletedListener(event -> {
             String mode = clientMode ? "client" : "server";
             try {

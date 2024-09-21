@@ -19,7 +19,7 @@ class TrustedNetworkHelper(private val context: Context) {
     var trustedNetworks: List<String>
         get() {
             val serializedNetworks = PreferenceManager.getDefaultSharedPreferences(context).getString(KEY_CUSTOM_TRUSTED_NETWORKS, "") ?: ""
-            return NETWORK_SSID_DELIMITER.split(serializedNetworks).filter { it.isNotEmpty() }
+            return serializedNetworks.split(NETWORK_SSID_DELIMITER, "#_#" /* TODO remove old delimiter in 2025 */).filter { it.isNotEmpty() }
         }
         set(value) {
             PreferenceManager.getDefaultSharedPreferences(context)
@@ -36,7 +36,8 @@ class TrustedNetworkHelper(private val context: Context) {
             .putBoolean(KEY_CUSTOM_TRUST_ALL_NETWORKS, value)
             .apply()
 
-    val hasPermissions: Boolean = ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+    val hasPermissions: Boolean
+        get() = ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
 
     /** @return The current SSID or null if it's not available for any reason */
     val currentSSID: String?
@@ -61,7 +62,7 @@ class TrustedNetworkHelper(private val context: Context) {
     companion object {
         private const val KEY_CUSTOM_TRUSTED_NETWORKS = "trusted_network_preference"
         private const val KEY_CUSTOM_TRUST_ALL_NETWORKS = "trust_all_network_preference"
-        private const val NETWORK_SSID_DELIMITER = "#_#"
+        private const val NETWORK_SSID_DELIMITER = "\u0000"
         private const val NOT_AVAILABLE_SSID_RESULT = "<unknown ssid>"
 
         @JvmStatic
