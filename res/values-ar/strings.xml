@@ -84,9 +84,11 @@
   <string name="error_canceled_by_other_peer">ألغاه ندّ آخر</string>
   <string name="encryption_info_title">معلومات التّعمية</string>
   <string name="pair_requested">طُلب الاقتران</string>
+  <string name="pair_succeeded">نجح الاقتران</string>
   <string name="tap_to_open">اطرق لتفتح</string>
   <string name="received_file_text">المس لفتح \'%1s\'</string>
   <string name="tap_to_answer">المس للإجابة</string>
+  <string name="left_click">أرسل نقرة باليسار</string>
   <string name="right_click">أرسل نقرة باليمين</string>
   <string name="middle_click">أرسل نقرة بالوسط</string>
   <string name="show_keyboard">أظهر لوحة المفاتيح</string>
@@ -113,6 +115,7 @@
     <item>دقيقة واحدة</item>
     <item>دقيقتان</item>
   </string-array>
+  <string name="share_to">شارك مع…</string>
   <string name="protocol_version_newer">يستخدم هذا الجهاز إصدار ميفاق أحدث</string>
   <string name="plugin_settings_with_name">إعدادات %s</string>
   <string name="invalid_device_name">اسم جهاز غير صالح</string>
@@ -145,8 +148,10 @@
   <string name="no_file_browser">لا متصفّحات ملفّات مثبّتة.</string>
   <string name="pref_plugin_telepathy">أرسل SMS</string>
   <string name="pref_plugin_telepathy_desc">أرسل رسائل نصّيّة من سطح المكتب</string>
+  <string name="pref_plugin_telepathy_mms">أرسل رسالة قصيرة</string>
   <string name="findmyphone_title">جِد جهازي</string>
   <string name="findmyphone_title_tablet">جِد جهازي اللوحيّ</string>
+  <string name="findmyphone_title_tv">جِد تلفازي</string>
   <string name="findmyphone_description">يرّن هذا الجهاز لتجده</string>
   <string name="findmyphone_found">عثر عليه</string>
   <string name="open">افتح</string>
