@@ -262,7 +262,7 @@ internal class SimpleSftpServer {
     companion object {
         private const val TAG = "SimpleSftpServer"
 
-        val SUPPORTS_NATIVEFS = Build.VERSION.SDK_INT >= Build.VERSION_CODES.R
+        val SUPPORTS_NATIVEFS = false // Disabled for Play Store release: Build.VERSION.SDK_INT >= Build.VERSION_CODES.R
 
         private val PORT_RANGE = 1739..1764
         const val USER: String = "kdeconnect"
