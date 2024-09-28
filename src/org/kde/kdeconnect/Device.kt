@@ -112,7 +112,7 @@ class Device : PacketReceiver {
         this.settings = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE)
         this.deviceInfo = loadFromSettings(context, deviceId, settings)
         this.pairingHandler = PairingHandler(this, createDefaultPairingCallback(), PairingHandler.PairState.Paired)
-        this.supportedPlugins = Vector(PluginFactory.getAvailablePlugins()) // Assume all are supported until we receive capabilities
+        this.supportedPlugins = Vector(PluginFactory.availablePlugins) // Assume all are supported until we receive capabilities
         Log.i("Device", "Loading trusted device: ${deviceInfo.name}")
     }
 
@@ -126,7 +126,7 @@ class Device : PacketReceiver {
         this.deviceInfo = link.deviceInfo
         this.settings = context.getSharedPreferences(deviceInfo.id, Context.MODE_PRIVATE)
         this.pairingHandler = PairingHandler(this, createDefaultPairingCallback(), PairingHandler.PairState.NotPaired)
-        this.supportedPlugins = Vector(PluginFactory.getAvailablePlugins()) // Assume all are supported until we receive capabilities
+        this.supportedPlugins = Vector(PluginFactory.availablePlugins) // Assume all are supported until we receive capabilities
         Log.i("Device", "Creating untrusted device: " + deviceInfo.name)
         addLink(link)
     }
@@ -622,7 +622,7 @@ class Device : PacketReceiver {
 
         supportedPlugins.forEach { pluginKey ->
             val pluginInfo = PluginFactory.getPluginInfo(pluginKey)
-            val listenToUnpaired = pluginInfo.listenToUnpaired()
+            val listenToUnpaired = pluginInfo.listenToUnpaired
 
             val pluginEnabled = (isPaired || listenToUnpaired) && this.isReachable && isPluginEnabled(pluginKey)
 

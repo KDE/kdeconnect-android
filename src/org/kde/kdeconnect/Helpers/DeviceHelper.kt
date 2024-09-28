@@ -160,8 +160,8 @@ object DeviceHelper {
             getDeviceName(context),
             deviceType,
             ProtocolVersion,
-            PluginFactory.getIncomingCapabilities(),
-            PluginFactory.getOutgoingCapabilities()
+            PluginFactory.incomingCapabilities,
+            PluginFactory.outgoingCapabilities
         )
     }
 

@@ -38,7 +38,7 @@ public class PluginPreference extends SwitchPreference {
         setSummary(info.getDescription());
         setChecked(device.isPluginEnabled(pluginKey));
 
-        if (info.hasSettings()) {
+        if (info.getHasSettings()) {
             this.listener = v -> {
                 Plugin plugin = device.getPluginIncludingWithoutPermissions(pluginKey);
                 if (plugin != null) {

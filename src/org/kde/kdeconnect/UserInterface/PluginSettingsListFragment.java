@@ -83,9 +83,8 @@ public class PluginSettingsListFragment extends PreferenceFragmentCompat {
             activity.runOnUiThread(activity::finish);
             return;
         }
-        List<String> plugins = device.getSupportedPlugins();
-        PluginFactory.sortPluginList(plugins);
 
+        List<String> plugins = PluginFactory.sortPluginList(device.getSupportedPlugins());
         for (final String pluginKey : plugins) {
             //TODO: Use PreferenceManagers context
             PluginPreference pref = new PluginPreference(requireContext(), pluginKey, device, callback);
