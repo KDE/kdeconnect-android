@@ -7,6 +7,7 @@
 package org.kde.kdeconnect.Plugins.RemoteKeyboardPlugin;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
@@ -18,6 +19,8 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.ExtractedText;
 import android.view.inputmethod.ExtractedTextRequest;
 import android.view.inputmethod.InputConnection;
+import android.view.inputmethod.InputMethodInfo;
+import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
@@ -33,7 +36,7 @@ import org.kde.kdeconnect.UserInterface.StartActivityAlertDialogFragment;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
-import java.util.Objects;
+import java.util.List;
 import java.util.concurrent.locks.ReentrantLock;
 
 @PluginFactory.LoadablePlugin
@@ -414,7 +417,14 @@ public class RemoteKeyboardPlugin extends Plugin implements SharedPreferences.On
 
     @Override
     public boolean checkRequiredPermissions() {
-        return Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ENABLED_INPUT_METHODS).contains("org.kde.kdeconnect_tp");
+        InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        List<InputMethodInfo> inputMethodList = inputMethodManager.getEnabledInputMethodList();
+        for (InputMethodInfo info : inputMethodList) {
+            if ("org.kde.kdeconnect_tp".equals(info.getPackageName())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
