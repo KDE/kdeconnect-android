@@ -179,7 +179,7 @@ class StoragePreferenceDialogFragment : PreferenceDialogFragmentCompat(), TextWa
 
                 if (result.isAllowed) {
                     val documentId = DocumentsContract.getTreeDocumentId(uri)
-                    val displayName = StorageHelper.getDisplayName(requireContext(), uri)
+                    val displayName = StorageHelper.getDisplayName(uri)
 
                     storageInfo = SftpPlugin.StorageInfo(displayName, uri)
 
