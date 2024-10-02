@@ -68,7 +68,9 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
         android:networkSecurityConfig="@xml/network_security_config"
         android:theme="@style/KdeConnectTheme.NoActionBar"
         android:name="org.kde.kdeconnect.KdeConnect"
-        android:enableOnBackInvokedCallback="true">
+        android:enableOnBackInvokedCallback="true"
+        android:requestLegacyExternalStorage="true"> <!-- requestLegacyExternalStorage is only used in Android 10: https://developer.android.com/training/data-storage/use-cases#opt-out-in-production-app -->
+
 
         <receiver
             android:name="com.android.mms.transaction.PushReceiver"
