@@ -3,112 +3,99 @@
  *
  * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 */
+package org.kde.kdeconnect.UserInterface
 
-package org.kde.kdeconnect.UserInterface;
+import android.content.Context
+import android.util.TypedValue
+import android.view.View
+import androidx.preference.PreferenceViewHolder
+import androidx.preference.SwitchPreference
+import org.kde.kdeconnect.Device
+import org.kde.kdeconnect.Plugins.Plugin
+import org.kde.kdeconnect.Plugins.PluginFactory.getPluginInfo
+import org.kde.kdeconnect_tp.R
 
-import android.content.Context;
-import android.util.TypedValue;
-import android.view.View;
+class PluginPreference : SwitchPreference {
+    private val device: Device
+    private val pluginKey: String
+    private val listener: View.OnClickListener?
 
-import androidx.annotation.NonNull;
-import androidx.preference.PreferenceViewHolder;
-import androidx.preference.SwitchPreference;
+    constructor(context: Context, pluginKey: String, device: Device, callback: PluginPreferenceCallback) : super(context) {
+        layoutResource = R.layout.preference_with_button
+        this.device = device
+        this.pluginKey = pluginKey
 
-import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.Plugins.Plugin;
-import org.kde.kdeconnect.Plugins.PluginFactory;
-import org.kde.kdeconnect_tp.R;
+        val info = getPluginInfo(pluginKey)
+        title = info.displayName
+        summary = info.description
+        isChecked = device.isPluginEnabled(pluginKey)
 
-public class PluginPreference extends SwitchPreference {
-    private final Device device;
-    private final String pluginKey;
-    private final View.OnClickListener listener;
-
-    public PluginPreference(@NonNull final Context context, @NonNull final String pluginKey,
-                            @NonNull final Device device, @NonNull PluginPreferenceCallback callback) {
-        super(context);
-
-        setLayoutResource(R.layout.preference_with_button);
-
-        this.device = device;
-        this.pluginKey = pluginKey;
-
-        PluginFactory.PluginInfo info = PluginFactory.getPluginInfo(pluginKey);
-        setTitle(info.getDisplayName());
-        setSummary(info.getDescription());
-        setChecked(device.isPluginEnabled(pluginKey));
-
-        if (info.getHasSettings()) {
-            this.listener = v -> {
-                Plugin plugin = device.getPluginIncludingWithoutPermissions(pluginKey);
-                if (plugin != null) {
-                    callback.onStartPluginSettingsFragment(plugin);
-                } else { //Could happen if the device is not connected anymore
-                    callback.onFinish();
-                }
-            };
-        } else {
-            this.listener = null;
+        fun createClickListener() = View.OnClickListener {
+            val plugin = device.getPluginIncludingWithoutPermissions(pluginKey)
+            if (plugin != null) {
+                callback.onStartPluginSettingsFragment(plugin)
+            }
+            else { // Could happen if the device is not connected anymore
+                callback.onFinish()
+            }
         }
+        this.listener = if (info.hasSettings) createClickListener() else null
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull PreferenceViewHolder holder) {
-        super.onBindViewHolder(holder);
+    override fun onBindViewHolder(holder: PreferenceViewHolder) {
+        super.onBindViewHolder(holder)
 
-        View.OnClickListener toggleListener = v -> {
-            boolean newState = !device.isPluginEnabled(pluginKey);
-            setChecked(newState); //It actually works on API<14
-            onStateChanged(holder, newState);
-            device.setPluginEnabled(pluginKey, newState);
-        };
+        val toggleListener = View.OnClickListener { v: View? ->
+            val newState = !device.isPluginEnabled(pluginKey)
+            isChecked = newState // It actually works on API<14
+            onStateChanged(holder, newState)
+            device.setPluginEnabled(pluginKey, newState)
+        }
 
-        View content = holder.findViewById(R.id.content);
-        View widget = holder.findViewById(android.R.id.widget_frame);
-        View parent = holder.itemView;
-        content.setOnClickListener(listener);
-        widget.setOnClickListener(toggleListener);
-        parent.setOnClickListener(toggleListener);
+        val content = holder.findViewById(R.id.content)
+        val widget = holder.findViewById(android.R.id.widget_frame)
+        val parent = holder.itemView
+        content.setOnClickListener(listener)
+        widget.setOnClickListener(toggleListener)
+        parent.setOnClickListener(toggleListener)
 
         // Disable child backgrounds when known to be unneeded to prevent duplicate ripples
-        int selectableItemBackground;
-        if (listener == null) {
-            selectableItemBackground = 0;
-        } else {
-            TypedValue value = new TypedValue();
-            getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground, value, true);
-            selectableItemBackground = value.resourceId;
+        fun getSelectableItemBackgroundResource(): Int {
+            val value = TypedValue()
+            context.theme.resolveAttribute(android.R.attr.selectableItemBackground, value, true)
+            return value.resourceId
         }
-        content.setBackgroundResource(selectableItemBackground);
-        widget.setBackgroundResource(selectableItemBackground);
+        val selectableItemBackground: Int = if (listener == null) 0 else getSelectableItemBackgroundResource()
+        content.setBackgroundResource(selectableItemBackground)
+        widget.setBackgroundResource(selectableItemBackground)
 
-        onStateChanged(holder, isChecked());
+        onStateChanged(holder, isChecked)
     }
 
-    private void onStateChanged(PreferenceViewHolder holder, boolean state) {
-        View content = holder.findViewById(R.id.content);
-        View divider = holder.findViewById(R.id.divider);
-        View widget = holder.findViewById(android.R.id.widget_frame);
-        View parent = holder.itemView;
+    private fun onStateChanged(holder: PreferenceViewHolder, state: Boolean) {
+        val content = holder.findViewById(R.id.content)
+        val divider = holder.findViewById(R.id.divider)
+        val widget = holder.findViewById(android.R.id.widget_frame)
+        val parent = holder.itemView
 
-        boolean hasDetails = state && listener != null;
+        val hasDetails = state && listener != null
 
-        divider.setVisibility(hasDetails ? View.VISIBLE : View.GONE);
-        content.setClickable(hasDetails);
-        widget.setClickable(hasDetails);
-        parent.setClickable(!hasDetails);
+        divider.visibility = if (hasDetails) View.VISIBLE else View.GONE
+        content.isClickable = hasDetails
+        widget.isClickable = hasDetails
+        parent.isClickable = !hasDetails
 
         if (hasDetails) {
             // Cancel duplicate ripple caused by pressed state of parent propagating down
-            content.setPressed(false);
-            content.getBackground().jumpToCurrentState();
-            widget.setPressed(false);
-            widget.getBackground().jumpToCurrentState();
+            content.isPressed = false
+            content.background.jumpToCurrentState()
+            widget.isPressed = false
+            widget.background.jumpToCurrentState()
         }
     }
 
     interface PluginPreferenceCallback {
-        void onStartPluginSettingsFragment(Plugin plugin);
-        void onFinish();
+        fun onStartPluginSettingsFragment(plugin: Plugin?)
+        fun onFinish()
     }
 }
