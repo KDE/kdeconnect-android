@@ -1,0 +1,17 @@
+1.32.5
+* Fixed crash in Android 14+
+
+1.32.3
+* Fix trusted devices list
+
+1.32.2
+* Handle expired certificates
+* Support doubletap drag in remote mouse
+
+1.32.1
+* Fixed a crash when opening the presentation remote
+
+1.32
+* Rewrite the remote file browsing
+* Add Direct Share targets
+* Send album art from phone to PC
