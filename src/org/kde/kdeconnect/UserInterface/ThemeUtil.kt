@@ -22,7 +22,6 @@ object ThemeUtil {
     const val DARK_MODE: String = "dark"
     const val DEFAULT_MODE: String = "default"
 
-    @JvmStatic
     fun applyTheme(themePref: String) {
         when (themePref) {
             LIGHT_MODE -> {
