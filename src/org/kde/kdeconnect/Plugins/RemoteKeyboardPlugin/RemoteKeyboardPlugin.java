@@ -420,7 +420,7 @@ public class RemoteKeyboardPlugin extends Plugin implements SharedPreferences.On
         InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         List<InputMethodInfo> inputMethodList = inputMethodManager.getEnabledInputMethodList();
         for (InputMethodInfo info : inputMethodList) {
-            if ("org.kde.kdeconnect_tp".equals(info.getPackageName())) {
+            if (context.getPackageName().equals(info.getPackageName())) {
                 return true;
             }
         }
