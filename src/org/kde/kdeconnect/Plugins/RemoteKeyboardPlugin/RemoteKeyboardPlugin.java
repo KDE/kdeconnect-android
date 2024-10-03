@@ -419,12 +419,8 @@ public class RemoteKeyboardPlugin extends Plugin implements SharedPreferences.On
     public boolean checkRequiredPermissions() {
         InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         List<InputMethodInfo> inputMethodList = inputMethodManager.getEnabledInputMethodList();
-        for (InputMethodInfo info : inputMethodList) {
-            if (context.getPackageName().equals(info.getPackageName())) {
-                return true;
-            }
-        }
-        return false;
+        return inputMethodList.stream().anyMatch(
+                info -> context.getPackageName().equals(info.getPackageName()));
     }
 
     @Override
