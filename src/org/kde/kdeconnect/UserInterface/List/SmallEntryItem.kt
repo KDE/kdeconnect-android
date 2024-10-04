@@ -3,43 +3,43 @@
  *
  * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 */
+package org.kde.kdeconnect.UserInterface.List
 
-package org.kde.kdeconnect.UserInterface.List;
+import android.R
+import android.util.TypedValue
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.TextView
 
-import android.util.TypedValue;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.TextView;
+class SmallEntryItem : ListAdapter.Item {
+    private val title: String
+    private val clickListener: View.OnClickListener?
 
-import androidx.annotation.NonNull;
-
-public class SmallEntryItem implements ListAdapter.Item {
-    private final String title;
-    private final View.OnClickListener clickListener;
-
-    SmallEntryItem(String title, View.OnClickListener clickListener) {
-        this.title = title;
-        this.clickListener = clickListener;
+    constructor(title: String, clickListener: View.OnClickListener?) {
+        this.title = title
+        this.clickListener = clickListener
     }
 
-    @NonNull
-    @Override
-    public View inflateView(@NonNull LayoutInflater layoutInflater) {
-        View v = layoutInflater.inflate(android.R.layout.simple_list_item_1, null);
-        final int padding = (int) (28 * layoutInflater.getContext().getResources().getDisplayMetrics().density);
-        v.setPadding(padding, 0, padding, 0);
+    override fun inflateView(layoutInflater: LayoutInflater): View {
+        val v = layoutInflater.inflate(R.layout.simple_list_item_1, null)
+        val padding = (28 * layoutInflater.context.resources.displayMetrics.density).toInt()
+        v.setPadding(padding, 0, padding, 0)
 
-        TextView titleView = v.findViewById(android.R.id.text1);
+        val titleView = v.findViewById<TextView>(R.id.text1)
         if (titleView != null) {
-            titleView.setText(title);
+            titleView.text = title
             if (clickListener != null) {
-                titleView.setOnClickListener(clickListener);
-                TypedValue outValue = new TypedValue();
-                layoutInflater.getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
-                v.setBackgroundResource(outValue.resourceId);
+                titleView.setOnClickListener(clickListener)
+                val outValue = TypedValue()
+                layoutInflater.context.theme.resolveAttribute(
+                    R.attr.selectableItemBackground,
+                    outValue,
+                    true
+                )
+                v.setBackgroundResource(outValue.resourceId)
             }
         }
 
-        return v;
+        return v
     }
 }

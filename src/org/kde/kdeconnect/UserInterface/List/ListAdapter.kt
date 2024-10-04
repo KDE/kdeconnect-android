@@ -3,47 +3,34 @@
  *
  * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 */
+package org.kde.kdeconnect.UserInterface.List
 
-package org.kde.kdeconnect.UserInterface.List;
+import android.content.Context
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ArrayAdapter
 
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+class ListAdapter : ArrayAdapter<ListAdapter.Item> {
+    private val items: List<Item>
+    private val isEnabled: Boolean
 
-import androidx.annotation.NonNull;
-
-import java.util.List;
-
-public class ListAdapter extends ArrayAdapter<ListAdapter.Item> {
-    public interface Item {
-        @NonNull
-        View inflateView(@NonNull LayoutInflater layoutInflater);
+    @JvmOverloads
+    constructor(context: Context, items: List<Item>, isEnabled: Boolean = true) : super(context, 0, items) {
+        this.items = items
+        this.isEnabled = isEnabled
     }
 
-    private final List<? extends Item> items;
-    private final boolean isEnabled;
-
-    public ListAdapter(Context context, List<? extends Item> items) {
-        this(context, items, true);
+    interface Item {
+        fun inflateView(layoutInflater: LayoutInflater): View
     }
 
-    public ListAdapter(Context context, List<? extends Item> items, boolean isEnabled) {
-        super(context, 0, (List<Item>) items);
-        this.items = items;
-        this.isEnabled = isEnabled;
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+        val i = items[position]
+        return i.inflateView(LayoutInflater.from(parent.context))
     }
 
-    @NonNull
-    @Override
-    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-        final Item i = items.get(position);
-        return i.inflateView(LayoutInflater.from(parent.getContext()));
-    }
-
-    @Override
-    public boolean isEnabled(int position) {
-        return isEnabled;
+    override fun isEnabled(position: Int): Boolean {
+        return isEnabled
     }
 }

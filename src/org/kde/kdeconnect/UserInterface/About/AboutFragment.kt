@@ -95,7 +95,7 @@ class AboutFragment : Fragment() {
         setupInfoButton(aboutData.websiteURL, binding!!.websiteButton)
 
         // Update authors
-        binding!!.authorsList.adapter = ListAdapter(this.context, aboutData.authors.map { AboutPersonEntryItem(it) }, false)
+        binding!!.authorsList.adapter = ListAdapter(this.requireContext(), aboutData.authors.map { AboutPersonEntryItem(it) }, false)
         if (aboutData.authorsFooterText != null) {
             binding!!.authorsFooterText.text = context?.getString(aboutData.authorsFooterText!!)
         }

@@ -3,34 +3,28 @@
  *
  * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
  */
+package org.kde.kdeconnect.UserInterface.List
 
-package org.kde.kdeconnect.UserInterface.List;
+import android.graphics.drawable.Drawable
+import android.view.LayoutInflater
+import android.view.View
+import org.kde.kdeconnect_tp.databinding.ListCardEntryBinding
 
-import android.graphics.drawable.Drawable;
-import android.view.LayoutInflater;
-import android.view.View;
+open class EntryItemWithIcon : ListAdapter.Item {
+    protected val title: String
+    protected val icon: Drawable
 
-import androidx.annotation.NonNull;
-
-import org.kde.kdeconnect_tp.databinding.ListCardEntryBinding;
-
-public class EntryItemWithIcon implements ListAdapter.Item {
-    protected final String title;
-    protected final Drawable icon;
-
-    public EntryItemWithIcon(String title, Drawable icon) {
-        this.title = title;
-        this.icon = icon;
+    constructor(title: String, icon: Drawable) {
+        this.title = title
+        this.icon = icon
     }
 
-    @NonNull
-    @Override
-    public View inflateView(@NonNull LayoutInflater layoutInflater) {
-        final ListCardEntryBinding binding = ListCardEntryBinding.inflate(layoutInflater);
+    override fun inflateView(layoutInflater: LayoutInflater): View {
+        val binding = ListCardEntryBinding.inflate(layoutInflater)
 
-        binding.listItemEntryTitle.setText(title);
-        binding.listItemEntryIcon.setImageDrawable(icon);
+        binding.listItemEntryTitle.text = title
+        binding.listItemEntryIcon.setImageDrawable(icon)
 
-        return binding.getRoot();
+        return binding.root
     }
 }

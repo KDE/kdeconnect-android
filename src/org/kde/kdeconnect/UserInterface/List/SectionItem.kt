@@ -3,42 +3,37 @@
  *
  * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 */
+package org.kde.kdeconnect.UserInterface.List
 
-package org.kde.kdeconnect.UserInterface.List;
+import android.view.LayoutInflater
+import android.view.View
+import org.kde.kdeconnect_tp.databinding.ListItemCategoryBinding
 
-import android.view.LayoutInflater;
-import android.view.View;
+class SectionItem : ListAdapter.Item {
+    private val title: String
 
-import androidx.annotation.NonNull;
-
-import org.kde.kdeconnect_tp.databinding.ListItemCategoryBinding;
-
-public class SectionItem implements ListAdapter.Item {
-    private final String title;
-    public boolean isEmpty;
-
-    public SectionItem(String title) {
-        this.title = title;
-        this.isEmpty = true;
+    constructor(title: String) {
+        this.title = title
     }
 
-    @NonNull
-    @Override
-    public View inflateView(@NonNull LayoutInflater layoutInflater) {
-        final ListItemCategoryBinding binding = ListItemCategoryBinding.inflate(layoutInflater);
+    @JvmField
+    var isEmpty: Boolean = true
 
-        //Make it not selectable
-        binding.getRoot().setOnClickListener(null);
-        binding.getRoot().setOnLongClickListener(null);
-        binding.getRoot().setFocusable(false);
-        binding.getRoot().setClickable(false);
+    override fun inflateView(layoutInflater: LayoutInflater): View {
+        val binding = ListItemCategoryBinding.inflate(layoutInflater)
 
-        binding.listItemCategoryText.setText(title);
+        // Make it not selectable
+        binding.root.setOnClickListener(null)
+        binding.root.setOnLongClickListener(null)
+        binding.root.isFocusable = false
+        binding.root.isClickable = false
+
+        binding.listItemCategoryText.text = title
 
         if (isEmpty) {
-            binding.listItemCategoryEmptyPlaceholder.setVisibility(View.VISIBLE);
+            binding.listItemCategoryEmptyPlaceholder.visibility = View.VISIBLE
         }
 
-        return binding.getRoot();
+        return binding.root
     }
 }
