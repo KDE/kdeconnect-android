@@ -29,10 +29,10 @@ class CommandEntry extends EntryItem {
     }
 
     public String getName() {
-        return title;
+        return getTitle();
     }
 
     public String getCommand() {
-        return subtitle;
+        return getSubtitle();
     }
 }
