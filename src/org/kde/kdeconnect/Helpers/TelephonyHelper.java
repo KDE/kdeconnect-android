@@ -310,7 +310,7 @@ public class TelephonyHelper {
      * @param requestType Value which we would like to find in types
      * @return True if the APN supports the requested type, false otherwise
      */
-    private static boolean isValidApnType(String types, String requestType) {
+    public static boolean isValidApnType(String types, String requestType) {
         // If APN type is unspecified, assume APN_TYPE_ALL.
         if (types.isEmpty()) {
             return true;
