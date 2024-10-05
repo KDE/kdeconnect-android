@@ -407,10 +407,11 @@
   <string name="saikrishna_arcot_task">Uzaktan girdi eklentisinde klavye kullanımı desteği, hata düzeltmeleri ve genel iyileştirmeler</string>
   <string name="shellwen_chen_task">SFTP güvenliğini artır, projenin bakımını daha da kolaylaştır, hata düzeltmeleri ve genel iyileştirmeler</string>
   <string name="everyone_else">KDE Bağlan’a yıllar boyunca katkıda bulunan herkes</string>
-  <string name="send_clipboard">Pano gönder</string>
-  <string name="tap_to_execute">Yürütmek için dokun</string>
-  <string name="plugin_stats">Eklenti istatistikleri</string>
-  <string name="enable_udp_broadcast">UDP aygıt keşfini etkinleştir</string>
+  <string name="send_clipboard">Pano Gönder</string>
+  <string name="tap_to_execute">Yürütmek için Dokun</string>
+  <string name="plugin_stats">Eklenti İstatistikleri</string>
+  <string name="enable_udp_broadcast">UDP Aygıt Keşfini Etkinleştir</string>
+  <string name="enable_bluetooth">Bluetooth’u Etkinleştir (Beta)</string>
   <string name="receive_notifications_permission_explanation">Başka aygıtlardan gelen bildirimleri alabilmek için bildirimlere izin verilmesi gereklidir</string>
   <string name="findmyphone_notifications_explanation">Uygulama arka plandayken telefonun çalabilmesi için bildirim izni gereklidir</string>
   <string name="no_notifications">Bildirimler devre dışı; herhangi bir gelen eş bildirimi almayacaksınız.</string>
