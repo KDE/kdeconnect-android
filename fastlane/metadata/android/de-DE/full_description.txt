@@ -1,21 +1,21 @@
-KDE Connect provides a set of features to integrate your workflow across devices:
+KDE Connect bietet eine Reihe von Funktionen, um Ihre Arbeitsabläufe über verschiedene Geräte zu vereinigen:
 
-- Transfer files between your devices.
-- Access files on your phone from your computer, without wires.
-- Shared clipboard: copy and paste between your devices.
-- Get notifications for incoming calls and messages on your computer.
-- Virtual touchpad: Use your phone screen as your computer's touchpad.
-- Notifications sync: Access your phone notifications from your computer and reply to messages.
-- Multimedia remote control: Use your phone as a remote for Linux media players.
-- WiFi connection: no USB wire or bluetooth needed.
-- End-to-end TLS encryption: your information is safe.
+- Daten zwischen Ihren Geräten übertragen.
+- Auf Daten auf Ihrem Telefon von Ihrem Computer aus zugreifen, ohne Kabel.
+- Geteilte Zwischenablage: Kopieren und Einfügen zwischen Ihren Geräten.
+- Erhalten Sie Benachrichtigungen über eingehende Anrufe und Nachrichten auf Ihren Computer.
+- Virtuelles Touchpad: Verwenden Sie den Bildschirm Ihres Telefons als Touchpad für Ihren Computer.
+- Abgleich der Benachrichtigungen: Greifen Sie über den Computer auf Ihre Telefonbenachrichtigungen zu und antworten Sie auf Nachrichten.
+- Multimedia-Fernbedienung: Verwenden Sie Ihr Telefon als Fernbedienung für Linux-Medienspieler.
+- WLAN-Verbindung: kein USB-Kabel oder Bluetooth erforderlich.
+- Ende-zu-Ende-TLS-Verschlüsselung: Ihre Informationen sind sicher.
 
-Please note you will need to install KDE Connect on your computer for this app to work, and keep the desktop version up-to-date with the Android version for the latest features to work.
+Bitte beachten Sie, dass Sie KDE Connect auf Ihrem Computer installieren müssen, damit diese App funktioniert und halten Sie die Desktop-Version mit der Android-Version auf dem aktuellen Stand, um die neuesten Funktionen nutzen zu können.
 
-Sensitive permissions information:
-* Accessibility permission: Required to receive input from another device to control your Android phone, if you use the Remote Input feature.
-* Background location permission: Required to know to which WiFi network you are connected to, if you use the Trusted Networks feature.
+Informationen zu sensiblen Berechtigungen:
+* Zugriffsberechtigung: Wird benötigt, um Eingaben zur Steuerung ihres Android-Telefons von einem anderen Gerät zu erhalten, wenn Sie die Ferneingabefunktion verwenden. 
+* Berechtigung den Standort im Hintergrund zu nutzen: Wird benötigt, um festzustellen, mit welchem WLAN-Netzwerk Sie verbunden sind, wenn Sie die Funktion „Vertrauenswürdige Netzwerke” verwenden.
 
-KDE Connect never sends any information to KDE nor to any third party. KDE Connect sends data from one device to the other directly using the local network, never through the internet, and using end to end encryption.
+KDE Connect sendet niemals irgendwelche Informationen an KDE oder an Dritte. KDE Connect sendet Daten, unter Verwendung einer Ende-zu-Ende-Verschlüsselung, über das lokale Netzwerk direkt von einem Gerät zum anderen, niemals über das Internet.
 
-This app is part of an open source project and it exists thanks to all the people who contributed to it. Visit the website to grab the source code.
+Diese App ist Teil eines Open-Scource-Projekts und besteht Dank all der Menschen die dazu beigetragen haben. Besuchen Sie die Internetseite, um sich den Quelltext zu holen.

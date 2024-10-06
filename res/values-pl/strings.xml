@@ -427,6 +427,7 @@
   <string name="tap_to_execute">Stuknij, aby wykonać</string>
   <string name="plugin_stats">Statystyki wtyczek</string>
   <string name="enable_udp_broadcast">Włącz wykrywanie urządzeń UDP</string>
+  <string name="enable_bluetooth">Włącz Bluetooth (beta)</string>
   <string name="receive_notifications_permission_explanation">Należy zezwolić na powiadomienia, aby móc je otrzymywać z innych urządzeń</string>
   <string name="findmyphone_notifications_explanation">Uprawnienia powiadomień są potrzebne, aby telefon mógł dzwonić, gdy aplikacja działa w tle</string>
   <string name="no_notifications">Powiadomienia są wyłączone, więc nie otrzymasz żadnych próśb o sparowanie.</string>

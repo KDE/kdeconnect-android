@@ -411,6 +411,7 @@
   <string name="tap_to_execute">Rör för att köra</string>
   <string name="plugin_stats">Insticksprogramstatistik</string>
   <string name="enable_udp_broadcast">Aktivera UDP-enhetsupptäckt</string>
+  <string name="enable_bluetooth">Aktivera Blåtand (beta)</string>
   <string name="receive_notifications_permission_explanation">Underrättelser måste vara tillåtna för att kunna ta emot dem från andra apparater</string>
   <string name="findmyphone_notifications_explanation">Underrättelserättigheter krävs så att telefonen kan ringa när programmet är i bakgrunden</string>
   <string name="no_notifications">Underrättelser är inaktiverade, så en underrättelse om inkommande begäran att para ihop inte tas emot.</string>
