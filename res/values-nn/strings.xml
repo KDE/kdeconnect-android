@@ -411,6 +411,7 @@
   <string name="tap_to_execute">Tapp for å utføra handlinga</string>
   <string name="plugin_stats">Programtillegg-statistikk</string>
   <string name="enable_udp_broadcast">Slå på einingsoppdaging via UDP</string>
+  <string name="enable_bluetooth">Bruk Bluetooth (beta)</string>
   <string name="receive_notifications_permission_explanation">Du må tillata varslingar for å kunna frå varslingar frå andre einingar</string>
   <string name="findmyphone_notifications_explanation">Varslingsløyvet trengst for at telefonen skal kunna ringja når appen er i bakgrunnsmodus</string>
   <string name="no_notifications">Varslingar er slåtte av, så du vil ikkje få varsling om parings­førespurnadar.</string>

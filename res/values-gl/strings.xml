@@ -411,6 +411,7 @@
   <string name="tap_to_execute">Toque para executar</string>
   <string name="plugin_stats">Estatísticas do complemento</string>
   <string name="enable_udp_broadcast">Activar o descubrimento de dispositivos UDP.</string>
+  <string name="enable_bluetooth">Activar o Bluetooth (beta)</string>
   <string name="receive_notifications_permission_explanation">Debe permitir notificacións para recibilas doutros dispositivos.</string>
   <string name="findmyphone_notifications_explanation">Necesita o permiso de notificacións para que o teléfono poda soar cando a aplicación está en segundo plano.</string>
   <string name="no_notifications">As notificacións están desactivadas, non recibirá notificacións entrantes de emparellamento.</string>
