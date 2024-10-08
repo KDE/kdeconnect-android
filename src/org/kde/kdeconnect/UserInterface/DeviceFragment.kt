@@ -280,11 +280,15 @@ class DeviceFragment : Fragment() {
             if (device.isPaired) {
                 requirePairingBinding().pairingButtons.visibility = View.GONE
                 if (device.isReachable) {
+                    val context = requireContext()
+                    val pluginsWithButtons = device.loadedPlugins.values.filter { it.displayAsButton(context) }.iterator()
+                    val pluginsNeedPermissions = device.pluginsWithoutPermissions.values.filter { device.isPluginEnabled(it.pluginKey) }
+                    val pluginsNeedOptionalPermissions = device.pluginsWithoutOptionalPermissions.values.filter { device.isPluginEnabled(it.pluginKey) }
                     requireErrorBinding().errorMessageContainer.visibility = View.GONE
                     requireDeviceBinding().deviceView.visibility = View.VISIBLE
                     requireDeviceBinding().deviceViewCompose.apply {
                         setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
-                        setContent { KdeTheme(context) { PluginList(device) } }
+                        setContent { KdeTheme(context) { PluginList(pluginsWithButtons, pluginsNeedPermissions, pluginsNeedOptionalPermissions) } }
                     }
                     displayBatteryInfoIfPossible()
                 } else {
@@ -448,14 +452,11 @@ class DeviceFragment : Fragment() {
     }
 
     @Composable
-    fun PluginList(device : Device) {
-
-        val context = requireContext()
-
-        val pluginsWithButtons = device.loadedPlugins.values.filter { it.displayAsButton(context) }.iterator()
-        val pluginsNeedPermissions = device.pluginsWithoutPermissions.values.filter { device.isPluginEnabled(it.pluginKey) }
-        val pluginsNeedOptionalPermissions = device.pluginsWithoutOptionalPermissions.values.filter { device.isPluginEnabled(it.pluginKey) }
-
+    fun PluginList(
+        pluginsWithButtons: Iterator<Plugin>,
+        pluginsNeedPermissions: List<Plugin>,
+        pluginsNeedOptionalPermissions: List<Plugin>
+    ) {
         Surface {
             Column(modifier = Modifier.padding(top = 16.dp)) {
 
