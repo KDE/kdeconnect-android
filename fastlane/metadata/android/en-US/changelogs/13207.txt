@@ -1,0 +1,16 @@
+1.32.7
+* Fixed file transfers showing as failed when they succeeded
+* Fixed plugin list not updating after granting permissions
+
+1.32.5
+* Fixed crash in Android 14+
+
+1.32.3
+* Fix trusted devices list
+
+1.32.2
+* Handle expired certificates
+* Support doubletap drag in remote mouse
+
+1.32.1
+* Fixed a crash when opening the presentation remote
