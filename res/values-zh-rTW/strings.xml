@@ -403,6 +403,7 @@
   <string name="tap_to_execute">按一下執行</string>
   <string name="plugin_stats">外掛程式統計</string>
   <string name="enable_udp_broadcast">啟用 UDP 裝置探索</string>
+  <string name="enable_bluetooth">啟用藍牙 (beta)</string>
   <string name="receive_notifications_permission_explanation">需要允許通知才能接收來自其他裝置的通知</string>
   <string name="findmyphone_notifications_explanation">需要通知權限讓應用程式在背景時也能讓手機響鈴</string>
   <string name="no_notifications">通知已停用，您不會接收到送來的配對請求。</string>

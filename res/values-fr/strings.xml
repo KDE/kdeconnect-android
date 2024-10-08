@@ -411,6 +411,7 @@
   <string name="tap_to_execute">Tapotez pour lancer</string>
   <string name="plugin_stats">Statistiques des modules externes</string>
   <string name="enable_udp_broadcast">Activer la découverte de périphériques « UDP »</string>
+  <string name="enable_bluetooth">Activer l\'interface Bluetooth (Bêta)</string>
   <string name="receive_notifications_permission_explanation">Les notifications doivent être autorisées pour en recevoir d\'autres périphériques</string>
   <string name="findmyphone_notifications_explanation">Les permissions pour les notifications sont nécessaires pour que le téléphone puisse sonner lorsque l\'application s\'exécute en tâche de fond</string>
   <string name="no_notifications">Les notifications sont désactivées,. Vous ne recevrez pas de notifications d\'appairages entrants.</string>
