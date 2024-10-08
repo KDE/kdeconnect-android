@@ -42,7 +42,7 @@ class PingPlugin : Plugin() {
             return false
         }
 
-        val mutableUpdateFlags = PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE
+        val mutableUpdateFlags = PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         val resultPendingIntent = PendingIntent.getActivity(context, 0, Intent(context, MainActivity::class.java), mutableUpdateFlags)
 
         val (id: Int, message: String) = if (np.has("message")) {

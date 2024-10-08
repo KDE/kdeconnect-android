@@ -187,6 +187,7 @@ private fun assignListIntent(context: Context, appWidgetId: Int, views: RemoteVi
     val runCommandTemplateIntent = Intent(context, RunCommandWidgetProvider::class.java)
     runCommandTemplateIntent.action = RUN_COMMAND_ACTION
     runCommandTemplateIntent.putExtra(EXTRA_APPWIDGET_ID, appWidgetId)
+    // Needs to be mutable because the launcher will modify it to indicate which command was selected
     val runCommandTemplatePendingIntent = PendingIntent.getBroadcast(context, appWidgetId, runCommandTemplateIntent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE)
     views.setPendingIntentTemplate(R.id.widget_command_list, runCommandTemplatePendingIntent)
 }

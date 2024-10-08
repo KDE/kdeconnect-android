@@ -302,7 +302,7 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
             context,
             0,
             iPlay,
-            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
         val aPlay = NotificationCompat.Action.Builder(
             R.drawable.ic_play_white, context!!.getString(R.string.mpris_play), piPlay
@@ -317,7 +317,7 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
             context,
             0,
             iPause,
-            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
         val aPause = NotificationCompat.Action.Builder(
             R.drawable.ic_pause_white, context!!.getString(R.string.mpris_pause), piPause
@@ -332,7 +332,7 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
             context,
             0,
             iPrevious,
-            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
         val aPrevious = NotificationCompat.Action.Builder(
             R.drawable.ic_previous_white, context!!.getString(R.string.mpris_previous), piPrevious
@@ -347,7 +347,7 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
             context,
             0,
             iNext,
-            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
         val aNext = NotificationCompat.Action.Builder(
             R.drawable.ic_next_white, context!!.getString(R.string.mpris_next), piNext
@@ -360,7 +360,7 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
 
         val piOpenActivity = TaskStackBuilder.create(context!!)
             .addNextIntentWithParentStack(iOpenActivity)
-            .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE)
+            .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 
         val notification = NotificationCompat.Builder(context!!, NotificationHelper.Channels.MEDIA_CONTROL)
 
@@ -398,7 +398,7 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
                 context,
                 0,
                 iCloseNotification,
-                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
             )
             notification.setDeleteIntent(piCloseNotification)
         }

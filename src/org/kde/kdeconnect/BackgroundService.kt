@@ -163,7 +163,7 @@ class BackgroundService : Service() {
             intent.putExtra(MainActivity.EXTRA_DEVICE_ID, connectedDeviceIds[0])
         }
 
-        val pi = PendingIntent.getActivity(this, 0, intent, UPDATE_MUTABLE_FLAGS)
+        val pi = PendingIntent.getActivity(this, 0, intent, UPDATE_IMMUTABLE_FLAGS)
         val notification = NotificationCompat.Builder(this, NotificationHelper.Channels.PERSISTENT).apply {
             setSmallIcon(R.drawable.ic_notification)
             setOngoing(true)
@@ -189,7 +189,7 @@ class BackgroundService : Service() {
             // Adding an action button to send clipboard manually in Android 10 and later.
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P && ContextCompat.checkSelfPermission(this, Manifest.permission.READ_LOGS) == PackageManager.PERMISSION_DENIED) {
                 val sendClipboard = ClipboardFloatingActivity.getIntent(this, true)
-                val sendPendingClipboard = PendingIntent.getActivity(this, 3, sendClipboard, UPDATE_MUTABLE_FLAGS)
+                val sendPendingClipboard = PendingIntent.getActivity(this, 3, sendClipboard, UPDATE_IMMUTABLE_FLAGS)
                 notification.addAction(0, getString(R.string.foreground_notification_send_clipboard), sendPendingClipboard)
             }
 
@@ -201,7 +201,7 @@ class BackgroundService : Service() {
                     // Setting up Send File Intent.
                     val sendFile = Intent(this, SendFileActivity::class.java)
                     sendFile.putExtra("deviceId", deviceId)
-                    val sendPendingFile = PendingIntent.getActivity(this, 1, sendFile, UPDATE_MUTABLE_FLAGS)
+                    val sendPendingFile = PendingIntent.getActivity(this, 1, sendFile, UPDATE_IMMUTABLE_FLAGS)
                     notification.addAction(0, getString(R.string.send_files), sendPendingFile)
 
                     // Checking if there are registered commands and adding the button.
@@ -209,7 +209,7 @@ class BackgroundService : Service() {
                     if (plugin != null && plugin.commandList.isNotEmpty()) {
                         val runCommand = Intent(this, RunCommandActivity::class.java)
                         runCommand.putExtra("deviceId", connectedDeviceIds[0])
-                        val runPendingCommand = PendingIntent.getActivity(this, 2, runCommand, UPDATE_MUTABLE_FLAGS)
+                        val runPendingCommand = PendingIntent.getActivity(this, 2, runCommand, UPDATE_IMMUTABLE_FLAGS)
                         notification.addAction(0, getString(R.string.pref_plugin_runcommand), runPendingCommand)
                     }
                 }
@@ -249,7 +249,7 @@ class BackgroundService : Service() {
     companion object {
         const val LOG_TAG = "KDE/BackgroundService"
 
-        const val UPDATE_MUTABLE_FLAGS = PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE
+        const val UPDATE_IMMUTABLE_FLAGS = PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         private const val FOREGROUND_NOTIFICATION_ID = 1
 
         @JvmStatic

@@ -28,7 +28,7 @@ public class IntentHelper {
      */
     public static void startActivityFromBackgroundOrCreateNotification(Context context, Intent intent, String title) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && !LifecycleHelper.isInForeground()) {
-            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_MUTABLE);
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_IMMUTABLE);
             Notification notification = new NotificationCompat
                     .Builder(context, NotificationHelper.Channels.HIGHPRIORITY)
                     .setContentIntent(pendingIntent)
