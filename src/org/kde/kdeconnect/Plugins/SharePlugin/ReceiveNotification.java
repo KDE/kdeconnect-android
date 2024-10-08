@@ -160,7 +160,7 @@ class ReceiveNotification {
                 device.getContext(),
                 0,
                 intent,
-                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
         );
 
         builder.setContentText(device.getContext().getResources().getString(R.string.received_file_text, filename))
@@ -169,7 +169,7 @@ class ReceiveNotification {
         shareIntent = Intent.createChooser(shareIntent,
                 device.getContext().getString(R.string.share_received_file, destinationUri.getLastPathSegment()));
         PendingIntent sharePendingIntent = PendingIntent.getActivity(device.getContext(), (int) System.currentTimeMillis(),
-                shareIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE);
+                shareIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
         NotificationCompat.Action.Builder shareAction = new NotificationCompat.Action.Builder(
                 R.drawable.ic_share_white, device.getContext().getString(R.string.share), sharePendingIntent);
         builder.addAction(shareAction.build());
