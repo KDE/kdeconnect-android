@@ -281,7 +281,7 @@ class DeviceFragment : Fragment() {
                 requirePairingBinding().pairingButtons.visibility = View.GONE
                 if (device.isReachable) {
                     val context = requireContext()
-                    val pluginsWithButtons = device.loadedPlugins.values.filter { it.displayAsButton(context) }.iterator()
+                    val pluginsWithButtons = device.loadedPlugins.values.filter { it.displayAsButton(context) }
                     val pluginsNeedPermissions = device.pluginsWithoutPermissions.values.filter { device.isPluginEnabled(it.pluginKey) }
                     val pluginsNeedOptionalPermissions = device.pluginsWithoutOptionalPermissions.values.filter { device.isPluginEnabled(it.pluginKey) }
                     requireErrorBinding().errorMessageContainer.visibility = View.GONE
@@ -377,7 +377,7 @@ class DeviceFragment : Fragment() {
     fun PreviewCompose() {
         val plugins = listOf(MprisPlugin(), RunCommandPlugin(), PresenterPlugin())
         plugins.forEach { it.setContext(LocalContext.current, null) }
-        PluginButtons(plugins.iterator(), 2)
+        PluginButtons(plugins, 2)
     }
 
     @OptIn(ExperimentalMaterial3Api::class)
@@ -409,9 +409,10 @@ class DeviceFragment : Fragment() {
     }
 
     @Composable
-    fun PluginButtons(plugins: Iterator<Plugin>, numColumns: Int) {
+    fun PluginButtons(plugins: List<Plugin>, numColumns: Int) {
         Column(modifier = Modifier.padding(horizontal = 16.dp)) {
-            while (plugins.hasNext()) {
+            val pluginIter = plugins.iterator()
+            while (pluginIter.hasNext()) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -419,9 +420,9 @@ class DeviceFragment : Fragment() {
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     repeat(numColumns) {
-                        if (plugins.hasNext()) {
+                        if (pluginIter.hasNext()) {
                             PluginButton(
-                                plugin = plugins.next(),
+                                plugin = pluginIter.next(),
                                 modifier = Modifier.weight(1f)
                             )
                         } else {
@@ -453,7 +454,7 @@ class DeviceFragment : Fragment() {
 
     @Composable
     fun PluginList(
-        pluginsWithButtons: Iterator<Plugin>,
+        pluginsWithButtons: List<Plugin>,
         pluginsNeedPermissions: List<Plugin>,
         pluginsNeedOptionalPermissions: List<Plugin>
     ) {
