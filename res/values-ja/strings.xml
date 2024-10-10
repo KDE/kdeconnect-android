@@ -18,6 +18,7 @@
   <string name="pref_plugin_clipboard_sent">クリップボードが送信されました</string>
   <string name="pref_plugin_mousepad">リモート入力</string>
   <string name="pref_plugin_mousepad_desc">スマートフォンやタブレットをタッチパッドやキーボードとして利用</string>
+  <string name="pref_plugin_presenter">プレゼンテーションリモート</string>
   <string name="pref_plugin_presenter_desc">デバイスを使ってプレゼンテーションのスライドを操作</string>
   <string name="pref_plugin_remotekeyboard">リモートからキー入力を受信</string>
   <string name="pref_plugin_remotekeyboard_desc">リモートデバイスからキーイベントを受信</string>
@@ -51,6 +52,7 @@
   <string name="remotekeyboard_multiple_connections">複数のリモートキーボード接続があります。設定するデバイスを選択してください</string>
   <string name="open_mousepad">リモート入力</string>
   <string name="mousepad_info">スクリーン上で指を動かすとマウスカーソルが移動します。タップは左クリックになり、2本指タップは右クリック、3本指タップは中クリックになります。2本指でスクロール、長押しでドラッグ&amp;ドロップできます。プラグイン設定から空中マウス機能を有効化できます。</string>
+  <string name="mousepad_info_no_gestures">スクリーン上で指を動かすとマウスカーソルが移動します。タップするとクリックできます。</string>
   <string name="mousepad_keyboard_input_not_supported">ペアリングされたデバイスはキーボード入力をサポートしていません</string>
   <string name="mousepad_single_tap_settings_title">1本指タップのアクションを設定</string>
   <string name="mousepad_double_tap_settings_title">2本指タップのアクションを設定</string>
@@ -88,7 +90,7 @@
   <string name="sendkeystrokes_disabled_toast">キー入力の送信は無効化されています。設定で有効化してください</string>
   <string name="sendkeystrokes_wrong_data">無効な MIME タイプです。\'text/x-keystrokes\' である必要があります</string>
   <string name="sendkeystrokes_sent_text">ファイル %1$s をデバイス %2$s へ送信しました</string>
-  <string name="sendkeystrokes_pref_category_summary">このモジュールは他のアプリがテキストのセグメントを接続されたホストに送信されるキー入力として共有できるようにします</string>
+  <string name="sendkeystrokes_pref_category_summary">このモジュールは他のアプリがテキストのセグメントを接続されたホストにキー入力として共有できるようにします</string>
   <string name="sendkeystrokes_pref_category_title">キー入力を送信</string>
   <string name="sendkeystrokes_pref_enabled">キー入力の送信を有効化</string>
   <string name="sendkeystrokes_pref_enabled_summary">MIME タイプが \'text/x-keystrokes\' のデータを受け付ける</string>
@@ -119,6 +121,8 @@
   <string name="my_device_fingerprint">このデバイスの証明書の SHA256 フィンガープリント:</string>
   <string name="remote_device_fingerprint">リモートデバイスの証明書の SHA256 フィンガープリント:</string>
   <string name="pair_requested">ペアリング要求済み</string>
+  <string name="pair_succeeded">ペアリングが成功しました</string>
+  <string name="pairing_request_from">\'%1s\' からペアリングを要求されました</string>
   <plurals name="incoming_file_title">
     <item quantity="other">%1$d ファイルを %2$s から受信しています</item>
   </plurals>
@@ -147,6 +151,7 @@
   <string name="received_file_text">タップして \'%1s\' を開く</string>
   <string name="cannot_create_file">ファイル %s を作成できません</string>
   <string name="tap_to_answer">タップして応答</string>
+  <string name="left_click">左クリックを送信</string>
   <string name="right_click">右クリックを送信</string>
   <string name="middle_click">中クリックを送信</string>
   <string name="show_keyboard">キーボードを表示</string>
@@ -176,6 +181,9 @@
   <string name="mpris_notifications_explanation">通知ドロアにメディア情報を表示するためには、通知の許可が必要です。</string>
   <string name="mpris_notification_settings_title">メディア操作の通知を表示</string>
   <string name="mpris_notification_settings_summary">KDE Connect を開かずにメディアプレーヤーをコントロール可能にします</string>
+  <string name="share_to">共有先...</string>
+  <string name="unreachable_device">%s (到達不可)</string>
+  <string name="unreachable_device_url_share_text">到達できないデバイスと共有された URL はデバイスが到達可能になったときに送信されます。\n\n</string>
   <string name="protocol_version_newer">このデバイスはより新しいプロトコルバージョンを使用しています</string>
   <string name="plugin_settings_with_name">%s 設定</string>
   <string name="invalid_device_name">不正なデバイス名</string>
@@ -183,10 +191,10 @@
   <string name="custom_devices_settings">カスタムデバイスリスト</string>
   <string name="custom_device_list">IP アドレスでデバイスを追加</string>
   <string name="custom_device_deleted">カスタムデバイスが削除されました</string>
-  <string name="custom_device_list_help">もしデバイスが自動的に検出されない場合、アクションボタンから手動で IP アドレスやホストネームを追加できます</string>
+  <string name="custom_device_list_help">デバイスが自動的に検出されない場合、アクションボタンから手動で IP アドレスやホストネームを追加できます</string>
   <string name="custom_device_fab_hint">デバイスを追加</string>
   <string name="undo">元に戻す</string>
-  <string name="share_notification_preference">うるさい通知</string>
+  <string name="share_notification_preference">音声付きの通知</string>
   <string name="share_notification_preference_summary">ファイル受信時に振動し、音声を再生します</string>
   <string name="share_destination_customize">行き先ディレクトリをカスタマイズ</string>
   <string name="share_destination_customize_summary_disabled">受信したファイルは Downloads に保存されます</string>
@@ -247,7 +255,7 @@
   <string name="telephony_permission_explanation">デスクトップで通話を表示するために、電話の状態と通話履歴の権限を付与する必要があります</string>
   <string name="telephony_optional_permission_explanation">電話番号の代わりに連絡先名を見るには、端末の連絡先へのアクセスを許可する必要があります</string>
   <string name="contacts_permission_explanation">連絡先をデスクトップと共有するには、連絡先の権限を付与する必要があります</string>
-  <string name="contacts_per_device_confirmation">携帯電話に保存されている連絡先はこのデバイスにコピーされ、KDE Connect SMS app などのアプリで使用できるようになります。</string>
+  <string name="contacts_per_device_confirmation">携帯電話に保存されている連絡先はこのデバイスにコピーされ、KDE Connect SMS App などのアプリで使用できるようになります。</string>
   <string name="select_ringtone">着信音を選択</string>
   <string name="telephony_pref_blocked_title">ブロックされた番号</string>
   <string name="telephony_pref_blocked_dialog_desc">これらの番号からの通話と SMS を表示しません。一行に1つの電話番号を指定してください</string>
@@ -289,7 +297,7 @@
   <string name="all">すべて</string>
   <string name="devices">デバイス</string>
   <string name="settings_rename">デバイス名</string>
-  <string name="settings_dark_mode">ダーク テーマ</string>
+  <string name="settings_dark_mode">ダークテーマ</string>
   <string name="settings_more_settings_title">その他の設定</string>
   <string name="settings_more_settings_text">デバイスごとの設定はデバイス内の「プラグイン設定」にあります</string>
   <string name="setting_persistent_notification">永続的な通知を表示</string>
@@ -373,9 +381,11 @@
   <string name="send_compose">送信</string>
   <string name="compose_send_title">送信するテキストを作成する</string>
   <string name="open_compose_send">テキストを作成する</string>
-  <string name="maintainer_and_developer">メンテナと開発者</string>
+  <string name="double_tap_to_drag">タブルタップしてドラッグ</string>
+  <string name="hold_to_drag">長押ししてドラッグ</string>
+  <string name="maintainer_and_developer">メンテナ、開発者</string>
   <string name="developer">開発者</string>
-  <string name="apple_support">macOS サポート。iOS サポートに取り組み中</string>
+  <string name="apple_support">macOS サポート。iOS サポート (作業中)</string>
   <string name="bug_fixes_and_general_improvements">バグ修正と全体的な改善</string>
   <string name="samoilenko_yuri_task">SFTP の実装、バグ修正と全体的な改善</string>
   <string name="aniket_kumar_task">SMS プラグインの改善</string>
@@ -383,6 +393,7 @@
   <string name="maxim_leshchenko_task">UI の改善とこの情報ページ</string>
   <string name="holger_kaelberer_task">リモートキーボードプラグインとバグ修正</string>
   <string name="saikrishna_arcot_task">リモート入力プラグインでのキーボードのサポート、バグ修正と全体的な改善</string>
+  <string name="shellwen_chen_task">SFTP のセキュリティの改善、このプロジェクトのメンテナンス性の改善、バグ修正と全体的な改善</string>
   <string name="everyone_else">KDE Connect に貢献してきたその他すべての人々</string>
   <string name="send_clipboard">クリップボードを送信</string>
   <string name="tap_to_execute">タップして実行</string>
@@ -391,4 +402,8 @@
   <string name="receive_notifications_permission_explanation">他のデバイスからの通知を受け取るためには、通知を許可する必要があります。</string>
   <string name="findmyphone_notifications_explanation">アプリがバックグラウンドで動作しているときに携帯電話を鳴動させるには、通知の許可が必要です。</string>
   <string name="no_notifications">通知は無効化されています。ペア要求通知は受信されません。</string>
+  <string name="mpris_keepwatching">再生を続ける</string>
+  <string name="mpris_keepwatching_settings_title">再生を続ける</string>
+  <string name="mpris_keepwatching_settings_summary">メディアを閉じた後、このデバイスで続けて再生するためのサイレント通知を表示する</string>
+  <string name="notification_channel_keepwatching">再生を続ける</string>
 </resources>
