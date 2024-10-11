@@ -427,6 +427,7 @@
   <string name="tap_to_execute">נגיעה תפעיל</string>
   <string name="plugin_stats">סטטיסטיקת תוסף</string>
   <string name="enable_udp_broadcast">הפעלת גילוי מכשירים ב־UDP</string>
+  <string name="enable_bluetooth">הפעלת בלוטות׳ (בטא)</string>
   <string name="receive_notifications_permission_explanation">יש לאשר התראות כדי לקבל אותן במכשירים אחרים</string>
   <string name="findmyphone_notifications_explanation">הרשאת ההתראות נחוצה כדי שהטלפון יצלצל גם אם היישומון ברקע</string>
   <string name="no_notifications">התראות מושבתות, לא תתקבלנה התראות צימוד נכנסות.</string>
