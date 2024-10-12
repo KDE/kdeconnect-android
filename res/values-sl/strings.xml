@@ -130,10 +130,10 @@
     <item quantity="other">Prejemanje %1$d datotek od %2$s</item>
   </plurals>
   <plurals name="incoming_files_text">
-    <item quantity="one">(Datotek %2$d od %3$d) : %1$s</item>
+    <item quantity="one">(Datoteka %2$d od %3$d) : %1$s</item>
     <item quantity="two">(Datoteka %2$d od %3$d) : %1$s</item>
-    <item quantity="few">(Datoteki %2$d od %3$d) : %1$s</item>
-    <item quantity="other">(Datoteke %2$d od %3$d) : %1$s</item>
+    <item quantity="few">(Datoteka %2$d od %3$d) : %1$s</item>
+    <item quantity="other">(Datoteka %2$d od %3$d) : %1$s</item>
   </plurals>
   <plurals name="outgoing_file_title">
     <item quantity="one">Pošiljanje %1$d datotek na %2$s</item>
@@ -427,6 +427,7 @@
   <string name="tap_to_execute">Tapkajte za izvedbo</string>
   <string name="plugin_stats">Stanje vtičnikov</string>
   <string name="enable_udp_broadcast">Omogoči odkrivanje naprav UDP</string>
+  <string name="enable_bluetooth">Omogoči bluetooth (beta)</string>
   <string name="receive_notifications_permission_explanation">Morate imeti dovoljenje za obvestila, če jih želite sprejemati iz drugih naprav</string>
   <string name="findmyphone_notifications_explanation">Potrebno je dovoljenje za obvestila, da lahko telefon zazvoni, ko je aplikacija v ozadju</string>
   <string name="no_notifications">Obvestila so onemogočena, ne boste prejemali obvestil o dohodnih parih.</string>
