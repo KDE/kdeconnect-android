@@ -8,6 +8,7 @@ package org.kde.kdeconnect.UserInterface
 import android.Manifest
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Build
@@ -19,13 +20,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.preference.EditTextPreference
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
-import androidx.preference.TwoStatePreference
 import com.google.android.material.snackbar.Snackbar
 import org.kde.kdeconnect.BackgroundService
 import org.kde.kdeconnect.Helpers.DeviceHelper
@@ -98,6 +98,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
             }
         }
     }
+
     private fun themePref(context: Context) = ListPreference(context).apply {
         key = KEY_APP_THEME
         setTitle(R.string.theme_dialog_title)
@@ -113,6 +114,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
             true
         }
     }
+
     private fun persistentNotificationPref(context: Context): Preference =
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) Preference(context).apply {
             setTitle(R.string.setting_persistent_notification_oreo)
@@ -138,6 +140,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
                 true
             }
         }
+
     private fun trustedNetworkPref(context: Context) = Preference(context).apply {
         isPersistent = false
         setTitle(R.string.trusted_networks)
@@ -147,6 +150,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
             true
         }
     }
+
     /** Opens activity to configure device by IP when clicked */
     private fun devicesByIpPref(context: Context) = Preference(context).apply {
         isPersistent = false
@@ -156,22 +160,35 @@ class SettingsFragment : PreferenceFragmentCompat() {
             true
         }
     }
+
     private fun udpBroadcastPref(context: Context) = SwitchPreference(context).apply {
         setDefaultValue(true)
         key = KEY_UDP_BROADCAST_ENABLED
         setTitle(R.string.enable_udp_broadcast)
     }
+
     private fun bluetoothSupportPref(context: Context) = SwitchPreference(context).apply {
         setDefaultValue(false)
         key = KEY_BLUETOOTH_ENABLED
         setTitle(R.string.enable_bluetooth)
         onPreferenceChangeListener = Preference.OnPreferenceChangeListener { _: Preference?, newValue: Any ->
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && newValue as Boolean) {
-                ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.BLUETOOTH_CONNECT, Manifest.permission.BLUETOOTH_SCAN), 2)
+                val permissions = arrayOf(Manifest.permission.BLUETOOTH_CONNECT, Manifest.permission.BLUETOOTH_SCAN)
+                val permissionsGranted = permissions.all { ContextCompat.checkSelfPermission(context, it) == PackageManager.PERMISSION_GRANTED }
+                if (!permissionsGranted) {
+                    PermissionsAlertDialogFragment.Builder()
+                        .setTitle(R.string.location_permission_needed_title)
+                        .setMessage(R.string.bluetooth_permission_needed_desc)
+                        .setPermissions(permissions)
+                        .setRequestCode(2)
+                        .create().show(childFragmentManager, null)
+                    return@OnPreferenceChangeListener false
+                }
             }
             true
         }
     }
+
     private fun moreSettingsPref(context: Context) = Preference(context).apply {
         isPersistent = false
         isSelectable = false

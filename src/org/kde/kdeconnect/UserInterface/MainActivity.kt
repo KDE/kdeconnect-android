@@ -362,6 +362,14 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
                 startActivityForResult(intent, STORAGE_LOCATION_CONFIGURED)
             }
 
+            if (isPermissionGranted(permissions, grantResults, Manifest.permission.BLUETOOTH_CONNECT) &&
+                isPermissionGranted(permissions, grantResults, Manifest.permission.BLUETOOTH_SCAN)) {
+                val preferenceEditor = PreferenceManager.getDefaultSharedPreferences(this).edit()
+                preferenceEditor.putBoolean(SettingsFragment.KEY_BLUETOOTH_ENABLED, true)
+                preferenceEditor.apply()
+                setContentFragment(SettingsFragment())
+            }
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isPermissionGranted(permissions, grantResults, Manifest.permission.POST_NOTIFICATIONS)) {
                 // If PairingFragment is active, reload it
                 if (mCurrentDevice == null) {
