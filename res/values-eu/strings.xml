@@ -411,6 +411,7 @@
   <string name="tap_to_execute">Tak egin exekutatzeko</string>
   <string name="plugin_stats">Pluginaren estatistikak</string>
   <string name="enable_udp_broadcast">Gaitu UDP bidez gailua aurkitzea</string>
+  <string name="enable_bluetooth">Gaitu bluetooth (beta)</string>
   <string name="receive_notifications_permission_explanation">Jakinarazpenak baimendu behar dira beste gailuetatik haiek jasotzeko</string>
   <string name="findmyphone_notifications_explanation">Aplikazioa atzeko planoan dagoenean telefonoak jo dezan jakinarazpen-baimena behar da</string>
   <string name="no_notifications">Jakinarazpenak ezgaituta daude, ez duzu jasoko parekatzeko sarrerako jakinarazpenik.</string>
