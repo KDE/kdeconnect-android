@@ -130,10 +130,10 @@
     <item quantity="other">Prejemanje %1$d datotek od %2$s</item>
   </plurals>
   <plurals name="incoming_files_text">
-    <item quantity="one">(Datoteka %2$d od %3$d) : %1$s</item>
+    <item quantity="one">(Datotek %2$d od %3$d) : %1$s</item>
     <item quantity="two">(Datoteka %2$d od %3$d) : %1$s</item>
-    <item quantity="few">(Datoteka %2$d od %3$d) : %1$s</item>
-    <item quantity="other">(Datoteka %2$d od %3$d) : %1$s</item>
+    <item quantity="few">(Datoteki %2$d od %3$d) : %1$s</item>
+    <item quantity="other">(Datoteke %2$d od %3$d) : %1$s</item>
   </plurals>
   <plurals name="outgoing_file_title">
     <item quantity="one">Pošiljanje %1$d datotek na %2$s</item>
@@ -342,6 +342,7 @@
   <string name="empty_trusted_networks_list_text">Niste še dodali nobenega zaupanja vrednega omrežja</string>
   <string name="allow_all_networks_text">Dovoli vse</string>
   <string name="location_permission_needed_title">Zahtevano dovoljenje</string>
+  <string name="bluetooth_permission_needed_desc">Dodeli dovoljenja za Bluetooth, da bodo naprave, seznanjene z Bluetoothom, na voljo v KDE Connect.</string>
   <string name="location_permission_needed_desc">"KDE Connect potrebuje dovoljenje omrežja, da pozna WiFi omrežje, s katerim ste povezani, tudi če je aplikacija v ozadju. To je zato, ker se ime omrežja wifi  lahko uporabi za iskanje svoje lokacije, četudi to ne počne KDE Connect."</string>
   <string name="clipboard_android_x_incompat">Android 10 je odstranil dostop do odložišča za vse aplikacije. Ta vtičnik bo onemogočen.</string>
   <string name="mpris_open_url">Nadaljuj s predvajanjem tukaj</string>
