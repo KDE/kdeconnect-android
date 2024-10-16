@@ -50,12 +50,16 @@
   <string name="remotekeyboard_connected">Koneksi keyboard jarak jauh telah aktif</string>
   <string name="remotekeyboard_multiple_connections">Ada lebih dari satu koneksi keyboard jarak jauh, pilih peranti untuk diatur</string>
   <string name="open_mousepad">Masukan jarak jauh</string>
-  <string name="mousepad_single_tap_settings_title">Set aksi ketuk satu jari</string>
-  <string name="mousepad_double_tap_settings_title">Set aksi ketuk dua jari</string>
-  <string name="mousepad_triple_tap_settings_title">Set aksi ketuk tiga jari</string>
-  <string name="mousepad_sensitivity_settings_title">Set kepekaan touchpad</string>
+  <string name="mousepad_info_no_gestures">Gerakkan jari pada layar untuk memindahkan kursor tetikus, ketuk untuk klik.</string>
+  <string name="mousepad_keyboard_input_not_supported">Masukan papan tik tidak didukung oleh perangkat tersanding.</string>
+  <string name="mousepad_single_tap_settings_title">Setel aksi ketuk satu jari</string>
+  <string name="mousepad_double_tap_settings_title">Setel aksi ketuk dua jari</string>
+  <string name="mousepad_triple_tap_settings_title">Setel aksi ketuk tiga jari</string>
+  <string name="mousepad_sensitivity_settings_title">Setel kepekaan touchpad</string>
+  <string name="mousepad_mouse_buttons_title">Tampilkan tombol tetikus</string>
   <string name="mousepad_acceleration_profile_settings_title">Setel akselerasi pointer</string>
   <string name="mousepad_scroll_direction_title">Arah Menggulir Terbalik</string>
+  <string name="gyro_mouse_enabled_title">Aktifkan tetikus giroskop</string>
   <string-array name="mousepad_tap_entries">
     <item>Klik kiri</item>
     <item>Klik kanan</item>
@@ -63,10 +67,10 @@
     <item>Tidak ada apa-apa</item>
   </string-array>
   <string-array name="mousepad_sensitivity_entries">
-    <item>Pelan</item>
-    <item>Agak Pelan</item>
-    <item>Normal</item>
-    <item>Agak Cepat</item>
+    <item>Lambat</item>
+    <item>Sedikit Lambat</item>
+    <item>Bawaan</item>
+    <item>Lebih Cepat</item>
     <item>Cepat</item>
   </string-array>
   <string-array name="mousepad_acceleration_profile_entries">
@@ -78,7 +82,7 @@
     <item>Sangat Kuat</item>
   </string-array>
   <string name="sendkeystrokes_send_to">Kirimkan penekanan tombol ke</string>
-  <string name="sendkeystrokes_textbox_hint">Kirimkan penekanan tombol ke host</string>
+  <string name="sendkeystrokes_textbox_hint">Kirimkan penekanan tombol ke hos</string>
   <string name="sendkeystrokes_disabled_toast">Mengirim penekanan tombol dinonaktifkan - aktifkan di pengaturan</string>
   <string name="sendkeystrokes_wrong_data">Tipe mime tidak sah - harus \'text/x-keystrokes\'</string>
   <string name="sendkeystrokes_sent_text">Terkirim %1$s ke peranti %2$s</string>
@@ -91,6 +95,7 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Kirim sebagai penekanan tombol</string>
   <string name="mouse_receiver_plugin_description">Terima penggerakan mouse jarak jauh</string>
   <string name="mouse_receiver_plugin_name">Penerima mouse</string>
+  <string name="mouse_receiver_no_permissions">Untuk menerima masukan sentuh secara jarak jauh, Anda perlu memberi izin Aksesibilitas untuk dapat mengendalikan perangkat Anda</string>
   <string name="view_status_title">Status</string>
   <string name="battery_status_format">Baterai: %d%%</string>
   <string name="battery_status_low_format">Baterai: %d%% Baterai Lemah</string>
@@ -101,7 +106,7 @@
   <string name="device_menu_plugins">Pengesetan plugin</string>
   <string name="device_menu_unpair">Leraikan</string>
   <string name="pair_new_device">Sandingkan peranti baru</string>
-  <string name="unknown_device">Perangkat tak diketahui</string>
+  <string name="unknown_device">Perangkat tidak diketahui</string>
   <string name="error_not_reachable">Peranti tidak dapat dicapai</string>
   <string name="error_already_paired">Peranti sudah disandingkan</string>
   <string name="error_timed_out">Waktu habis</string>
@@ -137,17 +142,17 @@
   </plurals>
   <string name="tap_to_open">Ketuk untuk membuka</string>
   <string name="received_file_text">Ketuk untuk membuka \'%1s\'</string>
-  <string name="cannot_create_file">Gak bisa menciptakan file %s</string>
+  <string name="cannot_create_file">Tidak dapat membuat file %s</string>
   <string name="tap_to_answer">Ketuk untuk menjawab</string>
   <string name="right_click">Kirim Klik Kanan</string>
   <string name="middle_click">Kirim Klik Tengah</string>
-  <string name="show_keyboard">Tampilkan Keyboard</string>
+  <string name="show_keyboard">Tampilkan Papan Tik</string>
   <string name="device_not_paired">Peranti tidak disandingkan</string>
   <string name="request_pairing">Minta penyandingan</string>
   <string name="pairing_accept">Setujui</string>
-  <string name="pairing_reject">Apkir</string>
+  <string name="pairing_reject">Tolak</string>
   <string name="settings">Pengaturan</string>
-  <string name="mpris_play">Putarkan</string>
+  <string name="mpris_play">Putar</string>
   <string name="mpris_pause">Jeda</string>
   <string name="mpris_previous">Sebelumnya</string>
   <string name="mpris_rew">Mundur</string>
@@ -165,18 +170,20 @@
     <item>1 menit</item>
     <item>2 menit</item>
   </string-array>
+  <string name="mpris_notifications_explanation">Izin notifkasi diperlukan untuk menampilkan media jarak jauh dalam bilah notifikasi</string>
   <string name="mpris_notification_settings_title">Tampilkan notifikasi kendali media</string>
   <string name="mpris_notification_settings_summary">Memungkinkan pengendalian pemutar media Anda tanpa membuka KDE Connect</string>
+  <string name="share_to">Bagikan ke…</string>
   <string name="protocol_version_newer">Perangkat ini menggunakan sebuah versi protokol baru</string>
-  <string name="plugin_settings_with_name">Pengesetan %s</string>
-  <string name="invalid_device_name">Nama peranti tak absah</string>
-  <string name="shareplugin_text_saved">Teks diterima, tersimpan ke papan-klip</string>
+  <string name="plugin_settings_with_name">Pengaturan %s</string>
+  <string name="invalid_device_name">Nama peranti tidak valid</string>
+  <string name="shareplugin_text_saved">Teks diterima, tersimpan ke papan klip</string>
   <string name="custom_devices_settings">Kustom daftar peranti</string>
   <string name="custom_device_list">Tambahkan peranti dengan IP</string>
   <string name="custom_device_deleted">Perangkat kustom yang dihapus</string>
   <string name="custom_device_list_help">Jika peranti Anda tidak terdeteksi secara otomatis, Anda dapat menambahkan alamat IP atau nama host-nya dengan mengklik Tombol Aksi Yang Mengambang</string>
   <string name="custom_device_fab_hint">Tambahkan sebuah peranti</string>
-  <string name="undo">Urung</string>
+  <string name="undo">Urungkan</string>
   <string name="share_notification_preference">Notifikasi bising</string>
   <string name="share_notification_preference_summary">Getar dan putarkan suara ketika menerima sebuah file</string>
   <string name="share_destination_customize">Menyesuaikan tujuan direktori</string>
@@ -363,4 +370,5 @@
   <string name="everyone_else">Semua orang yang telah berkontribusi pada KDE Connect selama bertahun-tahun</string>
   <string name="send_clipboard">Kirim papan klip</string>
   <string name="tap_to_execute">Ketuk untuk menjalankan</string>
+  <string name="enable_bluetooth">Aktifkan Bluetooth (beta)</string>
 </resources>
