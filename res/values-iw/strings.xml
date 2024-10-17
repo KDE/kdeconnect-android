@@ -342,6 +342,7 @@
   <string name="empty_trusted_networks_list_text">עדיין לא הוספת רשתות מהימנות</string>
   <string name="allow_all_networks_text">לאפשר הכול</string>
   <string name="location_permission_needed_title">נדרשת הרשאה</string>
+  <string name="bluetooth_permission_needed_desc">יש להעניק גישה לבלוטות׳ כדי שהתקנים שצומדו עם בלוטות׳ יהיו זמינים ב־KDE Connect.</string>
   <string name="location_permission_needed_desc">KDE Connect צריך הרשאת איתור מקום ברקע כדי לדעת לאיזו רשת אלחוטית התחברת, אפילו אם היישום ברקע. מצב זה נחוץ כיוון ששם הרשתות האלחוטיות מסביבך יכולים לשמש לאיתור המקום שלך, אפילו אם זה לא מה ש־KDE Connect תוכנן לעשות.</string>
   <string name="clipboard_android_x_incompat">ב־Android 10 הוסרה הגישה ללוח הגזירים לכל היישומונים. התוסף הזה יושבת.</string>
   <string name="mpris_open_url">להמשיך לנגן מכאן</string>
