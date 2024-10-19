@@ -423,6 +423,7 @@
   <string name="tap_to_execute">Pro spuštění ťukněte sem</string>
   <string name="plugin_stats">Statistiky modulů</string>
   <string name="enable_udp_broadcast">Povolit prohledávání sítě UDP</string>
+  <string name="enable_bluetooth">Povolit Bluetooth (beta)</string>
   <string name="receive_notifications_permission_explanation">Je potřeba povolit oznámení aby e šlo přijímat z ostatních zařízení</string>
   <string name="findmyphone_notifications_explanation">Oprávnění k upozorněním je potřeba aby telefon mohl zvonit když je aplikace na pozadí</string>
   <string name="no_notifications">Upozornění jsou zakázána. Neuvidíte upozornění na párování.</string>
