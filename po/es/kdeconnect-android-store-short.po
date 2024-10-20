@@ -1,8 +1,8 @@
-# Víctor Rodrigo Córdoba <vrcordoba@gmail.com>, 2023.
+# SPDX-FileCopyrightText: 2023 Víctor Rodrigo Córdoba <vrcordoba@gmail.com>
 #. extracted from ./metadata/android/en-US/short_description.txt
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: kdeconnect-android-store-short\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-11-05 12:31+0000\n"
 "PO-Revision-Date: 2023-06-10 17:26+0200\n"

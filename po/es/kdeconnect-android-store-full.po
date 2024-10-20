@@ -1,4 +1,4 @@
-# Víctor Rodrigo Córdoba <vrcordoba@gmail.com>, 2023.
+# SPDX-FileCopyrightText: 2023 Víctor Rodrigo Córdoba <vrcordoba@gmail.com>
 #. extracted from ./metadata/android/en-US/full_description.txt
 msgid ""
 msgstr ""
