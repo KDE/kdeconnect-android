@@ -18,6 +18,7 @@
   <string name="pref_plugin_clipboard_sent">Klippispjald sent</string>
   <string name="pref_plugin_mousepad">Fjartengd ritun</string>
   <string name="pref_plugin_mousepad_desc">Notaðu símann þinn eða spjaldtölvu sem snertiplatta og lyklaborð</string>
+  <string name="pref_plugin_presenter">Kynningar-fjarstýring</string>
   <string name="pref_plugin_presenter_desc">Notaðu tækið þitt til að skipta á milli skyggna í kynningum</string>
   <string name="pref_plugin_remotekeyboard">"Tekur á móti  fjartengdum innslætti"</string>
   <string name="pref_plugin_remotekeyboard_desc">Taktu á móti lyklainnslætti frá fjartengdum tækjum</string>
@@ -115,6 +116,8 @@
   <string name="my_device_fingerprint">SHA256-fingrafar af skilríki tækisins þíns er:</string>
   <string name="remote_device_fingerprint">SHA256-fingrafar af skilríki fjartengda tækisins er:</string>
   <string name="pair_requested">Beðið um pörun</string>
+  <string name="pair_succeeded">Pörun tókst</string>
+  <string name="pairing_request_from">Beiðni um pörun frá \'%1s\'</string>
   <plurals name="incoming_file_title">
     <item quantity="one">Tek á móti %1$d skrá frá %2$s</item>
     <item quantity="other">Tek á móti %1$d skrám frá %2$s</item>
@@ -151,6 +154,7 @@
   <string name="received_file_text">Pikkaðu til að opna \'%1s\'</string>
   <string name="cannot_create_file">Get ekki búið til skrána %s</string>
   <string name="tap_to_answer">Pikkaðu til að svara</string>
+  <string name="left_click">Senda vinstri músarsmell</string>
   <string name="right_click">Senda hægri músarsmell</string>
   <string name="middle_click">Senda miðjumúsarsmell</string>
   <string name="show_keyboard">Birta lyklaborð</string>
@@ -179,6 +183,8 @@
   </string-array>
   <string name="mpris_notification_settings_title">Birta tilkynningar fyrir margmiðlunarstýringar</string>
   <string name="mpris_notification_settings_summary">Gerir kleift að stýra margmiðlunarspilurunum þínum án þess að opna KDE-tengingar</string>
+  <string name="share_to">Deila með…</string>
+  <string name="unreachable_device">%s (ekki aðgengilegt)</string>
   <string name="protocol_version_newer">Þetta tæki notar nýrri útgáfu samskiptastaðals</string>
   <string name="plugin_settings_with_name">Stillingar %s</string>
   <string name="invalid_device_name">Ógilt heiti tækis</string>
@@ -233,6 +239,7 @@
   <string name="findmyphone_found">Fann það</string>
   <string name="open">Opna</string>
   <string name="close">Loka</string>
+  <string name="permission_explanation">Þessi viðbót þarf sérstakar heimildir til að virka</string>
   <string name="all_permissions_granted">Allar heimildir veittar 🎉</string>
   <string name="share_optional_permission_explanation">Til að taka við skrám þarftu að veita aðgang að geymslurými</string>
   <string name="select_ringtone">Veldu hringitón</string>
@@ -352,6 +359,8 @@
   <string name="send_compose">Senda</string>
   <string name="compose_send_title">Semja og senda</string>
   <string name="open_compose_send">Semja texta</string>
+  <string name="double_tap_to_drag">Ýta tvisvar til að draga</string>
+  <string name="hold_to_drag">Halda til að draga</string>
   <string name="maintainer_and_developer">Umsjónarmaður og forritari</string>
   <string name="developer">Forritari</string>
   <string name="apple_support">Stuðningur við macOS. Unnið að stuðningi við iOS</string>
@@ -366,5 +375,9 @@
   <string name="tap_to_execute">Pikkaðu til að keyra</string>
   <string name="plugin_stats">Tölfræði forritsviðbótar</string>
   <string name="enable_udp_broadcast">Virkja UDP-uppgötvun tækis</string>
+  <string name="enable_bluetooth">Virkja bluetooth (beta)</string>
   <string name="receive_notifications_permission_explanation">Leyfa þarf tilkynningar til að geta tekið við þeim frá öðrum tækjum</string>
+  <string name="mpris_keepwatching">Halda áfram spilun</string>
+  <string name="mpris_keepwatching_settings_title">Halda áfram spilun</string>
+  <string name="notification_channel_keepwatching">Halda áfram spilun</string>
 </resources>
