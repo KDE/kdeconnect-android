@@ -8,21 +8,17 @@ package org.kde.kdeconnect.Plugins
 import android.content.Context
 import android.util.Log
 import androidx.annotation.DrawableRes
-import fyi.fax.klassindex.KlassIndex
-import fyi.fax.klassindex.IndexAnnotated
+import org.atteo.classindex.ClassIndex
+import org.atteo.classindex.IndexAnnotated
 import org.kde.kdeconnect.Device
 
 object PluginFactory {
-
-    @IndexAnnotated
-    annotation class LoadablePlugin  //Annotate plugins with this so PluginFactory finds them
-
     private var pluginInfo: Map<String, PluginInfo> = mapOf()
 
     fun initPluginInfo(context: Context) {
         try {
-            val plugins = KlassIndex.getAnnotated(LoadablePlugin::class)
-                .map { it.java.getDeclaredConstructor().newInstance() as Plugin }
+            val plugins = ClassIndex.getAnnotated(LoadablePlugin::class.java)
+                .map { it.newInstance() as Plugin }
                 .map { plugin -> plugin.apply { setContext(context, null) } }
 
             pluginInfo = plugins.associate { plugin -> Pair(plugin.pluginKey, PluginInfo(plugin)) }
@@ -70,6 +66,9 @@ object PluginFactory {
 
         return used.map { it.key }.toSet()
     }
+
+    @IndexAnnotated
+    annotation class LoadablePlugin  //Annotate plugins with this so PluginFactory finds them
 
     class PluginInfo private constructor(
         val displayName: String,

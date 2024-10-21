@@ -267,10 +267,6 @@ androidComponents {
     }
 }
 
-kapt {
-    useBuildCache = true
-}
-
 dependencies {
     // It has a bug that causes a crash when using PosixFilePermission and minSdk < 26.
     // It has been used in SSHD Core.
@@ -311,8 +307,8 @@ dependencies {
     //implementation("com.github.bright:slf4android:0.1.6") { transitive = true } // For org.apache.sshd debugging
     implementation(libs.bcpkix.jdk15on) //For SSL certificate generation
 
-    implementation(libs.klassindex.library)
-    kapt(libs.klassindex.processor)
+    implementation(libs.classindex)
+    kapt(libs.classindex)
 
     // The android-smsmms library is the only way I know to handle MMS in Android
     // (Shouldn't a phone OS make phone things easy?)
