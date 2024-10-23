@@ -342,7 +342,7 @@
   <string name="empty_trusted_networks_list_text">Вами ще не додано надійних мереж</string>
   <string name="allow_all_networks_text">Дозволити всі</string>
   <string name="location_permission_needed_title">Потрібні права доступу</string>
-  <string name="bluetooth_permission_needed_desc">Надання прав доступу Bluetooth для сполучення пристроїв за допомогою доступного у KDE Connect Bluetooth.</string>
+  <string name="bluetooth_permission_needed_desc">KDE Connect потрібні права доступу до з\'єднання із сусідніми пристроями, щоб зробити пов\'язування пристроїв за допомогою Bluetooth доступним у KDE Connect.</string>
   <string name="location_permission_needed_desc">KDE Connect потрібні права на визначення місця перебування у фоновому режимі для роботи з мережею WiFi, з якою встановлено з\'єднання, навіть якщо програма працює у фоновому режимі. Причина полягає у тому, що назви сусідніх мереж WiFi може бути використано для визначення місця перебування, навіть якщо це не робить сама KDE Connect.</string>
   <string name="clipboard_android_x_incompat">У Android 10 вилучено доступ до буфера даних для усіх програм. Цей додаток буде вимкнено.</string>
   <string name="mpris_open_url">Продовжити відтворення тут</string>

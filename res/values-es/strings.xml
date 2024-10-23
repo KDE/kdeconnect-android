@@ -326,7 +326,6 @@
   <string name="empty_trusted_networks_list_text">No ha añadido ninguna red confiable de momento</string>
   <string name="allow_all_networks_text">Permitir todas</string>
   <string name="location_permission_needed_title">Permisos requeridos</string>
-  <string name="bluetooth_permission_needed_desc">Añadir permisos Bluetooth para que los dispositivos vinculados por esta tecnología estén disponibles en KDE Connect.</string>
   <string name="location_permission_needed_desc">KDE Connect requiere permisos de localización para saber a que red está conectado incluso cuando la aplicación está en segundo plano. Esto es así porque el nombre de las redes WiFi a su alrededor se pueden usar para encontrar su localización, aunque no es esto lo que KDE Connect hace.</string>
   <string name="clipboard_android_x_incompat">Android 10 ha eliminado el acceso al portapapeles para todas las aplicaciones. Este complemento se desactivará.</string>
   <string name="mpris_open_url">Continuar reproduciendo aquí</string>

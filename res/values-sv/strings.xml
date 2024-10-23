@@ -326,7 +326,6 @@
   <string name="empty_trusted_networks_list_text">Du har inte lagt till några pålitliga nätverk ännu</string>
   <string name="allow_all_networks_text">Tillåt alla</string>
   <string name="location_permission_needed_title">Rättighet krävs</string>
-  <string name="bluetooth_permission_needed_desc">Ge Blåtand behörighet att göra apparater som är parkopplade med Bluetooth tillgängliga i KDE-anslut.</string>
   <string name="location_permission_needed_desc">KDE-anslut behöver rättigheter för bakgrundsplats för att känna till WIFI-nätverket du är ansluten med även när programmet är i bakgrunden. Det beror på att namnen på WIFI-nätverk omkring dig skulle kunna användas för att ta reda på var du befinner dig, även om det inte är vad KDE-anslut gör.</string>
   <string name="clipboard_android_x_incompat">Android 10 har tagit bort åtkomst till klippbordet för alla applikationer. Det här insticksprogrammet kommer att inaktiveras.</string>
   <string name="mpris_open_url">Fortsätt spela här</string>
