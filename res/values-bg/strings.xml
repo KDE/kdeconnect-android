@@ -326,6 +326,7 @@
   <string name="empty_trusted_networks_list_text">Все още не сте добавили надеждна мрежа</string>
   <string name="allow_all_networks_text">Allow all</string>
   <string name="location_permission_needed_title">Изисква се разрешение</string>
+  <string name="bluetooth_permission_needed_desc">KDE Connect се нуждае от разрешение за свързване с устройства наблизо, за да направи устройства, сдвоени чрез Bluetooth, достъпни в KDE Connect.</string>
   <string name="location_permission_needed_desc">KDE Connect се нуждае от разрешение за местоположението във фонов режим, за да познава WiFi към която сте свързани, дори когато приложението е във фонов режим. Това е така, защото имената на WiFi мрежите около вас могат да бъдат използвани за намиране на вашето местоположение, дори когато KDE Connect не прави това.</string>
   <string name="clipboard_android_x_incompat">Android 10 премахна достъпа до клипборда за всички приложения. Тази приставка ще бъде деактивирана.</string>
   <string name="mpris_open_url">Продължаване на възпроизвеждането тук</string>
