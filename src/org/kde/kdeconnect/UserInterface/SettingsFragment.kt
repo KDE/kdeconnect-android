@@ -80,7 +80,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         setNegativeButtonText(R.string.cancel)
         onPreferenceChangeListener = Preference.OnPreferenceChangeListener { _: Preference?, new: Any? ->
             val name = new as String?
-            if (!name.isNullOrBlank()) {
+            if (name.isNullOrBlank()) {
                 if (view != null) {
                     val snackbar = Snackbar.make(requireView(), R.string.invalid_device_name, Snackbar.LENGTH_LONG)
                     val currentTheme = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
