@@ -116,7 +116,15 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener {
         val sensorManager = LocalContext.current.getSystemService(SENSOR_SERVICE) as? SensorManager
 
         KdeTheme(this) {
-            Scaffold(topBar = { PresenterAppBar() }) {
+            val modifier = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+                Modifier.displayCutoutPadding()
+            } else {
+                Modifier
+            }
+            Scaffold(
+                modifier = modifier,
+                topBar = { PresenterAppBar() }
+            ) {
                 Column(
                     modifier = Modifier.fillMaxSize().padding(it).padding(16.dp),
                     verticalArrangement = Arrangement.spacedBy(20.dp),

@@ -13,7 +13,6 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.HapticFeedbackConstants;
 import android.view.Menu;
@@ -24,18 +23,18 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
 import org.kde.kdeconnect.KdeConnect;
 import org.kde.kdeconnect.UserInterface.PluginSettingsActivity;
+import org.kde.kdeconnect.base.BaseActivity;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.Objects;
 
 public class MousePadActivity
-        extends AppCompatActivity
+        extends BaseActivity
         implements GestureDetector.OnGestureListener,
         GestureDetector.OnDoubleTapListener,
         MousePadGestureDetector.OnGestureListener,
@@ -599,6 +598,11 @@ public class MousePadActivity
     @Override
     public boolean onSupportNavigateUp() {
         super.onBackPressed();
+        return true;
+    }
+
+    @Override
+    public boolean getHasIme() {
         return true;
     }
 }

@@ -18,7 +18,6 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import org.json.JSONException;
@@ -26,6 +25,7 @@ import org.json.JSONObject;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.KdeConnect;
 import org.kde.kdeconnect.UserInterface.List.ListAdapter;
+import org.kde.kdeconnect.base.BaseActivity;
 import org.kde.kdeconnect_tp.R;
 import org.kde.kdeconnect_tp.databinding.ActivityRunCommandBinding;
 
@@ -35,7 +35,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
-public class RunCommandActivity extends AppCompatActivity {
+public class RunCommandActivity extends BaseActivity {
     private ActivityRunCommandBinding binding;
     private String deviceId;
     private final RunCommandPlugin.CommandsChangedCallback commandsChangedCallback = () -> runOnUiThread(this::updateView);

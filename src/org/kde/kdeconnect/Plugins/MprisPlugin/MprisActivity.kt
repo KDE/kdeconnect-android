@@ -8,15 +8,15 @@ package org.kde.kdeconnect.Plugins.MprisPlugin
 import android.os.Bundle
 import android.view.KeyEvent
 import androidx.annotation.StringRes
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import org.kde.kdeconnect.Plugins.SystemVolumePlugin.SystemVolumeFragment
+import org.kde.kdeconnect.base.BaseActivity
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.ActivityMprisBinding
 
-class MprisActivity : AppCompatActivity() {
+class MprisActivity : BaseActivity() {
     private lateinit var activityMprisBinding: ActivityMprisBinding
     private lateinit var mprisPagerAdapter: MprisPagerAdapter
 

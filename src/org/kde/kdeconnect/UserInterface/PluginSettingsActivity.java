@@ -14,7 +14,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -24,12 +23,13 @@ import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.DeviceStats;
 import org.kde.kdeconnect.KdeConnect;
 import org.kde.kdeconnect.Plugins.Plugin;
+import org.kde.kdeconnect.base.BaseActivity;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.Objects;
 
 public class PluginSettingsActivity
-        extends AppCompatActivity
+        extends BaseActivity
         implements PluginPreference.PluginPreferenceCallback {
 
     public static final String EXTRA_DEVICE_ID = "deviceId";
