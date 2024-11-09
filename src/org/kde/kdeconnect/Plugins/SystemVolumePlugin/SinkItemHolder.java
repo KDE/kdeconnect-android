@@ -98,7 +98,7 @@ class SinkItemHolder extends RecyclerView.ViewHolder
         seekBar.setMax(sink.getMaxVolume());
         seekBar.setProgress(sink.getVolume());
 
-        int iconRes = sink.isMute() ? R.drawable.ic_volume_mute_black : R.drawable.ic_volume_black;
+        int iconRes = sink.isMute() ? R.drawable.ic_volume_mute : R.drawable.ic_volume;
 
         ImageButton button = viewBinding.systemvolumeMute;
         button.setImageResource(iconRes);
