@@ -117,7 +117,7 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener {
 
         KdeTheme(this) {
             val modifier = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
-                Modifier.displayCutoutPadding()
+                Modifier.safeDrawingPadding()
             } else {
                 Modifier
             }

@@ -12,10 +12,10 @@ import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.displayCutoutPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Send
 import androidx.compose.material3.Scaffold
@@ -93,7 +93,7 @@ class ComposeSendActivity : AppCompatActivity() {
     private fun ComposeSendScreen() {
         KdeTheme(this) {
             val modifier = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
-                Modifier.displayCutoutPadding()
+                Modifier.safeDrawingPadding()
             } else {
                 Modifier
             }
