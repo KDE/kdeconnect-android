@@ -600,10 +600,5 @@ public class MousePadActivity
         super.onBackPressed();
         return true;
     }
-
-    @Override
-    public boolean getHasIme() {
-        return true;
-    }
 }
 

@@ -11,20 +11,19 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 fun View.setOnApplyWindowInsetsListenerCompat(listener: (v: View, insets: WindowInsetsCompat) -> WindowInsetsCompat) {
-	ViewCompat.setOnApplyWindowInsetsListener(this, listener)
+    ViewCompat.setOnApplyWindowInsetsListener(this, listener)
 }
 
 fun WindowInsetsCompat.getSafeDrawInsets(): Insets {
-	val systemBars = getInsets(WindowInsetsCompat.Type.systemBars())
-	val cutouts = getInsets(WindowInsetsCompat.Type.displayCutout())
-	return Insets.of(
-		systemBars.left.coerceAtLeast(cutouts.left),
-		systemBars.top.coerceAtLeast(cutouts.top),
-		systemBars.right.coerceAtLeast(cutouts.right),
-		systemBars.bottom.coerceAtLeast(cutouts.bottom)
-	)
-}
-
-fun WindowInsetsCompat.getImeInsets(): Insets {
-	return getInsets(WindowInsetsCompat.Type.ime())
+    val bars = getInsets(
+        WindowInsetsCompat.Type.systemBars()
+                or WindowInsetsCompat.Type.displayCutout()
+                or WindowInsetsCompat.Type.ime()
+    )
+    return Insets.of(
+        bars.left,
+        bars.top,
+        bars.right,
+        bars.bottom
+    )
 }
