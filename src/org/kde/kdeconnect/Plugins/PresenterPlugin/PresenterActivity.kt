@@ -37,6 +37,7 @@ import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect.UserInterface.compose.KdeButton
 import org.kde.kdeconnect.UserInterface.compose.KdeTheme
 import org.kde.kdeconnect.UserInterface.compose.KdeTopAppBar
+import org.kde.kdeconnect.extensions.safeDrawPadding
 import org.kde.kdeconnect_tp.R
 
 private const val VOLUME_UP = 1
@@ -116,13 +117,8 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener {
         val sensorManager = LocalContext.current.getSystemService(SENSOR_SERVICE) as? SensorManager
 
         KdeTheme(this) {
-            val modifier = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
-                Modifier.safeDrawingPadding()
-            } else {
-                Modifier
-            }
             Scaffold(
-                modifier = modifier,
+                modifier = Modifier.safeDrawPadding(),
                 topBar = { PresenterAppBar() }
             ) {
                 Column(

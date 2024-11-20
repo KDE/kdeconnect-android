@@ -5,7 +5,10 @@
  */
 package org.kde.kdeconnect.extensions
 
+import android.os.Build
 import android.view.View
+import androidx.compose.foundation.layout.safeDrawingPadding
+import androidx.compose.ui.Modifier
 import androidx.core.graphics.Insets
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -26,4 +29,12 @@ fun WindowInsetsCompat.getSafeDrawInsets(): Insets {
         bars.right,
         bars.bottom
     )
+}
+
+fun Modifier.safeDrawPadding(): Modifier {
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+        safeDrawingPadding()
+    } else {
+        Modifier
+    }
 }

@@ -6,7 +6,6 @@
 
 package org.kde.kdeconnect.Plugins.MousePadPlugin
 
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.compose.setContent
@@ -15,7 +14,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Send
 import androidx.compose.material3.Scaffold
@@ -32,6 +30,7 @@ import org.kde.kdeconnect.UserInterface.compose.KdeTextButton
 import org.kde.kdeconnect.UserInterface.compose.KdeTextField
 import org.kde.kdeconnect.UserInterface.compose.KdeTheme
 import org.kde.kdeconnect.UserInterface.compose.KdeTopAppBar
+import org.kde.kdeconnect.extensions.safeDrawPadding
 import org.kde.kdeconnect_tp.R
 
 private const val INPUT_CACHE_KEY = "compose_send_input_cache"
@@ -92,13 +91,8 @@ class ComposeSendActivity : AppCompatActivity() {
     @Composable
     private fun ComposeSendScreen() {
         KdeTheme(this) {
-            val modifier = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
-                Modifier.safeDrawingPadding()
-            } else {
-                Modifier
-            }
             Scaffold(
-                modifier = modifier,
+                modifier = Modifier.safeDrawPadding(),
                 topBar = {
                     KdeTopAppBar(
                         title = stringResource(R.string.compose_send_title),
