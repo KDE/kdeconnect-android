@@ -14,19 +14,19 @@ import org.kde.kdeconnect.extensions.setOnApplyWindowInsetsListenerCompat
 
 abstract class BaseActivity : AppCompatActivity() {
 
-	override fun onCreate(savedInstanceState: Bundle?) {
-		super.onCreate(savedInstanceState)
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
-			window.decorView.setOnApplyWindowInsetsListenerCompat { v, insets ->
-				val safeDrawInsets = insets.getSafeDrawInsets()
-				v.updatePadding(
-					top = 0,
-					bottom = safeDrawInsets.bottom,
-					left = safeDrawInsets.left,
-					right = safeDrawInsets.right
-				)
-				insets
-			}
-		}
-	}
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+            window.decorView.setOnApplyWindowInsetsListenerCompat { v, insets ->
+                val safeDrawInsets = insets.getSafeDrawInsets()
+                v.updatePadding(
+                    top = 0,
+                    bottom = safeDrawInsets.bottom,
+                    left = safeDrawInsets.left,
+                    right = safeDrawInsets.right
+                )
+                insets
+            }
+        }
+    }
 }
