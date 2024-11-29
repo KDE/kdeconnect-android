@@ -100,7 +100,6 @@ public class SystemVolumeFragment
         }
         this.plugin = plugin;
         plugin.addSinkListener(SystemVolumeFragment.this);
-        plugin.requestSinkList();
     }
 
     private void disconnectFromPlugin(final String deviceId) {
