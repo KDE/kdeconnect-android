@@ -67,7 +67,7 @@ class BackgroundService : Service() {
 
     private fun registerLinkProviders() {
         linkProviders.add(LanLinkProvider(this))
-        // linkProviders.add(new LoopbackLinkProvider(this));
+        //linkProviders.add(LoopbackLinkProvider(this))
         linkProviders.add(BluetoothLinkProvider(this))
     }
 
