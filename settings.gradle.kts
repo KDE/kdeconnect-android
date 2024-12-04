@@ -3,11 +3,9 @@ pluginManagement {
         gradlePluginPortal()
         google()
         mavenCentral()
-        /* Needed for org.apache.sshd debugging
         maven {
             url = uri("https://jitpack.io")
         }
-        */
     }
 }
 dependencyResolutionManagement {

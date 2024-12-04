@@ -5,7 +5,7 @@ androidGradlePlugin = "8.7.3"
 androidSmsmms = "kdeconnect-1-21-0"
 appcompat = "1.7.0"
 bcpkixJdk15on = "1.70"
-classindex = "3.13"
+classindexksp = "1.1"
 commonsCollections4 = "4.4"
 commonsIo = "2.17.0"
 commonsLang3 = "3.17.0"
@@ -18,6 +18,7 @@ gridlayout = "1.0.0"
 jsonassert = "1.5.3"
 junit = "4.13.2"
 kotlin = "2.0.21"
+kspPlugin = "2.0.21-1.0.28"
 kotlinxCoroutinesCore = "1.9.0"
 lifecycleExtensions = "2.2.0"
 lifecycleRuntimeKtx = "2.8.7"
@@ -58,7 +59,7 @@ androidx-preference-ktx = { module = "androidx.preference:preference-ktx", versi
 androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
 androidx-swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayout" }
 bcpkix-jdk15on = { module = "org.bouncycastle:bcpkix-jdk15on", version.ref = "bcpkixJdk15on" }
-classindex = { module = "org.atteo.classindex:classindex", version.ref = "classindex" }
+classindexksp = { module = "com.github.albertvaka:classindexksp", version.ref = "classindexksp" }
 commons-collections4 = { module = "org.apache.commons:commons-collections4", version.ref = "commonsCollections4" }
 commons-io = { module = "commons-io:commons-io", version.ref = "commonsIo" }
 commons-lang3 = { module = "org.apache.commons:commons-lang3", version.ref = "commonsLang3" }
@@ -87,5 +88,5 @@ slf4j-handroid = { group = "com.gitlab.mvysny.slf4j", name = "slf4j-handroid", v
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "kspPlugin" }
 dependencyLicenseReport = { id = "com.github.jk1.dependency-license-report", version.ref = "dependencyLicenseReport" }
