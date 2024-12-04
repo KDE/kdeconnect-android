@@ -21,7 +21,7 @@ buildscript {
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.ksp)
     alias(libs.plugins.dependencyLicenseReport)
     alias(libs.plugins.compose.compiler)
 }
@@ -254,6 +254,10 @@ abstract class FixCollectionsClassVisitorFactory :
     interface Params : InstrumentationParameters
 }
 
+ksp {
+    arg("com.albertvaka.classindexksp.annotations", "org.kde.kdeconnect.Plugins.PluginFactory.LoadablePlugin")
+}
+
 androidComponents {
     onVariants { variant ->
         variant.instrumentation.transformClassesWith(
@@ -307,8 +311,7 @@ dependencies {
     //implementation("com.github.bright:slf4android:0.1.6") { transitive = true } // For org.apache.sshd debugging
     implementation(libs.bcpkix.jdk15on) //For SSL certificate generation
 
-    implementation(libs.classindex)
-    kapt(libs.classindex)
+    ksp(libs.classindexksp)
 
     // The android-smsmms library is the only way I know to handle MMS in Android
     // (Shouldn't a phone OS make phone things easy?)
