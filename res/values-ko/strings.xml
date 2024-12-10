@@ -108,21 +108,21 @@
   <string name="category_not_paired_devices">사용 가능한 장치</string>
   <string name="category_remembered_devices">기억하는 장치</string>
   <string name="device_menu_plugins">플러그인 설정</string>
-  <string name="device_menu_unpair">연결 해제</string>
-  <string name="pair_new_device">새 장치 연결</string>
+  <string name="device_menu_unpair">페어링 해제</string>
+  <string name="pair_new_device">새 장치 페어링</string>
   <string name="cancel_pairing">페어링 취소</string>
   <string name="unknown_device">알 수 없는 장치</string>
   <string name="error_not_reachable">장치에 접근할 수 없음</string>
-  <string name="error_already_paired">장치가 이미 연결됨</string>
+  <string name="error_already_paired">장치가 이미 페어링됨</string>
   <string name="error_timed_out">시간 초과됨</string>
   <string name="error_canceled_by_user">사용자가 취소함</string>
   <string name="error_canceled_by_other_peer">다른 쪽에서 취소함</string>
   <string name="encryption_info_title">암호화 정보</string>
   <string name="my_device_fingerprint">내 장치 인증서의 SHA256 지문:</string>
   <string name="remote_device_fingerprint">원격 장치 인증서의 SHA256 지문:</string>
-  <string name="pair_requested">연결 요청됨</string>
-  <string name="pair_succeeded">연결 성공</string>
-  <string name="pairing_request_from">\'%1s\'에서 연결 요청</string>
+  <string name="pair_requested">페어링 요청됨</string>
+  <string name="pair_succeeded">페어링 성공</string>
+  <string name="pairing_request_from">\'%1s\'에서 페어링 요청</string>
   <plurals name="incoming_file_title">
     <item quantity="other">%2$s에서 보낸 파일 %1$d개 받음</item>
   </plurals>
@@ -155,8 +155,8 @@
   <string name="right_click">오른쪽 단추 클릭 신호 보내기</string>
   <string name="middle_click">가운데 단추 클릭 신호 보내기</string>
   <string name="show_keyboard">키보드 표시</string>
-  <string name="device_not_paired">장치가 연결되지 않음</string>
-  <string name="request_pairing">연결 요청</string>
+  <string name="device_not_paired">장치가 페어링되지 않음</string>
+  <string name="request_pairing">페어링 요청</string>
   <string name="pairing_accept">수락</string>
   <string name="pairing_reject">거부</string>
   <string name="settings">설정</string>
@@ -229,7 +229,7 @@
   <string name="device_rename_title">장치 이름 바꾸기</string>
   <string name="device_rename_confirm">이름 바꾸기</string>
   <string name="refresh">새로 고침</string>
-  <string name="unreachable_description">이 연결된 장치에 접근할 수 없습니다. 같은 네트워크에 있는지 확인하십시오.</string>
+  <string name="unreachable_description">이 페어링된 장치에 접근할 수 없습니다. 같은 네트워크에 있는지 확인하십시오.</string>
   <string name="no_wifi">Wi-Fi 네트워크에 연결된 것 같지 않습니다. 다른 장치를 볼 수 없습니다. 여기를 클릭하면 Wi-Fi를 활성화합니다.</string>
   <string name="on_non_trusted_message">신뢰할 수 없는 네트워크: 자동 발견을 비활성화했습니다.</string>
   <string name="no_file_browser">설치된 파일 탐색기가 없습니다.</string>
@@ -281,7 +281,7 @@
   <string name="copy_url_to_clipboard">클립보드로 URL 복사</string>
   <string name="clipboard_toast">클립보드에 복사됨</string>
   <string name="runcommand_notreachable">장치에 접근할 수 없음</string>
-  <string name="runcommand_notpaired">장치가 연결되지 않음</string>
+  <string name="runcommand_notpaired">장치가 페어링되지 않음</string>
   <string name="runcommand_nosuchdevice">장치가 없음</string>
   <string name="runcommand_noruncommandplugin">이 장치에서 명령 실행 플러그인이 활성화되어 있지 않음</string>
   <string name="runcommand_category_device_controls_title">장치 제어</string>
@@ -318,6 +318,7 @@
   <string name="empty_trusted_networks_list_text">신뢰할 수 있는 네트워크를 추가하지 않았습니다</string>
   <string name="allow_all_networks_text">모두 허용</string>
   <string name="location_permission_needed_title">권한이 필요함</string>
+  <string name="bluetooth_permission_needed_desc">KDE Connect에서 블루투스를 사용하여 페어링된 장치를 사용하려면 근처 장치에 연결할 수 있는 권한이 필요합니다.</string>
   <string name="location_permission_needed_desc">KDE Connect에서 현재 연결된 Wi-Fi 네트워크 정보를 얻으려면 앱이 백그라운드에서 실행 중일 때에도 백그라운드 권한이 필요합니다. KDE Connect에서는 사용자의 위치를 찾지 않지만, 내 주변에 있는 Wi-Fi 네트워크의 이름으로도 위치를 찾을 수 있기 때문입니다.</string>
   <string name="clipboard_android_x_incompat">안드로이드 10부터는 앱에서 클립보드에 접근할 수 없습니다. 이 플러그인이 비활성화되었습니다.</string>
   <string name="mpris_open_url">여기에서 계속 재생</string>
@@ -381,6 +382,8 @@
   <string name="send_compose">보내기</string>
   <string name="compose_send_title">텍스트 보내기</string>
   <string name="open_compose_send">텍스트 작성</string>
+  <string name="double_tap_to_drag">두 번 탭하면 드래그</string>
+  <string name="hold_to_drag">누르고 있으면 드래그</string>
   <string name="about_kde_about">&lt;h1&gt;정보&lt;h1&gt; &lt;p&gt;KDE는 &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;자유 소프트웨어&lt;/a&gt;를 개발하려고 모인 소프트웨어 개발자, 예술가, 집필가, 번역가 및 기타 인원의 모임입니다. KDE 커뮤니티에서는 Plasma 데스크톱 환경, 다양한 앱 및 지원 라이브러리를 개발합니다.&lt;p&gt; &lt;p&gt;KDE는 협동 조합입니다. 어떠한 단일 집단도 방향이나 제품을 결정하지 않습니다. 우리는 전 세계에서 가장 뛰어난 자유 소프트웨어 개발이라는 공통 목표를 향해 함께 힘을 모으고 있습니다. KDE에는 이 글을 읽는 여러분과 같은 누구나 &lt;a href=https://community.kde.org/Get_Involved&gt;참여하고 기여&lt;/a&gt;할 수 있습니다.&lt;p&gt; &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; 페이지를 방문하셔서 KDE 커뮤니티와 소프트웨어에 대해 알아 보십시오.</string>
   <string name="about_kde_report_bugs_or_wishes">"&lt;h1&gt;버그나 요구 사항 보고&lt;/h1&gt; &lt;p&gt;소프트웨어는 항상 개선되며, KDE 팀도 그럴 준비가 되어 있습니다. 따라서 사용자 여러분은 무언가가 예상한 대로 작동하지 않거나 더 잘 작동하기를 바라면 개발자에게 알려 주십시오.&lt;/p&gt; &lt;p&gt;KDE는 버그 추적 시스템을 가지고 있습니다. &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt;를 방문하시거나 \"도움말\" 메뉴의 \"버그 보고...\" 대화 상자를 이용하셔서 버그를 보고해 주십시오.&lt;/p&gt; 개선 사항 제안을  하고 싶으시다면 버그 보고 시스템을 통해서 알려 주십시오. 이 경우 심각성  항목에서 \"Wishlist\"를 선택하셔야 합니다."</string>
   <string name="about_kde_join_kde">&lt;h1&gt;KDE에 참여하기&lt;/h1&gt; &lt;p&gt;소프트웨어 개발자만이 KDE에 참가할 수 있는 것은 아닙니다. 프로그램 인터페이스를 번역하는 각 언어 번역팀을 도울 수도 있습니다. 또한 그래픽, 테마, 소리, 더 나은 문서 등을 기여할 수도 있습니다. 직접 결정하십시오!&lt;/p&gt; &lt;p&gt;&lt;a href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/Get_Involved&lt;/a&gt; 페이지를 방문하셔서 참여할 수 있는 프로젝트를 찾아 보십시오.&lt;/p&gt; 만약 더 많은 정보나 문서가 필요하다면, &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/&lt;/a&gt; 사이트를 방문하셔서 원하는 정보를 찾으십시오.</string>
@@ -401,6 +404,7 @@
   <string name="tap_to_execute">실행하려면 누르십시오</string>
   <string name="plugin_stats">플러그인 통계</string>
   <string name="enable_udp_broadcast">UDP 서비스 발견 활성화</string>
+  <string name="enable_bluetooth">블루투스 활성화(베타)</string>
   <string name="receive_notifications_permission_explanation">다른 장치에서 알림을 받으려면 알림을 허용해야 합니다</string>
   <string name="findmyphone_notifications_explanation">앱이 백그라운드에서 실행 중일 때 장치를 울리게 하려면 알림 권한이 필요합니다</string>
   <string name="no_notifications">알림이 비활성화되어 있습니다. 들어오는 페어링 알림을 받을 수 없습니다</string>
