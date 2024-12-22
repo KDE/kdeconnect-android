@@ -6,6 +6,7 @@
 
 package org.kde.kdeconnect.UserInterface;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,21 +17,25 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.kde.kdeconnect.DeviceHost;
+import org.kde.kdeconnect_tp.R;
 import org.kde.kdeconnect_tp.databinding.CustomDeviceItemBinding;
 
 import java.util.ArrayList;
 
 public class CustomDevicesAdapter extends RecyclerView.Adapter<CustomDevicesAdapter.ViewHolder> {
-    private ArrayList<String> customDevices;
+    private ArrayList<DeviceHost> customDevices;
     private final Callback callback;
+    private final Context context;
 
-    CustomDevicesAdapter(@NonNull Callback callback) {
+    CustomDevicesAdapter(@NonNull Callback callback, Context context) {
         this.callback = callback;
+        this.context = context;
 
         customDevices = new ArrayList<>();
     }
 
-    void setCustomDevices(ArrayList<String> customDevices) {
+    void setCustomDevices(ArrayList<DeviceHost> customDevices) {
         this.customDevices = customDevices;
 
         notifyDataSetChanged();
@@ -51,12 +56,13 @@ public class CustomDevicesAdapter extends RecyclerView.Adapter<CustomDevicesAdap
         CustomDeviceItemBinding itemBinding =
                 CustomDeviceItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
 
-        return new ViewHolder(itemBinding);
+        return new ViewHolder(itemBinding, context);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.bind(customDevices.get(position));
+        DeviceHost deviceHost = customDevices.get(position);
+        holder.bind(deviceHost.toString(), deviceHost.getPing());
     }
 
     @Override
@@ -66,15 +72,29 @@ public class CustomDevicesAdapter extends RecyclerView.Adapter<CustomDevicesAdap
 
     class ViewHolder extends RecyclerView.ViewHolder implements SwipeableViewHolder {
         private final CustomDeviceItemBinding itemBinding;
+        private final Context context;
 
-        ViewHolder(@NonNull CustomDeviceItemBinding itemBinding) {
+        ViewHolder(@NonNull CustomDeviceItemBinding itemBinding, Context context) {
             super(itemBinding.getRoot());
             this.itemBinding = itemBinding;
             itemBinding.deviceNameOrIP.setOnClickListener(v -> callback.onCustomDeviceClicked(customDevices.get(getAdapterPosition())));
+            this.context = context;
         }
 
-        void bind(String customDevice) {
+        void bind(String customDevice, DeviceHost.PingResult pingResult) {
             itemBinding.deviceNameOrIP.setText(customDevice);
+            if (pingResult != null) {
+                if (pingResult.getLatency() != null) {
+                    String text = context.getString(R.string.ping_result, pingResult.getLatency());
+                    itemBinding.connectionStatus.setText(text);
+                }
+                else {
+                    itemBinding.connectionStatus.setText(R.string.ping_failed);
+                }
+            }
+            else {
+                itemBinding.connectionStatus.setText(R.string.ping_in_progress);
+            }
         }
 
         @Override
@@ -144,7 +164,7 @@ public class CustomDevicesAdapter extends RecyclerView.Adapter<CustomDevicesAdap
     }
 
     public interface Callback {
-        void onCustomDeviceClicked(String customDevice);
-        void onCustomDeviceDismissed(String customDevice);
+        void onCustomDeviceClicked(DeviceHost customDevice);
+        void onCustomDeviceDismissed(DeviceHost customDevice);
     }
 }

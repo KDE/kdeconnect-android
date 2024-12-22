@@ -13,6 +13,7 @@ import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,16 +26,16 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
+import org.kde.kdeconnect.DeviceHost;
 import org.kde.kdeconnect_tp.R;
 import org.kde.kdeconnect_tp.databinding.ActivityCustomDevicesBinding;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.Objects;
 
-//TODO: Require wifi connection so entries can be verified
-//TODO: Resolve to ip address and don't allow unresolvable or duplicates based on ip address
-//TODO: Sort the list
+import kotlin.Unit;
+
 public class CustomDevicesActivity extends AppCompatActivity implements CustomDevicesAdapter.Callback {
     private static final String TAG_ADD_DEVICE_DIALOG = "AddDeviceDialog";
 
@@ -45,7 +46,7 @@ public class CustomDevicesActivity extends AppCompatActivity implements CustomDe
     private RecyclerView recyclerView;
     private TextView emptyListMessage;
 
-    private ArrayList<String> customDeviceList;
+    private ArrayList<DeviceHost> customDeviceList;
     private EditTextAlertDialogFragment addDeviceDialog;
     private SharedPreferences sharedPreferences;
     private CustomDevicesAdapter customDevicesAdapter;
@@ -67,15 +68,19 @@ public class CustomDevicesActivity extends AppCompatActivity implements CustomDe
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        fab.setOnClickListener(v -> showEditTextDialog(""));
+        fab.setOnClickListener(v -> showEditTextDialog(null));
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         customDeviceList = getCustomDeviceList(sharedPreferences);
+        customDeviceList.forEach(host -> host.checkReachable(() -> {
+            runOnUiThread(() -> customDevicesAdapter.notifyDataSetChanged());
+            return Unit.INSTANCE;
+        }));
 
         showEmptyListMessageIfRequired();
 
-        customDevicesAdapter = new CustomDevicesAdapter(this);
+        customDevicesAdapter = new CustomDevicesAdapter(this, getApplicationContext());
         customDevicesAdapter.setCustomDevices(customDeviceList);
 
         recyclerView.setHasFixedSize(true);
@@ -108,7 +113,11 @@ public class CustomDevicesActivity extends AppCompatActivity implements CustomDe
         emptyListMessage.setVisibility(customDeviceList.isEmpty() ? View.VISIBLE : View.GONE);
     }
 
-    private void showEditTextDialog(@NonNull String text) {
+    private void showEditTextDialog(DeviceHost deviceHost) {
+        String text = "";
+        if (deviceHost != null) {
+            text = deviceHost.toString();
+        }
         addDeviceDialog = new EditTextAlertDialogFragment.Builder()
                 .setTitle(R.string.add_device_dialog_title)
                 .setHint(R.string.add_device_hint)
@@ -129,30 +138,37 @@ public class CustomDevicesActivity extends AppCompatActivity implements CustomDe
                 .apply();
     }
 
-    private static ArrayList<String> deserializeIpList(String serialized) {
-        ArrayList<String> ipList = new ArrayList<>();
+    private static ArrayList<DeviceHost> deserializeIpList(String serialized) {
+        ArrayList<DeviceHost> ipList = new ArrayList<>();
 
         if (!serialized.isEmpty()) {
-            Collections.addAll(ipList, serialized.split(IP_DELIM));
+            for (String ip: serialized.split(IP_DELIM)) {
+                DeviceHost deviceHost = DeviceHost.toDeviceHostOrNull(ip);
+                // To prevent crashes when migrating if invalid hosts are present
+                if (deviceHost != null) {
+                    ipList.add(deviceHost);
+                }
+            }
         }
 
         return ipList;
     }
 
-    public static ArrayList<String> getCustomDeviceList(SharedPreferences sharedPreferences) {
+    public static ArrayList<DeviceHost> getCustomDeviceList(SharedPreferences sharedPreferences) {
         String deviceListPrefs = sharedPreferences.getString(KEY_CUSTOM_DEVLIST_PREFERENCE, "");
-
-        return deserializeIpList(deviceListPrefs);
+        ArrayList<DeviceHost> list = deserializeIpList(deviceListPrefs);
+        list.sort(Comparator.comparing(DeviceHost::toString));
+        return list;
     }
 
     @Override
-    public void onCustomDeviceClicked(String customDevice) {
+    public void onCustomDeviceClicked(DeviceHost customDevice) {
         editingDeviceAtPosition = customDeviceList.indexOf(customDevice);
         showEditTextDialog(customDevice);
     }
 
     @Override
-    public void onCustomDeviceDismissed(String customDevice) {
+    public void onCustomDeviceDismissed(DeviceHost customDevice) {
         lastDeletedCustomDevice = new DeletedCustomDevice(customDevice, customDeviceList.indexOf(customDevice));
         customDeviceList.remove(lastDeletedCustomDevice.position);
         customDevicesAdapter.notifyItemRemoved(lastDeletedCustomDevice.position);
@@ -190,19 +206,44 @@ public class CustomDevicesActivity extends AppCompatActivity implements CustomDe
         public void onPositiveButtonClicked() {
             if (addDeviceDialog.editText.getText() != null) {
                 String deviceNameOrIP = addDeviceDialog.editText.getText().toString().trim();
+                DeviceHost host = DeviceHost.toDeviceHostOrNull(deviceNameOrIP);
 
                 // don't add empty string (after trimming)
-                if (!deviceNameOrIP.isEmpty() && !customDeviceList.contains(deviceNameOrIP)) {
-                    if (editingDeviceAtPosition >= 0) {
-                        customDeviceList.set(editingDeviceAtPosition, deviceNameOrIP);
-                        customDevicesAdapter.notifyItemChanged(editingDeviceAtPosition);
-                    } else {
-                        customDeviceList.add(deviceNameOrIP);
-                        customDevicesAdapter.notifyItemInserted(customDeviceList.size() - 1);
-                    }
+                if (host != null) {
+                    if (!customDeviceList.stream().anyMatch(h -> h.toString().equals(host.toString()))) {
+                        if (editingDeviceAtPosition >= 0) {
+                            customDeviceList.set(editingDeviceAtPosition, host);
+                            customDevicesAdapter.notifyItemChanged(editingDeviceAtPosition);
+                            host.checkReachable(() -> {
+                                runOnUiThread(() -> customDevicesAdapter.notifyItemChanged(editingDeviceAtPosition));
+                                return Unit.INSTANCE;
+                            });
+                        }
+                        else {
+                            // Find insertion position to ensure list remains sorted
+                            int pos = 0;
+                            while (customDeviceList.size() - 1 >= pos && customDeviceList.get(pos).toString().compareTo(host.toString()) < 0) {
+                                pos++;
+                            }
+                            final int position = pos;
 
-                    saveList();
-                    showEmptyListMessageIfRequired();
+                            customDeviceList.add(position, host);
+                            customDevicesAdapter.notifyItemInserted(pos);
+                            host.checkReachable(() -> {
+                                runOnUiThread(() -> customDevicesAdapter.notifyItemChanged(position));
+                                return Unit.INSTANCE;
+                            });
+                        }
+
+                        saveList();
+                        showEmptyListMessageIfRequired();
+                    }
+                    else {
+                        Toast.makeText(addDeviceDialog.getContext(), R.string.device_host_duplicate, Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else {
+                    Toast.makeText(addDeviceDialog.getContext(), R.string.device_host_invalid, Toast.LENGTH_SHORT).show();
                 }
             }
         }
@@ -214,10 +255,10 @@ public class CustomDevicesActivity extends AppCompatActivity implements CustomDe
     }
 
     private static class DeletedCustomDevice {
-        @NonNull String hostnameOrIP;
+        @NonNull DeviceHost hostnameOrIP;
         int position;
 
-        DeletedCustomDevice(@NonNull String hostnameOrIP, int position) {
+        DeletedCustomDevice(@NonNull DeviceHost hostnameOrIP, int position) {
             this.hostnameOrIP = hostnameOrIP;
             this.position = position;
         }

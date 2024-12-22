@@ -20,6 +20,7 @@ import org.json.JSONException;
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.DeviceHost;
 import org.kde.kdeconnect.DeviceInfo;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
@@ -384,19 +385,19 @@ public class LanLinkProvider extends BaseLinkProvider {
         }
 
         ThreadHelper.execute(() -> {
-            List<String> ipStringList = CustomDevicesActivity
+            List<DeviceHost> hostList = CustomDevicesActivity
                     .getCustomDeviceList(PreferenceManager.getDefaultSharedPreferences(context));
 
             if (TrustedNetworkHelper.isTrustedNetwork(context)) {
-                ipStringList.add("255.255.255.255"); //Default: broadcast.
+                hostList.add(DeviceHost.BROADCAST); //Default: broadcast.
             } else {
                 Log.i("LanLinkProvider", "Current network isn't trusted, not broadcasting");
             }
 
             ArrayList<InetAddress> ipList = new ArrayList<>();
-            for (String ip : ipStringList) {
+            for (DeviceHost host : hostList) {
                 try {
-                    ipList.add(InetAddress.getByName(ip));
+                    ipList.add(InetAddress.getByName(host.toString()));
                 } catch (UnknownHostException e) {
                     e.printStackTrace();
                 }
