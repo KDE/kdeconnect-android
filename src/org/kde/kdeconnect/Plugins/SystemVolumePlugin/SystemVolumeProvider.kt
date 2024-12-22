@@ -155,15 +155,15 @@ class SystemVolumeProvider private constructor(plugin: SystemVolumePlugin) :
         return sink != null
     }
 
-    fun startListeningForSinks() {
-        systemVolumePlugin.addSinkListener(this)
-        systemVolumePlugin.requestSinkList()
-    }
-
     fun release() {
         stopListeningForSinks()
         stateListeners.clear()
         currentProvider = null
+    }
+
+    private fun startListeningForSinks() {
+        systemVolumePlugin.addSinkListener(this)
+        sinksChanged();
     }
 
     private fun stopListeningForSinks() {
