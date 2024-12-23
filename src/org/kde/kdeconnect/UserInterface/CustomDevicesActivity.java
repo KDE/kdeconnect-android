@@ -27,6 +27,7 @@ import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.kde.kdeconnect.DeviceHost;
+import org.kde.kdeconnect.Helpers.WindowHelper;
 import org.kde.kdeconnect.base.BaseActivity;
 import org.kde.kdeconnect_tp.R;
 import org.kde.kdeconnect_tp.databinding.ActivityCustomDevicesBinding;
@@ -85,6 +86,9 @@ public class CustomDevicesActivity extends BaseActivity implements CustomDevices
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(customDevicesAdapter);
+
+        WindowHelper.setupBottomPadding(recyclerView);
+        WindowHelper.setupBottomMargin(binding.floatingActionButton);
 
         addDeviceDialog = (EditTextAlertDialogFragment) getSupportFragmentManager().findFragmentByTag(TAG_ADD_DEVICE_DIALOG);
         if (addDeviceDialog != null) {
@@ -267,6 +271,11 @@ public class CustomDevicesActivity extends BaseActivity implements CustomDevices
     @Override
     public boolean onSupportNavigateUp() {
         super.onBackPressed();
+        return true;
+    }
+
+    @Override
+    public boolean isListActivity() {
         return true;
     }
 }
