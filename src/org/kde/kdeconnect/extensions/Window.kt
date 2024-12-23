@@ -39,7 +39,7 @@ fun View.setupBottomPadding() {
         return
     }
     val originalBottomPadding = paddingBottom
-    setOnApplyWindowInsetsListenerCompat { v, insets ->
+    setOnApplyWindowInsetsListenerCompat { _, insets ->
         val safeInsets = insets.getSafeDrawInsets()
         updatePadding(bottom = originalBottomPadding + safeInsets.bottom)
         insets
@@ -51,7 +51,7 @@ fun View.setupBottomMargin() {
         return
     }
     val originalBottomMargin = (layoutParams as MarginLayoutParams).bottomMargin
-    setOnApplyWindowInsetsListenerCompat { v, insets ->
+    setOnApplyWindowInsetsListenerCompat { _, insets ->
         val safeInsets = insets.getSafeDrawInsets()
         updateLayoutParams<MarginLayoutParams> {
             bottomMargin = originalBottomMargin + safeInsets.bottom
