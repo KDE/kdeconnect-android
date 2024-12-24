@@ -6,6 +6,7 @@
 package org.kde.kdeconnect.UserInterface
 
 import android.Manifest
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -151,14 +152,35 @@ class SettingsFragment : PreferenceFragmentCompat() {
         }
     }
 
+    private val REQUEST_REFRESH_DEVICES_BY_IP = 1
+
+    private lateinit var devicesByIpPref : Preference
+
     /** Opens activity to configure device by IP when clicked */
     private fun devicesByIpPref(context: Context) = Preference(context).apply {
+        devicesByIpPref = this
         isPersistent = false
         setTitle(R.string.custom_device_list)
+        updateDevicesByIpSummary()
         onPreferenceClickListener = Preference.OnPreferenceClickListener {
-            startActivity(Intent(context, CustomDevicesActivity::class.java))
+            startActivityForResult(Intent(context, CustomDevicesActivity::class.java), REQUEST_REFRESH_DEVICES_BY_IP)
             true
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == REQUEST_REFRESH_DEVICES_BY_IP) {
+            updateDevicesByIpSummary()
+        } else {
+            super.onActivityResult(requestCode, resultCode, data)
+        }
+    }
+
+    private fun updateDevicesByIpSummary() {
+        devicesByIpPref.setSummary(getString(
+            R.string.custom_devices_settings_summary,
+            CustomDevicesActivity.getCustomDeviceList(context).size
+        ))
     }
 
     private fun udpBroadcastPref(context: Context) = SwitchPreference(context).apply {

@@ -7,6 +7,7 @@
 
 package org.kde.kdeconnect.UserInterface;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -48,7 +49,6 @@ public class CustomDevicesActivity extends AppCompatActivity implements CustomDe
 
     private ArrayList<DeviceHost> customDeviceList;
     private EditTextAlertDialogFragment addDeviceDialog;
-    private SharedPreferences sharedPreferences;
     private CustomDevicesAdapter customDevicesAdapter;
     private DeletedCustomDevice lastDeletedCustomDevice;
     private int editingDeviceAtPosition;
@@ -70,9 +70,7 @@ public class CustomDevicesActivity extends AppCompatActivity implements CustomDe
 
         fab.setOnClickListener(v -> showEditTextDialog(null));
 
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-
-        customDeviceList = getCustomDeviceList(sharedPreferences);
+        customDeviceList = getCustomDeviceList(this);
         customDeviceList.forEach(host -> host.checkReachable(() -> {
             runOnUiThread(() -> customDevicesAdapter.notifyDataSetChanged());
             return Unit.INSTANCE;
@@ -131,6 +129,7 @@ public class CustomDevicesActivity extends AppCompatActivity implements CustomDe
     }
 
     private void saveList() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String serialized = TextUtils.join(IP_DELIM, customDeviceList);
         sharedPreferences
                 .edit()
@@ -154,7 +153,8 @@ public class CustomDevicesActivity extends AppCompatActivity implements CustomDe
         return ipList;
     }
 
-    public static ArrayList<DeviceHost> getCustomDeviceList(SharedPreferences sharedPreferences) {
+    public static ArrayList<DeviceHost> getCustomDeviceList(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         String deviceListPrefs = sharedPreferences.getString(KEY_CUSTOM_DEVLIST_PREFERENCE, "");
         ArrayList<DeviceHost> list = deserializeIpList(deviceListPrefs);
         list.sort(Comparator.comparing(DeviceHost::toString));

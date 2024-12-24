@@ -386,7 +386,7 @@ public class LanLinkProvider extends BaseLinkProvider {
 
         ThreadHelper.execute(() -> {
             List<DeviceHost> hostList = CustomDevicesActivity
-                    .getCustomDeviceList(PreferenceManager.getDefaultSharedPreferences(context));
+                    .getCustomDeviceList(context);
 
             if (TrustedNetworkHelper.isTrustedNetwork(context)) {
                 hostList.add(DeviceHost.BROADCAST); //Default: broadcast.
