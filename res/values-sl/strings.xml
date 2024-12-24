@@ -436,4 +436,9 @@
   <string name="mpris_keepwatching_settings_title">Nadaljuj s predvajanjem</string>
   <string name="mpris_keepwatching_settings_summary">Pokaži tiho obvestilo za nadaljevanje predvajanja v tej napravi po zaprtju predstavnosti</string>
   <string name="notification_channel_keepwatching">Nadaljuj s predvajanjem</string>
+  <string name="ping_result">Ping-an v %1$d milisekundah</string>
+  <string name="ping_failed">Ni bilo mogoče pingati naprave</string>
+  <string name="ping_in_progress">Pinganje…</string>
+  <string name="device_host_invalid">Gostitelj ni veljaven. Uporabite veljavno ime gostitelja, IPv4 ali IPv6</string>
+  <string name="device_host_duplicate">Gostitelj že obstaja na seznamu</string>
 </resources>

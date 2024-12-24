@@ -420,4 +420,9 @@
   <string name="mpris_keepwatching_settings_title">Doorgaan met afspelen</string>
   <string name="mpris_keepwatching_settings_summary">Een stille melding tonen om door te gaan met afspelen op dit apparaat na sluiten van het medium</string>
   <string name="notification_channel_keepwatching">Doorgaan met afspelen</string>
+  <string name="ping_result">Ping verkregen in %1$d milliseconden</string>
+  <string name="ping_failed">Kreeg geen antwoord op ping van apparaat</string>
+  <string name="ping_in_progress">Ping wordt verstuurt</string>
+  <string name="device_host_invalid">Host is ongeldig. Gebruik een geldige hostnaam, IPv4 of IPv6</string>
+  <string name="device_host_duplicate">Host bestaat al in de lijst</string>
 </resources>

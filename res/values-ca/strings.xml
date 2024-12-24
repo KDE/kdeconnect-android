@@ -420,4 +420,9 @@
   <string name="mpris_keepwatching_settings_title">Continua reproduint</string>
   <string name="mpris_keepwatching_settings_summary">Mostra una notificació silenciosa per a continuar reproduint en aquest dispositiu després de tancar l\'element multimèdia</string>
   <string name="notification_channel_keepwatching">Continua reproduint</string>
+  <string name="ping_result">S\'ha fet «ping» en %1$d mil·lisegons</string>
+  <string name="ping_failed">No s\'ha pogut fer «ping» al dispositiu</string>
+  <string name="ping_in_progress">S\'està fent «ping»…</string>
+  <string name="device_host_invalid">L\'ordinador no és vàlid. Useu un nom d\'ordinador, IPv4 o IPv6 vàlids</string>
+  <string name="device_host_duplicate">L\'ordinador ja existeix a la llista</string>
 </resources>

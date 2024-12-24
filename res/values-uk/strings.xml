@@ -436,4 +436,9 @@
   <string name="mpris_keepwatching_settings_title">Продовжити відтворення</string>
   <string name="mpris_keepwatching_settings_summary">Показати беззвучне сповіщення для продовження відтворення на цьому пристрої після закриття носія</string>
   <string name="notification_channel_keepwatching">Продовжити відтворення</string>
+  <string name="ping_result">Виконано зондування за %1$d мілісекунд</string>
+  <string name="ping_failed">Не вдалося зондувати пристрій</string>
+  <string name="ping_in_progress">Зондування…</string>
+  <string name="device_host_invalid">Вузол є некоректним. Скористайтеся коректною назвою вузла, IPv4 або IPv6</string>
+  <string name="device_host_duplicate">Запис вузла вже є у списку</string>
 </resources>

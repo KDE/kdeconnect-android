@@ -420,4 +420,9 @@
   <string name="mpris_keepwatching_settings_title">Continuar reproducindo</string>
   <string name="mpris_keepwatching_settings_summary">Amosar unha notificación silenciosa para continuar reproducindo neste dispositivo tras pechar o contido multimedia.</string>
   <string name="notification_channel_keepwatching">Continuar reproducindo</string>
+  <string name="ping_result">Enviouse un ping en %1$d milisegundos</string>
+  <string name="ping_failed">Non foi posíbel enviar un ping ao dispositivo.</string>
+  <string name="ping_in_progress">Enviando un ping…</string>
+  <string name="device_host_invalid">O servidor non é válido. Use un nome de servidor, enderezo IPv4 ou enderezo IPv6 válido.</string>
+  <string name="device_host_duplicate">O servidor xa existe na lista.</string>
 </resources>

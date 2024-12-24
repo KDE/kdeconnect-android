@@ -420,4 +420,9 @@
   <string name="mpris_keepwatching_settings_title">Oynamayı Sürdür</string>
   <string name="mpris_keepwatching_settings_summary">Ortamı kapattıktan sonra bu aygıtta oynatmayı sürdürmek için sessiz bir bildirim göster</string>
   <string name="notification_channel_keepwatching">Oynamayı Sürdür</string>
+  <string name="ping_result">%1$d milisaniye içinde pinglendi</string>
+  <string name="ping_failed">Aygıt pinglenemedi</string>
+  <string name="ping_in_progress">Pingleniyor…</string>
+  <string name="device_host_invalid">Makine geçersiz. Geçerli bir makine adı kullanın; IPv4 veya IPv6 gibi</string>
+  <string name="device_host_duplicate">Listede makine halihazırda var</string>
 </resources>
