@@ -21,16 +21,10 @@ fun View.setOnApplyWindowInsetsListenerCompat(listener: (v: View, insets: Window
 }
 
 fun WindowInsetsCompat.getSafeDrawInsets(): Insets {
-    val bars = getInsets(
+    return getInsets(
         WindowInsetsCompat.Type.systemBars()
                 or WindowInsetsCompat.Type.displayCutout()
                 or WindowInsetsCompat.Type.ime()
-    )
-    return Insets.of(
-        bars.left,
-        bars.top,
-        bars.right,
-        bars.bottom
     )
 }
 
