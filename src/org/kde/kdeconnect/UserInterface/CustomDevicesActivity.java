@@ -275,7 +275,7 @@ public class CustomDevicesActivity extends BaseActivity implements CustomDevices
     }
 
     @Override
-    public boolean isListActivity() {
+    public boolean isScrollable() {
         return true;
     }
 }

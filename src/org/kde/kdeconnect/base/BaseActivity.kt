@@ -16,7 +16,7 @@ import org.kde.kdeconnect.extensions.setOnApplyWindowInsetsListenerCompat
 
 abstract class BaseActivity : AppCompatActivity() {
 
-    open val isListActivity = false
+    open val isScrollable = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +32,7 @@ abstract class BaseActivity : AppCompatActivity() {
         val safeDrawInsets = insets.getSafeDrawInsets()
         decorView.updatePadding(
             top = 0,
-            bottom = if (isListActivity) 0 else safeDrawInsets.bottom,
+            bottom = if (isScrollable) 0 else safeDrawInsets.bottom,
             left = safeDrawInsets.left,
             right = safeDrawInsets.right
         )
