@@ -55,7 +55,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
             trustedNetworkPref(context),
             devicesByIpPref(context),
             udpBroadcastPref(context),
-            bluetoothSupportPref(context),
+            //bluetoothSupportPref(context),
             moreSettingsPref(context),
         ).forEach(screen::addPreference)
 
