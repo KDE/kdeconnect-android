@@ -12,12 +12,12 @@ import android.view.View
 import android.widget.*
 import android.widget.AdapterView.OnItemClickListener
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import org.kde.kdeconnect.Helpers.TrustedNetworkHelper
+import org.kde.kdeconnect.base.BaseActivity
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.TrustedNetworkListBinding
 
-class TrustedNetworksActivity : AppCompatActivity() {
+class TrustedNetworksActivity : BaseActivity() {
     lateinit var binding: TrustedNetworkListBinding
     private val trustedNetworks: MutableList<String> = mutableListOf()
 
