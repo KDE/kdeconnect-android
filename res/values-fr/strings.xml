@@ -420,4 +420,9 @@
   <string name="mpris_keepwatching_settings_title">Continuer la lecture</string>
   <string name="mpris_keepwatching_settings_summary">Afficher une notification silencieuse pour continuer à jouer sur ce périphérique après la fermeture du média.</string>
   <string name="notification_channel_keepwatching">Continuer la lecture</string>
+  <string name="ping_result">Interrogé en %1$d millisecondes</string>
+  <string name="ping_failed">Il est impossible d\'interroger un périphérique (Par ping)</string>
+  <string name="ping_in_progress">Interrogation par ping en cours...</string>
+  <string name="device_host_invalid">L\'hôte est non valable. Veuillez utiliser un nom d\'hôte valable, IPv4 ou IPv6</string>
+  <string name="device_host_duplicate">L\'hôte existe déjà dans la liste.</string>
 </resources>

@@ -436,4 +436,9 @@
   <string name="mpris_keepwatching_settings_title">להמשיך לנגן</string>
   <string name="mpris_keepwatching_settings_summary">הצגת התראה שקטה כדי להמשיך לנגן בהתקן הזה לאחר סגירת המדיה</string>
   <string name="notification_channel_keepwatching">להמשיך לנגן</string>
+  <string name="ping_result">הפינג ארך %1$d מילישניות</string>
+  <string name="ping_failed">לא ניתן לשלוח פינג להתקן</string>
+  <string name="ping_in_progress">נשלח פינג…</string>
+  <string name="device_host_invalid">המארח שגוי. נא להשתמש בשם מארח, IPv4 או IPv6 תקניים.</string>
+  <string name="device_host_duplicate">המארח כבר קיים ברשימה</string>
 </resources>

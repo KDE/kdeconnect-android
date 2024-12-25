@@ -412,4 +412,9 @@
   <string name="mpris_keepwatching_settings_title">계속 재생</string>
   <string name="mpris_keepwatching_settings_summary">미디어를 닫은 후 이 장치에서 계속 재생할 수 있는 조용한 알림 표시</string>
   <string name="notification_channel_keepwatching">계속 재생</string>
+  <string name="ping_result">핑 시간: %1$d 밀리초</string>
+  <string name="ping_failed">장치에 핑을 보낼 수 없음</string>
+  <string name="ping_in_progress">핑 진행 중…</string>
+  <string name="device_host_invalid">호스트가 잘못되었습니다. 올바른 호스트 이름, IPv4, IPv6 주소를 지정하십시오</string>
+  <string name="device_host_duplicate">호스트가 목록에 이미 있음</string>
 </resources>
