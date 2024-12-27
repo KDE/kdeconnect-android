@@ -32,6 +32,7 @@ import org.kde.kdeconnect.Backends.BaseLinkProvider
 import org.kde.kdeconnect.Backends.BaseLinkProvider.ConnectionReceiver
 import org.kde.kdeconnect.Backends.BluetoothBackend.BluetoothLinkProvider
 import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider
+import org.kde.kdeconnect.Backends.LoopbackBackend.LoopbackLinkProvider
 import org.kde.kdeconnect.Helpers.NotificationHelper
 import org.kde.kdeconnect.Plugins.ClibpoardPlugin.ClipboardFloatingActivity
 import org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandActivity
@@ -50,7 +51,7 @@ import org.kde.kdeconnect_tp.R
 class BackgroundService : Service() {
     private lateinit var applicationInstance: KdeConnect
 
-    private val linkProviders = ArrayList<BaseLinkProvider>()
+    private val linkProviders = mutableListOf<BaseLinkProvider>()
 
     private val connectedToNonCellularNetwork = MutableLiveData<Boolean>()
     /** Indicates whether device is connected over wifi / usb / bluetooth / (anything other than cellular) */
@@ -148,8 +149,8 @@ class BackgroundService : Service() {
     private fun createForegroundNotification(): Notification {
         // Why is this needed: https://developer.android.com/guide/components/services#Foreground
 
-        val connectedDevices = ArrayList<String>()
-        val connectedDeviceIds = ArrayList<String>()
+        val connectedDevices = mutableListOf<String>()
+        val connectedDeviceIds = mutableListOf<String>()
         for (device in applicationInstance.devices.values) {
             if (device.isReachable && device.isPaired) {
                 connectedDeviceIds.add(device.deviceId)

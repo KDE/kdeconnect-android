@@ -359,7 +359,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="org.kde.kdeconnect_tp.fileprovider"
+            android:authorities="${applicationId}.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

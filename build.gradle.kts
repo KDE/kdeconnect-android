@@ -27,6 +27,7 @@ plugins {
 }
 
 val licenseResDir = File("$projectDir/build/dependency-license-res")
+val debugSuffix = "debugging_edition"
 
 fun String.runCommand(
     workingDir: File = File("."),
@@ -82,6 +83,13 @@ android {
             res.setSrcDirs(listOf(licenseResDir, "res"))
             assets.setSrcDirs(listOf("assets"))
         }
+        getByName("debug") {
+            manifest.srcFile("AndroidManifest.xml")
+            java.setSrcDirs(listOf("src"))
+            resources.setSrcDirs(listOf("resources"))
+            res.setSrcDirs(listOf(licenseResDir, "dbg-res"))
+            assets.setSrcDirs(listOf("assets"))
+        }
         getByName("test") {
             java.setSrcDirs(listOf("tests"))
         }
@@ -105,6 +113,8 @@ android {
             isMinifyEnabled = false
             isShrinkResources = false
             signingConfig = signingConfigs.getByName("debug")
+            applicationIdSuffix = ".$debugSuffix"
+            versionNameSuffix = "-$debugSuffix"
         }
         getByName("release") {
             isMinifyEnabled = true
