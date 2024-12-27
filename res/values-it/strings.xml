@@ -420,4 +420,9 @@
   <string name="mpris_keepwatching_settings_title">Continua la riproduzione</string>
   <string name="mpris_keepwatching_settings_summary">Mostra una notifica silenziosa per continuare a giocare su questo dispositivo dopo aver chiuso il supporto multimediale</string>
   <string name="notification_channel_keepwatching">Continua la riproduzione</string>
+  <string name="ping_result">Ping effettuato in %1$d millisecondi</string>
+  <string name="ping_failed">Impossibile effettuare il ping del dispositivo</string>
+  <string name="ping_in_progress">Ping in corso…</string>
+  <string name="device_host_invalid">L\'host non è valido. Utilizza un nome host valido, IPv4 o IPv6</string>
+  <string name="device_host_duplicate">L\'host esiste già nell\'elenco</string>
 </resources>
