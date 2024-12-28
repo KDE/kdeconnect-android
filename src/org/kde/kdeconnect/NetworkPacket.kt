@@ -202,6 +202,10 @@ class NetworkPacket private constructor(
         return mBody.has(key)
     }
 
+    operator fun contains(key: String): Boolean {
+        return has(key)
+    }
+
     @Throws(JSONException::class)
     fun serialize(): String {
         val jo = JSONObject()
