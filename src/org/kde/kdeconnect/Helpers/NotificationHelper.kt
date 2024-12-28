@@ -3,131 +3,116 @@
  *
  * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 */
+package org.kde.kdeconnect.Helpers
 
-package org.kde.kdeconnect.Helpers;
+import android.app.Notification
+import android.app.NotificationManager
+import android.content.Context
+import android.os.Build
+import android.preference.PreferenceManager
+import androidx.core.app.NotificationChannelCompat
+import androidx.core.app.NotificationManagerCompat
+import org.kde.kdeconnect_tp.R
+import java.util.Arrays
+import java.util.stream.Collectors
 
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.os.Build;
-import android.preference.PreferenceManager;
-
-import androidx.core.app.NotificationChannelCompat;
-import androidx.core.app.NotificationManagerCompat;
-
-import org.kde.kdeconnect_tp.R;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
-public class NotificationHelper {
-
-    public static class Channels {
-        public final static String PERSISTENT = "persistent";
-        public final static String DEFAULT = "default";
-        public final static String MEDIA_CONTROL = "media_control";
-
-        public final static String FILETRANSFER_DOWNLOAD = "filetransfer";
-        public final static String FILETRANSFER_UPLOAD = "filetransfer_upload";
-        public final static String FILETRANSFER_ERROR = "filetransfer_error";
-
-        public final static String RECEIVENOTIFICATION = "receive";
-        public final static String HIGHPRIORITY = "highpriority";
-        public final static String CONTINUEWATCHING = "continuewatching";
-
-    }
-
-    public static void notifyCompat(NotificationManager notificationManager, int notificationId, Notification notification) {
+object NotificationHelper {
+    @JvmStatic
+    fun notifyCompat(notificationManager: NotificationManager, notificationId: Int, notification: Notification?) {
         try {
-            notificationManager.notify(notificationId, notification);
-        } catch (Exception e) {
+            notificationManager.notify(notificationId, notification)
+        } catch (e: Exception) {
             //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
             //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
         }
     }
 
-    public static void notifyCompat(NotificationManager notificationManager, String tag, int notificationId, Notification notification) {
+    @JvmStatic
+    fun notifyCompat(notificationManager: NotificationManager, tag: String?, notificationId: Int, notification: Notification?) {
         try {
-            notificationManager.notify(tag, notificationId, notification);
-        } catch (Exception e) {
+            notificationManager.notify(tag, notificationId, notification)
+        } catch (e: Exception) {
             //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
             //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
         }
     }
 
-    public static void initializeChannels(Context context) {
-        final NotificationChannelCompat persistentChannel = new NotificationChannelCompat
-                .Builder(Channels.PERSISTENT, NotificationManagerCompat.IMPORTANCE_MIN)
-                .setName(context.getString(R.string.notification_channel_persistent))
-                .build();
-        final NotificationChannelCompat defaultChannel = new NotificationChannelCompat
-                .Builder(Channels.DEFAULT, NotificationManagerCompat.IMPORTANCE_DEFAULT)
-                .setName(context.getString(R.string.notification_channel_default))
-                .build();
-        final NotificationChannelCompat mediaChannel = new NotificationChannelCompat
-                .Builder(Channels.MEDIA_CONTROL, NotificationManagerCompat.IMPORTANCE_LOW)
-                .setName(context.getString(R.string.notification_channel_media_control))
-                .build();
-        final NotificationChannelCompat fileTransferDownloadChannel = new NotificationChannelCompat
-                .Builder(Channels.FILETRANSFER_DOWNLOAD, NotificationManagerCompat.IMPORTANCE_LOW)
-                .setName(context.getString(R.string.notification_channel_filetransfer))
-                .setVibrationEnabled(false)
-                .build();
-        final NotificationChannelCompat fileTransferUploadChannel = new NotificationChannelCompat
-                .Builder(Channels.FILETRANSFER_UPLOAD, NotificationManagerCompat.IMPORTANCE_LOW)
-                .setName(context.getString(R.string.notification_channel_filetransfer_upload))
-                .setVibrationEnabled(false)
-                .build();
-        final NotificationChannelCompat fileTransferErrorChannel = new NotificationChannelCompat
-                .Builder(Channels.FILETRANSFER_ERROR, NotificationManagerCompat.IMPORTANCE_HIGH)
-                .setName(context.getString(R.string.notification_channel_filetransfer_error))
-                .setVibrationEnabled(false)
-                .build();
-        final NotificationChannelCompat receiveNotificationChannel = new NotificationChannelCompat
-                .Builder(Channels.RECEIVENOTIFICATION, NotificationManagerCompat.IMPORTANCE_DEFAULT)
-                .setName(context.getString(R.string.notification_channel_receivenotification))
-                .build();
-        final NotificationChannelCompat continueWatchingChannel = new NotificationChannelCompat
-                .Builder(Channels.HIGHPRIORITY, NotificationManagerCompat.IMPORTANCE_HIGH)
-                .setName(context.getString(R.string.notification_channel_high_priority))
-                .build();
+    fun initializeChannels(context: Context) {
+        val persistentChannel = NotificationChannelCompat.Builder(Channels.PERSISTENT, NotificationManagerCompat.IMPORTANCE_MIN)
+            .setName(context.getString(R.string.notification_channel_persistent))
+            .build()
+        val defaultChannel = NotificationChannelCompat.Builder(Channels.DEFAULT, NotificationManagerCompat.IMPORTANCE_DEFAULT)
+            .setName(context.getString(R.string.notification_channel_default))
+            .build()
+        val mediaChannel = NotificationChannelCompat.Builder(Channels.MEDIA_CONTROL, NotificationManagerCompat.IMPORTANCE_LOW)
+            .setName(context.getString(R.string.notification_channel_media_control))
+            .build()
+        val fileTransferDownloadChannel = NotificationChannelCompat.Builder(Channels.FILETRANSFER_DOWNLOAD, NotificationManagerCompat.IMPORTANCE_LOW)
+            .setName(context.getString(R.string.notification_channel_filetransfer))
+            .setVibrationEnabled(false)
+            .build()
+        val fileTransferUploadChannel = NotificationChannelCompat.Builder(Channels.FILETRANSFER_UPLOAD, NotificationManagerCompat.IMPORTANCE_LOW)
+            .setName(context.getString(R.string.notification_channel_filetransfer_upload))
+            .setVibrationEnabled(false)
+            .build()
+        val fileTransferErrorChannel = NotificationChannelCompat.Builder(Channels.FILETRANSFER_ERROR, NotificationManagerCompat.IMPORTANCE_HIGH)
+            .setName(context.getString(R.string.notification_channel_filetransfer_error))
+            .setVibrationEnabled(false)
+            .build()
+        val receiveNotificationChannel = NotificationChannelCompat.Builder(Channels.RECEIVENOTIFICATION, NotificationManagerCompat.IMPORTANCE_DEFAULT)
+            .setName(context.getString(R.string.notification_channel_receivenotification))
+            .build()
+        val continueWatchingChannel = NotificationChannelCompat.Builder(Channels.HIGHPRIORITY, NotificationManagerCompat.IMPORTANCE_HIGH)
+            .setName(context.getString(R.string.notification_channel_high_priority))
+            .build()
         /* This notification should be highly visible *only* if the user looks at their phone */
         /* It should not be a distraction. It should be a convenient button to press          */
-        final NotificationChannelCompat highPriorityChannel = new NotificationChannelCompat
-                .Builder(Channels.CONTINUEWATCHING, NotificationManagerCompat.IMPORTANCE_HIGH)
-                .setName(context.getString(R.string.notification_channel_keepwatching))
-                .setVibrationEnabled(false)
-                .setLightsEnabled(false)
-                .setSound(null, null)
-                .build();
-        final List<NotificationChannelCompat> channels = Arrays.asList(persistentChannel,
-                defaultChannel, mediaChannel, fileTransferDownloadChannel, fileTransferUploadChannel,
-                fileTransferErrorChannel, receiveNotificationChannel, highPriorityChannel,
-                continueWatchingChannel);
+        val highPriorityChannel = NotificationChannelCompat.Builder(Channels.CONTINUEWATCHING, NotificationManagerCompat.IMPORTANCE_HIGH)
+            .setName(context.getString(R.string.notification_channel_keepwatching))
+            .setVibrationEnabled(false)
+            .setLightsEnabled(false)
+            .setSound(null, null)
+            .build()
+        val channels = listOf(
+            persistentChannel,
+            defaultChannel, mediaChannel, fileTransferDownloadChannel, fileTransferUploadChannel,
+            fileTransferErrorChannel, receiveNotificationChannel, highPriorityChannel,
+            continueWatchingChannel
+        )
 
-        NotificationManagerCompat.from(context).createNotificationChannelsCompat(channels);
+        val nm = NotificationManagerCompat.from(context)
+
+        nm.createNotificationChannelsCompat(channels)
 
         // Delete any notification channels which weren't added.
         // Use this to deprecate old channels.
-        NotificationManagerCompat.from(context).deleteUnlistedNotificationChannels(
-                channels.stream()
-                        .map(NotificationChannelCompat::getId)
-                        .collect(Collectors.toList()));
+        nm.deleteUnlistedNotificationChannels(channels.map { channel -> channel.id })
     }
 
-    public static void setPersistentNotificationEnabled(Context context, boolean enabled) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        prefs.edit().putBoolean("persistentNotification", enabled).apply();
+    fun setPersistentNotificationEnabled(context: Context?, enabled: Boolean) {
+        val prefs = PreferenceManager.getDefaultSharedPreferences(context)
+        prefs.edit().putBoolean("persistentNotification", enabled).apply()
     }
 
-    public static boolean isPersistentNotificationEnabled(Context context) {
+    fun isPersistentNotificationEnabled(context: Context?): Boolean {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            return true;
+            return true
         }
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return prefs.getBoolean("persistentNotification", false);
+        val prefs = PreferenceManager.getDefaultSharedPreferences(context)
+        return prefs.getBoolean("persistentNotification", false)
     }
 
+    object Channels {
+        const val PERSISTENT: String = "persistent"
+        const val DEFAULT: String = "default"
+        const val MEDIA_CONTROL: String = "media_control"
+
+        const val FILETRANSFER_DOWNLOAD: String = "filetransfer"
+        const val FILETRANSFER_UPLOAD: String = "filetransfer_upload"
+        const val FILETRANSFER_ERROR: String = "filetransfer_error"
+
+        const val RECEIVENOTIFICATION: String = "receive"
+        const val HIGHPRIORITY: String = "highpriority"
+        const val CONTINUEWATCHING: String = "continuewatching"
+    }
 }

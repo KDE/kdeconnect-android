@@ -17,6 +17,7 @@ import android.util.Log
 import androidx.annotation.DrawableRes
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.getSystemService
 import androidx.preference.PreferenceManager
 import org.kde.kdeconnect.Helpers.NotificationHelper
 import org.kde.kdeconnect.Helpers.VideoUrlsHelper
@@ -339,7 +340,7 @@ class MprisPlugin : Plugin() {
                 val browserIntent = Intent(Intent.ACTION_VIEW, transformedUrl)
                 val pendingIntent = PendingIntent.getActivity(context, 0, browserIntent, PendingIntent.FLAG_IMMUTABLE)
 
-                val notificationManager = ContextCompat.getSystemService(context, NotificationManager::class.java)
+                val notificationManager = context.getSystemService<NotificationManager>()!!
                 val builder = NotificationCompat.Builder(context, NotificationHelper.Channels.CONTINUEWATCHING)
                     .setContentTitle(context.resources.getString(R.string.kde_connect))
                     .setSmallIcon(R.drawable.ic_play_white)
