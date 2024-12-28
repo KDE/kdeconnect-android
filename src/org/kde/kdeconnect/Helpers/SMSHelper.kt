@@ -888,10 +888,7 @@ object SMSHelper {
      * converts a given JSONArray into List<Address>
     </Address> */
     @JvmStatic
-    fun jsonArrayToAddressList(context: Context, jsonArray: JSONArray?): List<Address>? {
-        if (jsonArray == null) {
-            return null
-        }
+    fun jsonArrayToAddressList(context: Context, jsonArray: JSONArray): List<Address> {
         val addresses: MutableList<Address> = ArrayList()
         try {
             for (i in 0 until jsonArray.length()) {
