@@ -13,17 +13,18 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.SafeTextChecker;
+import org.kde.kdeconnect.Helpers.WindowHelper;
 import org.kde.kdeconnect.KdeConnect;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.UserInterface.List.EntryItemWithIcon;
 import org.kde.kdeconnect.UserInterface.List.ListAdapter;
 import org.kde.kdeconnect.UserInterface.List.SectionItem;
+import org.kde.kdeconnect.base.BaseActivity;
 import org.kde.kdeconnect_tp.R;
 import org.kde.kdeconnect_tp.databinding.ActivitySendkeystrokesBinding;
 
@@ -33,7 +34,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class SendKeystrokesToHostActivity extends AppCompatActivity {
+import kotlin.Lazy;
+import kotlin.LazyKt;
+
+public class SendKeystrokesToHostActivity extends BaseActivity<ActivitySendkeystrokesBinding> {
 
     // text with these length and content can be send without user confirmation.
     // more or less chosen arbitrarily, so that we allow short PINS and TANS without interruption (if only one device is connected)
@@ -42,19 +46,30 @@ public class SendKeystrokesToHostActivity extends AppCompatActivity {
     public static final String SAFE_CHARS = "1234567890";
 
 
-    private ActivitySendkeystrokesBinding binding;
     private boolean contentIsOkay;
+
+    private final Lazy<ActivitySendkeystrokesBinding> lazyBinding = LazyKt.lazy(() -> ActivitySendkeystrokesBinding.inflate(getLayoutInflater()));
+    
+    @NonNull
+    @Override
+    public ActivitySendkeystrokesBinding getBinding() {
+        return lazyBinding.getValue();
+    }
+
+    @Override
+    public boolean isScrollable() {
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivitySendkeystrokesBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-        setSupportActionBar(binding.toolbarLayout.toolbar);
+        setSupportActionBar(getBinding().toolbarLayout.toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        WindowHelper.setupBottomPadding(getBinding().devicesList);
     }
 
 
@@ -73,7 +88,7 @@ public class SendKeystrokesToHostActivity extends AppCompatActivity {
 
             if ("text/x-keystrokes".equals(type)) {
                 String toSend = intent.getStringExtra(Intent.EXTRA_TEXT);
-                binding.textToSend.setText(toSend);
+                getBinding().textToSend.setText(toSend);
 
                 // if the preference send_safe_text_immediately is true, we will check if exactly one
                 // device is connected and send the text to it without user confirmation, to make sending of
@@ -121,7 +136,7 @@ public class SendKeystrokesToHostActivity extends AppCompatActivity {
 
     private void sendKeys(Device deviceId) {
         String toSend;
-        if (binding.textToSend.getText() != null && (toSend = binding.textToSend.getText().toString().trim()).length() > 0) {
+        if (getBinding().textToSend.getText() != null && (toSend = getBinding().textToSend.getText().toString().trim()).length() > 0) {
             final NetworkPacket np = new NetworkPacket(MousePadPlugin.PACKET_TYPE_MOUSEPAD_REQUEST);
             np.set("key", toSend);
             MousePadPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId.getDeviceId(), MousePadPlugin.class);
@@ -156,8 +171,8 @@ public class SendKeystrokesToHostActivity extends AppCompatActivity {
             }
         }
 
-        binding.devicesList.setAdapter(new ListAdapter(SendKeystrokesToHostActivity.this, items));
-        binding.devicesList.setOnItemClickListener((adapterView, view, i, l) -> {
+        getBinding().devicesList.setAdapter(new ListAdapter(SendKeystrokesToHostActivity.this, items));
+        getBinding().devicesList.setOnItemClickListener((adapterView, view, i, l) -> {
             Device device = devicesList.get(i - 1); // NOTE: -1 because of the title!
             sendKeys(device);
             this.finish(); // close the activity

@@ -15,37 +15,46 @@ import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
 
 import org.kde.kdeconnect.KdeConnect;
 import org.kde.kdeconnect.UserInterface.MainActivity;
 import org.kde.kdeconnect.UserInterface.PermissionsAlertDialogFragment;
+import org.kde.kdeconnect.base.BaseActivity;
 import org.kde.kdeconnect_tp.R;
 import org.kde.kdeconnect_tp.databinding.ActivityBigscreenBinding;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class BigscreenActivity extends AppCompatActivity {
+import kotlin.Lazy;
+import kotlin.LazyKt;
+
+public class BigscreenActivity extends BaseActivity<ActivityBigscreenBinding> {
 
     private static final int REQUEST_SPEECH = 100;
+    
+    private final Lazy<ActivityBigscreenBinding> lazyBinding = LazyKt.lazy(() -> ActivityBigscreenBinding.inflate(getLayoutInflater()));
+    
+    @NonNull
+    @Override
+    protected ActivityBigscreenBinding getBinding() {
+        return lazyBinding.getValue();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        final ActivityBigscreenBinding binding = ActivityBigscreenBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-        setSupportActionBar(binding.toolbarLayout.toolbar);
+        setSupportActionBar(getBinding().toolbarLayout.toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         final String deviceId = getIntent().getStringExtra("deviceId");
 
         if (!SpeechRecognizer.isRecognitionAvailable(this)) {
-            binding.micButton.setEnabled(false);
-            binding.micButton.setVisibility(View.INVISIBLE);
+            getBinding().micButton.setEnabled(false);
+            getBinding().micButton.setVisibility(View.INVISIBLE);
         }
 
         BigscreenPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, BigscreenPlugin.class);
@@ -54,13 +63,13 @@ public class BigscreenActivity extends AppCompatActivity {
             return;
         }
 
-        binding.leftButton.setOnClickListener(v -> plugin.sendLeft());
-        binding.rightButton.setOnClickListener(v -> plugin.sendRight());
-        binding.upButton.setOnClickListener(v -> plugin.sendUp());
-        binding.downButton.setOnClickListener(v -> plugin.sendDown());
-        binding.selectButton.setOnClickListener(v -> plugin.sendSelect());
-        binding.homeButton.setOnClickListener(v -> plugin.sendHome());
-        binding.micButton.setOnClickListener(v -> {
+        getBinding().leftButton.setOnClickListener(v -> plugin.sendLeft());
+        getBinding().rightButton.setOnClickListener(v -> plugin.sendRight());
+        getBinding().upButton.setOnClickListener(v -> plugin.sendUp());
+        getBinding().downButton.setOnClickListener(v -> plugin.sendDown());
+        getBinding().selectButton.setOnClickListener(v -> plugin.sendSelect());
+        getBinding().homeButton.setOnClickListener(v -> plugin.sendHome());
+        getBinding().micButton.setOnClickListener(v -> {
             if (plugin.hasMicPermission()) {
                 activateSTT();
             } else {

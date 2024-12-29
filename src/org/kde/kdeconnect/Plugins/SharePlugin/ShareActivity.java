@@ -15,16 +15,19 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.webkit.URLUtil;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
 
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.Helpers.WindowHelper;
 import org.kde.kdeconnect.KdeConnect;
 import org.kde.kdeconnect.UserInterface.List.EntryItemWithIcon;
 import org.kde.kdeconnect.UserInterface.List.ListAdapter;
 import org.kde.kdeconnect.UserInterface.List.SectionItem;
+import org.kde.kdeconnect.base.BaseActivity;
 import org.kde.kdeconnect_tp.R;
 import org.kde.kdeconnect_tp.databinding.ActivityShareBinding;
 
@@ -34,10 +37,26 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class ShareActivity extends AppCompatActivity {
+import kotlin.Lazy;
+import kotlin.LazyKt;
+
+public class ShareActivity extends BaseActivity<ActivityShareBinding> {
     private static final String KEY_UNREACHABLE_URL_LIST = "key_unreachable_url_list";
-    private ActivityShareBinding binding;
+
     private SharedPreferences mSharedPrefs;
+
+    private final Lazy<ActivityShareBinding> lazyBinding = LazyKt.lazy(() -> ActivityShareBinding.inflate(getLayoutInflater()));
+
+    @NonNull
+    @Override
+    public ActivityShareBinding getBinding() {
+        return lazyBinding.getValue();
+    }
+
+    @Override
+    public boolean isScrollable() {
+        return true;
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -59,9 +78,9 @@ public class ShareActivity extends AppCompatActivity {
     private void refreshDevicesAction() {
         BackgroundService.ForceRefreshConnections(this);
 
-        binding.devicesListLayout.refreshListLayout.setRefreshing(true);
-        binding.devicesListLayout.refreshListLayout.postDelayed(() -> {
-            binding.devicesListLayout.refreshListLayout.setRefreshing(false);
+        getBinding().devicesListLayout.refreshListLayout.setRefreshing(true);
+        getBinding().devicesListLayout.refreshListLayout.postDelayed(() -> {
+            getBinding().devicesListLayout.refreshListLayout.setRefreshing(false);
         }, 1500);
     }
 
@@ -100,8 +119,8 @@ public class ShareActivity extends AppCompatActivity {
             }
         }
 
-        binding.devicesListLayout.devicesList.setAdapter(new ListAdapter(ShareActivity.this, items));
-        binding.devicesListLayout.devicesList.setOnItemClickListener((adapterView, view, i, l) -> {
+        getBinding().devicesListLayout.devicesList.setAdapter(new ListAdapter(ShareActivity.this, items));
+        getBinding().devicesListLayout.devicesList.setOnItemClickListener((adapterView, view, i, l) -> {
             Device device = devicesList.get(i - 1); //NOTE: -1 because of the title!
             SharePlugin plugin = KdeConnect.getInstance().getDevicePlugin(device.getDeviceId(), SharePlugin.class);
             if (intentHasUrl && !device.isReachable()) {
@@ -140,20 +159,19 @@ public class ShareActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityShareBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
         mSharedPrefs = PreferenceManager.getDefaultSharedPreferences (this);
 
-        setSupportActionBar(binding.toolbarLayout.toolbar);
+        setSupportActionBar(getBinding().toolbarLayout.toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         ActionBar actionBar = getSupportActionBar();
-        binding.devicesListLayout.refreshListLayout.setOnRefreshListener(this::refreshDevicesAction);
+        getBinding().devicesListLayout.refreshListLayout.setOnRefreshListener(this::refreshDevicesAction);
         if (actionBar != null) {
             actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_SHOW_CUSTOM);
         }
+
+        WindowHelper.setupBottomPadding(getBinding().devicesListLayout.devicesList);
     }
 
     @Override
