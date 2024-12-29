@@ -44,6 +44,7 @@ import org.kde.kdeconnect.Plugins.Plugin
 import org.kde.kdeconnect.Plugins.PresenterPlugin.PresenterPlugin
 import org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandPlugin
 import org.kde.kdeconnect.UserInterface.compose.KdeTheme
+import org.kde.kdeconnect.extensions.setupBottomPadding
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.ActivityDeviceBinding
 import org.kde.kdeconnect_tp.databinding.ViewPairErrorBinding
@@ -154,6 +155,11 @@ class DeviceFragment : Fragment() {
         refreshUI()
 
         return deviceBinding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        deviceBinding?.deviceView?.setupBottomPadding()
     }
 
     private fun refreshDevicesAction() {
