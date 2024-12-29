@@ -17,29 +17,11 @@
 #}
 
 -dontobfuscate
-
--dontwarn org.spongycastle.**
--dontwarn org.apache.sshd.**
--dontwarn org.apache.mina.**
--dontwarn org.slf4j.**
--dontwarn io.netty.**
-
 -keepattributes SourceFile,LineNumberTable,Signature,*Annotation*
-
--keep class org.spongycastle.** {*;}
-
-# SSHd requires mina, and mina uses reflection so some classes would get deleted
--keep class org.apache.mina.** {*;}
--keep class org.apache.sshd.** {*;}
-
 -keep class org.kde.kdeconnect.** {*;}
 
--dontwarn org.mockito.**
--dontwarn sun.reflect.**
--dontwarn android.test.**
--dontwarn java.lang.management.**
--dontwarn javax.**
+# SSHd requires mina, and mina uses reflection so some classes would get deleted
+-keep class org.apache.sshd.** {*;}
+-dontwarn org.apache.sshd.**
 
--dontwarn android.net.ConnectivityManager
--dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
--dontwarn android.net.LinkProperties
+-dontwarn org.atteo.classindex.**
