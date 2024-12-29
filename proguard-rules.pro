@@ -24,4 +24,3 @@
 -keep class org.apache.sshd.** {*;}
 -dontwarn org.apache.sshd.**
 
--dontwarn org.atteo.classindex.**
