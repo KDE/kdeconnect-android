@@ -52,7 +52,6 @@ object SMSHelper {
     private const val THUMBNAIL_WIDTH = 100
 
     // The constant Telephony.Mms.Part.CONTENT_URI was added in API 29
-    @JvmField
     val mMSPartUri : Uri = Uri.parse("content://mms/part/")
 
     /**
@@ -94,10 +93,7 @@ object SMSHelper {
      * @param context  android.content.Context running the request
      * @return Timestamp of the oldest known message.
      */
-    @JvmStatic
-    fun getNewestMessageTimestamp(
-        context: Context
-    ): Long {
+    fun getNewestMessageTimestamp(context: Context): Long {
         var oldestMessageTimestamp = Long.MIN_VALUE
         val newestMessage = getMessagesInRange(context, null, Long.MAX_VALUE, 1L, true)
         // There should only be one, but in case for some reason there are more, take the latest
@@ -117,12 +113,7 @@ object SMSHelper {
      * @param numberToGet Number of messages to return. Pass null for "all"
      * @return List of all messages in the thread
      */
-    @JvmStatic
-    fun getMessagesInThread(
-        context: Context,
-        threadID: ThreadID,
-        numberToGet: Long?
-    ): List<Message> {
+    fun getMessagesInThread(context: Context, threadID: ThreadID, numberToGet: Long?): List<Message> {
         return getMessagesInRange(context, threadID, Long.MAX_VALUE, numberToGet, true)
     }
 
@@ -136,7 +127,6 @@ object SMSHelper {
      * @param getMessagesOlderStartTime If true, get messages with timestamps before the startTimestamp. If false, get newer messages
      * @return Some messages in the requested conversation
      */
-    @JvmStatic
     @SuppressLint("NewApi")
     fun getMessagesInRange(
         context: Context,
@@ -441,10 +431,7 @@ object SMSHelper {
      * @param context android.content.Context running the request
      * @return Non-blocking iterable of the first message in each conversation
      */
-    @JvmStatic
-    fun getConversations(
-        context: Context
-    ): Sequence<Message> {
+    fun getConversations(context: Context): Sequence<Message> {
         val uri = getConversationUri()
 
         // Used to avoid spewing logs in case there is an overall problem with fetching thread IDs
@@ -507,14 +494,10 @@ object SMSHelper {
                 }
                 threadTimestampPair.add(Pair(threadID, messageDate))
             }
-            threadIds = threadTimestampPair.stream()
-                .sorted { left: Pair<ThreadID, Long>, right: Pair<ThreadID, Long> ->
-                    right.second.compareTo(
-                        left.second
-                    )
-                } // Sort most-recent to least-recent (largest to smallest)
+            threadIds = threadTimestampPair
+                // Sort most-recent to least-recent (largest to smallest)
+                .sortedWith { left: Pair<ThreadID, Long>, right: Pair<ThreadID, Long> -> right.second.compareTo(left.second) }
                 .map { threadTimestampPairElement: Pair<ThreadID, Long> -> threadTimestampPairElement.first }
-                .collect(Collectors.toList())
         }
 
         // Step 2: Get the actual message object from each thread ID
@@ -538,25 +521,16 @@ object SMSHelper {
         }
     }
 
-    private fun addEventFlag(
-        oldEvent: Int,
-        eventFlag: Int
-    ): Int {
+    private fun addEventFlag(oldEvent: Int, eventFlag: Int): Int {
         return oldEvent or eventFlag
     }
 
     /**
      * Parse all parts of an SMS into a Message
      */
-    private fun parseSMS(
-        context: Context,
-        messageInfo: Map<String, String?>
-    ): Message {
-        var event = Message.EVENT_UNKNOWN
-        event = addEventFlag(event, Message.EVENT_TEXT_MESSAGE)
-        val address = listOf(
-            Address(context, messageInfo[Telephony.Sms.ADDRESS]!!)
-        )
+    private fun parseSMS(context: Context, messageInfo: Map<String, String?>): Message {
+        val event = addEventFlag(Message.EVENT_UNKNOWN, Message.EVENT_TEXT_MESSAGE)
+        val address = listOf(Address(context, messageInfo[Telephony.Sms.ADDRESS]!!))
         val maybeBody = messageInfo.getOrDefault(Message.BODY, "")
         val body = maybeBody ?: ""
         val date = NumberUtils.toLong(messageInfo.getOrDefault(Message.DATE, null))
@@ -569,28 +543,14 @@ object SMSHelper {
             )
         )
         val uID = NumberUtils.toLong(messageInfo.getOrDefault(Message.U_ID, null))
-        val subscriptionID =
-            NumberUtils.toInt(messageInfo.getOrDefault(Message.SUBSCRIPTION_ID, null))
+        val subscriptionID = NumberUtils.toInt(messageInfo.getOrDefault(Message.SUBSCRIPTION_ID, null))
 
         // Examine all the required SMS columns and emit a log if something seems amiss
-        val anyNulls = Arrays.stream(
-            arrayOf(
-                Telephony.Sms.ADDRESS,
-                Message.BODY,
-                Message.DATE,
-                Message.TYPE,
-                Message.READ,
-                Message.THREAD_ID,
-                Message.U_ID
-            )
-        )
+        val anyNulls = arrayOf(Telephony.Sms.ADDRESS, Message.BODY, Message.DATE, Message.TYPE, Message.READ, Message.THREAD_ID, Message.U_ID)
             .map { key: String -> messageInfo.getOrDefault(key, null) }
-            .anyMatch { obj: String? -> Objects.isNull(obj) }
+            .any { obj: String? -> Objects.isNull(obj) }
         if (anyNulls) {
-            Log.e(
-                "parseSMS",
-                "Some fields were invalid. This indicates either a corrupted SMS database or an unsupported device."
-            )
+            Log.e("parseSMS", "Some fields were invalid. This indicates either a corrupted SMS database or an unsupported device.")
         }
         return Message(
             address,
@@ -610,11 +570,7 @@ object SMSHelper {
      * Parse all parts of the MMS message into a message
      * Original implementation from https://stackoverflow.com/a/6446831/3723163
      */
-    private fun parseMMS(
-        context: Context,
-        messageInfo: Map<String, String?>,
-        userPhoneNumbers: List<LocalPhoneNumber>
-    ): Message {
+    private fun parseMMS(context: Context, messageInfo: Map<String, String?>, userPhoneNumbers: List<LocalPhoneNumber>): Message {
         var event = Message.EVENT_UNKNOWN
         var body = ""
         val read = NumberUtils.toInt(messageInfo[Message.READ])
@@ -747,8 +703,8 @@ object SMSHelper {
         val to = SmsMmsUtils.getMmsTo(context, msg)
         val addresses: MutableList<Address> = ArrayList()
         if (from != null) {
-            val isLocalPhoneNumber = userPhoneNumbers.stream()
-                .anyMatch { localPhoneNumber: LocalPhoneNumber ->
+            val isLocalPhoneNumber = userPhoneNumbers
+                .any { localPhoneNumber: LocalPhoneNumber ->
                     localPhoneNumber.isMatchingPhoneNumber(from.getAddress())
                 }
             if (!isLocalPhoneNumber && from.toString() != "insert-address-token") {
@@ -757,8 +713,8 @@ object SMSHelper {
         }
         if (to != null) {
             for (toAddress in to) {
-                val isLocalPhoneNumber = userPhoneNumbers.stream()
-                    .anyMatch { localPhoneNumber: LocalPhoneNumber ->
+                val isLocalPhoneNumber = userPhoneNumbers
+                    .any { localPhoneNumber: LocalPhoneNumber ->
                         localPhoneNumber.isMatchingPhoneNumber(toAddress.getAddress())
                     }
                 if (!isLocalPhoneNumber && toAddress.toString() != "insert-address-token") {
@@ -837,16 +793,8 @@ object SMSHelper {
      *
      * @param observer ContentObserver to alert on Message changes
      */
-    @JvmStatic
-    fun registerObserver(
-        observer: ContentObserver,
-        context: Context
-    ) {
-        context.contentResolver.registerContentObserver(
-            getConversationUri(),
-            true,
-            observer
-        )
+    fun registerObserver(observer: ContentObserver, context: Context) {
+        context.contentResolver.registerContentObserver(getConversationUri(), true, observer)
     }
 
     /**
@@ -862,10 +810,7 @@ object SMSHelper {
      * ...
      * ]
     </String></String></String></Attachment> */
-    @JvmStatic
-    fun jsonArrayToAttachmentsList(
-        jsonArray: JSONArray?
-    ): List<Attachment> {
+    fun jsonArrayToAttachmentsList(jsonArray: JSONArray?): List<Attachment> {
         if (jsonArray == null) {
             return emptyList()
         }
@@ -887,7 +832,6 @@ object SMSHelper {
     /**
      * converts a given JSONArray into List<Address>
     </Address> */
-    @JvmStatic
     fun jsonArrayToAddressList(context: Context, jsonArray: JSONArray): List<Address> {
         val addresses: MutableList<Address> = ArrayList()
         try {
@@ -906,13 +850,9 @@ object SMSHelper {
      * Represent an ID used to uniquely identify a message thread
      */
     class ThreadID(val threadID: Long) {
-        override fun toString(): String {
-            return threadID.toString()
-        }
+        override fun toString(): String = threadID.toString()
 
-        override fun hashCode(): Int {
-            return java.lang.Long.hashCode(threadID)
-        }
+        override fun hashCode(): Int = java.lang.Long.hashCode(threadID)
 
         override fun equals(other: Any?): Boolean {
             return other!!.javaClass.isAssignableFrom(ThreadID::class.java) && (other as ThreadID?)!!.threadID == threadID
@@ -930,9 +870,9 @@ object SMSHelper {
 
     class Attachment(
         private val partID: Long,
-        @JvmField val mimeType: String,
-        @JvmField val base64EncodedFile: String?,
-        @JvmField val uniqueIdentifier: String
+        val mimeType: String,
+        val base64EncodedFile: String?,
+        val uniqueIdentifier: String
     ) {
 
         @Throws(JSONException::class)
@@ -1017,7 +957,7 @@ object SMSHelper {
     class Message internal constructor(
         private val addresses: List<Address>,
         val body: String,
-        @JvmField val date: Long,
+        val date: Long,
         val type: Int,
         val read: Int,
         private val threadID: ThreadID,
@@ -1146,7 +1086,7 @@ object SMSHelper {
              * Since this means a thread has to be spawned, this method might block until that thread is
              * ready to serve requests
              */
-            @JvmStatic
+            @JvmStatic // required for ConnectivityReportPlugin.java
             fun getLooper(): Looper? {
                 if (singleton == null) {
                     looperReadyLock.lock()

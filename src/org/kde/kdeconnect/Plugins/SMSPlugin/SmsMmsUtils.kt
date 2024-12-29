@@ -220,11 +220,11 @@ object SmsMmsUtils {
         configOverrides.putBoolean(SmsManager.MMS_CONFIG_GROUP_MMS_ENABLED, klinkerSettings.group)
 
         // Write the PDUs to disk so that we can pass them to the SmsManager
-        val fileName = "send." + abs(Random().nextLong().toDouble()) + ".dat"
+        val fileName = "send.${abs(Random().nextLong().toDouble())}.dat"
         val mSendFile = File(context.cacheDir, fileName)
 
         val contentUri = (Uri.Builder())
-            .authority(context.packageName + ".MmsFileProvider")
+            .authority("${context.packageName}.MmsFileProvider")
             .path(fileName)
             .scheme(ContentResolver.SCHEME_CONTENT)
             .build()
@@ -320,10 +320,7 @@ object SmsMmsUtils {
         // Set Content-Location.
         part.contentLocation = filename.toByteArray()
         val index = filename.lastIndexOf(".")
-        val contentId = if ((index == -1))
-            filename
-        else
-            filename.substring(0, index)
+        val contentId = if (index == -1) filename else filename.substring(0, index)
         part.contentId = contentId.toByteArray()
         part.data = p.Data
         pb.addPart(part)
@@ -339,8 +336,7 @@ object SmsMmsUtils {
         if (msg == null) {
             return null
         }
-        val encodedStringValue = msg.from
-        return SMSHelper.Address(context, encodedStringValue.string)
+        return SMSHelper.Address(context, msg.from.string)
     }
 
     /**
@@ -351,9 +347,10 @@ object SmsMmsUtils {
         if (msg == null) {
             return null
         }
-        val toBuilder = StringBuilder()
-        val to = msg.to
 
+        val toBuilder = StringBuilder()
+
+        val to = msg.to
         if (to != null) {
             toBuilder.append(EncodedStringValue.concat(to))
         }
@@ -366,10 +363,7 @@ object SmsMmsUtils {
             }
         }
 
-        var built = toBuilder.toString().replace(";", ", ")
-        if (built.startsWith(", ")) {
-            built = built.substring(2)
-        }
+        val built = toBuilder.toString().replace(";", ", ").removePrefix(", ")
 
         return stripDuplicatePhoneNumbers(context, built)
     }
@@ -471,9 +465,7 @@ object SmsMmsUtils {
 
             val np = NetworkPacket(type)
             np["filename"] = filename
-
             np.payload = NetworkPacket.Payload(inputStream, size)
-
             return np
         } catch (e: Exception) {
             return null
