@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
@@ -30,11 +31,15 @@ import org.kde.kdeconnect.KdeConnect;
 import org.kde.kdeconnect.UserInterface.PluginSettingsActivity;
 import org.kde.kdeconnect.base.BaseActivity;
 import org.kde.kdeconnect_tp.R;
+import org.kde.kdeconnect_tp.databinding.ActivityMousepadBinding;
 
 import java.util.Objects;
 
+import kotlin.Lazy;
+import kotlin.LazyKt;
+
 public class MousePadActivity
-        extends BaseActivity
+        extends BaseActivity<ActivityMousepadBinding>
         implements GestureDetector.OnGestureListener,
         GestureDetector.OnDoubleTapListener,
         MousePadGestureDetector.OnGestureListener,
@@ -72,6 +77,14 @@ public class MousePadActivity
     private SharedPreferences prefs = null;
 
     private boolean prefsApplied = false;
+
+    private final Lazy<ActivityMousepadBinding> lazyBinding = LazyKt.lazy(() -> ActivityMousepadBinding.inflate(getLayoutInflater()));
+
+    @NonNull
+    @Override
+    protected ActivityMousepadBinding getBinding() {
+        return lazyBinding.getValue();
+    }
 
     enum ClickType {
         LEFT, RIGHT, MIDDLE, NONE;
@@ -130,15 +143,12 @@ public class MousePadActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_mousepad);
-
-        setSupportActionBar(findViewById(R.id.toolbar));
+        setSupportActionBar(getBinding().toolbarLayout.toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
-        findViewById(R.id.mouse_click_left).setOnClickListener(v -> sendLeftClick());
-        findViewById(R.id.mouse_click_middle).setOnClickListener(v -> sendMiddleClick());
-        findViewById(R.id.mouse_click_right).setOnClickListener(v -> sendRightClick());
+        getBinding().mouseClickLeft.setOnClickListener(v -> sendLeftClick());
+        getBinding().mouseClickMiddle.setOnClickListener(v -> sendMiddleClick());
+        getBinding().mouseClickRight.setOnClickListener(v -> sendRightClick());
 
         deviceId = getIntent().getStringExtra("deviceId");
 
@@ -149,7 +159,7 @@ public class MousePadActivity
         mDetector.setOnDoubleTapListener(this);
         mSensorManager = ContextCompat.getSystemService(this, SensorManager.class);
 
-        keyListenerView = findViewById(R.id.keyListener);
+        keyListenerView = getBinding().keyListener;
         keyListenerView.setDeviceId(deviceId);
 
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -581,9 +591,9 @@ public class MousePadActivity
         }
 
         if (prefs.getBoolean(getString(R.string.mousepad_mouse_buttons_enabled_pref), true)) {
-            findViewById(R.id.mouse_buttons).setVisibility(View.VISIBLE);
+            getBinding().mouseButtons.setVisibility(View.VISIBLE);
         } else {
-            findViewById(R.id.mouse_buttons).setVisibility(View.GONE);
+            getBinding().mouseButtons.setVisibility(View.GONE);
         }
 
         doubleTapDragEnabled = prefs.getBoolean(getString(R.string.mousepad_doubletap_drag_enabled_pref), true);

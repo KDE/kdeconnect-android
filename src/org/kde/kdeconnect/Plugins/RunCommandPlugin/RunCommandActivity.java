@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 
@@ -35,8 +36,19 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
-public class RunCommandActivity extends BaseActivity {
-    private ActivityRunCommandBinding binding;
+import kotlin.Lazy;
+import kotlin.LazyKt;
+
+public class RunCommandActivity extends BaseActivity<ActivityRunCommandBinding> {
+
+    private final Lazy<ActivityRunCommandBinding> lazyBinding = LazyKt.lazy(() -> ActivityRunCommandBinding.inflate(getLayoutInflater()));
+
+    @NonNull
+    @Override
+    protected ActivityRunCommandBinding getBinding() {
+        return lazyBinding.getValue();
+    }
+
     private String deviceId;
     private final RunCommandPlugin.CommandsChangedCallback commandsChangedCallback = () -> runOnUiThread(this::updateView);
     private List<CommandEntry> commandItems;
@@ -48,7 +60,7 @@ public class RunCommandActivity extends BaseActivity {
             return;
         }
 
-        registerForContextMenu(binding.runCommandsList);
+        registerForContextMenu(getBinding().runCommandsList);
 
         commandItems = new ArrayList<>();
         for (JSONObject obj : plugin.getCommandList()) {
@@ -63,26 +75,23 @@ public class RunCommandActivity extends BaseActivity {
 
         ListAdapter adapter = new ListAdapter(RunCommandActivity.this, commandItems);
 
-        binding.runCommandsList.setAdapter(adapter);
-        binding.runCommandsList.setOnItemClickListener((adapterView, view1, i, l) ->
+        getBinding().runCommandsList.setAdapter(adapter);
+        getBinding().runCommandsList.setOnItemClickListener((adapterView, view1, i, l) ->
                 plugin.runCommand(commandItems.get(i).getKey()));
 
         String text = getString(R.string.addcommand_explanation);
         if (!plugin.canAddCommand()) {
             text += "\n" + getString(R.string.addcommand_explanation2);
         }
-        binding.addCommandExplanation.setText(text);
-        binding.addCommandExplanation.setVisibility(commandItems.isEmpty() ? View.VISIBLE : View.GONE);
+        getBinding().addCommandExplanation.setText(text);
+        getBinding().addCommandExplanation.setVisibility(commandItems.isEmpty() ? View.VISIBLE : View.GONE);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityRunCommandBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-        setSupportActionBar(binding.toolbarLayout.toolbar);
+        setSupportActionBar(getBinding().toolbarLayout.toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
@@ -93,11 +102,11 @@ public class RunCommandActivity extends BaseActivity {
             RunCommandPlugin plugin = device.getPlugin(RunCommandPlugin.class);
             if (plugin != null) {
                 if (plugin.canAddCommand()) {
-                    binding.addCommandButton.show();
+                    getBinding().addCommandButton.show();
                 } else {
-                    binding.addCommandButton.hide();
+                    getBinding().addCommandButton.hide();
                 }
-                binding.addCommandButton.setOnClickListener(v -> {
+                getBinding().addCommandButton.setOnClickListener(v -> {
                     plugin.sendSetupPacket();
                     new AlertDialog.Builder(RunCommandActivity.this)
                             .setTitle(R.string.add_command)

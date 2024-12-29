@@ -36,9 +36,11 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Objects;
 
+import kotlin.Lazy;
+import kotlin.LazyKt;
 import kotlin.Unit;
 
-public class CustomDevicesActivity extends BaseActivity implements CustomDevicesAdapter.Callback {
+public class CustomDevicesActivity extends BaseActivity<ActivityCustomDevicesBinding> implements CustomDevicesAdapter.Callback {
     private static final String TAG_ADD_DEVICE_DIALOG = "AddDeviceDialog";
 
     private static final String KEY_CUSTOM_DEVLIST_PREFERENCE = "device_list_preference";
@@ -54,18 +56,23 @@ public class CustomDevicesActivity extends BaseActivity implements CustomDevices
     private DeletedCustomDevice lastDeletedCustomDevice;
     private int editingDeviceAtPosition;
 
+    private final Lazy<ActivityCustomDevicesBinding> lazyBinding = LazyKt.lazy(() -> ActivityCustomDevicesBinding.inflate(getLayoutInflater()));
+
+    @NonNull
+    @Override
+    protected ActivityCustomDevicesBinding getBinding() {
+        return lazyBinding.getValue();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        final ActivityCustomDevicesBinding binding = ActivityCustomDevicesBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        recyclerView = getBinding().recyclerView;
+        emptyListMessage = getBinding().emptyListMessage;
+        final FloatingActionButton fab = getBinding().floatingActionButton;
 
-        recyclerView = binding.recyclerView;
-        emptyListMessage = binding.emptyListMessage;
-        final FloatingActionButton fab = binding.floatingActionButton;
-
-        setSupportActionBar(binding.toolbarLayout.toolbar);
+        setSupportActionBar(getBinding().toolbarLayout.toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
@@ -88,7 +95,7 @@ public class CustomDevicesActivity extends BaseActivity implements CustomDevices
         recyclerView.setAdapter(customDevicesAdapter);
 
         WindowHelper.setupBottomPadding(recyclerView);
-        WindowHelper.setupBottomMargin(binding.floatingActionButton);
+        WindowHelper.setupBottomMargin(getBinding().floatingActionButton);
 
         addDeviceDialog = (EditTextAlertDialogFragment) getSupportFragmentManager().findFragmentByTag(TAG_ADD_DEVICE_DIALOG);
         if (addDeviceDialog != null) {
