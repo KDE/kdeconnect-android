@@ -27,7 +27,7 @@ plugins {
 }
 
 val licenseResDir = File("$projectDir/build/dependency-license-res")
-val debugSuffix = "debugging_edition"
+val debugSuffix = "debug"
 
 fun String.runCommand(
     workingDir: File = File("."),
@@ -75,23 +75,18 @@ android {
     androidResources {
         generateLocaleConfig = true
     }
+
     sourceSets {
         getByName("main") {
-            manifest.srcFile("AndroidManifest.xml")
-            java.setSrcDirs(listOf("src"))
-            resources.setSrcDirs(listOf("resources"))
-            res.setSrcDirs(listOf(licenseResDir, "res"))
-            assets.setSrcDirs(listOf("assets"))
+            setRoot(".") // By default AGP expects all directories under src/main/...
+            java.srcDir("src") // by default is "java"
+            res.setSrcDirs(listOf(licenseResDir, "res")) // add licenseResDir
         }
         getByName("debug") {
-            manifest.srcFile("AndroidManifest.xml")
-            java.setSrcDirs(listOf("src"))
-            resources.setSrcDirs(listOf("resources"))
-            res.setSrcDirs(listOf(licenseResDir, "dbg-res"))
-            assets.setSrcDirs(listOf("assets"))
+            res.srcDir("dbg-res")
         }
         getByName("test") {
-            java.setSrcDirs(listOf("tests"))
+            java.srcDir("tests")
         }
     }
 
@@ -113,8 +108,8 @@ android {
             isMinifyEnabled = false
             isShrinkResources = false
             signingConfig = signingConfigs.getByName("debug")
-            applicationIdSuffix = ".$debugSuffix"
-            versionNameSuffix = "-$debugSuffix"
+            applicationIdSuffix = ".debug"
+            versionNameSuffix = "-debug"
         }
         getByName("release") {
             isMinifyEnabled = true
