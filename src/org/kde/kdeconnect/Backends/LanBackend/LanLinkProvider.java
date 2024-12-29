@@ -471,7 +471,9 @@ public class LanLinkProvider extends BaseLinkProvider {
             setupTcpListener();
 
             mdnsDiscovery.startDiscovering();
-            mdnsDiscovery.startAnnouncing();
+            if (TrustedNetworkHelper.isTrustedNetwork(context)) {
+                mdnsDiscovery.startAnnouncing();
+            }
 
             broadcastUdpIdentityPacket(null);
         }

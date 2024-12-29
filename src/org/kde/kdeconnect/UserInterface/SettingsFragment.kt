@@ -147,12 +147,13 @@ class SettingsFragment : PreferenceFragmentCompat() {
         setTitle(R.string.trusted_networks)
         setSummary(R.string.trusted_networks_desc)
         onPreferenceClickListener = Preference.OnPreferenceClickListener {
-            startActivity(Intent(context, TrustedNetworksActivity::class.java))
+            startActivityForResult(Intent(context, TrustedNetworksActivity::class.java), REQUEST_REFRESH_NETWORKS)
             true
         }
     }
 
     private val REQUEST_REFRESH_DEVICES_BY_IP = 1
+    private val REQUEST_REFRESH_NETWORKS = 2
 
     private lateinit var devicesByIpPref : Preference
 
@@ -169,10 +170,10 @@ class SettingsFragment : PreferenceFragmentCompat() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == REQUEST_REFRESH_DEVICES_BY_IP) {
-            updateDevicesByIpSummary()
-        } else {
-            super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            REQUEST_REFRESH_DEVICES_BY_IP -> updateDevicesByIpSummary()
+            REQUEST_REFRESH_NETWORKS -> BackgroundService.instance?.onNetworkChange(null)
+            else -> super.onActivityResult(requestCode, resultCode, data)
         }
     }
 
