@@ -23,6 +23,7 @@ import androidx.core.content.FileProvider;
 
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.NotificationHelper;
+import org.kde.kdeconnect_tp.BuildConfig;
 import org.kde.kdeconnect_tp.R;
 
 import java.io.File;
@@ -145,7 +146,7 @@ class ReceiveNotification {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && "file".equals(destinationUri.getScheme())) {
             //Nougat and later require "content://" uris instead of "file://" uris
             File file = new File(destinationUri.getPath());
-            Uri contentUri = FileProvider.getUriForFile(device.getContext(), "org.kde.kdeconnect_tp.fileprovider", file);
+            Uri contentUri = FileProvider.getUriForFile(device.getContext(), BuildConfig.APPLICATION_ID+".fileprovider", file);
             intent.setDataAndType(contentUri, mimeType);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             shareIntent.putExtra(Intent.EXTRA_STREAM, contentUri);
