@@ -436,4 +436,9 @@
   <string name="mpris_keepwatching_settings_title">Kontynuuj odtwarzanie</string>
   <string name="mpris_keepwatching_settings_summary">Pokaż ciche powiadomienie, aby kontynuować odtwarzanie na tym urządzeniu po zamknięciu mediów</string>
   <string name="notification_channel_keepwatching">Kontynuuj odtwarzanie</string>
+  <string name="ping_result">Odpowiedział w %1$d milisekund</string>
+  <string name="ping_failed">Nie można wysłać pingu do urządzenia</string>
+  <string name="ping_in_progress">Wysyłanie pingu…</string>
+  <string name="device_host_invalid">Nazwa gospodarza jest nieprawidłowa. Użyj prawidłowej nazwy, adresu IPv4 lub IPv6</string>
+  <string name="device_host_duplicate">Nazwa gospodarza już znajduje się na liście</string>
 </resources>
