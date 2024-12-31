@@ -28,7 +28,7 @@ import java.nio.charset.StandardCharsets
 import java.util.UUID
 
 object DeviceHelper {
-    const val ProtocolVersion = 7
+    const val ProtocolVersion = 8
 
     const val KEY_DEVICE_NAME_PREFERENCE = "device_name_preference"
     private const val KEY_DEVICE_NAME_FETCHED_FROM_THE_INTERNET = "device_name_downloaded_preference"

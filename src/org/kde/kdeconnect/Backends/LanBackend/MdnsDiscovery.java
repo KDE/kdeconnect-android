@@ -216,6 +216,9 @@ public class MdnsDiscovery {
 
                 // Let the LanLinkProvider handle the connection
                 InetAddress remoteAddress = serviceInfo.getHost();
+                // TODO: In protocol version 8 we should be able to call "identityPacketReceived"
+                //       here, since we already have all the info we need to start a connection
+                //       and the remaining identity info will be exchanged later.
                 lanLinkProvider.sendUdpIdentityPacket(Collections.singletonList(remoteAddress), null);
             }
         };
