@@ -105,8 +105,13 @@ class DeviceInfo(
         fun isValidIdentityPacket(identityPacket: NetworkPacket): Boolean = with(identityPacket) {
             type == NetworkPacket.PACKET_TYPE_IDENTITY &&
                     DeviceHelper.filterName(getString("deviceName", "")).isNotBlank() &&
-                    getString("deviceId", "").isNotBlank()
+                    isValidDeviceId(getString("deviceId", ""));
         }
+
+        private val DEVICE_ID_REGEX = "^_?[a-fA-F0-9]{8}_?[a-fA-F0-9]{4}_?[a-fA-F0-9]{4}_?[a-fA-F0-9]{4}_?[a-fA-F0-9]{12}_?\$".toRegex()
+
+        @JvmStatic
+        fun isValidDeviceId(deviceId: String): Boolean = deviceId.matches(DEVICE_ID_REGEX)
     }
 }
 
