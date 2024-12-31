@@ -27,7 +27,6 @@ plugins {
 }
 
 val licenseResDir = File("$projectDir/build/dependency-license-res")
-val debugSuffix = "debug"
 
 fun String.runCommand(
     workingDir: File = File("."),
@@ -51,8 +50,11 @@ android {
     namespace = "org.kde.kdeconnect_tp"
     compileSdk = 35
     defaultConfig {
+        applicationId = "org.kde.kdeconnect_tp"
         minSdk = 21
         targetSdk = 35
+        versionCode = 13209
+        versionName = "1.32.9"
         proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
     }
     buildFeatures {
