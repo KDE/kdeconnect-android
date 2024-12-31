@@ -197,6 +197,7 @@
   <string name="invalid_device_name">Ongeldige apparaatnaam</string>
   <string name="shareplugin_text_saved">Oontvangen tekst, opgeslagen op klembord</string>
   <string name="custom_devices_settings">Aangepaste lijst apparaten</string>
+  <string name="custom_devices_settings_summary">%d apparaten handmatig toegevoegd</string>
   <string name="custom_device_list">Voeg apparaten toe per IP-adres</string>
   <string name="custom_device_deleted">Aangepaste apparaat verwijderd</string>
   <string name="custom_device_list_help">Als uw apparaat niet automatisch wordt gedetecteerd kunt u zijn IP-adres of hostnaam toevoegen door te klikken op de knop Zwevende actie</string>

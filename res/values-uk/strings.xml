@@ -213,6 +213,7 @@
   <string name="invalid_device_name">Некоректна назва пристрою</string>
   <string name="shareplugin_text_saved">Отримано текст, збережено до буфера обміну даними</string>
   <string name="custom_devices_settings">Список нетипових пристроїв</string>
+  <string name="custom_devices_settings_summary">%d пристроїв додано вручну</string>
   <string name="custom_device_list">Додати пристрої за IP</string>
   <string name="custom_device_deleted">Нетиповий пристрій вилучено</string>
   <string name="custom_device_list_help">Якщо ваш пристрій не було виявлено автоматично, ви можете додати його IP-адресу або назву вузла, натиснувши рухому кнопку дій.</string>

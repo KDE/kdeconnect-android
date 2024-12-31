@@ -197,6 +197,7 @@
   <string name="invalid_device_name">El nom del dispositiu no és vàlid</string>
   <string name="shareplugin_text_saved">S\'ha rebut text i s\'ha desat al porta-retalls</string>
   <string name="custom_devices_settings">Llista personalitzada de dispositius</string>
+  <string name="custom_devices_settings_summary">S\'han afegir %d dispositius manualment</string>
   <string name="custom_device_list">Afegeix dispositius per la IP</string>
   <string name="custom_device_deleted">S\'ha suprimit un dispositiu personalitzat</string>
   <string name="custom_device_list_help">Si el dispositiu no es detecta automàticament, podeu afegir la seva adreça IP o el nom de la màquina fent clic al botó flotant d\'acció</string>

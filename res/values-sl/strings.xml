@@ -213,6 +213,7 @@
   <string name="invalid_device_name">Neveljavno ime naprave</string>
   <string name="shareplugin_text_saved">Prejeto besedilo shranjeno na odložišče</string>
   <string name="custom_devices_settings">Seznam naprav po meri</string>
+  <string name="custom_devices_settings_summary">%d naprav, dodanih ročno</string>
   <string name="custom_device_list">Dodaj naprave po IP</string>
   <string name="custom_device_deleted">Zbrisana naprava po meri</string>
   <string name="custom_device_list_help">Če vaša naprava ni samodejno zaznana, lahko dodate njen IP naslov ali ime gostitelja s klikom na gumb Plavajoče dejanje</string>

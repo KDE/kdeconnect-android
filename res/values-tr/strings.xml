@@ -197,6 +197,7 @@
   <string name="invalid_device_name">Geçersiz aygıt adı</string>
   <string name="shareplugin_text_saved">Gelen ileti, panoya kaydet</string>
   <string name="custom_devices_settings">Özel aygıt listesi</string>
+  <string name="custom_devices_settings_summary">%d aygıt elle eklendi</string>
   <string name="custom_device_list">IP’ye göre aygıtları ekle</string>
   <string name="custom_device_deleted">Özel aygıt silindi</string>
   <string name="custom_device_list_help">Aygıtınız kendiliğinden algılanmazsa İşlem Düğmesine tıklayarak IP adresini veya ana bilgisayar adını ekleyebilirsiniz</string>
