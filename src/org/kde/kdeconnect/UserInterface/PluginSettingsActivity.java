@@ -13,8 +13,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -24,12 +24,17 @@ import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.DeviceStats;
 import org.kde.kdeconnect.KdeConnect;
 import org.kde.kdeconnect.Plugins.Plugin;
+import org.kde.kdeconnect.base.BaseActivity;
 import org.kde.kdeconnect_tp.R;
+import org.kde.kdeconnect_tp.databinding.ActivityPluginSettingsBinding;
 
 import java.util.Objects;
 
+import kotlin.Lazy;
+import kotlin.LazyKt;
+
 public class PluginSettingsActivity
-        extends AppCompatActivity
+        extends BaseActivity<ActivityPluginSettingsBinding>
         implements PluginPreference.PluginPreferenceCallback {
 
     public static final String EXTRA_DEVICE_ID = "deviceId";
@@ -38,11 +43,17 @@ public class PluginSettingsActivity
     //TODO: Save/restore state
     static private String deviceId; //Static because if we get here by using the back button in the action bar, the extra deviceId will not be set.
 
+    private final Lazy<ActivityPluginSettingsBinding> lazyBinding = LazyKt.lazy(() -> ActivityPluginSettingsBinding.inflate(getLayoutInflater()));
+
+    @NonNull
+    @Override
+    protected ActivityPluginSettingsBinding getBinding() {
+        return lazyBinding.getValue();
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_plugin_settings);
 
         setSupportActionBar(findViewById(R.id.toolbar));
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);

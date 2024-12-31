@@ -20,5 +20,6 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
         android:id="@+id/licenses_text"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:clipToPadding="false"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

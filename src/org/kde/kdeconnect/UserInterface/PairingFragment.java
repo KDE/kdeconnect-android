@@ -32,6 +32,7 @@ import androidx.fragment.app.Fragment;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.TrustedNetworkHelper;
+import org.kde.kdeconnect.Helpers.WindowHelper;
 import org.kde.kdeconnect.KdeConnect;
 import org.kde.kdeconnect.UserInterface.List.ListAdapter;
 import org.kde.kdeconnect.UserInterface.List.PairingDeviceItem;
@@ -118,6 +119,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
         // Configure focus order for Accessibility, for touchpads, and for TV remotes
         // (allow focus of items in the device list)
         devicesListBinding.devicesList.setItemsCanFocus(true);
+        WindowHelper.setupBottomPadding(devicesListBinding.devicesList);
     }
 
     @Override

@@ -10,23 +10,26 @@ import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.Menu
 import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSmoothScroller
 import org.apache.commons.io.IOUtils
+import org.kde.kdeconnect.base.BaseActivity
+import org.kde.kdeconnect.extensions.setupBottomPadding
+import org.kde.kdeconnect.extensions.viewBinding
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.ActivityLicensesBinding
 import java.nio.charset.Charset
 
-class LicensesActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityLicensesBinding
+class LicensesActivity : BaseActivity<ActivityLicensesBinding>() {
+
+    override val binding: ActivityLicensesBinding by viewBinding(ActivityLicensesBinding::inflate)
+
+    override val isScrollable: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityLicensesBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
+        binding.licensesText.setupBottomPadding()
         setSupportActionBar(binding.toolbarLayout.toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)

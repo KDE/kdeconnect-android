@@ -27,14 +27,15 @@ import android.widget.CheckBox;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.widget.TextViewCompat;
 
 import com.google.android.material.materialswitch.MaterialSwitch;
 
 import org.kde.kdeconnect.Helpers.ThreadHelper;
+import org.kde.kdeconnect.base.BaseActivity;
 import org.kde.kdeconnect_tp.R;
 import org.kde.kdeconnect_tp.databinding.ActivityNotificationFilterBinding;
 
@@ -43,9 +44,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+import kotlin.Lazy;
+import kotlin.LazyKt;
+
 //TODO: Turn this into a PluginSettingsFragment
-public class NotificationFilterActivity extends AppCompatActivity {
-    private ActivityNotificationFilterBinding binding;
+public class NotificationFilterActivity extends BaseActivity<ActivityNotificationFilterBinding> {
+
     private AppDatabase appDatabase;
     private String prefKey;
 
@@ -60,6 +64,14 @@ public class NotificationFilterActivity extends AppCompatActivity {
     // This variable stores all app information and serves as a data source for filtering.
     private List<AppListInfo> mAllApps;
     private List<AppListInfo> apps; // Filtered data.
+    
+    private final Lazy<ActivityNotificationFilterBinding> lazyBinding = LazyKt.lazy(() -> ActivityNotificationFilterBinding.inflate(getLayoutInflater()));
+
+    @NonNull
+    @Override
+    protected ActivityNotificationFilterBinding getBinding() {
+        return lazyBinding.getValue();
+    }
 
     class AppListAdapter extends BaseAdapter {
 
@@ -87,13 +99,13 @@ public class NotificationFilterActivity extends AppCompatActivity {
             if (position == 0) {
                 checkedTextView.setText(R.string.all);
                 TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(checkedTextView, null, null, null, null);
-                binding.lvFilterApps.setItemChecked(position, appDatabase.getAllEnabled());
+                getBinding().lvFilterApps.setItemChecked(position, appDatabase.getAllEnabled());
             } else {
                 final AppListInfo info = apps.get(position - 1);
                 checkedTextView.setText(info.name);
                 TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(checkedTextView, info.icon, null, null, null);
                 checkedTextView.setCompoundDrawablePadding((int) (8 * getResources().getDisplayMetrics().density));
-                binding.lvFilterApps.setItemChecked(position, info.isEnabled);
+                getBinding().lvFilterApps.setItemChecked(position, info.isEnabled);
             }
 
             return view;
@@ -105,14 +117,12 @@ public class NotificationFilterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityNotificationFilterBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
         appDatabase = new AppDatabase(NotificationFilterActivity.this, false);
         if (getIntent()!= null){
             prefKey = getIntent().getStringExtra(NotificationsPlugin.getPrefKey());
         }
 
-        setSupportActionBar(binding.toolbarLayout.toolbar);
+        setSupportActionBar(getBinding().toolbarLayout.toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         SharedPreferences preferences = this.getSharedPreferences(prefKey, Context.MODE_PRIVATE);
@@ -152,7 +162,7 @@ public class NotificationFilterActivity extends AppCompatActivity {
     }
 
     private void displayAppList() {
-        final ListView listView = binding.lvFilterApps;
+        final ListView listView = getBinding().lvFilterApps;
         AppListAdapter adapter = new AppListAdapter();
         listView.setAdapter(adapter);
         listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
@@ -233,7 +243,7 @@ public class NotificationFilterActivity extends AppCompatActivity {
         }
 
         listView.setVisibility(View.VISIBLE);
-        binding.spinner.setVisibility(View.GONE);
+        getBinding().spinner.setVisibility(View.GONE);
     }
 
     private Drawable resizeIcon(Drawable icon, int maxSize) {
@@ -284,7 +294,7 @@ public class NotificationFilterActivity extends AppCompatActivity {
                     }
                 }
 
-                ((AppListAdapter) binding.lvFilterApps.getAdapter()).notifyDataSetChanged();
+                ((AppListAdapter) getBinding().lvFilterApps.getAdapter()).notifyDataSetChanged();
                 return true;
             }
         });

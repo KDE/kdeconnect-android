@@ -22,6 +22,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
         android:descendantFocusability="afterDescendants"
         android:dividerHeight="12dp"
         android:orientation="vertical"
+        android:clipToPadding="false"
         tools:listitem="@layout/list_card_entry"
         tools:context=".MainActivity" />
 

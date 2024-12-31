@@ -12,13 +12,14 @@ import android.view.View
 import android.widget.*
 import android.widget.AdapterView.OnItemClickListener
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import org.kde.kdeconnect.Helpers.TrustedNetworkHelper
+import org.kde.kdeconnect.base.BaseActivity
+import org.kde.kdeconnect.extensions.viewBinding
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.TrustedNetworkListBinding
 
-class TrustedNetworksActivity : AppCompatActivity() {
-    lateinit var binding: TrustedNetworkListBinding
+class TrustedNetworksActivity : BaseActivity<TrustedNetworkListBinding>() {
+    override val binding: TrustedNetworkListBinding by viewBinding(TrustedNetworkListBinding::inflate)
     private val trustedNetworks: MutableList<String> = mutableListOf()
 
     private val trustedNetworksView: ListView
@@ -38,9 +39,6 @@ class TrustedNetworksActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        binding = TrustedNetworkListBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         setSupportActionBar(binding.toolbarLayout.toolbar)
         supportActionBar!!.apply {

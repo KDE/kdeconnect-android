@@ -34,6 +34,7 @@ import org.kde.kdeconnect.Helpers.DeviceHelper.filterName
 import org.kde.kdeconnect.Helpers.DeviceHelper.getDeviceName
 import org.kde.kdeconnect.Helpers.NotificationHelper
 import org.kde.kdeconnect.UserInterface.ThemeUtil.applyTheme
+import org.kde.kdeconnect.extensions.setupBottomPadding
 import org.kde.kdeconnect_tp.R
 
 class SettingsFragment : PreferenceFragmentCompat() {
@@ -60,6 +61,11 @@ class SettingsFragment : PreferenceFragmentCompat() {
         ).forEach(screen::addPreference)
 
         preferenceScreen = screen
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        listView.setupBottomPadding()
     }
 
     private fun deviceNamePref(context: Context) = EditTextPreference(context).apply {

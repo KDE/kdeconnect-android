@@ -10,26 +10,35 @@ import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
 
 import org.kde.kdeconnect.KdeConnect;
+import org.kde.kdeconnect.base.BaseActivity;
 import org.kde.kdeconnect_tp.databinding.ActivityFindMyPhoneBinding;
 
 import java.util.Objects;
 
-public class FindMyPhoneActivity extends AppCompatActivity {
+import kotlin.Lazy;
+import kotlin.LazyKt;
+
+public class FindMyPhoneActivity extends BaseActivity<ActivityFindMyPhoneBinding> {
     static final String EXTRA_DEVICE_ID = "deviceId";
 
     String deviceId;
+
+    private final Lazy<ActivityFindMyPhoneBinding> lazyBinding = LazyKt.lazy(() -> ActivityFindMyPhoneBinding.inflate(getLayoutInflater()));
+
+    @NonNull
+    @Override
+    protected ActivityFindMyPhoneBinding getBinding() {
+        return lazyBinding.getValue();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        final ActivityFindMyPhoneBinding binding = ActivityFindMyPhoneBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-        setSupportActionBar(binding.toolbarLayout.toolbar);
+        setSupportActionBar(getBinding().toolbarLayout.toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
@@ -47,7 +56,7 @@ public class FindMyPhoneActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
         );
 
-        binding.bFindMyPhone.setOnClickListener(view -> finish());
+        getBinding().bFindMyPhone.setOnClickListener(view -> finish());
     }
 
     @Override

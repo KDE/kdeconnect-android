@@ -17,7 +17,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.TooltipCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,6 +27,8 @@ import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.kde.kdeconnect.DeviceHost;
+import org.kde.kdeconnect.Helpers.WindowHelper;
+import org.kde.kdeconnect.base.BaseActivity;
 import org.kde.kdeconnect_tp.R;
 import org.kde.kdeconnect_tp.databinding.ActivityCustomDevicesBinding;
 
@@ -35,9 +36,11 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Objects;
 
+import kotlin.Lazy;
+import kotlin.LazyKt;
 import kotlin.Unit;
 
-public class CustomDevicesActivity extends AppCompatActivity implements CustomDevicesAdapter.Callback {
+public class CustomDevicesActivity extends BaseActivity<ActivityCustomDevicesBinding> implements CustomDevicesAdapter.Callback {
     private static final String TAG_ADD_DEVICE_DIALOG = "AddDeviceDialog";
 
     private static final String KEY_CUSTOM_DEVLIST_PREFERENCE = "device_list_preference";
@@ -53,18 +56,23 @@ public class CustomDevicesActivity extends AppCompatActivity implements CustomDe
     private DeletedCustomDevice lastDeletedCustomDevice;
     private int editingDeviceAtPosition;
 
+    private final Lazy<ActivityCustomDevicesBinding> lazyBinding = LazyKt.lazy(() -> ActivityCustomDevicesBinding.inflate(getLayoutInflater()));
+
+    @NonNull
+    @Override
+    protected ActivityCustomDevicesBinding getBinding() {
+        return lazyBinding.getValue();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        final ActivityCustomDevicesBinding binding = ActivityCustomDevicesBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        recyclerView = getBinding().recyclerView;
+        emptyListMessage = getBinding().emptyListMessage;
+        final FloatingActionButton fab = getBinding().floatingActionButton;
 
-        recyclerView = binding.recyclerView;
-        emptyListMessage = binding.emptyListMessage;
-        final FloatingActionButton fab = binding.floatingActionButton;
-
-        setSupportActionBar(binding.toolbarLayout.toolbar);
+        setSupportActionBar(getBinding().toolbarLayout.toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
@@ -85,6 +93,9 @@ public class CustomDevicesActivity extends AppCompatActivity implements CustomDe
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(customDevicesAdapter);
+
+        WindowHelper.setupBottomPadding(recyclerView);
+        WindowHelper.setupBottomMargin(getBinding().floatingActionButton);
 
         addDeviceDialog = (EditTextAlertDialogFragment) getSupportFragmentManager().findFragmentByTag(TAG_ADD_DEVICE_DIALOG);
         if (addDeviceDialog != null) {
@@ -267,6 +278,11 @@ public class CustomDevicesActivity extends AppCompatActivity implements CustomDe
     @Override
     public boolean onSupportNavigateUp() {
         super.onBackPressed();
+        return true;
+    }
+
+    @Override
+    public boolean isScrollable() {
         return true;
     }
 }

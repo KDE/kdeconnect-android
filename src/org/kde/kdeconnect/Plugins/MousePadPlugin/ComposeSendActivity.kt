@@ -30,6 +30,7 @@ import org.kde.kdeconnect.UserInterface.compose.KdeTextButton
 import org.kde.kdeconnect.UserInterface.compose.KdeTextField
 import org.kde.kdeconnect.UserInterface.compose.KdeTheme
 import org.kde.kdeconnect.UserInterface.compose.KdeTopAppBar
+import org.kde.kdeconnect.extensions.safeDrawPadding
 import org.kde.kdeconnect_tp.R
 
 private const val INPUT_CACHE_KEY = "compose_send_input_cache"
@@ -91,6 +92,7 @@ class ComposeSendActivity : AppCompatActivity() {
     private fun ComposeSendScreen() {
         KdeTheme(this) {
             Scaffold(
+                modifier = Modifier.safeDrawPadding(),
                 topBar = {
                     KdeTopAppBar(
                         title = stringResource(R.string.compose_send_title),

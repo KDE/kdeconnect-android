@@ -10,16 +10,20 @@ import android.os.Bundle
 import android.text.Html
 import android.text.Spanned
 import android.text.method.LinkMovementMethod
-import androidx.appcompat.app.AppCompatActivity
+import org.kde.kdeconnect.base.BaseActivity
+import org.kde.kdeconnect.extensions.setupBottomPadding
+import org.kde.kdeconnect.extensions.viewBinding
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.ActivityAboutKdeBinding
 
-class AboutKDEActivity : AppCompatActivity() {
+class AboutKDEActivity : BaseActivity<ActivityAboutKdeBinding>() {
+
+    override val binding: ActivityAboutKdeBinding by viewBinding(ActivityAboutKdeBinding::inflate)
+
+    override val isScrollable: Boolean = true
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val binding = ActivityAboutKdeBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         setSupportActionBar(binding.toolbarLayout.toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -34,6 +38,8 @@ class AboutKDEActivity : AppCompatActivity() {
         binding.reportBugsOrWishesTextView.movementMethod = LinkMovementMethod.getInstance()
         binding.joinKdeTextView.movementMethod = LinkMovementMethod.getInstance()
         binding.supportKdeTextView.movementMethod = LinkMovementMethod.getInstance()
+
+        binding.scrollView.setupBottomPadding()
     }
 
     private fun fromHtml(html: String): Spanned {
