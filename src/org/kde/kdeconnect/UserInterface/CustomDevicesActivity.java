@@ -17,7 +17,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.TooltipCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,6 +27,7 @@ import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.kde.kdeconnect.DeviceHost;
+import org.kde.kdeconnect.base.BaseActivity;
 import org.kde.kdeconnect_tp.R;
 import org.kde.kdeconnect_tp.databinding.ActivityCustomDevicesBinding;
 
@@ -37,7 +37,7 @@ import java.util.Objects;
 
 import kotlin.Unit;
 
-public class CustomDevicesActivity extends AppCompatActivity implements CustomDevicesAdapter.Callback {
+public class CustomDevicesActivity extends BaseActivity implements CustomDevicesAdapter.Callback {
     private static final String TAG_ADD_DEVICE_DIALOG = "AddDeviceDialog";
 
     private static final String KEY_CUSTOM_DEVLIST_PREFERENCE = "device_list_preference";
