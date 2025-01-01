@@ -197,6 +197,7 @@
   <string name="invalid_device_name">Nome de dispositivo incorrecto</string>
   <string name="shareplugin_text_saved">Recibiuse un texto e gardouse no portapapeis</string>
   <string name="custom_devices_settings">Lista de dispositivos personalizada</string>
+  <string name="custom_devices_settings_summary">%d dispositivos engadidos manualmente</string>
   <string name="custom_device_list">Engadir dispositivos por IP</string>
   <string name="custom_device_deleted">Eliminouse o dispositivo personalizado</string>
   <string name="custom_device_list_help">Se o seu dispositivo non se detecta automaticamente pode engadir o seu enderezo IP ou nome de máquina premendo o botón flotante de acción</string>
