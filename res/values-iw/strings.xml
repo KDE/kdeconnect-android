@@ -213,6 +213,7 @@
   <string name="invalid_device_name">שם המכשיר שגוי</string>
   <string name="shareplugin_text_saved">התקבל טקסט, נשמר ללוח הגזירים</string>
   <string name="custom_devices_settings">רשימת מכשירים מותאמת אישית</string>
+  <string name="custom_devices_settings_summary">%d התקנים נוספו ידנית</string>
   <string name="custom_device_list">הוספת מכשירים לפי IP</string>
   <string name="custom_device_deleted">מכשיר מותאם אישית נמחק</string>
   <string name="custom_device_list_help">אם המכשיר שלך לא מזוהה אוטומטית אפשר להוסיף את כתובת ה־IP או את שם המארח שלו בלחיצה על כפתור הפעולה הצף</string>
