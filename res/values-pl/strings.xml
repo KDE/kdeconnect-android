@@ -213,6 +213,7 @@
   <string name="invalid_device_name">Nieprawidłowa nazwa urządzenia</string>
   <string name="shareplugin_text_saved">Otrzymano tekst, zapisano do schowka</string>
   <string name="custom_devices_settings">Lista własnych urządzeń</string>
+  <string name="custom_devices_settings_summary">%d urządzeń dodanych ręcznie</string>
   <string name="custom_device_list">Dodaj urządzenie po adresie IP</string>
   <string name="custom_device_deleted">Usunięto własne urządzenie</string>
   <string name="custom_device_list_help">Jeśli twoje urządzenie nie zostało wykryte samoczynnie, to możesz dodać je ręcznie po wpisaniu jego adresu IP lub nazwy gospodarza. Aby to zrobić, naciśnij pomarańczowy przycisk u dołu ekranu.</string>

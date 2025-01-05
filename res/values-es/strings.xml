@@ -197,6 +197,7 @@
   <string name="invalid_device_name">Nombre de dispositivo no válido</string>
   <string name="shareplugin_text_saved">Texto recibido y guardado en el portapapeles</string>
   <string name="custom_devices_settings">Lista de dispositivos personalizada</string>
+  <string name="custom_devices_settings_summary">%d dispositivos añadidos manualmente</string>
   <string name="custom_device_list">Añadir dispositivos por IP</string>
   <string name="custom_device_deleted">Dispositivo personalizado borrado</string>
   <string name="custom_device_list_help">Si su dispositivo no es detectado automáticamente puede añadir su dirección IP o nombre pulsando el botón de acción flotante</string>
@@ -420,4 +421,9 @@
   <string name="mpris_keepwatching_settings_title">Continuar reproduciendo</string>
   <string name="mpris_keepwatching_settings_summary">Mostrar una notificación silenciosa para continuar reproduciendo en este dispositivo tras cerrar el reproductor.</string>
   <string name="notification_channel_keepwatching">Continuar reproduciendo</string>
+  <string name="ping_result">Conectado en %1$d mili-segundos</string>
+  <string name="ping_failed">No se pudo contactar con el dispositivo</string>
+  <string name="ping_in_progress">Conectando</string>
+  <string name="device_host_invalid">El servidor es inválido. Use un nombre válido de servidor, IPv4 o IPv6</string>
+  <string name="device_host_duplicate">El servidor ya existe en la lista</string>
 </resources>
