@@ -197,6 +197,7 @@
   <string name="invalid_device_name">Gailuaren izen baliogabea</string>
   <string name="shareplugin_text_saved">Testua jaso da, arbelean kopiatu da</string>
   <string name="custom_devices_settings">Gailuen zerrenda pertsonalizatua</string>
+  <string name="custom_devices_settings_summary">%d gailua eskuz gehitu dira</string>
   <string name="custom_device_list">Gehitu gailuak IP bidez</string>
   <string name="custom_device_deleted">Norberak finkatutako gailua ezabatu da</string>
   <string name="custom_device_list_help">Zure gailua ez bada automatikoki detektatzen bere IP helbidea edo ostalari-izena gehitu dezakezu ekintza botoi mugikorrean klik eginez</string>
