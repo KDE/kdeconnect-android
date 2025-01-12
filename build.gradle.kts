@@ -53,8 +53,8 @@ android {
         applicationId = "org.kde.kdeconnect_tp"
         minSdk = 21
         targetSdk = 35
-        versionCode = 13209
-        versionName = "1.32.9"
+        versionCode = 13210
+        versionName = "1.32.10"
         proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
     }
     buildFeatures {
