@@ -197,6 +197,7 @@
   <string name="invalid_device_name">Ogiltigt apparatnamn</string>
   <string name="shareplugin_text_saved">Tog emot text, spara på klippbordet</string>
   <string name="custom_devices_settings">Egen apparatlista</string>
+  <string name="custom_devices_settings_summary">%d apparater manuellt tillagda</string>
   <string name="custom_device_list">Lägg till apparater enligt IP-adress</string>
   <string name="custom_device_deleted">Egen apparat borttagen</string>
   <string name="custom_device_list_help">Om apparaten inte detekteras automatiskt kan dess IP-adress eller värddatornamn läggas till genom att klicka på den lösa åtgärdsknappen.</string>
@@ -420,4 +421,9 @@
   <string name="mpris_keepwatching_settings_title">Fortsätt spela</string>
   <string name="mpris_keepwatching_settings_summary">Visa en tyst underrättelse för att fortsätta spela på apparaten efter att media har stängts.</string>
   <string name="notification_channel_keepwatching">Fortsätt spela</string>
+  <string name="ping_result">Skickade paket på %1$d millisekunder</string>
+  <string name="ping_failed">Kunde inte skicka paket till apparaten</string>
+  <string name="ping_in_progress">Skickar paket…</string>
+  <string name="device_host_invalid">Värddatorn är ogiltig. Använd ett giltigt värddatornamn, IPv4 eller IPv6</string>
+  <string name="device_host_duplicate">Värddatorn finns redan i listan</string>
 </resources>
