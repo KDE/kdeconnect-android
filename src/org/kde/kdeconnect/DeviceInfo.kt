@@ -108,7 +108,7 @@ class DeviceInfo(
                     isValidDeviceId(getString("deviceId", ""));
         }
 
-        private val DEVICE_ID_REGEX = "^_?[a-fA-F0-9]{8}_?[a-fA-F0-9]{4}_?[a-fA-F0-9]{4}_?[a-fA-F0-9]{4}_?[a-fA-F0-9]{12}_?\$".toRegex()
+        private val DEVICE_ID_REGEX = "^[a-zA-Z0-9_]{32,38}\$".toRegex()
 
         @JvmStatic
         fun isValidDeviceId(deviceId: String): Boolean = deviceId.matches(DEVICE_ID_REGEX)

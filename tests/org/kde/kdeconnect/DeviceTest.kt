@@ -144,15 +144,12 @@ class DeviceTest {
 
     @Test
     fun testIsValidDeviceId() {
+        Assert.assertTrue(isValidDeviceId("27456E3C_fE5C_4208_96A7_c0CAEEC5E5A0"))
         Assert.assertTrue(isValidDeviceId("27456e3c_fe5c_4208_96a7_c0caeec5e5a0"))
-        Assert.assertFalse(isValidDeviceId("7456e3c_fe5c_4208_96a7_c0caeec5e5a0"))
-        Assert.assertFalse(isValidDeviceId("127456e3cfe5c420896a7c0caeec5e5a0"))
         Assert.assertTrue(isValidDeviceId("27456e3cfe5c420896a7c0caeec5e5a0"))
         Assert.assertFalse(isValidDeviceId("7456e3cfe5c420896a7c0caeec5e5a0"))
         Assert.assertTrue(isValidDeviceId("_27456e3c_fe5c_4208_96a7_c0caeec5e5a0_"))
-        Assert.assertFalse(isValidDeviceId("_7456e3c_fe5c_4208_96a7_c0caeec5e5a0_"))
-        Assert.assertFalse(isValidDeviceId("_7456e3c_fe5c_4208_96a7_c0caeec_e5a0_"))
-        Assert.assertFalse(isValidDeviceId("_7456z3c_fe5c_4208_96a7_c0caeec_e5a0_"))
+        Assert.assertTrue(isValidDeviceId("z7456e3c_fe5c_4208_96a7_c0caeec5e5a0"))
         Assert.assertFalse(isValidDeviceId(""))
         Assert.assertFalse(isValidDeviceId("______"))
         Assert.assertFalse(isValidDeviceId("____"))
