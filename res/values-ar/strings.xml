@@ -17,6 +17,7 @@
   <string name="pref_plugin_clipboard_sent">أرسل الحافظة</string>
   <string name="pref_plugin_mousepad">الدّخل البعيد</string>
   <string name="pref_plugin_mousepad_desc">استخدم الهاتف أو اللوحيّ كفأرة ولوحة مفاتيح</string>
+  <string name="pref_plugin_presenter">متحكم العرض التقديمي</string>
   <string name="pref_plugin_mpris">تحكّمات الوسائط المتعدّدة</string>
   <string name="pref_plugin_mpris_desc">توفّر تحكّمًا بعيدًا لمشغّل الوسائط</string>
   <string name="pref_plugin_runcommand">شغّل أمرًا</string>
@@ -76,6 +77,7 @@
   <string name="device_menu_plugins">إعدادات الملحقة</string>
   <string name="device_menu_unpair">ألغِ الاقتران</string>
   <string name="pair_new_device">اقرن جهازًا جديدًا</string>
+  <string name="cancel_pairing">ألغ الاقتران</string>
   <string name="unknown_device">جهاز مجهول</string>
   <string name="error_not_reachable">الجهاز غير قابل الوصول</string>
   <string name="error_already_paired">الجهاز مقترن بالفعل</string>
@@ -83,8 +85,11 @@
   <string name="error_canceled_by_user">ألغاه المستخدم</string>
   <string name="error_canceled_by_other_peer">ألغاه ندّ آخر</string>
   <string name="encryption_info_title">معلومات التّعمية</string>
+  <string name="my_device_fingerprint">بصمة SHA256 لشهادة جهازك هي:</string>
+  <string name="remote_device_fingerprint">بصمة SHA256 لشهادة الجهاز البعيد هي:</string>
   <string name="pair_requested">طُلب الاقتران</string>
   <string name="pair_succeeded">نجح الاقتران</string>
+  <string name="pairing_request_from">اطلب اقتران من \'%1s\'</string>
   <string name="tap_to_open">اطرق لتفتح</string>
   <string name="received_file_text">المس لفتح \'%1s\'</string>
   <string name="tap_to_answer">المس للإجابة</string>
@@ -173,6 +178,7 @@
   <string name="clipboard_toast">نُسخ إلى الحافظة</string>
   <string name="runcommand_notreachable">الجهاز غير قابل الوصول</string>
   <string name="runcommand_notpaired">الجهاز غير مقترن</string>
+  <string name="runcommand_category_device_controls_title">متحكمات الجهاز</string>
   <string name="pref_plugin_findremotedevice">اعثر على جهاز بعيد</string>
   <string name="pref_plugin_findremotedevice_desc">رنّ على الجهاز البعيد</string>
   <string name="ring">رّن</string>
@@ -183,6 +189,8 @@
   <string name="settings_rename">اسم الجهاز</string>
   <string name="settings_dark_mode">سمة مظلمة</string>
   <string name="settings_more_settings_title">المزيد من الإعدادات</string>
+  <string name="setting_persistent_notification_oreo">الإخطارات المستمرّة</string>
+  <string name="extra_options">الخيارات الإضافية</string>
   <string name="privacy_options">خيارات الخصوصية</string>
   <string name="set_privacy_options">حدد خيارات الخصوصية</string>
   <string name="block_contents">امنح محتويات الإخطارات</string>
