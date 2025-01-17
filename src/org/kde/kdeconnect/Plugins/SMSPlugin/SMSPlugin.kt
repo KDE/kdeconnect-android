@@ -174,8 +174,7 @@ class SMSPlugin : Plugin() {
      * For backwards-compatibility with long-lived distro packages, this method needs to exist in
      * order to support older desktop apps. However, note that it should no longer be used
      *
-     * This comment is being written 30 August 2018. Distros will likely be running old versions for
-     * many years to come...
+     * This comment is being written 30 August 2018. Distros will likely be running old versions for many years to come...
      *
      * @param messages Ordered list of parts of the message body which should be combined into a single message
      */
@@ -323,8 +322,7 @@ class SMSPlugin : Plugin() {
     /**
      * Respond to a request for all conversations
      *
-     *
-     * Send one packet of type PACKET_TYPE_SMS_MESSAGE with the first message in all conversations
+     * @param packet One packet of type [PACKET_TYPE_SMS_REQUEST_CONVERSATIONS] with the first message in all conversations that will be send
      */
     @WorkerThread
     private fun handleRequestAllConversations(packet: NetworkPacket): Boolean {
@@ -402,78 +400,75 @@ class SMSPlugin : Plugin() {
             Manifest.permission.READ_PHONE_STATE,
         )
 
-    override val minSdk: Int
-        /**
-         * With versions older than KITKAT, lots of the content providers used in SMSHelper become
-         * un-documented. Most manufacturers *did* do things the same way as was done in mainline
-         * Android at that time, but some did not. If the manufacturer followed the default route,
-         * everything will be fine. If not, the plugin will crash. But, since we have a global catch-all
-         * in Device.onPacketReceived, it will not crash catastrophically.
-         * The onCreated method of this SMSPlugin complains if a version older than KitKat is loaded,
-         * but it still allowed in the optimistic hope that things will "just work"
-         */
-        get() {
-            return Build.VERSION_CODES.FROYO
-        }
+    /**
+     * With versions older than KITKAT, lots of the content providers used in SMSHelper become
+     * un-documented. Most manufacturers *did* do things the same way as was done in mainline
+     * Android at that time, but some did not. If the manufacturer followed the default route,
+     * everything will be fine. If not, the plugin will crash. But, since we have a global catch-all
+     * in [org.kde.kdeconnect.Device.onPacketReceived], it will not crash catastrophically.
+     * The [SMSPlugin.onCreate] method of this SMSPlugin complains if a version older than KitKat is loaded,
+     * but it still allowed in the optimistic hope that things will "just work"
+     */
+    override val minSdk: Int = Build.VERSION_CODES.FROYO
 
     companion object {
         /**
          * Packet used to indicate a batch of messages has been pushed from the remote device
          *
-         *
          * The body should contain the key "messages" mapping to an array of messages
          *
-         *
          * For example:
+         * ```
          * {
-         * "version": 2                     // This is the second version of this packet type and
-         * // version 1 packets (which did not carry this flag)
-         * // are incompatible with the new format
-         * "messages" : [
-         * { "event"     : 1,               // 32-bit field containing a bitwise-or of event flags
-         * // See constants declared in SMSHelper.Message for defined
-         * // values and explanations
-         * "body"      : "Hello",         // Text message body
-         * "addresses": <List></List><Address>>   // List of Address objects, one for each participant of the conversation
-         * // The user's Address is excluded so:
-         * // If this is a single-target messsage, there will only be one
-         * // Address (the other party)
-         * // If this is an incoming multi-target message, the first Address is the
-         * // sender and all other addresses are other parties to the conversation
-         * // If this is an outgoing multi-target message, the sender is implicit
-         * // (the user's phone number) and all Addresses are recipients
-         * "date"      : "1518846484880", // Timestamp of the message
-         * "type"      : "2",   // Compare with Android's
-         * // Telephony.TextBasedSmsColumns.MESSAGE_TYPE_*
-         * "thread_id" : 132    // Thread to which the message belongs
-         * "read"      : true   // Boolean representing whether a message is read or unread
-         * },
-         * { ... },
-         * ...
-         * ]
+         *     "version": 2                     // This is the second version of this packet type and
+         *     // version 1 packets (which did not carry this flag)
+         *     // are incompatible with the new format
+         *     "messages" : [
+         *         {
+         *             "event"     : 1,               // 32-bit field containing a bitwise-or of event flags
+         *             // See constants declared in SMSHelper.Message for defined
+         *             // values and explanations
+         *             "body"      : "Hello",         // Text message body
+         *             "addresses": <List<Address>>   // List of Address objects, one for each participant of the conversation
+         *             // The user's Address is excluded so:
+         *             // If this is a single-target messsage, there will only be one
+         *             // Address (the other party)
+         *             // If this is an incoming multi-target message, the first Address is the
+         *             // sender and all other addresses are other parties to the conversation
+         *             // If this is an outgoing multi-target message, the sender is implicit
+         *             // (the user's phone number) and all Addresses are recipients
+         *             "date"      : "1518846484880", // Timestamp of the message
+         *             "type"      : "2",   // Compare with Android's
+         *             // Telephony.TextBasedSmsColumns.MESSAGE_TYPE_*
+         *             "thread_id" : 132    // Thread to which the message belongs
+         *             "read"      : true   // Boolean representing whether a message is read or unread
+         *         },
+         *         { ... },
+         *         ...
+         *     ]
          *
          * The following optional fields of a message object may be defined
          * "sub_id": <int> // Android's subscriber ID, which is basically used to determine which SIM card the message
          * // belongs to. This is mostly useful when attempting to reply to an SMS with the correct
-         * // SIM card using PACKET_TYPE_SMS_REQUEST.
+         * // SIM card using [PACKET_TYPE_SMS_REQUEST].
          * // If this value is not defined or if it does not match a valid subscriber_id known by
          * // Android, we will use whatever subscriber ID Android gives us as the default
          *
-         * "attachments": <List></List><Attachment>>    // List of Attachment objects, one for each attached file in the message.
+         * "attachments": <List<Attachment>>    // List of Attachment objects, one for each attached file in the message.
          *
          * An Attachment object looks like:
          * {
-         * "part_id": <long>                // part_id of the attachment used to read the file from MMS database
-         * "mime_type": <String>            // contains the mime type of the file (eg: image/jpg, video/mp4 etc.)
-         * "encoded_thumbnail": <String>    // Optional base64-encoded thumbnail preview of the content for types which support it
-         * "unique_identifier": <String>    // Unique name of te file
+         *     "part_id": <long>                // part_id of the attachment used to read the file from MMS database
+         *     "mime_type": <String>            // contains the mime type of the file (eg: image/jpg, video/mp4 etc.)
+         *     "encoded_thumbnail": <String>    // Optional base64-encoded thumbnail preview of the content for types which support it
+         *     "unique_identifier": <String>    // Unique name of te file
          * }
          *
          * An Address object looks like:
          * {
-         * "address": <String> // Address (phone number, email address, etc.) of this object
+         *     "address": <String> // Address (phone number, email address, etc.) of this object
          * }
-        </String></String></String></String></long></Attachment></int></Address> */
+         */
         private const val PACKET_TYPE_SMS_MESSAGE: String = "kdeconnect.sms.messages"
         private const val SMS_MESSAGE_PACKET_VERSION: Int = 2 // We *send* packets of this version
 
@@ -482,29 +477,29 @@ class SMSPlugin : Plugin() {
          *
          * The body should look like so:
          * {
-         * "version": 2,                     // The version of the packet being sent. Compare to SMS_REQUEST_PACKET_VERSION before attempting to handle.
-         * "sendSms": true,                  // (Depreciated, ignored) Old versions of the desktop app used to mix phone calls, SMS, etc. in the same packet type and used this field to differentiate.
-         * "phoneNumber": "542904563213",    // (Depreciated) Retained for backwards-compatibility. Old versions of the desktop app send a single phoneNumber. Use the Addresses field instead.
-         * "addresses": <List of Addresses>, // The one or many targets of this message
-         * "messageBody": "Hi mom!",         // Plain-text string to be sent as the body of the message (Optional if sending an attachment)
-         * "attachments": <List of Attached files>,
-         * "sub_id": 3859358340534           // Some magic number which tells Android which SIM card to use (Optional, if omitted, sends with the default SIM card)
+         *     "version": 2,                     // The version of the packet being sent. Compare to SMS_REQUEST_PACKET_VERSION before attempting to handle.
+         *     "sendSms": true,                  // (Depreciated, ignored) Old versions of the desktop app used to mix phone calls, SMS, etc. in the same packet type and used this field to differentiate.
+         *     "phoneNumber": "542904563213",    // (Depreciated) Retained for backwards-compatibility. Old versions of the desktop app send a single phoneNumber. Use the Addresses field instead.
+         *     "addresses": <List of Addresses>  // The one or many targets of this message
+         *     "messageBody": "Hi mom!",         // Plain-text string to be sent as the body of the message (Optional if sending an attachment)
+         *     "attachments": <List of Attached files>,
+         *     "sub_id": 3859358340534           // Some magic number which tells Android which SIM card to use (Optional, if omitted, sends with the default SIM card)
          * }
          *
          * An AttachmentContainer object looks like:
          * {
-         * "fileName": <String>             // Name of the file
-         * "base64EncodedFile": <String>    // Base64 encoded file
-         * "mimeType": <String>             // File type (eg: image/jpg, video/mp4 etc.)
+         *     "fileName": <String>             // Name of the file
+         *     "base64EncodedFile": <String>    // Base64 encoded file
+         *     "mimeType": <String>             // File type (eg: image/jpg, video/mp4 etc.)
          * }
-        </String></String></String></List></List> */
+         */
         private const val PACKET_TYPE_SMS_REQUEST: String = "kdeconnect.sms.request"
-        private const val SMS_REQUEST_PACKET_VERSION: Int =
-            2 // We *handle* packets of this version or lower. Update this number only if future packets break backwards-compatibility.
+
+        /** We *handle* packets of this version or lower. Update this number only if future packets break backwards-compatibility. **/
+        private const val SMS_REQUEST_PACKET_VERSION: Int = 2
 
         /**
          * Packet sent to request the most-recent message in each conversations on the device
-         *
          *
          * The request packet shall contain no body
          */
@@ -513,14 +508,13 @@ class SMSPlugin : Plugin() {
         /**
          * Packet sent to request all the messages in a particular conversation
          *
-         *
          * The following fields are available:
          * "threadID": <long>            // (Required) ThreadID to request
          * "rangeStartTimestamp": <long> // (Optional) Millisecond epoch timestamp indicating the start of the range from which to return messages
          * "numberToRequest": <long>     // (Optional) Number of messages to return, starting from rangeStartTimestamp.
          * // May return fewer than expected if there are not enough or more than expected if many
          * // messages have the same timestamp.
-        </long></long></long> */
+         */
         private const val PACKET_TYPE_SMS_REQUEST_CONVERSATION: String = "kdeconnect.sms.request_conversation"
 
         /**
@@ -530,7 +524,7 @@ class SMSPlugin : Plugin() {
          * The body should look like so:
          * "part_id": <long>                // Part id of the attachment
          * "unique_identifier": <String>    // This unique_identifier should come from a previous message packet's attachment field
-        </String></long> */
+         */
         private const val PACKET_TYPE_SMS_REQUEST_ATTACHMENT: String = "kdeconnect.sms.request_attachment"
 
         /**
@@ -540,16 +534,16 @@ class SMSPlugin : Plugin() {
          * The following fields are available:
          * "filename": <String>     // Name of the attachment file in the database
          * "payload":               // Actual attachment file to be transferred
-        </String> */
+         */
         private const val PACKET_TYPE_SMS_ATTACHMENT_FILE: String = "kdeconnect.sms.attachment_file"
 
         private const val KEY_PREF_BLOCKED_NUMBERS: String = "telephony_blocked_numbers"
 
         /**
-         * Construct a proper packet of PACKET_TYPE_SMS_MESSAGE from the passed messages
+         * Construct a proper packet of [PACKET_TYPE_SMS_MESSAGE] from the passed messages
          *
          * @param messages Messages to include in the packet
-         * @return NetworkPacket of type PACKET_TYPE_SMS_MESSAGE
+         * @return NetworkPacket of type [PACKET_TYPE_SMS_MESSAGE]
          */
         private fun constructBulkMessagePacket(messages: Iterable<SMSHelper.Message>): NetworkPacket {
             val reply = NetworkPacket(PACKET_TYPE_SMS_MESSAGE)
