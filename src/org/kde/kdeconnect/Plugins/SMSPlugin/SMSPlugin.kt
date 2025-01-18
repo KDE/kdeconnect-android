@@ -420,32 +420,31 @@ class SMSPlugin : Plugin() {
          * For example:
          * ```
          * {
-         *     "version": 2                     // This is the second version of this packet type and
-         *     // version 1 packets (which did not carry this flag)
-         *     // are incompatible with the new format
+         *     "version": 2 // This is the second version of this packet type and version 1 packets
+         *                  // (which did not carry this flag) are incompatible with the new format
          *     "messages" : [
          *         {
          *             "event"     : 1,               // 32-bit field containing a bitwise-or of event flags
-         *             // See constants declared in SMSHelper.Message for defined
-         *             // values and explanations
+         *                                            // See constants declared in SMSHelper.Message for define
+         *                                            // values and explanations
          *             "body"      : "Hello",         // Text message body
          *             "addresses": <List<Address>>   // List of Address objects, one for each participant of the conversation
-         *             // The user's Address is excluded so:
-         *             // If this is a single-target messsage, there will only be one
-         *             // Address (the other party)
-         *             // If this is an incoming multi-target message, the first Address is the
-         *             // sender and all other addresses are other parties to the conversation
-         *             // If this is an outgoing multi-target message, the sender is implicit
-         *             // (the user's phone number) and all Addresses are recipients
+         *                                            // The user's Address is excluded so:
+         *                                            // If this is a single-target messsage, there will only be one
+         *                                            // Address (the other party)
+         *                                            // If this is an incoming multi-target message, the first Address is the
+         *                                            // sender and all other addresses are other parties to the conversation
+         *                                            // If this is an outgoing multi-target message, the sender is implicit
+         *                                            // (the user's phone number) and all Addresses are recipients
          *             "date"      : "1518846484880", // Timestamp of the message
-         *             "type"      : "2",   // Compare with Android's
-         *             // Telephony.TextBasedSmsColumns.MESSAGE_TYPE_*
-         *             "thread_id" : 132    // Thread to which the message belongs
-         *             "read"      : true   // Boolean representing whether a message is read or unread
+         *             "type"      : "2",             // Compare with Android's Telephony.TextBasedSmsColumns.MESSAGE_TYPE_*
+         *             "thread_id" : 132              // Thread to which the message belongs
+         *             "read"      : true             // Boolean representing whether a message is read or unread
          *         },
-         *         { ... },
          *         ...
          *     ]
+         * }
+         * ```
          *
          * The following optional fields of a message object may be defined
          * "sub_id": <int> // Android's subscriber ID, which is basically used to determine which SIM card the message
