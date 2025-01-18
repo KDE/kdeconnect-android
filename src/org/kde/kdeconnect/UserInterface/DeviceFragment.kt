@@ -115,16 +115,9 @@ class DeviceFragment : Fragment() {
             this.refreshDevicesAction()
         }
 
-        requirePairingBinding().pairVerification.text = SslHelper.getVerificationKey(SslHelper.certificate, device?.certificate)
-
         requirePairingBinding().pairButton.setOnClickListener {
-            with(requirePairingBinding()) {
-                pairButton.visibility = View.GONE
-                pairMessage.text = getString(R.string.pair_requested)
-                pairProgress.visibility = View.VISIBLE
-            }
             device?.requestPairing()
-            mActivity?.invalidateOptionsMenu()
+            refreshUI()
         }
         requirePairingBinding().acceptButton.setOnClickListener {
             device?.apply {
@@ -242,7 +235,7 @@ class DeviceFragment : Fragment() {
                 true
             }
         }
-        if (device.isPairRequested) {
+        if (device.pairStatus == PairingHandler.PairState.Requested) {
             menu.add(R.string.cancel_pairing).setOnMenuItemClickListener {
                 device.cancelPairing()
                 true
@@ -275,19 +268,36 @@ class DeviceFragment : Fragment() {
         //Once in-app, there is no point in keep displaying the notification if any
         device.hidePairingNotification()
 
-        if (device.isPairRequestedByPeer) {
-            with (requirePairingBinding()) {
-                pairMessage.setText(R.string.pair_requested)
-                pairVerification.visibility = View.VISIBLE
-                pairVerification.text = SslHelper.getVerificationKey(SslHelper.certificate, device.certificate)
-                pairingButtons.visibility = View.VISIBLE
-                pairProgress.visibility = View.GONE
-                pairButton.visibility = View.GONE
-                pairRequestButtons.visibility = View.VISIBLE
+        when (device.pairStatus) {
+            PairingHandler.PairState.NotPaired -> {
+                requireErrorBinding().errorMessageContainer.visibility = View.GONE
+                requireDeviceBinding().deviceView.visibility = View.GONE
+                requirePairingBinding().pairingButtons.visibility = View.VISIBLE
+                requirePairingBinding().pairVerification.visibility = View.GONE
             }
-            requireDeviceBinding().deviceView.visibility = View.GONE
-        } else {
-            if (device.isPaired) {
+            PairingHandler.PairState.Requested -> {
+                with(requirePairingBinding()) {
+                    pairButton.visibility = View.GONE
+                    pairMessage.text = getString(R.string.pair_requested)
+                    pairProgress.visibility = View.VISIBLE
+                    pairVerification.text = device.verificationKey
+                    pairVerification.visibility = View.VISIBLE
+                }
+            }
+            PairingHandler.PairState.RequestedByPeer -> {
+                with (requirePairingBinding()) {
+                    pairMessage.setText(R.string.pair_requested)
+                    pairVerification.visibility = View.VISIBLE
+                    pairingButtons.visibility = View.VISIBLE
+                    pairProgress.visibility = View.GONE
+                    pairButton.visibility = View.GONE
+                    pairRequestButtons.visibility = View.VISIBLE
+                    pairVerification.text = device.verificationKey
+                    pairVerification.visibility = View.VISIBLE
+                }
+                requireDeviceBinding().deviceView.visibility = View.GONE
+            }
+            PairingHandler.PairState.Paired -> {
                 requirePairingBinding().pairingButtons.visibility = View.GONE
                 if (device.isReachable) {
                     val context = requireContext()
@@ -305,13 +315,9 @@ class DeviceFragment : Fragment() {
                     requireErrorBinding().errorMessageContainer.visibility = View.VISIBLE
                     requireDeviceBinding().deviceView.visibility = View.GONE
                 }
-            } else {
-                requireErrorBinding().errorMessageContainer.visibility = View.GONE
-                requireDeviceBinding().deviceView.visibility = View.GONE
-                requirePairingBinding().pairingButtons.visibility = View.VISIBLE
             }
-            mActivity?.invalidateOptionsMenu()
         }
+        mActivity?.invalidateOptionsMenu()
     }
 
     private val pairingCallback: PairingHandler.PairingCallback = object : PairingHandler.PairingCallback {

@@ -159,19 +159,18 @@ class Device : PacketReceiver {
     val certificate: Certificate
         get() = deviceInfo.certificate
 
+    val verificationKey: String?
+        get() = pairingHandler.verificationKey()
+
     // Returns 0 if the version matches, < 0 if it is older or > 0 if it is newer
     fun compareProtocolVersion(): Int =
         deviceInfo.protocolVersion - DeviceHelper.ProtocolVersion
 
-
     val isPaired: Boolean
         get() = pairingHandler.state == PairingHandler.PairState.Paired
 
-    val isPairRequested: Boolean
-        get() = pairingHandler.state == PairingHandler.PairState.Requested
-
-    val isPairRequestedByPeer: Boolean
-        get() = pairingHandler.state == PairingHandler.PairState.RequestedByPeer
+    val pairStatus : PairingHandler.PairState
+        get() = pairingHandler.state
 
     fun addPairingCallback(callback: PairingCallback) = pairingCallbacks.add(callback)
 
@@ -288,8 +287,6 @@ class Device : PacketReceiver {
         val res = context.resources
 
         val notificationManager = ContextCompat.getSystemService(context, NotificationManager::class.java)!!
-
-        val verificationKey = SslHelper.getVerificationKey(SslHelper.certificate, deviceInfo.certificate)
 
         val noti = NotificationCompat.Builder(context, NotificationHelper.Channels.DEFAULT)
             .setContentTitle(res.getString(R.string.pairing_request_from, name))
