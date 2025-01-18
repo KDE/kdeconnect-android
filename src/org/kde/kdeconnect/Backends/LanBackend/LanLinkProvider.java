@@ -81,7 +81,7 @@ public class LanLinkProvider extends BaseLinkProvider {
     private ServerSocket tcpServer;
     private DatagramSocket udpServer;
 
-    private MdnsDiscovery mdnsDiscovery;
+    private final MdnsDiscovery mdnsDiscovery;
 
     private long lastBroadcast = 0;
     private final static long delayBetweenBroadcasts = 200;
@@ -215,23 +215,21 @@ public class LanLinkProvider extends BaseLinkProvider {
             return;
         }
 
-        // If I'm the TCP server I will be the SSL client and viceversa.
-        final boolean clientMode = (connectionStarted == LanLink.ConnectionStarted.Locally);
 
         if (deviceTrusted && !SslHelper.isCertificateStored(context, deviceId)) {
-            //Device paired with and old version, we can't use it as we lack the certificate
+            Log.e("KDE/LanLinkProvider", "Device trusted but no cert stored. This should not happen.");
             Device device = KdeConnect.getInstance().getDevice(deviceId);
-            if (device == null) {
-                return;
+            if (device != null) {
+                device.unpair();
             }
-            device.unpair();
-            //Retry as unpaired
-            identityPacketReceived(identityPacket, socket, connectionStarted, deviceTrusted);
+            return;
         }
 
         String deviceName = identityPacket.getString("deviceName", "unknown");
         Log.i("KDE/LanLinkProvider", "Starting SSL handshake with " + deviceName + " trusted:" + deviceTrusted);
 
+        // If I'm the TCP server I will be the SSL client and viceversa.
+        final boolean clientMode = (connectionStarted == LanLink.ConnectionStarted.Locally);
         int protocolVersion = identityPacket.getInt("protocolVersion");
         final SSLSocket sslSocket = SslHelper.convertToSslSocket(context, socket, deviceId, deviceTrusted, clientMode);
         sslSocket.addHandshakeCompletedListener(event -> {
