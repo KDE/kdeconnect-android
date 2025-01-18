@@ -315,7 +315,6 @@ dependencies {
     implementation(libs.apache.sshd.mina)
     implementation(libs.apache.mina.core)
 
-    //implementation("com.github.bright:slf4android:0.1.6") { transitive = true } // For org.apache.sshd debugging
     implementation(libs.bcpkix.jdk15on) //For SSL certificate generation
 
     ksp(libs.classindexksp)
