@@ -448,10 +448,10 @@ class SMSPlugin : Plugin() {
          *
          * The following optional fields of a message object may be defined
          * "sub_id": <int> // Android's subscriber ID, which is basically used to determine which SIM card the message
-         * // belongs to. This is mostly useful when attempting to reply to an SMS with the correct
-         * // SIM card using [PACKET_TYPE_SMS_REQUEST].
-         * // If this value is not defined or if it does not match a valid subscriber_id known by
-         * // Android, we will use whatever subscriber ID Android gives us as the default
+         *                 // belongs to. This is mostly useful when attempting to reply to an SMS with the correct
+         *                 // SIM card using [PACKET_TYPE_SMS_REQUEST].
+         *                 // If this value is not defined or if it does not match a valid subscriber_id known by
+         *                 // Android, we will use whatever subscriber ID Android gives us as the default
          *
          * "attachments": <List<Attachment>>    // List of Attachment objects, one for each attached file in the message.
          *
@@ -511,8 +511,8 @@ class SMSPlugin : Plugin() {
          * "threadID": <long>            // (Required) ThreadID to request
          * "rangeStartTimestamp": <long> // (Optional) Millisecond epoch timestamp indicating the start of the range from which to return messages
          * "numberToRequest": <long>     // (Optional) Number of messages to return, starting from rangeStartTimestamp.
-         * // May return fewer than expected if there are not enough or more than expected if many
-         * // messages have the same timestamp.
+         *                               // May return fewer than expected if there are not enough or more than expected if many
+         *                               // messages have the same timestamp.
          */
         private const val PACKET_TYPE_SMS_REQUEST_CONVERSATION: String = "kdeconnect.sms.request_conversation"
 
