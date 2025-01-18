@@ -1,3 +1,4 @@
+.attach_pid*
 local.properties
 /.gradle/
 /.idea/
