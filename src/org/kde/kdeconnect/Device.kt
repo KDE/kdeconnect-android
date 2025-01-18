@@ -361,10 +361,11 @@ class Device : PacketReceiver {
 
     fun updateDeviceInfo(newDeviceInfo: DeviceInfo): Boolean {
         var hasChanges = false
-        if (deviceInfo.name != newDeviceInfo.name || deviceInfo.type != newDeviceInfo.type) {
+        if (deviceInfo.name != newDeviceInfo.name || deviceInfo.type != newDeviceInfo.type || deviceInfo.protocolVersion != newDeviceInfo.protocolVersion) {
             hasChanges = true
             deviceInfo.name = newDeviceInfo.name
             deviceInfo.type = newDeviceInfo.type
+            deviceInfo.protocolVersion = newDeviceInfo.protocolVersion
             if (isPaired) {
                 deviceInfo.saveInSettings(settings)
             }
