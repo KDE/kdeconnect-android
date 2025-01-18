@@ -44,6 +44,7 @@ class DeviceInfo(
                 putString("certificate", encodedCertificate)
                 putString("deviceName", name)
                 putString("deviceType", type.toString())
+                putInt("protocolVersion", protocolVersion)
                 apply()
             }
         } catch (e: CertificateEncodingException) {
@@ -79,7 +80,8 @@ class DeviceInfo(
                     id = deviceId,
                     name = getString("deviceName", "unknown")!!,
                     type = DeviceType.fromString(getString("deviceType", "desktop")!!),
-                    certificate = SslHelper.getDeviceCertificate(context, deviceId)
+                    certificate = SslHelper.getDeviceCertificate(context, deviceId),
+                    protocolVersion = getInt("protocolVersion", 0),
                 )
             }
 

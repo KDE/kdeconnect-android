@@ -215,6 +215,11 @@ public class LanLinkProvider extends BaseLinkProvider {
             return;
         }
 
+        int protocolVersion = identityPacket.getInt("protocolVersion");
+        if (deviceTrusted && isProtocolDowngrade(deviceId, protocolVersion)) {
+            Log.w("KDE/LanLinkProvider", "Refusing to connect to a device using an older protocol version.");
+            return;
+        }
 
         if (deviceTrusted && !SslHelper.isCertificateStored(context, deviceId)) {
             Log.e("KDE/LanLinkProvider", "Device trusted but no cert stored. This should not happen.");
@@ -230,7 +235,6 @@ public class LanLinkProvider extends BaseLinkProvider {
 
         // If I'm the TCP server I will be the SSL client and viceversa.
         final boolean clientMode = (connectionStarted == LanLink.ConnectionStarted.Locally);
-        int protocolVersion = identityPacket.getInt("protocolVersion");
         final SSLSocket sslSocket = SslHelper.convertToSslSocket(context, socket, deviceId, deviceTrusted, clientMode);
         sslSocket.addHandshakeCompletedListener(event -> {
             String mode = clientMode ? "client" : "server";
@@ -274,6 +278,12 @@ public class LanLinkProvider extends BaseLinkProvider {
         Log.d("LanLinkProvider", "Starting handshake");
         sslSocket.startHandshake();
         Log.d("LanLinkProvider", "Handshake done");
+    }
+
+    private boolean isProtocolDowngrade(String deviceId, int protocolVersion) {
+        SharedPreferences devicePrefs = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE);
+        int lastKnownProtocolVersion = devicePrefs.getInt("protocolVersion", 0);
+        return lastKnownProtocolVersion > protocolVersion;
     }
 
     /**
