@@ -150,6 +150,9 @@ class Device : PacketReceiver {
     val deviceType: DeviceType
         get() = deviceInfo.type
 
+    val protocolVersion: Int
+        get() = deviceInfo.protocolVersion
+
     val deviceId: String
         get() = deviceInfo.id
 

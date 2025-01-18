@@ -219,6 +219,10 @@ class DeviceFragment : Fragment() {
                     requireContext().resources.getString(R.string.remote_device_fingerprint)
                 } \n ${
                     SslHelper.getCertificateHash(device.certificate)
+                } \n\n ${
+                    requireContext().resources.getString(R.string.protocol_version)
+                } ${
+                    device.protocolVersion
                 }"
             )
             menu.add(R.string.encryption_info_title).setOnMenuItemClickListener {
