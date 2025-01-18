@@ -176,6 +176,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="error_not_reachable">Device not reachable</string>
     <string name="error_already_paired">Device already paired</string>
     <string name="error_timed_out">Timed out</string>
+    <string name="error_clocks_not_match">Device clocks are out of sync</string>
     <string name="error_canceled_by_user">Canceled by user</string>
     <string name="error_canceled_by_other_peer">Canceled by other peer</string>
     <string name="encryption_info_title">Encryption Info</string>

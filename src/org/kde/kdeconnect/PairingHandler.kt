@@ -8,7 +8,13 @@ package org.kde.kdeconnect
 import android.util.Log
 import androidx.annotation.VisibleForTesting
 import kotlinx.coroutines.*
+import org.bouncycastle.util.Arrays
+import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper
 import org.kde.kdeconnect_tp.R
+import java.security.MessageDigest
+import java.security.cert.Certificate
+import java.util.Formatter
+import kotlin.math.abs
 import kotlin.time.Duration.Companion.seconds
 
 class PairingHandler(private val device: Device, private val callback: PairingCallback, var state: PairState) {
@@ -31,6 +37,7 @@ class PairingHandler(private val device: Device, private val callback: PairingCa
 
     private val pairingJob = SupervisorJob()
     private val pairingScope = CoroutineScope(Dispatchers.IO + pairingJob)
+    private var pairingTimestamp = 0L
 
     fun packetReceived(np: NetworkPacket) {
         cancelTimer()
@@ -50,10 +57,26 @@ class PairingHandler(private val device: Device, private val callback: PairingCa
                         Log.w("PairingHandler", "Received pairing request from a device we already trusted.")
                         // It would be nice to auto-accept the pairing request here, but since the pairing accept and pairing request
                         // messages are identical, this could create an infinite loop if both devices are "accepting" each other pairs.
-                        // Instead, unpair and handle as if "NotPaired".
+                        // Instead, unpair and handle as if "NotPaired". TODO: No longer true in protocol version 8
                         state = PairState.NotPaired
                         callback.unpaired()
                     }
+
+                    if (device.protocolVersion >= 8) {
+                        pairingTimestamp = np.getLong("timestamp", -1L)
+                        if (pairingTimestamp == -1L) {
+                            state = PairState.NotPaired
+                            callback.unpaired()
+                            return
+                        }
+                        val currentTimestamp = System.currentTimeMillis() / 1000L
+                        if (abs(pairingTimestamp - currentTimestamp) > allowedTimestampDifferenceSeconds) {
+                            state = PairState.NotPaired
+                            callback.pairingFailed(device.context.getString(R.string.error_clocks_not_match))
+                            return
+                        }
+                    }
+
                     state = PairState.RequestedByPeer
 
                     pairingScope.launch {
@@ -82,6 +105,18 @@ class PairingHandler(private val device: Device, private val callback: PairingCa
                     callback.unpaired()
                 }
             }
+        }
+    }
+
+    fun verificationKey(): String? {
+        return if (device.protocolVersion >= 8) {
+            if (state != PairState.Requested && state != PairState.RequestedByPeer) {
+                return null
+            } else {
+                getVerificationKey(SslHelper.certificate, device.certificate, pairingTimestamp)
+            }
+        } else {
+            getVerificationKeyV7(SslHelper.certificate, device.certificate)
         }
     }
 
@@ -126,6 +161,8 @@ class PairingHandler(private val device: Device, private val callback: PairingCa
         }
         val np = NetworkPacket(NetworkPacket.PACKET_TYPE_PAIR)
         np["pair"] = true
+        pairingTimestamp = System.currentTimeMillis() / 1000L
+        np["timestamp"] = pairingTimestamp
         device.sendPacket(np, statusCallback)
     }
 
@@ -181,4 +218,36 @@ class PairingHandler(private val device: Device, private val callback: PairingCa
     private fun cancelTimer() {
         pairingJob.cancelChildren()
     }
+
+    companion object {
+        private const val allowedTimestampDifferenceSeconds = 1_800 // 30 minutes
+
+        // Concatenate in a deterministic order so on both devices the result is the same
+        private fun sortedConcat(a: ByteArray, b: ByteArray): ByteArray {
+            return if (Arrays.compareUnsigned(a, b) < 0) {
+                b + a
+            } else {
+                a + b
+            }
+        }
+
+        private fun humanReadableHash(bytes: ByteArray): String {
+            val hash = MessageDigest.getInstance("SHA-256").digest(bytes)
+            val formatter = Formatter()
+            for (value in hash) {
+                formatter.format("%02x", value)
+            }
+            return formatter.toString().substring(0, 8).uppercase()
+        }
+        fun getVerificationKey(certificateA: Certificate, certificateB: Certificate, timestamp: Long): String {
+            val certsConcat = sortedConcat(certificateA.publicKey.encoded, certificateB.publicKey.encoded)
+            return humanReadableHash(certsConcat + timestamp.toString().toByteArray())
+        }
+
+        fun getVerificationKeyV7(certificateA: Certificate, certificateB: Certificate): String {
+            val certsConcat = sortedConcat(certificateA.publicKey.encoded, certificateB.publicKey.encoded)
+            return humanReadableHash(certsConcat)
+        }
+    }
+
 }
