@@ -59,7 +59,7 @@ import kotlin.text.Charsets;
  * WiFi network. The first packet sent over a socket must be an
  * {@link DeviceInfo#toIdentityPacket()}.
  *
- * @see #identityPacketReceived(NetworkPacket, Socket, LanLink.ConnectionStarted)
+ * @see #identityPacketReceived(NetworkPacket, Socket, LanLink.ConnectionStarted, boolean)
  */
 public class LanLinkProvider extends BaseLinkProvider {
 
@@ -193,12 +193,7 @@ public class LanLinkProvider extends BaseLinkProvider {
     /**
      * Called when a new 'identity' packet is received. Those are passed here by
      * {@link #tcpPacketReceived(Socket)} and {@link #udpPacketReceived(DatagramPacket)}.
-     * <p>
      * Should be called on a new thread since it blocks until the handshake is completed.
-     * </p><p>
-     * If the remote device should be connected, this calls {@link #addLink}.
-     * Otherwise, if there was an Exception, we unpair from that device.
-     * </p>
      *
      * @param identityPacket    identity of a remote device
      * @param socket            a new Socket, which should be used to receive packets from the remote device
