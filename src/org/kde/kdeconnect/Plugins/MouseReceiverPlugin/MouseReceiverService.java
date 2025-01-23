@@ -121,8 +121,12 @@ public class MouseReceiverService extends AccessibilityService {
 
         new Handler(instance.getMainLooper()).post(() -> {
             // Log.i("MouseReceiverService", "performing move");
-            instance.windowManager.updateViewLayout(instance.cursorView, instance.cursorLayout);
-            instance.cursorView.setVisibility(View.VISIBLE);
+            try {
+                instance.windowManager.updateViewLayout(instance.cursorView, instance.cursorLayout);
+                instance.cursorView.setVisibility(View.VISIBLE);
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+            }
         });
     }
 
