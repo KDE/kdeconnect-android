@@ -253,7 +253,7 @@
   <string name="pairing_description">מכשירים אחרים שמריצים KDE Connect ברשת הנוכחית צריכים להופיע פה.</string>
   <string name="device_rename_title">שינוי שם מכשיר</string>
   <string name="device_rename_confirm">שינוי שם</string>
-  <string name="refresh">רענון</string>
+  <string name="refresh">ריענון</string>
   <string name="unreachable_description">ההתקן המצומד לא זמין, כדאי לוודא שהוא מחובר לאותה רשת כמוך.</string>
   <string name="no_wifi">לא התחברת לאף רשת אלחוטית, לכן אין לך אפשרות לראות מכשירים כלשהם. לחיצה כאן תפעיל את הרשת האלחוטית.</string>
   <string name="on_non_trusted_message">לא רשת מהימנה: גילוי אוטומטי מושבת.</string>

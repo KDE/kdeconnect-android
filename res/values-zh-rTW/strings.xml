@@ -189,6 +189,7 @@
   <string name="invalid_device_name">無效的裝置名稱</string>
   <string name="shareplugin_text_saved">已接收文字，並且儲存到剪貼簿</string>
   <string name="custom_devices_settings">自訂裝置列表</string>
+  <string name="custom_devices_settings_summary">已成功加入 %d 台裝置</string>
   <string name="custom_device_list">透過 IP 新增裝置</string>
   <string name="custom_device_deleted">自訂裝置已刪除</string>
   <string name="custom_device_list_help">如果未自動偵測到您的裝置，您可以透過點擊「浮動操作按鈕」來新增其 IP 位址或主機名稱</string>
@@ -412,4 +413,9 @@
   <string name="mpris_keepwatching_settings_title">繼續播放</string>
   <string name="mpris_keepwatching_settings_summary">顯示無聲通知以在關閉媒體後繼續在此裝置上播放</string>
   <string name="notification_channel_keepwatching">繼續播放</string>
+  <string name="ping_result">成功傳送測試封包，花費 %1$d 毫秒</string>
+  <string name="ping_failed">無法向裝置傳送測試封包</string>
+  <string name="ping_in_progress">正在傳送測試封包…</string>
+  <string name="device_host_invalid">主機是無效的。請使用有效的主機名稱、IPv4 位址或 IPv6 位址</string>
+  <string name="device_host_duplicate">主機已在清單中</string>
 </resources>
