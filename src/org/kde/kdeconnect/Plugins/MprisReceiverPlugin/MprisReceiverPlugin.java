@@ -280,8 +280,10 @@ public class MprisReceiverPlugin extends Plugin {
         np.set("canSeek", player.canSeek());
         np.set("volume", player.getVolume());
         MprisReceiverCallback cb = playerCbs.get(player.getName());
-        assert cb != null;
-        String artUrl = cb.getArtUrl();
+        String artUrl = null;
+        if (cb != null) {
+            artUrl = cb.getArtUrl();
+        }
         if (artUrl != null) {
             np.set("albumArtUrl", artUrl);
             Log.v(TAG, "Sending metadata with url " + artUrl);
