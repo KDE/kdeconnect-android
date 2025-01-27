@@ -176,14 +176,10 @@ class MprisPlugin : Plugin() {
         }
     }
 
-    fun interface Callback {
-        fun callback()
-    }
-
     private val players = ConcurrentHashMap<String, MprisPlayer>()
     private var supportAlbumArtPayload = false
-    private val playerStatusUpdated = ConcurrentHashMap<String, Callback>()
-    private val playerListUpdated = ConcurrentHashMap<String, Callback>()
+    private val playerStatusUpdated = ConcurrentHashMap<String, () -> Unit>()
+    private val playerListUpdated = ConcurrentHashMap<String, () -> Unit>()
     override val displayName: String
         get() = context.resources.getString(R.string.pref_plugin_mpris)
 
@@ -285,14 +281,7 @@ class MprisPlugin : Plugin() {
                     playerStatus.albumArtUrl = ""
                 }
 
-                for (key in playerStatusUpdated.keys) {
-                    try {
-                        playerStatusUpdated[key]!!.callback()
-                    } catch (e: Exception) {
-                        Log.e("MprisControl", "Exception", e)
-                        playerStatusUpdated.remove(key)
-                    }
-                }
+                notifyPlayerStatusUpdated()
 
                 // Check to see if a stream has stopped playing and we should deliver a notification
                 if (np.has("isPlaying") && !playerStatus.isPlaying && wasPlaying) {
@@ -331,14 +320,7 @@ class MprisPlugin : Plugin() {
                 }
             }
             if (!equals) {
-                playerListUpdated.forEach { (key, callback) ->
-                    runCatching {
-                        callback.callback()
-                    }.onFailure {
-                        Log.e("MprisControl", "Exception", it)
-                        playerListUpdated.remove(key)
-                    }
-                }
+                notifyPlayerListUpdated()
             }
         }
 
@@ -377,23 +359,44 @@ class MprisPlugin : Plugin() {
 
     override val outgoingPacketTypes: Array<String> = arrayOf(PACKET_TYPE_MPRIS_REQUEST)
 
-    fun setPlayerStatusUpdatedHandler(id: String, h: Callback) {
-        playerStatusUpdated[id] = h
-        h.callback()
+    fun setPlayerStatusUpdatedHandler(id: String, callback: () -> Unit) {
+        playerStatusUpdated[id] = callback
+        callback()
     }
 
     fun removePlayerStatusUpdatedHandler(id: String) {
         playerStatusUpdated.remove(id)
     }
 
-    fun setPlayerListUpdatedHandler(id: String, h: Callback) {
-        playerListUpdated[id] = h
+    fun notifyPlayerStatusUpdated() {
+        for ((key, callback) in playerStatusUpdated) {
+            try {
+                callback()
+            } catch(e: Exception) {
+                Log.e("MprisControl", "Exception", e)
+                playerStatusUpdated.remove(key)
+            }
+        }
+    }
 
-        h.callback()
+    fun setPlayerListUpdatedHandler(id: String, callback: () -> Unit) {
+        playerListUpdated[id] = callback
+        callback()
     }
 
     fun removePlayerListUpdatedHandler(id: String) {
         playerListUpdated.remove(id)
+    }
+
+    fun notifyPlayerListUpdated() {
+        for ((key, callback) in playerListUpdated) {
+            try {
+                callback()
+            } catch(e: Exception) {
+                Log.e("MprisControl", "Exception", e)
+                playerListUpdated.remove(key)
+            }
+        }
     }
 
     val playerList: List<String>
@@ -445,14 +448,7 @@ class MprisPlugin : Plugin() {
 
     fun fetchedAlbumArt(url: String) {
         if (players.values.stream().anyMatch { player -> url == player.albumArtUrl }) {
-            playerStatusUpdated.forEach { (key, callback) ->
-                runCatching {
-                    callback.callback()
-                }.onFailure {
-                    Log.e("MprisControl", "Exception", it)
-                    playerStatusUpdated.remove(key)
-                }
-            }
+            notifyPlayerStatusUpdated()
         }
     }
 
