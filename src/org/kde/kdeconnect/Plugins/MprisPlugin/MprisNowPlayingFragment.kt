@@ -55,24 +55,23 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
 
         val activityIntent = requireActivity().intent
 
-        targetPlayerName = if (activityIntent.hasExtra("player")) {
-            activityIntent.getStringExtra("player")!!.also {
-                activityIntent.removeExtra("player")
-            }
-        } else {
-            savedInstanceState?.getString("targetPlayer") ?: "".also {
+        val stringExtra = activityIntent.getStringExtra("player")
+        if (stringExtra != null) {
+            activityIntent.removeExtra("player")
+        }
+        targetPlayerName = stringExtra
+            ?: savedInstanceState?.getString("targetPlayer")
+            ?: "".also {
                 Log.i("MprisNowPlayingFragment", "No `targetPlayer` specified in savedInstanceState")
             }
-        }
 
         connectToPlugin()
 
         val prefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
-        val interval_time_str = prefs.getString(
+        val intervalTime = prefs.getString(
             getString(R.string.mpris_time_key),
             getString(R.string.mpris_time_default)
-        )
-        val interval_time = interval_time_str!!.toInt()
+        )!!.toInt()
 
         performActionOnClick(mprisControlBinding.loopButton) { p: MprisPlayer ->
             when (p.loopStatus) {
@@ -92,11 +91,11 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
 
         performActionOnClick(
             mprisControlBinding.rewButton
-        ) { p -> p.sendSeek(interval_time * -1) }
+        ) { p -> p.sendSeek(intervalTime * -1) }
 
         performActionOnClick(
             mprisControlBinding.ffButton
-        ) { p -> p.sendSeek(interval_time) }
+        ) { p -> p.sendSeek(intervalTime) }
 
         performActionOnClick(mprisControlBinding.nextButton, MprisPlayer::sendNext)
 
@@ -116,8 +115,8 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
         positionSeekUpdateRunnable = Runnable {
             if (!isAdded) return@Runnable  // Fragment was already detached
 
-            if (targetPlayer != null) {
-                mprisControlBinding.positionSeek.progress = targetPlayer!!.position.toInt()
+            targetPlayer?.let {
+                mprisControlBinding.positionSeek.progress = it.position.toInt()
             }
             positionSeekUpdateHandler.removeCallbacks(positionSeekUpdateRunnable)
             positionSeekUpdateHandler.postDelayed(positionSeekUpdateRunnable, 1000)
@@ -134,9 +133,7 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar) {
-                if (targetPlayer != null) {
-                    targetPlayer!!.sendSetPosition(seekBar.progress)
-                }
+                targetPlayer?.sendSetPosition(seekBar.progress)
                 positionSeekUpdateHandler.postDelayed(positionSeekUpdateRunnable, 200)
             }
         })
@@ -199,20 +196,20 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
                 mprisControlBinding.playerSpinner.onItemSelectedListener =
                     object : AdapterView.OnItemSelectedListener {
                         override fun onItemSelected(arg0: AdapterView<*>?, arg1: View?, pos: Int, id: Long) {
+
                             if (pos >= playerList.size) return
 
                             val player = playerList[pos]
-                            if (targetPlayer != null && player == targetPlayer!!.playerName) {
+                            if (player == targetPlayer?.playerName) {
                                 return  //Player hasn't actually changed
                             }
-                            targetPlayer = plugin.getPlayerStatus(player)
-                            if (targetPlayer != null) {
-                                targetPlayerName = targetPlayer!!.playerName
+                            targetPlayer = plugin.getPlayerStatus(player)?.also {
+                                targetPlayerName = it.playerName
                             }
 
                             updatePlayerStatus(plugin)
 
-                            if (targetPlayer != null && targetPlayer!!.isPlaying) {
+                            if (targetPlayer?.isPlaying == true) {
                                 MprisMediaSession.instance.playerSelected(targetPlayer)
                             }
                         }
@@ -227,8 +224,8 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
                     targetPlayer = plugin.playingPlayer
                 }
                 //Try to select the specified player
-                if (targetPlayer != null) {
-                    val targetIndex = adapter.getPosition(targetPlayer!!.playerName)
+                targetPlayer?.let {
+                    val targetIndex = adapter.getPosition(it.playerName)
                     if (targetIndex >= 0) {
                         mprisControlBinding.playerSpinner.setSelection(targetIndex)
                     } else {
@@ -275,8 +272,7 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
         val albumArt = playerStatus.getAlbumArt()
         if (albumArt == null) {
             val drawable = ContextCompat.getDrawable(requireContext(), R.drawable.ic_album_art_placeholder)!!
-            val placeholder_art = DrawableCompat.wrap(drawable)
-            activityMprisBinding.albumArt.setImageDrawable(placeholder_art)
+            activityMprisBinding.albumArt.setImageDrawable(DrawableCompat.wrap(drawable))
         } else {
             activityMprisBinding.albumArt.setImageBitmap(albumArt)
         }
@@ -345,12 +341,12 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
      * @param step step size volume change
      */
     private fun updateVolume(step: Int) {
-        if (targetPlayer == null) return
+        val targetPlayer = targetPlayer ?: return
 
-        val newVolume = calculateNewVolume(targetPlayer!!.volume, DEFAULT_MAX_VOLUME, step)
+        val newVolume = calculateNewVolume(targetPlayer.volume, DEFAULT_MAX_VOLUME, step)
 
-        if (targetPlayer!!.volume != newVolume) {
-            targetPlayer!!.sendSetVolume(newVolume)
+        if (targetPlayer.volume != newVolume) {
+            targetPlayer.sendSetVolume(newVolume)
         }
     }
 
@@ -364,18 +360,19 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
 
     override fun onPrepareOptionsMenu(menu: Menu) {
         menu.clear()
-        if (targetPlayer != null && "" != targetPlayer!!.url) {
+        if (!targetPlayer?.url.isNullOrEmpty()) {
             menu.add(0, MENU_OPEN_URL, Menu.NONE, R.string.mpris_open_url)
         }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val targetPlayer = targetPlayer
         if (targetPlayer != null && item.itemId == MENU_OPEN_URL) {
             try {
-                val url = VideoUrlsHelper.formatUriWithSeek(targetPlayer!!.url, targetPlayer!!.position).toString()
+                val url = VideoUrlsHelper.formatUriWithSeek(targetPlayer.url, targetPlayer.position).toString()
                 val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                 startActivity(browserIntent)
-                targetPlayer!!.sendPause()
+                targetPlayer.sendPause()
                 return true
             } catch (e: MalformedURLException) {
                 e.printStackTrace()
