@@ -413,7 +413,7 @@ class MprisPlugin : Plugin() {
          */
         get() = players.values.stream().filter(MprisPlayer::isPlaying).findFirst().orElse(null)
 
-    fun hasPlayer(player: MprisPlayer?): Boolean = player != null && players.containsValue(player)
+    fun hasPlayer(player: MprisPlayer): Boolean = players.containsValue(player)
 
     private fun requestPlayerList() {
         val np = NetworkPacket(PACKET_TYPE_MPRIS_REQUEST).apply {

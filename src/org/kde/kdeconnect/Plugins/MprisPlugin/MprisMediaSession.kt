@@ -52,7 +52,7 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
     private var spotifyRunning = false
 
     // Holds the device and player displayed in the notification
-    private var notificationDevice: String? = null
+    private var notificationDeviceId: String? = null
     private var notificationPlayer: MprisPlayer? = null
 
     // Holds the device ids for which we can display a notification
@@ -64,29 +64,27 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
     // Callback for control via the media session API
     private val mediaSessionCallback: MediaSessionCompat.Callback = object : MediaSessionCompat.Callback() {
         override fun onPlay() {
-            notificationPlayer!!.sendPlay()
+            notificationPlayer?.sendPlay()
         }
 
         override fun onPause() {
-            notificationPlayer!!.sendPause()
+            notificationPlayer?.sendPause()
         }
 
         override fun onSkipToNext() {
-            notificationPlayer!!.sendNext()
+            notificationPlayer?.sendNext()
         }
 
         override fun onSkipToPrevious() {
-            notificationPlayer!!.sendPrevious()
+            notificationPlayer?.sendPrevious()
         }
 
         override fun onStop() {
-            if (notificationPlayer != null) {
-                notificationPlayer!!.sendStop()
-            }
+            notificationPlayer?.sendStop()
         }
 
         override fun onSeekTo(pos: Long) {
-            notificationPlayer!!.sendSetPosition(pos.toInt())
+            notificationPlayer?.sendSetPosition(pos.toInt())
         }
     }
 
@@ -101,7 +99,7 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
      * @param device  The device id
      */
     fun onCreate(context: Context?, plugin: MprisPlugin, device: String) {
-        if (mprisDevices.isEmpty()) {
+        if (mprisDevices.isEmpty) {
             val prefs = PreferenceManager.getDefaultSharedPreferences(context)
             prefs.registerOnSharedPreferenceChangeListener(this)
         }
@@ -139,7 +137,7 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
         plugin.removePlayerListUpdatedHandler("media_notification")
         updateMediaNotification()
 
-        if (mprisDevices.isEmpty()) {
+        if (mprisDevices.isEmpty) {
             val prefs = PreferenceManager.getDefaultSharedPreferences(context)
             prefs.unregisterOnSharedPreferenceChangeListener(this)
         }
@@ -153,25 +151,27 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
      * player and device, while possible.
      */
     private fun updateCurrentPlayer(): MprisPlayer? {
-        val player = findPlayer()
+        val player = findPlayer() ?: return null
 
         // Update the last-displayed device and player
-        notificationDevice = if (player.first == null) null else player.first!!.deviceId
+        notificationDeviceId = if (player.first == null) null else player.first.deviceId
         notificationPlayer = player.second
         return notificationPlayer
     }
 
-    private fun findPlayer(): Pair<Device?, MprisPlayer?> {
+    private fun findPlayer(): Pair<Device, MprisPlayer>? {
+        val currentDevice = if (notificationDeviceId != null && mprisDevices.contains(notificationDeviceId)) {
+            KdeConnect.getInstance().getDevice(notificationDeviceId)
+        } else {
+            null
+        }
+
         // First try the previously displayed player (if still playing) or the previous displayed device (otherwise)
-        if (notificationDevice != null && mprisDevices.contains(notificationDevice)) {
-            val device = KdeConnect.getInstance().getDevice(notificationDevice)
-            val player = if (notificationPlayer != null && notificationPlayer!!.isPlaying) {
-                getPlayerFromDevice(device, notificationPlayer)
-            } else {
-                getPlayerFromDevice(device, null)
-            }
+        if (currentDevice != null) {
+            val playingPlayer = notificationPlayer?.takeIf { it.isPlaying }
+            val player = getPlayerFromDevice(currentDevice, playingPlayer)
             if (player != null) {
-                return Pair(device, player)
+                return Pair(currentDevice, player)
             }
         }
 
@@ -186,42 +186,33 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
         // So no player is playing. Try the previously displayed player again
         //  This will succeed if it's paused:
         //  that allows pausing and subsequently resuming via the notification
-        if (notificationDevice != null && mprisDevices.contains(notificationDevice)) {
-            val device = KdeConnect.getInstance().getDevice(notificationDevice)
-
-            val player = getPlayerFromDevice(device, notificationPlayer)
+        if (currentDevice != null) {
+            val player = getPlayerFromDevice(currentDevice, notificationPlayer)
             if (player != null) {
-                return Pair(device, player)
+                return Pair(currentDevice, player)
             }
-        }
-        return Pair(null, null)
-    }
-
-    private fun getPlayerFromDevice(device: Device?, preferredPlayer: MprisPlayer?): MprisPlayer? {
-        if (device == null || !mprisDevices.contains(device.deviceId)) return null
-
-        val plugin = device.getPlugin(MprisPlugin::class.java) ?: return null
-
-        // First try the preferred player, if supplied
-        if (plugin.hasPlayer(preferredPlayer) && shouldShowPlayer(preferredPlayer)) {
-            return preferredPlayer
-        }
-
-        // Otherwise, accept any playing player
-        val player = plugin.playingPlayer
-        if (shouldShowPlayer(player)) {
-            return player
         }
 
         return null
     }
 
-    private fun shouldShowPlayer(player: MprisPlayer?): Boolean {
-        return player != null && !(player.isSpotify && spotifyRunning)
+    private fun getPlayerFromDevice(device: Device, preferredPlayer: MprisPlayer?): MprisPlayer? {
+        if (!mprisDevices.contains(device.deviceId)) return null
+
+        val plugin = device.getPlugin(MprisPlugin::class.java) ?: return null
+        // First try the preferred player, if supplied & available, otherwise, accept any playing player
+        val player = preferredPlayer?.takeIf(plugin::hasPlayer)
+            ?: plugin.playingPlayer
+            ?: return null
+        return player.takeIf(::shouldShowPlayer)
+    }
+
+    private fun shouldShowPlayer(player: MprisPlayer): Boolean {
+        return !(player.isSpotify && spotifyRunning)
     }
 
     private fun updateRemoteDeviceVolumeControl() {
-        val plugin = KdeConnect.getInstance().getDevicePlugin(notificationDevice, SystemVolumePlugin::class.java)
+        val plugin = KdeConnect.getInstance().getDevicePlugin(notificationDeviceId, SystemVolumePlugin::class.java)
             ?: return
         val systemVolumeProvider = fromPlugin(plugin)
         systemVolumeProvider.addStateListener(this)
@@ -250,7 +241,7 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
         // Make sure our information is up-to-date
         val currentPlayer = updateCurrentPlayer()
 
-        val device = KdeConnect.getInstance().getDevice(notificationDevice)
+        val device = KdeConnect.getInstance().getDevice(notificationDeviceId)
         if (device == null) {
             closeMediaNotification()
             return
@@ -295,7 +286,7 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
         // Create all actions (previous/play/pause/next)
         val iPlay = Intent(context, MprisMediaNotificationReceiver::class.java).apply {
             setAction(MprisMediaNotificationReceiver.ACTION_PLAY)
-            putExtra(MprisMediaNotificationReceiver.EXTRA_DEVICE_ID, notificationDevice)
+            putExtra(MprisMediaNotificationReceiver.EXTRA_DEVICE_ID, notificationDeviceId)
             putExtra(MprisMediaNotificationReceiver.EXTRA_MPRIS_PLAYER, currentPlayer.playerName)
         }
         val piPlay = PendingIntent.getBroadcast(
@@ -310,7 +301,7 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
 
         val iPause = Intent(context, MprisMediaNotificationReceiver::class.java).apply {
             setAction(MprisMediaNotificationReceiver.ACTION_PAUSE)
-            putExtra(MprisMediaNotificationReceiver.EXTRA_DEVICE_ID, notificationDevice)
+            putExtra(MprisMediaNotificationReceiver.EXTRA_DEVICE_ID, notificationDeviceId)
             putExtra(MprisMediaNotificationReceiver.EXTRA_MPRIS_PLAYER, currentPlayer.playerName)
         }
         val piPause = PendingIntent.getBroadcast(
@@ -325,7 +316,7 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
 
         val iPrevious = Intent(context, MprisMediaNotificationReceiver::class.java).apply {
             setAction(MprisMediaNotificationReceiver.ACTION_PREVIOUS)
-            putExtra(MprisMediaNotificationReceiver.EXTRA_DEVICE_ID, notificationDevice)
+            putExtra(MprisMediaNotificationReceiver.EXTRA_DEVICE_ID, notificationDeviceId)
             putExtra(MprisMediaNotificationReceiver.EXTRA_MPRIS_PLAYER, currentPlayer.playerName)
         }
         val piPrevious = PendingIntent.getBroadcast(
@@ -340,7 +331,7 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
 
         val iNext = Intent(context, MprisMediaNotificationReceiver::class.java).apply {
             setAction(MprisMediaNotificationReceiver.ACTION_NEXT)
-            putExtra(MprisMediaNotificationReceiver.EXTRA_DEVICE_ID, notificationDevice)
+            putExtra(MprisMediaNotificationReceiver.EXTRA_DEVICE_ID, notificationDeviceId)
             putExtra(MprisMediaNotificationReceiver.EXTRA_MPRIS_PLAYER, currentPlayer.playerName)
         }
         val piNext = PendingIntent.getBroadcast(
@@ -354,7 +345,7 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
         )
 
         val iOpenActivity = Intent(context, MprisActivity::class.java).apply {
-            putExtra("deviceId", notificationDevice)
+            putExtra("deviceId", notificationDeviceId)
             putExtra("player", currentPlayer.playerName)
         }
 
@@ -392,7 +383,7 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
         if (!currentPlayer.isPlaying) {
             val iCloseNotification = Intent(context, MprisMediaNotificationReceiver::class.java)
             iCloseNotification.setAction(MprisMediaNotificationReceiver.ACTION_CLOSE_NOTIFICATION)
-            iCloseNotification.putExtra(MprisMediaNotificationReceiver.EXTRA_DEVICE_ID, notificationDevice)
+            iCloseNotification.putExtra(MprisMediaNotificationReceiver.EXTRA_DEVICE_ID, notificationDeviceId)
             iCloseNotification.putExtra(MprisMediaNotificationReceiver.EXTRA_MPRIS_PLAYER, currentPlayer.playerName)
             val piCloseNotification = PendingIntent.getBroadcast(
                 context,
@@ -450,17 +441,18 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
 
         // Display the notification
         synchronized(instance) {
-            if (mediaSession == null) {
-                mediaSession = MediaSessionCompat(context!!, MPRIS_MEDIA_SESSION_TAG)
-                mediaSession!!.setCallback(mediaSessionCallback, Handler(context!!.mainLooper))
+            val mediaSession = mediaSession ?: MediaSessionCompat(context!!, MPRIS_MEDIA_SESSION_TAG).apply {
+                setCallback(mediaSessionCallback, Handler(context!!.mainLooper))
             }
-            mediaSession!!.setMetadata(metadata.build())
-            mediaSession!!.setPlaybackState(playbackState.build())
-            mediaStyle.setMediaSession(mediaSession!!.sessionToken)
+            mediaSession.setMetadata(metadata.build())
+            mediaSession.setPlaybackState(playbackState.build())
+            mediaStyle.setMediaSession(mediaSession.sessionToken)
             notification.setStyle(mediaStyle)
-            mediaSession!!.isActive = true
-            val nm = ContextCompat.getSystemService(context!!, NotificationManager::class.java)
-            nm!!.notify(MPRIS_MEDIA_NOTIFICATION_ID, notification.build())
+            mediaSession.isActive = true
+            ContextCompat.getSystemService(context!!, NotificationManager::class.java)?.notify(MPRIS_MEDIA_NOTIFICATION_ID, notification.build())
+            if (this.mediaSession == null) {
+                this.mediaSession = mediaSession
+            }
         }
     }
 
@@ -472,16 +464,14 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
         // Clear the current player and media session
         notificationPlayer = null
         synchronized(instance) {
-            if (mediaSession != null) {
-                mediaSession!!.setPlaybackState(PlaybackStateCompat.Builder().build())
-                mediaSession!!.setMetadata(MediaMetadataCompat.Builder().build())
-                mediaSession!!.isActive = false
-                mediaSession!!.release()
-                mediaSession = null
-
-                val currentProvider = currentProvider
-                currentProvider?.release()
+            mediaSession?.apply {
+                setPlaybackState(PlaybackStateCompat.Builder().build())
+                setMetadata(MediaMetadataCompat.Builder().build())
+                isActive = false
+                release()
             }
+            mediaSession = null
+            currentProvider?.release()
         }
     }
 
@@ -529,8 +519,8 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
         }
     }
 
-    private fun StatusBarNotification?.isSpotify(): Boolean =
-        this?.packageName == SPOTIFY_PACKAGE_NAME
+    private fun StatusBarNotification.isSpotify(): Boolean =
+        this.packageName == SPOTIFY_PACKAGE_NAME
 
     companion object {
         const val TAG = "MprisMediaSession"
