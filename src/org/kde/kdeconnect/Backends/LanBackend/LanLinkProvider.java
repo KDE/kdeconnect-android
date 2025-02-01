@@ -248,6 +248,10 @@ public class LanLinkProvider extends BaseLinkProvider {
                     if (!DeviceInfo.isValidIdentityPacket(secureIdentityPacket)) {
                         throw new JSONException("Invalid identity packet");
                     }
+                    if (secureIdentityPacket.getInt("protocolVersion") != protocolVersion) {
+                        Log.e("KDE/LanLinkProvider", "Protocol version changed half-way through the handshake");
+                        return;
+                    }
                 } else {
                     secureIdentityPacket = identityPacket;
                 }
