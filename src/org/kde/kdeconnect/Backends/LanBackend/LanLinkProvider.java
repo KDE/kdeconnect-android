@@ -223,10 +223,6 @@ public class LanLinkProvider extends BaseLinkProvider {
 
         if (deviceTrusted && !SslHelper.isCertificateStored(context, deviceId)) {
             Log.e("KDE/LanLinkProvider", "Device trusted but no cert stored. This should not happen.");
-            Device device = KdeConnect.getInstance().getDevice(deviceId);
-            if (device != null) {
-                device.unpair();
-            }
             return;
         }
 
@@ -261,16 +257,8 @@ public class LanLinkProvider extends BaseLinkProvider {
                 addOrUpdateLink(sslSocket, deviceInfo);
             } catch (JSONException e) {
                 Log.e("KDE/LanLinkProvider", "Remote device doesn't correctly implement protocol version 8", e);
-                Device device = KdeConnect.getInstance().getDevice(deviceId);
-                if (device != null) {
-                    device.unpair();
-                }
             } catch (IOException e) {
                 Log.e("KDE/LanLinkProvider", "Handshake as " + mode + " failed with " + deviceName, e);
-                Device device = KdeConnect.getInstance().getDevice(deviceId);
-                if (device != null) {
-                    device.unpair();
-                }
             }
         });
 
