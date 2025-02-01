@@ -197,6 +197,7 @@
   <string name="invalid_device_name">Невалидно име на устройство</string>
   <string name="shareplugin_text_saved">Получен текст, запазен в клипборда</string>
   <string name="custom_devices_settings">Списък с потребителски устройства</string>
+  <string name="custom_devices_settings_summary">%d устройства, добавени ръчно</string>
   <string name="custom_device_list">Добавяне на устройства по IP адрес</string>
   <string name="custom_device_deleted">Изтрито потребителско устройство</string>
   <string name="custom_device_list_help">Ако устройството ви не е открито автоматично, можете да добавите неговия IP адрес или име на хост, като щракнете върху плаващия бутон за действие</string>
@@ -420,4 +421,9 @@
   <string name="mpris_keepwatching_settings_title">Продължаване на възпроизвеждането</string>
   <string name="mpris_keepwatching_settings_summary">Показване на безшумно известие за продължаване на възпроизвеждането на това устройство след затваряне на медия</string>
   <string name="notification_channel_keepwatching">Продължаване на възпроизвеждането</string>
+  <string name="ping_result">Извършен е пинг за %1$d милисекунди</string>
+  <string name="ping_failed">Устройството не можа да изпрати пинг</string>
+  <string name="ping_in_progress">Изпращане на пинг…</string>
+  <string name="device_host_invalid">Хостът е невалиден. Използвайте валидно име на хост, IPv4 или IPv6</string>
+  <string name="device_host_duplicate">Хостът вече е в списъка</string>
 </resources>
