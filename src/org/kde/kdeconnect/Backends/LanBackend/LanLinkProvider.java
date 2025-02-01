@@ -127,7 +127,13 @@ public class LanLinkProvider extends BaseLinkProvider {
         final InetAddress address = packet.getAddress();
 
         String message = new String(packet.getData(), Charsets.UTF_8);
-        final NetworkPacket identityPacket = NetworkPacket.unserialize(message);
+        final NetworkPacket identityPacket;
+        try {
+            identityPacket = NetworkPacket.unserialize(message);
+        } catch (JSONException e) {
+            Log.w("KDE/LanLinkProvider", "Invalid identity packet received: " + e.getMessage());
+            return;
+        }
 
         if (!DeviceInfo.isValidIdentityPacket(identityPacket)) {
             Log.w("KDE/LanLinkProvider", "Invalid identity packet received.");
