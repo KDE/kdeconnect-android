@@ -236,7 +236,7 @@ public class LanLinkProvider extends BaseLinkProvider {
             String mode = clientMode ? "client" : "server";
             try {
                 NetworkPacket secureIdentityPacket;
-                if (protocolVersion == 8) {
+                if (protocolVersion >= 8) {
                     DeviceInfo myDeviceInfo = DeviceHelper.getDeviceInfo(context);
                     NetworkPacket myIdentity = myDeviceInfo.toIdentityPacket();
                     OutputStream writer = sslSocket.getOutputStream();
