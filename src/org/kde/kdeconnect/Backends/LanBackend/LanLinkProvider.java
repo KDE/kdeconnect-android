@@ -223,7 +223,7 @@ public class LanLinkProvider extends BaseLinkProvider {
 
         int protocolVersion = identityPacket.getInt("protocolVersion");
         if (deviceTrusted && isProtocolDowngrade(deviceId, protocolVersion)) {
-            Log.w("KDE/LanLinkProvider", "Refusing to connect to a device using an older protocol version.");
+            Log.w("KDE/LanLinkProvider", "Refusing to connect to a device using an older protocol version:" + protocolVersion);
             return;
         }
 
@@ -254,9 +254,9 @@ public class LanLinkProvider extends BaseLinkProvider {
                     if (!DeviceInfo.isValidIdentityPacket(secureIdentityPacket)) {
                         throw new JSONException("Invalid identity packet");
                     }
-                    if (secureIdentityPacket.getInt("protocolVersion") != protocolVersion) {
-                        Log.e("KDE/LanLinkProvider", "Protocol version changed half-way through the handshake");
-                        return;
+                    int newProtocolVersion = secureIdentityPacket.getInt("protocolVersion");
+                    if (newProtocolVersion != protocolVersion) {
+                        Log.w("KDE/LanLinkProvider", "Protocol version changed half-way through the handshake: " + protocolVersion + " ->" + newProtocolVersion);
                     }
                 } else {
                     secureIdentityPacket = identityPacket;
