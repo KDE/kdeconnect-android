@@ -197,6 +197,7 @@
   <string name="invalid_device_name">Virheellinen laitenimi</string>
   <string name="shareplugin_text_saved">Vastaanotettiin tekstiä, tallennettiin leikepöydälle</string>
   <string name="custom_devices_settings">Omien laitteiden luettelo</string>
+  <string name="custom_devices_settings_summary">Käyttäjä lisäsi %d laitetta</string>
   <string name="custom_device_list">Lisää laitteita IP:llä</string>
   <string name="custom_device_deleted">Poistettiin mukautettu laite</string>
   <string name="custom_device_list_help">Ellei laitetta tunnisteta automaattisesti, sen IP-osoitteen tai konenimen voi lisätä napsauttamalla kelluvaa toimintopainiketta</string>
@@ -420,4 +421,9 @@
   <string name="mpris_keepwatching_settings_title">Jatka toistoa</string>
   <string name="mpris_keepwatching_settings_summary">Näytä hiljainen ilmoitus toiston jatkamisesta laitteella median sulkeuduttua</string>
   <string name="notification_channel_keepwatching">Jatka toistoa</string>
+  <string name="ping_result">Pingattiin %1$d millisekunnissa</string>
+  <string name="ping_failed">Laitetta ei voitu pingata</string>
+  <string name="ping_in_progress">Pingataan…</string>
+  <string name="device_host_invalid">Konenimi on virheellinen. Käytä kelvollista konenimeä tai IPv4- tai IPv6-osoitetta.</string>
+  <string name="device_host_duplicate">Konenimi löytyy jo luettelosta</string>
 </resources>
