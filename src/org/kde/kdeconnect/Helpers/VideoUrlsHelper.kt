@@ -13,6 +13,9 @@ object VideoUrlsHelper {
     private const val MINUTES_IN_HOUR = 60
     private const val SECONDS_IN_HOUR = SECONDS_IN_MINUTE * MINUTES_IN_HOUR
 
+    /** PeerTube uses a Flickr Base58 encoded short UUID (alphanumeric, but 0, O, I, and l are excluded) with a length of 22 characters **/
+    private val peerTubePathPattern = Regex("^/w/[1-9a-km-zA-HJ-NP-Z]{22}(\\?.+)?$")
+
     @Throws(MalformedURLException::class)
     fun formatUriWithSeek(address: String, position: Long): URL {
         val positionSeconds = position / 1000 // milliseconds to seconds
@@ -33,7 +36,10 @@ object VideoUrlsHelper {
                 url.editParameter("start", Regex("\\d+")) { "$positionSeconds" }
             }
             host.contains("twitch.tv") -> {
-                url.editParameter("t", Regex("(\\d+[hH])?(\\d+[mM])?\\d+[sS]")) { positionSeconds.formatTimestampHMS() }
+                url.editParameter("t", Regex("(\\d+[hH])?(\\d+[mM])?\\d+[sS]")) { formatTimestampHMS(positionSeconds) }
+            }
+            url.path.matches(peerTubePathPattern) -> {
+                url.editParameter("start", Regex("(\\d+[hH])?(\\d+[mM])?\\d+[sS]")) { formatTimestampHMS(positionSeconds) }
             }
             else -> url
         }
@@ -62,13 +68,16 @@ object VideoUrlsHelper {
         return URL("${urlBase}?${modifiedUrlQuery}") // -> "https://www.youtube.com/watch?v=ovX5G0O5ZvA&t=14"
     }
 
-    /** Formats timestamp to e.g. 01h02m34s */
-    private fun Long.formatTimestampHMS(): String {
-        if (this == 0L) return "0s"
+    /**
+     *  @param timestamp in seconds
+     *  @return timestamp formatted as e.g. "01h02m34s"
+     * */
+    private fun formatTimestampHMS(timestamp: Long): String {
+        if (timestamp == 0L) return "0s"
 
-        val seconds: Long = this % SECONDS_IN_MINUTE
-        val minutes: Long = (this / SECONDS_IN_MINUTE) % MINUTES_IN_HOUR
-        val hours: Long = this / SECONDS_IN_HOUR
+        val seconds: Long = timestamp % SECONDS_IN_MINUTE
+        val minutes: Long = (timestamp / SECONDS_IN_MINUTE) % MINUTES_IN_HOUR
+        val hours: Long = timestamp / SECONDS_IN_HOUR
 
         fun pad(s: String) = s.padStart(3, '0')
         val hoursText = if (hours > 0) pad("${hours}h") else ""

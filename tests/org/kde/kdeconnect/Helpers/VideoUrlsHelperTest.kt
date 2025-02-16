@@ -72,4 +72,31 @@ class VideoUrlsHelperTest {
         val expected = "https://example.org/cool_video.mp4"
         Assert.assertEquals(expected, formatted.toString())
     }
+
+    @Test
+    fun checkPeerTubeURL() {
+        val validUrls = mapOf(
+            "https://video.blender.org/w/472h2s5srBFmAThiZVw96R?start=01m27s" to "https://video.blender.org/w/472h2s5srBFmAThiZVw96R?start=01m30s",
+            "https://video.blender.org/w/mDyZP2TrdjjjNRMoVUgPM2?start=01m27s" to "https://video.blender.org/w/mDyZP2TrdjjjNRMoVUgPM2?start=01m30s",
+            "https://video.blender.org/w/evhMcVhvK6VeAKJwCSuHSe?start=01m27s" to "https://video.blender.org/w/evhMcVhvK6VeAKJwCSuHSe?start=01m30s",
+            "https://video.blender.org/w/54tzKpEguEEu26Hi8Lcpna?start=01m27s" to "https://video.blender.org/w/54tzKpEguEEu26Hi8Lcpna?start=01m30s",
+            "https://video.blender.org/w/o5VtGNQaNpFNNHiJbLy4eM?start=01m27s" to "https://video.blender.org/w/o5VtGNQaNpFNNHiJbLy4eM?start=01m30s",
+        )
+        for ((from, to) in validUrls) {
+            val formatted = VideoUrlsHelper.formatUriWithSeek(from, 90_000L)
+            Assert.assertEquals(to, formatted.toString())
+        }
+        val invalidUrls = listOf(
+            "https://video.blender.org/w/472h2s5srBFmAOhiZVw96R?start=01m27s", // invalid character (O)
+            "https://video.blender.org/w/mDyZP2TrdjjjNIMoVUgPM2?start=01m27s", // invalid character (I)
+            "https://video.blender.org/w/evhMcVhvK6VeAlJwCSuHSe?start=01m27s", // invalid character (l)
+            "https://video.blender.org/w/54tzKpEguEEu20Hi8Lcpna?start=01m27s", // invalid character (0)
+            "https://video.blender.org/w/o5VtGNQaNpFNHiJbLy4eM?start=01m27s", // invalid length (21)
+            "https://video.blender.org/w/hb43bRmBzNpHd4sW74Y4cyAB?start=01m27s", // invalid length (23)
+        )
+        for (url in invalidUrls) {
+            val formatted = VideoUrlsHelper.formatUriWithSeek(url, 90_000L)
+            Assert.assertEquals(url, formatted.toString()) // should not modify the URL
+        }
+    }
 }
