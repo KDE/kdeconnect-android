@@ -9,6 +9,8 @@ package org.kde.kdeconnect.Plugins.NotificationsPlugin;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.LauncherActivityInfo;
+import android.content.pm.LauncherApps;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -16,6 +18,10 @@ import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Process;
+import android.os.UserHandle;
+import android.os.UserManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,9 +46,10 @@ import org.kde.kdeconnect_tp.R;
 import org.kde.kdeconnect_tp.databinding.ActivityNotificationFilterBinding;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import kotlin.Lazy;
 import kotlin.LazyKt;
@@ -134,17 +141,56 @@ public class NotificationFilterActivity extends BaseActivity<ActivityNotificatio
             List<ApplicationInfo> appList = packageManager.getInstalledApplications(0);
             int count = appList.size();
 
-            AppListInfo[] allApps = new AppListInfo[count];
+            final Set<String> allPackageNames = new HashSet<>(count);
+            final List<AppListInfo> allApps = new ArrayList<>(count);
             for (int i = 0; i < count; i++) {
-                ApplicationInfo appInfo = appList.get(i);
-                allApps[i] = new AppListInfo();
-                allApps[i].pkg = appInfo.packageName;
-                allApps[i].name = appInfo.loadLabel(packageManager).toString();
-                allApps[i].icon = resizeIcon(appInfo.loadIcon(packageManager), 48);
-                allApps[i].isEnabled = appDatabase.isEnabled(appInfo.packageName);
+                final ApplicationInfo appInfo = appList.get(i);
+                AppListInfo appListInfo = new AppListInfo();
+                appListInfo.pkg = appInfo.packageName;
+                appListInfo.name = appInfo.loadLabel(packageManager).toString();
+                appListInfo.icon = resizeIcon(appInfo.loadIcon(packageManager), 48);
+                appListInfo.isEnabled = appDatabase.isEnabled(appInfo.packageName);
+
+                allApps.add(appListInfo);
+
+                allPackageNames.add(appInfo.packageName);
             }
-            Arrays.sort(allApps, (lhs, rhs) -> lhs.name.compareToIgnoreCase(rhs.name));
-            mAllApps = Arrays.asList(allApps);
+
+            // Find apps from work profile
+            try {
+                final UserHandle currentUser = Process.myUserHandle();
+                final LauncherApps launcher = (LauncherApps) getSystemService(Context.LAUNCHER_APPS_SERVICE);
+                final UserManager um = (UserManager) getSystemService(Context.USER_SERVICE);
+                final List<UserHandle> userProfiles = um.getUserProfiles();
+                for (final UserHandle userProfile : userProfiles) {
+                    if (userProfile.equals(currentUser)) {
+                        continue;
+                    }
+
+                    final List<LauncherActivityInfo> userActivityList = launcher.getActivityList(null, userProfile);
+                    for (final LauncherActivityInfo app : userActivityList) {
+                        if (allPackageNames.contains(app.getApplicationInfo().packageName)) {
+                            continue;
+                        }
+
+                        final ApplicationInfo appInfo = app.getApplicationInfo();
+                        AppListInfo appListInfo = new AppListInfo();
+                        appListInfo.pkg = appInfo.packageName;
+                        appListInfo.name = appInfo.loadLabel(packageManager).toString();
+                        appListInfo.icon = resizeIcon(appInfo.loadIcon(packageManager), 48);
+                        appListInfo.isEnabled = appDatabase.isEnabled(appInfo.packageName);
+
+                        allApps.add(appListInfo);
+
+                        allPackageNames.add(app.getApplicationInfo().packageName);
+                    }
+                }
+            } catch (final Exception e) {
+                Log.e("NotificationFilterActiv", "Failed to get apps from work profile", e);
+            }
+
+            allApps.sort((lhs, rhs) -> lhs.name.compareToIgnoreCase(rhs.name));
+            mAllApps = allApps;
             apps = new ArrayList<>(mAllApps);
             runOnUiThread(this::displayAppList);
         });
