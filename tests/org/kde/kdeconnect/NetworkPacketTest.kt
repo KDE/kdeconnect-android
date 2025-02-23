@@ -37,9 +37,8 @@ class NetworkPacketTest {
         Assert.assertEquals(np.getString("type"), np2.getString("type"))
         Assert.assertEquals(np.getJSONArray("body"), np2.getJSONArray("body"))
 
-        val json = "{\"id\":123,\"type\":\"test\",\"body\":{\"testing\":true}}"
+        val json = "{\"type\":\"test\",\"body\":{\"testing\":true}}"
         np2 = unserialize(json)
-        Assert.assertEquals(np2.id, 123)
         Assert.assertTrue(np2.getBoolean("testing"))
         Assert.assertFalse(np2.getBoolean("not_testing"))
         Assert.assertTrue(np2.getBoolean("not_testing", true))

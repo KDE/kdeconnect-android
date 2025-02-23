@@ -16,14 +16,12 @@ import java.net.Socket
 import kotlin.concurrent.Volatile
 
 class NetworkPacket private constructor(
-    val id: Long,
     val type: String,
     private val mBody: JSONObject,
     var payload: Payload?,
     var payloadTransferInfo: JSONObject,
 ) {
     constructor(type: String) : this(
-        id = System.currentTimeMillis(),
         type = type,
         mBody = JSONObject(),
         payload = null,
@@ -209,7 +207,7 @@ class NetworkPacket private constructor(
     @Throws(JSONException::class)
     fun serialize(): String {
         val jo = JSONObject()
-        jo.put("id", id)
+        jo.put("id", System.currentTimeMillis())
         jo.put("type", type)
         jo.put("body", mBody)
         if (hasPayload()) {
@@ -285,14 +283,13 @@ class NetworkPacket private constructor(
         @Throws(JSONException::class)
         fun unserialize(s: String): NetworkPacket {
             val jo = JSONObject(s)
-            val id = jo.getLong("id")
             val type = jo.getString("type")
             val mBody = jo.getJSONObject("body")
 
             val hasPayload = jo.has("payloadSize")
             val payloadTransferInfo = if (hasPayload) jo.getJSONObject("payloadTransferInfo") else JSONObject()
             val payload = if (hasPayload) Payload(jo.getLong("payloadSize")) else null
-            return NetworkPacket(id, type, mBody, payload, payloadTransferInfo)
+            return NetworkPacket(type, mBody, payload, payloadTransferInfo)
         }
     }
 }
