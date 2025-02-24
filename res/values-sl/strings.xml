@@ -115,6 +115,7 @@
   <string name="error_not_reachable">Naprava ni dosegljiva</string>
   <string name="error_already_paired">Naprava je že uparjena</string>
   <string name="error_timed_out">Čas je potekel</string>
+  <string name="error_clocks_not_match">Ure naprave niso sinhronizirane</string>
   <string name="error_canceled_by_user">Preklical uporabnik</string>
   <string name="error_canceled_by_other_peer">Preklican od drugega vrstnika</string>
   <string name="encryption_info_title">Informacija o šifriranju</string>
@@ -130,10 +131,10 @@
     <item quantity="other">Prejemanje %1$d datotek od %2$s</item>
   </plurals>
   <plurals name="incoming_files_text">
-    <item quantity="one">(Datotek %2$d od %3$d) : %1$s</item>
+    <item quantity="one">(Datoteka %2$d od %3$d) : %1$s</item>
     <item quantity="two">(Datoteka %2$d od %3$d) : %1$s</item>
-    <item quantity="few">(Datoteki %2$d od %3$d) : %1$s</item>
-    <item quantity="other">(Datoteke %2$d od %3$d) : %1$s</item>
+    <item quantity="few">(Datoteka %2$d od %3$d) : %1$s</item>
+    <item quantity="other">(Datoteka %2$d od %3$d) : %1$s</item>
   </plurals>
   <plurals name="outgoing_file_title">
     <item quantity="one">Pošiljanje %1$d datotek na %2$s</item>
@@ -208,6 +209,7 @@
   <string name="share_to">Deli z…</string>
   <string name="unreachable_device">%s (Nedosegljiva)</string>
   <string name="unreachable_device_url_share_text">URL-ji, ki so v skupni rabi z nedosegljivo napravo, ji bodo dostavljeni, ko postane dosegljiva.\n\n</string>
+  <string name="protocol_version">Protokol različice:</string>
   <string name="protocol_version_newer">Ta naprava uporablja novejšo različico protokola</string>
   <string name="plugin_settings_with_name">Nastavitve %s</string>
   <string name="invalid_device_name">Neveljavno ime naprave</string>

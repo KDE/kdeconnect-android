@@ -115,6 +115,7 @@
   <string name="error_not_reachable">Aygıt ulaşılabilir değil</string>
   <string name="error_already_paired">Aygıt zaten eşleşmiş</string>
   <string name="error_timed_out">Zaman aşımı</string>
+  <string name="error_clocks_not_match">Aygıt saatleri eşzamanlı değil</string>
   <string name="error_canceled_by_user">Kullanıcı tarafından iptal edildi</string>
   <string name="error_canceled_by_other_peer">Diğer eş tarafından iptal edildi</string>
   <string name="encryption_info_title">Şifreleme Bilgisi</string>
@@ -192,6 +193,7 @@
   <string name="share_to">Şuraya Paylaş…</string>
   <string name="unreachable_device">%s (Erişilebilir değil)</string>
   <string name="unreachable_device_url_share_text">Erişilemeyen bir aygıta gönderilen URL’ler, aygıt erişilebilir olduğunda teslim edilir.\n\n</string>
+  <string name="protocol_version">Protokol sürümü:</string>
   <string name="protocol_version_newer">Bu aygıt, daha yeni bir protokol sürümü kullanıyor</string>
   <string name="plugin_settings_with_name">%s ayarları</string>
   <string name="invalid_device_name">Geçersiz aygıt adı</string>

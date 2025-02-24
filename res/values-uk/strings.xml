@@ -115,6 +115,7 @@
   <string name="error_not_reachable">Немає доступу до пристрою</string>
   <string name="error_already_paired">Пристрій вже пов’язано</string>
   <string name="error_timed_out">Час очікування вичерпано</string>
+  <string name="error_clocks_not_match">Годинник пристрою не синхронізовано</string>
   <string name="error_canceled_by_user">Скасовано користувачем</string>
   <string name="error_canceled_by_other_peer">Скасовано з іншого вузла пов’язування</string>
   <string name="encryption_info_title">Дані щодо шифрування</string>
@@ -208,6 +209,7 @@
   <string name="share_to">Оприлюднити на…</string>
   <string name="unreachable_device">%s (недоступний)</string>
   <string name="unreachable_device_url_share_text">Адреси, які оприлюднено на недоступному пристрої, буде надіслано, щойно пристрій стане доступним.\n\n</string>
+  <string name="protocol_version">Версія протоколу:</string>
   <string name="protocol_version_newer">На цьому пристрої використовується новіша версія протоколу</string>
   <string name="plugin_settings_with_name">Параметри %s</string>
   <string name="invalid_device_name">Некоректна назва пристрою</string>
