@@ -115,6 +115,7 @@
   <string name="error_not_reachable">No es pot accedir al dispositiu</string>
   <string name="error_already_paired">El dispositiu ja està aparellat</string>
   <string name="error_timed_out">Ha excedit el temps</string>
+  <string name="error_clocks_not_match">Els rellotges dels dispositius no estan sincronitzats</string>
   <string name="error_canceled_by_user">Cancel·lat per l\'usuari</string>
   <string name="error_canceled_by_other_peer">Cancel·lat per l\'altre parell</string>
   <string name="encryption_info_title">Informació de l\'encriptatge</string>
@@ -192,6 +193,7 @@
   <string name="share_to">Comparteix amb…</string>
   <string name="unreachable_device">%s (no s\'hi pot accedir)</string>
   <string name="unreachable_device_url_share_text">Els URL compartits amb un dispositiu no accessible es lliuraran un cop s\'hi pugui accedir.\n\n</string>
+  <string name="protocol_version">Versió del protocol:</string>
   <string name="protocol_version_newer">Aquest dispositiu usa una versió nova del protocol</string>
   <string name="plugin_settings_with_name">Configuració del %s</string>
   <string name="invalid_device_name">El nom del dispositiu no és vàlid</string>

@@ -115,6 +115,7 @@
   <string name="error_not_reachable">Apparaten kan inte nås</string>
   <string name="error_already_paired">Apparat redan parkopplad</string>
   <string name="error_timed_out">Tidsgräns överskriden</string>
+  <string name="error_clocks_not_match">Apparaternas klockor är inte synkroniserade</string>
   <string name="error_canceled_by_user">Avbruten av användaren</string>
   <string name="error_canceled_by_other_peer">Avbruten av motparten</string>
   <string name="encryption_info_title">Krypteringsinformation</string>
@@ -192,6 +193,7 @@
   <string name="share_to">Dela med…</string>
   <string name="unreachable_device">%s (kan inte nås)</string>
   <string name="unreachable_device_url_share_text">Webbadress som delas med en apparat som inte kan nås levereras till den när den väl blir möjlig att nå.\n\n</string>
+  <string name="protocol_version">Protokollversion:</string>
   <string name="protocol_version_newer">Apparaten använder en nyare protokollversion</string>
   <string name="plugin_settings_with_name">Inställningar av %s</string>
   <string name="invalid_device_name">Ogiltigt apparatnamn</string>

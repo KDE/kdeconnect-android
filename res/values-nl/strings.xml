@@ -115,6 +115,7 @@
   <string name="error_not_reachable">Apparaat niet bereikbaar</string>
   <string name="error_already_paired">Apparaat is al gepaard</string>
   <string name="error_timed_out">Tijdslimiet overschreden</string>
+  <string name="error_clocks_not_match">Klokken op apparaten lopen niet gelijk</string>
   <string name="error_canceled_by_user">Geannuleerd door gebruiker</string>
   <string name="error_canceled_by_other_peer">Geannuleerd door andere kant</string>
   <string name="encryption_info_title">Versleutelde informatie</string>
@@ -192,6 +193,7 @@
   <string name="share_to">Delen met…</string>
   <string name="unreachable_device">%s (niet bereikbaar)</string>
   <string name="unreachable_device_url_share_text">URL\'s gedeeld met een niet bereikbaar apparaat zullen er afgeleverd worden wanneer deze bereikbaar wordt.\n\n</string>
+  <string name="protocol_version">Protocolversie:</string>
   <string name="protocol_version_newer">Dit apparaat gebruikt een nieuwere protocolversie</string>
   <string name="plugin_settings_with_name">Instellingen van %s</string>
   <string name="invalid_device_name">Ongeldige apparaatnaam</string>

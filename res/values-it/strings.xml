@@ -115,6 +115,7 @@
   <string name="error_not_reachable">Dispositivo fuori portata</string>
   <string name="error_already_paired">Dispositivo già associato</string>
   <string name="error_timed_out">Richiesta scaduta</string>
+  <string name="error_clocks_not_match">Gli orologi dei dispositivi non sono sincronizzati</string>
   <string name="error_canceled_by_user">Annullata dall\'utente</string>
   <string name="error_canceled_by_other_peer">Annullata dal dispositivo remoto</string>
   <string name="encryption_info_title">Informazioni di cifratura</string>
@@ -192,6 +193,7 @@
   <string name="share_to">Condividi con…</string>
   <string name="unreachable_device">%s (non raggiungibile)</string>
   <string name="unreachable_device_url_share_text">Gli URL condivisi su un dispositivo irraggiungibile saranno recapitati una volta che sarà tornato raggiungibile.\n\n</string>
+  <string name="protocol_version">Versione del protocollo:</string>
   <string name="protocol_version_newer">Questo dispositivo usa una nuova versione del protocollo di rete</string>
   <string name="plugin_settings_with_name">Impostazioni di %s</string>
   <string name="invalid_device_name">Nome dispositivo non valido</string>
