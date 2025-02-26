@@ -115,6 +115,7 @@
   <string name="error_not_reachable">设备不可及</string>
   <string name="error_already_paired">设备已配对</string>
   <string name="error_timed_out">超时</string>
+  <string name="error_clocks_not_match">设备时钟不同步</string>
   <string name="error_canceled_by_user">已被用户取消</string>
   <string name="error_canceled_by_other_peer">已被其他对等点取消</string>
   <string name="encryption_info_title">加密信息</string>
@@ -184,6 +185,7 @@
   <string name="share_to">分享到…</string>
   <string name="unreachable_device">%s (无法访问)</string>
   <string name="unreachable_device_url_share_text">URL 被分享到了不可访问的设备。它将在设备能够访问时自动传输到该设备。\n</string>
+  <string name="protocol_version">协议版本：</string>
   <string name="protocol_version_newer">此设备使用较新版本的协议</string>
   <string name="plugin_settings_with_name">%s设置</string>
   <string name="invalid_device_name">无效的设备名</string>
