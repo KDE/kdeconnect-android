@@ -8,6 +8,7 @@ package org.kde.kdeconnect.UserInterface.compose
 
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -19,7 +20,7 @@ import org.kde.kdeconnect_tp.R
 @Composable
 fun KdeTopAppBar(
     title: String = stringResource(R.string.kde_connect),
-    navIcon: ImageVector = Icons.Default.ArrowBack,
+    navIcon: ImageVector = Icons.AutoMirrored.Filled.ArrowBack,
     navIconDescription: String = "",
     navIconOnClick: () -> Unit, // = { onBackPressedDispatcher.onBackPressed() }
     actions: @Composable (RowScope.() -> Unit) = {},

@@ -134,6 +134,7 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener {
                         modifier = Modifier.padding(bottom = 8.dp).padding(horizontal = 16.dp),
                         style = MaterialTheme.typography.bodyLarge,
                     )
+                    @Suppress("DEPRECATION") // we explicitly want the non-mirrored version of the icons
                     Row(
                         modifier = Modifier.fillMaxSize().weight(3f),
                         horizontalArrangement = Arrangement.spacedBy(20.dp),
