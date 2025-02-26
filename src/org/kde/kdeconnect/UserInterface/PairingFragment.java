@@ -39,6 +39,7 @@ import org.kde.kdeconnect.UserInterface.List.PairingDeviceItem;
 import org.kde.kdeconnect.UserInterface.List.SectionItem;
 import org.kde.kdeconnect_tp.R;
 import org.kde.kdeconnect_tp.databinding.DevicesListBinding;
+import org.kde.kdeconnect_tp.databinding.PairingExplanationDuplicateNamesBinding;
 import org.kde.kdeconnect_tp.databinding.PairingExplanationNotTrustedBinding;
 import org.kde.kdeconnect_tp.databinding.PairingExplanationTextBinding;
 import org.kde.kdeconnect_tp.databinding.PairingExplanationTextNoNotificationsBinding;
@@ -46,6 +47,7 @@ import org.kde.kdeconnect_tp.databinding.PairingExplanationTextNoWifiBinding;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 
 
 /**
@@ -60,6 +62,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
     private PairingExplanationNotTrustedBinding pairingExplanationNotTrustedBinding;
     private PairingExplanationTextBinding pairingExplanationTextBinding;
     private PairingExplanationTextNoWifiBinding pairingExplanationTextNoWifiBinding;
+    private PairingExplanationDuplicateNamesBinding pairingExplanationDuplicateNamesBinding;
     private PairingExplanationTextNoNotificationsBinding pairingExplanationTextNoNotificationsBinding;
 
     private MainActivity mActivity;
@@ -68,6 +71,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
 
     private TextView headerText;
     private TextView noWifiHeader;
+    private TextView duplicateNamesHeader;
     private TextView noNotificationsHeader;
     private TextView notTrustedText;
 
@@ -93,6 +97,9 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
         pairingExplanationTextNoWifiBinding = PairingExplanationTextNoWifiBinding.inflate(inflater);
         noWifiHeader = pairingExplanationTextNoWifiBinding.getRoot();
         noWifiHeader.setOnClickListener(view -> startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS)));
+
+        pairingExplanationDuplicateNamesBinding = PairingExplanationDuplicateNamesBinding.inflate(inflater);
+        duplicateNamesHeader = pairingExplanationDuplicateNamesBinding.getRoot();
 
         pairingExplanationTextNoNotificationsBinding = PairingExplanationTextNoNotificationsBinding.inflate(inflater);
         noNotificationsHeader = pairingExplanationTextNoNotificationsBinding.getRoot();
@@ -162,6 +169,8 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
         }
         listRefreshCalledThisFrame = true;
 
+        devicesListBinding.devicesList.removeHeaderView(duplicateNamesHeader);
+
         //Check if we're on Wi-Fi/Local network. If we still see a device, don't do anything special
         BackgroundService service = BackgroundService.getInstance();
         if (service == null) {
@@ -176,10 +185,20 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
             SectionItem connectedSection;
             Resources res = getResources();
 
+            Collection<Device> devices = KdeConnect.getInstance().getDevices().values();
+
+            HashSet<String> seenNames = new HashSet<>();
+            for (Device device : devices) {
+                if (seenNames.contains(device.getName())) {
+                    devicesListBinding.devicesList.addHeaderView(duplicateNamesHeader);
+                    break;
+                }
+                seenNames.add(device.getName());
+            }
+
             connectedSection = new SectionItem(res.getString(R.string.category_connected_devices));
             items.add(connectedSection);
 
-            Collection<Device> devices = KdeConnect.getInstance().getDevices().values();
             for (Device device : devices) {
                 if (device.isReachable() && device.isPaired()) {
                     items.add(new PairingDeviceItem(device, PairingFragment.this));
