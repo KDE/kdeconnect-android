@@ -115,6 +115,7 @@
   <string name="error_not_reachable">Périphérique inaccessible</string>
   <string name="error_already_paired">Périphérique déjà associé</string>
   <string name="error_timed_out">Délai expiré</string>
+  <string name="error_clocks_not_match">Les horloges du périphérique ne sont pas synchronisées.</string>
   <string name="error_canceled_by_user">Annulé par l\'utilisateur</string>
   <string name="error_canceled_by_other_peer">Annulé par un autre homologue</string>
   <string name="encryption_info_title">Informations de chiffrement</string>
@@ -192,6 +193,7 @@
   <string name="share_to">Partager vers…</string>
   <string name="unreachable_device">%s (Inaccessible)</string>
   <string name="unreachable_device_url_share_text">Les URL partagées vers un appareil inaccessible lui seront transmises une fois qu\'il re-deviendra accessible.\n\n</string>
+  <string name="protocol_version">Version de protocole :</string>
   <string name="protocol_version_newer">Le périphérique utilise une version plus récente du protocole</string>
   <string name="plugin_settings_with_name">Configuration %s</string>
   <string name="invalid_device_name">Nom de périphérique non valable</string>
