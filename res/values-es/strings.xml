@@ -115,6 +115,7 @@
   <string name="error_not_reachable">No se encuentra el dispositivo</string>
   <string name="error_already_paired">Dispositivo ya vinculado</string>
   <string name="error_timed_out">Se ha agotado el tiempo</string>
+  <string name="error_clocks_not_match">Los relojes de los dispositivos no están sincronizados</string>
   <string name="error_canceled_by_user">Cancelado por el usuario</string>
   <string name="error_canceled_by_other_peer">Cancelado por la otra parte</string>
   <string name="encryption_info_title">Información de cifrado</string>
@@ -192,6 +193,7 @@
   <string name="share_to">Compartir con...</string>
   <string name="unreachable_device">%s (no accesible)</string>
   <string name="unreachable_device_url_share_text">Las URLs compartidas con dispositivos no accesibles se entregarán una vez que vuelvan a estar accesibles.\n\n</string>
+  <string name="protocol_version">Versión del protocolo:</string>
   <string name="protocol_version_newer">Este dispositivo usa una versión más reciente del protocolo</string>
   <string name="plugin_settings_with_name">Preferencias de %s</string>
   <string name="invalid_device_name">Nombre de dispositivo no válido</string>
