@@ -249,8 +249,12 @@ public class LanLinkProvider extends BaseLinkProvider {
                     writer.write(myIdentity.serialize().getBytes(Charsets.UTF_8));
                     writer.flush();
                     BufferedReader reader = new BufferedReader(new InputStreamReader(sslSocket.getInputStream()));
+                    String line = reader.readLine();
+                    if (line == null) {
+                        throw new JSONException("Can't read line");
+                    }
                     // Do not trust the identity packet we received unencrypted
-                    secureIdentityPacket = NetworkPacket.unserialize(reader.readLine());
+                    secureIdentityPacket = NetworkPacket.unserialize(line);
                     if (!DeviceInfo.isValidIdentityPacket(secureIdentityPacket)) {
                         throw new JSONException("Invalid identity packet");
                     }
