@@ -1,0 +1,9 @@
+1.33.1
+* Fix compatibility with GSConnect
+
+1.33.0
+* Add support for PeerTube links
+* Allow filtering notifications from work profile
+* Fix bug where devices would unpair without user interaction
+* Verification key now changes every second (only if both devices support it)
+* Fix crashes
