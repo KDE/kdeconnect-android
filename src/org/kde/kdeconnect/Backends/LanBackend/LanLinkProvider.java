@@ -19,21 +19,18 @@ import androidx.annotation.WorkerThread;
 import org.json.JSONException;
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
-import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.DeviceHost;
 import org.kde.kdeconnect.DeviceInfo;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.Helpers.ThreadHelper;
 import org.kde.kdeconnect.Helpers.TrustedNetworkHelper;
-import org.kde.kdeconnect.KdeConnect;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.UserInterface.CustomDevicesActivity;
 import org.kde.kdeconnect.UserInterface.SettingsFragment;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -68,6 +65,7 @@ public class LanLinkProvider extends BaseLinkProvider {
     final static int MAX_PORT = 1764;
     final static int PAYLOAD_TRANSFER_MIN_PORT = 1739;
 
+    final static int MAX_IDENTITY_PACKET_SIZE = 1024 * 512;
     final static int MAX_UDP_PACKET_SIZE = 1024 * 512;
 
     final static long MILLIS_DELAY_BETWEEN_CONNECTIONS_TO_SAME_DEVICE = 500L;
@@ -100,8 +98,7 @@ public class LanLinkProvider extends BaseLinkProvider {
 
         NetworkPacket networkPacket;
         try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            String message = reader.readLine();
+            String message = readSingleLine(socket);
             networkPacket = NetworkPacket.unserialize(message);
             //Log.e("TcpListener", "Received TCP packet: " + networkPacket.serialize());
         } catch (Exception e) {
@@ -118,6 +115,25 @@ public class LanLinkProvider extends BaseLinkProvider {
         }
 
         identityPacketReceived(networkPacket, socket, LanLink.ConnectionStarted.Locally, deviceTrusted);
+    }
+
+    /**
+     * Read a single line from a socket without consuming anything else from the input.
+     */
+    private String readSingleLine(Socket socket) throws IOException {
+        InputStream stream = socket.getInputStream();
+        StringBuilder line = new StringBuilder(MAX_IDENTITY_PACKET_SIZE);
+        int ch;
+        while ((ch = stream.read()) != -1) {
+            line.append((char) ch);
+            if (ch == '\n') {
+                return line.toString();
+            }
+            if (line.length() >= MAX_IDENTITY_PACKET_SIZE) {
+                break;
+            }
+        }
+        throw new IOException("Couldn't read a line from the socket");
     }
 
     //I've received their broadcast and should connect to their TCP socket and send my identity.
@@ -248,11 +264,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                     OutputStream writer = sslSocket.getOutputStream();
                     writer.write(myIdentity.serialize().getBytes(Charsets.UTF_8));
                     writer.flush();
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(sslSocket.getInputStream()));
-                    String line = reader.readLine();
-                    if (line == null) {
-                        throw new JSONException("Can't read line");
-                    }
+                    String line = readSingleLine(sslSocket);
                     // Do not trust the identity packet we received unencrypted
                     secureIdentityPacket = NetworkPacket.unserialize(line);
                     if (!DeviceInfo.isValidIdentityPacket(secureIdentityPacket)) {
