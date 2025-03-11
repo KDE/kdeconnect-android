@@ -255,37 +255,40 @@ public class LanLinkProvider extends BaseLinkProvider {
         final boolean clientMode = (connectionStarted == LanLink.ConnectionStarted.Locally);
         final SSLSocket sslSocket = SslHelper.convertToSslSocket(context, socket, deviceId, deviceTrusted, clientMode);
         sslSocket.addHandshakeCompletedListener(event -> {
-            String mode = clientMode ? "client" : "server";
-            try {
-                NetworkPacket secureIdentityPacket;
-                if (protocolVersion >= 8) {
-                    DeviceInfo myDeviceInfo = DeviceHelper.getDeviceInfo(context);
-                    NetworkPacket myIdentity = myDeviceInfo.toIdentityPacket();
-                    OutputStream writer = sslSocket.getOutputStream();
-                    writer.write(myIdentity.serialize().getBytes(Charsets.UTF_8));
-                    writer.flush();
-                    String line = readSingleLine(sslSocket);
-                    // Do not trust the identity packet we received unencrypted
-                    secureIdentityPacket = NetworkPacket.unserialize(line);
-                    if (!DeviceInfo.isValidIdentityPacket(secureIdentityPacket)) {
-                        throw new JSONException("Invalid identity packet");
+            // Start a new thread because some Android versions don't allow calling sslSocket.getOutputStream() from the callback
+            ThreadHelper.execute(() -> {
+                String mode = clientMode ? "client" : "server";
+                try {
+                    NetworkPacket secureIdentityPacket;
+                    if (protocolVersion >= 8) {
+                        DeviceInfo myDeviceInfo = DeviceHelper.getDeviceInfo(context);
+                        NetworkPacket myIdentity = myDeviceInfo.toIdentityPacket();
+                        OutputStream writer = sslSocket.getOutputStream();
+                        writer.write(myIdentity.serialize().getBytes(Charsets.UTF_8));
+                        writer.flush();
+                        String line = readSingleLine(sslSocket);
+                        // Do not trust the identity packet we received unencrypted
+                        secureIdentityPacket = NetworkPacket.unserialize(line);
+                        if (!DeviceInfo.isValidIdentityPacket(secureIdentityPacket)) {
+                            throw new JSONException("Invalid identity packet");
+                        }
+                        int newProtocolVersion = secureIdentityPacket.getInt("protocolVersion");
+                        if (newProtocolVersion != protocolVersion) {
+                            Log.w("KDE/LanLinkProvider", "Protocol version changed half-way through the handshake: " + protocolVersion + " ->" + newProtocolVersion);
+                        }
+                    } else {
+                        secureIdentityPacket = identityPacket;
                     }
-                    int newProtocolVersion = secureIdentityPacket.getInt("protocolVersion");
-                    if (newProtocolVersion != protocolVersion) {
-                        Log.w("KDE/LanLinkProvider", "Protocol version changed half-way through the handshake: " + protocolVersion + " ->" + newProtocolVersion);
-                    }
-                } else {
-                    secureIdentityPacket = identityPacket;
+                    Certificate certificate = event.getPeerCertificates()[0];
+                    DeviceInfo deviceInfo = DeviceInfo.fromIdentityPacketAndCert(secureIdentityPacket, certificate);
+                    Log.i("KDE/LanLinkProvider", "Handshake as " + mode + " successful with " + deviceName + " secured with " + event.getCipherSuite());
+                    addOrUpdateLink(sslSocket, deviceInfo);
+                } catch (JSONException e) {
+                    Log.e("KDE/LanLinkProvider", "Remote device doesn't correctly implement protocol version 8", e);
+                } catch (IOException e) {
+                    Log.e("KDE/LanLinkProvider", "Handshake as " + mode + " failed with " + deviceName, e);
                 }
-                Certificate certificate = event.getPeerCertificates()[0];
-                DeviceInfo deviceInfo = DeviceInfo.fromIdentityPacketAndCert(secureIdentityPacket, certificate);
-                Log.i("KDE/LanLinkProvider", "Handshake as " + mode + " successful with " + deviceName + " secured with " + event.getCipherSuite());
-                addOrUpdateLink(sslSocket, deviceInfo);
-            } catch (JSONException e) {
-                Log.e("KDE/LanLinkProvider", "Remote device doesn't correctly implement protocol version 8", e);
-            } catch (IOException e) {
-                Log.e("KDE/LanLinkProvider", "Handshake as " + mode + " failed with " + deviceName, e);
-            }
+            });
         });
 
         //Handshake is blocking, so do it on another thread and free this thread to keep receiving new connection
