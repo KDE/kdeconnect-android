@@ -115,6 +115,7 @@
   <string name="error_not_reachable">Urządzenie nieosiągalne</string>
   <string name="error_already_paired">Urządzenie już sparowano</string>
   <string name="error_timed_out">Upłynął czas na odpowiedź</string>
+  <string name="error_clocks_not_match">Zegary urządzenia nie są zsynchronizowane</string>
   <string name="error_canceled_by_user">Użytkownik zaniechał</string>
   <string name="error_canceled_by_other_peer">Inny uczestnik zaniechał</string>
   <string name="encryption_info_title">Dane o szyfrowaniu</string>
@@ -208,6 +209,7 @@
   <string name="share_to">Udostępnij urządzeniu...</string>
   <string name="unreachable_device">%s (nieosiągalne)</string>
   <string name="unreachable_device_url_share_text">Adres URL udostępniony nieosiągalnemu urządzeniu zostanie do niego dostarczony zaraz po tym jak stanie się osiągalne.\n\n</string>
+  <string name="protocol_version">Wersja protokołu:</string>
   <string name="protocol_version_newer">Urządzenie to używa nowszej wersji protokołu</string>
   <string name="plugin_settings_with_name">Ustawienia %s</string>
   <string name="invalid_device_name">Nieprawidłowa nazwa urządzenia</string>
