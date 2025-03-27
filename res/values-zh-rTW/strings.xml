@@ -115,6 +115,7 @@
   <string name="error_not_reachable">裝置無法存取</string>
   <string name="error_already_paired">裝置已經配對</string>
   <string name="error_timed_out">逾時</string>
+  <string name="error_clocks_not_match">裝置時鐘不同步</string>
   <string name="error_canceled_by_user">使用者中斷</string>
   <string name="error_canceled_by_other_peer">被其他同等功能應用中斷</string>
   <string name="encryption_info_title">加密資訊</string>
@@ -184,6 +185,7 @@
   <string name="share_to">分享給…</string>
   <string name="unreachable_device">%s（無法存取）</string>
   <string name="unreachable_device_url_share_text">若分享網址 (URL) 到無法存取的裝置，將在該裝置變得可存取後再傳送過去。\n\n</string>
+  <string name="protocol_version">協定版本：</string>
   <string name="protocol_version_newer">此裝置使用較新的通訊協定版本</string>
   <string name="plugin_settings_with_name">%s的設定</string>
   <string name="invalid_device_name">無效的裝置名稱</string>
