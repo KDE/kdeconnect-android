@@ -137,7 +137,7 @@ object DeviceHelper {
         val deviceName = if (preferenceKeys.isEmpty()) {
             // For new installations, use random IDs
             Log.i("DeviceHelper","No device ID found and this looks like a new installation, creating a random ID")
-            UUID.randomUUID().toString().replace('-', '_')
+            UUID.randomUUID().toString().replace("-", "")
         } else {
             // Use the ANDROID_ID as device ID for existing installations, for backwards compatibility
             Log.i("DeviceHelper", "No device ID found but this seems an existing installation, using the Android ID")
