@@ -11,7 +11,6 @@ import android.content.res.Configuration
 import android.content.res.Resources
 import android.os.Build
 import android.preference.PreferenceManager
-import android.provider.Settings
 import android.util.Log
 import com.univocity.parsers.common.TextParsingException
 import com.univocity.parsers.csv.CsvParser
@@ -26,6 +25,7 @@ import java.io.InputStreamReader
 import java.net.URL
 import java.nio.charset.StandardCharsets
 import java.util.UUID
+import androidx.core.content.edit
 
 object DeviceHelper {
     const val ProtocolVersion = 8
@@ -134,16 +134,8 @@ object DeviceHelper {
             return // We already have an ID
         }
         @SuppressLint("HardwareIds")
-        val deviceName = if (preferenceKeys.isEmpty()) {
-            // For new installations, use random IDs
-            Log.i("DeviceHelper","No device ID found and this looks like a new installation, creating a random ID")
-            UUID.randomUUID().toString().replace("-", "")
-        } else {
-            // Use the ANDROID_ID as device ID for existing installations, for backwards compatibility
-            Log.i("DeviceHelper", "No device ID found but this seems an existing installation, using the Android ID")
-            Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
-        }
-        preferences.edit().putString(KEY_DEVICE_ID_PREFERENCE, deviceName).apply()
+        val deviceName = UUID.randomUUID().toString().replace("-", "")
+        preferences.edit { putString(KEY_DEVICE_ID_PREFERENCE, deviceName) }
     }
 
     @JvmStatic
