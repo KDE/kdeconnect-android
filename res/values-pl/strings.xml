@@ -2,47 +2,47 @@
 <resources>
   <string name="kde_connect">KDE Connect</string>
   <string name="manifest_label_share">Wyślij na urządzenie</string>
-  <string name="foreground_notification_no_devices">Niepołączony z żadnym urządzeniem</string>
-  <string name="foreground_notification_devices">Połączony z: %s</string>
-  <string name="foreground_notification_send_clipboard">Wysyłanie schowka</string>
-  <string name="pref_plugin_telephony">Powiadomienia o dzwonieniu</string>
-  <string name="pref_plugin_telephony_desc">Wysyła na inne urządzenie powiadomienia o rozmowach przychodzących na to urządzenie</string>
+  <string name="foreground_notification_no_devices">Niepołączono</string>
+  <string name="foreground_notification_devices">Połączono z %s</string>
+  <string name="foreground_notification_send_clipboard">Synchronizowanie schowka</string>
+  <string name="pref_plugin_telephony">Powiadomienia o połączeniach przychodzących</string>
+  <string name="pref_plugin_telephony_desc">Wysyła na inne urządzenie powiadomienia o przychodzących połączeniach</string>
   <string name="pref_plugin_battery">Zgłaszanie stanu baterii</string>
-  <string name="pref_plugin_battery_desc">Okresowo zgłasza stan naładowania baterii</string>
+  <string name="pref_plugin_battery_desc">Cyklicznie zgłasza procent naładowania baterii</string>
   <string name="pref_plugin_connectivity_report">Zgłaszanie łączności</string>
-  <string name="pref_plugin_connectivity_report_desc">Zgłasza siłę i stanu sygnału sieciowego</string>
+  <string name="pref_plugin_connectivity_report_desc">Zgłasza stan baterii i zasięg telefonu</string>
   <string name="pref_plugin_sftp">Udostępnianie systemu plików</string>
   <string name="pref_plugin_sftp_desc">Udostępnia system plików tego urządzenia do przeglądania innemu urządzeniu</string>
-  <string name="pref_plugin_clipboard">Współdzielenie schowka</string>
-  <string name="pref_plugin_clipboard_desc">Współdzieli schowek między urządzeniami</string>
+  <string name="pref_plugin_clipboard">Synchronizacja schowka</string>
+  <string name="pref_plugin_clipboard_desc">Umożliwia synchronizację schowka między urządzeniami</string>
   <string name="pref_plugin_clipboard_sent">Wysłano ze schowka</string>
   <string name="pref_plugin_mousepad">Obsługa zdalna</string>
-  <string name="pref_plugin_mousepad_desc">Używa telefonu lub tabletu jako gładzika i klawiatury do sterowania innym urządzeniem</string>
-  <string name="pref_plugin_presenter">Pilot do prezentacji</string>
-  <string name="pref_plugin_presenter_desc">Przełącza strony przy użyciu telefonu</string>
+  <string name="pref_plugin_mousepad_desc">Umożliwia używanie urządzenia jako touchpada i klawiatury do sterowania innym urządzeniem</string>
+  <string name="pref_plugin_presenter">Sterowanie prezentacją</string>
+  <string name="pref_plugin_presenter_desc">Umożliwia przełączanie slajdów przy użyciu telefonu</string>
   <string name="pref_plugin_remotekeyboard">Odbieranie klawiszy</string>
-  <string name="pref_plugin_remotekeyboard_desc">Odbiera naciśnięcia klawiszy z innego urządzenia do sterowania tym urządzeniem</string>
+  <string name="pref_plugin_remotekeyboard_desc">Umożliwia sterowanie telefonem poprzez naciśnięcia klawiszy z innego urządzenia</string>
   <string name="pref_plugin_mpris">Sterowanie odtwarzaczem</string>
-  <string name="pref_plugin_mpris_desc">Steruje odtwarzaczami tego urządzenia z innego urządzenia</string>
+  <string name="pref_plugin_mpris_desc">Umożliwia sterowanie odtwarzaniem innego urządzenia</string>
   <string name="pref_plugin_runcommand">Wykonywanie poleceń</string>
-  <string name="pref_plugin_runcommand_desc">Wykonuje polecenia na innym urządzeniu z tego urządzenia</string>
+  <string name="pref_plugin_runcommand_desc">Umożliwia wykonywanie poleceń na innym urządzeniu</string>
   <string name="pref_plugin_contacts">Udostępnianie kontaktów</string>
   <string name="pref_plugin_contacts_desc">Udostępnia książkę kontaktów tego urządzenia innemu urządzeniu</string>
   <string name="pref_plugin_ping">Wysyłanie pingów</string>
-  <string name="pref_plugin_ping_desc">Odbiera i wysyła pingi między urządzeniami</string>
+  <string name="pref_plugin_ping_desc">Umożliwia odbieranie i wysyłanie pingów między urządzeniami</string>
   <string name="pref_plugin_notifications">Wysyłanie powiadomień</string>
-  <string name="pref_plugin_notifications_desc">Wysyła powiadomienia na inne urządzenia</string>
+  <string name="pref_plugin_notifications_desc">Umożliwia otrzymywanie powiadomień tego urządzenia na innym</string>
   <string name="pref_plugin_receive_notifications">Odbieranie powiadomień</string>
-  <string name="pref_plugin_receive_notifications_desc">Odbiera powiadomienia z innych urządzeń</string>
-  <string name="pref_plugin_sharereceiver">Udostępnianie i pobieranie</string>
-  <string name="pref_plugin_sharereceiver_desc">Udostępnia pliki i adresy URL pomiędzy urządzeniami</string>
-  <string name="device_list_empty">Brak urządzeń</string>
+  <string name="pref_plugin_receive_notifications_desc">Umożliwia otrzymywanie powiadomień z innych urządzeń</string>
+  <string name="pref_plugin_sharereceiver">Udostępnianie i odbieranie plików</string>
+  <string name="pref_plugin_sharereceiver_desc">Umożliwia udostępnianie plików i adresów URL między urządzeniami</string>
+  <string name="device_list_empty">Brak</string>
   <string name="ok">OK</string>
   <string name="sad_ok">OK :(</string>
   <string name="cancel">Anuluj</string>
   <string name="open_settings">Otwórz ustawienia</string>
-  <string name="no_permissions">Aby uzyskać dostęp do powiadomień, należy przydzielić uprawnienia</string>
-  <string name="no_permission_mprisreceiver">Aby móc sterować odtwarzaczami na tym urządzeniu, należy udzielić dostępu do powiadomień</string>
+  <string name="no_permissions">Musisz przyznać uprawnienia do dostępu do powiadomień</string>
+  <string name="no_permission_mprisreceiver">Aby sterować odtwarzaczami multimediów, musisz zezwolić na dostęp do powiadomień</string>
   <string name="no_permissions_remotekeyboard">Aby otrzymywać naciśnięcia klawiszy, należy włączyć zdalną klawiaturę KDE Connect</string>
   <string name="send_ping">Wyślij ping</string>
   <string name="open_mpris_controls">Sterowanie odtwarzaczem</string>
@@ -51,7 +51,7 @@
   <string name="remotekeyboard_connected">Połączenie zdalnej klawiatury jest nawiązane</string>
   <string name="remotekeyboard_multiple_connections">Nawiązano więcej niż jedno połączenie zdalnej klawiatury, wybierz urządzenie do ustawienia</string>
   <string name="open_mousepad">Zdalne sterowanie</string>
-  <string name="mousepad_info">Przesuwanie palcem po ekranie przesuwa wskaźnik myszy. Stuknięcie jednym, dwoma i trzema palcami wywołuje odpowiednio naciśnięcie lewym, prawym i środkowym przyciskiem myszy. Dwa palce przewijają. Długie naciśnięcie rozpoczyna czynność przeciągania i upuszczania. Zachowania żyroskopowe myszy mogą być włączone z poziomu ustawień wtyczki.</string>
+  <string name="mousepad_info">Przesuń palcem po ekranie, aby przesunąć kursor myszy. Stuknij, aby kliknąć, a użyj dwóch/trzech palców do prawego i środkowego przycisku. Użyj dwóch palców, aby przewijać. Przytrzymaj, aby przeciągnąć i upuścić. Funkcjonalność myszy żyroskopowej można włączyć w ustawieniach wtyczki</string>
   <string name="mousepad_info_no_gestures">Przesuń palcem po ekranie, aby przesunąć wskaźnikiem myszy, dotknij, aby kliknąć.</string>
   <string name="mousepad_keyboard_input_not_supported">Wpisywanie z klawiatury jest nieobsługiwane przez sparowane urządzenie</string>
   <string name="mousepad_single_tap_settings_title">Ustaw działanie po stuknięciu jednym palcem</string>
@@ -65,24 +65,24 @@
   <string name="gyro_mouse_enabled_title">Włącz mysz żyroskopową</string>
   <string name="gyro_mouse_sensitivity_title">Czułość żyroskopu</string>
   <string-array name="mousepad_tap_entries">
-    <item>Kliknięcie lewym</item>
-    <item>Kliknięcie prawym</item>
-    <item>Kliknięcie środkowym</item>
+    <item>Lewy przycisk mysyzy</item>
+    <item>Prawy przycisk myszy</item>
+    <item>Środkowy przycisk myszy</item>
     <item>Nic</item>
   </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Najmniejsza</item>
-    <item>Ponad najmniejszą</item>
+    <item>Średnia</item>
     <item>Domyślna</item>
-    <item>Powyżej domyślnej</item>
+    <item>Wysoka</item>
     <item>Największa</item>
   </string-array>
   <string-array name="mousepad_acceleration_profile_entries">
-    <item>Brak przyspieszenia</item>
+    <item>Brak</item>
     <item>Najsłabsze</item>
-    <item>Słabsze</item>
+    <item>Słabe</item>
     <item>Średnie</item>
-    <item>Silniejsze</item>
+    <item>Silne</item>
     <item>Najsilniejsze</item>
   </string-array>
   <string name="sendkeystrokes_send_to">Wyślij naciśnięcia klawiszy do</string>
@@ -99,31 +99,31 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Wysyłaj jako naciśnięcia klawiszy</string>
   <string name="mouse_receiver_plugin_description">Odbiera ruchy myszy z innego urządzenia do sterowania tym urządzeniem</string>
   <string name="mouse_receiver_plugin_name">Odbieranie myszy</string>
-  <string name="mouse_receiver_no_permissions">Aby móc otrzymywać dotyk zdalnie musisz udzielić uprawnień Dostępności tak, aby mogły one w pełni sterować twoim urządzeniem</string>
+  <string name="mouse_receiver_no_permissions">Aby zdalnie odbierać dotykowe dane wejściowe, musisz przyznać uprawnienia dostępu do funkcji ułatwień dostępu, aby w pełni kontrolować urządzenie</string>
   <string name="view_status_title">Stan</string>
   <string name="battery_status_format">Bateria: %d%%</string>
   <string name="battery_status_low_format">Bateria: %d%% niski poziom</string>
-  <string name="battery_status_charging_format">Bateria: %d%% ładowanie</string>
-  <string name="category_connected_devices">Podłączone urządzenia</string>
-  <string name="category_not_paired_devices">Dostępne urządzenia</string>
+  <string name="battery_status_charging_format">Ładowanie: %d%%</string>
+  <string name="category_connected_devices">Połączone urządzenia</string>
+  <string name="category_not_paired_devices">Niesparowane urządzenia</string>
   <string name="category_remembered_devices">Zapamiętane urządzenia</string>
   <string name="device_menu_plugins">Ustawienia wtyczek</string>
   <string name="device_menu_unpair">Odparuj</string>
   <string name="pair_new_device">Sparuj nowe urządzenie</string>
-  <string name="cancel_pairing">Przerwij parowanie</string>
+  <string name="cancel_pairing">Anuluj parowanie</string>
   <string name="unknown_device">Nieznane urządzenie</string>
   <string name="error_not_reachable">Urządzenie nieosiągalne</string>
-  <string name="error_already_paired">Urządzenie już sparowano</string>
+  <string name="error_already_paired">Urządzenie jest już sparowane</string>
   <string name="error_timed_out">Upłynął czas na odpowiedź</string>
-  <string name="error_clocks_not_match">Zegary urządzenia nie są zsynchronizowane</string>
-  <string name="error_canceled_by_user">Użytkownik zaniechał</string>
-  <string name="error_canceled_by_other_peer">Inny uczestnik zaniechał</string>
+  <string name="error_clocks_not_match">Zegary urządzeń się różnią</string>
+  <string name="error_canceled_by_user">Użytkownik anulował</string>
+  <string name="error_canceled_by_other_peer">Inny uczestnik anulował</string>
   <string name="encryption_info_title">Dane o szyfrowaniu</string>
-  <string name="my_device_fingerprint">Odcisk palca SHA256 certyfikatu twojego urządzenia to:</string>
-  <string name="remote_device_fingerprint">Odcisk palca SHA256 certyfikatu twojego zdalnego urządzenia to:</string>
+  <string name="my_device_fingerprint">Odcisk certyfikatu SHA256 urządzenia to:</string>
+  <string name="remote_device_fingerprint">Odcisk certyfikatu SHA256 twojego zdalnego urządzenia to:</string>
   <string name="pair_requested">Poproszono o sparowanie</string>
   <string name="pair_succeeded">Parowanie udane</string>
-  <string name="pairing_request_from">Prośba o sparowanie od \'%1s\'</string>
+  <string name="pairing_request_from">Prośba sparowania od \'%1s\'</string>
   <plurals name="incoming_file_title">
     <item quantity="one">Pobieranie %1$d pliku z %2$s</item>
     <item quantity="few">Pobieranie %1$d plików z %2$s</item>
@@ -172,40 +172,40 @@
     <item quantity="many">Nie udało się wysłać %2$d z %3$d plików do %1$s</item>
     <item quantity="other"/>
   </plurals>
-  <string name="tap_to_open">Stuknij, aby otworzyć</string>
-  <string name="received_file_text">Stuknij, aby otworzyć „%1s”</string>
+  <string name="tap_to_open">Naciśnij, aby otworzyć</string>
+  <string name="received_file_text">Naciśnij, aby otworzyć „%1s”</string>
   <string name="cannot_create_file">Nie można utworzyć pliku %s</string>
-  <string name="tap_to_answer">Stuknij, aby odpowiedzieć</string>
-  <string name="left_click">Wyślij kliknięcie lewym</string>
-  <string name="right_click">Wyślij kliknięcie prawym</string>
-  <string name="middle_click">Wyślij kliknięcie środkowym</string>
+  <string name="tap_to_answer">Naciśnij, aby odpowiedzieć</string>
+  <string name="left_click">Wyślij lewy przycisk myszy</string>
+  <string name="right_click">Wyślij prawy przycisk myszy</string>
+  <string name="middle_click">Wyślij środkowy przycisk myszy</string>
   <string name="show_keyboard">Pokaż klawiaturę</string>
   <string name="device_not_paired">Urządzenie niesparowane</string>
-  <string name="request_pairing">Prośba o sparowanie</string>
+  <string name="request_pairing">Prośba parowania</string>
   <string name="pairing_accept">Przyjmij</string>
   <string name="pairing_reject">Odrzuć</string>
   <string name="settings">Ustawienia</string>
   <string name="mpris_play">Odtwórz</string>
-  <string name="mpris_pause">Wstrzymaj</string>
+  <string name="mpris_pause">Pauza</string>
   <string name="mpris_previous">Poprzedni</string>
   <string name="mpris_rew">Przewiń</string>
   <string name="mpris_ff">Przewiń do przodu</string>
-  <string name="mpris_next">Następny</string>
-  <string name="mpris_loop">Zapętlij</string>
-  <string name="mpris_shuffle">Wymieszaj</string>
+  <string name="mpris_next">Dalej</string>
+  <string name="mpris_loop">Powtórz</string>
+  <string name="mpris_shuffle">Odtwarzanie losowe</string>
   <string name="mpris_volume">Głośność</string>
   <string name="mpris_time_settings_title">Przyciski naprzód/wstecz</string>
   <string name="mpris_time_settings_summary">Dostosuj czas do przewijania wprzód lub wstecz po naciśnięciu</string>
   <string-array name="mpris_time_entries">
-    <item>10 sekund</item>
-    <item>20 sekund</item>
-    <item>30 sekund</item>
-    <item>1 minuta</item>
-    <item>2 minuty</item>
+    <item>10 sek</item>
+    <item>20 sek</item>
+    <item>30 sek</item>
+    <item>1 min</item>
+    <item>2 min</item>
   </string-array>
-  <string name="mpris_notifications_explanation">Uprawnienia powiadomień są potrzebne, aby móc pokazywać zdalne odtwarzacze na belce powiadomień</string>
-  <string name="mpris_notification_settings_title">Pokaż powiadomienia sterowania mediami</string>
-  <string name="mpris_notification_settings_summary">Steruje odtwarzaczami bez otwierania KDE Connect</string>
+  <string name="mpris_notifications_explanation">Uprawnienie do powiadomień jest wymagane, aby wyświetlać zdalne multimedia w panelu powiadomień</string>
+  <string name="mpris_notification_settings_title">Wyświetl powiadomienie sterowania multimediami</string>
+  <string name="mpris_notification_settings_summary">Steruje odtwarzaniem multimediów bez otwierania KDE Connect</string>
   <string name="share_to">Udostępnij urządzeniu...</string>
   <string name="unreachable_device">%s (nieosiągalne)</string>
   <string name="unreachable_device_url_share_text">Adres URL udostępniony nieosiągalnemu urządzeniu zostanie do niego dostarczony zaraz po tym jak stanie się osiągalne.\n\n</string>
@@ -213,17 +213,17 @@
   <string name="protocol_version_newer">Urządzenie to używa nowszej wersji protokołu</string>
   <string name="plugin_settings_with_name">Ustawienia %s</string>
   <string name="invalid_device_name">Nieprawidłowa nazwa urządzenia</string>
-  <string name="shareplugin_text_saved">Otrzymano tekst, zapisano do schowka</string>
-  <string name="custom_devices_settings">Lista własnych urządzeń</string>
+  <string name="shareplugin_text_saved">Skopiowano otrzymany tekst</string>
+  <string name="custom_devices_settings">Zapisane ręcznie</string>
   <string name="custom_devices_settings_summary">%d urządzeń dodanych ręcznie</string>
   <string name="custom_device_list">Dodaj urządzenie po adresie IP</string>
-  <string name="custom_device_deleted">Usunięto własne urządzenie</string>
-  <string name="custom_device_list_help">Jeśli twoje urządzenie nie zostało wykryte samoczynnie, to możesz dodać je ręcznie po wpisaniu jego adresu IP lub nazwy gospodarza. Aby to zrobić, naciśnij pomarańczowy przycisk u dołu ekranu.</string>
+  <string name="custom_device_deleted">Usunięto zapisane ręcznie urządzenie</string>
+  <string name="custom_device_list_help">Jeśli twoje urządzenie nie zostało wykryte automatycznie, możesz dodać je ręcznie po wpisaniu jego adresu IP lub nazwy hosta. Aby to zrobić, naciśnij przycisk u dołu ekranu.</string>
   <string name="custom_device_fab_hint">Dodaj urządzenie</string>
   <string name="undo">Cofnij</string>
   <string name="share_notification_preference">Hałaśliwe powiadomienia</string>
-  <string name="share_notification_preference_summary">Zadrżyj i odegraj dźwięk przy odebraniu pliku</string>
-  <string name="share_destination_customize">Własny katalog docelowy</string>
+  <string name="share_notification_preference_summary">Zawibruj i zagraj dźwięk przy odebieraniu pliku</string>
+  <string name="share_destination_customize">Niestandardowy katalog docelowy</string>
   <string name="share_destination_customize_summary_disabled">Pobrane pliki ukażą się w Pobranych</string>
   <string name="share_destination_customize_summary_enabled">Pliki zostaną zapisane w poniższym katalogu</string>
   <string name="share_destination_folder_preference">Katalog docelowy</string>
@@ -260,22 +260,22 @@
   <string name="no_wifi">Nie jesteś połączony z siecią Wi-Fi, więc nie będziesz widział żadnych urządzeń. Naciśnij tutaj, aby włączyć Wi-Fi.</string>
   <string name="on_non_trusted_message">Niezaufana sieć: wyłączono samowykrywanie.</string>
   <string name="no_file_browser">Nie wgrano żadnych przeglądarek plików.</string>
-  <string name="pref_plugin_telepathy">Wysyłanie SMSów</string>
-  <string name="pref_plugin_telepathy_desc">Wysyła wiadomości tekstowe tym urządzeniem z innego urządzenia</string>
+  <string name="pref_plugin_telepathy">Wysyłanie wiadomości SMS/RCS</string>
+  <string name="pref_plugin_telepathy_desc">Umożliwia wysyłanie wiadomości tekstowych z innego urządzenia</string>
   <string name="pref_plugin_telepathy_mms">Wyślij MMSa</string>
   <string name="pref_plugin_telepathy_mms_desc">Aby móc wysyłać MMSa z KDE Connect, musisz ustawić go jako domyślny program do SMSów</string>
-  <string name="findmyphone_title">Poszukiwania tego telefonu</string>
-  <string name="findmyphone_title_tablet">Poszukiwania tego tabletu</string>
-  <string name="findmyphone_title_tv">Poszukiwania tego telewizora</string>
+  <string name="findmyphone_title">Znajdowanie tego telefonu</string>
+  <string name="findmyphone_title_tablet">Znajdowanie tego tabletu</string>
+  <string name="findmyphone_title_tv">Znajdowanie tego telewizora</string>
   <string name="findmyphone_description">Dzwoni z innego urządzenia na to urządzenie</string>
   <string name="findmyphone_found">Znaleziony</string>
   <string name="open">Otwórz</string>
   <string name="close">Zamknij</string>
-  <string name="plugins_need_permission">Niektóre wtyczki wymagają uprawnień do swojego działania (stuknij, aby dowiedzieć się więcej)</string>
+  <string name="plugins_need_permission">Niektóre wtyczki wymagają uprawnień do działania (Naciśnij, aby uzyskać więcej informacji):</string>
   <string name="permission_explanation">Ta wtyczka wymaga uprawnień do działania</string>
   <string name="all_permissions_granted">Przyznano wszystkie uprawnienia 🎉</string>
   <string name="optional_permission_explanation">Musisz przydzielić dodatkowe uprawnienia, aby włączyć wszystkie funkcje</string>
-  <string name="plugins_need_optional_permission">Niektóre wtyczki mają ograniczone możliwości ze względu na ograniczone uprawnienia (stuknij, aby dowiedzieć się więcej)</string>
+  <string name="plugins_need_optional_permission">Niektóre wtyczki mają ograniczone możliwości ze względu na ograniczone uprawnienia (Naciśnij, aby dowiedzieć się więcej)</string>
   <string name="share_optional_permission_explanation">Aby odbierać pliki musisz zezwolić na dostęp do pamięci</string>
   <string name="share_notifications_explanation">Aby widzieć postęp podczas wysyłania i pobierania plików musisz zezwolić na powiadomienia</string>
   <string name="telepathy_permission_explanation">Aby czytać i pisać esemesy na innym urządzeniu, należy nadać uprawnienia do esemesów</string>
@@ -297,17 +297,17 @@
   <string name="add_command_description">Możesz dodawać polecenia na pulpicie</string>
   <string name="pref_plugin_mprisreceiver">Sterowanie odtwarzaczem</string>
   <string name="pref_plugin_mprisreceiver_desc">Steruje odtwarzaczami innego urządzenia z tego urządzenia</string>
-  <string name="notification_channel_default">Inne powiadomienia</string>
-  <string name="notification_channel_persistent">Nieznikający wskaźnik</string>
+  <string name="notification_channel_default">Inne</string>
+  <string name="notification_channel_persistent">Wskaźnik działania w tle</string>
   <string name="notification_channel_media_control">Sterowanie multimediami</string>
   <string name="notification_channel_filetransfer">Przychodzący plik</string>
-  <string name="notification_channel_filetransfer_upload">Wychodzący plik</string>
+  <string name="notification_channel_filetransfer_upload">Wysyłanie plik</string>
   <string name="notification_channel_filetransfer_error">Błąd przesyłania pliku</string>
-  <string name="notification_channel_high_priority">Wysoki priorytet</string>
-  <string name="mpris_stop">Zatrzymaj bieżący odtwarzacz</string>
-  <string name="copy_url_to_clipboard">Skopiuj adres URL do schowka</string>
+  <string name="notification_channel_high_priority">Priorytetowe</string>
+  <string name="mpris_stop">Zatrzymaj odtwarzanie</string>
+  <string name="copy_url_to_clipboard">Skopiuj adres URL</string>
   <string name="clipboard_toast">Skopiowano do schowka</string>
-  <string name="runcommand_notreachable">Urządzenie jest nieosiągalne</string>
+  <string name="runcommand_notreachable">Urządzenie jest odłączone</string>
   <string name="runcommand_notpaired">Urządzenie jest niesparowane</string>
   <string name="runcommand_nosuchdevice">Nie ma takiego urządzenia</string>
   <string name="runcommand_noruncommandplugin">To urządzenie nie ma włączonej wtyczki wykonywania poleceń</string>
@@ -315,11 +315,11 @@
   <string name="runcommand_device_controls_summary">Jeśli twoje urządzeni obsługuje sterowanie nim, to polecenia, które ustawiłeś, pojawią się tutaj.</string>
   <string name="set_runcommand_name_as_title">ustaw_nazwę_polecenia_jako_tytuł</string>
   <string name="runcommand_name_as_title_title">Pokaż nazwę jako tytuł</string>
-  <string name="pref_plugin_findremotedevice">Poszukiwania innego urządzenia</string>
-  <string name="pref_plugin_findremotedevice_desc">Dzwoni z tego urządzenia na inne urządzenie</string>
+  <string name="pref_plugin_findremotedevice">Znajdowanie urządzenia</string>
+  <string name="pref_plugin_findremotedevice_desc">Umożliwia zadzwonienie na inne urządzenie w celu znalezienia go</string>
   <string name="ring">Zadzwoń</string>
-  <string name="pref_plugin_systemvolume">Głośność innego urządzenia</string>
-  <string name="pref_plugin_systemvolume_desc">Steruje głośnością innego urządzenia z tego urządzenia</string>
+  <string name="pref_plugin_systemvolume">Sterowanie głośnością</string>
+  <string name="pref_plugin_systemvolume_desc">Umożliwia sterowanie głośności innego urządzenia</string>
   <string name="mute">Wycisz</string>
   <string name="all">Wszystkie</string>
   <string name="devices">Urządzenia</string>
@@ -327,9 +327,9 @@
   <string name="settings_dark_mode">Ciemny wygląd</string>
   <string name="settings_more_settings_title">Więcej ustawień</string>
   <string name="settings_more_settings_text">Dodatkowe ustawienia, dotyczące danego urządzenia, można znaleźć po wejściu na nie i wybranie „Ustawienia wtyczek”.</string>
-  <string name="setting_persistent_notification">Pokaż nieznikające powiadomienia</string>
-  <string name="setting_persistent_notification_oreo">Nieznikające powiadomienia</string>
-  <string name="setting_persistent_notification_description">Stuknij, aby je ustawić w ustawieniach powiadomień</string>
+  <string name="setting_persistent_notification">Pokazuj nieznikające powiadomienia</string>
+  <string name="setting_persistent_notification_oreo">Powiadomienia KDE Connect</string>
+  <string name="setting_persistent_notification_description">Naciśnij, aby pokazać ustawienia powiadomień</string>
   <string name="extra_options">Ustawienia dodatkowe</string>
   <string name="privacy_options">Ustawienia prywatności</string>
   <string name="set_privacy_options">Ustaw swoją prywatność</string>
@@ -339,26 +339,26 @@
   <string name="no_app_for_opening">Nie znaleziono aplikacji do otwarcia tego pliku</string>
   <string name="remote_keyboard_service">Zdalna klawiatura KDE Connect</string>
   <string name="presenter_pointer">Wskaźnik</string>
-  <string name="trusted_networks">Sieci zaufane</string>
+  <string name="trusted_networks">Zaufane sieci</string>
   <string name="trusted_networks_desc">Ogranicz samowykrywanie do znanych sieci</string>
   <string name="add_trusted_network">Dodaj %1s</string>
   <string name="empty_trusted_networks_list_text">Nie dodałeś jeszcze żadnej zaufanej sieci</string>
-  <string name="allow_all_networks_text">Zezwól wszystkim</string>
+  <string name="allow_all_networks_text">Zezwól we wszystkich</string>
   <string name="location_permission_needed_title">Wymagana zgoda</string>
   <string name="bluetooth_permission_needed_desc">KDE Connect wymaga pozwolenia na łączenie do sąsiednich urządzeń, aby urządzenia sparowane przy pomocy Bluetooth były widoczne w KDE Connect.</string>
-  <string name="location_permission_needed_desc">KDE Connect potrzebuje uprawnień do sprawdzania twojego położenia w tle, aby móc poznać sieć WiFi, do której jesteś podłączony także wtedy, gdy aplikacja działa w tle. Jest tak dlatego, że nazwy sieci WiFi wokół ciebie mogą zostać użyte do ustalenia twojego położenia, mimo że KDE Connect nie robi tego w ten sposób.</string>
+  <string name="location_permission_needed_desc">KDE Connect potrzebuje uprawnień do lokalizacji w tle, aby móc rozpoznać sieć WiFi, do której jesteś podłączony także wtedy, gdy aplikacja działa w tle. Jest tak dlatego, że nazwy sieci WiFi wokół ciebie mogą zostać użyte do ustalenia twojego położenia, mimo że KDE Connect tak nie robi.</string>
   <string name="clipboard_android_x_incompat">Android 10 odebrał dostęp do schowka wszystkim programom. Ta wtyczka pozostanie wyłączona.</string>
   <string name="mpris_open_url">Kontynuuj odtwarzanie tutaj</string>
   <string name="cant_open_url">Nie można otworzyć adresu URL, aby kontynuować odtwarzanie</string>
-  <string name="bigscreen_home">Dom</string>
+  <string name="bigscreen_home">Ekran główny</string>
   <string name="bigscreen_up">Góra</string>
   <string name="bigscreen_left">Lewo</string>
   <string name="bigscreen_select">Wybierz</string>
   <string name="bigscreen_right">Prawo</string>
   <string name="bigscreen_down">Dół</string>
   <string name="bigscreen_mic">Mikrofon</string>
-  <string name="pref_plugin_bigscreen">Sterowanie Dużym Ekranem</string>
-  <string name="pref_plugin_bigscreen_desc">Steruje Dużym Ekranem Plazmy</string>
+  <string name="pref_plugin_bigscreen">Sterowanie TV</string>
+  <string name="pref_plugin_bigscreen_desc">Umożliwia sterowanie telewizorem przez to urządzenie</string>
   <string name="bigscreen_optional_permission_explanation">Aby zezwolić na używanie mikrofonu twojego telefonu, musisz udzielić do niego dostępu na telefonie</string>
   <string name="bigscreen_speech_extra_prompt">Mowa</string>
   <string name="message_reply_label">ODPOWIEDZ</string>
@@ -369,20 +369,20 @@
   <string name="set_long_text_as_mms_title">Wyślij długi tekst jako MMS</string>
   <string name="convert_to_mms_after_title">Przekształć na MMS</string>
   <string-array name="convert_to_mms_after_entries">
-    <item>Po jednej wiadomości</item>
-    <item>Po dwóch wiadomościach</item>
-    <item>Po trzech wiadomościach</item>
-    <item>Po czterech wiadomościach</item>
-    <item>Po pięciu wiadomościach</item>
+    <item>Po 1 wiadomości</item>
+    <item>Po 2 wiadomościach</item>
+    <item>Po 3 wiadomościach</item>
+    <item>Po 4 wiadomościach</item>
+    <item>Po 5 wiadomościach</item>
   </string-array>
-  <string name="theme_dialog_title">Obowiązujący wygląd</string>
+  <string name="theme_dialog_title">Motyw</string>
   <string-array name="theme_list">
     <item>Ustaw przy oszczędzaniu energii</item>
     <item>Jasny</item>
     <item>Ciemny</item>
   </string-array>
   <string-array name="theme_list_v28">
-    <item>Zgodny z systemowym</item>
+    <item>Systemowy</item>
     <item>Jasny</item>
     <item>Ciemny</item>
   </string-array>
@@ -404,12 +404,12 @@
   <string name="konqi">Konqi</string>
   <string name="rise_up">Podnieś</string>
   <string name="rise_down">Obniż</string>
-  <string name="click_here_to_type">Stuknij tutaj, aby wpisać</string>
+  <string name="click_here_to_type">Naciśnij tutaj, aby wpisać</string>
   <string name="clear_compose">Wyczyść</string>
   <string name="send_compose">Wyślij</string>
   <string name="compose_send_title">Napisz do wysłania</string>
   <string name="open_compose_send">Napisz tekst</string>
-  <string name="double_tap_to_drag">Stuknij dwukrotnie, aby przeciągnąć</string>
+  <string name="double_tap_to_drag">Naciśnij dwukrotnie, aby przeciągnąć</string>
   <string name="hold_to_drag">Przytrzymaj, aby przeciągnąć</string>
   <string name="about_kde_about">"&lt;h1&gt;O programie&lt;/h1&gt; &lt;p&gt;KDE to światowa społeczność inżynierów oprogramowania, artystów, pisarzy, tłumaczy i twórców, którzy są częścią rozwoju &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Wolnego Oprogramowania&lt;/a&gt;. KDE tworzy środowisko pulpitu Plazmy, setki aplikacji  i wiele bibliotek programistycznych, aby je wspierać.&lt;/p&gt; &lt;p&gt;KDE jest przedsięwzięciem istniejącym ze współpracy; jego ruchami, czy produktami, nie steruje żaden pojedynczy byt. Pracujemy razem, aby osiągnąć wspólny cel, czyli budowę najlepszego Wolnego Oprogramowania na świecie. Każdy jest mile wiedziany, żeby &lt;a href=https://community.kde.org/Get_Involved&gt;dołączył i zaczął współtworzyć&lt;/a&gt; KDE, włączając w to ciebie.&lt;/p&gt; Odwiedź &lt; href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; po więcej szczegółów nt. społeczności KDE i oprogramowania, które tworzymy."</string>
   <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Zgłaszaj błędy lub życzenia&lt;/h1&gt; &lt;p&gt;Oprogramowanie zawsze można ulepszyć, a zespół KDE jest gotowy, aby to robić. Jednakże ty - użytkownik - musisz nam powiedzieć o tym, co nie działa jak powinno lub co można zrobić lepiej.&lt;/p&gt; &lt;p&gt;KDE ma system obsługi błędów. Odwiedź &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; lub użyj przycisku \"Zgłoś błąd\" z ekranu o programie do zgłaszania błędów.&lt;/p&gt; Jeśli masz sugestie nt. usprawnień, to także możesz ją zarejestrować w naszym systemie obsługi błędów. Upewnij się, że użyjesz ważności o nazwie \"Lista życzeń\".</string>
@@ -427,21 +427,21 @@
   <string name="saikrishna_arcot_task">Wsparcie do obsługi klawiatury we wtyczce zdalnego wprowadzania, usuwanie błędów i ogólne usprawnienia</string>
   <string name="shellwen_chen_task">Polepszenie bezpieczeństwa SFTP, polepszenie łatwości w utrzymaniu tego projektu, poprawki błędów oraz ogólne ulepszenia</string>
   <string name="everyone_else">Inni którzy współtworzyli KDE Connect na przestrzeni lat</string>
-  <string name="send_clipboard">Wysyłanie schowka</string>
-  <string name="tap_to_execute">Stuknij, aby wykonać</string>
+  <string name="send_clipboard">Wyślij schowek</string>
+  <string name="tap_to_execute">Naciśnij, aby wykonać</string>
   <string name="plugin_stats">Statystyki wtyczek</string>
   <string name="enable_udp_broadcast">Włącz wykrywanie urządzeń UDP</string>
   <string name="enable_bluetooth">Włącz Bluetooth (beta)</string>
   <string name="receive_notifications_permission_explanation">Należy zezwolić na powiadomienia, aby móc je otrzymywać z innych urządzeń</string>
   <string name="findmyphone_notifications_explanation">Uprawnienia powiadomień są potrzebne, aby telefon mógł dzwonić, gdy aplikacja działa w tle</string>
-  <string name="no_notifications">Powiadomienia są wyłączone, więc nie otrzymasz żadnych próśb o sparowanie.</string>
+  <string name="no_notifications">Powiadomienia są wyłączone, więc nie otrzymasz żadnych próśb parowania.</string>
   <string name="mpris_keepwatching">Kontynuuj odtwarzanie</string>
   <string name="mpris_keepwatching_settings_title">Kontynuuj odtwarzanie</string>
   <string name="mpris_keepwatching_settings_summary">Pokaż ciche powiadomienie, aby kontynuować odtwarzanie na tym urządzeniu po zamknięciu mediów</string>
   <string name="notification_channel_keepwatching">Kontynuuj odtwarzanie</string>
   <string name="ping_result">Odpowiedział w %1$d milisekund</string>
-  <string name="ping_failed">Nie można wysłać pingu do urządzenia</string>
-  <string name="ping_in_progress">Wysyłanie pingu…</string>
-  <string name="device_host_invalid">Nazwa gospodarza jest nieprawidłowa. Użyj prawidłowej nazwy, adresu IPv4 lub IPv6</string>
-  <string name="device_host_duplicate">Nazwa gospodarza już znajduje się na liście</string>
+  <string name="ping_failed">Nie można odtworzyć dźwięku na urządzeniu</string>
+  <string name="ping_in_progress">Odtwarzanie dźwięku…</string>
+  <string name="device_host_invalid">Nazwa hosta jest niepoprawna. Użyj prawidłowej nazwy, adresu IPv4 lub IPv6</string>
+  <string name="device_host_duplicate">Nazwa hosta już znajduje się na liście</string>
 </resources>
