@@ -28,23 +28,10 @@ plugins {
 
 val licenseResDir = File("$projectDir/build/dependency-license-res")
 
-fun String.runCommand(
-    workingDir: File = File("."),
-    timeoutAmount: Long = 60,
-    timeoutUnit: TimeUnit = TimeUnit.SECONDS
-): String = ProcessBuilder(split("\\s(?=(?:[^'\"`]*(['\"`])[^'\"`]*\\1)*[^'\"`]*$)".toRegex()))
-    .directory(workingDir)
-    .redirectOutput(ProcessBuilder.Redirect.PIPE)
-    .redirectError(ProcessBuilder.Redirect.PIPE)
-    .start()
-    .apply { waitFor(timeoutAmount, timeoutUnit) }
-    .run {
-        val error = errorStream.bufferedReader().readText().trim()
-        if (error.isNotEmpty()) {
-            throw Exception(error)
-        }
-        inputStream.bufferedReader().readText().trim()
-    }
+val hashProvider = project.providers.exec {
+    workingDir = rootDir
+    commandLine("git", "rev-parse", "--short", "HEAD")
+}.standardOutput.asText.map { it.trim() }
 
 android {
     namespace = "org.kde.kdeconnect_tp"
@@ -134,8 +121,7 @@ android {
                     // Default output filename is "${project.name}-${v.name}.apk". We want
                     // the Git commit short-hash to be added onto that default filename.
                     try {
-                        val hash = "git rev-parse --short HEAD".runCommand(workingDir = rootDir)
-                        val newName = "${project.name}-${variant.name}-${hash}.apk"
+                        val newName = "${project.name}-${variant.name}-${hashProvider.get()}.apk"
                         logger.quiet("    Found an output file ${output.outputFile.name}, renaming to $newName")
                         output.outputFileName = newName
                     } catch (ignored: Exception) {
