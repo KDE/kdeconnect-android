@@ -37,7 +37,6 @@ import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
 import org.kde.kdeconnect_tp.R;
 
 import java.io.IOException;
-import java.util.Objects;
 
 @PluginFactory.LoadablePlugin
 public class FindMyPhonePlugin extends Plugin {

@@ -20,7 +20,6 @@ import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 @PluginFactory.LoadablePlugin

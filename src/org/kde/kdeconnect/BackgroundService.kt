@@ -32,7 +32,6 @@ import org.kde.kdeconnect.Backends.BaseLinkProvider
 import org.kde.kdeconnect.Backends.BaseLinkProvider.ConnectionReceiver
 import org.kde.kdeconnect.Backends.BluetoothBackend.BluetoothLinkProvider
 import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider
-import org.kde.kdeconnect.Backends.LoopbackBackend.LoopbackLinkProvider
 import org.kde.kdeconnect.Helpers.NotificationHelper
 import org.kde.kdeconnect.Plugins.ClibpoardPlugin.ClipboardFloatingActivity
 import org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandActivity

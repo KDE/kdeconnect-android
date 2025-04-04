@@ -130,7 +130,7 @@ public class RunCommandActivity extends BaseActivity<ActivityRunCommandBinding> 
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         if (item.getItemId() == R.id.copy_url_to_clipboard) {
-            CommandEntry entry = (CommandEntry) commandItems.get(info.position);
+            CommandEntry entry = commandItems.get(info.position);
             String url = "kdeconnect://runcommand/" + deviceId + "/" + entry.getKey();
             ClipboardManager cm = ContextCompat.getSystemService(this, ClipboardManager.class);
             cm.setText(url);

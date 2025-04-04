@@ -21,6 +21,7 @@ import org.kde.kdeconnect.UserInterface.MainActivity
 import org.kde.kdeconnect.extensions.setupBottomPadding
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.FragmentAboutBinding
+import androidx.core.net.toUri
 
 class AboutFragment : Fragment() {
     private var _binding: FragmentAboutBinding? = null
@@ -113,7 +114,7 @@ class AboutFragment : Fragment() {
             button.visibility = View.GONE
         } else {
             button.setOnClickListener {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+                startActivity(Intent(Intent.ACTION_VIEW, url.toUri()))
             }
         }
     }

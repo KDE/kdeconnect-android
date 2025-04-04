@@ -6,9 +6,8 @@
 package org.kde.kdeconnect.UserInterface
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import org.apache.commons.lang3.StringUtils
+import androidx.core.net.toUri
 
 class StartActivityAlertDialogFragment : AlertDialogFragment() {
     private var intentAction: String? = null
@@ -36,8 +35,9 @@ class StartActivityAlertDialogFragment : AlertDialogFragment() {
 
         setCallback(object : Callback() {
             override fun onPositiveButtonClicked() {
+                val intentUrl = intentUrl
                 val intent = if (!intentUrl.isNullOrEmpty()) {
-                    Intent(intentAction, Uri.parse(intentUrl))
+                    Intent(intentAction, intentUrl.toUri())
                 } else {
                     Intent(intentAction)
                 }

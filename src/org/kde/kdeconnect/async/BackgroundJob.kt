@@ -6,7 +6,6 @@
 package org.kde.kdeconnect.async
 
 import java.util.concurrent.atomic.AtomicLong
-import kotlin.concurrent.Volatile
 
 abstract class BackgroundJob<I, R> : Runnable {
     private val callback: Callback<R>

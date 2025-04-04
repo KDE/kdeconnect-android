@@ -97,7 +97,7 @@ object FilesHelper {
 
             fun contentResolverExtract(): Triple<String?, Long, Long?> {
                 // Since we used Intent.CATEGORY_OPENABLE, these two columns are the only ones we are guaranteed to have: https://developer.android.com/reference/android/provider/OpenableColumns
-                val proj = arrayOf(OpenableColumns.SIZE, OpenableColumns.DISPLAY_NAME,)
+                val proj = arrayOf(OpenableColumns.SIZE, OpenableColumns.DISPLAY_NAME)
 
                 try {
                     contentResolver.query(uri, proj, null, null, null).use { cursor ->

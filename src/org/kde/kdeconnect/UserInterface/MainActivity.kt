@@ -39,7 +39,9 @@ import org.kde.kdeconnect.UserInterface.About.AboutFragment
 import org.kde.kdeconnect.UserInterface.About.getApplicationAboutData
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.ActivityMainBinding
-import java.util.LinkedList
+import androidx.core.content.edit
+import androidx.core.view.size
+import androidx.core.view.get
 
 private const val MENU_ENTRY_ADD_DEVICE = 1 //0 means no-selection
 private const val MENU_ENTRY_SETTINGS = 2
@@ -59,7 +61,7 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
 
     private var mCurrentDevice: String? = null
     private var mCurrentMenuEntry = 0
-        private set(value) {
+        set(value) {
             field = value
             //Enabling "go to default fragment on back" callback when user in settings or "about" fragment
             mainFragmentCallback.isEnabled = value == MENU_ENTRY_SETTINGS || value == MENU_ENTRY_ABOUT
@@ -87,7 +89,7 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
 
         val root = binding.root
         setContentView(root)
-        mDrawerLayout = if (root is DrawerLayout) root else null
+        mDrawerLayout = root as? DrawerLayout
 
         val mDrawerHeader = mNavigationView.getHeaderView(0)
         mNavViewDeviceName = mDrawerHeader.findViewById(R.id.device_name)
@@ -115,17 +117,17 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
             when (mCurrentMenuEntry) {
                 MENU_ENTRY_ADD_DEVICE -> {
                     mCurrentDevice = null
-                    preferences.edit().putString(STATE_SELECTED_DEVICE, null).apply()
+                    preferences.edit { putString(STATE_SELECTED_DEVICE, null) }
                     setContentFragment(PairingFragment())
                 }
 
                 MENU_ENTRY_SETTINGS -> {
-                    preferences.edit().putString(STATE_SELECTED_DEVICE, null).apply()
+                    preferences.edit { putString(STATE_SELECTED_DEVICE, null) }
                     setContentFragment(SettingsFragment())
                 }
 
                 MENU_ENTRY_ABOUT -> {
-                    preferences.edit().putString(STATE_SELECTED_DEVICE, null).apply()
+                    preferences.edit { putString(STATE_SELECTED_DEVICE, null) }
                     setContentFragment(AboutFragment.newInstance(getApplicationAboutData(this)))
                 }
 
@@ -207,7 +209,7 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
             }
         }
 
-        if(missingPermissions.size > 0){
+        if(missingPermissions.isNotEmpty()){
             ActivityCompat.requestPermissions(this, missingPermissions.toTypedArray(), RESULT_NOTIFICATIONS_ENABLED)
         }
     }
@@ -303,7 +305,7 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
     @JvmOverloads
     fun onDeviceSelected(deviceId: String?, fromDeviceList: Boolean = false) {
         mCurrentDevice = deviceId
-        preferences.edit().putString(STATE_SELECTED_DEVICE, deviceId).apply()
+        preferences.edit { putString(STATE_SELECTED_DEVICE, deviceId) }
         if (mCurrentDevice != null) {
             mCurrentMenuEntry = deviceIdToMenuEntryId(deviceId)
             if (mCurrentMenuEntry == MENU_ENTRY_DEVICE_UNKNOWN) {
@@ -364,9 +366,9 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
 
             if (isPermissionGranted(permissions, grantResults, Manifest.permission.BLUETOOTH_CONNECT) &&
                 isPermissionGranted(permissions, grantResults, Manifest.permission.BLUETOOTH_SCAN)) {
-                val preferenceEditor = PreferenceManager.getDefaultSharedPreferences(this).edit()
-                preferenceEditor.putBoolean(SettingsFragment.KEY_BLUETOOTH_ENABLED, true)
-                preferenceEditor.apply()
+                PreferenceManager.getDefaultSharedPreferences(this).edit {
+                    putBoolean(SettingsFragment.KEY_BLUETOOTH_ENABLED, true)
+                }
                 setContentFragment(SettingsFragment())
             }
 
@@ -390,9 +392,9 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
     }
 
     private fun uncheckAllMenuItems(menu: Menu) {
-        val size = menu.size()
+        val size = menu.size
         for (i in 0 until size) {
-            val item = menu.getItem(i)
+            val item = menu[i]
             item.subMenu?.let { uncheckAllMenuItems(it) } ?: item.setChecked(false)
         }
     }

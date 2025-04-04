@@ -29,6 +29,7 @@ import java.net.URL
 import java.net.URLDecoder
 import java.security.MessageDigest
 import java.util.concurrent.CopyOnWriteArrayList
+import androidx.core.net.toUri
 
 /**
  * Handles the cache for album art
@@ -130,7 +131,7 @@ internal object AlbumArtCache {
         if (albumUrl.isNullOrEmpty()) {
             return null
         }
-        val url = Uri.parse(albumUrl)
+        val url = albumUrl.toUri()
 
         //We currently only support http(s), file, and kdeconnect urls
         if (url.scheme !in ALLOWED_SCHEMES) {
@@ -221,7 +222,7 @@ internal object AlbumArtCache {
      * Does the actual fetching and makes sure only not too many fetches are running at the same time
      */
     private fun initiateFetch() {
-        var url : Uri;
+        var url : Uri
         synchronized(fetchUrlList) {
             if (numFetching >= 2 || fetchUrlList.isEmpty()) return
             //Fetch the last-requested url first, it will probably be needed first
@@ -283,7 +284,7 @@ internal object AlbumArtCache {
             payload.close()
             return
         }
-        val url = Uri.parse(albumUrl)
+        val url = albumUrl.toUri()
         if (url.scheme !in REMOTE_FETCH_SCHEMES) {
             //Shouldn't happen (checked on receival of the url), but just to be sure
             Log.e("KDE/Mpris/AlbumArtCache", "Got invalid art url with payload: $albumUrl")

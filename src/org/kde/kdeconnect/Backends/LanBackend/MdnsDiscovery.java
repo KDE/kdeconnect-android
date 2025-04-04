@@ -41,7 +41,7 @@ public class MdnsDiscovery {
         this.lanLinkProvider = lanLinkProvider;
         this.mNsdManager = (NsdManager) context.getSystemService(Context.NSD_SERVICE);
         this.mNsdResolveQueue = new NsdResolveQueue(this.mNsdManager);
-        WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+        WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         multicastLock = wifiManager.createMulticastLock("kdeConnectMdnsMulticastLock");
     }
 
@@ -132,7 +132,7 @@ public class MdnsDiscovery {
         // Also, on Android Lollipop those fields aren't resolved.
         String deviceName = DeviceHelper.getDeviceName(context);
         String deviceType = DeviceHelper.getDeviceType().toString();
-        String protocolVersion = Integer.toString(DeviceHelper.ProtocolVersion);
+        String protocolVersion = Integer.toString(DeviceHelper.PROTOCOL_VERSION);
         serviceInfo.setAttribute("id", deviceId);
         serviceInfo.setAttribute("name", deviceName);
         serviceInfo.setAttribute("type", deviceType);

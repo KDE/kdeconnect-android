@@ -28,7 +28,7 @@ import java.util.UUID
 import androidx.core.content.edit
 
 object DeviceHelper {
-    const val ProtocolVersion = 8
+    const val PROTOCOL_VERSION = 8
 
     const val KEY_DEVICE_NAME_PREFERENCE = "device_name_preference"
     private const val KEY_DEVICE_NAME_FETCHED_FROM_THE_INTERNET = "device_name_downloaded_preference"
@@ -85,7 +85,7 @@ object DeviceHelper {
 
                 // If we get here we managed to download the file. Mark that as done so we don't try again even if we don't end up finding a name.
                 val preferences = PreferenceManager.getDefaultSharedPreferences(context)
-                preferences.edit().putBoolean(KEY_DEVICE_NAME_FETCHED_FROM_THE_INTERNET, true).apply()
+                preferences.edit { putBoolean(KEY_DEVICE_NAME_FETCHED_FROM_THE_INTERNET, true) }
 
                 BufferedReader(
                     InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_16)
@@ -124,7 +124,7 @@ object DeviceHelper {
     fun setDeviceName(context: Context, name: String) {
         val filteredName = filterName(name)
         val preferences = PreferenceManager.getDefaultSharedPreferences(context)
-        preferences.edit().putString(KEY_DEVICE_NAME_PREFERENCE, filteredName).apply()
+        preferences.edit { putString(KEY_DEVICE_NAME_PREFERENCE, filteredName) }
     }
 
     fun initializeDeviceId(context: Context) {
@@ -133,7 +133,6 @@ object DeviceHelper {
         if (DeviceInfo.isValidDeviceId(deviceId)) {
             return // We already have an ID
         }
-        @SuppressLint("HardwareIds")
         val deviceName = UUID.randomUUID().toString().replace("-", "")
         preferences.edit { putString(KEY_DEVICE_ID_PREFERENCE, deviceName) }
     }
@@ -151,7 +150,7 @@ object DeviceHelper {
             SslHelper.certificate,
             getDeviceName(context),
             deviceType,
-            ProtocolVersion,
+            PROTOCOL_VERSION,
             PluginFactory.incomingCapabilities,
             PluginFactory.outgoingCapabilities
         )

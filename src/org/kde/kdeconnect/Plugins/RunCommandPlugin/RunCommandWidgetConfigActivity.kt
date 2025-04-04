@@ -18,12 +18,12 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.edit
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.WidgetRemoteCommandPluginDialogBinding
 import java.util.stream.Collectors
-import kotlin.streams.toList
 
 class RunCommandWidgetConfigActivity : AppCompatActivity() {
 
@@ -45,7 +45,7 @@ class RunCommandWidgetConfigActivity : AppCompatActivity() {
         val binding = WidgetRemoteCommandPluginDialogBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val pairedDevices = KdeConnect.getInstance().devices.values.stream().filter(Device::isPaired).collect(Collectors.toList());
+        val pairedDevices = KdeConnect.getInstance().devices.values.stream().filter(Device::isPaired).collect(Collectors.toList())
 
         binding.runCommandsDeviceList.adapter = object : ArrayAdapter<Device>(this, 0, pairedDevices) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
@@ -76,9 +76,9 @@ private const val PREFS_NAME = "org.kde.kdeconnect_tp.WidgetProvider"
 private const val PREF_PREFIX_KEY = "appwidget_"
 
 internal fun saveWidgetDeviceIdPref(context: Context, appWidgetId: Int, deviceName: String) {
-    val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE).edit()
-    prefs.putString(PREF_PREFIX_KEY + appWidgetId, deviceName)
-    prefs.apply()
+    context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE).edit {
+        putString(PREF_PREFIX_KEY + appWidgetId, deviceName)
+    }
 }
 
 internal fun loadWidgetDeviceIdPref(context: Context, appWidgetId: Int): String? {
@@ -87,7 +87,7 @@ internal fun loadWidgetDeviceIdPref(context: Context, appWidgetId: Int): String?
 }
 
 internal fun deleteWidgetDeviceIdPref(context: Context, appWidgetId: Int) {
-    val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE).edit()
-    prefs.remove(PREF_PREFIX_KEY + appWidgetId)
-    prefs.apply()
+    context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE).edit {
+        remove(PREF_PREFIX_KEY + appWidgetId)
+    }
 }

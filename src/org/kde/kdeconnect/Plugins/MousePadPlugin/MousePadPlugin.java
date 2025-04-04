@@ -19,8 +19,6 @@ import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
 import org.kde.kdeconnect_tp.R;
 
-import java.util.Objects;
-
 @PluginFactory.LoadablePlugin
 public class MousePadPlugin extends Plugin {
 

@@ -165,7 +165,7 @@ public class RemoteKeyboardService
                         intent.putExtra(MainActivity.FLAG_FORCE_OVERVIEW, true);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
-                        if (instances.size() < 1)
+                        if (instances.isEmpty())
                             Toast.makeText(this, R.string.remotekeyboard_not_connected, Toast.LENGTH_SHORT).show();
                         else // instances.size() > 1
                             Toast.makeText(this, R.string.remotekeyboard_multiple_connections, Toast.LENGTH_SHORT).show();

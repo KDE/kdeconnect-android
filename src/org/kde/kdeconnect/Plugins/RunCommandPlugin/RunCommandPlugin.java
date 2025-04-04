@@ -34,7 +34,6 @@ import org.kde.kdeconnect_tp.R;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Objects;
 
 @PluginFactory.LoadablePlugin
 public class RunCommandPlugin extends Plugin {

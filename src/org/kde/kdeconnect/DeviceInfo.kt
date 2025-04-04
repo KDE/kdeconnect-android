@@ -59,12 +59,12 @@ class DeviceInfo(
      */
     fun toIdentityPacket(): NetworkPacket =
         NetworkPacket(NetworkPacket.PACKET_TYPE_IDENTITY).also { np ->
-            np.set("deviceId", id)
-            np.set("deviceName", name)
-            np.set("protocolVersion", protocolVersion)
-            np.set("deviceType", type.toString())
-            np.set("incomingCapabilities", incomingCapabilities!!)
-            np.set("outgoingCapabilities", outgoingCapabilities!!)
+            np["deviceId"] = id
+            np["deviceName"] = name
+            np["protocolVersion"] = protocolVersion
+            np["deviceType"] = type.toString()
+            np["incomingCapabilities"] = incomingCapabilities!!
+            np["outgoingCapabilities"] = outgoingCapabilities!!
         }
 
     companion object {
@@ -107,10 +107,10 @@ class DeviceInfo(
         fun isValidIdentityPacket(identityPacket: NetworkPacket): Boolean = with(identityPacket) {
             type == NetworkPacket.PACKET_TYPE_IDENTITY &&
                     DeviceHelper.filterName(getString("deviceName", "")).isNotBlank() &&
-                    isValidDeviceId(getString("deviceId", ""));
+                    isValidDeviceId(getString("deviceId", ""))
         }
 
-        private val DEVICE_ID_REGEX = "^[a-zA-Z0-9_-]{32,38}\$".toRegex()
+        private val DEVICE_ID_REGEX = "^[a-zA-Z0-9_-]{32,38}$".toRegex()
 
         @JvmStatic
         fun isValidDeviceId(deviceId: String): Boolean = deviceId.matches(DEVICE_ID_REGEX)

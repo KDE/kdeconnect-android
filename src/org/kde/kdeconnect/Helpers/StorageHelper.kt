@@ -6,7 +6,6 @@
 package org.kde.kdeconnect.Helpers
 
 import android.net.Uri
-import android.provider.DocumentsContract
 
 object StorageHelper {
     fun getDisplayName(treeUri: Uri): String {

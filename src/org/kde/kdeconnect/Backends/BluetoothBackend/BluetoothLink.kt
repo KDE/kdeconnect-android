@@ -24,13 +24,16 @@ import java.io.Reader
 import java.util.UUID
 import kotlin.text.Charsets.UTF_8
 
-class BluetoothLink(context: Context?, connection: ConnectionMultiplexer, input: InputStream, output: OutputStream, remoteAddress: BluetoothDevice, deviceInfo: DeviceInfo, linkProvider: BluetoothLinkProvider) : BaseLink(context!!, linkProvider) {
-    private val connection: ConnectionMultiplexer?
-    private val input: InputStream
-    private val output: OutputStream
-    private val remoteAddress: BluetoothDevice
-    private val linkProvider: BluetoothLinkProvider
-    private val deviceInfo: DeviceInfo
+class BluetoothLink(
+    context: Context?,
+    connection: ConnectionMultiplexer,
+    val input: InputStream,
+    val output: OutputStream,
+    val remoteAddress: BluetoothDevice,
+    val theDeviceInfo: DeviceInfo,
+    val linkProvider: BluetoothLinkProvider
+) : BaseLink(context!!, linkProvider) {
+    private val connection: ConnectionMultiplexer? = connection
     private var continueAccepting = true
     private val receivingThread = Thread(object : Runnable {
         override fun run() {
@@ -64,8 +67,7 @@ class BluetoothLink(context: Context?, connection: ConnectionMultiplexer, input:
         }
 
         private fun processMessage(message: String) {
-            val np: NetworkPacket
-            np = try {
+            val np = try {
                 NetworkPacket.unserialize(message)
             } catch (e: JSONException) {
                 Log.e("BluetoothLink/receiving", "Unable to parse message.", e)
@@ -84,15 +86,6 @@ class BluetoothLink(context: Context?, connection: ConnectionMultiplexer, input:
         }
     })
 
-    init {
-        this.connection = connection
-        this.input = input
-        this.output = output
-        this.deviceInfo = deviceInfo
-        this.remoteAddress = remoteAddress
-        this.linkProvider = linkProvider
-    }
-
     fun startListening() {
         receivingThread.start()
     }
@@ -102,7 +95,7 @@ class BluetoothLink(context: Context?, connection: ConnectionMultiplexer, input:
     }
 
     override fun getDeviceInfo(): DeviceInfo {
-        return deviceInfo
+        return theDeviceInfo
     }
 
     override fun disconnect() {

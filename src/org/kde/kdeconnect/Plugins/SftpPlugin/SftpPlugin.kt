@@ -11,10 +11,10 @@ import android.content.ContentResolver
 import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import android.net.Uri
-import android.os.Build
 import android.os.Environment
 import android.os.storage.StorageManager
 import android.provider.Settings
+import androidx.core.net.toUri
 import org.json.JSONException
 import org.json.JSONObject
 import org.kde.kdeconnect.Helpers.NetworkHelper.localIpAddress
@@ -44,7 +44,7 @@ class SftpPlugin : Plugin(), OnSharedPreferenceChangeListener {
         return if (SimpleSftpServer.SUPPORTS_NATIVEFS) {
             Environment.isExternalStorageManager()
         } else {
-            SftpSettingsFragment.getStorageInfoList(context, this).size != 0
+            SftpSettingsFragment.getStorageInfoList(context, this).isNotEmpty()
         }
     }
 
@@ -101,7 +101,7 @@ class SftpPlugin : Plugin(), OnSharedPreferenceChangeListener {
         } else {
             val storageInfoList = SftpSettingsFragment.getStorageInfoList(context, this)
             storageInfoList.sortBy { it.uri }
-            if (storageInfoList.size <= 0) {
+            if (storageInfoList.isEmpty()) {
                 device.sendPacket(NetworkPacket(PACKET_TYPE_SFTP).apply {
                     this["errorMessage"] = context.getString(R.string.sftp_no_storage_locations_configured)
                 })
@@ -127,7 +127,7 @@ class SftpPlugin : Plugin(), OnSharedPreferenceChangeListener {
             this["password"] = server.regeneratePassword()
             // Kept for compatibility, in case "multiPaths" is not possible or the other end does not support it
             this["path"] = if (paths.size == 1) paths[0] else "/"
-            if (paths.size > 0) {
+            if (paths.isNotEmpty()) {
                 this["multiPaths"] = paths
                 this["pathNames"] = pathNames
             }
@@ -240,7 +240,7 @@ class SftpPlugin : Plugin(), OnSharedPreferenceChangeListener {
             @Throws(JSONException::class)
             fun fromJSON(jsonObject: JSONObject): StorageInfo { // TODO: Use Result after migrate callee to Kotlin
                 val displayName = jsonObject.getString(KEY_DISPLAY_NAME)
-                val uri = Uri.parse(jsonObject.getString(KEY_URI))
+                val uri = jsonObject.getString(KEY_URI).toUri()
 
                 return StorageInfo(displayName, uri)
             }

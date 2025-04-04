@@ -91,7 +91,7 @@ public final class CollectionsBackport {
     }
 
     static boolean eq(Object o1, Object o2) {
-        return o1 == null ? o2 == null : o1.equals(o2);
+        return Objects.equals(o1, o2);
     }
 
     static class UnmodifiableNavigableSetBackport<E>

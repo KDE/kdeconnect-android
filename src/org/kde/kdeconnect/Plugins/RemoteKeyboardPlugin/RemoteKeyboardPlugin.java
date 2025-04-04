@@ -67,7 +67,7 @@ public class RemoteKeyboardPlugin extends Plugin implements SharedPreferences.On
     }
 
     public static boolean isConnected() {
-        return instances.size() > 0;
+        return !instances.isEmpty();
     }
 
     private static final SparseIntArray specialKeyMap = new SparseIntArray();
@@ -135,7 +135,7 @@ public class RemoteKeyboardPlugin extends Plugin implements SharedPreferences.On
         try {
             if (instances.contains(this)) {
                 instances.remove(this);
-                if (instances.size() < 1 && RemoteKeyboardService.instance != null)
+                if (instances.isEmpty() && RemoteKeyboardService.instance != null)
                     RemoteKeyboardService.instance.handler.post(() -> RemoteKeyboardService.instance.updateInputView());
             }
         } finally {
@@ -348,7 +348,7 @@ public class RemoteKeyboardPlugin extends Plugin implements SharedPreferences.On
     public enum MousePadPacketType {
         Keyboard,
         Mouse,
-    };
+    }
 
     public static MousePadPacketType getMousePadPacketType(NetworkPacket np) {
         if (np.has("key") || np.has("specialKey")) {

@@ -48,6 +48,7 @@ import java.security.KeyPair
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 import java.security.PublicKey
+import androidx.core.net.toUri
 
 internal class SimpleSftpServer {
     private lateinit var sshd: SshServer
@@ -110,7 +111,7 @@ internal class SimpleSftpServer {
                 withFileSystemAccessor(object : SftpFileSystemAccessor {
                     fun notifyMediaStore(path: Path) {
                         kotlin.runCatching {
-                            val uri = Uri.parse(path.toUri().toString())
+                            val uri = path.toUri().toString().toUri()
                             MediaStoreHelper.indexFile(context, uri)
                             uri
                         }.fold(

@@ -214,7 +214,7 @@ public class ContactsHelper {
 
         Map<uID, Map<String, String>> databaseValue = accessContactsDatabase(context, projection, selection, selectionArgs, null);
 
-        if (databaseValue.size() == 0) {
+        if (databaseValue.isEmpty()) {
             throw new ContactNotFoundException("Querying for contact with id " + contactID + " returned no results.");
         }
 

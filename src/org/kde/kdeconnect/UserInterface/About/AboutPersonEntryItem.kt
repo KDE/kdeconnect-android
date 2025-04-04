@@ -15,6 +15,7 @@ import androidx.appcompat.widget.TooltipCompat
 import org.kde.kdeconnect.UserInterface.List.ListAdapter
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.AboutPersonListItemEntryBinding
+import androidx.core.net.toUri
 
 class AboutPersonEntryItem(val person: AboutPerson) : ListAdapter.Item {
     override fun inflateView(layoutInflater: LayoutInflater): View {
@@ -31,7 +32,8 @@ class AboutPersonEntryItem(val person: AboutPerson) : ListAdapter.Item {
             binding.aboutPersonListItemEntryVisitHomepageButton.visibility = View.VISIBLE
             TooltipCompat.setTooltipText(binding.aboutPersonListItemEntryVisitHomepageButton, layoutInflater.context.resources.getString(R.string.visit_contributors_homepage, person.webAddress))
             binding.aboutPersonListItemEntryVisitHomepageButton.setOnClickListener {
-                layoutInflater.context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(person.webAddress)))
+                layoutInflater.context.startActivity(Intent(Intent.ACTION_VIEW,
+                    person.webAddress.toUri()))
             }
         }
 

@@ -5,14 +5,12 @@
  */
 package org.kde.kdeconnect.Plugins.SftpPlugin.saf
 
-import android.content.ContentValues
 import android.content.Context
 import android.net.Uri
 import android.os.Build
 import android.os.ParcelFileDescriptor
 import android.provider.DocumentsContract
 import android.util.Log
-import org.kde.kdeconnect.Helpers.MediaStoreHelper
 import java.io.FileNotFoundException
 import java.io.IOException
 import java.lang.reflect.Method

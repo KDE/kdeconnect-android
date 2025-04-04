@@ -34,6 +34,7 @@ import org.kde.kdeconnect_tp.databinding.MprisNowPlayingBinding
 import java.net.MalformedURLException
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
+import androidx.core.net.toUri
 
 private typealias MprisPlayerCallback = (MprisPlayer) -> Unit
 
@@ -370,7 +371,7 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
         if (targetPlayer != null && item.itemId == MENU_OPEN_URL) {
             try {
                 val url = VideoUrlsHelper.formatUriWithSeek(targetPlayer.url, targetPlayer.position).toString()
-                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                val browserIntent = Intent(Intent.ACTION_VIEW, url.toUri())
                 startActivity(browserIntent)
                 targetPlayer.sendPause()
                 return true

@@ -20,6 +20,7 @@ import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect_tp.BuildConfig
 import org.kde.kdeconnect_tp.R
+import androidx.core.net.toUri
 
 const val RUN_COMMAND_ACTION = "RUN_COMMAND_ACTION"
 const val TARGET_COMMAND = "TARGET_COMMAND"
@@ -65,10 +66,10 @@ class RunCommandWidgetProvider : AppWidgetProvider() {
                     Log.e("RunCommandWidget", "Error running command", ex)
                 }
             } else {
-                Log.w("RunCommandWidget", "Device not available or runcommand plugin disabled");
+                Log.w("RunCommandWidget", "Device not available or runcommand plugin disabled")
             }
         } else {
-            super.onReceive(context, intent);
+            super.onReceive(context, intent)
         }
     }
 }
@@ -114,7 +115,7 @@ internal fun updateAppWidget(
     val views = RemoteViews(BuildConfig.APPLICATION_ID, R.layout.widget_remotecommandplugin)
     assignTitleIntent(context, appWidgetId, views)
 
-    Log.d("WidgetProvider", "updateAppWidget device: " + if (device == null) "null" else device.name)
+    Log.d("WidgetProvider", "updateAppWidget device: " + (device?.name ?: "null"))
 
     // Android should automatically toggle between the command list and the error text
     views.setEmptyView(R.id.widget_command_list, R.id.widget_error_text)
@@ -174,7 +175,7 @@ private fun assignTitleIntent(context: Context, appWidgetId: Int, views: RemoteV
 private fun assignListAdapter(context: Context, appWidgetId: Int, views: RemoteViews) {
     val dataProviderIntent = Intent(context, CommandsRemoteViewsService::class.java)
     dataProviderIntent.putExtra(EXTRA_APPWIDGET_ID, appWidgetId)
-    dataProviderIntent.data = Uri.parse(dataProviderIntent.toUri(Intent.URI_INTENT_SCHEME))
+    dataProviderIntent.data = dataProviderIntent.toUri(Intent.URI_INTENT_SCHEME).toUri()
     views.setRemoteAdapter(R.id.widget_command_list, dataProviderIntent)
 }
 

@@ -11,9 +11,7 @@ import org.json.JSONObject
 import java.io.ByteArrayInputStream
 import java.io.IOException
 import java.io.InputStream
-import java.lang.RuntimeException
 import java.net.Socket
-import kotlin.concurrent.Volatile
 
 class NetworkPacket private constructor(
     val type: String,

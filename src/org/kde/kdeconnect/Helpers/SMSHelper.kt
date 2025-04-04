@@ -11,7 +11,6 @@ import android.content.ContentUris
 import android.content.Context
 import android.database.ContentObserver
 import android.database.sqlite.SQLiteException
-import android.graphics.Bitmap
 import android.media.MediaMetadataRetriever
 import android.media.ThumbnailUtils
 import android.net.Uri
@@ -23,6 +22,8 @@ import android.telephony.TelephonyManager
 import android.util.Log
 import android.util.Pair
 import androidx.annotation.RequiresApi
+import androidx.core.graphics.scale
+import androidx.core.net.toUri
 import com.google.android.mms.pdu_alt.MultimediaMessagePdu
 import com.google.android.mms.pdu_alt.PduPersister
 import com.google.android.mms.util_alt.PduCache
@@ -37,13 +38,11 @@ import org.kde.kdeconnect.Helpers.TelephonyHelper.LocalPhoneNumber
 import org.kde.kdeconnect.Plugins.SMSPlugin.MimeType
 import org.kde.kdeconnect.Plugins.SMSPlugin.SmsMmsUtils
 import java.io.IOException
-import java.util.Arrays
 import java.util.Objects
 import java.util.SortedMap
 import java.util.TreeMap
 import java.util.concurrent.locks.Lock
 import java.util.concurrent.locks.ReentrantLock
-import java.util.stream.Collectors
 import kotlin.text.Charsets.UTF_8
 
 @SuppressLint("InlinedApi")
@@ -52,7 +51,7 @@ object SMSHelper {
     private const val THUMBNAIL_WIDTH = 100
 
     // The constant Telephony.Mms.Part.CONTENT_URI was added in API 29
-    val mMSPartUri : Uri = Uri.parse("content://mms/part/")
+    val mMSPartUri : Uri = "content://mms/part/".toUri()
 
     /**
      * Get the base address for all message conversations
@@ -67,14 +66,14 @@ object SMSHelper {
         if ("Samsung".equals(Build.MANUFACTURER, ignoreCase = true)) {
             Log.i("SMSHelper", "This appears to be a Samsung device. This may cause some features to not work properly.")
         }
-        return Uri.parse("content://mms-sms/conversations?simple=true")
+        return "content://mms-sms/conversations?simple=true".toUri()
     }
 
     private fun getCompleteConversationsUri(): Uri {
         // This glorious - but completely undocumented - content URI gives us all messages, both MMS and SMS,
         // in all conversations
         // See https://stackoverflow.com/a/36439630/3723163
-        return Uri.parse("content://mms-sms/complete-conversations")
+        return "content://mms-sms/complete-conversations".toUri()
     }
 
     /**
@@ -651,12 +650,7 @@ object SMSHelper {
                             )
                             val videoThumbnail = retriever.frameAtTime
                             val encodedThumbnail = SmsMmsUtils.bitMapToBase64(
-                                Bitmap.createScaledBitmap(
-                                    videoThumbnail!!,
-                                    THUMBNAIL_WIDTH,
-                                    THUMBNAIL_HEIGHT,
-                                    true
-                                )
+                                videoThumbnail!!.scale(THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT)
                             )
                             attachments.add(
                                 Attachment(

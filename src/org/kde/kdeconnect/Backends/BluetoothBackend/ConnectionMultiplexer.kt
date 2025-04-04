@@ -21,7 +21,7 @@ import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.withLock
 
 class ConnectionMultiplexer(socket: BluetoothSocket) : Closeable {
-    private class ChannelInputStream constructor(val channel: Channel) : InputStream(), Closeable {
+    private class ChannelInputStream(val channel: Channel) : InputStream(), Closeable {
         override fun available(): Int {
             return channel.available()
         }
@@ -49,7 +49,7 @@ class ConnectionMultiplexer(socket: BluetoothSocket) : Closeable {
         }
     }
 
-    private class ChannelOutputStream constructor(val channel: Channel) : OutputStream(), Closeable {
+    private class ChannelOutputStream(val channel: Channel) : OutputStream(), Closeable {
         @Throws(IOException::class)
         override fun close() {
             channel.close()
@@ -78,7 +78,7 @@ class ConnectionMultiplexer(socket: BluetoothSocket) : Closeable {
         }
     }
 
-    private class Channel constructor(val multiplexer: ConnectionMultiplexer, val id: UUID) : Closeable {
+    private class Channel(val multiplexer: ConnectionMultiplexer, val id: UUID) : Closeable {
         val readBuffer: ByteBuffer = ByteBuffer.allocate(BUFFER_SIZE)
         val lock = ReentrantLock()
         var lockCondition: Condition = lock.newCondition()
@@ -371,14 +371,9 @@ class ConnectionMultiplexer(socket: BluetoothSocket) : Closeable {
         }
     }
 
-    private inner class ListenRunnable constructor(socket: BluetoothSocket) : Runnable {
-        var input: InputStream
-        var output: OutputStream
-
-        init {
-            input = socket.inputStream
-            output = socket.outputStream
-        }
+    private inner class ListenRunnable(socket: BluetoothSocket) : Runnable {
+        var input: InputStream = socket.inputStream
+        var output: OutputStream = socket.outputStream
 
         @Throws(IOException::class)
         private fun readBuffer(buffer: ByteArray, len: Int) {

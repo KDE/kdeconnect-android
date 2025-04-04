@@ -29,7 +29,6 @@ import org.kde.kdeconnect.UserInterface.MainActivity;
 import org.kde.kdeconnect_tp.R;
 
 import java.io.InputStream;
-import java.util.Objects;
 
 @PluginFactory.LoadablePlugin
 public class ReceiveNotificationsPlugin extends Plugin {

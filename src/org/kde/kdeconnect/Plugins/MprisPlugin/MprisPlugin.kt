@@ -33,6 +33,7 @@ import org.kde.kdeconnect.UserInterface.PluginSettingsFragment
 import org.kde.kdeconnect_tp.R
 import java.net.MalformedURLException
 import java.util.concurrent.ConcurrentHashMap
+import androidx.core.net.toUri
 
 @LoadablePlugin
 class MprisPlugin : Plugin() {
@@ -273,7 +274,7 @@ class MprisPlugin : Plugin() {
                 playerStatus.isGoPreviousAllowed = np.getBoolean("canGoPrevious", playerStatus.isGoPreviousAllowed)
                 playerStatus.seekAllowed = np.getBoolean("canSeek", playerStatus.seekAllowed)
                 val newAlbumArtUrlString = np.getString("albumArtUrl", playerStatus.albumArtUrl)
-                val newAlbumArtUrl = Uri.parse(newAlbumArtUrlString)
+                val newAlbumArtUrl = newAlbumArtUrlString.toUri()
                 if (newAlbumArtUrl.scheme in AlbumArtCache.ALLOWED_SCHEMES) {
                     playerStatus.albumArtUrl = newAlbumArtUrl.toString()
                 } else {
@@ -334,7 +335,7 @@ class MprisPlugin : Plugin() {
         ) {
             try {
                 val url = VideoUrlsHelper.formatUriWithSeek(playerStatus.url, playerStatus.position).toString()
-                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                val browserIntent = Intent(Intent.ACTION_VIEW, url.toUri())
                 val pendingIntent = PendingIntent.getActivity(context, 0, browserIntent, PendingIntent.FLAG_IMMUTABLE)
 
                 val notificationManager = ContextCompat.getSystemService(context, NotificationManager::class.java)
@@ -350,7 +351,7 @@ class MprisPlugin : Plugin() {
                     builder.build()
                 )
             } catch (e: MalformedURLException) {
-                e.printStackTrace();
+                e.printStackTrace()
             }
         }
     }

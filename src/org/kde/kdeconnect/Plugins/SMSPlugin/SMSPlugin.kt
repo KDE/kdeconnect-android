@@ -181,7 +181,7 @@ class SMSPlugin : Plugin() {
     @Deprecated("")
     private fun smsBroadcastReceivedDeprecated(messages: MutableList<SmsMessage>) {
         if (BuildConfig.DEBUG) {
-            if (messages.size <= 0) {
+            if (messages.isEmpty()) {
                 throw AssertionError("This method requires at least one message")
             }
         }
@@ -224,11 +224,11 @@ class SMSPlugin : Plugin() {
         get() = R.string.telepathy_permission_explanation
 
     override fun onCreate(): Boolean {
-        val filter: IntentFilter = IntentFilter(Telephony.Sms.Intents.SMS_RECEIVED_ACTION)
+        val filter = IntentFilter(Telephony.Sms.Intents.SMS_RECEIVED_ACTION)
         filter.priority = 500
         context.registerReceiver(receiver, filter)
 
-        val refreshFilter: IntentFilter = IntentFilter(Transaction.REFRESH)
+        val refreshFilter = IntentFilter(Transaction.REFRESH)
         refreshFilter.priority = 500
         context.registerReceiver(messagesUpdateReceiver, refreshFilter, ContextCompat.RECEIVER_EXPORTED)
 
@@ -269,13 +269,11 @@ class SMSPlugin : Plugin() {
             val subID = np.getLong("subID", -1)
 
             val jsonAddressList = np.getJSONArray("addresses")
-            val addressList: List<SMSHelper.Address>
-            if (jsonAddressList == null) {
+            val addressList = if (jsonAddressList == null) {
                 // If jsonAddressList is null, then the SMS_REQUEST packet is most probably from the older version of the desktop app.
-                addressList = listOf(SMSHelper.Address(context, np.getString("phoneNumber")))
-            }
-            else {
-                addressList = jsonArrayToAddressList(context, jsonAddressList)
+                listOf(SMSHelper.Address(context, np.getString("phoneNumber")))
+            } else {
+                jsonArrayToAddressList(context, jsonAddressList)
             }
             val attachedFiles: List<SMSHelper.Attachment> = jsonArrayToAttachmentsList(np.getJSONArray("attachments"))
 
@@ -350,11 +348,10 @@ class SMSPlugin : Plugin() {
             numberToGet = null
         }
 
-        val conversation: List<SMSHelper.Message>
-        if (rangeStartTimestamp < 0) {
-            conversation = getMessagesInThread(this.context, threadID, numberToGet)
+        val conversation = if (rangeStartTimestamp < 0) {
+            getMessagesInThread(this.context, threadID, numberToGet)
         } else {
-            conversation = getMessagesInRange(this.context, threadID, rangeStartTimestamp, numberToGet, true)
+            getMessagesInRange(this.context, threadID, rangeStartTimestamp, numberToGet, true)
         }
 
         val reply: NetworkPacket = constructBulkMessagePacket(conversation)

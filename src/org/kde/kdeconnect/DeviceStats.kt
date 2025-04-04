@@ -115,7 +115,7 @@ object DeviceStats {
             val entry = iterator.next()
             val events = entry.value
 
-            var index = Collections.binarySearch(events, cutoutTimestamp)
+            var index = events.binarySearch(cutoutTimestamp)
             if (index < 0) {
                 index = -(index + 1) // Convert the negative index to insertion point
             }

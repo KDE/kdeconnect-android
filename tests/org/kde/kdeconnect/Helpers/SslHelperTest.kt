@@ -12,7 +12,6 @@ import org.junit.Before
 import org.junit.Test
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper
 import org.kde.kdeconnect.MockSharedPreference
-import org.kde.kdeconnect.PairingHandler
 import org.mockito.ArgumentMatchers
 import org.mockito.MockedStatic
 import org.mockito.Mockito

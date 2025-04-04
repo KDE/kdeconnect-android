@@ -194,7 +194,7 @@ public class CustomDevicesActivity extends BaseActivity<ActivityCustomDevicesBin
                     saveList();
                     showEmptyListMessageIfRequired();
                 })
-                .addCallback(new BaseTransientBottomBar.BaseCallback<Snackbar>() {
+                .addCallback(new BaseTransientBottomBar.BaseCallback<>() {
                     @Override
                     public void onDismissed(Snackbar transientBottomBar, int event) {
                         switch (event) {
@@ -272,8 +272,8 @@ public class CustomDevicesActivity extends BaseActivity<ActivityCustomDevicesBin
     }
 
     private static class DeletedCustomDevice {
-        @NonNull DeviceHost hostnameOrIP;
-        int position;
+        @NonNull final DeviceHost hostnameOrIP;
+        final int position;
 
         DeletedCustomDevice(@NonNull DeviceHost hostnameOrIP, int position) {
             this.hostnameOrIP = hostnameOrIP;

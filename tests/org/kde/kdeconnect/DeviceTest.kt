@@ -129,7 +129,7 @@ class DeviceTest {
         val deviceId = "testDevice"
         val settings = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE)
         val deviceInfo = loadFromSettings(context, deviceId, settings)
-        deviceInfo.protocolVersion = DeviceHelper.ProtocolVersion
+        deviceInfo.protocolVersion = DeviceHelper.PROTOCOL_VERSION
         deviceInfo.incomingCapabilities = hashSetOf("kdeconnect.plugin1State", "kdeconnect.plugin2State")
         deviceInfo.outgoingCapabilities = hashSetOf("kdeconnect.plugin1State.request", "kdeconnect.plugin2State.request")
 
@@ -208,7 +208,7 @@ class DeviceTest {
         val deviceId = "unpairedTestDevice"
         fakeNetworkPacket["deviceId"] = deviceId
         fakeNetworkPacket["deviceName"] = "Unpaired Test Device"
-        fakeNetworkPacket["protocolVersion"] = DeviceHelper.ProtocolVersion
+        fakeNetworkPacket["protocolVersion"] = DeviceHelper.PROTOCOL_VERSION
         fakeNetworkPacket["deviceType"] = DeviceType.PHONE.toString()
         val certificateString =
             """

@@ -33,7 +33,6 @@ import org.kde.kdeconnect.DeviceStats.countReceived
 import org.kde.kdeconnect.DeviceStats.countSent
 import org.kde.kdeconnect.Helpers.DeviceHelper
 import org.kde.kdeconnect.Helpers.NotificationHelper
-import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper
 import org.kde.kdeconnect.PairingHandler.PairingCallback
 import org.kde.kdeconnect.Plugins.Plugin
 import org.kde.kdeconnect.Plugins.Plugin.Companion.getPluginKey
@@ -46,6 +45,7 @@ import java.util.Vector
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.ConcurrentMap
 import java.util.concurrent.CopyOnWriteArrayList
+import androidx.core.content.edit
 
 class Device : PacketReceiver {
 
@@ -164,7 +164,7 @@ class Device : PacketReceiver {
 
     // Returns 0 if the version matches, < 0 if it is older or > 0 if it is newer
     fun compareProtocolVersion(): Int =
-        deviceInfo.protocolVersion - DeviceHelper.ProtocolVersion
+        deviceInfo.protocolVersion - DeviceHelper.PROTOCOL_VERSION
 
     val isPaired: Boolean
         get() = pairingHandler.state == PairingHandler.PairState.Paired
@@ -209,7 +209,7 @@ class Device : PacketReceiver {
 
                 // Store as trusted device
                 val preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE)
-                preferences.edit().putBoolean(deviceInfo.id, true).apply()
+                preferences.edit { putBoolean(deviceInfo.id, true) }
 
                 try {
                     reloadPluginsFromSettings()
@@ -228,10 +228,10 @@ class Device : PacketReceiver {
             override fun unpaired() {
                 Log.i("Device", "unpaired, removing from trusted devices list")
                 val preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE)
-                preferences.edit().remove(deviceInfo.id).apply()
+                preferences.edit { remove(deviceInfo.id) }
 
                 val devicePreferences = context.getSharedPreferences(deviceInfo.id, Context.MODE_PRIVATE)
-                devicePreferences.edit().clear().apply()
+                devicePreferences.edit { clear() }
 
                 pairingCallbacks.forEach(PairingCallback::unpaired)
 
@@ -596,7 +596,7 @@ class Device : PacketReceiver {
     }
 
     fun setPluginEnabled(pluginKey: String, value: Boolean) {
-        settings.edit().putBoolean(pluginKey, value).apply()
+        settings.edit { putBoolean(pluginKey, value) }
         reloadPluginsFromSettings()
     }
 

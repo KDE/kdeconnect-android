@@ -13,6 +13,7 @@ import android.net.wifi.WifiManager
 import android.preference.PreferenceManager
 import android.util.Log
 import androidx.core.content.ContextCompat
+import androidx.core.content.edit
 
 class TrustedNetworkHelper(private val context: Context) {
 
@@ -22,19 +23,19 @@ class TrustedNetworkHelper(private val context: Context) {
             return serializedNetworks.split(NETWORK_SSID_DELIMITER, "#_#" /* TODO remove old delimiter in 2025 */).filter { it.isNotEmpty() }
         }
         set(value) {
-            PreferenceManager.getDefaultSharedPreferences(context)
-                .edit()
-                .putString(KEY_CUSTOM_TRUSTED_NETWORKS, value.joinToString(NETWORK_SSID_DELIMITER))
-                .apply()
+            PreferenceManager.getDefaultSharedPreferences(context).edit {
+                    putString(
+                        KEY_CUSTOM_TRUSTED_NETWORKS,
+                        value.joinToString(NETWORK_SSID_DELIMITER)
+                    )
+                }
         }
 
     var allNetworksAllowed: Boolean
         get() = !hasPermissions || PreferenceManager.getDefaultSharedPreferences(context).getBoolean(KEY_CUSTOM_TRUST_ALL_NETWORKS, true)
-        set(value) = PreferenceManager
-            .getDefaultSharedPreferences(context)
-            .edit()
-            .putBoolean(KEY_CUSTOM_TRUST_ALL_NETWORKS, value)
-            .apply()
+        set(value) = PreferenceManager.getDefaultSharedPreferences(context).edit {
+                putBoolean(KEY_CUSTOM_TRUST_ALL_NETWORKS, value)
+            }
 
     val hasPermissions: Boolean
         get() = ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED

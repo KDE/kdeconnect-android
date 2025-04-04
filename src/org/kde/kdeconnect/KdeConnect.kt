@@ -25,6 +25,7 @@ import java.security.cert.CertificateException
 import java.security.cert.X509Certificate
 import java.util.Date
 import java.util.concurrent.ConcurrentHashMap
+import androidx.core.content.edit
 
 /*
  * This class holds all the active devices and makes them accessible from every other class.
@@ -116,7 +117,7 @@ class KdeConnect : Application() {
                     "KdeConnect",
                     "Couldn't load the certificate for a remembered device. Removing from trusted list.", e
                 )
-                preferences.edit().remove(it).apply()
+                preferences.edit { remove(it) }
             }
         }
     }
@@ -127,7 +128,7 @@ class KdeConnect : Application() {
         trustedDevices.filter { preferences.getBoolean(it, false) }
             .forEach {
                 Log.d("KdeConnect", "Removing devices: $it")
-                preferences.edit().remove(it).apply()
+                preferences.edit { remove(it) }
             }
     }
 
