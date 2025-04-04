@@ -115,6 +115,7 @@
   <string name="error_not_reachable">Laite tavoittamattomissa</string>
   <string name="error_already_paired">Laite on jo kytketty pariksi</string>
   <string name="error_timed_out">Aikakatkaisu</string>
+  <string name="error_clocks_not_match">Laitteiden kelloja ei ole tahdistettu</string>
   <string name="error_canceled_by_user">Käyttäjä perui</string>
   <string name="error_canceled_by_other_peer">Vertaiskäyttäjä perui</string>
   <string name="encryption_info_title">Salaustiedot</string>
@@ -192,6 +193,7 @@
   <string name="share_to">Jaa…</string>
   <string name="unreachable_device">%s (tavoittamattomissa)</string>
   <string name="unreachable_device_url_share_text">Tavoittamattomissa olevalle laitteelle jaetut verkko-osoitteet välitetään heti kun laite tavoitetaan.\n\n</string>
+  <string name="protocol_version">Yhteyskäytäntöversio:</string>
   <string name="protocol_version_newer">Laite käyttää uudempaa yhteyskäytäntöversiota</string>
   <string name="plugin_settings_with_name">%s-asetukset</string>
   <string name="invalid_device_name">Virheellinen laitenimi</string>
