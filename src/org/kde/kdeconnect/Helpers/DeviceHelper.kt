@@ -129,8 +129,8 @@ object DeviceHelper {
 
     fun initializeDeviceId(context: Context) {
         val preferences = PreferenceManager.getDefaultSharedPreferences(context)
-        val preferenceKeys: Set<String> = preferences.all.keys
-        if (preferenceKeys.contains(KEY_DEVICE_ID_PREFERENCE)) {
+        val deviceId = preferences.getString(KEY_DEVICE_ID_PREFERENCE, "")!!
+        if (DeviceInfo.isValidDeviceId(deviceId)) {
             return // We already have an ID
         }
         @SuppressLint("HardwareIds")
