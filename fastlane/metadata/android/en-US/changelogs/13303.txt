@@ -1,12 +1,16 @@
+1.33.3
+* Fix more connection issues. Pairing again might be needed in some setups.
+* Add a setting to export the application logs.
+
 1.33.2
-* Fix connection issues on some devices
+* Fix connection issues on some devices.
 
 1.33.1
-* Fix compatibility with GSConnect
+* Fix compatibility with GSConnect.
 
 1.33.0
-* Add support for PeerTube links
-* Allow filtering notifications from work profile
-* Fix bug where devices would unpair without user interaction
-* Verification key now changes every second (only if both devices support it)
-* Fix crashes
+* Add support for PeerTube links.
+* Allow filtering notifications from work profile.
+* Fix bug where devices would unpair without user interaction.
+* Verification key now changes every second (only if both devices support it).
+* Fix crashes.
