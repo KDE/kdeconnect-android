@@ -11,6 +11,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.graphics.Color
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.text.InputFilter
@@ -20,6 +21,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import androidx.activity.result.ActivityResultLauncher
 import androidx.core.content.ContextCompat
 import androidx.preference.EditTextPreference
 import androidx.preference.ListPreference
@@ -27,14 +29,22 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import org.apache.commons.io.IOUtils
 import org.kde.kdeconnect.BackgroundService
+import org.kde.kdeconnect.Helpers.CreateFileParams
+import org.kde.kdeconnect.Helpers.CreateFileResultContract
 import org.kde.kdeconnect.Helpers.DeviceHelper
 import org.kde.kdeconnect.Helpers.DeviceHelper.filterName
 import org.kde.kdeconnect.Helpers.DeviceHelper.getDeviceName
 import org.kde.kdeconnect.Helpers.NotificationHelper
 import org.kde.kdeconnect.UserInterface.ThemeUtil.applyTheme
 import org.kde.kdeconnect.extensions.setupBottomPadding
+import org.kde.kdeconnect_tp.BuildConfig
 import org.kde.kdeconnect_tp.R
+import java.io.InputStreamReader
 
 class SettingsFragment : PreferenceFragmentCompat() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -56,6 +66,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
             devicesByIpPref(context),
             udpBroadcastPref(context),
             bluetoothSupportPref(context),
+            exportLogsPref(context),
             moreSettingsPref(context),
         ).forEach(screen::addPreference)
 
@@ -214,6 +225,32 @@ class SettingsFragment : PreferenceFragmentCompat() {
                 }
             }
             true
+        }
+    }
+
+    private fun exportLogsPref(context: Context) = Preference(context).apply {
+        isPersistent = false
+        setTitle(R.string.settings_export_logs)
+        setSummary(R.string.settings_export_logs_text)
+        onPreferenceClickListener = Preference.OnPreferenceClickListener {
+            exportLogs.launch(CreateFileParams("text/plain", "kdeconnect-log.txt"))
+            true
+        }
+    }
+
+    private val exportLogs: ActivityResultLauncher<CreateFileParams> = registerForActivityResult(
+        CreateFileResultContract()
+    ) { uri: Uri? ->
+        val output = uri?.let { context?.contentResolver?.openOutputStream(uri) } ?: return@registerForActivityResult
+        CoroutineScope(Dispatchers.IO).launch {
+            val pid = android.os.Process.myPid()
+            val process = Runtime.getRuntime().exec(arrayOf("logcat", "-d", "--pid=$pid"))
+            val reader = InputStreamReader(process.inputStream)
+            output.use {
+                it.write("KDE Connect ${BuildConfig.VERSION_NAME}\n".toByteArray(Charsets.UTF_8))
+                it.write("Android ${Build.VERSION.RELEASE} (${Build.MANUFACTURER} ${Build.MODEL})\n".toByteArray(Charsets.UTF_8))
+                IOUtils.copy(reader, it, Charsets.UTF_8)
+            }
         }
     }
 

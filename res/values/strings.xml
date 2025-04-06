@@ -401,6 +401,9 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
 
     <string name="settings_rename">Device name</string>
     <string name="settings_dark_mode">Dark theme</string>
+    <string name="settings_export_logs">Export KDE Connect logs</string>
+    <string name="settings_export_logs_text">Generate a file with execution information that can help troubleshoot issues.</string>
+
     <string name="settings_more_settings_title">More settings</string>
     <string name="settings_more_settings_text">Per-device settings can be found under \'Plugin settings\' from within a device.</string>
     <string name="setting_persistent_notification">Show persistent notification</string>
