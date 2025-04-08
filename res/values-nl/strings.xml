@@ -309,6 +309,8 @@
   <string name="devices">Apparaten</string>
   <string name="settings_rename">Apparaatnaam</string>
   <string name="settings_dark_mode">Donker thema</string>
+  <string name="settings_export_logs">Logs van KDE Connect exporteren</string>
+  <string name="settings_export_logs_text">Genereert een bestand met uitvoeringsinformatie die kan helpen problemen op te lossen.</string>
   <string name="settings_more_settings_title">Meer instellingen</string>
   <string name="settings_more_settings_text">Instellingen per apparaat kunnen gevonden worden onder \'Plug-in-instellingen\' vanuit een apparaat.</string>
   <string name="setting_persistent_notification">Blijvende melding tonen</string>

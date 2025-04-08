@@ -325,6 +325,8 @@
   <string name="devices">Пристрої</string>
   <string name="settings_rename">Назва пристрою</string>
   <string name="settings_dark_mode">Темна тема</string>
+  <string name="settings_export_logs">Експортувати журнал KDE Connect</string>
+  <string name="settings_export_logs_text">Створити файл з даними щодо виконання, які можуть допомогти у діагностиці вад.</string>
   <string name="settings_more_settings_title">Додаткові параметри</string>
   <string name="settings_more_settings_text">Окремі параметри пристроїв наведено на сторінці «Параметри додатків» сторінки пристрою.</string>
   <string name="setting_persistent_notification">Показувати постійне сповіщення</string>

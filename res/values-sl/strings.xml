@@ -325,6 +325,8 @@
   <string name="devices">Naprave</string>
   <string name="settings_rename">Ime naprave</string>
   <string name="settings_dark_mode">Temna tema</string>
+  <string name="settings_export_logs">Izvozi dnevnike KDE Connect</string>
+  <string name="settings_export_logs_text">Ustvari datoteko z informacijami o izvajanju, ki lahko pomagajo pri odpravljanju težav.</string>
   <string name="settings_more_settings_title">Več nastavitev</string>
   <string name="settings_more_settings_text">Nastavitve posamezne naprave najdete v razdelku \'Nastavitve vtičnikov\' v napravi.</string>
   <string name="setting_persistent_notification">Prikazuj trajno obvestilo</string>

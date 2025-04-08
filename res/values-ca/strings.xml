@@ -309,6 +309,8 @@
   <string name="devices">Dispositius</string>
   <string name="settings_rename">Nom del dispositiu</string>
   <string name="settings_dark_mode">Tema fosc</string>
+  <string name="settings_export_logs">Exporta els registres del KDE Connect</string>
+  <string name="settings_export_logs_text">Genera un fitxer amb informació d\'execució que pot ajudar a resoldre problemes.</string>
   <string name="settings_more_settings_title">Més opcions</string>
   <string name="settings_more_settings_text">La configuració per dispositiu es pot trobar a «Arranjament dels connectors» des d\'un dispositiu.</string>
   <string name="setting_persistent_notification">Mostra les notificacions persistents</string>
