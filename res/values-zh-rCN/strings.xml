@@ -301,6 +301,8 @@
   <string name="devices">设备</string>
   <string name="settings_rename">设备名</string>
   <string name="settings_dark_mode">深色主题</string>
+  <string name="settings_export_logs">导出 KDE Connect 日志</string>
+  <string name="settings_export_logs_text">生成一个包含程序执行信息的文件，有助于排查故障。</string>
   <string name="settings_more_settings_title">更多设置</string>
   <string name="settings_more_settings_text">每个设备的独立设置可以在设备页内的“插件设置”下找到。</string>
   <string name="setting_persistent_notification">启用常驻通知栏</string>
