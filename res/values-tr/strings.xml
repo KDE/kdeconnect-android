@@ -130,7 +130,7 @@
   </plurals>
   <plurals name="incoming_files_text">
     <item quantity="one">Dosya: %1s</item>
-    <item quantity="other">(Dosya %2$d %3$d) : %1$s</item>
+    <item quantity="other">(Dosya %2$d/%3$d) : %1$s</item>
   </plurals>
   <plurals name="outgoing_file_title">
     <item quantity="one">%1$d dosya %2$s gönderiliyor</item>
@@ -309,6 +309,8 @@
   <string name="devices">Aygıtlar</string>
   <string name="settings_rename">Aygıt adı</string>
   <string name="settings_dark_mode">Karanlık tema</string>
+  <string name="settings_export_logs">KDE Bağlan Günlüklerini Dışa Aktar</string>
+  <string name="settings_export_logs_text">Sorun tanılama konusunda yandımcı olabilecek yürütme bilgisini içeren bir dosya üretin.</string>
   <string name="settings_more_settings_title">Daha fazla ayar</string>
   <string name="settings_more_settings_text">Aygıt başına ayarlar, bir aygıt içinden “Eklenti Ayarları” altında bulunabilir.</string>
   <string name="setting_persistent_notification">Kalıcı bildirim göster</string>

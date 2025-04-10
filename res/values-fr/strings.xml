@@ -309,6 +309,8 @@
   <string name="devices">Périphériques</string>
   <string name="settings_rename">Nom du périphérique</string>
   <string name="settings_dark_mode">Thème sombre</string>
+  <string name="settings_export_logs">Exporter les journaux de KDEConnect</string>
+  <string name="settings_export_logs_text">Générez un fichier avec des informations d\'exécution pouvant aider à résoudre les problèmes.</string>
   <string name="settings_more_settings_title">Plus de paramètres</string>
   <string name="settings_more_settings_text">Les paramètres par appareil sont disponibles dans la rubrique « Paramètres des modules externes » sur l\'appareil.</string>
   <string name="setting_persistent_notification">Afficher une notification persistante</string>

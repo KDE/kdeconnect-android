@@ -301,6 +301,8 @@
   <string name="devices">裝置</string>
   <string name="settings_rename">裝置名稱</string>
   <string name="settings_dark_mode">暗色主題</string>
+  <string name="settings_export_logs">匯出 KDE Connect 紀錄</string>
+  <string name="settings_export_logs_text">產生包含執行資訊的檔案來幫助發現問題。</string>
   <string name="settings_more_settings_title">更多設定</string>
   <string name="settings_more_settings_text">各裝置設定可在裝置內的「外掛程式設定」底下找到。</string>
   <string name="setting_persistent_notification">顯示一致設定</string>
