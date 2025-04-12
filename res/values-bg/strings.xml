@@ -115,6 +115,7 @@
   <string name="error_not_reachable">Устройството е недостъпно</string>
   <string name="error_already_paired">Устройството вече е сдвоено</string>
   <string name="error_timed_out">Просрочка</string>
+  <string name="error_clocks_not_match">Часовниците на устройствата не са синхронизирани</string>
   <string name="error_canceled_by_user">Отхвърлена от потребителя</string>
   <string name="error_canceled_by_other_peer">Отказана от другата страна</string>
   <string name="encryption_info_title">Информация за криптиране</string>
@@ -192,6 +193,7 @@
   <string name="share_to">Споделяне към...</string>
   <string name="unreachable_device">%s (не е достъпно)</string>
   <string name="unreachable_device_url_share_text">URL адресите, споделени към недостъпно устройство, ще бъдат доставени до него, когато то стане достъпно.\n\n</string>
+  <string name="protocol_version">Версия на протокол:</string>
   <string name="protocol_version_newer">Това устройство използва по-нова версия на протокола</string>
   <string name="plugin_settings_with_name">%s настройки</string>
   <string name="invalid_device_name">Невалидно име на устройство</string>
@@ -307,6 +309,8 @@
   <string name="devices">Устройства</string>
   <string name="settings_rename">Име на устройство</string>
   <string name="settings_dark_mode">Тъмна тема</string>
+  <string name="settings_export_logs">Експортиране на дневниците на KDE Connect</string>
+  <string name="settings_export_logs_text">Генерирайте файл с информация за изпълнени команди, която може да помогне за отстраняването на проблеми.</string>
   <string name="settings_more_settings_title">Още настройки</string>
   <string name="settings_more_settings_text">Настройките за всяко устройство могат да бъдат намерени в раздел \"Настройки на плъгина\" в рамките на устройство.</string>
   <string name="setting_persistent_notification">Показване на постоянна нотификация</string>
