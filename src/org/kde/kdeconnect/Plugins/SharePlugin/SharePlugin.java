@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.LocusIdCompat;
@@ -90,23 +91,7 @@ public class SharePlugin extends Plugin {
     public boolean onCreate() {
         super.onCreate();
         mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-
-        Intent shortcutIntent = new Intent(context, MainActivity.class);
-        shortcutIntent.setAction(Intent.ACTION_VIEW);
-        shortcutIntent.putExtra(MainActivity.EXTRA_DEVICE_ID, device.getDeviceId());
-
-        IconCompat icon = IconCompat.createWithResource(context, device.getDeviceType().toShortcutDrawableId());
-
-        ShortcutInfoCompat shortcut = new ShortcutInfoCompat
-                .Builder(context, device.getDeviceId())
-                .setIntent(shortcutIntent)
-                .setIcon(icon)
-                .setShortLabel(device.getName())
-                .setCategories(Set.of("org.kde.kdeconnect.category.SHARE_TARGET"))
-                .setLocusId(new LocusIdCompat(device.getDeviceId()))
-                .build();
-        ShortcutManagerCompat.pushDynamicShortcut(context, shortcut);
-
+        createOrUpdateDynamicShortcut(null);
         // Deliver URLs previously shared to this device now that it's connected
         deliverPreviouslySentIntents();
         return true;
@@ -114,8 +99,47 @@ public class SharePlugin extends Plugin {
 
     @Override
     public void onDestroy() {
-        ShortcutManagerCompat.removeLongLivedShortcuts(context, List.of(device.getDeviceId()));
+        for (ShortcutInfoCompat shortcut : ShortcutManagerCompat.getDynamicShortcuts(context)) {
+            if (!shortcut.getId().equals(device.getDeviceId())) continue;
+            if (!device.isReachable() && shortcut.isPinned()) {
+                // Create an updated shortcut with the same ID
+                createOrUpdateDynamicShortcut(shortcut);
+                break;
+            } else {
+                ShortcutManagerCompat.removeLongLivedShortcuts(context, List.of(shortcut.getId()));
+            }
+        }
         super.onDestroy();
+    }
+
+    private void createOrUpdateDynamicShortcut(@Nullable ShortcutInfoCompat shortcutToUpdate) {
+        final boolean isNewShortcut = shortcutToUpdate == null;
+        IconCompat icon = IconCompat.createWithResource(
+                context, device.getDeviceType().toShortcutDrawableId());
+        Intent shortcutIntent = null;
+        if (isNewShortcut) {
+            shortcutIntent = new Intent(context, MainActivity.class);
+            shortcutIntent.setAction(Intent.ACTION_VIEW);
+            shortcutIntent.putExtra(MainActivity.EXTRA_DEVICE_ID, device.getDeviceId());
+        }
+        ShortcutInfoCompat shortcut = new ShortcutInfoCompat
+                .Builder(context, device.getDeviceId())
+                .setIntent(isNewShortcut ? shortcutIntent : shortcutToUpdate.getIntent())
+                .setIcon(icon)
+                .setShortLabel(isNewShortcut ? device.getName()
+                        : context.getString(
+                                R.string.unreachable_device_dynamic_shortcut,
+                                shortcutToUpdate.getShortLabel()))
+                .setCategories(isNewShortcut ? Set.of("org.kde.kdeconnect.category.SHARE_TARGET")
+                        : shortcutToUpdate.getCategories())
+                .setLocusId(isNewShortcut ? new LocusIdCompat(device.getDeviceId())
+                        : shortcutToUpdate.getLocusId())
+                .build();
+        if (isNewShortcut) {
+            ShortcutManagerCompat.pushDynamicShortcut(context, shortcut);
+        } else {
+            ShortcutManagerCompat.updateShortcuts(context, List.of(shortcut));
+        }
     }
 
     private void deliverPreviouslySentIntents() {
@@ -125,6 +149,7 @@ public class SharePlugin extends Plugin {
                 Intent intent;
                 try {
                     intent = Intent.parseUri(url, 0);
+                    intent.putExtra(Intent.EXTRA_TEXT, url);
                 } catch (URISyntaxException ex) {
                     Log.e("SharePlugin", "Malformed URI");
                     continue;
@@ -316,12 +341,8 @@ public class SharePlugin extends Plugin {
                 isUrl = false;
             }
             NetworkPacket np = new NetworkPacket(SharePlugin.PACKET_TYPE_SHARE_REQUEST);
-            if (isUrl) {
-                np.set("url", text);
-            } else {
-                np.set("text", text);
-            }
-            getDevice().sendPacket(np);
+            np.set(isUrl ? "url" : "text", text);
+            device.sendPacket(np);
         } else {
             Log.e("SharePlugin", "There's nothing we know how to share");
         }

@@ -264,6 +264,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="mpris_notification_key" translatable="false">mpris_notification_enabled</string>
     <string name="share_to">Share to…</string>
     <string name="unreachable_device">%s (Unreachable)</string>
+    <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
     <string name="unreachable_device_url_share_text">URLs shared to an unreachable device will be delivered to it once it becomes reachable.\n\n</string>
     <string name="protocol_version">Protocol version:</string>
     <string name="protocol_version_newer">This device uses a newer protocol version</string>
