@@ -192,6 +192,7 @@
   <string name="mpris_notification_settings_summary">Staat besturing van uw mediaspelers toe zonder KDE Connect te openen</string>
   <string name="share_to">Delen met…</string>
   <string name="unreachable_device">%s (niet bereikbaar)</string>
+  <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">URL\'s gedeeld met een niet bereikbaar apparaat zullen er afgeleverd worden wanneer deze bereikbaar wordt.\n\n</string>
   <string name="protocol_version">Protocolversie:</string>
   <string name="protocol_version_newer">Dit apparaat gebruikt een nieuwere protocolversie</string>

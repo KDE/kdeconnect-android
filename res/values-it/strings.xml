@@ -309,6 +309,8 @@
   <string name="devices">Dispositivi</string>
   <string name="settings_rename">Nome dispositivo</string>
   <string name="settings_dark_mode">Tema scuro</string>
+  <string name="settings_export_logs">Esporta i registri di KDE Connect</string>
+  <string name="settings_export_logs_text">Genera un file con informazioni di esecuzione che possono aiutare a risolvere i problemi.</string>
   <string name="settings_more_settings_title">Altre impostazioni</string>
   <string name="settings_more_settings_text">Le impostazioni per dispositivo sono disponibili sotto «Impostazioni estensioni» dall\'interno del dispositivo.</string>
   <string name="setting_persistent_notification">Mostra notifica persistente</string>

@@ -208,6 +208,7 @@
   <string name="mpris_notification_settings_summary">Dovoli nadzor nad predvajalniki medijev, ne da bi odprli KDE Connect</string>
   <string name="share_to">Deli z…</string>
   <string name="unreachable_device">%s (Nedosegljiva)</string>
+  <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">URL-ji, ki so v skupni rabi z nedosegljivo napravo, ji bodo dostavljeni, ko postane dosegljiva.\n\n</string>
   <string name="protocol_version">Protokol različice:</string>
   <string name="protocol_version_newer">Ta naprava uporablja novejšo različico protokola</string>

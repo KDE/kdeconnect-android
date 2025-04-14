@@ -208,6 +208,7 @@
   <string name="mpris_notification_settings_summary">Уможливлює керування відтворенням мультимедійних даних без відкриття KDE Connect</string>
   <string name="share_to">Оприлюднити на…</string>
   <string name="unreachable_device">%s (недоступний)</string>
+  <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">Адреси, які оприлюднено на недоступному пристрої, буде надіслано, щойно пристрій стане доступним.\n\n</string>
   <string name="protocol_version">Версія протоколу:</string>
   <string name="protocol_version_newer">На цьому пристрої використовується новіша версія протоколу</string>
