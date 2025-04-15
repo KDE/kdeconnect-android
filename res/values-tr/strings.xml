@@ -192,6 +192,7 @@
   <string name="mpris_notification_settings_summary">KDE Bağlan’ı açmadan ortam oynatıcılarınızı denetlemenize izin verin</string>
   <string name="share_to">Şuraya Paylaş…</string>
   <string name="unreachable_device">%s (Erişilebilir değil)</string>
+  <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">Erişilemeyen bir aygıta gönderilen URL’ler, aygıt erişilebilir olduğunda teslim edilir.\n\n</string>
   <string name="protocol_version">Protokol sürümü:</string>
   <string name="protocol_version_newer">Bu aygıt, daha yeni bir protokol sürümü kullanıyor</string>
@@ -429,5 +430,5 @@
   <string name="ping_failed">Aygıt pinglenemedi</string>
   <string name="ping_in_progress">Pingleniyor…</string>
   <string name="device_host_invalid">Makine geçersiz. Geçerli bir makine adı kullanın; IPv4 veya IPv6 gibi</string>
-  <string name="device_host_duplicate">Listede makine halihazırda var</string>
+  <string name="device_host_duplicate">Makine listede halihazırda var</string>
 </resources>
