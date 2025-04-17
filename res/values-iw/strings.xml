@@ -208,6 +208,7 @@
   <string name="mpris_notification_settings_summary">לאפשר שליטה בנגני המדיה שלך מבלי לפתוח את KDE Connect</string>
   <string name="share_to">שיתוף אל…</string>
   <string name="unreachable_device">%s (לא נגיש)</string>
+  <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">כתובות שותפו להתקן בלתי נגיש והן תועברנה אליו ברגע שישוב להיות נגיש.\n\n</string>
   <string name="protocol_version">גרסת פרוטוקול:</string>
   <string name="protocol_version_newer">המכשיר משתמש בגרסה חדשה יותר</string>
@@ -325,6 +326,8 @@
   <string name="devices">מכשירים</string>
   <string name="settings_rename">שם המכשיר</string>
   <string name="settings_dark_mode">ערכת עיצוב כהה</string>
+  <string name="settings_export_logs">ייצוא היומנים של KDE Connect</string>
+  <string name="settings_export_logs_text">ליצור קובץ עם פרטי הפעלה שיכול לסייע בפתרון תקלות.</string>
   <string name="settings_more_settings_title">הגדרות נוספות</string>
   <string name="settings_more_settings_text">אפשר למצוא הגדרות נקודתיות למכשיר תחת ‚הגדרות תוסף’ מתוך המכשיר.</string>
   <string name="setting_persistent_notification">הצגת התראה קבועה</string>
