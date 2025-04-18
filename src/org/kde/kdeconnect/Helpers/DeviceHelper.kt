@@ -157,5 +157,5 @@ object DeviceHelper {
     }
 
     @JvmStatic
-    fun filterName(input: String): String = input.replace(NAME_INVALID_CHARACTERS_REGEX, "").take(MAX_DEVICE_NAME_LENGTH)
+    fun filterName(input: String): String = input.replace(NAME_INVALID_CHARACTERS_REGEX, "").trim().take(MAX_DEVICE_NAME_LENGTH)
 }
