@@ -64,7 +64,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
             persistentNotificationPref(context),
             trustedNetworkPref(context),
             devicesByIpPref(context),
-            udpBroadcastPref(context),
             bluetoothSupportPref(context),
             exportLogsPref(context),
             moreSettingsPref(context),
@@ -200,12 +199,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
         ))
     }
 
-    private fun udpBroadcastPref(context: Context) = SwitchPreference(context).apply {
-        setDefaultValue(true)
-        key = KEY_UDP_BROADCAST_ENABLED
-        setTitle(R.string.enable_udp_broadcast)
-    }
-
     private fun bluetoothSupportPref(context: Context) = SwitchPreference(context).apply {
         setDefaultValue(false)
         key = KEY_BLUETOOTH_ENABLED
@@ -262,7 +255,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
     }
 
     companion object {
-        const val KEY_UDP_BROADCAST_ENABLED: String = "udp_broadcast_enabled"
         const val KEY_BLUETOOTH_ENABLED: String = "bluetooth_enabled"
         const val KEY_APP_THEME: String = "theme_pref"
     }

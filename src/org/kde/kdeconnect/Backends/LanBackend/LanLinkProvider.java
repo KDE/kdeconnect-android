@@ -420,12 +420,6 @@ public class LanLinkProvider extends BaseLinkProvider {
     }
 
     private void broadcastUdpIdentityPacket(@Nullable Network network) {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        if (!preferences.getBoolean(SettingsFragment.KEY_UDP_BROADCAST_ENABLED, true)) {
-            Log.i("LanLinkProvider", "UDP broadcast is disabled in settings. Skipping.");
-            return;
-        }
-
         ThreadHelper.execute(() -> {
             List<DeviceHost> hostList = CustomDevicesActivity
                     .getCustomDeviceList(context);
