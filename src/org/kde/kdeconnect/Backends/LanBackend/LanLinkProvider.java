@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.net.Network;
 import android.os.Build;
 import android.util.Log;
+import android.util.Pair;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
@@ -92,29 +93,70 @@ public class LanLinkProvider extends BaseLinkProvider {
         super.onConnectionLost(link);
     }
 
+    Pair<NetworkPacket, Boolean> unserializeReceivedIdentityPacket(String message) {
+        NetworkPacket identityPacket;
+        try {
+            identityPacket = NetworkPacket.unserialize(message);
+        } catch (JSONException e) {
+            Log.w("KDE/LanLinkProvider", "Invalid identity packet received: " + e.getMessage());
+            return null;
+        }
+
+        if (!DeviceInfo.isValidIdentityPacket(identityPacket)) {
+            Log.w("KDE/LanLinkProvider", "Invalid identity packet received.");
+            return null;
+        }
+
+        final String deviceId = identityPacket.getString("deviceId");
+        String myId = DeviceHelper.getDeviceId(context);
+        if (deviceId.equals(myId)) {
+            //Ignore my own broadcast
+            return null;
+        }
+
+        if (rateLimitByDeviceId(deviceId)) {
+            Log.i("LanLinkProvider", "Discarding second packet from the same device " + deviceId + " received too quickly");
+            return null;
+        }
+
+        boolean deviceTrusted = isDeviceTrusted(deviceId);
+        if (!deviceTrusted && !TrustedNetworkHelper.isTrustedNetwork(context)) {
+            Log.i("KDE/LanLinkProvider", "Ignoring identity packet because the device is not trusted and I'm not on a trusted network.");
+            return null;
+        }
+
+        return new Pair<>(identityPacket, deviceTrusted);
+    }
+
     //They received my UDP broadcast and are connecting to me. The first thing they send should be their identity packet.
     @WorkerThread
     private void tcpPacketReceived(Socket socket) throws IOException {
 
-        NetworkPacket networkPacket;
+        InetAddress address = socket.getInetAddress();
+        if (rateLimitByIp(address)) {
+            Log.i("LanLinkProvider", "Discarding second TCP packet from the same ip " + address + " received too quickly");
+            return;
+        }
+
+        String message;
         try {
-            String message = readSingleLine(socket);
-            networkPacket = NetworkPacket.unserialize(message);
-            //Log.e("TcpListener", "Received TCP packet: " + networkPacket.serialize());
+            message = readSingleLine(socket);
+            //Log.e("TcpListener", "Received TCP packet: " + identityPacket.serialize());
         } catch (Exception e) {
             Log.e("KDE/LanLinkProvider", "Exception while receiving TCP packet", e);
             return;
         }
 
-        Log.i("KDE/LanLinkProvider", "identity packet received from a TCP connection from " + networkPacket.getString("deviceName"));
-
-        boolean deviceTrusted = isDeviceTrusted(networkPacket.getString("deviceId"));
-        if (!deviceTrusted && !TrustedNetworkHelper.isTrustedNetwork(context)) {
-            Log.i("KDE/LanLinkProvider", "Ignoring identity packet because the device is not trusted and I'm not on a trusted network.");
+        final Pair<NetworkPacket, Boolean> pair = unserializeReceivedIdentityPacket(message);
+        if (pair == null) {
             return;
         }
+        final NetworkPacket identityPacket = pair.first;
+        final boolean deviceTrusted = pair.second;
 
-        identityPacketReceived(networkPacket, socket, LanLink.ConnectionStarted.Locally, deviceTrusted);
+        Log.i("KDE/LanLinkProvider", "identity packet received from a TCP connection from " + identityPacket.getString("deviceName"));
+
+        identityPacketReceived(identityPacket, socket, LanLink.ConnectionStarted.Locally, deviceTrusted);
     }
 
     /**
@@ -136,65 +178,57 @@ public class LanLinkProvider extends BaseLinkProvider {
         throw new IOException("Couldn't read a line from the socket");
     }
 
+    boolean rateLimitByIp(InetAddress address) {
+        long now = System.currentTimeMillis();
+        Long last = lastConnectionTimeByIp.get(address);
+        if (last != null && (last + MILLIS_DELAY_BETWEEN_CONNECTIONS_TO_SAME_DEVICE > now)) {
+            return true;
+        }
+        lastConnectionTimeByIp.put(address, now);
+        if (lastConnectionTimeByIp.size() > MAX_RATE_LIMIT_ENTRIES) {
+            lastConnectionTimeByIp.entrySet().removeIf(e -> e.getValue() + MILLIS_DELAY_BETWEEN_CONNECTIONS_TO_SAME_DEVICE < now);
+        }
+        return false;
+    }
+
+    boolean rateLimitByDeviceId(String deviceId) {
+        long now = System.currentTimeMillis();
+        Long last =  lastConnectionTimeByDeviceId.get(deviceId);
+        if (last != null && (last + MILLIS_DELAY_BETWEEN_CONNECTIONS_TO_SAME_DEVICE > now)) {
+            return true;
+        }
+        lastConnectionTimeByDeviceId.put(deviceId, now);
+        if (lastConnectionTimeByDeviceId.size() > MAX_RATE_LIMIT_ENTRIES) {
+            lastConnectionTimeByDeviceId.entrySet().removeIf(e -> e.getValue() + MILLIS_DELAY_BETWEEN_CONNECTIONS_TO_SAME_DEVICE < now);
+        }
+        return false;
+    }
+
     //I've received their broadcast and should connect to their TCP socket and send my identity.
     @WorkerThread
     private void udpPacketReceived(DatagramPacket packet) throws JSONException, IOException {
 
         final InetAddress address = packet.getAddress();
 
-        long now = System.currentTimeMillis();
-        Long lastByIp = lastConnectionTimeByIp.get(address);
-        if (lastByIp != null && (lastByIp + MILLIS_DELAY_BETWEEN_CONNECTIONS_TO_SAME_DEVICE > now)) {
+        if (rateLimitByIp(address)) {
             Log.i("LanLinkProvider", "Discarding second UDP packet from the same ip " + address + " received too quickly");
             return;
         }
-        lastConnectionTimeByIp.put(address, now);
-        if (lastConnectionTimeByIp.size() > MAX_RATE_LIMIT_ENTRIES) {
-            lastConnectionTimeByIp.entrySet().removeIf(e -> e.getValue() + MILLIS_DELAY_BETWEEN_CONNECTIONS_TO_SAME_DEVICE < now);
-        }
 
         String message = new String(packet.getData(), Charsets.UTF_8);
-        final NetworkPacket identityPacket;
-        try {
-            identityPacket = NetworkPacket.unserialize(message);
-        } catch (JSONException e) {
-            Log.w("KDE/LanLinkProvider", "Invalid identity packet received: " + e.getMessage());
-            return;
-        }
 
-        if (!DeviceInfo.isValidIdentityPacket(identityPacket)) {
-            Log.w("KDE/LanLinkProvider", "Invalid identity packet received.");
+        final Pair<NetworkPacket, Boolean> pair = unserializeReceivedIdentityPacket(message);
+        if (pair == null) {
             return;
         }
+        final NetworkPacket identityPacket = pair.first;
+        final boolean deviceTrusted = pair.second;
 
-        final String deviceId = identityPacket.getString("deviceId");
-        String myId = DeviceHelper.getDeviceId(context);
-        if (deviceId.equals(myId)) {
-            //Ignore my own broadcast
-            return;
-        }
-
-        Long lastByDeviceId =  lastConnectionTimeByDeviceId.get(deviceId);
-        if (lastByDeviceId != null && (lastByDeviceId + MILLIS_DELAY_BETWEEN_CONNECTIONS_TO_SAME_DEVICE > now)) {
-            Log.i("LanLinkProvider", "Discarding second UDP packet from the same device " + deviceId + " received too quickly");
-            return;
-        }
-        lastConnectionTimeByDeviceId.put(deviceId, now);
-        if (lastConnectionTimeByDeviceId.size() > MAX_RATE_LIMIT_ENTRIES) {
-            lastConnectionTimeByDeviceId.entrySet().removeIf(e -> e.getValue() + MILLIS_DELAY_BETWEEN_CONNECTIONS_TO_SAME_DEVICE < now);
-        }
+        Log.i("KDE/LanLinkProvider", "Broadcast identity packet received from " + identityPacket.getString("deviceName"));
 
         int tcpPort = identityPacket.getInt("tcpPort", MIN_PORT);
         if (tcpPort < MIN_PORT || tcpPort > MAX_PORT) {
             Log.e("LanLinkProvider", "TCP port outside of kdeconnect's range");
-            return;
-        }
-
-        Log.i("KDE/LanLinkProvider", "Broadcast identity packet received from " + identityPacket.getString("deviceName"));
-
-        boolean deviceTrusted = isDeviceTrusted(identityPacket.getString("deviceId"));
-        if (!deviceTrusted && !TrustedNetworkHelper.isTrustedNetwork(context)) {
-            Log.i("KDE/LanLinkProvider", "Ignoring identity packet because the device is not trusted and I'm not on a trusted network.");
             return;
         }
 
@@ -237,18 +271,7 @@ public class LanLinkProvider extends BaseLinkProvider {
      */
     @WorkerThread
     private void identityPacketReceived(final NetworkPacket identityPacket, final Socket socket, final LanLink.ConnectionStarted connectionStarted, final boolean deviceTrusted) throws IOException {
-
-        if (!DeviceInfo.isValidIdentityPacket(identityPacket)) {
-            Log.w("KDE/LanLinkProvider", "Invalid identity packet received.");
-            return;
-        }
-
-        String myId = DeviceHelper.getDeviceId(context);
         final String deviceId = identityPacket.getString("deviceId");
-        if (deviceId.equals(myId)) {
-            Log.e("KDE/LanLinkProvider", "Somehow I'm connected to myself, ignoring. This should not happen.");
-            return;
-        }
 
         int protocolVersion = identityPacket.getInt("protocolVersion");
         if (deviceTrusted && isProtocolDowngrade(deviceId, protocolVersion)) {
