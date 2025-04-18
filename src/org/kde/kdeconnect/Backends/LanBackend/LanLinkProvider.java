@@ -10,7 +10,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Network;
 import android.os.Build;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
@@ -27,7 +26,6 @@ import org.kde.kdeconnect.Helpers.ThreadHelper;
 import org.kde.kdeconnect.Helpers.TrustedNetworkHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.UserInterface.CustomDevicesActivity;
-import org.kde.kdeconnect.UserInterface.SettingsFragment;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -68,13 +66,15 @@ public class LanLinkProvider extends BaseLinkProvider {
     final static int MAX_IDENTITY_PACKET_SIZE = 1024 * 512;
     final static int MAX_UDP_PACKET_SIZE = 1024 * 512;
 
-    final static long MILLIS_DELAY_BETWEEN_CONNECTIONS_TO_SAME_DEVICE = 500L;
+    final static long MILLIS_DELAY_BETWEEN_CONNECTIONS_TO_SAME_DEVICE = 1000L;
 
     private final Context context;
 
     final HashMap<String, LanLink> visibleDevices = new HashMap<>(); // Links by device id
 
-    final ConcurrentHashMap<String, Long> lastConnectionTime = new ConcurrentHashMap<>();
+    final static int MAX_RATE_LIMIT_ENTRIES = 255;
+    final ConcurrentHashMap<String, Long> lastConnectionTimeByDeviceId = new ConcurrentHashMap<>();
+    final ConcurrentHashMap<InetAddress, Long> lastConnectionTimeByIp = new ConcurrentHashMap<>();
 
     private ServerSocket tcpServer;
     private DatagramSocket udpServer;
@@ -142,6 +142,17 @@ public class LanLinkProvider extends BaseLinkProvider {
 
         final InetAddress address = packet.getAddress();
 
+        long now = System.currentTimeMillis();
+        Long lastByIp = lastConnectionTimeByIp.get(address);
+        if (lastByIp != null && (lastByIp + MILLIS_DELAY_BETWEEN_CONNECTIONS_TO_SAME_DEVICE > now)) {
+            Log.i("LanLinkProvider", "Discarding second UDP packet from the same ip " + address + " received too quickly");
+            return;
+        }
+        lastConnectionTimeByIp.put(address, now);
+        if (lastConnectionTimeByIp.size() > MAX_RATE_LIMIT_ENTRIES) {
+            lastConnectionTimeByIp.entrySet().removeIf(e -> e.getValue() + MILLIS_DELAY_BETWEEN_CONNECTIONS_TO_SAME_DEVICE < now);
+        }
+
         String message = new String(packet.getData(), Charsets.UTF_8);
         final NetworkPacket identityPacket;
         try {
@@ -163,13 +174,15 @@ public class LanLinkProvider extends BaseLinkProvider {
             return;
         }
 
-        long now = System.currentTimeMillis();
-        Long last =  lastConnectionTime.get(deviceId);
-        if (last != null && (last + MILLIS_DELAY_BETWEEN_CONNECTIONS_TO_SAME_DEVICE > now)) {
+        Long lastByDeviceId =  lastConnectionTimeByDeviceId.get(deviceId);
+        if (lastByDeviceId != null && (lastByDeviceId + MILLIS_DELAY_BETWEEN_CONNECTIONS_TO_SAME_DEVICE > now)) {
             Log.i("LanLinkProvider", "Discarding second UDP packet from the same device " + deviceId + " received too quickly");
             return;
         }
-        lastConnectionTime.put(deviceId, now);
+        lastConnectionTimeByDeviceId.put(deviceId, now);
+        if (lastConnectionTimeByDeviceId.size() > MAX_RATE_LIMIT_ENTRIES) {
+            lastConnectionTimeByDeviceId.entrySet().removeIf(e -> e.getValue() + MILLIS_DELAY_BETWEEN_CONNECTIONS_TO_SAME_DEVICE < now);
+        }
 
         int tcpPort = identityPacket.getInt("tcpPort", MIN_PORT);
         if (tcpPort < MIN_PORT || tcpPort > MAX_PORT) {
