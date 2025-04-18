@@ -231,6 +231,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="request_pairing">Request pairing</string>
     <string name="pairing_accept">Accept</string>
     <string name="pairing_reject">Reject</string>
+    <string name="pairing_explanation">Pairing two devices will give them access to each other. Only pair together your own devices.</string>
     <string name="settings">Settings</string>
     <string name="mpris_play">Play</string>
     <string name="mpris_pause">Pause</string>

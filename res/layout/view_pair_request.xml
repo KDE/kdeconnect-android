@@ -19,12 +19,6 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     android:visibility="gone"
     tools:visibility="visible">
 
-    <ProgressBar
-        android:id="@+id/pair_progress"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone" />
-
     <TextView
         android:id="@+id/pair_message"
         android:layout_width="wrap_content"
@@ -32,6 +26,13 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
         android:layout_marginBottom="8dip"
         android:text="@string/device_not_paired"
         android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/pairing_explanation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dip"
+        android:text="@string/pairing_explanation" />
 
     <TextView
         android:id="@+id/pair_verification"
@@ -42,6 +43,12 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
         android:importantForAccessibility="no"
         android:textAppearance="?android:attr/textAppearanceMedium"
         app:drawableStartCompat="@drawable/ic_key" />
+
+    <ProgressBar
+        android:id="@+id/pair_progress"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/pair_button"
