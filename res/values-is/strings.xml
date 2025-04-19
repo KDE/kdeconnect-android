@@ -185,11 +185,14 @@
   <string name="mpris_notification_settings_summary">Gerir kleift að stýra margmiðlunarspilurunum þínum án þess að opna KDE-tengingar</string>
   <string name="share_to">Deila með…</string>
   <string name="unreachable_device">%s (ekki aðgengilegt)</string>
+  <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
+  <string name="protocol_version">Útgáfa samskiptamáta:</string>
   <string name="protocol_version_newer">Þetta tæki notar nýrri útgáfu samskiptastaðals</string>
   <string name="plugin_settings_with_name">Stillingar %s</string>
   <string name="invalid_device_name">Ógilt heiti tækis</string>
   <string name="shareplugin_text_saved">Tók við texta, vistaði á klippispjald</string>
   <string name="custom_devices_settings">Listi yfir sérsniðin tæki</string>
+  <string name="custom_devices_settings_summary">%d tækjum bætt við handvirkt</string>
   <string name="custom_device_list">Bæta við tækjum eftir auðkennum</string>
   <string name="custom_device_deleted">Sérsniðnu tæki eytt</string>
   <string name="custom_device_fab_hint">Bæta við tæki</string>
@@ -279,6 +282,7 @@
   <string name="devices">Tæki</string>
   <string name="settings_rename">Heiti tækis</string>
   <string name="settings_dark_mode">Dökkt þema</string>
+  <string name="settings_export_logs">Flytja út atvikaskrár KDE Connect</string>
   <string name="settings_more_settings_title">Fleiri stillingar</string>
   <string name="setting_persistent_notification">Birta viðvarandi tilkynningu</string>
   <string name="setting_persistent_notification_oreo">Viðvarandi tilkynning</string>
@@ -380,4 +384,7 @@
   <string name="mpris_keepwatching">Halda áfram spilun</string>
   <string name="mpris_keepwatching_settings_title">Halda áfram spilun</string>
   <string name="notification_channel_keepwatching">Halda áfram spilun</string>
+  <string name="ping_failed">Gat ekki pikkað í tæki</string>
+  <string name="device_host_invalid">Ógilt vélarheiti. Notaðu gilt vélarheiti, IPv4 eða IPv6</string>
+  <string name="device_host_duplicate">Hýsivélin er nú þegar á listanum</string>
 </resources>
