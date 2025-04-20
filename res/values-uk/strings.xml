@@ -181,9 +181,11 @@
   <string name="middle_click">Надіслати клацання лівою кнопкою</string>
   <string name="show_keyboard">Показати клавіатуру</string>
   <string name="device_not_paired">Пристрій не пов’язано</string>
+  <string name="pairing_duplicate_names">Попередження: маємо декілька пристроїв із однією назвою.</string>
   <string name="request_pairing">Надіслати запит щодо пов’язування</string>
   <string name="pairing_accept">Прийняти</string>
   <string name="pairing_reject">Відмовити</string>
+  <string name="pairing_explanation">Пов\'язування двох пристроїв надасть їм взаємний доступ. Пов\'язуйте між собою лише ваші власні пристрої.</string>
   <string name="settings">Параметри</string>
   <string name="mpris_play">Пуск</string>
   <string name="mpris_pause">Пауза</string>

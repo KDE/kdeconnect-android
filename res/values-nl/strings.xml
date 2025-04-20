@@ -165,9 +165,11 @@
   <string name="middle_click">Verstuur een middelste muisklik</string>
   <string name="show_keyboard">Toetsenbord tonen</string>
   <string name="device_not_paired">Apparaat is niet gepaard</string>
+  <string name="pairing_duplicate_names">Voorzichtig: er zijn meerdere apparaten met dezelfde naam.</string>
   <string name="request_pairing">Verzoek voor maken van paar</string>
   <string name="pairing_accept">Accepteren</string>
   <string name="pairing_reject">Afwijzen</string>
+  <string name="pairing_explanation">Twee apparaten paren zal ze toegang geven tot elkaar. Paar alleen uw eigen apparaten.</string>
   <string name="settings">Instellingen</string>
   <string name="mpris_play">Afspelen</string>
   <string name="mpris_pause">Pauzeren</string>

@@ -181,9 +181,11 @@
   <string name="middle_click">שליחת לחיצה אמצעית (גלגלת)</string>
   <string name="show_keyboard">הצגת מקלדת</string>
   <string name="device_not_paired">המכשיר לא מצומד</string>
+  <string name="pairing_duplicate_names">אזהרה: יש כמה מכשירים שונים באותו השם.</string>
   <string name="request_pairing">בקשת צימוד</string>
   <string name="pairing_accept">אישור</string>
   <string name="pairing_reject">דחייה</string>
+  <string name="pairing_explanation">צימוד שני מכשירים יעניק להם גישה מאחד לשני ולהפך. יש לצמד רק אם המכשירים הם שלך.</string>
   <string name="settings">הגדרות</string>
   <string name="mpris_play">נגינה</string>
   <string name="mpris_pause">השהיה</string>

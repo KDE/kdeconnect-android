@@ -165,9 +165,11 @@
   <string name="middle_click">Envia un clic del mig</string>
   <string name="show_keyboard">Mostra el teclat</string>
   <string name="device_not_paired">El dispositiu no està aparellat</string>
+  <string name="pairing_duplicate_names">Precaució: hi ha diversos dispositius amb el mateix nom.</string>
   <string name="request_pairing">Demana aparellar</string>
   <string name="pairing_accept">Accepta</string>
   <string name="pairing_reject">Rebutja</string>
+  <string name="pairing_explanation">L\'aparellament de dos dispositius els donarà accés l\'un a l\'altre. Només aparelleu els vostres propis dispositius.</string>
   <string name="settings">Arranjament</string>
   <string name="mpris_play">Reprodueix</string>
   <string name="mpris_pause">Pausa</string>

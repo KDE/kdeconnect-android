@@ -181,9 +181,11 @@
   <string name="middle_click">Pošlji sredinski klik</string>
   <string name="show_keyboard">Pokaži tipkovnico</string>
   <string name="device_not_paired">Naprava ni uparjena</string>
+  <string name="pairing_duplicate_names">POZOR: Obstaja več naprav z istim imenom.</string>
   <string name="request_pairing">Zahtevaj uparjanje</string>
   <string name="pairing_accept">Sprejmi</string>
   <string name="pairing_reject">Zavrni</string>
+  <string name="pairing_explanation">Uparjanje dveh naprav jim bo omogočilo dostop ene do druge. Uparjajte samo svoje lastne naprave.</string>
   <string name="settings">Nastavitve</string>
   <string name="mpris_play">Predvajaj</string>
   <string name="mpris_pause">Premor</string>
