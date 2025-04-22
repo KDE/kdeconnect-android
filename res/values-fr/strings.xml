@@ -165,9 +165,11 @@
   <string name="middle_click">Envoyer un clic central</string>
   <string name="show_keyboard">Afficher le clavier</string>
   <string name="device_not_paired">Périphérique non associé</string>
+  <string name="pairing_duplicate_names">Attention : Il existe plusieurs périphériques portant le même nom.</string>
   <string name="request_pairing">Demande d\'association</string>
   <string name="pairing_accept">Accepter</string>
   <string name="pairing_reject">Rejeter</string>
+  <string name="pairing_explanation">L\'association de deux périphériques leur donnera un accès réciproque. Veuillez n\'associer que vos propres périphériques.</string>
   <string name="settings">Configuration</string>
   <string name="mpris_play">Lire</string>
   <string name="mpris_pause">Pause</string>

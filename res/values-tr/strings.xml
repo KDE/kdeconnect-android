@@ -165,9 +165,11 @@
   <string name="middle_click">Orta Tık Gönder</string>
   <string name="show_keyboard">Klavyeyi Göster</string>
   <string name="device_not_paired">Aygıt eşleşmemiş</string>
+  <string name="pairing_duplicate_names">Dikkat: Aynı adlı birden çok aygıt var.</string>
   <string name="request_pairing">Eşleşme isteği</string>
   <string name="pairing_accept">Onayla</string>
   <string name="pairing_reject">Reddet</string>
+  <string name="pairing_explanation">İki aygıtı eşleştirmek, onlara birbirlerine erişim hakkını verecektir. Yalnızca kendi aygıtlarınızı eşleştirin.</string>
   <string name="settings">Ayarlar</string>
   <string name="mpris_play">Oynat</string>
   <string name="mpris_pause">Duraklat</string>

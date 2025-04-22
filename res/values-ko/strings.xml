@@ -157,9 +157,11 @@
   <string name="middle_click">가운데 단추 클릭 신호 보내기</string>
   <string name="show_keyboard">키보드 표시</string>
   <string name="device_not_paired">장치가 페어링되지 않음</string>
+  <string name="pairing_duplicate_names">경고: 이름이 같은 장치가 여러 대 있습니다.</string>
   <string name="request_pairing">페어링 요청</string>
   <string name="pairing_accept">수락</string>
   <string name="pairing_reject">거부</string>
+  <string name="pairing_explanation">두 장치를 페어링하면 서로간의 접근을 허용합니다. 내 장치끼리만 페어링하십시오.</string>
   <string name="settings">설정</string>
   <string name="mpris_play">재생</string>
   <string name="mpris_pause">일시 정지</string>
