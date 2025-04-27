@@ -89,15 +89,12 @@
   <string name="error_not_reachable">მოწყობილობა მიუწვდოელია</string>
   <string name="error_already_paired">მოწყობილობა უკვე დაწყვილებულია</string>
   <string name="error_timed_out">ვადა გავიდა</string>
+  <string name="error_clocks_not_match">მოწყობილობის საათების სინქრონიზაცია დარღვეულია</string>
   <string name="error_canceled_by_user">გაუქმებულია მომხმარებლის მიერ</string>
   <string name="error_canceled_by_other_peer">გაუქმებულია პარტნიორის მიერ</string>
   <string name="encryption_info_title">დაშიფვრის ინფორმაცია</string>
   <string name="pair_requested">დაწყვილების მოთხოვნა</string>
   <string name="pair_succeeded">დაწყვილება წარმატებულია</string>
-  <plurals name="incoming_files_text">
-    <item quantity="one">File: %1s</item>
-    <item quantity="other">(File %2$d of %3$d) : %1$s</item>
-  </plurals>
   <plurals name="outgoing_files_text">
     <item quantity="one">ფაილი: %1$s</item>
     <item quantity="other">(ფაილი %2$d of %3$d) : %1$s</item>
@@ -134,6 +131,7 @@
   </string-array>
   <string name="share_to">გაზიარება…</string>
   <string name="unreachable_device">%s (მიუწვდომელია)</string>
+  <string name="protocol_version">პროტოკოლის ვერსია:</string>
   <string name="protocol_version_newer">მოწყობილობა პროტოკოლის უფრო ახალ ვერსიას იყენებს</string>
   <string name="plugin_settings_with_name">%s-ის მორგება</string>
   <string name="invalid_device_name">მოწყობილობის არასწორი სახელი</string>
@@ -217,6 +215,7 @@
   <string name="devices">მოწყობილობები</string>
   <string name="settings_rename">მოწყობილობის სახელი</string>
   <string name="settings_dark_mode">ბნელი თემა</string>
+  <string name="settings_export_logs">KDE Connect-ის ჟურნალის გატანა</string>
   <string name="settings_more_settings_title">მეტი პარამეტრი</string>
   <string name="extra_options">დამატებითი პარამეტრები</string>
   <string name="privacy_options">კონფიდენციალობის პარამეტრები</string>
@@ -292,4 +291,5 @@
   <string name="send_clipboard">ბუფერის გაგზავნა</string>
   <string name="tap_to_execute">ქმედების შესასრულებლად დაატყაპუნეთ</string>
   <string name="plugin_stats">მოდულის სტატისტიკა</string>
+  <string name="ping_failed">მოწყობილობა არ იპინგება</string>
 </resources>
