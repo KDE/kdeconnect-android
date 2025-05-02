@@ -236,8 +236,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
     ) { uri: Uri? ->
         val output = uri?.let { context?.contentResolver?.openOutputStream(uri) } ?: return@registerForActivityResult
         CoroutineScope(Dispatchers.IO).launch {
-            val pid = android.os.Process.myPid()
-            val process = Runtime.getRuntime().exec(arrayOf("logcat", "-d", "--pid=$pid"))
+            val process = Runtime.getRuntime().exec(arrayOf("logcat", "-d"))
             val reader = InputStreamReader(process.inputStream)
             output.use {
                 it.write("KDE Connect ${BuildConfig.VERSION_NAME}\n".toByteArray(Charsets.UTF_8))
