@@ -157,9 +157,11 @@
   <string name="middle_click">傳送中鍵點擊</string>
   <string name="show_keyboard">顯示鍵盤</string>
   <string name="device_not_paired">裝置未配對</string>
+  <string name="pairing_duplicate_names">請小心：有多台裝置有相同的名稱。</string>
   <string name="request_pairing">請求配對</string>
   <string name="pairing_accept">接受</string>
   <string name="pairing_reject">拒絕</string>
+  <string name="pairing_explanation">配對兩台裝置會讓它們能夠互相存取。請只配對您自己的裝置。</string>
   <string name="settings">設定</string>
   <string name="mpris_play">播放</string>
   <string name="mpris_pause">暫停</string>
@@ -184,6 +186,7 @@
   <string name="mpris_notification_settings_summary">無需開啟 KDE Con​​nect 即可控制您的媒體播放器</string>
   <string name="share_to">分享給…</string>
   <string name="unreachable_device">%s（無法存取）</string>
+  <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">若分享網址 (URL) 到無法存取的裝置，將在該裝置變得可存取後再傳送過去。\n\n</string>
   <string name="protocol_version">協定版本：</string>
   <string name="protocol_version_newer">此裝置使用較新的通訊協定版本</string>

@@ -165,9 +165,11 @@
   <string name="middle_click">Enviar clic del botón central</string>
   <string name="show_keyboard">Mostrar teclado</string>
   <string name="device_not_paired">Dispositivo no vinculado</string>
+  <string name="pairing_duplicate_names">Precaución: Hay varios dispositivos con el mismo nombre.</string>
   <string name="request_pairing">Solicitar vinculación</string>
   <string name="pairing_accept">Aceptar</string>
   <string name="pairing_reject">Rechazar</string>
+  <string name="pairing_explanation">Vincular dos dispositivos les dará acceso recíproco. Vincule solo dispositivos que le pertenezcan.</string>
   <string name="settings">Preferencias</string>
   <string name="mpris_play">Reproducir</string>
   <string name="mpris_pause">Pausar</string>
@@ -190,8 +192,9 @@
   <string name="mpris_notifications_explanation">Se necesita el permiso de notificaciones para mostrar los medios remotos en el panel de notificaciones</string>
   <string name="mpris_notification_settings_title">Mostrar notificación del control de medios</string>
   <string name="mpris_notification_settings_summary">Permite controlar sus reproductores de medios sin abrir KDE Connect</string>
-  <string name="share_to">Compartir con...</string>
+  <string name="share_to">Compartir con…</string>
   <string name="unreachable_device">%s (no accesible)</string>
+  <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">Las URLs compartidas con dispositivos no accesibles se entregarán una vez que vuelvan a estar accesibles.\n\n</string>
   <string name="protocol_version">Versión del protocolo:</string>
   <string name="protocol_version_newer">Este dispositivo usa una versión más reciente del protocolo</string>
@@ -309,6 +312,8 @@
   <string name="devices">Dispositivos</string>
   <string name="settings_rename">Nombre del dispositivo</string>
   <string name="settings_dark_mode">Tema oscuro</string>
+  <string name="settings_export_logs">Exportar registros de KDE Connect</string>
+  <string name="settings_export_logs_text">Generar un archivo con la información de ejecución que puede ayudar a solventar problemas.</string>
   <string name="settings_more_settings_title">Más preferencias</string>
   <string name="settings_more_settings_text">Las preferencias por dispositivo se pueden encontrar bajo «Preferencias del complemento» dentro de cada dispositivo.</string>
   <string name="setting_persistent_notification">Mostrar notificación persistente</string>
