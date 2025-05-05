@@ -234,7 +234,12 @@ class BackgroundService : Service() {
         Log.d(LOG_TAG, "onStartCommand")
         if (NotificationHelper.isPersistentNotificationEnabled(this)) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                startForeground(FOREGROUND_NOTIFICATION_ID, createForegroundNotification(), ServiceInfo.FOREGROUND_SERVICE_TYPE_CONNECTED_DEVICE)
+                try {
+                    startForeground(FOREGROUND_NOTIFICATION_ID, createForegroundNotification(), ServiceInfo.FOREGROUND_SERVICE_TYPE_CONNECTED_DEVICE)
+                } catch (e: IllegalStateException) { // To catch ForegroundServiceStartNotAllowedException
+                    Log.w("BackgroundService", "Couldn't startForeground", e);
+                    return START_STICKY
+                }
             }
             else {
                 startForeground(FOREGROUND_NOTIFICATION_ID, createForegroundNotification())
