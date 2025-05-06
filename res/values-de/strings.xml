@@ -360,7 +360,7 @@
     <item>Hell</item>
     <item>Dunkel</item>
   </string-array>
-  <string name="report_bug">Probleme oder Wünsche berichten</string>
+  <string name="report_bug">Problem melden</string>
   <string name="donate">Spenden</string>
   <string name="source_code">Quelltext</string>
   <string name="licenses">Lizenzen</string>
