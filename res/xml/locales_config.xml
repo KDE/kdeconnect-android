@@ -19,7 +19,6 @@
 	<locale android:name="fi"/>
 	<locale android:name="fr"/>
 	<locale android:name="gl"/>
-	<locale android:name="he"/>
 	<locale android:name="hu"/>
 	<locale android:name="ia"/>
 	<locale android:name="id"/>
