@@ -75,7 +75,13 @@ public class ClipboardListener {
                 try {
                     String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.US).format(new Date());
                     // Listen only ClipboardService errors after now
-                    Process process = Runtime.getRuntime().exec(new String[]{"logcat", "-T", timeStamp, "ClipboardService:E", "*:S"});
+                    String logcatFilter;
+                    if (Build.VERSION.SDK_INT > Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+                        logcatFilter = "E ClipboardService";
+                    } else {
+                        logcatFilter = "ClipboardService:E";
+                    }
+                    Process process = Runtime.getRuntime().exec(new String[]{"logcat", "-T", timeStamp, logcatFilter, "*:S"});
                     BufferedReader bufferedReader = new BufferedReader(
                             new InputStreamReader(
                                     process.getInputStream()
