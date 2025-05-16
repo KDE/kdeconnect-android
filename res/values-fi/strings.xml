@@ -309,6 +309,8 @@
   <string name="devices">Laitteet</string>
   <string name="settings_rename">Laitenimi</string>
   <string name="settings_dark_mode">Tumma teema</string>
+  <string name="settings_export_logs">Vie KDE Connectin lokit</string>
+  <string name="settings_export_logs_text">Luo suoritustietotiedosto, josta voi olla apua ongelmien selvityksessä.</string>
   <string name="settings_more_settings_title">Lisää asetuksia</string>
   <string name="settings_more_settings_text">Laitekohtaiset asetukset löytyvät laitteen ”Liitännäisasetuksista”.</string>
   <string name="setting_persistent_notification">Näytä pysyvä ilmoitus</string>
