@@ -165,9 +165,11 @@
   <string name="middle_click">Enviar un clic central</string>
   <string name="show_keyboard">Amosar o teclado</string>
   <string name="device_not_paired">O dispositivo non está emparellado</string>
+  <string name="pairing_duplicate_names">Ollo: Hai varios dispositivos co mesmo nome.</string>
   <string name="request_pairing">Solicitar emparellarse</string>
   <string name="pairing_accept">Aceptar</string>
   <string name="pairing_reject">Rexeitar</string>
+  <string name="pairing_explanation">Emparellar dispositivos permítelles acceder o un ao outro. Emparelle só os seus propios dispositivos.</string>
   <string name="settings">Configuración</string>
   <string name="mpris_play">Reproducir</string>
   <string name="mpris_pause">Deter</string>
@@ -192,6 +194,7 @@
   <string name="mpris_notification_settings_summary">Permitir controlar os reprodutores sen abrir KDE Connect</string>
   <string name="share_to">Compartir con…</string>
   <string name="unreachable_device">%s (inaccesíbel)</string>
+  <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">Os URL que se compartan cun dispositivo inaccesíbel entregaranse cando o dispositivo estea accesíbel.\n\n</string>
   <string name="protocol_version">Versión do protocolo:</string>
   <string name="protocol_version_newer">Este dispositivo usa unha versión máis nova do protocolo.</string>
@@ -309,6 +312,8 @@
   <string name="devices">Dispositivos</string>
   <string name="settings_rename">Nome do dispositivo</string>
   <string name="settings_dark_mode">Tema escuro</string>
+  <string name="settings_export_logs">Exportar os rexistros de KDE Connect</string>
+  <string name="settings_export_logs_text">Xerar un ficheiro con información de execución que pode axudar a solucionar problemas.</string>
   <string name="settings_more_settings_title">Máis opcións</string>
   <string name="settings_more_settings_text">As opcións específicas dun dispositivo atópanse en «Configuración dos complementos» no dispositivo.</string>
   <string name="setting_persistent_notification">Amosar unha notificación persistente</string>
