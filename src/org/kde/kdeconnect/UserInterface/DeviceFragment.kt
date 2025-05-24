@@ -11,6 +11,8 @@ import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.StringRes
@@ -30,7 +32,8 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.*
-import androidx.fragment.app.Fragment
+import androidx.core.view.MenuProvider
+import androidx.lifecycle.Lifecycle
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.kde.kdeconnect.BackgroundService
 import org.kde.kdeconnect.Device
@@ -44,44 +47,15 @@ import org.kde.kdeconnect.Plugins.Plugin
 import org.kde.kdeconnect.Plugins.PresenterPlugin.PresenterPlugin
 import org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandPlugin
 import org.kde.kdeconnect.UserInterface.compose.KdeTheme
+import org.kde.kdeconnect.base.BaseFragment
 import org.kde.kdeconnect.extensions.setupBottomPadding
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.ActivityDeviceBinding
-import org.kde.kdeconnect_tp.databinding.ViewPairErrorBinding
-import org.kde.kdeconnect_tp.databinding.ViewPairRequestBinding
 
 /**
  * Main view. Displays the current device and its plugins
  */
-class DeviceFragment : Fragment() {
-    val deviceId: String by lazy {
-        arguments?.getString(ARG_DEVICE_ID)
-            ?: throw RuntimeException("You must instantiate a new DeviceFragment using DeviceFragment.newInstance()")
-    }
-    private var device: Device? = null
-    private val mActivity: MainActivity? by lazy { activity as MainActivity? }
-
-    /**
-     * Top-level ViewBinding for this fragment.
-     */
-    private var deviceBinding: ActivityDeviceBinding? = null
-    private fun requireDeviceBinding() = deviceBinding ?: throw IllegalStateException("deviceBinding is not set")
-
-    /**
-     * Not-yet-paired ViewBinding.
-     *
-     * Used to start and retry pairing.
-     */
-    private var pairingBinding: ViewPairRequestBinding? = null
-    private fun requirePairingBinding() = pairingBinding ?: throw IllegalStateException("binding is not set")
-
-    /**
-     * Cannot-communicate ViewBinding.
-     *
-     * Used when the remote device is unreachable.
-     */
-    private var errorBinding: ViewPairErrorBinding? = null
-    private fun requireErrorBinding() = errorBinding ?: throw IllegalStateException("errorBinding is not set")
+class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
 
     companion object {
         private const val ARG_DEVICE_ID = "deviceId"
@@ -96,36 +70,128 @@ class DeviceFragment : Fragment() {
             return frag
         }
     }
+    
+    
+    val deviceId: String by lazy {
+        arguments?.getString(ARG_DEVICE_ID)
+            ?: throw RuntimeException("You must instantiate a new DeviceFragment using DeviceFragment.newInstance()")
+    }
+    
+    private var device: Device? = null
+    
+    private val mActivity: MainActivity? by lazy { activity as MainActivity? }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+    /**
+     * Not-yet-paired ViewBinding.
+     *
+     * Used to start and retry pairing.
+     */
+    private val pairingBinding get() = binding.pairRequest
+
+    /**
+     * Cannot-communicate ViewBinding.
+     *
+     * Used when the remote device is unreachable.
+     */
+    private val errorBinding get() = binding.pairError
+
+    override fun onInflateBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        deviceBinding = ActivityDeviceBinding.inflate(inflater, container, false)
-        val deviceBinding = deviceBinding ?: return null
+    ): ActivityDeviceBinding {
+        return ActivityDeviceBinding.inflate(inflater, container, false)
+    }
 
-        // Inner binding for the layout shown when we're not paired yet...
-        pairingBinding = deviceBinding.pairRequest
-        // ...and for when pairing doesn't (or can't) work
-        errorBinding = deviceBinding.pairError
+    private val menuProvider = object : MenuProvider {
+        override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+            menu.clear()
+            val device = device ?: return
 
-        device = KdeConnect.getInstance().getDevice(deviceId)
-
-        requireErrorBinding().errorMessageContainer.setOnRefreshListener {
-            this.refreshDevicesAction()
+            //Plugins button list
+            val plugins: Collection<Plugin> = device.loadedPlugins.values
+            for (p in plugins) {
+                if (p.displayInContextMenu()) {
+                    menu.add(p.actionName).setOnMenuItemClickListener {
+                        p.startMainActivity(mActivity!!)
+                        true
+                    }
+                }
+            }
+            val intent = Intent(mActivity, PluginSettingsActivity::class.java)
+            intent.putExtra("deviceId", deviceId)
+            menu.add(R.string.device_menu_plugins).setOnMenuItemClickListener {
+                startActivity(intent)
+                true
+            }
+            if (device.isReachable) {
+                val builder = MaterialAlertDialogBuilder(requireContext())
+                builder.setTitle(requireContext().resources.getString(R.string.encryption_info_title))
+                builder.setPositiveButton(requireContext().resources.getString(R.string.ok)) { dialog, _ ->
+                    dialog.dismiss()
+                }
+                builder.setMessage(
+                    "${
+                        requireContext().resources.getString(R.string.my_device_fingerprint)
+                    } \n ${
+                        SslHelper.getCertificateHash(SslHelper.certificate)
+                    } \n\n ${
+                        requireContext().resources.getString(R.string.remote_device_fingerprint)
+                    } \n ${
+                        SslHelper.getCertificateHash(device.certificate)
+                    } \n\n ${
+                        requireContext().resources.getString(R.string.protocol_version)
+                    } ${
+                        device.protocolVersion
+                    }"
+                )
+                menu.add(R.string.encryption_info_title).setOnMenuItemClickListener {
+                    builder.show()
+                    true
+                }
+            }
+            if (device.isPaired) {
+                menu.add(R.string.device_menu_unpair).setOnMenuItemClickListener {
+                    device.apply {
+                        // Remove listener so buttons don't show for an instant before changing the view
+                        removePairingCallback(pairingCallback)
+                        removePluginsChangedListener(pluginsChangedListener)
+                        unpair()
+                    }
+                    mActivity?.onDeviceSelected(null)
+                    true
+                }
+            }
+            if (device.pairStatus == PairingHandler.PairState.Requested) {
+                menu.add(R.string.cancel_pairing).setOnMenuItemClickListener {
+                    device.cancelPairing()
+                    true
+                }
+            }
         }
 
-        requirePairingBinding().pairButton.setOnClickListener {
+        override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+            return true
+        }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.deviceView.setupBottomPadding()
+        errorBinding.errorMessageContainer.setOnRefreshListener {
+            this.refreshDevicesAction()
+        }
+        pairingBinding.pairButton.setOnClickListener {
             device?.requestPairing()
             refreshUI()
         }
-        requirePairingBinding().acceptButton.setOnClickListener {
+        pairingBinding.acceptButton.setOnClickListener {
             device?.apply {
                 acceptPairing()
-                requirePairingBinding().pairingButtons.visibility = View.GONE
+                pairingBinding.pairingButtons.visibility = View.GONE
             }
         }
-        requirePairingBinding().rejectButton.setOnClickListener {
+        pairingBinding.rejectButton.setOnClickListener {
             device?.apply {
                 // Remove listener so buttons don't show for an instant before changing the view
                 removePluginsChangedListener(pluginsChangedListener)
@@ -134,8 +200,7 @@ class DeviceFragment : Fragment() {
             }
             mActivity?.onDeviceSelected(null)
         }
-        setHasOptionsMenu(true)
-
+        device = KdeConnect.getInstance().getDevice(deviceId)
         device?.apply {
             mActivity?.supportActionBar?.title = name
             addPairingCallback(pairingCallback)
@@ -144,104 +209,31 @@ class DeviceFragment : Fragment() {
             Log.e(TAG, "Trying to display a device fragment but the device is not present")
             mActivity?.onDeviceSelected(null)
         }
-
+        mActivity?.addMenuProvider(menuProvider, viewLifecycleOwner)
         refreshUI()
-
-        return deviceBinding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        deviceBinding?.deviceView?.setupBottomPadding()
     }
 
     private fun refreshDevicesAction() {
         BackgroundService.ForceRefreshConnections(requireContext())
-        requireErrorBinding().errorMessageContainer.isRefreshing = true
-        requireErrorBinding().errorMessageContainer.postDelayed({
-            errorBinding?.errorMessageContainer?.isRefreshing = false // check for null since the view might be destroyed by now
+        errorBinding.errorMessageContainer.isRefreshing = true
+        errorBinding.errorMessageContainer.postDelayed({
+            if (viewLifecycleOwner.lifecycle.currentState.isAtLeast(Lifecycle.State.CREATED)) {
+                errorBinding.errorMessageContainer.isRefreshing = false // check for null since the view might be destroyed by now
+            }
         }, 1500)
     }
 
     private val pluginsChangedListener = PluginsChangedListener { mActivity?.runOnUiThread { refreshUI() } }
+
     override fun onDestroyView() {
         device?.apply {
             removePluginsChangedListener(pluginsChangedListener)
             removePairingCallback(pairingCallback)
         }
         device = null
-        pairingBinding = null
-        errorBinding = null
-        deviceBinding = null
         super.onDestroyView()
     }
 
-    override fun onPrepareOptionsMenu(menu: Menu) {
-        super.onPrepareOptionsMenu(menu)
-        menu.clear()
-        val device = device ?: return
-
-        //Plugins button list
-        val plugins: Collection<Plugin> = device.loadedPlugins.values
-        for (p in plugins) {
-            if (p.displayInContextMenu()) {
-                menu.add(p.actionName).setOnMenuItemClickListener {
-                    p.startMainActivity(mActivity!!)
-                    true
-                }
-            }
-        }
-        val intent = Intent(mActivity, PluginSettingsActivity::class.java)
-        intent.putExtra("deviceId", deviceId)
-        menu.add(R.string.device_menu_plugins).setOnMenuItemClickListener {
-            startActivity(intent)
-            true
-        }
-        if (device.isReachable) {
-            val builder = MaterialAlertDialogBuilder(requireContext())
-            builder.setTitle(requireContext().resources.getString(R.string.encryption_info_title))
-            builder.setPositiveButton(requireContext().resources.getString(R.string.ok)) { dialog, _ ->
-                dialog.dismiss()
-            }
-            builder.setMessage(
-                "${
-                    requireContext().resources.getString(R.string.my_device_fingerprint)
-                } \n ${
-                    SslHelper.getCertificateHash(SslHelper.certificate)
-                } \n\n ${
-                    requireContext().resources.getString(R.string.remote_device_fingerprint)
-                } \n ${
-                    SslHelper.getCertificateHash(device.certificate)
-                } \n\n ${
-                    requireContext().resources.getString(R.string.protocol_version)
-                } ${
-                    device.protocolVersion
-                }"
-            )
-            menu.add(R.string.encryption_info_title).setOnMenuItemClickListener {
-                builder.show()
-                true
-            }
-        }
-        if (device.isPaired) {
-            menu.add(R.string.device_menu_unpair).setOnMenuItemClickListener {
-                device.apply {
-                    // Remove listener so buttons don't show for an instant before changing the view
-                    removePairingCallback(pairingCallback)
-                    removePluginsChangedListener(pluginsChangedListener)
-                    unpair()
-                }
-                mActivity?.onDeviceSelected(null)
-                true
-            }
-        }
-        if (device.pairStatus == PairingHandler.PairState.Requested) {
-            menu.add(R.string.cancel_pairing).setOnMenuItemClickListener {
-                device.cancelPairing()
-                true
-            }
-        }
-    }
 
     override fun onResume() {
         super.onResume()
@@ -270,13 +262,13 @@ class DeviceFragment : Fragment() {
 
         when (device.pairStatus) {
             PairingHandler.PairState.NotPaired -> {
-                requireErrorBinding().errorMessageContainer.visibility = View.GONE
-                requireDeviceBinding().deviceView.visibility = View.GONE
-                requirePairingBinding().pairingButtons.visibility = View.VISIBLE
-                requirePairingBinding().pairVerification.visibility = View.GONE
+                errorBinding.errorMessageContainer.visibility = View.GONE
+                binding.deviceView.visibility = View.GONE
+                pairingBinding.pairingButtons.visibility = View.VISIBLE
+                pairingBinding.pairVerification.visibility = View.GONE
             }
             PairingHandler.PairState.Requested -> {
-                with(requirePairingBinding()) {
+                with(pairingBinding) {
                     pairButton.visibility = View.GONE
                     pairMessage.text = getString(R.string.pair_requested)
                     pairProgress.visibility = View.VISIBLE
@@ -285,7 +277,7 @@ class DeviceFragment : Fragment() {
                 }
             }
             PairingHandler.PairState.RequestedByPeer -> {
-                with (requirePairingBinding()) {
+                with (pairingBinding) {
                     pairMessage.setText(R.string.pair_requested)
                     pairVerification.visibility = View.VISIBLE
                     pairingButtons.visibility = View.VISIBLE
@@ -295,25 +287,25 @@ class DeviceFragment : Fragment() {
                     pairVerification.text = device.verificationKey
                     pairVerification.visibility = View.VISIBLE
                 }
-                requireDeviceBinding().deviceView.visibility = View.GONE
+                binding.deviceView.visibility = View.GONE
             }
             PairingHandler.PairState.Paired -> {
-                requirePairingBinding().pairingButtons.visibility = View.GONE
+                pairingBinding.pairingButtons.visibility = View.GONE
                 if (device.isReachable) {
                     val context = requireContext()
                     val pluginsWithButtons = device.loadedPlugins.values.filter { it.displayAsButton(context) }
                     val pluginsNeedPermissions = device.pluginsWithoutPermissions.values.filter { device.isPluginEnabled(it.pluginKey) }
                     val pluginsNeedOptionalPermissions = device.pluginsWithoutOptionalPermissions.values.filter { device.isPluginEnabled(it.pluginKey) }
-                    requireErrorBinding().errorMessageContainer.visibility = View.GONE
-                    requireDeviceBinding().deviceView.visibility = View.VISIBLE
-                    requireDeviceBinding().deviceViewCompose.apply {
+                    errorBinding.errorMessageContainer.visibility = View.GONE
+                    binding.deviceView.visibility = View.VISIBLE
+                    binding.deviceViewCompose.apply {
                         setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
                         setContent { KdeTheme(context) { PluginList(pluginsWithButtons, pluginsNeedPermissions, pluginsNeedOptionalPermissions) } }
                     }
                     displayBatteryInfoIfPossible()
                 } else {
-                    requireErrorBinding().errorMessageContainer.visibility = View.VISIBLE
-                    requireDeviceBinding().deviceView.visibility = View.GONE
+                    errorBinding.errorMessageContainer.visibility = View.VISIBLE
+                    binding.deviceView.visibility = View.GONE
                 }
             }
         }
@@ -326,13 +318,13 @@ class DeviceFragment : Fragment() {
         }
 
         override fun pairingSuccessful() {
-            requirePairingBinding().pairMessage.announceForAccessibility(getString(R.string.pair_succeeded))
+            pairingBinding.pairMessage.announceForAccessibility(getString(R.string.pair_succeeded))
             mActivity?.runOnUiThread { refreshUI() }
         }
 
         override fun pairingFailed(error: String) {
             mActivity?.runOnUiThread {
-                with(requirePairingBinding()) {
+                with(pairingBinding) {
                     pairMessage.text = error
                     pairProgress.visibility = View.GONE
                     pairButton.visibility = View.VISIBLE
@@ -344,7 +336,7 @@ class DeviceFragment : Fragment() {
 
         override fun unpaired() {
             mActivity?.runOnUiThread {
-                with(requirePairingBinding()) {
+                with(pairingBinding) {
                     pairMessage.setText(R.string.device_not_paired)
                     pairProgress.visibility = View.GONE
                     pairButton.visibility = View.VISIBLE
@@ -501,5 +493,4 @@ class DeviceFragment : Fragment() {
             }
         }
     }
-
 }

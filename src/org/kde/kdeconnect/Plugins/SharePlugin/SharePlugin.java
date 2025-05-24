@@ -25,10 +25,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.IntentCompat;
 import androidx.core.content.LocusIdCompat;
 import androidx.core.content.pm.ShortcutInfoCompat;
 import androidx.core.content.pm.ShortcutManagerCompat;
 import androidx.core.graphics.drawable.IconCompat;
+import androidx.core.os.BundleCompat;
 import androidx.preference.PreferenceManager;
 
 import org.apache.commons.lang3.ArrayUtils;
@@ -355,10 +357,10 @@ public class SharePlugin extends Plugin {
         Log.i("SharePlugin", "Intent contains streams to share");
         ArrayList<Uri> uriList;
         if (Intent.ACTION_SEND_MULTIPLE.equals(intent.getAction())) {
-            uriList = intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM);
+            uriList = IntentCompat.getParcelableArrayListExtra(intent, Intent.EXTRA_STREAM, Uri.class);
         } else {
             uriList = new ArrayList<>();
-            uriList.add(extras.getParcelable(Intent.EXTRA_STREAM));
+            uriList.add(BundleCompat.getParcelable(extras, Intent.EXTRA_STREAM, Uri.class));
         }
         uriList.removeAll(Collections.singleton(null));
         if (uriList.isEmpty()) {

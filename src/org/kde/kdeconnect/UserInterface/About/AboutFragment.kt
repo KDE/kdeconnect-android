@@ -14,50 +14,56 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import org.kde.kdeconnect.UserInterface.List.ListAdapter
-import org.kde.kdeconnect.UserInterface.MainActivity
+import org.kde.kdeconnect.base.BaseFragment
+import org.kde.kdeconnect.extensions.getParcelableCompat
 import org.kde.kdeconnect.extensions.setupBottomPadding
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.FragmentAboutBinding
 import androidx.core.net.toUri
 
-class AboutFragment : Fragment() {
-    private var _binding: FragmentAboutBinding? = null
-    private val binding get() = _binding!!
-    private lateinit var aboutData: AboutData
-    private var tapCount = 0
-    private var firstTapMillis: Long? = null
+class AboutFragment : BaseFragment<FragmentAboutBinding>() {
 
     companion object {
+        private const val KEY_ABOUT_DATA = "about_data"
+
         @JvmStatic
         fun newInstance(aboutData: AboutData): Fragment {
             val fragment = AboutFragment()
 
             val args = Bundle(1)
-            args.putParcelable("ABOUT_DATA", aboutData)
+            args.putParcelable(KEY_ABOUT_DATA, aboutData)
             fragment.arguments = args
 
             return fragment
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        if (activity != null) {
-            (requireActivity() as MainActivity).supportActionBar?.setTitle(R.string.about)
-        }
+    private lateinit var aboutData: AboutData
+    private var tapCount = 0
+    private var firstTapMillis: Long? = null
 
-        aboutData = requireArguments().getParcelable("ABOUT_DATA")!!
-        _binding = FragmentAboutBinding.inflate(inflater, container, false)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        aboutData = arguments?.getParcelableCompat(KEY_ABOUT_DATA) ?: throw IllegalArgumentException("AboutData is null")
+    }
 
-        updateData()
-        return binding.root
+    override fun onInflateBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): FragmentAboutBinding {
+        return FragmentAboutBinding.inflate(inflater, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as? AppCompatActivity)?.supportActionBar?.setTitle(R.string.about)
         binding.scrollView.setupBottomPadding()
+        updateData()
     }
 
     @SuppressLint("SetTextI18n")
@@ -65,8 +71,8 @@ class AboutFragment : Fragment() {
         // Update general info
 
         binding.appName.text = aboutData.name
-        binding.appIcon.setImageDrawable(this.context?.let { ContextCompat.getDrawable(it, aboutData.icon) })
-        binding.appVersion.text = this.context?.getString(R.string.version, aboutData.versionName)
+        binding.appIcon.setImageDrawable(context?.let { ContextCompat.getDrawable(it, aboutData.icon) })
+        binding.appVersion.text = context?.getString(R.string.version, aboutData.versionName)
 
         // Setup Easter Egg onClickListener
 
@@ -103,7 +109,7 @@ class AboutFragment : Fragment() {
         setupInfoButton(aboutData.websiteURL, binding.websiteButton)
 
         // Update authors
-        binding.authorsList.adapter = ListAdapter(this.requireContext(), aboutData.authors.map { AboutPersonEntryItem(it) }, false)
+        binding.authorsList.adapter = ListAdapter(requireContext(), aboutData.authors.map { AboutPersonEntryItem(it) }, false)
         if (aboutData.authorsFooterText != null) {
             binding.authorsFooterText.text = context?.getString(aboutData.authorsFooterText!!)
         }
@@ -119,8 +125,4 @@ class AboutFragment : Fragment() {
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }

@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.IntentCompat;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceManager;
 
@@ -85,7 +86,7 @@ public class FindMyPhoneSettingsFragment extends PluginSettingsFragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CODE_SELECT_RINGTONE && resultCode == Activity.RESULT_OK) {
-            Uri uri = data.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
+            Uri uri = IntentCompat.getParcelableExtra(data, RingtoneManager.EXTRA_RINGTONE_PICKED_URI, Uri.class);
 
             if (uri != null) {
                 sharedPreferences.edit()

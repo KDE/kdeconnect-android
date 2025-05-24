@@ -10,6 +10,7 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import org.kde.kdeconnect.KdeConnect
+import org.kde.kdeconnect.extensions.getParcelableCompat
 
 /**
  * Called when the mpris media notification's buttons are pressed
@@ -20,7 +21,7 @@ class MprisMediaNotificationReceiver : BroadcastReceiver() {
         if (Intent.ACTION_MEDIA_BUTTON == intent.action) {
             // Route these buttons to the media session, which will handle them
             val mediaSession = MprisMediaSession.getMediaSession() ?: return
-            mediaSession.controller.dispatchMediaButtonEvent(intent.getParcelableExtra(Intent.EXTRA_KEY_EVENT))
+            mediaSession.controller.dispatchMediaButtonEvent(intent.getParcelableCompat(Intent.EXTRA_KEY_EVENT))
         } else {
             // Second case: buttons on the notification, which we created ourselves
             // Get the correct device, the mpris plugin and the mpris player

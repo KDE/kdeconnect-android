@@ -13,6 +13,4 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     android:clipToPadding="false"
     android:orientation="vertical"
     android:paddingHorizontal="@dimen/activity_horizontal_margin"
-    android:paddingVertical="@dimen/activity_vertical_margin">
-
-</androidx.recyclerview.widget.RecyclerView>
+    android:paddingVertical="@dimen/activity_vertical_margin" />

@@ -16,6 +16,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.net.Network
+import android.os.Parcelable
 import android.preference.PreferenceManager
 import android.util.Base64
 import android.util.Log
@@ -29,6 +30,8 @@ import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper
 import org.kde.kdeconnect.Helpers.ThreadHelper.execute
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.UserInterface.SettingsFragment
+import org.kde.kdeconnect.extensions.getParcelableArrayCompat
+import org.kde.kdeconnect.extensions.getParcelableCompat
 import java.io.IOException
 import java.io.InputStreamReader
 import java.io.Reader
@@ -74,7 +77,7 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
         if (!preferences.getBoolean(SettingsFragment.KEY_BLUETOOTH_ENABLED, false)) {
             return
         }
-        if (bluetoothAdapter == null || bluetoothAdapter.isEnabled == false) {
+        if (bluetoothAdapter == null || !bluetoothAdapter.isEnabled) {
             return
         }
         Log.i("BluetoothLinkProvider", "onStart called")
@@ -297,8 +300,8 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
             val action = intent.action
             if (BluetoothDevice.ACTION_UUID == action) {
                 Log.i("BluetoothLinkProvider", "Action matches")
-                val device = intent.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE)
-                val activeUuids = intent.getParcelableArrayExtra(BluetoothDevice.EXTRA_UUID)
+                val device = intent.getParcelableCompat<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE)
+                val activeUuids = intent.getParcelableArrayCompat<Parcelable>(BluetoothDevice.EXTRA_UUID)
                 if (sockets.containsKey(device)) {
                     Log.i("BluetoothLinkProvider", "sockets contains device")
                     return

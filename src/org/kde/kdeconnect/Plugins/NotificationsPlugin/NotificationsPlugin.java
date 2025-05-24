@@ -34,6 +34,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
+import androidx.core.os.BundleCompat;
 import androidx.fragment.app.DialogFragment;
 
 import org.apache.commons.collections4.MultiValuedMap;
@@ -358,7 +359,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         if (!notification.extras.containsKey(Notification.EXTRA_MESSAGES))
             return new Pair<>(null, null);
 
-        Parcelable[] ms = notification.extras.getParcelableArray(Notification.EXTRA_MESSAGES);
+        Parcelable[] ms = BundleCompat.getParcelableArray(notification.extras, Notification.EXTRA_MESSAGES, Parcelable.class);
 
         if (ms == null)
             return new Pair<>(null, null);
