@@ -200,6 +200,7 @@ class MprisReceiverCallback extends MediaController.Callback {
      * @return null if no art is available, otherwise a PNG image serialized into a bytearray
      */
     public byte[] getArtAsArray() {
+        Bitmap displayArt = this.displayArt;
         if (displayArt == null) {
             return null;
         }
