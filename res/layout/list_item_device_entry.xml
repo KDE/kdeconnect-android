@@ -12,13 +12,15 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
+    android:focusable="true"
+    android:clickable="true"
+    android:background="?android:attr/selectableItemBackground"
     style="@style/KdeConnectCardStyle.Filled"
     app:contentPadding="@dimen/view_default_padding">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:attr/selectableItemBackground"
         android:baselineAligned="false"
         android:gravity="center_vertical"
         android:minHeight="?android:attr/listPreferredItemHeight"
