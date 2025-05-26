@@ -111,9 +111,9 @@ public class ShareActivity extends BaseActivity<ActivityShareBinding> {
             if (d.isPaired() && (intentHasUrl || d.isReachable())) {
                 devicesList.add(d);
                 if (!d.isReachable()) {
-                    items.add(new UnreachableDeviceItem(d, null));
+                    items.add(new UnreachableDeviceItem(d));
                 } else {
-                    items.add(new DeviceItem(d, null));
+                    items.add(new DeviceItem(d));
                 }
                 section.isEmpty = false;
             }

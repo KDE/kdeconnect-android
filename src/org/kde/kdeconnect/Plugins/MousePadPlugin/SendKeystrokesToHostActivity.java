@@ -166,7 +166,7 @@ public class SendKeystrokesToHostActivity extends BaseActivity<ActivitySendkeyst
         for (Device d : devices) {
             if (d.isReachable() && d.isPaired()) {
                 devicesList.add(d);
-                items.add(new DeviceItem(d, null));
+                items.add(new DeviceItem(d));
                 section.isEmpty = false;
             }
         }

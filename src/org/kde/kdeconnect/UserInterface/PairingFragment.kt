@@ -45,7 +45,7 @@ import org.kde.kdeconnect_tp.databinding.PairingExplanationTextNoWifiBinding
 /**
  * The view that the user will see when there are no devices paired, or when you choose "add a new device" from the sidebar.
  */
-class PairingFragment : BaseFragment<DevicesListBinding>(), PairingDeviceItem.Callback {
+class PairingFragment : BaseFragment<DevicesListBinding>() {
 
     private var _textBinding: PairingExplanationTextBinding? = null
     private var _duplicateNamesBinding: PairingExplanationDuplicateNamesBinding? = null
@@ -212,7 +212,7 @@ class PairingFragment : BaseFragment<DevicesListBinding>(), PairingDeviceItem.Ca
             val devices: Collection<Device> = KdeConnect.getInstance().devices.values
             for (device in devices) {
                 if (device.isReachable && device.isPaired) {
-                    items.add(PairingDeviceItem(device, this@PairingFragment))
+                    items.add(PairingDeviceItem(device, ::deviceClicked))
                     connectedSection.isEmpty = false
                 }
             }
@@ -224,7 +224,7 @@ class PairingFragment : BaseFragment<DevicesListBinding>(), PairingDeviceItem.Ca
             items.add(availableSection)
             for (device in devices) {
                 if (device.isReachable && !device.isPaired) {
-                    items.add(PairingDeviceItem(device, this@PairingFragment))
+                    items.add(PairingDeviceItem(device, ::deviceClicked))
                     availableSection.isEmpty = false
                 }
             }
@@ -236,7 +236,7 @@ class PairingFragment : BaseFragment<DevicesListBinding>(), PairingDeviceItem.Ca
             items.add(rememberedSection)
             for (device in devices) {
                 if (!device.isReachable && device.isPaired) {
-                    items.add(PairingDeviceItem(device, this@PairingFragment))
+                    items.add(PairingDeviceItem(device, ::deviceClicked))
                     rememberedSection.isEmpty = false
                 }
             }
@@ -310,7 +310,7 @@ class PairingFragment : BaseFragment<DevicesListBinding>(), PairingDeviceItem.Ca
         super.onStop()
     }
 
-    override fun pairingClicked(device: Device) {
+    fun deviceClicked(device: Device) {
         mainActivity.onDeviceSelected(device.deviceId, !device.isPaired || !device.isReachable)
     }
 

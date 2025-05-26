@@ -49,7 +49,7 @@ class RunCommandWidgetConfigActivity : AppCompatActivity() {
 
         val pairedDevices = KdeConnect.getInstance().devices.values.stream().filter(Device::isPaired).collect(Collectors.toList())
 
-        val list = ListAdapter(this, pairedDevices.map { DeviceItem(it, null) })
+        val list = ListAdapter(this, pairedDevices.map { DeviceItem(it) })
         binding.runCommandsDeviceList.adapter = list
         binding.runCommandsDeviceList.setOnItemClickListener  { _, _, position, _ ->
             val deviceId = pairedDevices[position].deviceId
