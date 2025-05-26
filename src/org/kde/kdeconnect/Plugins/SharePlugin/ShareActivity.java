@@ -23,9 +23,10 @@ import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.WindowHelper;
 import org.kde.kdeconnect.KdeConnect;
-import org.kde.kdeconnect.UserInterface.List.EntryItemWithIcon;
+import org.kde.kdeconnect.UserInterface.List.DeviceItem;
 import org.kde.kdeconnect.UserInterface.List.ListAdapter;
 import org.kde.kdeconnect.UserInterface.List.SectionItem;
+import org.kde.kdeconnect.UserInterface.List.UnreachableDeviceItem;
 import org.kde.kdeconnect.base.BaseActivity;
 import org.kde.kdeconnect_tp.R;
 import org.kde.kdeconnect_tp.databinding.ActivityShareBinding;
@@ -109,11 +110,11 @@ public class ShareActivity extends BaseActivity<ActivityShareBinding> {
             // Show the paired devices only if they are unreachable and the shared intent has a URL
             if (d.isPaired() && (intentHasUrl || d.isReachable())) {
                 devicesList.add(d);
-                String deviceName = d.getName();
                 if (!d.isReachable()) {
-                    deviceName = getString(R.string.unreachable_device, deviceName);
+                    items.add(new UnreachableDeviceItem(d, null));
+                } else {
+                    items.add(new DeviceItem(d, null));
                 }
-                items.add(new EntryItemWithIcon(deviceName, d.getIcon()));
                 section.isEmpty = false;
             }
         }

@@ -6,6 +6,7 @@
 
 package org.kde.kdeconnect.UserInterface.List;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -14,9 +15,9 @@ import androidx.annotation.NonNull;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect_tp.R;
 
-public class PairingDeviceItem extends DeviceItem {
+public class UnreachableDeviceItem extends DeviceItem {
 
-    public PairingDeviceItem(Device device, Callback callback) {
+    public UnreachableDeviceItem(Device device, Callback callback) {
         super(device, callback);
     }
 
@@ -24,12 +25,9 @@ public class PairingDeviceItem extends DeviceItem {
     @Override
     public View inflateView(@NonNull LayoutInflater layoutInflater) {
         View ret = super.inflateView(layoutInflater);
-        if (device.compareProtocolVersion() > 0) {
-            binding.listItemEntrySummary.setText(R.string.protocol_version_newer);
-            binding.listItemEntrySummary.setVisibility(View.VISIBLE);
-        } else {
-            binding.listItemEntrySummary.setVisibility(View.GONE);
-        }
+        binding.listItemEntryTitle.setText(device.getName());
+        binding.listItemEntrySummary.setText(R.string.runcommand_notreachable);
+        binding.listItemEntrySummary.setVisibility(View.VISIBLE);
         return ret;
     }
 

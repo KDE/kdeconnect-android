@@ -21,6 +21,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.KdeConnect
+import org.kde.kdeconnect.UserInterface.List.DeviceItem
+import org.kde.kdeconnect.UserInterface.List.ListAdapter
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.WidgetRemoteCommandPluginDialogBinding
 import java.util.stream.Collectors
@@ -47,15 +49,8 @@ class RunCommandWidgetConfigActivity : AppCompatActivity() {
 
         val pairedDevices = KdeConnect.getInstance().devices.values.stream().filter(Device::isPaired).collect(Collectors.toList())
 
-        binding.runCommandsDeviceList.adapter = object : ArrayAdapter<Device>(this, 0, pairedDevices) {
-            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-                val view : View = convertView ?: layoutInflater.inflate(R.layout.list_item_with_icon_entry, parent, false)
-                val device = pairedDevices[position]
-                view.findViewById<TextView>(R.id.list_item_entry_title).text = device.name
-                view.findViewById<ImageView>(R.id.list_item_entry_icon).setImageDrawable(device.icon)
-                return view
-            }
-        }
+        val list = ListAdapter(this, pairedDevices.map { DeviceItem(it, null) })
+        binding.runCommandsDeviceList.adapter = list
         binding.runCommandsDeviceList.setOnItemClickListener  { _, _, position, _ ->
             val deviceId = pairedDevices[position].deviceId
             saveWidgetDeviceIdPref(this, appWidgetId, deviceId)

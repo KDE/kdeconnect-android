@@ -21,7 +21,7 @@ import org.kde.kdeconnect.Helpers.SafeTextChecker;
 import org.kde.kdeconnect.Helpers.WindowHelper;
 import org.kde.kdeconnect.KdeConnect;
 import org.kde.kdeconnect.NetworkPacket;
-import org.kde.kdeconnect.UserInterface.List.EntryItemWithIcon;
+import org.kde.kdeconnect.UserInterface.List.DeviceItem;
 import org.kde.kdeconnect.UserInterface.List.ListAdapter;
 import org.kde.kdeconnect.UserInterface.List.SectionItem;
 import org.kde.kdeconnect.base.BaseActivity;
@@ -166,7 +166,7 @@ public class SendKeystrokesToHostActivity extends BaseActivity<ActivitySendkeyst
         for (Device d : devices) {
             if (d.isReachable() && d.isPaired()) {
                 devicesList.add(d);
-                items.add(new EntryItemWithIcon(d.getName(), d.getIcon()));
+                items.add(new DeviceItem(d, null));
                 section.isEmpty = false;
             }
         }
