@@ -185,7 +185,6 @@
   <string name="mpris_notification_settings_title">显示媒体控制通知</string>
   <string name="mpris_notification_settings_summary">不打开 KDE Connect 也能在常驻通知中控制媒体播放器</string>
   <string name="share_to">分享到…</string>
-  <string name="unreachable_device">%s (无法访问)</string>
   <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">URL 被分享到了不可访问的设备。它将在设备能够访问时自动传输到该设备。\n</string>
   <string name="protocol_version">协议版本：</string>

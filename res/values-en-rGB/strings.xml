@@ -190,7 +190,6 @@
   <string name="mpris_notification_settings_title">Show media control notification</string>
   <string name="mpris_notification_settings_summary">Allow controlling your media players without opening KDE Connect</string>
   <string name="share_to">Share to…</string>
-  <string name="unreachable_device">%s (Unreachable)</string>
   <string name="unreachable_device_url_share_text">URLs shared to an unreachable device will be delivered to it once it becomes reachable.\n\n</string>
   <string name="protocol_version_newer">This device uses a newer protocol version</string>
   <string name="plugin_settings_with_name">%s settings</string>

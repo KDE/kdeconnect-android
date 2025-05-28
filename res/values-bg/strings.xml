@@ -191,7 +191,6 @@
   <string name="mpris_notification_settings_title">Показване на известие за управление на медиите</string>
   <string name="mpris_notification_settings_summary">Разрешаване на управлението на медийните плейъри, без да отваряте KDE Connect</string>
   <string name="share_to">Споделяне към...</string>
-  <string name="unreachable_device">%s (не е достъпно)</string>
   <string name="unreachable_device_url_share_text">URL адресите, споделени към недостъпно устройство, ще бъдат доставени до него, когато то стане достъпно.\n\n</string>
   <string name="protocol_version">Версия на протокол:</string>
   <string name="protocol_version_newer">Това устройство използва по-нова версия на протокола</string>

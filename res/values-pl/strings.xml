@@ -207,7 +207,6 @@
   <string name="mpris_notification_settings_title">Pokaż powiadomienia sterowania mediami</string>
   <string name="mpris_notification_settings_summary">Steruje odtwarzaczami bez otwierania KDE Connect</string>
   <string name="share_to">Udostępnij urządzeniu...</string>
-  <string name="unreachable_device">%s (nieosiągalne)</string>
   <string name="unreachable_device_url_share_text">Adres URL udostępniony nieosiągalnemu urządzeniu zostanie do niego dostarczony zaraz po tym jak stanie się osiągalne.\n\n</string>
   <string name="protocol_version">Wersja protokołu:</string>
   <string name="protocol_version_newer">Urządzenie to używa nowszej wersji protokołu</string>

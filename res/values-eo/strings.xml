@@ -191,7 +191,6 @@
   <string name="mpris_notification_settings_title">Montri sciigon pri rego de amaskomunikiloj</string>
   <string name="mpris_notification_settings_summary">Permesu mastrumi viajn plurmediajn ludilojn sen malfermi KDE Connect</string>
   <string name="share_to">Kunhavigi al…</string>
-  <string name="unreachable_device">%s (Neatingebla)</string>
   <string name="unreachable_device_url_share_text">URL-oj kundividitaj al neatingebla aparato estos liveritaj al ĝi post kiam ĝi fariĝos atingebla.\n\n</string>
   <string name="protocol_version">Protokolversio:</string>
   <string name="protocol_version_newer">Ĉi tiu aparato uzas pli novan protokolversion</string>

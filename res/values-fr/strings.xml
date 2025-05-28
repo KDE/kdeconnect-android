@@ -193,7 +193,6 @@
   <string name="mpris_notification_settings_title">Afficher la notification de contrôle du lecteur multimédia</string>
   <string name="mpris_notification_settings_summary">Vous permet de contrôler vos lecteurs multimédia sans ouvrir KDEConnect.</string>
   <string name="share_to">Partager vers…</string>
-  <string name="unreachable_device">%s (Inaccessible)</string>
   <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">Les URL partagées vers un appareil inaccessible lui seront transmises une fois qu\'il re-deviendra accessible.\n\n</string>
   <string name="protocol_version">Version de protocole :</string>

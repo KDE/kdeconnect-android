@@ -130,7 +130,6 @@
     <item>2 წუთი</item>
   </string-array>
   <string name="share_to">გაზიარება…</string>
-  <string name="unreachable_device">%s (მიუწვდომელია)</string>
   <string name="protocol_version">პროტოკოლის ვერსია:</string>
   <string name="protocol_version_newer">მოწყობილობა პროტოკოლის უფრო ახალ ვერსიას იყენებს</string>
   <string name="plugin_settings_with_name">%s-ის მორგება</string>

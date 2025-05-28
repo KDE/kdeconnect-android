@@ -185,7 +185,6 @@
   <string name="mpris_notification_settings_title">미디어 제어 알림 표시</string>
   <string name="mpris_notification_settings_summary">KDE Connect를 열지 않고 미디어 재생기 제어</string>
   <string name="share_to">다음으로 공유…</string>
-  <string name="unreachable_device">%s(접근할 수 없음)</string>
   <string name="unreachable_device_dynamic_shortcut">%s(✕)</string>
   <string name="unreachable_device_url_share_text">접근할 수 없는 장치와 공유한 URL은 장치에 다시 접근할 수 있게 될 때 전달됩니다.\n\n</string>
   <string name="protocol_version">프로토콜 버전:</string>

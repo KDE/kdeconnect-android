@@ -191,7 +191,6 @@
   <string name="mpris_notification_settings_title">Visa underrättelser om mediastyrning</string>
   <string name="mpris_notification_settings_summary">Tillåt att styra mediaspelare utan att KDE-anslut öppnas</string>
   <string name="share_to">Dela med…</string>
-  <string name="unreachable_device">%s (kan inte nås)</string>
   <string name="unreachable_device_url_share_text">Webbadress som delas med en apparat som inte kan nås levereras till den när den väl blir möjlig att nå.\n\n</string>
   <string name="protocol_version">Protokollversion:</string>
   <string name="protocol_version_newer">Apparaten använder en nyare protokollversion</string>

@@ -185,7 +185,6 @@
   <string name="mpris_notification_settings_title">顯示媒體控制通知</string>
   <string name="mpris_notification_settings_summary">無需開啟 KDE Con​​nect 即可控制您的媒體播放器</string>
   <string name="share_to">分享給…</string>
-  <string name="unreachable_device">%s（無法存取）</string>
   <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">若分享網址 (URL) 到無法存取的裝置，將在該裝置變得可存取後再傳送過去。\n\n</string>
   <string name="protocol_version">協定版本：</string>

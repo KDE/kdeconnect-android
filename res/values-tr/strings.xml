@@ -193,7 +193,6 @@
   <string name="mpris_notification_settings_title">Ortam denetim bildirimini göster</string>
   <string name="mpris_notification_settings_summary">KDE Bağlan’ı açmadan ortam oynatıcılarınızı denetlemenize izin verin</string>
   <string name="share_to">Şuraya Paylaş…</string>
-  <string name="unreachable_device">%s (Erişilebilir değil)</string>
   <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">Erişilemeyen bir aygıta gönderilen URL’ler, aygıt erişilebilir olduğunda teslim edilir.\n\n</string>
   <string name="protocol_version">Protokol sürümü:</string>

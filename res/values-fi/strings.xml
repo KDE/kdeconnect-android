@@ -165,9 +165,11 @@
   <string name="middle_click">Lähetä keskipainikkeen napsautus</string>
   <string name="show_keyboard">Näytä näppäimistö</string>
   <string name="device_not_paired">Laitetta ei ole kytketty pariksi</string>
+  <string name="pairing_duplicate_names">Varoitus: Useammalla laitteella on sama nimi.</string>
   <string name="request_pairing">Pyydä pariksi kytkemistä</string>
   <string name="pairing_accept">Hyväksy</string>
   <string name="pairing_reject">Hylkää</string>
+  <string name="pairing_explanation">Laitteiden paritus sallii niiden käyttää toisiaan. Parita vain omia laitteitasi.</string>
   <string name="settings">Asetukset</string>
   <string name="mpris_play">Toista</string>
   <string name="mpris_pause">Tauko</string>
@@ -191,7 +193,7 @@
   <string name="mpris_notification_settings_title">Näytä mediasäädinilmoitukset</string>
   <string name="mpris_notification_settings_summary">Sallii mediasoitintesi hallinnan KDE Connectia avaamatta</string>
   <string name="share_to">Jaa…</string>
-  <string name="unreachable_device">%s (tavoittamattomissa)</string>
+  <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">Tavoittamattomissa olevalle laitteelle jaetut verkko-osoitteet välitetään heti kun laite tavoitetaan.\n\n</string>
   <string name="protocol_version">Yhteyskäytäntöversio:</string>
   <string name="protocol_version_newer">Laite käyttää uudempaa yhteyskäytäntöversiota</string>

@@ -182,7 +182,6 @@
   <string name="mpris_notification_settings_title">メディア操作の通知を表示</string>
   <string name="mpris_notification_settings_summary">KDE Connect を開かずにメディアプレーヤーをコントロール可能にします</string>
   <string name="share_to">共有先...</string>
-  <string name="unreachable_device">%s (到達不可)</string>
   <string name="unreachable_device_url_share_text">到達できないデバイスと共有された URL はデバイスが到達可能になったときに送信されます。\n\n</string>
   <string name="protocol_version_newer">このデバイスはより新しいプロトコルバージョンを使用しています</string>
   <string name="plugin_settings_with_name">%s 設定</string>
