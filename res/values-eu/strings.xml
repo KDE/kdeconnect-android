@@ -115,6 +115,7 @@
   <string name="error_not_reachable">Gailua ez dago eskuragarri</string>
   <string name="error_already_paired">Gailua dagoeneko parekatuta</string>
   <string name="error_timed_out">Denbora-muga agortu da</string>
+  <string name="error_clocks_not_match">Gailuetako erlojuak ez daude sinkronizatuta</string>
   <string name="error_canceled_by_user">Erabiltzaileak utzita</string>
   <string name="error_canceled_by_other_peer">Beste kideak utzita</string>
   <string name="encryption_info_title">Zifratze informazioa</string>
@@ -164,9 +165,11 @@
   <string name="middle_click">Bidali erdiko klik</string>
   <string name="show_keyboard">Erakutsi teklatua</string>
   <string name="device_not_paired">Gailua parekatu gabe</string>
+  <string name="pairing_duplicate_names">Kontuz: Izen bereko hainbat gailu daude.</string>
   <string name="request_pairing">Eskatu parekatzea</string>
   <string name="pairing_accept">Onartu</string>
   <string name="pairing_reject">Errefusatu</string>
+  <string name="pairing_explanation">Bi gailu parekatzea elkarren sarbidea emango die. Zure gailu propioak baino ez parekatu.</string>
   <string name="settings">Ezarpenak</string>
   <string name="mpris_play">Jo</string>
   <string name="mpris_pause">Eten</string>
@@ -190,7 +193,9 @@
   <string name="mpris_notification_settings_title">Erakutsi euskarri kontrolaren jakinarazpena</string>
   <string name="mpris_notification_settings_summary">Utzi zure euskarri-jotzaileak kontrolatzen KDE Connect ireki gabe</string>
   <string name="share_to">Partekatu honekin...</string>
+  <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">Gailu eskuraezinekin partekatutako URLak, hartara bidaliko dira eskuragarri dagoenean.\n\n</string>
+  <string name="protocol_version">Protokoloaren bertsioa:</string>
   <string name="protocol_version_newer">Gailu honek protokoloaren bertsio berriago bat erabiltzen du</string>
   <string name="plugin_settings_with_name">%s ezarpenak</string>
   <string name="invalid_device_name">Gailuaren izen baliogabea</string>
@@ -306,6 +311,8 @@
   <string name="devices">Gailuak</string>
   <string name="settings_rename">Gailuaren izena</string>
   <string name="settings_dark_mode">Gai iluna</string>
+  <string name="settings_export_logs">Esportatu KDE Connect-en egunkariak</string>
+  <string name="settings_export_logs_text">Sortu arazoak konpontzen lagun dezakeen exekuzio informazioa duen fitxategi bat.</string>
   <string name="settings_more_settings_title">Ezarpen gehiago</string>
   <string name="settings_more_settings_text">Gailu-bakoitzeko ezarpenak aurki daitezke \'Pluginen ezarpenak\' barruan.</string>
   <string name="setting_persistent_notification">Erakutsi jakinarazpen iraunkorra</string>
