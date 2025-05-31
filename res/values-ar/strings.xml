@@ -10,42 +10,60 @@
   <string name="pref_plugin_battery">تقرير البطّاريّة</string>
   <string name="pref_plugin_battery_desc">بلّغ عن حالة البطّاريّة دوريًّا</string>
   <string name="pref_plugin_connectivity_report">تقرير الاتصال</string>
+  <string name="pref_plugin_connectivity_report_desc">تقرير قوة إشارة الشبكة والحالة</string>
   <string name="pref_plugin_sftp">اكشف نظام الملفّات</string>
   <string name="pref_plugin_sftp_desc">تسمح بتصفّح نظام ملفّات هذا الهاتف عن بعد</string>
   <string name="pref_plugin_clipboard">مزامنة الحافظة</string>
   <string name="pref_plugin_clipboard_desc">شارك محتوى الحافظة</string>
-  <string name="pref_plugin_clipboard_sent">أرسل الحافظة</string>
-  <string name="pref_plugin_mousepad">الدّخل البعيد</string>
+  <string name="pref_plugin_clipboard_sent">أرسل للحافظة</string>
+  <string name="pref_plugin_mousepad">الإدخال البعيد</string>
   <string name="pref_plugin_mousepad_desc">استخدم الهاتف أو اللوحيّ كفأرة ولوحة مفاتيح</string>
   <string name="pref_plugin_presenter">متحكم العرض التقديمي</string>
+  <string name="pref_plugin_presenter_desc">استخدام جهازك لتغيير الشرائح في العرض التقديمي</string>
+  <string name="pref_plugin_remotekeyboard">تلقي ضغطات المفاتيح البعيدة</string>
+  <string name="pref_plugin_remotekeyboard_desc">تلقي أحداث الضغط على المفاتيح من الأجهزة البعيدة</string>
   <string name="pref_plugin_mpris">تحكّمات الوسائط المتعدّدة</string>
   <string name="pref_plugin_mpris_desc">توفّر تحكّمًا بعيدًا لمشغّل الوسائط</string>
   <string name="pref_plugin_runcommand">شغّل أمرًا</string>
-  <string name="pref_plugin_runcommand_desc">تحفّز أوامر عن بعد من الهاتف أو اللوحيّ</string>
+  <string name="pref_plugin_runcommand_desc">شغّل أوامر عن بعد من الهاتف أو اللوحيّ</string>
   <string name="pref_plugin_contacts">مزامن المتراسلين</string>
-  <string name="pref_plugin_ping">وخزة</string>
-  <string name="pref_plugin_ping_desc">أرسل واستقبل وخزات</string>
-  <string name="pref_plugin_notifications">مزامنة الإخطارات</string>
-  <string name="pref_plugin_notifications_desc">انفذ إلى إخطاراتك من أجهزة أخرى</string>
-  <string name="pref_plugin_receive_notifications">استقبل الإخطارات</string>
-  <string name="pref_plugin_receive_notifications_desc">استقبل الإخطارات من الجهاز الآخر واعرضها على أندرويد</string>
+  <string name="pref_plugin_contacts_desc">اسمح بمزامنة دفتر المتراسلين في الجهاز</string>
+  <string name="pref_plugin_ping">وخزة Ping</string>
+  <string name="pref_plugin_ping_desc">أرسل واستقبل وخزات Ping</string>
+  <string name="pref_plugin_notifications">مزامنة الإشعارات</string>
+  <string name="pref_plugin_notifications_desc">انفذ إلى إشعاراتك من أجهزة أخرى</string>
+  <string name="pref_plugin_receive_notifications">استقبل الإشعارات</string>
+  <string name="pref_plugin_receive_notifications_desc">استقبل الإشعارات من الجهاز الآخر واعرضها على أندرويد</string>
   <string name="pref_plugin_sharereceiver">شارك واستقبل</string>
   <string name="pref_plugin_sharereceiver_desc">شارك الملفّات والعناوين بين الجهازين</string>
-  <string name="device_list_empty">لا أجهزة</string>
+  <string name="device_list_empty">لا توجد أجهزة</string>
   <string name="ok">حسنًا</string>
   <string name="sad_ok">حسنًا ):</string>
   <string name="cancel">ألغِ</string>
   <string name="open_settings">افتح الإعدادات</string>
-  <string name="no_permissions">عليك إعطاء التّطبيق صلاحيّات للنّفاذ إلى الإخطارات</string>
-  <string name="send_ping">أرسل وخزة</string>
-  <string name="open_mpris_controls">تحكّمات الوسائط المتعدّدة</string>
-  <string name="open_mousepad">الدّخل البعيد</string>
-  <string name="mousepad_single_tap_settings_title">اضبط إجراء الطَرق بالأصبع</string>
-  <string name="mousepad_double_tap_settings_title">اضبط إجراء اللمس بإصبعين</string>
-  <string name="mousepad_triple_tap_settings_title">اضبط إجراء اللمس بثلاث أصابع</string>
+  <string name="no_permissions">عليك إعطاء التّطبيق صلاحيّات للنّفاذ إلى الإشعارات</string>
+  <string name="no_permission_mprisreceiver">لتكون قادرًا على التحكم في مشغلات الوسائط الخاصة بك ، تحتاج إلى منح حق الوصول إلى الإشعارات</string>
+  <string name="no_permissions_remotekeyboard">لتلقي ضغطات المفاتيح تحتاج إلى تنشيط لوحة المفاتيح البعيدة لكيدي المتصل</string>
+  <string name="send_ping">أرسل وخزة ping</string>
+  <string name="open_mpris_controls">متحكّمات الوسائط المتعدّدة</string>
+  <string name="remotekeyboard_editing_only_title">التعامل مع المفاتيح البعيدة فقط عند التحرير</string>
+  <string name="remotekeyboard_not_connected">لا يوجد اتصال لوحة المفاتيح بعيدة نشط، وإنشاء واحد في كيدي المتصل</string>
+  <string name="remotekeyboard_connected">اتصال لوحة المفاتيح بعيدة نشط</string>
+  <string name="remotekeyboard_multiple_connections">هناك أكثر من اتصال لوحة مفاتيح بعيدة، حدد الجهاز لتضبطه</string>
+  <string name="open_mousepad">الإدخال البعيد</string>
+  <string name="mousepad_info">حرك إصبعًا على الشاشة لتحريك مؤشر الفأرة. اطرق للنقرة، واستخدم اثنين أو ثلاث أصابع للأزرار اليمنى والوسطى. استخدام أصبعين للتمرير. استخدم الضغط طويلًا للسحب والإفلات. يمكن تمكين وظيفة الفأرة التوجيهية Gyro من تفضيلات الملحقة.</string>
+  <string name="mousepad_info_no_gestures">حرك إصبعًا على الشاشة لتحريك مؤشر الفأرة، اطرق للنقرة.</string>
+  <string name="mousepad_keyboard_input_not_supported">إدخال لوحة المفاتيح غير مدعوم من قبل الجهاز المقترن</string>
+  <string name="mousepad_single_tap_settings_title">اضبط إجراء الطَرق بأصبع واحدة</string>
+  <string name="mousepad_double_tap_settings_title">اضبط إجراء الطرق بأصبعين</string>
+  <string name="mousepad_triple_tap_settings_title">اضبط إجراء الطرق بثلاث أصابع</string>
   <string name="mousepad_sensitivity_settings_title">اضبط حساسيّة لوحة اللمس</string>
+  <string name="mousepad_mouse_buttons_title">أظهر أزرار الفأرة</string>
   <string name="mousepad_acceleration_profile_settings_title">عيّن تسارع المؤشر</string>
   <string name="mousepad_scroll_direction_title">اعكس اتّجاه التّمرير</string>
+  <string name="mousepad_scroll_sensitivity_title">حساسية التمرير</string>
+  <string name="gyro_mouse_enabled_title">تمكين الفأر التوجيهي</string>
+  <string name="gyro_mouse_sensitivity_title">حساسية التوجيه</string>
   <string-array name="mousepad_tap_entries">
     <item>النّقر باليسار</item>
     <item>النقر باليمين</item>
@@ -55,18 +73,33 @@
   <string-array name="mousepad_sensitivity_entries">
     <item>الأبطأ</item>
     <item>الأقل بطئًا</item>
-    <item>الافتراضيّ</item>
+    <item>المبدئيّ</item>
     <item>الأسرع قليلًا</item>
     <item>الأسرع</item>
   </string-array>
   <string-array name="mousepad_acceleration_profile_entries">
-    <item>بدون تسريع</item>
+    <item>دون تسريع</item>
     <item>الأكثر ضعفاً</item>
     <item>ضعيف</item>
     <item>متوسط</item>
     <item>أقوى</item>
     <item>الأقوى</item>
   </string-array>
+  <string name="sendkeystrokes_send_to">أرسل ضغطات المفاتيح إلى</string>
+  <string name="sendkeystrokes_textbox_hint">أرسل ضغطات المفاتيح إلى المضيف</string>
+  <string name="sendkeystrokes_disabled_toast">إرسال ضغطات المفاتيح معطل - تمكينه في الإعدادات</string>
+  <string name="sendkeystrokes_wrong_data">نوع ملف غير صحيح - يجب أن يكون \'text/x-keystrokes\'</string>
+  <string name="sendkeystrokes_sent_text">أرسل %1$s إلى جهاز %2$s</string>
+  <string name="sendkeystrokes_pref_category_summary">تسمح هذه الوحدة للتطبيقات الأخرى بمشاركة مقاطع النص على شكل ضغطات مفاتيح والتي ستُرسل إلى المضيف المتصل</string>
+  <string name="sendkeystrokes_pref_category_title">أرسل ضغطات المفاتيح</string>
+  <string name="sendkeystrokes_pref_enabled">مكّن إرسال ضغطات المفاتيح</string>
+  <string name="sendkeystrokes_pref_enabled_summary">ستمع إلى البيانات التي تحتوي على نوع ملف التعريف \'text/x-keystrokes\'</string>
+  <string name="sendkeystrokes_safe_text_enabled">أرسل نص آمن فورًا</string>
+  <string name="sendkeystrokes_safe_text_enabled_summary">أرسل سلاسل رقمية قصيرة فقط دون تأكيد</string>
+  <string name="pref_plugin_mousepad_send_keystrokes">أرسل كضغطات مفاتيح</string>
+  <string name="mouse_receiver_plugin_description">استقبل حركة الفأرة البعيدة</string>
+  <string name="mouse_receiver_plugin_name">مستقبل الفأرة</string>
+  <string name="mouse_receiver_no_permissions">لتلقي المدخلات التي تعمل باللمس عن بُعد، تحتاج إلى منح أذونات إمكانية الوصول للتحكم الكامل في جهازك</string>
   <string name="view_status_title">الحالة</string>
   <string name="battery_status_format">البطارية: %d%%</string>
   <string name="battery_status_low_format">البطارية: %d%% منخفضة</string>
@@ -82,6 +115,7 @@
   <string name="error_not_reachable">الجهاز غير قابل الوصول</string>
   <string name="error_already_paired">الجهاز مقترن بالفعل</string>
   <string name="error_timed_out">انتهت المهلة</string>
+  <string name="error_clocks_not_match">ساعات الجهاز غير متزامنة</string>
   <string name="error_canceled_by_user">ألغاه المستخدم</string>
   <string name="error_canceled_by_other_peer">ألغاه ندّ آخر</string>
   <string name="encryption_info_title">معلومات التّعمية</string>
@@ -90,17 +124,84 @@
   <string name="pair_requested">طُلب الاقتران</string>
   <string name="pair_succeeded">نجح الاقتران</string>
   <string name="pairing_request_from">اطلب اقتران من \'%1s\'</string>
+  <plurals name="incoming_file_title">
+    <item quantity="zero">لا يستقبل شيء</item>
+    <item quantity="one">يستقبل %1$d ملف من %2$s</item>
+    <item quantity="two">يستقبل %1$d ملفات من %2$s</item>
+    <item quantity="few">يستقبل %1$d ملفات من %2$s</item>
+    <item quantity="many">يستقبل %1$d ملفًا من %2$s</item>
+    <item quantity="other">يستقبل %1$d ملف من %2$s</item>
+  </plurals>
+  <plurals name="incoming_files_text">
+    <item quantity="zero">ملف: %1s</item>
+    <item quantity="one">ملف: %1s</item>
+    <item quantity="two">(الملف %2$d من %3$d) : %1$s</item>
+    <item quantity="few">(الملف %2$d من %3$d) : %1$s</item>
+    <item quantity="many">(الملف %2$d من %3$d) : %1$s</item>
+    <item quantity="other">(الملف %2$d من %3$d) : %1$s</item>
+  </plurals>
+  <plurals name="outgoing_file_title">
+    <item quantity="zero">لا يرسل شيء</item>
+    <item quantity="one">يرسل %1$d ملف إلى %2$s</item>
+    <item quantity="two">يرسل %1$d ملفات إلى %2$s</item>
+    <item quantity="few">يرسل %1$d ملفات إلى %2$s</item>
+    <item quantity="many">يرسل %1$d ملفًا إلى %2$s</item>
+    <item quantity="other">يرسل %1$d ملف إلى %2$s</item>
+  </plurals>
+  <plurals name="outgoing_files_text">
+    <item quantity="zero">ملف: %1$s</item>
+    <item quantity="one">ملف: %1$s</item>
+    <item quantity="two">(الملف %2$d من %3$d) : %1$s</item>
+    <item quantity="few">(الملف %2$d من %3$d) : %1$s</item>
+    <item quantity="many">(الملف %2$d من %3$d) : %1$s</item>
+    <item quantity="other">(الملف %2$d من %3$d) : %1$s</item>
+  </plurals>
+  <plurals name="received_files_title">
+    <item quantity="zero">لم استلم شيئًا</item>
+    <item quantity="one">استُلمت %2$d ملف من %1$s</item>
+    <item quantity="two">استُلمت ملفين من %1$s</item>
+    <item quantity="few">استُلمت %2$d ملفات من %1$s</item>
+    <item quantity="many">استُلمت %2$d ملفًا من %1$s</item>
+    <item quantity="other">استُلمت %2$d ملف من %1$s</item>
+  </plurals>
+  <plurals name="received_files_fail_title">
+    <item quantity="zero">فشل استلام ملف من %1$s</item>
+    <item quantity="one">فشل استلام ملف من %1$s</item>
+    <item quantity="two">فشل استلام %2$d من %3$d ملفًا من %1$s</item>
+    <item quantity="few">فشل استلام %2$d من %3$d ملفًا من %1$s</item>
+    <item quantity="many">فشل استلام %2$d من %3$d ملفًا من %1$s</item>
+    <item quantity="other">فشل استلام %2$d من %3$d ملفًا من %1$s</item>
+  </plurals>
+  <plurals name="sent_files_title">
+    <item quantity="zero">لم يرسل شيء إلى %1$s</item>
+    <item quantity="one">أرسل ملف إلى %1$s</item>
+    <item quantity="two">أرسل ملفين إلى %1$s</item>
+    <item quantity="few">أرسل %2$d ملفات إلى %1$s</item>
+    <item quantity="many">أرسل %2$d ملفًا إلى %1$s</item>
+    <item quantity="other">أرسل %2$d ملف إلى %1$s</item>
+  </plurals>
+  <plurals name="send_files_fail_title">
+    <item quantity="zero">فشل في إرسال ملف إلى %1$s</item>
+    <item quantity="one">فشل في إرسال ملف إلى %1$s</item>
+    <item quantity="two">فشل في إرسال %2$d من %3$d ملفًا إلى %1$s</item>
+    <item quantity="few">فشل في إرسال %2$d من %3$d ملفًا إلى %1$s</item>
+    <item quantity="many">فشل في إرسال %2$d من %3$d ملفًا إلى %1$s</item>
+    <item quantity="other">فشل في إرسال %2$d من %3$d ملفًا إلى %1$s</item>
+  </plurals>
   <string name="tap_to_open">اطرق لتفتح</string>
-  <string name="received_file_text">المس لفتح \'%1s\'</string>
-  <string name="tap_to_answer">المس للإجابة</string>
+  <string name="received_file_text">اطرق لفتح \'%1s\'</string>
+  <string name="cannot_create_file">تعذّر إنشاء الملف %s</string>
+  <string name="tap_to_answer">اطرق للإجابة</string>
   <string name="left_click">أرسل نقرة باليسار</string>
   <string name="right_click">أرسل نقرة باليمين</string>
   <string name="middle_click">أرسل نقرة بالوسط</string>
   <string name="show_keyboard">أظهر لوحة المفاتيح</string>
   <string name="device_not_paired">الجهاز غير مقترن</string>
+  <string name="pairing_duplicate_names">تنبيه: هناك عدة أجهزة تحمل نفس الاسم.</string>
   <string name="request_pairing">اطلب الاقتران</string>
   <string name="pairing_accept">اقبل</string>
   <string name="pairing_reject">ارفض</string>
+  <string name="pairing_explanation">سيؤدي إقران جهازين إلى منحهما إمكانية الوصول إلى بعضهما البعض. قم بإقران أجهزتك الخاصة بك فقط.</string>
   <string name="settings">إعدادات</string>
   <string name="mpris_play">شغّل</string>
   <string name="mpris_pause">ألبث</string>
@@ -120,95 +221,165 @@
     <item>دقيقة واحدة</item>
     <item>دقيقتان</item>
   </string-array>
+  <string name="mpris_notifications_explanation">يلزم الحصول على إذن الإشعارات لإظهار الوسائط البعيدة في درج الإشعارات</string>
+  <string name="mpris_notification_settings_title">أظهر إشعار التحكم في الوسائط</string>
+  <string name="mpris_notification_settings_summary">اسمح بالتحكم في مشغلات الوسائط دون فتح كيدي المتصل</string>
   <string name="share_to">شارك مع…</string>
+  <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
+  <string name="unreachable_device_url_share_text">شاركنا العناوين إلى جهاز لا يمكن الوصول إليه، ستُسلم إليه بمجرد أن يصبح الوصول إليه ممكناً.\n\n</string>
+  <string name="protocol_version">إصدار الميفاق:</string>
   <string name="protocol_version_newer">يستخدم هذا الجهاز إصدار ميفاق أحدث</string>
   <string name="plugin_settings_with_name">إعدادات %s</string>
   <string name="invalid_device_name">اسم جهاز غير صالح</string>
   <string name="shareplugin_text_saved">استُقبل نصّ، حُفظ إلى الحافظة</string>
   <string name="custom_devices_settings">قائمة أجهزة مخصّصة</string>
-  <string name="custom_device_list">أضف أجهزة بميفاق الإنترنت م​إ</string>
+  <string name="custom_devices_settings_summary">%d أجهزة مضافة يدوياً</string>
+  <string name="custom_device_list">أضف أجهزة بعنوان IP</string>
   <string name="custom_device_deleted">حُذف الجهاز المخصّص</string>
+  <string name="custom_device_list_help">إذا لم يُكتشف جهازك آلياً يمكنك إضافة عنوان IP الخاص به أو اسم المضيف الخاص به من خلال النقر على زر الإجراء العائم</string>
   <string name="custom_device_fab_hint">أضف جهازاً</string>
   <string name="undo">تراجع</string>
   <string name="share_notification_preference">إخطارات مزعجة</string>
   <string name="share_notification_preference_summary">اهتزّ وشغّل صوتًا عند استقبال ملفّ</string>
+  <string name="share_destination_customize">خصص مجلد المقصد</string>
+  <string name="share_destination_customize_summary_disabled">ستظهر الملفات المستلمة في التنزيلات</string>
+  <string name="share_destination_customize_summary_enabled">ستُخزن الملفات في المجلد أدناه</string>
   <string name="share_destination_folder_preference">مجلد الوجهة</string>
   <string name="share">شارك</string>
   <string name="share_received_file">شارك \"%s\"</string>
   <string name="title_activity_notification_filter">مرشّح الإخطارات</string>
   <string name="filter_apps_info">ستُزامن الإخطارات من التّطبيقات المحدّدة.</string>
+  <string name="show_notification_if_screen_off">أرسل تنبيهات فقط إذا كانت الشاشة مغلقة</string>
   <string name="add_device_dialog_title">أضف جهازاً</string>
   <string name="add_device_hint">اسم المضيف أو عنوان IP</string>
+  <string name="sftp_preference_configured_storage_locations">أماكن التّخزين المضبوطة</string>
+  <string name="sftp_preference_add_storage_location_title">أضف مكان تخزين</string>
+  <string name="sftp_preference_edit_storage_location">حرر مكان التخزين</string>
+  <string name="sftp_storage_preference_storage_location">مكان التخزين</string>
+  <string name="sftp_storage_preference_storage_location_already_configured">هذا المكان مضبوط مسبقًا</string>
   <string name="sftp_storage_preference_click_to_select">"انقر للاختيار "</string>
   <string name="sftp_storage_preference_display_name">اسم العرض</string>
+  <string name="sftp_storage_preference_display_name_already_used">اسم العرض مستخدم مسبقًا</string>
+  <string name="sftp_storage_preference_display_name_cannot_be_empty">اسم العرض لا يمكن أن يكون فارغا</string>
   <string name="sftp_action_mode_menu_delete">احذف</string>
+  <string name="sftp_no_storage_locations_configured">لا توجد مواقع تخزين مضبوطة</string>
+  <string name="sftp_saf_permission_explanation">للوصول إلى الملفات عن بُعد عليك ضبط مواقع التخزين</string>
+  <string name="sftp_manage_storage_permission_explanation">للسماح بالوصول عن بُعد إلى الملفات الموجودة على هذا الجهاز، يجب أن تسمح لـ كيدي المتصل بإدارة التخزين.</string>
   <string name="no_players_connected">لم يُعثر على مشغّلات</string>
   <string name="send_files">أرسل ملفّات</string>
+  <string name="block_notification_contents">احظر محتويات الإشعار</string>
+  <string name="block_notification_images">احظر صور الإشعار</string>
   <string name="pairing_title">أجهزة «كِيدِي المتّصل»</string>
   <string name="pairing_description">الأجهزة الأخرى التي تشغّل «كِيدِي المتّصل» وعلى نفس الشّبكة ستظهر هنا.</string>
   <string name="device_rename_title">أعد تسمية الجهاز</string>
   <string name="device_rename_confirm">أعد التّسمية</string>
-  <string name="refresh">أنعش</string>
+  <string name="refresh">حدّث</string>
   <string name="unreachable_description">الجهاز المقترن هذا لا يمكن الوصول إليه. تأكّد من اتّصاله بنفس الشّبكة.</string>
+  <string name="no_wifi">أنت غير متصل بشبكة واي فاي، لذلك قد لا تتمكن من رؤية أي أجهزة. انقر هنا لتمكين واي فاي.</string>
+  <string name="on_non_trusted_message">ليس على شبكة موثوق بها: الاكتشاف التلقائي معطل.</string>
   <string name="no_file_browser">لا متصفّحات ملفّات مثبّتة.</string>
-  <string name="pref_plugin_telepathy">أرسل SMS</string>
+  <string name="pref_plugin_telepathy">أرسل رسالة نصية قصيرة</string>
   <string name="pref_plugin_telepathy_desc">أرسل رسائل نصّيّة من سطح المكتب</string>
-  <string name="pref_plugin_telepathy_mms">أرسل رسالة قصيرة</string>
+  <string name="pref_plugin_telepathy_mms">أرسل رسالة وسائط</string>
+  <string name="pref_plugin_telepathy_mms_desc">لتتمكن من إرسال رسائل الوسائط المتعددة من كيدي المتصل، عليك تعيينه كتطبيق الرسائل القصيرة المبدئي.</string>
   <string name="findmyphone_title">جِد جهازي</string>
   <string name="findmyphone_title_tablet">جِد جهازي اللوحيّ</string>
   <string name="findmyphone_title_tv">جِد تلفازي</string>
   <string name="findmyphone_description">يرّن هذا الجهاز لتجده</string>
-  <string name="findmyphone_found">عثر عليه</string>
+  <string name="findmyphone_found">عثرت عليه</string>
   <string name="open">افتح</string>
   <string name="close">أغلق</string>
+  <string name="plugins_need_permission">تحتاج بعض المُلحَقَات إلى أذونات للعمل (انقر للحصول على مزيد من المعلومات):</string>
+  <string name="permission_explanation">تحتاج هذه الملحقة إلى أذونات للعمل</string>
+  <string name="all_permissions_granted">جميع الأذونات ممنوحة 🎉</string>
+  <string name="optional_permission_explanation">تحتاج إلى منح أذونات إضافية لتمكين جميع الوظائف</string>
+  <string name="plugins_need_optional_permission">تحتوي بعض المُلحقات على ميزات معطلة بسبب عدم وجود إذن (انقر للحصول على مزيد من المعلومات):</string>
+  <string name="share_optional_permission_explanation">لتلقي الملفات تحتاج إلى السماح بالوصول إلى التخزين</string>
+  <string name="share_notifications_explanation">لرؤية التقدم المحرز عند إرسال واستقبال الملفات تحتاج إلى السماح بالإشعارات</string>
+  <string name="telepathy_permission_explanation">لقراءة الرسائل النصية القصيرة وكتابتها من سطح المكتب، تحتاج إلى منح الإذن للرسائل النصية القصيرة</string>
+  <string name="telephony_permission_explanation">للاطلاع على المكالمات الهاتفية على سطح المكتب، تحتاج إلى منح الإذن لسجلات المكالمات الهاتفية وحالة الهاتف</string>
+  <string name="telephony_optional_permission_explanation">للاطلاع على اسم المتراسل بدلاً من رقم الهاتف، تحتاج إلى منح حق الوصول إلى المتراسلين على الهاتف</string>
+  <string name="contacts_permission_explanation">لمشاركة دفتر متراسليك مع سطح المكتب، تحتاج إلى منح إذن الوصول إلى المتراسلين</string>
+  <string name="contacts_per_device_confirmation">ستُنسخ جهات اتصال هاتفك إلى هذا الجهاز، بحيث يمكن استخدامها من قبل تطبيق كيدي المتصل للرسائل النصية القصيرة والتطبيقات الأخرى.</string>
   <string name="select_ringtone">اختر النغمة</string>
   <string name="telephony_pref_blocked_title">أرقام محظورة</string>
+  <string name="telephony_pref_blocked_dialog_desc">لا تعرض المكالمات والرسائل النصية القصيرة من هذه الأرقام. يرجى تحديد رقم واحد لكل سطر</string>
   <string name="mpris_coverart_description">الصورة الفنية للوسيط الحالي</string>
   <string name="settings_icon_description">أيقونة الإعدادات</string>
   <string name="presenter_fullscreen">ملء الشّاشة</string>
   <string name="presenter_exit">اخرج من العرض التقديمي</string>
+  <string name="presenter_lock_tip">يمكنك قفل جهازك واستخدام مفاتيح الصوت للانتقال إلى الشريحة السابقة/التالية</string>
   <string name="add_command">أضف أمراً</string>
   <string name="addcommand_explanation">لا يوجد أوامر مسجلة</string>
+  <string name="addcommand_explanation2">يمكنك إضافة أوامر جديدة في إعدادات نظام كيدي المتصل في إعدادات نظام كيدي المتصل</string>
+  <string name="add_command_description">يمكنك إضافة أوامر على سطح المكتب</string>
   <string name="pref_plugin_mprisreceiver">متحكم الوسائط</string>
-  <string name="notification_channel_default">إخطارات أخرى</string>
+  <string name="pref_plugin_mprisreceiver_desc">تحكم في مشغلات الوسائط في هاتفك من جهاز آخر</string>
+  <string name="notification_channel_default">الإشعارات الأخرى</string>
+  <string name="notification_channel_persistent">مؤشر مستمر</string>
   <string name="notification_channel_media_control">متحكم الوسائط</string>
+  <string name="notification_channel_filetransfer">نقل الملفات الواردة</string>
+  <string name="notification_channel_filetransfer_upload">نقل الملفات الصادرة</string>
+  <string name="notification_channel_filetransfer_error">خطأ في النقل الملف</string>
   <string name="notification_channel_high_priority">مرتفعة الأولوية</string>
   <string name="mpris_stop">أوقف المشغل الحالي</string>
   <string name="copy_url_to_clipboard">انسخ المسار إلى الحافظة</string>
   <string name="clipboard_toast">نُسخ إلى الحافظة</string>
   <string name="runcommand_notreachable">الجهاز غير قابل الوصول</string>
   <string name="runcommand_notpaired">الجهاز غير مقترن</string>
+  <string name="runcommand_nosuchdevice">لا يوجد جهاز من هذا القبيل</string>
+  <string name="runcommand_noruncommandplugin">لم يُمكّن ملحقة تشغيل الأوامر في هذا الجهاز</string>
   <string name="runcommand_category_device_controls_title">متحكمات الجهاز</string>
+  <string name="runcommand_device_controls_summary">إذا كان جهازك يدعم عناصر تحكم الجهاز، فستظهر الأوامر التي ضبطتها هناك.</string>
+  <string name="set_runcommand_name_as_title">اجعل اسم الأمر كعنوان</string>
+  <string name="runcommand_name_as_title_title">اعرض الاسم كعنوان</string>
   <string name="pref_plugin_findremotedevice">اعثر على جهاز بعيد</string>
   <string name="pref_plugin_findremotedevice_desc">رنّ على الجهاز البعيد</string>
   <string name="ring">رّن</string>
   <string name="pref_plugin_systemvolume">صوت النظام</string>
+  <string name="pref_plugin_systemvolume_desc">تحكّم في مستوى صوت النظام للجهاز البعيد</string>
   <string name="mute">اكتم</string>
   <string name="all">الكلّ</string>
   <string name="devices">الأجهزة</string>
   <string name="settings_rename">اسم الجهاز</string>
   <string name="settings_dark_mode">سمة مظلمة</string>
+  <string name="settings_export_logs">صدّر سجل كِيدِي المتّصل</string>
+  <string name="settings_export_logs_text">أنشئ ملفًا يحتوي على معلومات التنفيذ التي يمكن أن تساعد في استكشاف المشكلات وإصلاحها.</string>
   <string name="settings_more_settings_title">المزيد من الإعدادات</string>
+  <string name="settings_more_settings_text">يمكن العثور على إعدادات لكل جهاز ضمن ”إعدادات الملحقة“ من داخل الجهاز.</string>
+  <string name="setting_persistent_notification">أظهر الإخطارات المستمرّة</string>
   <string name="setting_persistent_notification_oreo">الإخطارات المستمرّة</string>
+  <string name="setting_persistent_notification_description">اطرق للتمكين/التعطيل في إعدادات الإشعارات</string>
   <string name="extra_options">الخيارات الإضافية</string>
   <string name="privacy_options">خيارات الخصوصية</string>
   <string name="set_privacy_options">حدد خيارات الخصوصية</string>
   <string name="block_contents">امنح محتويات الإخطارات</string>
   <string name="block_images">امنع الصور في الإخطارات</string>
   <string name="notification_channel_receivenotification">إخطارات من أجهزة أخرى</string>
+  <string name="no_app_for_opening">لا يوجد تطبيق مناسب لفتح هذا الملف</string>
+  <string name="remote_keyboard_service">لوحة مفاتيح بعيده لكيدي المتصل</string>
   <string name="presenter_pointer">المؤشر</string>
   <string name="trusted_networks">الشّبكات الموثوقة</string>
-  <string name="add_trusted_network">أضف %s</string>
+  <string name="trusted_networks_desc">اقَصْر الاكتشاف التلقائي على الشبكات المعروفة</string>
+  <string name="add_trusted_network">أضف %1s</string>
+  <string name="empty_trusted_networks_list_text">لم تضف أي شبكة موثوق بها حتى الآن</string>
   <string name="allow_all_networks_text">اسمح للكل</string>
   <string name="location_permission_needed_title">الإذن مطلوب</string>
+  <string name="bluetooth_permission_needed_desc">يحتاج كيدي المتصل إلى إذن للاتصال بالأجهزة القريبة لإتاحة الأجهزة المقترنة باستخدام البلوتوث في كيدي المتصل.</string>
+  <string name="location_permission_needed_desc">يحتاج كيدي المتصل إلى إذن الموقع في الخلفية لمعرفة شبكة الواي فاي التي تتصل بها حتى عندما يكون التطبيق في الخلفية. وذلك لأنه يمكن استخدام اسم شبكات الواي فاي من حولك للعثور على موقعك، حتى وإن لم يكن هذا ما يفعله كيدي المتصل.</string>
+  <string name="clipboard_android_x_incompat">قام أندرويد 10 بإزالة وصول للحافظة إلى جميع التطبيقات. ستعطل هذه الملحقة.</string>
+  <string name="mpris_open_url">استمر في التشغيل هنا</string>
+  <string name="cant_open_url">تعذر فتح العنوان للاستمرار في التشغيل</string>
   <string name="bigscreen_home">المنزل</string>
   <string name="bigscreen_up">أعلى</string>
   <string name="bigscreen_left">يسار</string>
   <string name="bigscreen_select">اختر</string>
   <string name="bigscreen_right">يمين</string>
   <string name="bigscreen_down">أسفل</string>
-  <string name="bigscreen_mic">اللاقط</string>
+  <string name="bigscreen_mic">ميكروفون</string>
   <string name="pref_plugin_bigscreen">متحكم الشاشة الكبيرة</string>
+  <string name="pref_plugin_bigscreen_desc">استخدم جهازك كجهاز تحكم عن بُعد لشاشة البلازما الكبيرة</string>
+  <string name="bigscreen_optional_permission_explanation">لمشاركة إدخال الميكروفون من هاتفك تحتاج إلى إتاحة الوصول إلى إدخال الصوت في الهاتف</string>
   <string name="bigscreen_speech_extra_prompt">حديث</string>
   <string name="message_reply_label">ردّ</string>
   <string name="mark_as_read_label">علّم كمقروءة</string>
@@ -227,13 +398,13 @@
   <string name="theme_dialog_title">اختر سمة</string>
   <string-array name="theme_list">
     <item>معينة بواسطة حافظ البطارية</item>
-    <item>خفيف</item>
+    <item>فاتح</item>
     <item>مظلمة</item>
   </string-array>
   <string-array name="theme_list_v28">
-    <item>افتراضيات النظام</item>
-    <item>خفيف</item>
-    <item>مظلمة</item>
+    <item>مبدئيات النظام</item>
+    <item>فاتح</item>
+    <item>مظلم</item>
   </string-array>
   <string name="report_bug">أبلغ عن علة</string>
   <string name="donate">تبرّع</string>
@@ -253,12 +424,44 @@
   <string name="konqi">كوينكي</string>
   <string name="rise_up">ارفع</string>
   <string name="rise_down">اخفض</string>
-  <string name="click_here_to_type">اطُرق لتكتب</string>
+  <string name="click_here_to_type">اطُرق هنا لتكتب</string>
   <string name="clear_compose">امسح</string>
   <string name="send_compose">أرسل</string>
-  <string name="open_compose_send">ألف نص</string>
-  <string name="maintainer_and_developer">المصين ومطوّر</string>
+  <string name="compose_send_title">اكتب أرسل</string>
+  <string name="open_compose_send">اكتب نصًا</string>
+  <string name="double_tap_to_drag">طرق مزدوج للسحب</string>
+  <string name="hold_to_drag">اضغط مع الاستمرار للسحب</string>
+  <string name="about_kde_about"><h1>حول</h1>" "<p>كيدي مجتمع عالمي من مهندسي البرمجيات والفنانين والكتاب والمترجمين والمبدعين الملتزمين بتطوير البرمجيات الحرة. تُنتج كيدي بيئة سطح المكتب بلازما، ومئات التطبيقات، والعديد من مكتبات البرمجيات التي تدعمها.</p>" "<p>كيدي مشروع تعاوني: لا تتحكم جهة واحدة في توجهاته أو منتجاته. بل نعمل معًا لتحقيق هدفنا المشترك المتمثل في بناء أفضل برمجيات حرة في العالم. الجميع مدعوون للانضمام والمساهمة في كيدي، بمن فيهم أنت.</p>" قم بزيارة &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; للحصول على مزيد من المعلومات حول مجتمع كيدي والبرمجيات التي ننتجها"</string>
+  <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;الإبلاغ عن الأخطاء أو الرغبات&lt;/h1&gt; &lt;p&gt;يمكن دائمًا تحسين البرامج، وفريق كيدي مستعدٌّ لذلك. ومع ذلك، يجب عليك - كمستخدم - إبلاغنا عندما لا يعمل شيءٌ ما كما هو متوقع أو عندما يكون من الممكن تحسينه.&lt;/p&gt; &lt;p&gt;تحتوي كيدي على نظام تتبع للأخطاء. تفضل بزيارة &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; أو استخدم زر \"الإبلاغ عن خطأ\" من شاشة \"حول\" للإبلاغ عن الأخطاء.&lt;/p&gt; إذا كانت لديك أي اقتراحات للتحسين، فنرحب بك باستخدام نظام تتبع الأخطاء لتسجيل رغبتك. تأكد من استخدام مستوى الخطورة المسمى \"قائمة الأمنيات\".</string>
+  <string name="about_kde_join_kde">&lt;h1&gt;انضم إلى كيدي&lt;/h1&gt; &lt;p&gt;لا يلزم أن تكون مطور برامج لكي تكون عضوًا في فريق كيدي. يمكنك الانضمام إلى فرق اللغات التي تترجم واجهات البرامج. يمكنك توفير الرسومات والموضوعات والأصوات والوثائق المُحسّنة. القرار لك! &lt;p&gt;قم بزيارة &lt;a href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/Get_Involved&lt;/a&gt; للحصول على معلومات حول بعض المشاريع التي يمكنك المشاركة فيها.&lt;/p&gt; إذا كنت بحاجة إلى مزيد من المعلومات أو الوثائق، فإن زيارة &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/&lt;/a&gt; ستوفر لك ما تحتاجه.</string>
+  <string name="about_kde_support_kde">&lt;h1&gt;دعم كيدي&lt;/h1&gt; &lt;p&gt;برامج كيدي متاحة دائمًا بالمجان، ولكن إنشاءها ليس مجانيًا.&lt;/p&gt; &lt;p&gt;لدعم التطوير، قام مجتمع كيدي بتأسيس KDE e.V.، وهي منظمة غير ربحية تأسست بشكل قانوني في ألمانيا. تمثل KDE e.V. مجتمع كيدي في الشؤون القانونية والمالية. انظر &lt;a href=https://ev.kde.org/&gt;https://ev.kde.org/&lt;/a&gt; للحصول على معلومات حول KDE e.V.&lt;/p&gt; &lt;p&gt;يستفيد كيدي من العديد من أنواع المساهمات، بما في ذلك المساهمات المالية. نحن نستخدم الأموال لتعويض الأعضاء وغيرهم عن النفقات التي يتكبدونها عند المساهمة. ويتم استخدام المزيد من الأموال للدعم القانوني وتنظيم المؤتمرات والاجتماعات.&lt;/p&gt; &lt;p&gt;نود أن نشجعكم على دعم جهودنا من خلال التبرع المالي، باستخدام إحدى الطرق الموضحة في &lt;a href=https://www.kde.org/community/donations/&gt;https://www.kde.org/community/donations/&lt;/a&gt;.&lt;/p&gt; نشكركم جزيل الشكر مقدمًا على دعمكم.</string>
+  <string name="maintainer_and_developer">الصائن ومطوّر</string>
   <string name="developer">مطوّر</string>
+  <string name="apple_support">دعم ماك أو إس. العمل على دعم iOS</string>
   <string name="bug_fixes_and_general_improvements">إصلاح علل وتحسينات عامة</string>
+  <string name="samoilenko_yuri_task">تنفيذ SFTP، وإصلاح الأخطاء والتحسينات العامة</string>
+  <string name="aniket_kumar_task">تحسينات ملحق الرسائل النصية القصيرة</string>
+  <string name="alex_fiestas_task">تحسينات ملحق المتراسلين</string>
+  <string name="maxim_leshchenko_task">تحسينات واجهة المستخدم وصفحة ”حول“ هذه الصفحة</string>
+  <string name="holger_kaelberer_task">ملحق لوحة المفاتيح عن بُعد وإصلاح الأخطاء</string>
+  <string name="saikrishna_arcot_task">دعم استخدام لوحة المفاتيح في ملحق الإدخال عن بُعد، وإصلاح الأخطاء والتحسينات العامة</string>
+  <string name="shellwen_chen_task">تحسين أمان SFTP، وتحسين قابلية صيانة هذا المشروع، وإصلاح الأخطاء والتحسينات العامة</string>
+  <string name="everyone_else">كل من ساهم في كيدي المتصل على مدار السنوات الماضية</string>
   <string name="send_clipboard">أرسل الحافظة</string>
+  <string name="tap_to_execute">اطرق لتنفيذه</string>
+  <string name="plugin_stats">ملحقة الإحصائيات</string>
+  <string name="enable_udp_broadcast">مكّن اكتشاف الجهاز عن طريق UDP</string>
+  <string name="enable_bluetooth">فعّل بلوتوث (بيتا)</string>
+  <string name="receive_notifications_permission_explanation">يجب السماح بتلقي الإشعارات من الأجهزة الأخرى</string>
+  <string name="findmyphone_notifications_explanation">إذن الإشعارات مطلوب حتى يتمكن الهاتف من الرنين عندما يكون التطبيق في الخلفية</string>
+  <string name="no_notifications">الإشعارات معطلة، لن تتلقى إشعارات الأزواج الواردة.</string>
+  <string name="mpris_keepwatching">استمر في التشغيل</string>
+  <string name="mpris_keepwatching_settings_title">استمر في التشغيل</string>
+  <string name="mpris_keepwatching_settings_summary">أظهر إشعارًا صامتًا للمواصلة التشغيل على هذا الجهاز بعد إغلاق الوسائط</string>
+  <string name="notification_channel_keepwatching">استمر في التشغيل</string>
+  <string name="ping_result">تعقبت في %1$d ميلي ثانية</string>
+  <string name="ping_failed">تعذر الوصول إلى الجهاز</string>
+  <string name="ping_in_progress">يتعقب…</string>
+  <string name="device_host_invalid">المضيف غير صالح. استخدم اسم مضيف أو IPv4 أو IPv6 صالحاً</string>
+  <string name="device_host_duplicate">المضيف موجود مسبقًا في القائمة</string>
 </resources>
