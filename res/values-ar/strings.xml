@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="kde_connect">كِيدِي المتّصل</string>
+  <string name="kde_connect">جسر كِيدِي</string>
   <string name="manifest_label_share">أرسِل إلى جهاز</string>
   <string name="foreground_notification_no_devices">غير متصل بأي جهاز</string>
   <string name="foreground_notification_devices">متّصل بـ: %s</string>
@@ -43,11 +43,11 @@
   <string name="open_settings">افتح الإعدادات</string>
   <string name="no_permissions">عليك إعطاء التّطبيق صلاحيّات للنّفاذ إلى الإشعارات</string>
   <string name="no_permission_mprisreceiver">لتكون قادرًا على التحكم في مشغلات الوسائط الخاصة بك ، تحتاج إلى منح حق الوصول إلى الإشعارات</string>
-  <string name="no_permissions_remotekeyboard">لتلقي ضغطات المفاتيح تحتاج إلى تنشيط لوحة المفاتيح البعيدة لكيدي المتصل</string>
+  <string name="no_permissions_remotekeyboard">لتلقي ضغطات المفاتيح تحتاج إلى تنشيط لوحة المفاتيح البعيدة لجسر كِيدِي</string>
   <string name="send_ping">أرسل وخزة ping</string>
   <string name="open_mpris_controls">متحكّمات الوسائط المتعدّدة</string>
   <string name="remotekeyboard_editing_only_title">التعامل مع المفاتيح البعيدة فقط عند التحرير</string>
-  <string name="remotekeyboard_not_connected">لا يوجد اتصال لوحة المفاتيح بعيدة نشط، وإنشاء واحد في كيدي المتصل</string>
+  <string name="remotekeyboard_not_connected">لا يوجد اتصال لوحة المفاتيح بعيدة نشط، وإنشاء واحد في جسر كِيدِي</string>
   <string name="remotekeyboard_connected">اتصال لوحة المفاتيح بعيدة نشط</string>
   <string name="remotekeyboard_multiple_connections">هناك أكثر من اتصال لوحة مفاتيح بعيدة، حدد الجهاز لتضبطه</string>
   <string name="open_mousepad">الإدخال البعيد</string>
@@ -223,7 +223,7 @@
   </string-array>
   <string name="mpris_notifications_explanation">يلزم الحصول على إذن الإشعارات لإظهار الوسائط البعيدة في درج الإشعارات</string>
   <string name="mpris_notification_settings_title">أظهر إشعار التحكم في الوسائط</string>
-  <string name="mpris_notification_settings_summary">اسمح بالتحكم في مشغلات الوسائط دون فتح كيدي المتصل</string>
+  <string name="mpris_notification_settings_summary">اسمح بالتحكم في مشغلات الوسائط دون فتح جسر كِيدِي</string>
   <string name="share_to">شارك مع…</string>
   <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">شاركنا العناوين إلى جهاز لا يمكن الوصول إليه، ستُسلم إليه بمجرد أن يصبح الوصول إليه ممكناً.\n\n</string>
@@ -264,13 +264,13 @@
   <string name="sftp_action_mode_menu_delete">احذف</string>
   <string name="sftp_no_storage_locations_configured">لا توجد مواقع تخزين مضبوطة</string>
   <string name="sftp_saf_permission_explanation">للوصول إلى الملفات عن بُعد عليك ضبط مواقع التخزين</string>
-  <string name="sftp_manage_storage_permission_explanation">للسماح بالوصول عن بُعد إلى الملفات الموجودة على هذا الجهاز، يجب أن تسمح لـ كيدي المتصل بإدارة التخزين.</string>
+  <string name="sftp_manage_storage_permission_explanation">للسماح بالوصول عن بُعد إلى الملفات الموجودة على هذا الجهاز، يجب أن تسمح لـ جسر كِيدِي بإدارة التخزين.</string>
   <string name="no_players_connected">لم يُعثر على مشغّلات</string>
   <string name="send_files">أرسل ملفّات</string>
   <string name="block_notification_contents">احظر محتويات الإشعار</string>
   <string name="block_notification_images">احظر صور الإشعار</string>
-  <string name="pairing_title">أجهزة «كِيدِي المتّصل»</string>
-  <string name="pairing_description">الأجهزة الأخرى التي تشغّل «كِيدِي المتّصل» وعلى نفس الشّبكة ستظهر هنا.</string>
+  <string name="pairing_title">أجهزة «جسر كِيدِي»</string>
+  <string name="pairing_description">الأجهزة الأخرى التي تشغّل «جسر كِيدِي» وعلى نفس الشّبكة ستظهر هنا.</string>
   <string name="device_rename_title">أعد تسمية الجهاز</string>
   <string name="device_rename_confirm">أعد التّسمية</string>
   <string name="refresh">حدّث</string>
@@ -281,7 +281,7 @@
   <string name="pref_plugin_telepathy">أرسل رسالة نصية قصيرة</string>
   <string name="pref_plugin_telepathy_desc">أرسل رسائل نصّيّة من سطح المكتب</string>
   <string name="pref_plugin_telepathy_mms">أرسل رسالة وسائط</string>
-  <string name="pref_plugin_telepathy_mms_desc">لتتمكن من إرسال رسائل الوسائط المتعددة من كيدي المتصل، عليك تعيينه كتطبيق الرسائل القصيرة المبدئي.</string>
+  <string name="pref_plugin_telepathy_mms_desc">لتتمكن من إرسال رسائل الوسائط المتعددة من جسر كِيدِي، عليك تعيينه كتطبيق الرسائل القصيرة المبدئي.</string>
   <string name="findmyphone_title">جِد جهازي</string>
   <string name="findmyphone_title_tablet">جِد جهازي اللوحيّ</string>
   <string name="findmyphone_title_tv">جِد تلفازي</string>
@@ -300,7 +300,7 @@
   <string name="telephony_permission_explanation">للاطلاع على المكالمات الهاتفية على سطح المكتب، تحتاج إلى منح الإذن لسجلات المكالمات الهاتفية وحالة الهاتف</string>
   <string name="telephony_optional_permission_explanation">للاطلاع على اسم المتراسل بدلاً من رقم الهاتف، تحتاج إلى منح حق الوصول إلى المتراسلين على الهاتف</string>
   <string name="contacts_permission_explanation">لمشاركة دفتر متراسليك مع سطح المكتب، تحتاج إلى منح إذن الوصول إلى المتراسلين</string>
-  <string name="contacts_per_device_confirmation">ستُنسخ جهات اتصال هاتفك إلى هذا الجهاز، بحيث يمكن استخدامها من قبل تطبيق كيدي المتصل للرسائل النصية القصيرة والتطبيقات الأخرى.</string>
+  <string name="contacts_per_device_confirmation">ستُنسخ جهات اتصال هاتفك إلى هذا الجهاز، بحيث يمكن استخدامها من قبل تطبيق جسر كِيدِي للرسائل النصية القصيرة والتطبيقات الأخرى.</string>
   <string name="select_ringtone">اختر النغمة</string>
   <string name="telephony_pref_blocked_title">أرقام محظورة</string>
   <string name="telephony_pref_blocked_dialog_desc">لا تعرض المكالمات والرسائل النصية القصيرة من هذه الأرقام. يرجى تحديد رقم واحد لكل سطر</string>
@@ -311,7 +311,7 @@
   <string name="presenter_lock_tip">يمكنك قفل جهازك واستخدام مفاتيح الصوت للانتقال إلى الشريحة السابقة/التالية</string>
   <string name="add_command">أضف أمراً</string>
   <string name="addcommand_explanation">لا يوجد أوامر مسجلة</string>
-  <string name="addcommand_explanation2">يمكنك إضافة أوامر جديدة في إعدادات نظام كيدي المتصل في إعدادات نظام كيدي المتصل</string>
+  <string name="addcommand_explanation2">يمكنك إضافة أوامر جديدة في إعدادات نظام جسر كِيدِي في إعدادات نظام جسر كِيدِي</string>
   <string name="add_command_description">يمكنك إضافة أوامر على سطح المكتب</string>
   <string name="pref_plugin_mprisreceiver">متحكم الوسائط</string>
   <string name="pref_plugin_mprisreceiver_desc">تحكم في مشغلات الوسائط في هاتفك من جهاز آخر</string>
@@ -343,7 +343,7 @@
   <string name="devices">الأجهزة</string>
   <string name="settings_rename">اسم الجهاز</string>
   <string name="settings_dark_mode">سمة مظلمة</string>
-  <string name="settings_export_logs">صدّر سجل كِيدِي المتّصل</string>
+  <string name="settings_export_logs">صدّر سجل جسر كِيدِي</string>
   <string name="settings_export_logs_text">أنشئ ملفًا يحتوي على معلومات التنفيذ التي يمكن أن تساعد في استكشاف المشكلات وإصلاحها.</string>
   <string name="settings_more_settings_title">المزيد من الإعدادات</string>
   <string name="settings_more_settings_text">يمكن العثور على إعدادات لكل جهاز ضمن ”إعدادات الملحقة“ من داخل الجهاز.</string>
@@ -357,7 +357,7 @@
   <string name="block_images">امنع الصور في الإخطارات</string>
   <string name="notification_channel_receivenotification">إخطارات من أجهزة أخرى</string>
   <string name="no_app_for_opening">لا يوجد تطبيق مناسب لفتح هذا الملف</string>
-  <string name="remote_keyboard_service">لوحة مفاتيح بعيده لكيدي المتصل</string>
+  <string name="remote_keyboard_service">لوحة مفاتيح بعيده لجسر كِيدِي</string>
   <string name="presenter_pointer">المؤشر</string>
   <string name="trusted_networks">الشّبكات الموثوقة</string>
   <string name="trusted_networks_desc">اقَصْر الاكتشاف التلقائي على الشبكات المعروفة</string>
@@ -365,8 +365,8 @@
   <string name="empty_trusted_networks_list_text">لم تضف أي شبكة موثوق بها حتى الآن</string>
   <string name="allow_all_networks_text">اسمح للكل</string>
   <string name="location_permission_needed_title">الإذن مطلوب</string>
-  <string name="bluetooth_permission_needed_desc">يحتاج كيدي المتصل إلى إذن للاتصال بالأجهزة القريبة لإتاحة الأجهزة المقترنة باستخدام البلوتوث في كيدي المتصل.</string>
-  <string name="location_permission_needed_desc">يحتاج كيدي المتصل إلى إذن الموقع في الخلفية لمعرفة شبكة الواي فاي التي تتصل بها حتى عندما يكون التطبيق في الخلفية. وذلك لأنه يمكن استخدام اسم شبكات الواي فاي من حولك للعثور على موقعك، حتى وإن لم يكن هذا ما يفعله كيدي المتصل.</string>
+  <string name="bluetooth_permission_needed_desc">يحتاج جسر كِيدِي إلى إذن للاتصال بالأجهزة القريبة لإتاحة الأجهزة المقترنة باستخدام البلوتوث في جسر كِيدِي.</string>
+  <string name="location_permission_needed_desc">يحتاج جسر كِيدِي إلى إذن الموقع في الخلفية لمعرفة شبكة الواي فاي التي تتصل بها حتى عندما يكون التطبيق في الخلفية. وذلك لأنه يمكن استخدام اسم شبكات الواي فاي من حولك للعثور على موقعك، حتى وإن لم يكن هذا ما يفعله جسر كِيدِي.</string>
   <string name="clipboard_android_x_incompat">قام أندرويد 10 بإزالة وصول للحافظة إلى جميع التطبيقات. ستعطل هذه الملحقة.</string>
   <string name="mpris_open_url">استمر في التشغيل هنا</string>
   <string name="cant_open_url">تعذر فتح العنوان للاستمرار في التشغيل</string>
@@ -446,7 +446,7 @@
   <string name="holger_kaelberer_task">ملحق لوحة المفاتيح عن بُعد وإصلاح الأخطاء</string>
   <string name="saikrishna_arcot_task">دعم استخدام لوحة المفاتيح في ملحق الإدخال عن بُعد، وإصلاح الأخطاء والتحسينات العامة</string>
   <string name="shellwen_chen_task">تحسين أمان SFTP، وتحسين قابلية صيانة هذا المشروع، وإصلاح الأخطاء والتحسينات العامة</string>
-  <string name="everyone_else">كل من ساهم في كيدي المتصل على مدار السنوات الماضية</string>
+  <string name="everyone_else">كل من ساهم في جسر كِيدِي على مدار السنوات الماضية</string>
   <string name="send_clipboard">أرسل الحافظة</string>
   <string name="tap_to_execute">اطرق لتنفيذه</string>
   <string name="plugin_stats">ملحقة الإحصائيات</string>

@@ -181,9 +181,11 @@
   <string name="middle_click">Wyślij kliknięcie środkowym</string>
   <string name="show_keyboard">Pokaż klawiaturę</string>
   <string name="device_not_paired">Urządzenie niesparowane</string>
+  <string name="pairing_duplicate_names">Uwaga: Istnieje wiele urządzeń o tej samej nazwie.</string>
   <string name="request_pairing">Prośba o sparowanie</string>
   <string name="pairing_accept">Przyjmij</string>
   <string name="pairing_reject">Odrzuć</string>
+  <string name="pairing_explanation">Sparowanie dwóch urządzeń da im dostęp do siebie nawzajem. Paruj tylko swoje własne urządzenia.</string>
   <string name="settings">Ustawienia</string>
   <string name="mpris_play">Odtwórz</string>
   <string name="mpris_pause">Wstrzymaj</string>
@@ -207,6 +209,7 @@
   <string name="mpris_notification_settings_title">Pokaż powiadomienia sterowania mediami</string>
   <string name="mpris_notification_settings_summary">Steruje odtwarzaczami bez otwierania KDE Connect</string>
   <string name="share_to">Udostępnij urządzeniu...</string>
+  <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">Adres URL udostępniony nieosiągalnemu urządzeniu zostanie do niego dostarczony zaraz po tym jak stanie się osiągalne.\n\n</string>
   <string name="protocol_version">Wersja protokołu:</string>
   <string name="protocol_version_newer">Urządzenie to używa nowszej wersji protokołu</string>
@@ -324,6 +327,8 @@
   <string name="devices">Urządzenia</string>
   <string name="settings_rename">Nazwa urządzenia</string>
   <string name="settings_dark_mode">Ciemny wygląd</string>
+  <string name="settings_export_logs">Wyeksportuj dziennik KDE Connect</string>
+  <string name="settings_export_logs_text">Utwórz plik zawierający ślad wykonywania, który może pomóc w rozwiązywaniu błędów.</string>
   <string name="settings_more_settings_title">Więcej ustawień</string>
   <string name="settings_more_settings_text">Dodatkowe ustawienia, dotyczące danego urządzenia, można znaleźć po wejściu na nie i wybranie „Ustawienia wtyczek”.</string>
   <string name="setting_persistent_notification">Pokaż nieznikające powiadomienia</string>
