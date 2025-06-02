@@ -165,9 +165,11 @@
   <string name="middle_click">Skicka mittenklick</string>
   <string name="show_keyboard">Visa tangentbord</string>
   <string name="device_not_paired">Apparat inte parkopplad</string>
+  <string name="pairing_duplicate_names">Varning: Det finns flera enheter med samma namn.</string>
   <string name="request_pairing">Begär parkoppling</string>
   <string name="pairing_accept">Acceptera</string>
   <string name="pairing_reject">Avslå</string>
+  <string name="pairing_explanation">Parkoppling av två enheter ger dem tillgång till varandra. Parkoppla bara dina egna enheter.</string>
   <string name="settings">Inställningar</string>
   <string name="mpris_play">Spela</string>
   <string name="mpris_pause">Paus</string>
@@ -191,6 +193,7 @@
   <string name="mpris_notification_settings_title">Visa underrättelser om mediastyrning</string>
   <string name="mpris_notification_settings_summary">Tillåt att styra mediaspelare utan att KDE-anslut öppnas</string>
   <string name="share_to">Dela med…</string>
+  <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">Webbadress som delas med en apparat som inte kan nås levereras till den när den väl blir möjlig att nå.\n\n</string>
   <string name="protocol_version">Protokollversion:</string>
   <string name="protocol_version_newer">Apparaten använder en nyare protokollversion</string>
@@ -308,6 +311,8 @@
   <string name="devices">Apparater</string>
   <string name="settings_rename">Apparatnamn</string>
   <string name="settings_dark_mode">Mörkt tema</string>
+  <string name="settings_export_logs">Exportera loggar från KDE anslut</string>
+  <string name="settings_export_logs_text">Generera en fil med körinformation som kan hjälpa till att felsöka problem.</string>
   <string name="settings_more_settings_title">Fler inställningar</string>
   <string name="settings_more_settings_text">Inställningar per apparat hittas i \'Insticksprograminställningar\' på apparaten.</string>
   <string name="setting_persistent_notification">Visa permanent underrättelse</string>
