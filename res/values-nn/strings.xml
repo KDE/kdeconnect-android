@@ -115,6 +115,7 @@
   <string name="error_not_reachable">Får ikkje kontakt med eininga</string>
   <string name="error_already_paired">Eininga er alt para</string>
   <string name="error_timed_out">Tidsavbrot</string>
+  <string name="error_clocks_not_match">Einingsklokkene er ikkje synkroniserte</string>
   <string name="error_canceled_by_user">Avbroten av brukar</string>
   <string name="error_canceled_by_other_peer">Avbroten av den andre eininga</string>
   <string name="encryption_info_title">Krypteringsinfo</string>
@@ -164,9 +165,11 @@
   <string name="middle_click">Send midtklikk</string>
   <string name="show_keyboard">Vis tastatur</string>
   <string name="device_not_paired">Eininga er ikkje para</string>
+  <string name="pairing_duplicate_names">Åtvaring: Det finst fleire einingar med same namn.</string>
   <string name="request_pairing">Be om paring</string>
   <string name="pairing_accept">Godta</string>
   <string name="pairing_reject">Avvis</string>
+  <string name="pairing_explanation">Ved paring av einingar, gjev du dei tilgang til kvarandre. Berre par saman einingar som du sjølv eig.</string>
   <string name="settings">Innstillingar</string>
   <string name="mpris_play">Spel</string>
   <string name="mpris_pause">Pause</string>
@@ -190,12 +193,15 @@
   <string name="mpris_notification_settings_title">Vis varsling med avspelingskontrollar</string>
   <string name="mpris_notification_settings_summary">Tillat å kontrollera mediespelarar utan å opna KDE Connect</string>
   <string name="share_to">Del til …</string>
+  <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">Adresser delte til ei utilgjengeleg eining vert leverte når eininga vert tilgjengeleg att.\n\n</string>
+  <string name="protocol_version">Protokollversjon:</string>
   <string name="protocol_version_newer">Denne eininga brukar ein nyare protokollversjon</string>
   <string name="plugin_settings_with_name">%s-innstillingar</string>
   <string name="invalid_device_name">Ugyldig einingsnamn</string>
   <string name="shareplugin_text_saved">Fekk tekst, som vart lagra på utklippstavla</string>
   <string name="custom_devices_settings">Tilpassa einingsliste</string>
+  <string name="custom_devices_settings_summary">%d lagde til manuelt</string>
   <string name="custom_device_list">Legg til eining basert på IP</string>
   <string name="custom_device_deleted">Tilpassa eining er sletta</string>
   <string name="custom_device_list_help">Viss eininga ikkje vert funnen automatisk, kan du leggja til IP-adressa eller vertsnamnet til eininga ved å trykka på handlingsknappen</string>
@@ -305,6 +311,7 @@
   <string name="devices">Einingar</string>
   <string name="settings_rename">Einingsnamn</string>
   <string name="settings_dark_mode">Mørkt tema</string>
+  <string name="settings_export_logs">Eksporter KDE Connect-loggar</string>
   <string name="settings_more_settings_title">Fleire innstillingar</string>
   <string name="settings_more_settings_text">Innstillingar for einskildeiningar finn du under «Programtillegg-oppsett» på kvar eining.</string>
   <string name="setting_persistent_notification">Vis evigvarande varsling</string>
@@ -418,4 +425,9 @@
   <string name="mpris_keepwatching_settings_title">Hald fram avspeling</string>
   <string name="mpris_keepwatching_settings_summary">Vis ei stille varsling om framhald av medie­avspeling på eininga etter avspelingsstopp</string>
   <string name="notification_channel_keepwatching">Hald fram avspeling</string>
+  <string name="ping_result">Pinga på %1$d millisekund</string>
+  <string name="ping_failed">Klarte ikkje pinga eininga</string>
+  <string name="ping_in_progress">Pingar …</string>
+  <string name="device_host_invalid">Ugyldig vert. Bruk eit gyldig vertsnamn, IPv4 eller IPv6.</string>
+  <string name="device_host_duplicate">Verten finst i lista frå før</string>
 </resources>
