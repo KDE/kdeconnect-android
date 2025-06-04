@@ -94,7 +94,7 @@ class DeviceInfo(
             with(identityPacket) {
                 DeviceInfo(
                     id = getString("deviceId"), // Redundant: We could read this from the certificate instead
-                    name = DeviceHelper.filterName(getString("deviceName", "unknown")),
+                    name = DeviceHelper.filterInvalidCharactersFromDeviceNameAndLimitLength(getString("deviceName", "unknown")),
                     type = DeviceType.fromString(getString("deviceType", "desktop")),
                     certificate = certificate,
                     protocolVersion = getInt("protocolVersion"),
@@ -106,7 +106,7 @@ class DeviceInfo(
         @JvmStatic
         fun isValidIdentityPacket(identityPacket: NetworkPacket): Boolean = with(identityPacket) {
             type == NetworkPacket.PACKET_TYPE_IDENTITY &&
-                    DeviceHelper.filterName(getString("deviceName", "")).isNotBlank() &&
+                    DeviceHelper.filterInvalidCharactersFromDeviceNameAndLimitLength(getString("deviceName", "")).isNotBlank() &&
                     isValidDeviceId(getString("deviceId", ""))
         }
 

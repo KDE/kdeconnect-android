@@ -122,7 +122,7 @@ object DeviceHelper {
     }
 
     fun setDeviceName(context: Context, name: String) {
-        val filteredName = filterName(name)
+        val filteredName = filterInvalidCharactersFromDeviceNameAndLimitLength(name)
         val preferences = PreferenceManager.getDefaultSharedPreferences(context)
         preferences.edit { putString(KEY_DEVICE_NAME_PREFERENCE, filteredName) }
     }
@@ -157,5 +157,9 @@ object DeviceHelper {
     }
 
     @JvmStatic
-    fun filterName(input: String): String = input.replace(NAME_INVALID_CHARACTERS_REGEX, "").trim().take(MAX_DEVICE_NAME_LENGTH)
+    fun filterInvalidCharactersFromDeviceNameAndLimitLength(input: String): String = filterInvalidCharactersFromDeviceName(input).trim().take(MAX_DEVICE_NAME_LENGTH)
+
+    @JvmStatic
+    fun filterInvalidCharactersFromDeviceName(input: String): String = input.replace(NAME_INVALID_CHARACTERS_REGEX, "")
+
 }

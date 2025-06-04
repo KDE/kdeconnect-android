@@ -37,7 +37,7 @@ import org.kde.kdeconnect.BackgroundService
 import org.kde.kdeconnect.Helpers.CreateFileParams
 import org.kde.kdeconnect.Helpers.CreateFileResultContract
 import org.kde.kdeconnect.Helpers.DeviceHelper
-import org.kde.kdeconnect.Helpers.DeviceHelper.filterName
+import org.kde.kdeconnect.Helpers.DeviceHelper.filterInvalidCharactersFromDeviceName
 import org.kde.kdeconnect.Helpers.DeviceHelper.getDeviceName
 import org.kde.kdeconnect.Helpers.NotificationHelper
 import org.kde.kdeconnect.UserInterface.ThemeUtil.applyTheme
@@ -83,7 +83,9 @@ class SettingsFragment : PreferenceFragmentCompat() {
         setOnBindEditTextListener(EditText::setSingleLine)
         setOnBindEditTextListener { editText: EditText ->
             editText.filters = arrayOf(
-                InputFilter { source: CharSequence, start: Int, end: Int, _: Spanned?, _: Int, _: Int -> filterName(source.subSequence(start, end).toString()) },
+                InputFilter { source: CharSequence, start: Int, end: Int, _: Spanned?, _: Int, _: Int ->
+                    filterInvalidCharactersFromDeviceName(source.subSequence(start, end).toString())
+                },
                 LengthFilter(DeviceHelper.MAX_DEVICE_NAME_LENGTH),
             )
         }
