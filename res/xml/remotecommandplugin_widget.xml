@@ -8,7 +8,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
 
 <appwidget-provider
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:minWidth="180dp"
+    android:minWidth="120dp"
     android:minHeight="80dp"
     android:initialLayout="@layout/widget_remotecommandplugin"
     android:resizeMode="horizontal|vertical"
