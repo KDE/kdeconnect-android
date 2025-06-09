@@ -1,11 +1,15 @@
-# SPDX-FileCopyrightText: 2023 Víctor Rodrigo Córdoba <vrcordoba@gmail.com>
+# Spanish translations for kdeconnect-android-store-full.po package.
+# Copyright (C) 2023-2025 This file is copyright:
+# This file is distributed under the same license as the kdeconnect-android package.
+#
+# SPDX-FileCopyrightText: 2023, 2025 Víctor Rodrigo Córdoba <vrcordoba@gmail.com>
 #. extracted from ./metadata/android/en-US/full_description.txt
 msgid ""
 msgstr ""
 "Project-Id-Version: kdeconnect-android-store-full\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-11-05 12:31+0000\n"
-"PO-Revision-Date: 2023-09-30 18:49+0200\n"
+"PO-Revision-Date: 2025-06-09 02:36+0100\n"
 "Last-Translator: Víctor Rodrigo Córdoba <vrcordoba@gmail.com>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
