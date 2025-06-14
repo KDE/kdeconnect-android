@@ -6,7 +6,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
 
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- NoActionBar because we use a Toolbar widget as ActionBar -->
-    <style name="KdeConnectThemeBase" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="KdeConnectThemeBase" parent="Theme.Material3.DynamicColors.DayNight.NoActionBar">
         <!-- The main color attributes -->
         <!-- Drawable definitions and overrides -->
 
