@@ -99,7 +99,7 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
      * @param device  The device id
      */
     fun onCreate(context: Context?, plugin: MprisPlugin, device: String) {
-        if (mprisDevices.isEmpty) {
+        if (mprisDevices.isEmpty()) {
             val prefs = PreferenceManager.getDefaultSharedPreferences(context)
             prefs.registerOnSharedPreferenceChangeListener(this)
         }
@@ -137,7 +137,7 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
         plugin.removePlayerListUpdatedHandler("media_notification")
         updateMediaNotification()
 
-        if (mprisDevices.isEmpty) {
+        if (mprisDevices.isEmpty()) {
             val prefs = PreferenceManager.getDefaultSharedPreferences(context)
             prefs.unregisterOnSharedPreferenceChangeListener(this)
         }
