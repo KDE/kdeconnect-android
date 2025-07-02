@@ -16,6 +16,8 @@ import org.kde.kdeconnect.DeviceInfo;
 import org.kde.kdeconnect.NetworkPacket;
 
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.SocketAddress;
 import java.util.ArrayList;
 
 
@@ -42,6 +44,8 @@ public abstract class BaseLink {
     public String getDeviceId() {
         return getDeviceInfo().id;
     }
+
+    public InetAddress getDeviceIp() { return null; }
 
     public BaseLinkProvider getLinkProvider() {
         return linkProvider;

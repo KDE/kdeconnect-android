@@ -27,9 +27,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketAddress;
 import java.net.SocketTimeoutException;
 import java.nio.channels.NotYetConnectedException;
 
@@ -255,5 +257,8 @@ public class LanLink extends BaseLink {
 
         packetReceived(np);
     }
+
+    @Override
+    public InetAddress getDeviceIp() { return socket.getInetAddress(); }
 
 }

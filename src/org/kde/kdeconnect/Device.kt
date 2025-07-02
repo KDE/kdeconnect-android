@@ -46,6 +46,8 @@ import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.ConcurrentMap
 import java.util.concurrent.CopyOnWriteArrayList
 import androidx.core.content.edit
+import java.net.InetAddress
+import java.net.SocketAddress
 
 class Device : PacketReceiver {
 
@@ -646,6 +648,15 @@ class Device : PacketReceiver {
     fun addPluginsChangedListener(listener: PluginsChangedListener) = pluginsChangedListeners.add(listener)
 
     fun removePluginsChangedListener(listener: PluginsChangedListener) = pluginsChangedListeners.remove(listener)
+
+    fun ipAddress(): InetAddress? {
+        for (link in links) {
+            if (link.deviceIp != null) {
+                return link.deviceIp
+            }
+        }
+        return null
+    }
 
     fun disconnect() {
         links.forEach(BaseLink::disconnect)
