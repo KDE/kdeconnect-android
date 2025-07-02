@@ -13,12 +13,16 @@ import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.DeviceInfo
 import org.kde.kdeconnect.Helpers.DeviceHelper.getDeviceInfo
 import org.kde.kdeconnect.NetworkPacket
+import java.net.InetAddress
 
 class LoopbackLink : BaseLink {
     constructor(context: Context, linkProvider: BaseLinkProvider) : super(context, linkProvider)
 
     override fun getName(): String = "LoopbackLink"
     override fun getDeviceInfo(): DeviceInfo = getDeviceInfo(context)
+    override fun getDeviceIp(): InetAddress {
+        return InetAddress.getLoopbackAddress()
+    }
 
     @WorkerThread
     override fun sendPacket(packet: NetworkPacket, callback: Device.SendPacketStatusCallback, sendPayloadFromSameThread: Boolean): Boolean {

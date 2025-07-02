@@ -21,6 +21,7 @@ import java.io.InputStream
 import java.io.InputStreamReader
 import java.io.OutputStream
 import java.io.Reader
+import java.net.InetAddress
 import java.util.UUID
 import kotlin.text.Charsets.UTF_8
 
@@ -96,6 +97,10 @@ class BluetoothLink(
 
     override fun getDeviceInfo(): DeviceInfo {
         return theDeviceInfo
+    }
+
+    override fun getDeviceIp(): InetAddress? {
+        return null;
     }
 
     override fun disconnect() {

@@ -9,6 +9,7 @@ package org.kde.kdeconnect.Backends;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import org.kde.kdeconnect.Device;
@@ -45,7 +46,7 @@ public abstract class BaseLink {
         return getDeviceInfo().id;
     }
 
-    public abstract InetAddress getDeviceIp();
+    public abstract @Nullable InetAddress getDeviceIp();
 
     public BaseLinkProvider getLinkProvider() {
         return linkProvider;
