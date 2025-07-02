@@ -45,7 +45,7 @@ public abstract class BaseLink {
         return getDeviceInfo().id;
     }
 
-    public InetAddress getDeviceIp() { return null; }
+    public abstract InetAddress getDeviceIp();
 
     public BaseLinkProvider getLinkProvider() {
         return linkProvider;

@@ -137,6 +137,8 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
         <item>stronger</item>
     </string-array>
 
+    <string name="virtualmonitor_rdp_client_not_installed">No app can handle RDP. Please install aFreeRDP or another client.</string>
+
     <string name="sendkeystrokes_send_to">Send keystrokes to</string>
     <string name="sendkeystrokes_textbox_hint">Send keystrokes to host</string>
     <string name="sendkeystrokes_disabled_toast">Sending keystrokes is disabled - enable it in the settings</string>

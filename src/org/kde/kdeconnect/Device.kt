@@ -650,12 +650,7 @@ class Device : PacketReceiver {
     fun removePluginsChangedListener(listener: PluginsChangedListener) = pluginsChangedListeners.remove(listener)
 
     fun ipAddress(): InetAddress? {
-        for (link in links) {
-            if (link.deviceIp != null) {
-                return link.deviceIp
-            }
-        }
-        return null
+        return links.firstNotNullOf { it.deviceIp }
     }
 
     fun disconnect() {

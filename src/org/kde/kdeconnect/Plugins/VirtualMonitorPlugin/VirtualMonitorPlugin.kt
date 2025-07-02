@@ -6,14 +6,9 @@
 package org.kde.kdeconnect.Plugins.VirtualMonitorPlugin
 
 import android.content.Intent
-import android.graphics.Rect
 import android.net.Uri
-import android.os.Build
 import android.util.Log
-import android.view.WindowManager
-import android.view.WindowMetrics
-import androidx.annotation.RequiresApi
-import androidx.core.content.ContextCompat
+import android.widget.Toast
 import androidx.core.net.toUri
 import org.json.JSONArray
 import org.json.JSONObject
@@ -67,7 +62,8 @@ class VirtualMonitorPlugin : Plugin() {
             Log.i("KDE/VirtualMonitor", "Received request, try connecting to $url")
 
             if (!openUrlExternally(url)) {
-                Log.e("KDE/VirtualMonitor", "Failed to open $url")
+                Toast.makeText(context, R.string.virtualmonitor_rdp_client_not_installed, Toast.LENGTH_LONG).show()
+                openUrlExternally("https://f-droid.org/en/packages/com.freerdp.afreerdp/".toUri())
                 val failure = NetworkPacket(PACKET_TYPE_VIRTUALMONITOR).apply {
                     this["failed"] = 0
                 }
@@ -77,33 +73,27 @@ class VirtualMonitorPlugin : Plugin() {
         return true
     }
 
-    @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
     override fun onCreate() : Boolean
     {
-        val windowManager = ContextCompat.getSystemService(context, WindowManager::class.java)
-        assert(windowManager != null);
-        val windowMetrics: WindowMetrics = windowManager!!.currentWindowMetrics
         if (device.ipAddress() == null) {
             Log.e("KDE/VirtualMonitor", "No IP address for device, pass.")
             return false
         }
 
-        val bounds: Rect = windowMetrics.bounds
+        val metrics = context.resources.displayMetrics
         val np = NetworkPacket(PACKET_TYPE_VIRTUALMONITOR).apply {
-            this["resolutions"] = JSONArray().apply { put(JSONObject().apply {
-                put("resolution", bounds.width().toString() + 'x' + bounds.height())
-                put("scale", windowMetrics.density)
-            }) }
+            this["resolutions"] = JSONArray().apply {
+                put(JSONObject().apply {
+                    put("resolution", "${metrics.widthPixels}x${metrics.heightPixels}")
+                    put("scale", metrics.density)
+                })
+            }
             this["supports_rdp"] = true
             this["supports_virt_mon"] = false
         }
 
         device.sendPacket(np)
         return true
-    }
-
-    override fun onUnpairedDevicePacketReceived(np: NetworkPacket): Boolean {
-        return super.onUnpairedDevicePacketReceived(np)
     }
 
     override val supportedPacketTypes: Array<String>
