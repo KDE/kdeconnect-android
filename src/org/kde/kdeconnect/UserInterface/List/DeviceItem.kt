@@ -12,11 +12,9 @@ import org.kde.kdeconnect_tp.databinding.ListItemDeviceEntryBinding
 
 open class DeviceItem(
     val device: Device,
-    private val callback: ((d: Device) -> Unit)?
+    private val callback: ((d: Device) -> Unit)
 ) : ListAdapter.Item
 {
-    constructor(device: Device) : this(device, null)
-
     protected lateinit var binding: ListItemDeviceEntryBinding
 
     override fun inflateView(layoutInflater: LayoutInflater): View {
@@ -25,11 +23,9 @@ open class DeviceItem(
         binding.listItemEntryIcon.setImageDrawable(device.icon)
         binding.listItemEntryTitle.text = device.name
 
-        if (callback != null) {
-            binding.getRoot().setOnClickListener(View.OnClickListener { v1: View? ->
-                callback(device)
-            })
-        }
+        binding.getRoot().setOnClickListener(View.OnClickListener { v1: View? ->
+            callback(device)
+        })
 
         return binding.getRoot()
     }

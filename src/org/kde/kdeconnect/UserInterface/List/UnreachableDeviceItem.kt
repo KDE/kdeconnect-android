@@ -10,7 +10,10 @@ import android.view.View
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect_tp.R
 
-class UnreachableDeviceItem(device: Device) : DeviceItem(device) {
+class UnreachableDeviceItem(
+    device: Device,
+    callback: ((d: Device) -> Unit),
+) : DeviceItem(device, callback) {
     override fun inflateView(layoutInflater: LayoutInflater): View {
         return super.inflateView(layoutInflater).also {
             binding.listItemEntrySummary.setText(R.string.runcommand_notreachable)

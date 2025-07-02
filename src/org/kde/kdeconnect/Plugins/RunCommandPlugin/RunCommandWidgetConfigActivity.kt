@@ -11,21 +11,14 @@ import android.appwidget.AppWidgetManager.EXTRA_APPWIDGET_ID
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.view.ViewGroup
 import android.view.Window
-import android.widget.ArrayAdapter
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect.UserInterface.List.DeviceItem
 import org.kde.kdeconnect.UserInterface.List.ListAdapter
-import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.WidgetRemoteCommandPluginDialogBinding
-import java.util.stream.Collectors
 
 class RunCommandWidgetConfigActivity : AppCompatActivity() {
 
@@ -47,23 +40,24 @@ class RunCommandWidgetConfigActivity : AppCompatActivity() {
         val binding = WidgetRemoteCommandPluginDialogBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val pairedDevices = KdeConnect.getInstance().devices.values.stream().filter(Device::isPaired).collect(Collectors.toList())
+        val pairedDevices = KdeConnect.getInstance().devices.values.asSequence().filter(Device::isPaired).toList()
 
-        val list = ListAdapter(this, pairedDevices.map { DeviceItem(it) })
+        val list = ListAdapter(this, pairedDevices.map { DeviceItem(it, ::deviceClicked) })
         binding.runCommandsDeviceList.adapter = list
-        binding.runCommandsDeviceList.setOnItemClickListener  { _, _, position, _ ->
-            val deviceId = pairedDevices[position].deviceId
-            saveWidgetDeviceIdPref(this, appWidgetId, deviceId)
-
-            val appWidgetManager = AppWidgetManager.getInstance(this)
-            updateAppWidget(this, appWidgetManager, appWidgetId)
-
-            val resultValue = Intent()
-            resultValue.putExtra(EXTRA_APPWIDGET_ID, appWidgetId)
-            setResult(RESULT_OK, resultValue)
-            finish()
-        }
         binding.runCommandsDeviceList.emptyView = binding.noDevices
+    }
+
+    fun deviceClicked(device: Device) {
+        val deviceId = device.deviceId
+        saveWidgetDeviceIdPref(this, appWidgetId, deviceId)
+
+        val appWidgetManager = AppWidgetManager.getInstance(this)
+        updateAppWidget(this, appWidgetManager, appWidgetId)
+
+        val resultValue = Intent()
+        resultValue.putExtra(EXTRA_APPWIDGET_ID, appWidgetId)
+        setResult(RESULT_OK, resultValue)
+        finish()
     }
 }
 

@@ -12,7 +12,7 @@ import org.kde.kdeconnect_tp.R
 
 class PairingDeviceItem(
     device: Device,
-    callback: ((d: Device) -> Unit)?
+    callback: ((d: Device) -> Unit)
 ) : DeviceItem(device, callback) {
     override fun inflateView(layoutInflater: LayoutInflater): View {
         return super.inflateView(layoutInflater).also {

@@ -36,6 +36,7 @@ import java.util.stream.Collectors;
 
 import kotlin.Lazy;
 import kotlin.LazyKt;
+import kotlin.Unit;
 
 public class SendKeystrokesToHostActivity extends BaseActivity<ActivitySendkeystrokesBinding> {
 
@@ -166,17 +167,16 @@ public class SendKeystrokesToHostActivity extends BaseActivity<ActivitySendkeyst
         for (Device d : devices) {
             if (d.isReachable() && d.isPaired()) {
                 devicesList.add(d);
-                items.add(new DeviceItem(d));
+                items.add(new DeviceItem(d, this::deviceClicked));
                 section.isEmpty = false;
             }
         }
 
         getBinding().devicesList.setAdapter(new ListAdapter(SendKeystrokesToHostActivity.this, items));
-        getBinding().devicesList.setOnItemClickListener((adapterView, view, i, l) -> {
-            Device device = devicesList.get(i - 1); // NOTE: -1 because of the title!
-            sendKeys(device);
-            this.finish(); // close the activity
-        });
+
+        // Configure focus order for Accessibility, for touchpads, and for TV remotes
+        // (allow focus of items in the device list)
+        getBinding().devicesList.setItemsCanFocus(true);
 
         // only one device is connected and we trust the text to send -> send it and close the activity.
         // Usually we already check it in `onStart` - but if the BackgroundService was not started/connected to the host
@@ -185,8 +185,15 @@ public class SendKeystrokesToHostActivity extends BaseActivity<ActivitySendkeyst
         if (devicesList.size() == 1 && contentIsOkay) {
             Device device = devicesList.get(0);
             sendKeys(device);
-            this.finish(); // close the activity
+            finish(); // close the activity
         }
     }
+
+    private Unit deviceClicked(Device device) {
+        sendKeys(device);
+        finish(); // close the activity
+        return Unit.INSTANCE;
+    }
+
 }
 

@@ -39,6 +39,7 @@ import java.util.Set;
 
 import kotlin.Lazy;
 import kotlin.LazyKt;
+import kotlin.Unit;
 
 public class ShareActivity extends BaseActivity<ActivityShareBinding> {
     private static final String KEY_UNREACHABLE_URL_LIST = "key_unreachable_url_list";
@@ -111,26 +112,31 @@ public class ShareActivity extends BaseActivity<ActivityShareBinding> {
             if (d.isPaired() && (intentHasUrl || d.isReachable())) {
                 devicesList.add(d);
                 if (!d.isReachable()) {
-                    items.add(new UnreachableDeviceItem(d));
+                    items.add(new UnreachableDeviceItem(d, device -> deviceClicked(device, intentHasUrl, intent)));
                 } else {
-                    items.add(new DeviceItem(d));
+                    items.add(new DeviceItem(d, device -> deviceClicked(device, intentHasUrl, intent)));
                 }
                 section.isEmpty = false;
             }
         }
 
         getBinding().devicesListLayout.devicesList.setAdapter(new ListAdapter(ShareActivity.this, items));
-        getBinding().devicesListLayout.devicesList.setOnItemClickListener((adapterView, view, i, l) -> {
-            Device device = devicesList.get(i - 1); //NOTE: -1 because of the title!
-            SharePlugin plugin = KdeConnect.getInstance().getDevicePlugin(device.getDeviceId(), SharePlugin.class);
-            if (intentHasUrl && !device.isReachable()) {
-                // Store the URL to be delivered once device becomes online
-                storeUrlForFutureDelivery(device, intent.getStringExtra(Intent.EXTRA_TEXT));
-            } else if (plugin != null) {
-                plugin.share(intent);
-            }
-            finish();
-        });
+
+        // Configure focus order for Accessibility, for touchpads, and for TV remotes
+        // (allow focus of items in the device list)
+        getBinding().devicesListLayout.devicesList.setItemsCanFocus(true);
+    }
+
+    private Unit deviceClicked(Device device, boolean intentHasUrl, Intent intent) {
+        SharePlugin plugin = KdeConnect.getInstance().getDevicePlugin(device.getDeviceId(), SharePlugin.class);
+        if (intentHasUrl && !device.isReachable()) {
+            // Store the URL to be delivered once device becomes online
+            storeUrlForFutureDelivery(device, intent.getStringExtra(Intent.EXTRA_TEXT));
+        } else if (plugin != null) {
+            plugin.share(intent);
+        }
+        finish();
+        return Unit.INSTANCE;
     }
 
     private boolean doesIntentContainUrl(Intent intent) {
