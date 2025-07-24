@@ -9,11 +9,12 @@ package org.kde.kdeconnect.Plugins.PresenterPlugin;
 
 import static org.kde.kdeconnect.Plugins.MousePadPlugin.KeyListenerView.SpecialKeysMap;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.KeyEvent;
-
+import android.content.SharedPreferences;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 
@@ -29,6 +30,15 @@ public class PresenterPlugin extends Plugin {
 
     private final static String PACKET_TYPE_PRESENTER = "kdeconnect.presenter";
     private final static String PACKET_TYPE_MOUSEPAD_REQUEST = "kdeconnect.mousepad.request";
+    private SharedPreferences sharedPreferences;
+    private boolean volumeKeysEnabled;
+
+    @Override
+    public boolean onCreate(){
+        sharedPreferences = context.getSharedPreferences(getSharedPreferencesName(),Context.MODE_PRIVATE);
+        volumeKeysEnabled = sharedPreferences.getBoolean("volumeKeys", false);
+        return true;
+    }
 
     public boolean isPointerSupported() {
         return getDevice().supportsPacketType(PACKET_TYPE_PRESENTER);
@@ -119,5 +129,16 @@ public class PresenterPlugin extends Plugin {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_PRESENTER);
         np.set("stop", true);
         getDevice().sendPacket(np);
+    }
+
+    public boolean isVolumeKeysEnabled() {
+        return volumeKeysEnabled;
+    }
+
+    @SuppressLint("CommitPrefEdits")
+    public void setVolumeKeysEnabled(boolean volumeKeysEnabled) {
+        this.volumeKeysEnabled = volumeKeysEnabled;
+        sharedPreferences.edit().putBoolean("volumeKeys", volumeKeysEnabled);
+
     }
 }

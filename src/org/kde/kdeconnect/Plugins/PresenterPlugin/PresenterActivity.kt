@@ -15,6 +15,7 @@ import android.os.Bundle
 import android.os.PowerManager
 import android.support.v4.media.session.MediaSessionCompat
 import android.support.v4.media.session.PlaybackStateCompat
+import android.view.KeyEvent
 import android.view.MotionEvent
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
@@ -25,6 +26,7 @@ import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInteropFilter
@@ -93,6 +95,20 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener {
     override fun onDestroy() {
         mediaSession?.release()
         super.onDestroy()
+    }
+
+    override fun dispatchKeyEvent(event: KeyEvent): Boolean {
+        val keyCode = event.keyCode
+        val action = event.action
+        if (plugin.isVolumeKeysEnabled) {
+            if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN && action == KeyEvent.ACTION_UP) {
+                plugin.sendPrevious()
+            } else if (keyCode == KeyEvent.KEYCODE_VOLUME_UP && action == KeyEvent.ACTION_UP) {
+                plugin.sendNext()
+            }
+            return true
+        }
+        return super.dispatchKeyEvent(event)
     }
 
     private fun createMediaSession() {
@@ -186,6 +202,7 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener {
     private fun PresenterAppBar() {
 
         var dropdownShownState by remember { mutableStateOf(false) }
+        var checkboxChecked by remember { mutableStateOf(plugin.isVolumeKeysEnabled) }
 
         KdeTopAppBar(
             title = stringResource(R.string.pref_plugin_presenter),
@@ -196,6 +213,28 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener {
                     Icon(Icons.Default.MoreVert, stringResource(R.string.extra_options))
                 }
                 DropdownMenu(expanded = dropdownShownState, onDismissRequest = { dropdownShownState = false }) {
+                    DropdownMenuItem(
+                        onClick = {
+                            plugin.isVolumeKeysEnabled = !plugin.isVolumeKeysEnabled
+                            checkboxChecked = !checkboxChecked
+                                  },
+                        text = {
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.SpaceBetween,
+                                modifier = Modifier.fillMaxWidth()
+                            ) {
+                                Text(stringResource(R.string.presenter_volume_keys))
+                                Checkbox(
+                                    checked = checkboxChecked,
+                                    onCheckedChange = {
+                                        plugin.isVolumeKeysEnabled = !plugin.isVolumeKeysEnabled
+                                        checkboxChecked = !checkboxChecked
+                                    }
+                                )
+                            }
+                        }
+                    )
                     DropdownMenuItem(
                         onClick = { plugin.sendFullscreen() },
                         text = { Text(stringResource(R.string.presenter_fullscreen)) },

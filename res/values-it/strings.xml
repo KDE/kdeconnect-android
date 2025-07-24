@@ -432,4 +432,5 @@
   <string name="ping_in_progress">Ping in corso…</string>
   <string name="device_host_invalid">L\'host non è valido. Utilizza un nome host valido, IPv4 o IPv6</string>
   <string name="device_host_duplicate">L\'host esiste già nell\'elenco</string>
+    <string name="presenter_volume_keys">Abilita tasti volume</string>
 </resources>
