@@ -192,7 +192,7 @@
   <string name="mpris_notifications_explanation">Urruneko euskarria jakinarazpen tiraderan erakusteko jakinarazpen-baimena behar da</string>
   <string name="mpris_notification_settings_title">Erakutsi euskarri kontrolaren jakinarazpena</string>
   <string name="mpris_notification_settings_summary">Utzi zure euskarri-jotzaileak kontrolatzen KDE Connect ireki gabe</string>
-  <string name="share_to">Partekatu honekin...</string>
+  <string name="share_to">Partekatu honekin…</string>
   <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">Gailu eskuraezinekin partekatutako URLak, hartara bidaliko dira eskuragarri dagoenean.\n\n</string>
   <string name="protocol_version">Protokoloaren bertsioa:</string>
@@ -429,7 +429,7 @@
   <string name="notification_channel_keepwatching">Jarraitu jotzen</string>
   <string name="ping_result">«Ping» %1$d milisegundotan egin da</string>
   <string name="ping_failed">Ezin izan dio gailuari «ping» egin</string>
-  <string name="ping_in_progress">«Ping» egiten...</string>
+  <string name="ping_in_progress">«Ping» egiten…</string>
   <string name="device_host_invalid">Ostalaria baliogabea da. Erabili balio duen ostalari-izen bat, IPv4, edo IPv6</string>
   <string name="device_host_duplicate">Ostalaria jada zerrendan dago</string>
 </resources>
