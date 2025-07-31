@@ -20,5 +20,5 @@ msgstr ""
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
 
-msgid "KDE Connect integrates your smartphone and computer"
-msgstr "KDE Connect koplar telefonen din saman med datamaskina"
+msgid "PhoneBoard integrates your smartphone and computer"
+msgstr "PhoneBoard koplar telefonen din saman med datamaskina"

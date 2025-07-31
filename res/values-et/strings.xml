@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="kde_connect">KDE Connect</string>
+  <string name="kde_connect">PhoneBoard</string>
   <string name="foreground_notification_no_devices">Pole ühendatud ühegi seadmega</string>
   <string name="foreground_notification_devices">Ühendatud seadmega: %s</string>
   <string name="foreground_notification_send_clipboard">Saadeti lõikepuhvrisse</string>
@@ -39,11 +39,11 @@
   <string name="open_settings">Ava seadistused</string>
   <string name="no_permissions">Märguannete nägemiseks tuleb anda vastavad õigused</string>
   <string name="no_permission_mprisreceiver">Meediamängija juhtimiseks tuleb lubada juurdepääs märguannetele</string>
-  <string name="no_permissions_remotekeyboard">Klahvivajutuste vastuvõtmiseks tuleb aktiveerida KDE Connecti kaugklaviatuur</string>
+  <string name="no_permissions_remotekeyboard">Klahvivajutuste vastuvõtmiseks tuleb aktiveerida PhoneBoardi kaugklaviatuur</string>
   <string name="send_ping">Saada ping</string>
   <string name="open_mpris_controls">Multimeedia juhtimine</string>
   <string name="remotekeyboard_editing_only_title">Kaugklahvide käitlemine ainult redigeerimisel</string>
-  <string name="remotekeyboard_not_connected">Aktiivne kaugklaviatuuri ühendus puudub, pane see paika KDE Connectis</string>
+  <string name="remotekeyboard_not_connected">Aktiivne kaugklaviatuuri ühendus puudub, pane see paika PhoneBoardis</string>
   <string name="remotekeyboard_connected">Kaugklaviatuuri ühendus on aktiivne</string>
   <string name="remotekeyboard_multiple_connections">Kaugklaviatuuri ühendusi on üle ühe, palun vali seade, mida seadistada</string>
   <string name="open_mousepad">Kaugsisestus</string>
@@ -142,7 +142,7 @@
     <item>2 minutit</item>
   </string-array>
   <string name="mpris_notification_settings_title">Meedia juhtimise märguannete näitamine</string>
-  <string name="mpris_notification_settings_summary">Meediamängija juhtimise võimaldamine ilma KDE Connecti avamata</string>
+  <string name="mpris_notification_settings_summary">Meediamängija juhtimise võimaldamine ilma PhoneBoardi avamata</string>
   <string name="protocol_version_newer">See seade kasutab uuemat protokolli versiooni</string>
   <string name="plugin_settings_with_name">%s seadistused</string>
   <string name="invalid_device_name">Vigane seadme nimi</string>
@@ -179,8 +179,8 @@
   <string name="sftp_saf_permission_explanation">Ligipääsuks failidele eemalt tuleb seadistada salvestuskohad</string>
   <string name="no_players_connected">Ühtegi mängijat ei leitud</string>
   <string name="send_files">Saada faile</string>
-  <string name="pairing_title">KDE Connecti seadmed</string>
-  <string name="pairing_description">Siin näeb teisi seadmeid samas võrgus, kus töötab KDE Connect</string>
+  <string name="pairing_title">PhoneBoardi seadmed</string>
+  <string name="pairing_description">Siin näeb teisi seadmeid samas võrgus, kus töötab PhoneBoard</string>
   <string name="device_rename_title">Seadme nime muutmine</string>
   <string name="device_rename_confirm">Nime muutmine</string>
   <string name="refresh">Värskenda</string>
@@ -191,7 +191,7 @@
   <string name="pref_plugin_telepathy">SMS-ide saatmine</string>
   <string name="pref_plugin_telepathy_desc">Tekstisõnumite saatmine oma töölaualt</string>
   <string name="pref_plugin_telepathy_mms">MMS-ide saatmine</string>
-  <string name="pref_plugin_telepathy_mms_desc">KDE Connecti kaudu MMS-ide saatmiseks tuleb see määrata SMS-ide vaikerakenduseks.</string>
+  <string name="pref_plugin_telepathy_mms_desc">PhoneBoardi kaudu MMS-ide saatmiseks tuleb see määrata SMS-ide vaikerakenduseks.</string>
   <string name="findmyphone_title">Leia mu telefon</string>
   <string name="findmyphone_title_tablet">Leia mu tahvel</string>
   <string name="findmyphone_title_tv">Leia mu teler</string>
@@ -217,7 +217,7 @@
   <string name="presenter_lock_tip">Seade on võimalik lukku panna ning liikuda eelmisele/järgmisele slaidile helitugevuse klahvidega</string>
   <string name="add_command">Lisa käsk</string>
   <string name="addcommand_explanation">Ühtegi käsku pole registreeritud</string>
-  <string name="addcommand_explanation2">Uusi käske saab lisada Süsteemi seadistustes KDE Connecti all</string>
+  <string name="addcommand_explanation2">Uusi käske saab lisada Süsteemi seadistustes PhoneBoardi all</string>
   <string name="add_command_description">Käske saab lisada töölaual</string>
   <string name="pref_plugin_mprisreceiver">Meediafailide mängija juhtimine</string>
   <string name="pref_plugin_mprisreceiver_desc">Telefoni meediamängijate juhtimine teisest seadmest</string>
@@ -253,7 +253,7 @@
   <string name="block_images">Märguannete piltide blokkimine</string>
   <string name="notification_channel_receivenotification">Märguanded teistest seadmetest</string>
   <string name="no_app_for_opening">Selle faili avamiseks ei leitud sobivat rakendust</string>
-  <string name="remote_keyboard_service">KDE Connecti kaugklaviatuur</string>
+  <string name="remote_keyboard_service">PhoneBoardi kaugklaviatuur</string>
   <string name="presenter_pointer">Osutusseade</string>
   <string name="trusted_networks">Usaldusväärsed võrgud</string>
   <string name="trusted_networks_desc">Automaatset tuvastamist kasutatakse ainult tuntud võrkudes</string>

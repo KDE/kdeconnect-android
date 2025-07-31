@@ -9,11 +9,11 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
 <resources>
   <!--  # Dear potential translators:
 
-        Thank you for your interest in KDE Connect! We do not actually handle our own translations.
+        Thank you for your interest in PhoneBoard! We do not actually handle our own translations.
         All translations for all KDE apps are handled by the [localization team](https://l10n.kde.org).
         We really appreciate your translations, but make sure to submit them by working with the proper team!
   -->
-    <string name="kde_connect">KDE Connect</string>
+    <string name="kde_connect">PhoneBoard</string>
     <string name="manifest_label_share">Send to Device</string>
     <string name="foreground_notification_no_devices">Not connected to any device</string>
     <string name="foreground_notification_devices">Connected to: %s</string>
@@ -56,7 +56,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="open_settings">Open settings</string>
     <string name="no_permissions">You need to grant permission to access notifications</string>
     <string name="no_permission_mprisreceiver">To be able to control your media players you need to grant access to the notifications</string>
-    <string name="no_permissions_remotekeyboard">To receive keypresses you need to activate the KDE Connect Remote Keyboard</string>
+    <string name="no_permissions_remotekeyboard">To receive keypresses you need to activate the PhoneBoard Remote Keyboard</string>
     <string name="send_ping">Send ping</string>
     <string name="open_mpris_controls">Multimedia control</string>
     <string name="remotekeyboard_editing_only" translatable="false">remotekeyboard_editing_only</string>
@@ -262,7 +262,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     </string-array>
     <string name="mpris_notifications_explanation">The notifications permission is needed to show remote media in the notifications drawer</string>
     <string name="mpris_notification_settings_title">Show media control notification</string>
-    <string name="mpris_notification_settings_summary">Allow controlling your media players without opening KDE Connect</string>
+    <string name="mpris_notification_settings_summary">Allow controlling your media players without opening PhoneBoard</string>
     <string name="mpris_notification_key" translatable="false">mpris_notification_enabled</string>
     <string name="share_to">Share to…</string>
     <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
@@ -309,15 +309,15 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="sftp_action_mode_menu_delete">Delete</string>
     <string name="sftp_no_storage_locations_configured">No storage locations configured</string>
     <string name="sftp_saf_permission_explanation">To access files remotely you have to configure storage locations</string>
-    <string name="sftp_manage_storage_permission_explanation">To allow remote access to files on this device you need to allow KDE Connect to manage the storage.</string>
+    <string name="sftp_manage_storage_permission_explanation">To allow remote access to files on this device you need to allow PhoneBoard to manage the storage.</string>
     <string name="no_players_connected">No players found</string>
     <string name="send_files">Send files</string>
 
     <string name="block_notification_contents">Block notification contents</string>
     <string name="block_notification_images">Block notification images</string>
 
-    <string name="pairing_title">KDE Connect Devices</string>
-    <string name="pairing_description">Other devices running KDE Connect in your same network should appear here.</string>
+    <string name="pairing_title">PhoneBoard Devices</string>
+    <string name="pairing_description">Other devices running PhoneBoard in your same network should appear here.</string>
     <string name="device_rename_title">Rename device</string>
     <string name="device_rename_confirm">Rename</string>
     <string name="refresh">Refresh</string>
@@ -328,7 +328,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="pref_plugin_telepathy">Send SMS</string>
     <string name="pref_plugin_telepathy_desc">Send text messages from your desktop</string>
     <string name="pref_plugin_telepathy_mms">Send MMS</string>
-    <string name="pref_plugin_telepathy_mms_desc">To be able to send MMS from KDE Connect you need to set it as the default SMS app.</string>
+    <string name="pref_plugin_telepathy_mms_desc">To be able to send MMS from PhoneBoard you need to set it as the default SMS app.</string>
     <string name="findmyphone_title">Find my phone</string>
     <string name="findmyphone_title_tablet">Find my tablet</string>
     <string name="findmyphone_title_tv">Find my TV</string>
@@ -349,7 +349,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="telephony_permission_explanation">To see phone calls on the desktop you need to give permission to phone call logs and phone state</string>
     <string name="telephony_optional_permission_explanation">To see a contact name instead of a phone number you need to give access to the phone\'s contacts</string>
     <string name="contacts_permission_explanation">To share your contacts book with the desktop, you need to give contacts permission</string>
-    <string name="contacts_per_device_confirmation">Your phone contacts will be copied over to this device, so they can be used by the KDE Connect SMS app and other apps.</string>
+    <string name="contacts_per_device_confirmation">Your phone contacts will be copied over to this device, so they can be used by the PhoneBoard SMS app and other apps.</string>
 
     <string name="select_ringtone">Select a ringtone</string>
     <string name="telephony_pref_blocked_title">Blocked numbers</string>
@@ -363,7 +363,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
 
     <string name="add_command">Add a command</string>
     <string name="addcommand_explanation">There are no commands registered</string>
-    <string name="addcommand_explanation2">You can add new commands in the KDE Connect System Settings</string>
+    <string name="addcommand_explanation2">You can add new commands in the PhoneBoard System Settings</string>
     <string name="add_command_description">You can add commands on the desktop</string>
     <string name="pref_plugin_mprisreceiver">Media Player Control</string>
     <string name="pref_plugin_mprisreceiver_desc">Control your phone\'s media players from another device</string>
@@ -403,7 +403,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
 
     <string name="settings_rename">Device name</string>
     <string name="settings_dark_mode">Dark theme</string>
-    <string name="settings_export_logs">Export KDE Connect logs</string>
+    <string name="settings_export_logs">Export PhoneBoard logs</string>
     <string name="settings_export_logs_text">Generate a file with execution information that can help troubleshoot issues.</string>
 
     <string name="settings_more_settings_title">More settings</string>
@@ -422,7 +422,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="findmyphone_preference_key_ringtone" translatable="false">findmyphone_ringtone</string>
 
     <string name="no_app_for_opening">No suitable app found to open this file</string>
-    <string name="remote_keyboard_service">KDE Connect Remote Keyboard</string>
+    <string name="remote_keyboard_service">PhoneBoard Remote Keyboard</string>
     <string name="presenter_pointer">Pointer</string>
 
     <string name="trusted_networks">Trusted networks</string>
@@ -432,8 +432,8 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="allow_all_networks_text">Allow all</string>
 
     <string name="location_permission_needed_title">Permission required</string>
-    <string name="bluetooth_permission_needed_desc">KDE Connect needs permission to connect to nearby devices to make devices paired using Bluetooth available in KDE Connect.</string>
-    <string name="location_permission_needed_desc">KDE Connect needs the background location permission to know the WiFi network you are connected to even when the app is in the background. This is because the name of the WiFi networks around you could be used to find your location, even when this is not what KDE Connect does.</string>
+    <string name="bluetooth_permission_needed_desc">PhoneBoard needs permission to connect to nearby devices to make devices paired using Bluetooth available in PhoneBoard.</string>
+    <string name="location_permission_needed_desc">PhoneBoard needs the background location permission to know the WiFi network you are connected to even when the app is in the background. This is because the name of the WiFi networks around you could be used to find your location, even when this is not what PhoneBoard does.</string>
     <string name="clipboard_android_x_incompat">Android 10 has removed clipboard access to all apps. This plugin will be disabled.</string>
     <string name="mpris_open_url">Continue playing here</string>
     <string name="cant_open_url">Can\'t open URL to continue playing</string>
@@ -568,7 +568,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="holger_kaelberer_task">Remote keyboard plugin and bug fixes</string>
     <string name="saikrishna_arcot_task">Support for using the keyboard in the remote input plugin, bug fixes and general improvements</string>
     <string name="shellwen_chen_task">Improve the security of SFTP, improve the maintainability of this project, bug fixes and general improvements</string>
-    <string name="everyone_else">Everyone else who has contributed to KDE Connect over the years</string>
+    <string name="everyone_else">Everyone else who has contributed to PhoneBoard over the years</string>
 
     <string name="send_clipboard">Send clipboard</string>
     <string name="tap_to_execute">Tap to execute</string>

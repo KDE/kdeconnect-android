@@ -14,5 +14,5 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "KDE Connect integrates your smartphone and computer"
-msgstr "KDE Connect eheyttää älypuhelimen ja tietokoneen"
+msgid "PhoneBoard integrates your smartphone and computer"
+msgstr "PhoneBoard eheyttää älypuhelimen ja tietokoneen"

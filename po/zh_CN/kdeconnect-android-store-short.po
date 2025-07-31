@@ -20,5 +20,5 @@ msgstr ""
 "store-short.pot\n"
 "X-Crowdin-File-ID: 43899\n"
 
-msgid "KDE Connect integrates your smartphone and computer"
-msgstr "KDE Connect 可以整合您的智能手机和电脑"
+msgid "PhoneBoard integrates your smartphone and computer"
+msgstr "PhoneBoard 可以整合您的智能手机和电脑"

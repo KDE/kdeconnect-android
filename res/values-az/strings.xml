@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="kde_connect">KDE Connect</string>
+  <string name="kde_connect">PhoneBoard</string>
   <string name="manifest_label_share">Cihaza göndərin</string>
   <string name="foreground_notification_no_devices">Hər hansı bir cihaz qoşulmayıb</string>
   <string name="foreground_notification_devices">Qoşulub: %s</string>
@@ -42,7 +42,7 @@
   <string name="open_settings">Ayarları açmaq</string>
   <string name="no_permissions">Bildirişlər almağa icazə verməniz lazımdır</string>
   <string name="no_permission_mprisreceiver">Media oynadıcını idarə etmək üçün bildirişlərə girişə icazə verməniz lazımdır</string>
-  <string name="no_permissions_remotekeyboard">Düymə basılmalarını almaq üçün KDE Connect Klaviaturasını aktiv etməlisiniz</string>
+  <string name="no_permissions_remotekeyboard">Düymə basılmalarını almaq üçün PhoneBoard Klaviaturasını aktiv etməlisiniz</string>
   <string name="send_ping">Dümsükləmək</string>
   <string name="open_mpris_controls">Multimedia idarə edilməsi</string>
   <string name="remotekeyboard_editing_only_title">Məsafədəki düymələri yalnız redaktə edərkən idarə edin</string>
@@ -182,7 +182,7 @@
   </string-array>
   <string name="mpris_notifications_explanation">Bildirişlər çəkməcəsində məsafədəki medianı göstərmək üçün bildiriş icazələri lazımdır</string>
   <string name="mpris_notification_settings_title">Media idarəetmə bildirişlərini göstərmək</string>
-  <string name="mpris_notification_settings_summary">KDE Connect açmadan media oynadıcınızın idarəsinə icazə vermək</string>
+  <string name="mpris_notification_settings_summary">PhoneBoard açmadan media oynadıcınızın idarəsinə icazə vermək</string>
   <string name="protocol_version_newer">Bu cihaz yeni protokol versiyası istifadə edir</string>
   <string name="plugin_settings_with_name">%s ayarları</string>
   <string name="invalid_device_name">Səhv cihaz adı</string>
@@ -218,13 +218,13 @@
   <string name="sftp_action_mode_menu_delete">Silmək</string>
   <string name="sftp_no_storage_locations_configured">Saxlama yeri tənzimlənməyib</string>
   <string name="sftp_saf_permission_explanation">Fayllara uzaqdan daxil olmaq üçün saxlama yerlərini konfiqurasiya etməlisiniz</string>
-  <string name="sftp_manage_storage_permission_explanation">Bu cihazdakı fayllara giriş əldə etmək üçün KDE Connect-ə yaddaşı idarə etməyə icazə vermək lazımdır.</string>
+  <string name="sftp_manage_storage_permission_explanation">Bu cihazdakı fayllara giriş əldə etmək üçün PhoneBoard-ə yaddaşı idarə etməyə icazə vermək lazımdır.</string>
   <string name="no_players_connected">Pleyer tapılmadı</string>
   <string name="send_files">Faylları göndərmək</string>
   <string name="block_notification_contents">Bildirilərin tərkiblərini kilidləmək</string>
   <string name="block_notification_images">Bildiriş şəlkillərini kilidləmək</string>
-  <string name="pairing_title">KDE Connect Cihazları</string>
-  <string name="pairing_description">Eyni şəbəkədəki KDE Connect işləyən digər cihazlar burada görünməlidir</string>
+  <string name="pairing_title">PhoneBoard Cihazları</string>
+  <string name="pairing_description">Eyni şəbəkədəki PhoneBoard işləyən digər cihazlar burada görünməlidir</string>
   <string name="device_rename_title">Cihazın adını dəyişmək</string>
   <string name="device_rename_confirm">Adını Dəyişmək</string>
   <string name="refresh">Təzələmək</string>
@@ -235,7 +235,7 @@
   <string name="pref_plugin_telepathy">SMS göndərmək</string>
   <string name="pref_plugin_telepathy_desc">İş Masanızdan mətn ismarıcı göndərin</string>
   <string name="pref_plugin_telepathy_mms">MMS göndərmək</string>
-  <string name="pref_plugin_telepathy_mms_desc">KDE Connect\'dən MMS göndərmək üçün, onu standart SMS tətbiqi kimi təyin etməniz lazımdır.</string>
+  <string name="pref_plugin_telepathy_mms_desc">PhoneBoard\'dən MMS göndərmək üçün, onu standart SMS tətbiqi kimi təyin etməniz lazımdır.</string>
   <string name="findmyphone_title">Telefonumu tapmaq</string>
   <string name="findmyphone_title_tablet">Planşetimi tapmaq</string>
   <string name="findmyphone_title_tv">TV-ni tapmaq</string>
@@ -254,7 +254,7 @@
   <string name="telephony_permission_explanation">İş Masanızda telefon zənglərini görmək üçün Zəng Tarixçəsinə və Zəng yığımı vəziyyətinə icazə verməlisiniz</string>
   <string name="telephony_optional_permission_explanation">Telefon nömrəsi əvəzinə əlaqənin adını görmək üçün Əlaqə Kitabçasına girişə icazə verməlisiniz</string>
   <string name="contacts_permission_explanation">İş masası vasitəsi ilə əlaqələr kitabçasını paylaşmaq üçün əlaqələra girişə icazə verməlisiniz</string>
-  <string name="contacts_per_device_confirmation">Telefon əlaqələriniz bu cihaza kopyalanacaq, belə ki, onlar KDE Connect SMS və başqa tətbiqlər tərəfindən istifadə oluna bilər.</string>
+  <string name="contacts_per_device_confirmation">Telefon əlaqələriniz bu cihaza kopyalanacaq, belə ki, onlar PhoneBoard SMS və başqa tətbiqlər tərəfindən istifadə oluna bilər.</string>
   <string name="select_ringtone">Zəng səsini seçmək</string>
   <string name="telephony_pref_blocked_title">Əngəllənmiş nömrələr</string>
   <string name="telephony_pref_blocked_dialog_desc">Bu nömrədən SMS və zənglər göstərilməsin. Hər sətirdə bir nömrə göstərin</string>
@@ -265,7 +265,7 @@
   <string name="presenter_lock_tip">Siz cihazınızı kilidləyə və səs düymələri ilə əvvəlki/sonrakı slayda keçid edə bilərsiniz</string>
   <string name="add_command">Əmr əlavə etmək</string>
   <string name="addcommand_explanation">Əmrlər qeyd edilməyib</string>
-  <string name="addcommand_explanation2">Sİz KDE Connect sistem ayarlarında yeni əmrlər əlavə edə bilərsiniz</string>
+  <string name="addcommand_explanation2">Sİz PhoneBoard sistem ayarlarında yeni əmrlər əlavə edə bilərsiniz</string>
   <string name="add_command_description">İş masasında yeni əmr əlavə edə bilərsiniz</string>
   <string name="pref_plugin_mprisreceiver">Media Pleyer İdarəsi</string>
   <string name="pref_plugin_mprisreceiver_desc">Telefonunuzun media pleyerlərini digər cihazdan idarə edin</string>
@@ -309,7 +309,7 @@
   <string name="block_images">Bildirişlərin şəkillərini bloklamaq</string>
   <string name="notification_channel_receivenotification">Digar cihazlardan bilsirişlər</string>
   <string name="no_app_for_opening">Bu faylı açmaq üçün uyğun tətbiq tapılmadı</string>
-  <string name="remote_keyboard_service">KDE Connect Uzaq Klaviaturası</string>
+  <string name="remote_keyboard_service">PhoneBoard Uzaq Klaviaturası</string>
   <string name="presenter_pointer">Kursor</string>
   <string name="trusted_networks">Etibarlı şəbəkələr</string>
   <string name="trusted_networks_desc">Bilinən şəbəkələrin avtomatik aşkar edilməsini məhdudlaşdırmaq</string>
@@ -317,7 +317,7 @@
   <string name="empty_trusted_networks_list_text">Hələlik hər hansı bir etibarlı şəbəkə əlavə edilməyib</string>
   <string name="allow_all_networks_text">Hamısına icazə vermək</string>
   <string name="location_permission_needed_title">İcazə tələb edlir</string>
-  <string name="location_permission_needed_desc">KDE connect üçün, hətta tətbiq arxa fonda işlədikdə belə qoşulduğunuz WiFi şəbəkəsini tanımaq üçün ona arxa planda məkandan istifadə etmə icazəsi tələb olunur. Bu onunla bağlıdır ki, hətta KDE Connect bunu istifadə etməsə də ətrafınızdakı WiFi şəbəkəsi ilə yerinizi təyin etmək üçün istifadə edə biləsiniz.</string>
+  <string name="location_permission_needed_desc">PhoneBoard üçün, hətta tətbiq arxa fonda işlədikdə belə qoşulduğunuz WiFi şəbəkəsini tanımaq üçün ona arxa planda məkandan istifadə etmə icazəsi tələb olunur. Bu onunla bağlıdır ki, hətta PhoneBoard bunu istifadə etməsə də ətrafınızdakı WiFi şəbəkəsi ilə yerinizi təyin etmək üçün istifadə edə biləsiniz.</string>
   <string name="clipboard_android_x_incompat">Android 10 bütün tətbiqlər üçün mübadilə buferinə girişi aradan qaldırıb. Bu qoşma söndürüləcək.</string>
   <string name="mpris_open_url">Burada oxutmağa davam edin</string>
   <string name="cant_open_url">Oxutmanı davam etdirmək üçün URL açıla bilmir</string>
@@ -393,7 +393,7 @@
   <string name="maxim_leshchenko_task">İİ yaxşılaşdırmaları və bu haqda səhifə</string>
   <string name="holger_kaelberer_task">Uzaq klaviatura əlavəsi və xəta sazlamaları</string>
   <string name="saikrishna_arcot_task">Uzaq daxiletmə əlavəsində klaviaturanın istifadəsini dəstəklənməsi, xəta sazlamaları və əsas yaxşılaşdırmalar</string>
-  <string name="everyone_else">İllər boyu KDE Connect\'ə töhfə verən hər kəs</string>
+  <string name="everyone_else">İllər boyu PhoneBoard\'ə töhfə verən hər kəs</string>
   <string name="send_clipboard">Mübadilə yaddaşını göndərin</string>
   <string name="tap_to_execute">İcra etmək üçün vurun</string>
   <string name="plugin_stats">Plaqin statistikası</string>

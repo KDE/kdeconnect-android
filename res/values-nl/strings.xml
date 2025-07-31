@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="kde_connect">KDE Connect</string>
+  <string name="kde_connect">PhoneBoard</string>
   <string name="manifest_label_share">Naar apparaat verzenden</string>
   <string name="foreground_notification_no_devices">Niet verbonden met enig apparaat</string>
   <string name="foreground_notification_devices">Verbonden met: %s</string>
@@ -43,7 +43,7 @@
   <string name="open_settings">Instellingen openen</string>
   <string name="no_permissions">U moet toestemming geven voor toegang tot meldingen</string>
   <string name="no_permission_mprisreceiver">Om in staat te zijn uw mediaspelers te besturen moet u toegan geven tot de meldingen</string>
-  <string name="no_permissions_remotekeyboard">Om indrukken van toetsen te ontvangen moet u het KDE Connect Remote Keyboard activeren</string>
+  <string name="no_permissions_remotekeyboard">Om indrukken van toetsen te ontvangen moet u het PhoneBoard Remote Keyboard activeren</string>
   <string name="send_ping">Ping verzenden</string>
   <string name="open_mpris_controls">Bediening van multimedia</string>
   <string name="remotekeyboard_editing_only_title">Behandel toetsen op afstand alleen bij bewerken</string>
@@ -191,7 +191,7 @@
   </string-array>
   <string name="mpris_notifications_explanation">Het recht op meldingen is nodig om media op afstand te tonen in de meldingenschuiflade</string>
   <string name="mpris_notification_settings_title">Mediabesturingsmelding tonen</string>
-  <string name="mpris_notification_settings_summary">Staat besturing van uw mediaspelers toe zonder KDE Connect te openen</string>
+  <string name="mpris_notification_settings_summary">Staat besturing van uw mediaspelers toe zonder PhoneBoard te openen</string>
   <string name="share_to">Delen met…</string>
   <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">URL\'s gedeeld met een niet bereikbaar apparaat zullen er afgeleverd worden wanneer deze bereikbaar wordt.\n\n</string>
@@ -232,13 +232,13 @@
   <string name="sftp_action_mode_menu_delete">Verwijderen</string>
   <string name="sftp_no_storage_locations_configured">Geen opslaglocaties geconfigureerd</string>
   <string name="sftp_saf_permission_explanation">Om toegang te hebben tot bestanden op afstand moet u opslaglocaties configureren</string>
-  <string name="sftp_manage_storage_permission_explanation">Om toegang tot bestanden op dit apparaat toe te staan moet u toestaan dat KDE Connect de opslag mag beheren.</string>
+  <string name="sftp_manage_storage_permission_explanation">Om toegang tot bestanden op dit apparaat toe te staan moet u toestaan dat PhoneBoard de opslag mag beheren.</string>
   <string name="no_players_connected">Geen spelers gevonden</string>
   <string name="send_files">Bestanden verzenden</string>
   <string name="block_notification_contents">Inhoud van meldingen blokkeren</string>
   <string name="block_notification_images">Afbeeldingen van meldingen blokkeren</string>
-  <string name="pairing_title">Apparaten van KDE Connect</string>
-  <string name="pairing_description">Andere apparaten met KDE Connect in uw zelfde netwerk zouden hier moeten verschijnen.</string>
+  <string name="pairing_title">Apparaten van PhoneBoard</string>
+  <string name="pairing_description">Andere apparaten met PhoneBoard in uw zelfde netwerk zouden hier moeten verschijnen.</string>
   <string name="device_rename_title">Apparaat hernoemen</string>
   <string name="device_rename_confirm">Hernoemen</string>
   <string name="refresh">Vernieuwen</string>
@@ -249,7 +249,7 @@
   <string name="pref_plugin_telepathy">SMS verzenden</string>
   <string name="pref_plugin_telepathy_desc">Stuur tekstberichten van uw bureaublad</string>
   <string name="pref_plugin_telepathy_mms">MMS verzenden</string>
-  <string name="pref_plugin_telepathy_mms_desc">Om MMS te kunnen verzenden vanuit KDE Connect moet u het als de standaard SMS-app instellen.</string>
+  <string name="pref_plugin_telepathy_mms_desc">Om MMS te kunnen verzenden vanuit PhoneBoard moet u het als de standaard SMS-app instellen.</string>
   <string name="findmyphone_title">Zoek mijn telefoon</string>
   <string name="findmyphone_title_tablet">Zoek mijn tablet</string>
   <string name="findmyphone_title_tv">Zoek mijn tv</string>
@@ -268,7 +268,7 @@
   <string name="telephony_permission_explanation">Om telefoonoproepen te zien op het bureaublad moet u toestemming geven tot telefoonoproeplogs en telefoonstatus</string>
   <string name="telephony_optional_permission_explanation">Om een naam van een contactpersoon te zien in plaats van een telefoonnummer moet u toegang geven tot de contacten in uw telefoon</string>
   <string name="contacts_permission_explanation">Om uw contactpersoennboek te delen met het bureaublad moet u contacten rechten geven</string>
-  <string name="contacts_per_device_confirmation">Uw telefooncontacten zullen gekopieerd worden naar dit apparaat, ze kunnen dus gebruikt worden door de toepassing KDE Connect SMS en andere toepassingen.</string>
+  <string name="contacts_per_device_confirmation">Uw telefooncontacten zullen gekopieerd worden naar dit apparaat, ze kunnen dus gebruikt worden door de toepassing PhoneBoard SMS en andere toepassingen.</string>
   <string name="select_ringtone">Selecteer een ringtone</string>
   <string name="telephony_pref_blocked_title">Geblokkeerde nummers</string>
   <string name="telephony_pref_blocked_dialog_desc">Geen oproepen en SMSen vanaf deze nummers tonen. Specificeer één nummer per regel</string>
@@ -279,7 +279,7 @@
   <string name="presenter_lock_tip">U kunt uw apparaat vergrendelen en de volumetoetsen gebruiken om naar de vorige/volgende dia te gaan</string>
   <string name="add_command">Een commando toevoegen</string>
   <string name="addcommand_explanation">Er zijn geen commando\'s geregistreerd</string>
-  <string name="addcommand_explanation2">U kunt nieuwe commando\'s in de instellingen voor het KDE connect-systeem toevoegen</string>
+  <string name="addcommand_explanation2">U kunt nieuwe commando\'s in de instellingen voor het PhoneBoard-systeem toevoegen</string>
   <string name="add_command_description">U kunt commando\'s toevoegen op het bureaublad</string>
   <string name="pref_plugin_mprisreceiver">Besturing van mediaspeler</string>
   <string name="pref_plugin_mprisreceiver_desc">Uw mediaspelers op uw telefoon besturen vanaf een andere apparaat</string>
@@ -311,7 +311,7 @@
   <string name="devices">Apparaten</string>
   <string name="settings_rename">Apparaatnaam</string>
   <string name="settings_dark_mode">Donker thema</string>
-  <string name="settings_export_logs">Logs van KDE Connect exporteren</string>
+  <string name="settings_export_logs">Logs van PhoneBoard exporteren</string>
   <string name="settings_export_logs_text">Genereert een bestand met uitvoeringsinformatie die kan helpen problemen op te lossen.</string>
   <string name="settings_more_settings_title">Meer instellingen</string>
   <string name="settings_more_settings_text">Instellingen per apparaat kunnen gevonden worden onder \'Plug-in-instellingen\' vanuit een apparaat.</string>
@@ -325,7 +325,7 @@
   <string name="block_images">Afbeeldingen in meldingen blokkeren</string>
   <string name="notification_channel_receivenotification">Meldingen van andere apparaten</string>
   <string name="no_app_for_opening">Geen geschikte toepassing gevonden om dit bestand te openen</string>
-  <string name="remote_keyboard_service">KDE Connect Toetsenbord op afstand</string>
+  <string name="remote_keyboard_service">PhoneBoard Toetsenbord op afstand</string>
   <string name="presenter_pointer">Aanwijzer</string>
   <string name="trusted_networks">Vertrouwde netwerken</string>
   <string name="trusted_networks_desc">Automatisch ontdekken beperken tot bekende netwerken</string>
@@ -333,8 +333,8 @@
   <string name="empty_trusted_networks_list_text">U hebt nog geen vertrouwd netwerk toegevoegd</string>
   <string name="allow_all_networks_text">Allen toestaan</string>
   <string name="location_permission_needed_title">Toestemming vereist</string>
-  <string name="bluetooth_permission_needed_desc">KDE Connect heeft rechten nodig om te verbinden met apparaten dichtbij om apparaten te laten paren met Bluetooth beschikbaar in KDE Connect.</string>
-  <string name="location_permission_needed_desc">KDE Connect heeft de permissie achtergrondlocatie nodig om het WiFi-netwerk te weten waarmee u bent verbonden zelfs wanneer de toepassing in de achtergrond is. Dit vanwege dat de naam van de WiFi-netwerken om u heen gebruikt zouden kunnen worden om uw locatie te vinden, zelfs wanneer dit niet is wat KDE Connect doet.</string>
+  <string name="bluetooth_permission_needed_desc">PhoneBoard heeft rechten nodig om te verbinden met apparaten dichtbij om apparaten te laten paren met Bluetooth beschikbaar in PhoneBoard.</string>
+  <string name="location_permission_needed_desc">PhoneBoard heeft de permissie achtergrondlocatie nodig om het WiFi-netwerk te weten waarmee u bent verbonden zelfs wanneer de toepassing in de achtergrond is. Dit vanwege dat de naam van de WiFi-netwerken om u heen gebruikt zouden kunnen worden om uw locatie te vinden, zelfs wanneer dit niet is wat PhoneBoard doet.</string>
   <string name="clipboard_android_x_incompat">Android 10 heeft toegang tot het klembord naar alle toepassingen verwijderd. Deze plug-in zal uitgeschakeld worden.</string>
   <string name="mpris_open_url">Hier doorgaan met afspelen</string>
   <string name="cant_open_url">Kan URL niet openen om door te gaan met afspelen</string>
@@ -414,7 +414,7 @@
   <string name="holger_kaelberer_task">"Plug-in voor toetsenbord op afstand  en reparaties"</string>
   <string name="saikrishna_arcot_task">Ondersteuning voor gebruik van toetsenbord in de plug-in voor invoer op afstand, bugreparaties en algemene verbeteringen</string>
   <string name="shellwen_chen_task">Verbeter de beveiliging van SFTP, verbeter de onderhoudbaarheid van dit project, reparaties van bugs en algemene verbeteringen</string>
-  <string name="everyone_else">Ieder ander die over de jaren heeft bijgedragen aan KDE Connect</string>
+  <string name="everyone_else">Ieder ander die over de jaren heeft bijgedragen aan PhoneBoard</string>
   <string name="send_clipboard">Klembord verzenden</string>
   <string name="tap_to_execute">Tik om uit te voeren</string>
   <string name="plugin_stats">Plug-in-statistieken</string>

@@ -153,7 +153,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
         </activity>
         <activity
             android:name="org.kde.kdeconnect.Plugins.SharePlugin.SendFileActivity"
-            android:label="KDE Connect"
+            android:label="PhoneBoard"
             android:exported="true"
             android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity">
             <meta-data

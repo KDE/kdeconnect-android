@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="kde_connect">KDE Connect</string>
+  <string name="kde_connect">PhoneBoard</string>
   <string name="manifest_label_share">Senda til tækis</string>
   <string name="foreground_notification_no_devices">Ekki tengt við nein tæki</string>
   <string name="foreground_notification_devices">Tengt við: %s</string>
@@ -46,7 +46,7 @@
   <string name="send_ping">"Senda ping-beiðni "</string>
   <string name="open_mpris_controls">Margmiðlunarstýring</string>
   <string name="remotekeyboard_editing_only_title">Aðeins meðhöndla fjartengda lykla við breytingar/ritun</string>
-  <string name="remotekeyboard_not_connected">Engin fjartenging lyklaborðs er virk, virkjaðu eina slíka í KDE Connect</string>
+  <string name="remotekeyboard_not_connected">Engin fjartenging lyklaborðs er virk, virkjaðu eina slíka í PhoneBoard</string>
   <string name="remotekeyboard_connected">Fjartenging lyklaborðs er virk</string>
   <string name="remotekeyboard_multiple_connections">Það eru fleiri en ein tenging fjartengds lyklaborðs, veldu það tæki sem á að stilla</string>
   <string name="open_mousepad">Fjartengd ritun</string>
@@ -224,7 +224,7 @@
   <string name="send_files">Senda skrár</string>
   <string name="block_notification_contents">Loka á efni í tilkynningum</string>
   <string name="block_notification_images">Loka á myndir í tilkynningum</string>
-  <string name="pairing_title">KDE Connect tæki</string>
+  <string name="pairing_title">PhoneBoard tæki</string>
   <string name="pairing_description">Önnur tæki sem keyra KDE-tengingar á sama netkerfi ættu að birtast hér.</string>
   <string name="device_rename_title">Endurnefna tæki</string>
   <string name="device_rename_confirm">Endurnefna</string>
@@ -252,7 +252,7 @@
   <string name="presenter_exit">Fara úr kynningu</string>
   <string name="add_command">Bæta við skipun</string>
   <string name="addcommand_explanation">Það eru engar skipanir skráðar</string>
-  <string name="addcommand_explanation2">Þú getur bætt við nýjum skipunum í stillingum KDE Connect</string>
+  <string name="addcommand_explanation2">Þú getur bætt við nýjum skipunum í stillingum PhoneBoard</string>
   <string name="add_command_description">Þú getur bætt við skipunum á skjáborðinu</string>
   <string name="pref_plugin_mprisreceiver">Margmiðlunarstýring</string>
   <string name="pref_plugin_mprisreceiver_desc">Stýrðu margmiðlunarspilurum símans þíns frá öðru tæki</string>
@@ -281,7 +281,7 @@
   <string name="devices">Tæki</string>
   <string name="settings_rename">Heiti tækis</string>
   <string name="settings_dark_mode">Dökkt þema</string>
-  <string name="settings_export_logs">Flytja út atvikaskrár KDE Connect</string>
+  <string name="settings_export_logs">Flytja út atvikaskrár PhoneBoard</string>
   <string name="settings_more_settings_title">Fleiri stillingar</string>
   <string name="setting_persistent_notification">Birta viðvarandi tilkynningu</string>
   <string name="setting_persistent_notification_oreo">Viðvarandi tilkynning</string>
@@ -293,7 +293,7 @@
   <string name="block_images">Loka á myndir í tilkynningum</string>
   <string name="notification_channel_receivenotification">Tilkynningar frá öðrum tækjum</string>
   <string name="no_app_for_opening">Ekkert hentugt forrit fannst til að opna þessa skrá</string>
-  <string name="remote_keyboard_service">Fjartengt lyklaborð KDE Connect</string>
+  <string name="remote_keyboard_service">Fjartengt lyklaborð PhoneBoard</string>
   <string name="presenter_pointer">Bendill</string>
   <string name="trusted_networks">Treyst netkerfi</string>
   <string name="trusted_networks_desc">Takmarka sjálfvirka uppgötvun við þekkt netkerfi</string>
@@ -373,7 +373,7 @@
   <string name="alex_fiestas_task">Endurbætur á tengiliðaviðbót</string>
   <string name="maxim_leshchenko_task">Endurbætur á viðmóti og þessi síða</string>
   <string name="holger_kaelberer_task">Viðbót fyrir fjartengt lyklaborð og lagfæringar á villum</string>
-  <string name="everyone_else">Allir aðrir sem hafa lagt af mörkum til KDE Connect í gegnum árin</string>
+  <string name="everyone_else">Allir aðrir sem hafa lagt af mörkum til PhoneBoard í gegnum árin</string>
   <string name="send_clipboard">Senda klippispjald</string>
   <string name="tap_to_execute">Pikkaðu til að keyra</string>
   <string name="plugin_stats">Tölfræði forritsviðbótar</string>

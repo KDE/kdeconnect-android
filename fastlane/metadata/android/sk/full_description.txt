@@ -1,4 +1,4 @@
-KDE Connect poskytuje sadu funkcií na integráciu vášho pracovného postupuzariadenia:
+PhoneBoard poskytuje sadu funkcií na integráciu vášho pracovného postupuzariadenia:
 
 - Prenášajte súbory medzi vašimi zariadeniami.
 - Získajte prístup k súborom v telefóne z počítača bez káblov.
@@ -10,12 +10,12 @@ KDE Connect poskytuje sadu funkcií na integráciu vášho pracovného postupuza
 - Wi-Fi pripojenie: nie je potrebný žiadny USB kábel ani bluetooth.
 - End-to-end šifrovanie TLS: vaše informácie sú v bezpečí.
 
-Upozorňujeme, že na to budete musieť nainštalovať KDE Connect do počítačaaby fungovala a aby bola verzia pre počítače v systéme Android aktualizovanáverzie, aby fungovali najnovšie funkcie.
+Upozorňujeme, že na to budete musieť nainštalovať PhoneBoard do počítačaaby fungovala a aby bola verzia pre počítače v systéme Android aktualizovanáverzie, aby fungovali najnovšie funkcie.
 
 Citlivé informácie o povoleniach:
 * Povolenie na prístupnosť: Vyžaduje sa na príjem vstupu z iného zariadeniaovládať svoj telefón s Androidom, ak používate funkciu vzdialeného vstupu.
 * Povolenie polohy na pozadí: Vyžaduje sa, aby ste vedeli, do ktorej siete WiFi sa pripájatesú pripojené, ak používate funkciu dôveryhodných sietí.
 
-KDE Connect nikdy neposiela žiadne informácie do KDE ani žiadnej tretej strane. KDEConnect odosiela údaje z jedného zariadenia do druhého priamo pomocou lokálnehosieť, nikdy cez internet a pomocou end-to-end šifrovania.
+PhoneBoard nikdy neposiela žiadne informácie do KDE ani žiadnej tretej strane. KDEConnect odosiela údaje z jedného zariadenia do druhého priamo pomocou lokálnehosieť, nikdy cez internet a pomocou end-to-end šifrovania.
 
 Táto aplikácia je súčasťou projektu s otvoreným zdrojovým kódom a existuje vďaka všetkýmľudí, ktorí k tomu prispeli. Navštívte webovú stránku a získajte zdrojový kód.

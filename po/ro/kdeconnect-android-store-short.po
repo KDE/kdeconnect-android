@@ -16,5 +16,5 @@ msgstr ""
 "20)) ? 1 : 2;\n"
 "X-Generator: Lokalize 21.12.3\n"
 
-msgid "KDE Connect integrates your smartphone and computer"
-msgstr "KDE Connect vă integrează telefonul inteligent și calculatorul"
+msgid "PhoneBoard integrates your smartphone and computer"
+msgstr "PhoneBoard vă integrează telefonul inteligent și calculatorul"

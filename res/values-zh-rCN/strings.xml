@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="kde_connect">KDE Connect</string>
+  <string name="kde_connect">PhoneBoard</string>
   <string name="manifest_label_share">发送到设备</string>
   <string name="foreground_notification_no_devices">未连接到任何设备</string>
   <string name="foreground_notification_devices">已连接到：%s</string>
@@ -43,11 +43,11 @@
   <string name="open_settings">打开设置</string>
   <string name="no_permissions">您需要授予权限以访问通知</string>
   <string name="no_permission_mprisreceiver">为了控制您的媒体播放器，您需要授予访问通知的权限</string>
-  <string name="no_permissions_remotekeyboard">要接收按键，您需要激活 KDE Connect 远程键盘</string>
+  <string name="no_permissions_remotekeyboard">要接收按键，您需要激活 PhoneBoard 远程键盘</string>
   <string name="send_ping">发送 Ping</string>
   <string name="open_mpris_controls">多媒体控制</string>
   <string name="remotekeyboard_editing_only_title">只有在编辑时才接受远程按键</string>
-  <string name="remotekeyboard_not_connected">没有活动的远程键盘链接，请在 KDE Connect 中连接</string>
+  <string name="remotekeyboard_not_connected">没有活动的远程键盘链接，请在 PhoneBoard 中连接</string>
   <string name="remotekeyboard_connected">远程键盘连接已启用</string>
   <string name="remotekeyboard_multiple_connections">发现多个远程键盘连接，请选择要配置的设备</string>
   <string name="open_mousepad">远程输入</string>
@@ -183,7 +183,7 @@
   </string-array>
   <string name="mpris_notifications_explanation">在通知栏中显示远程媒体需要通知权限</string>
   <string name="mpris_notification_settings_title">显示媒体控制通知</string>
-  <string name="mpris_notification_settings_summary">不打开 KDE Connect 也能在常驻通知中控制媒体播放器</string>
+  <string name="mpris_notification_settings_summary">不打开 PhoneBoard 也能在常驻通知中控制媒体播放器</string>
   <string name="share_to">分享到…</string>
   <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">URL 被分享到了不可访问的设备。它将在设备能够访问时自动传输到该设备。\n</string>
@@ -224,13 +224,13 @@
   <string name="sftp_action_mode_menu_delete">删除</string>
   <string name="sftp_no_storage_locations_configured">未配置存储位置</string>
   <string name="sftp_saf_permission_explanation">要远程访问文件，您需要配置存储位置</string>
-  <string name="sftp_manage_storage_permission_explanation">要允许远程访问此设备上的文件，您必须允许 KDE Connect 管理它的存储。</string>
+  <string name="sftp_manage_storage_permission_explanation">要允许远程访问此设备上的文件，您必须允许 PhoneBoard 管理它的存储。</string>
   <string name="no_players_connected">未找到播放器</string>
   <string name="send_files">发送文件</string>
   <string name="block_notification_contents">屏蔽通知内容</string>
   <string name="block_notification_images">屏蔽通知图像</string>
-  <string name="pairing_title">KDE Connect 设备</string>
-  <string name="pairing_description">其他在同一网络运行 KDE Connect 的设备会在此处显示。</string>
+  <string name="pairing_title">PhoneBoard 设备</string>
+  <string name="pairing_description">其他在同一网络运行 PhoneBoard 的设备会在此处显示。</string>
   <string name="device_rename_title">重命名设备</string>
   <string name="device_rename_confirm">重命名</string>
   <string name="refresh">刷新</string>
@@ -241,7 +241,7 @@
   <string name="pref_plugin_telepathy">发送短消息</string>
   <string name="pref_plugin_telepathy_desc">从桌面发送短消息</string>
   <string name="pref_plugin_telepathy_mms">发送彩信</string>
-  <string name="pref_plugin_telepathy_mms_desc">您需要将 KDE Connect 设置为默认短信应用程序才能通过它发送彩信。</string>
+  <string name="pref_plugin_telepathy_mms_desc">您需要将 PhoneBoard 设置为默认短信应用程序才能通过它发送彩信。</string>
   <string name="findmyphone_title">找到我的手机</string>
   <string name="findmyphone_title_tablet">找到我的平板电脑</string>
   <string name="findmyphone_title_tv">查找我的电视</string>
@@ -260,7 +260,7 @@
   <string name="telephony_permission_explanation">要桌面上查看手机通话记录，您需要授予访问通话记录和手机状态的权限</string>
   <string name="telephony_optional_permission_explanation">要查看联系人姓名而非电话号码，您需要授予访问手机通讯录的权限</string>
   <string name="contacts_permission_explanation">要与桌面共享通讯薄，您需要给予联系人权限</string>
-  <string name="contacts_per_device_confirmation">您的手机联系人将被复制到此设备，以便让 KDE Connect 短信应用和其他应用使用。</string>
+  <string name="contacts_per_device_confirmation">您的手机联系人将被复制到此设备，以便让 PhoneBoard 短信应用和其他应用使用。</string>
   <string name="select_ringtone">选择铃声</string>
   <string name="telephony_pref_blocked_title">已屏蔽的号码</string>
   <string name="telephony_pref_blocked_dialog_desc">不要显示来自这些号码的电话和短信。一行一个号码</string>
@@ -271,7 +271,7 @@
   <string name="presenter_lock_tip">您可以锁定设备，用音量键作为上一页/下一页按钮</string>
   <string name="add_command">添加命令</string>
   <string name="addcommand_explanation">没有已注册的命令</string>
-  <string name="addcommand_explanation2">您可以在 KDE Connect 系统设置中添加新命令</string>
+  <string name="addcommand_explanation2">您可以在 PhoneBoard 系统设置中添加新命令</string>
   <string name="add_command_description">您可以在桌面添加新命令</string>
   <string name="pref_plugin_mprisreceiver">控制媒体播放器</string>
   <string name="pref_plugin_mprisreceiver_desc">从其他设备控制您的手机的播放器</string>
@@ -303,7 +303,7 @@
   <string name="devices">设备</string>
   <string name="settings_rename">设备名</string>
   <string name="settings_dark_mode">深色主题</string>
-  <string name="settings_export_logs">导出 KDE Connect 日志</string>
+  <string name="settings_export_logs">导出 PhoneBoard 日志</string>
   <string name="settings_export_logs_text">生成一个包含程序执行信息的文件，有助于排查故障。</string>
   <string name="settings_more_settings_title">更多设置</string>
   <string name="settings_more_settings_text">每个设备的独立设置可以在设备页内的“插件设置”下找到。</string>
@@ -317,7 +317,7 @@
   <string name="block_images">阻止通知图像</string>
   <string name="notification_channel_receivenotification">来自其他设备的通知</string>
   <string name="no_app_for_opening">没有找到合适的应用程序打开此文件</string>
-  <string name="remote_keyboard_service">KDE Connect 远程键盘</string>
+  <string name="remote_keyboard_service">PhoneBoard 远程键盘</string>
   <string name="presenter_pointer">指针</string>
   <string name="trusted_networks">信任的网络</string>
   <string name="trusted_networks_desc">限制只在已知网络中启用自动发现</string>
@@ -325,8 +325,8 @@
   <string name="empty_trusted_networks_list_text">您还没有添加任何可信的网络</string>
   <string name="allow_all_networks_text">允许所有</string>
   <string name="location_permission_needed_title">需要权限</string>
-  <string name="bluetooth_permission_needed_desc">KDE Connect 需要权限才能使用蓝牙连接并配对附近的设备。</string>
-  <string name="location_permission_needed_desc">KDE Connect 需要后台位置权限才能在后台检测您连接到的 WiFi 网络。后台位置权限是一个敏感权限，这是因为该权限可以让应用程序通过您周围的 WiFi 网络名称来查找您的位置。尽管 KDE Connect 申请了该权限，但它不会对您进行定位。</string>
+  <string name="bluetooth_permission_needed_desc">PhoneBoard 需要权限才能使用蓝牙连接并配对附近的设备。</string>
+  <string name="location_permission_needed_desc">PhoneBoard 需要后台位置权限才能在后台检测您连接到的 WiFi 网络。后台位置权限是一个敏感权限，这是因为该权限可以让应用程序通过您周围的 WiFi 网络名称来查找您的位置。尽管 PhoneBoard 申请了该权限，但它不会对您进行定位。</string>
   <string name="clipboard_android_x_incompat">Android 10 已删除所有应用的剪贴板访问权限。此插件将被禁用。</string>
   <string name="mpris_open_url">继续在此播放</string>
   <string name="cant_open_url">无法大概 URL 继续播放</string>
@@ -406,7 +406,7 @@
   <string name="holger_kaelberer_task">远程键盘插件和程序缺陷修正</string>
   <string name="saikrishna_arcot_task">支持在远程输入插件中使用键盘、程序缺陷修正和常规改进</string>
   <string name="shellwen_chen_task">改进 SFTP 的安全性，改进此项目的可维护性，修复程序缺陷和常规改进</string>
-  <string name="everyone_else">以及多年来为 KDE Connect 作出过贡献的其他所有人</string>
+  <string name="everyone_else">以及多年来为 PhoneBoard 作出过贡献的其他所有人</string>
   <string name="send_clipboard">发送剪贴板</string>
   <string name="tap_to_execute">轻触执行</string>
   <string name="plugin_stats">插件状态</string>

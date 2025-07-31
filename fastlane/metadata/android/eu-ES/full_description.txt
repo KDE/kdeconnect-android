@@ -1,4 +1,4 @@
-«KDE Connect»ek zure lan-fluxua gailuen artean bateratzeko ezaugarri multzo bat eskaintzen du:
+«PhoneBoard»ek zure lan-fluxua gailuen artean bateratzeko ezaugarri multzo bat eskaintzen du:
 
 - Zure gailuen arteko fitxategi transferentziak.
 - Atzitu zure telefonoko fitxategiak zure ordenagailutik, haririk gabe.
@@ -10,12 +10,12 @@
 - Wi-Fi konexioa: Ez da USB kablerik edo bluetooth-ik behar.
 - Muturren arteko TLS zifratzea: Zure informazioa seguru dago.
 
-Kontuan izan, aplikazio hau ibil dadin KDE Connect zure ordenagailuan instalatu beharko duzula, eta mahaigaineko bertsioa Androideko bertsioarekin eguneratuta mantendu beharko duzula ezaugarri berrienak ibil daitezen.
+Kontuan izan, aplikazio hau ibil dadin PhoneBoard zure ordenagailuan instalatu beharko duzula, eta mahaigaineko bertsioa Androideko bertsioarekin eguneratuta mantendu beharko duzula ezaugarri berrienak ibil daitezen.
 
 Babes bereziko baimenei buruzko informazioa:
 * Irisgarritasun baimena: Beharrezkoa zure Android telefonoa kontrolatzeko beste gailu baten sarrera jasotzeko, urrutiko sarrera ezaugarria erabiltzen baduzu.
 * Atzeko planoko kokapen baimena: Beharrezkoa zein Wi-Fi sarera konektatuta zauden jakiteko, Konfiantzazko sareen ezaugarria erabiltzen baduzu.
 
-«KDE Connect»ek ez dio sekula KDEri edo beste inori informaziorik bidaltzen. «KDE Connect»ek datuak gailu batetik beste batera zuzenean bidaltzen ditu sare lokala erabiliz, sekula ez Internet bidez, eta betiere muturren artean zifratuta.
+«PhoneBoard»ek ez dio sekula KDEri edo beste inori informaziorik bidaltzen. «PhoneBoard»ek datuak gailu batetik beste batera zuzenean bidaltzen ditu sare lokala erabiliz, sekula ez Internet bidez, eta betiere muturren artean zifratuta.
 
 Aplikazio hau sorburu irekiko proiektu baten zati da, eta horretan lagundu duten lagun guztiei esker existitzen da. Bisitatu webgunea sorburu-kodea hartzeko.

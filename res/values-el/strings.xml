@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="kde_connect">KDE Connect</string>
+  <string name="kde_connect">PhoneBoard</string>
   <string name="foreground_notification_no_devices">Δεν είναι συνδεδεμένο σε συσκευή</string>
   <string name="foreground_notification_devices">Συνδεδεμένό σε: %s</string>
   <string name="foreground_notification_send_clipboard">Αποστολή προχείρου</string>
@@ -166,7 +166,7 @@
     <item>2 λεπτά</item>
   </string-array>
   <string name="mpris_notification_settings_title">Εμφάνιση ειδοποίησης κονσόλας πολυμέσων</string>
-  <string name="mpris_notification_settings_summary">Να επιτρέπεται ο έλεγχος των αναπαραφωγέων πολυμέσων χωρίς άνοιγμα του KDE Connect</string>
+  <string name="mpris_notification_settings_summary">Να επιτρέπεται ο έλεγχος των αναπαραφωγέων πολυμέσων χωρίς άνοιγμα του PhoneBoard</string>
   <string name="protocol_version_newer">Η συσκευή αυτή χρησιμοποιεί νεότερη έκδοση πρωτοκόλλου</string>
   <string name="plugin_settings_with_name">%s ρυθμίσεις</string>
   <string name="invalid_device_name">Μη έγκυρο όνομα συσκευής</string>
@@ -203,8 +203,8 @@
   <string name="sftp_saf_permission_explanation">Για να έχετε απομακρυσμένη πρόσβαση σε αρχεία απαιτείται να διαμορφώσετε τοποθεσίες αποθήκης</string>
   <string name="no_players_connected">Δεν βρέθηκαν συσκευές αναπαραγωγής</string>
   <string name="send_files">Αποστολή αρχείων</string>
-  <string name="pairing_title">Συσκευές KDE Connect</string>
-  <string name="pairing_description">Άλλες συσκευές με KDE Connect στο ίδιο δίκτυο θα εμφανίζονται εδώ.</string>
+  <string name="pairing_title">Συσκευές PhoneBoard</string>
+  <string name="pairing_description">Άλλες συσκευές με PhoneBoard στο ίδιο δίκτυο θα εμφανίζονται εδώ.</string>
   <string name="device_rename_title">Μετονομασία συσκευής</string>
   <string name="device_rename_confirm">Μετονομασία</string>
   <string name="refresh">Ανανέωση</string>
@@ -215,7 +215,7 @@
   <string name="pref_plugin_telepathy">Αποστολή SMS</string>
   <string name="pref_plugin_telepathy_desc">Αποστολή μηνυμάτων κειμένου από τον υπολογιστή σας</string>
   <string name="pref_plugin_telepathy_mms">Αποστολή MMS</string>
-  <string name="pref_plugin_telepathy_mms_desc">Για να μπορείτε να στέλνετε MMS από το KDE Connect απαιτείται να το ρυθμίσετε ως την προκαθορισμένη εφαρμογή για SMS.</string>
+  <string name="pref_plugin_telepathy_mms_desc">Για να μπορείτε να στέλνετε MMS από το PhoneBoard απαιτείται να το ρυθμίσετε ως την προκαθορισμένη εφαρμογή για SMS.</string>
   <string name="findmyphone_title">Αναζήτηση του κινητού μου</string>
   <string name="findmyphone_title_tablet">Αναζήτηση του πινακίου μου</string>
   <string name="findmyphone_title_tv">Αναζήτηση της τηλεόρασής μου</string>
@@ -241,7 +241,7 @@
   <string name="presenter_lock_tip">Μπορείτε να κλειδώσετε τη συσκευή σας και να χρησιμοποιήσετε τα πλήκτρα της έντασης για να μεταβείτε σε προηγούμενη/επόμενη διαφάνεια</string>
   <string name="add_command">Προσθήκη εντολής</string>
   <string name="addcommand_explanation">Δεν υπάρχουν καταχωρημένες εντολές</string>
-  <string name="addcommand_explanation2">Μπορείτε να προσθέσετε νέες εντολές στις ρυθμίσεις συστήματος του KDE Connect</string>
+  <string name="addcommand_explanation2">Μπορείτε να προσθέσετε νέες εντολές στις ρυθμίσεις συστήματος του PhoneBoard</string>
   <string name="add_command_description">Μπορείτε να προσθέσετε εντολές στην επιφάνεια εργασίας</string>
   <string name="pref_plugin_mprisreceiver">Κονσόλα αναπαραγωγέα πολυμέσων</string>
   <string name="pref_plugin_mprisreceiver_desc">Ελέγξτε τους αναπαραγωγείς πολυμέσων του τηλεφώνου σας από άλλη συσκευή</string>
@@ -277,7 +277,7 @@
   <string name="block_images">Φραγή εικόνων σε ειδοποιήσεις</string>
   <string name="notification_channel_receivenotification">Ειδοποιήσεις από άλλες συσκευές</string>
   <string name="no_app_for_opening">Δεν βρέθηκε κατάλληλη εφαρμογή για το άνοιγμα αυτού του αρχείου</string>
-  <string name="remote_keyboard_service">Απομακρυσμένο πληκτρολόγιο KDE Connect</string>
+  <string name="remote_keyboard_service">Απομακρυσμένο πληκτρολόγιο PhoneBoard</string>
   <string name="presenter_pointer">Δείκτης</string>
   <string name="trusted_networks">Έμπιστα δίκτυα</string>
   <string name="trusted_networks_desc">Να περιοριστεί η αυτόματη ανακάλυψη σε γνωστά δίκτυα</string>

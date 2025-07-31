@@ -21,5 +21,5 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
 
-msgid "KDE Connect integrates your smartphone and computer"
-msgstr "KDE Connect integrira vaš pametni telefon in računalnik"
+msgid "PhoneBoard integrates your smartphone and computer"
+msgstr "PhoneBoard integrira vaš pametni telefon in računalnik"

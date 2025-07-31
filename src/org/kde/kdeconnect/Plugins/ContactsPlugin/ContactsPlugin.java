@@ -1,5 +1,5 @@
 /*
- * ContactsPlugin.java - This file is part of KDE Connect's Android App
+ * ContactsPlugin.java - This file is part of PhoneBoard's Android App
  * Implement a way to request and send contact information
  *
  * SPDX-FileCopyrightText: 2018 Simon Redman <simon@ergotech.com>
@@ -141,7 +141,7 @@ public class ContactsPlugin extends Plugin {
     }
 
     /**
-     * Add custom fields to the vcard to keep track of KDE Connect-specific fields
+     * Add custom fields to the vcard to keep track of PhoneBoard-specific fields
      * <p>
      * These include the local device's uID as well as last-changed timestamp
      * <p>
@@ -150,7 +150,7 @@ public class ContactsPlugin extends Plugin {
      * @param vcard vcard to apply metadata to
      * @param uID   uID to which the vcard corresponds
      * @throws ContactNotFoundException If the given ID for some reason does not match a contact
-     * @return The same VCard as was passed in, but now with KDE Connect-specific fields
+     * @return The same VCard as was passed in, but now with PhoneBoard-specific fields
      */
     private VCardBuilder addVCardMetadata(VCardBuilder vcard, uID uID) throws ContactNotFoundException {
         // Append the device ID line

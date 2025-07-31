@@ -310,7 +310,7 @@ dependencies {
     // This library was originally authored as com.klinkerapps at https://github.com/klinker41/android-smsmms.
     // However, that version is under-loved. I have therefore made "some fixes" and published it.
     // Please see https://invent.kde.org/sredman/android-smsmms/-/tree/master
-    implementation(libs.android.smsmms)
+//    implementation(libs.android.smsmms)
     implementation(libs.logger)
 
     implementation(libs.commons.io)

@@ -1,4 +1,4 @@
-KDE Connect tarjoaa joukon ominaisuuksia työvuon eheyttämiseksi laitteiden välillä:
+PhoneBoard tarjoaa joukon ominaisuuksia työvuon eheyttämiseksi laitteiden välillä:
 
 – Tiedostojen siirto laitteesta toiseen.
 – Pääsy puhelimen tiedostoihin tietokoneelta kaapeleitta.
@@ -11,12 +11,12 @@ KDE Connect tarjoaa joukon ominaisuuksia työvuon eheyttämiseksi laitteiden vä
 – Langaton verkkoyhteys: USB-johtoa tai Bluetoothia ei tarvita.
 – TLS-salaus päästä päähän: tietosi ovat turvassa.
 
-Huomaa, että jotta sovellus kaikkine ominaisuuksineen toimisi, KDE Connect tulee asentaa tietokoneeseen ja pitää ajan tasalla Android-version kanssa.
+Huomaa, että jotta sovellus kaikkine ominaisuuksineen toimisi, PhoneBoard tulee asentaa tietokoneeseen ja pitää ajan tasalla Android-version kanssa.
 
 Tietoa arkaluontoisista käyttöoikeuksista:
 – Saavutettavuuskäyttöoikeus: vaaditaan, jotta toisen laitteen syötteellä voisi hallita Android-puhelinta (jos käytetään etäsyöttöominaisuutta).
 – Sijaintitiedon käyttöoikeus taustalla: vaaditaan, jotta tiedetään, mihin verkkoon on yhdistetty (jos käytetään luotettujen verkkojen ominaisuutta).
 
-KDE Connect ei koskaan lähetä tietoa KDE:lle tai kolmansille osapuolille. Tieto lähetetään suoraan laitteesta toiseen paikallisverkossa, ei koskaan internetissä, ja käytössä on salaus päästä päähän.
+PhoneBoard ei koskaan lähetä tietoa KDE:lle tai kolmansille osapuolille. Tieto lähetetään suoraan laitteesta toiseen paikallisverkossa, ei koskaan internetissä, ja käytössä on salaus päästä päähän.
 
 Sovellus on avoimen lähdekoodin projekti ja on olemassa sitä avustaneiden ihmisten ansiosta. Lähdekoodin saat noudettua kotisivulta.

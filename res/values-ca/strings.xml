@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="kde_connect">KDE Connect</string>
+  <string name="kde_connect">PhoneBoard</string>
   <string name="manifest_label_share">Envia a un dispositiu</string>
   <string name="foreground_notification_no_devices">No està connectat a cap dispositiu</string>
   <string name="foreground_notification_devices">Connectat a: %s</string>
@@ -43,7 +43,7 @@
   <string name="open_settings">Obre l\'arranjament</string>
   <string name="no_permissions">Us caldrà atorgar permís per a accedir a les notificacions</string>
   <string name="no_permission_mprisreceiver">Per a poder controlar els reproductors multimèdia cal atorgar accés a les notificacions</string>
-  <string name="no_permissions_remotekeyboard">Per a rebre les pulsacions de tecles, haureu d\'activar el teclat remot del KDE Connect</string>
+  <string name="no_permissions_remotekeyboard">Per a rebre les pulsacions de tecles, haureu d\'activar el teclat remot del PhoneBoard</string>
   <string name="send_ping">Envia un ping</string>
   <string name="open_mpris_controls">Control multimèdia</string>
   <string name="remotekeyboard_editing_only_title">Fes servir les tecles remotes només en editar</string>
@@ -191,7 +191,7 @@
   </string-array>
   <string name="mpris_notifications_explanation">Cal el permís de notificacions per a mostrar els elements multimèdia remots al calaix de notificacions</string>
   <string name="mpris_notification_settings_title">Mostra les notificacions dels reproductors</string>
-  <string name="mpris_notification_settings_summary">Permet controlar els reproductors multimèdia sense obrir el KDE Connect</string>
+  <string name="mpris_notification_settings_summary">Permet controlar els reproductors multimèdia sense obrir el PhoneBoard</string>
   <string name="share_to">Comparteix amb…</string>
   <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">Els URL compartits amb un dispositiu no accessible es lliuraran un cop s\'hi pugui accedir.\n\n</string>
@@ -232,13 +232,13 @@
   <string name="sftp_action_mode_menu_delete">Suprimeix</string>
   <string name="sftp_no_storage_locations_configured">No s\'ha configurat cap ubicació d\'emmagatzematge</string>
   <string name="sftp_saf_permission_explanation">Per a accedir remotament als fitxers cal configurar les ubicacions d\'emmagatzematge</string>
-  <string name="sftp_manage_storage_permission_explanation">Per a permetre l\'accés remot als fitxers d\'aquest dispositiu, haureu de permetre que el KDE Connect gestioni l\'emmagatzematge.</string>
+  <string name="sftp_manage_storage_permission_explanation">Per a permetre l\'accés remot als fitxers d\'aquest dispositiu, haureu de permetre que el PhoneBoard gestioni l\'emmagatzematge.</string>
   <string name="no_players_connected">No s\'ha trobat cap reproductor</string>
   <string name="send_files">Envia fitxers</string>
   <string name="block_notification_contents">Bloca el contingut de les notificacions</string>
   <string name="block_notification_images">Bloca les imatges de les notificacions</string>
-  <string name="pairing_title">Dispositius del KDE Connect</string>
-  <string name="pairing_description">Els altres dispositius que executin el KDE Connect a la mateixa xarxa han d\'aparèixer aquí.</string>
+  <string name="pairing_title">Dispositius del PhoneBoard</string>
+  <string name="pairing_description">Els altres dispositius que executin el PhoneBoard a la mateixa xarxa han d\'aparèixer aquí.</string>
   <string name="device_rename_title">Reanomena el dispositiu</string>
   <string name="device_rename_confirm">Reanomena</string>
   <string name="refresh">Actualitza</string>
@@ -249,7 +249,7 @@
   <string name="pref_plugin_telepathy">Envia un SMS</string>
   <string name="pref_plugin_telepathy_desc">Envia missatges de text des de l\'escriptori</string>
   <string name="pref_plugin_telepathy_mms">Envia un MMS</string>
-  <string name="pref_plugin_telepathy_mms_desc">Per a poder enviar MMS des del KDE Connect cal establir-la com a aplicació predeterminada d\'SMS.</string>
+  <string name="pref_plugin_telepathy_mms_desc">Per a poder enviar MMS des del PhoneBoard cal establir-la com a aplicació predeterminada d\'SMS.</string>
   <string name="findmyphone_title">Troba el meu telèfon</string>
   <string name="findmyphone_title_tablet">Troba la meva tauleta</string>
   <string name="findmyphone_title_tv">Troba el meu televisor</string>
@@ -268,7 +268,7 @@
   <string name="telephony_permission_explanation">Per a veure les trucades telefòniques des de l\'escriptori, haureu de donar permís d\'accés al registre de trucades telefòniques i a l\'estat del telèfon</string>
   <string name="telephony_optional_permission_explanation">Per a veure un nom de contacte en comptes d\'un número de telèfon, haureu de donar permís als contactes del telèfon</string>
   <string name="contacts_permission_explanation">Per a compartir els vostres contactes amb l\'escriptori, caldrà que els hi doneu permís</string>
-  <string name="contacts_per_device_confirmation">Els contactes del telèfon es copiaran en aquest dispositiu, de manera que puguin ser utilitzats per l\'aplicació d\'SMS del KDE Connect i altres aplicacions.</string>
+  <string name="contacts_per_device_confirmation">Els contactes del telèfon es copiaran en aquest dispositiu, de manera que puguin ser utilitzats per l\'aplicació d\'SMS del PhoneBoard i altres aplicacions.</string>
   <string name="select_ringtone">Seleccioneu un to de la trucada</string>
   <string name="telephony_pref_blocked_title">Nombres blocats</string>
   <string name="telephony_pref_blocked_dialog_desc">No es mostren ni les trucades ni els SMS d\'aquests números. Especifiqueu un número per línia</string>
@@ -279,7 +279,7 @@
   <string name="presenter_lock_tip">Podeu bloquejar el dispositiu i emprar les tecles de volum per a anar a la diapositiva anterior/següent</string>
   <string name="add_command">Afegeix una ordre</string>
   <string name="addcommand_explanation">No hi ha cap ordre registrada</string>
-  <string name="addcommand_explanation2">Podeu afegir ordres noves a l\'Arranjament del sistema del KDE Connect</string>
+  <string name="addcommand_explanation2">Podeu afegir ordres noves a l\'Arranjament del sistema del PhoneBoard</string>
   <string name="add_command_description">Podeu afegir ordres per a l\'escriptori</string>
   <string name="pref_plugin_mprisreceiver">Control del reproductor multimèdia</string>
   <string name="pref_plugin_mprisreceiver_desc">Controla els reproductors multimèdia del telèfon des d\'un altre dispositiu</string>
@@ -311,7 +311,7 @@
   <string name="devices">Dispositius</string>
   <string name="settings_rename">Nom del dispositiu</string>
   <string name="settings_dark_mode">Tema fosc</string>
-  <string name="settings_export_logs">Exporta els registres del KDE Connect</string>
+  <string name="settings_export_logs">Exporta els registres del PhoneBoard</string>
   <string name="settings_export_logs_text">Genera un fitxer amb informació d\'execució que pot ajudar a resoldre problemes.</string>
   <string name="settings_more_settings_title">Més opcions</string>
   <string name="settings_more_settings_text">La configuració per dispositiu es pot trobar a «Arranjament dels connectors» des d\'un dispositiu.</string>
@@ -325,7 +325,7 @@
   <string name="block_images">Bloca les imatges a les notificacions</string>
   <string name="notification_channel_receivenotification">Notificacions des d\'altres dispositius</string>
   <string name="no_app_for_opening">No s\'ha trobat cap aplicació adequada per a obrir aquest fitxer</string>
-  <string name="remote_keyboard_service">Teclat remot del KDE Connect</string>
+  <string name="remote_keyboard_service">Teclat remot del PhoneBoard</string>
   <string name="presenter_pointer">Apuntador</string>
   <string name="trusted_networks">Xarxes de confiança</string>
   <string name="trusted_networks_desc">Restringeix el descobriment automàtic a les xarxes conegudes</string>
@@ -333,8 +333,8 @@
   <string name="empty_trusted_networks_list_text">Encara no heu afegit cap xarxa de confiança</string>
   <string name="allow_all_networks_text">Permet totes</string>
   <string name="location_permission_needed_title">Es requereix permís</string>
-  <string name="bluetooth_permission_needed_desc">El KDE Connect necessita permís per a connectar als dispositius propers per a fer que els dispositius aparellats per Bluetooth estiguin disponibles al KDE Connect.</string>
-  <string name="location_permission_needed_desc">El KDE Connect necessita el permís d\'ubicació en segon pla per a conèixer la xarxa Wi-Fi a la qual esteu connectat fins i tot quan l\'aplicació està en segon pla. Això és perquè el nom de les xarxes Wi-Fi que hi ha al voltant es podria utilitzar per a trobar la vostra ubicació, fins i tot quan això no és el que fa el KDE Connect.</string>
+  <string name="bluetooth_permission_needed_desc">El PhoneBoard necessita permís per a connectar als dispositius propers per a fer que els dispositius aparellats per Bluetooth estiguin disponibles al PhoneBoard.</string>
+  <string name="location_permission_needed_desc">El PhoneBoard necessita el permís d\'ubicació en segon pla per a conèixer la xarxa Wi-Fi a la qual esteu connectat fins i tot quan l\'aplicació està en segon pla. Això és perquè el nom de les xarxes Wi-Fi que hi ha al voltant es podria utilitzar per a trobar la vostra ubicació, fins i tot quan això no és el que fa el PhoneBoard.</string>
   <string name="clipboard_android_x_incompat">L\'Android 10 ha tret l\'accés al porta-retalls a totes les aplicacions. Aquest connector estarà inhabilitat.</string>
   <string name="mpris_open_url">Continua reproduint aquí</string>
   <string name="cant_open_url">No s\'ha pogut obrir l\'URL per a continuar reproduint</string>
@@ -414,7 +414,7 @@
   <string name="holger_kaelberer_task">Connector de teclat remot i esmenes d\'errors</string>
   <string name="saikrishna_arcot_task">Suport per a usar el teclat en el connector d\'entrada remota, esmenes d\'errors i millores generals</string>
   <string name="shellwen_chen_task">Millorar la seguretat d\'SFTP, millorar les tasques de manteniment d\'aquest projecte, esmenes d\'errors i millores generals</string>
-  <string name="everyone_else">Tothom qui ha contribuït al KDE Connect al llarg dels anys</string>
+  <string name="everyone_else">Tothom qui ha contribuït al PhoneBoard al llarg dels anys</string>
   <string name="send_clipboard">Envia el porta-retalls</string>
   <string name="tap_to_execute">Toqueu per a executar</string>
   <string name="plugin_stats">Estadístiques del connector</string>

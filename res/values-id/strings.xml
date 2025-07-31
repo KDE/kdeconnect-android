@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="kde_connect">KDE Connect</string>
+  <string name="kde_connect">PhoneBoard</string>
   <string name="foreground_notification_no_devices">Belum terkoneksi ke perangkat apa pun</string>
   <string name="foreground_notification_devices">Terkoneksi ke: %s</string>
   <string name="pref_plugin_telephony">Penotifikasi ponsel</string>
@@ -82,7 +82,7 @@
   <string name="error_canceled_by_user">Dibatalkan oleh pengguna</string>
   <string name="error_canceled_by_other_peer">Dibatalkan oleh kawan lain</string>
   <string name="encryption_info_title">Info Enkripsi</string>
-  <string name="encryption_info_msg_no_ssl">Perangkat lain tidaklah menggunakan KDE Connect yang berversi saat ini, menggunakan metode enkripsi kuno.</string>
+  <string name="encryption_info_msg_no_ssl">Perangkat lain tidaklah menggunakan PhoneBoard yang berversi saat ini, menggunakan metode enkripsi kuno.</string>
   <string name="my_device_fingerprint">Sidik jari SHA1 pada sertifikat perangkatmu adalah:</string>
   <string name="remote_device_fingerprint">Sidik jari SHA1 pada sertifikat perangkat jarak jauh adalah:</string>
   <string name="pair_requested">Meminta sanding</string>
@@ -127,7 +127,7 @@
     <item>2 menit</item>
   </string-array>
   <string name="mpris_notification_settings_title">Tampilkan notifikasi kendali media</string>
-  <string name="mpris_notification_settings_summary">Memungkinkan pengendalian pemutar media-mu tanpa membuka KDE Connect</string>
+  <string name="mpris_notification_settings_summary">Memungkinkan pengendalian pemutar media-mu tanpa membuka PhoneBoard</string>
   <string name="share_to">Berbagi Ke...</string>
   <string name="protocol_version_newer">Perangkat ini menggunakan sebuah versi protokol baru</string>
   <string name="plugin_settings_with_name">Pengesetan %s</string>
@@ -151,8 +151,8 @@
   <string name="sftp_camera">Gambar kamera</string>
   <string name="no_players_connected">Tidak ada pemutar yang ditemukan</string>
   <string name="send_files">Kirim file</string>
-  <string name="pairing_title">Perangkat KDE Connect</string>
-  <string name="pairing_description">Perangkat lain menjalankan KDE Connect dalam jaringanmu yang sama yang seharusnya muncul di sini.</string>
+  <string name="pairing_title">Perangkat PhoneBoard</string>
+  <string name="pairing_description">Perangkat lain menjalankan PhoneBoard dalam jaringanmu yang sama yang seharusnya muncul di sini.</string>
   <string name="device_rename_title">Ubah nama perangkat</string>
   <string name="device_rename_confirm">Ubah Nama</string>
   <string name="refresh">Segarkan</string>
@@ -183,7 +183,7 @@
   <string name="settings_icon_description">Ikon pengaturan</string>
   <string name="add_command">Tambahkan sebuah perintah</string>
   <string name="addcommand_explanation">Tidak ada perintah yang diregister</string>
-  <string name="addcommand_explanation2">"Kamu bisa menambahkan perintah baru dalam System Settings KDE Connect "</string>
+  <string name="addcommand_explanation2">"Kamu bisa menambahkan perintah baru dalam System Settings PhoneBoard "</string>
   <string name="add_command_description">Kamu bisa menambahkan perintah pada desktop</string>
   <string name="pref_plugin_mprisreceiver">Kendali Pemutar Media</string>
   <string name="pref_plugin_mprisreceiver_desc">Kendalikan pemutar media ponselmu dari perangkat lainnya</string>

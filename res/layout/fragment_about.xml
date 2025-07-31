@@ -181,7 +181,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
                     android:textSize="14sp"
                     android:layout_marginTop="8dp"
                     android:paddingStart="4dp"
-                    tools:text="Everyone else who has contributed to KDE Connect over the years"
+                    tools:text="Everyone else who has contributed to PhoneBoard over the years"
                     tools:ignore="RtlSymmetry" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>

@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="kde_connect">KDE Connect</string>
+  <string name="kde_connect">PhoneBoard</string>
   <string name="manifest_label_share">Odoslať do zariadenia</string>
   <string name="foreground_notification_no_devices">Nepripojené k žiadnemu zariadeniu</string>
   <string name="foreground_notification_devices">Pripojené k: %s</string>
@@ -41,7 +41,7 @@
   <string name="open_settings">Otvoriť nastavenia</string>
   <string name="no_permissions">Musíte udeliť oprávnenia na prístup k upozorneniam</string>
   <string name="no_permission_mprisreceiver">Aby ste mohli ovládať multimediálne prehrávače, musíte udeliť prístup k upozorneniam</string>
-  <string name="no_permissions_remotekeyboard">Na prijímanie stlačenia klávesov, musíte aktivovať vzdialenú klávesnicu aplikácie KDE Connect</string>
+  <string name="no_permissions_remotekeyboard">Na prijímanie stlačenia klávesov, musíte aktivovať vzdialenú klávesnicu aplikácie PhoneBoard</string>
   <string name="send_ping">Odoslať ping</string>
   <string name="open_mpris_controls">Multimediálny ovládač</string>
   <string name="remotekeyboard_editing_only_title">Spracovať vzdialené klávesy iba počas upravovania</string>
@@ -181,7 +181,7 @@
     <item>2 minúty</item>
   </string-array>
   <string name="mpris_notification_settings_title">Zobraziť upozornenie ovládania médií</string>
-  <string name="mpris_notification_settings_summary">Umožní ovládanie vašich multimediálnych prehrávačov bez otvorenia aplikácie KDE Connect</string>
+  <string name="mpris_notification_settings_summary">Umožní ovládanie vašich multimediálnych prehrávačov bez otvorenia aplikácie PhoneBoard</string>
   <string name="protocol_version_newer">Toto zariadenie používa novšiu verziu protokolu</string>
   <string name="plugin_settings_with_name">Nastavenia modulu %s</string>
   <string name="invalid_device_name">Neplatný názov zariadenia</string>
@@ -218,8 +218,8 @@
   <string name="sftp_saf_permission_explanation">Na vzdialený prístup k súborom musíte nastaviť umiestnenia úložísk</string>
   <string name="no_players_connected">Nenašli sa žiadne prehrávače</string>
   <string name="send_files">Odoslať súbory</string>
-  <string name="pairing_title">Zariadenia aplikácie KDE Connect</string>
-  <string name="pairing_description">Tu by sa mali objaviť iné zariadenie so spustenou aplikáciou KDE Connect v rovnakej sieti.</string>
+  <string name="pairing_title">Zariadenia aplikácie PhoneBoard</string>
+  <string name="pairing_description">Tu by sa mali objaviť iné zariadenie so spustenou aplikáciou PhoneBoard v rovnakej sieti.</string>
   <string name="device_rename_title">Premenovanie zariadenia</string>
   <string name="device_rename_confirm">Premenovať</string>
   <string name="refresh">Obnoviť</string>
@@ -230,7 +230,7 @@
   <string name="pref_plugin_telepathy">Odoslať SMS</string>
   <string name="pref_plugin_telepathy_desc">Odosielanie textových správ z vášho počítača</string>
   <string name="pref_plugin_telepathy_mms">Odoslať MMS</string>
-  <string name="pref_plugin_telepathy_mms_desc">Aby ste mohli odosielať MMS z KDE Connect, musíte ho nastaviť ako predvolenú aplikáciu SMS.</string>
+  <string name="pref_plugin_telepathy_mms_desc">Aby ste mohli odosielať MMS z PhoneBoard, musíte ho nastaviť ako predvolenú aplikáciu SMS.</string>
   <string name="findmyphone_title">Nájsť môj telefón</string>
   <string name="findmyphone_title_tablet">Nájsť môj tablet</string>
   <string name="findmyphone_title_tv">Nájsť môj televízor</string>
@@ -256,7 +256,7 @@
   <string name="presenter_lock_tip">Môžete uzamknúť vaše zariadenie a použiť klávesy hlasitosti na prechod na predchádzajúci a nasledujúci snímok</string>
   <string name="add_command">Pridať príkaz</string>
   <string name="addcommand_explanation">Nie sú registrované žiadne príkazy</string>
-  <string name="addcommand_explanation2">Môžete pridať nové príkazy v systémových nastaveniach aplikácie KDE Connect</string>
+  <string name="addcommand_explanation2">Môžete pridať nové príkazy v systémových nastaveniach aplikácie PhoneBoard</string>
   <string name="add_command_description">Môžete pridať príkazy na počítači</string>
   <string name="pref_plugin_mprisreceiver">Multimediálny ovládač</string>
   <string name="pref_plugin_mprisreceiver_desc">Ovláda multimediálne prehrávače vášho telefónu z iného zariadenia</string>
@@ -293,7 +293,7 @@
   <string name="block_images">Blokovať obrázky v upozorneniach</string>
   <string name="notification_channel_receivenotification">Upozornenia z iných zariadení</string>
   <string name="no_app_for_opening">Nenašla sa vhodná aplikácia na otvorenie tohto súboru</string>
-  <string name="remote_keyboard_service">KDE Connect Vzdialená Klávesnica</string>
+  <string name="remote_keyboard_service">PhoneBoard Vzdialená Klávesnica</string>
   <string name="presenter_pointer">Ukazovateľ</string>
   <string name="trusted_networks">Dôveryhodné siete</string>
   <string name="trusted_networks_desc">Obmedzí automatické objavovanie iba na známe siete</string>

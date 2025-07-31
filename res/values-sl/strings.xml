@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="kde_connect">KDE Connect</string>
+  <string name="kde_connect">PhoneBoard</string>
   <string name="manifest_label_share">Poslano na napravo</string>
   <string name="foreground_notification_no_devices">Ni povezan z nobeno napravo</string>
   <string name="foreground_notification_devices">Povezan na: %s</string>
@@ -43,7 +43,7 @@
   <string name="open_settings">Odpri nastavitve</string>
   <string name="no_permissions">Za dostop do obvestil morate odobriti dovoljenje</string>
   <string name="no_permission_mprisreceiver">Če želite upravljati svoje predvajalnike medijev, morate odobriti dostop do obvestil</string>
-  <string name="no_permissions_remotekeyboard">Za sprejem pritiskov tipk morate aktivirati oddaljeno tipkovnico KDE Connect</string>
+  <string name="no_permissions_remotekeyboard">Za sprejem pritiskov tipk morate aktivirati oddaljeno tipkovnico PhoneBoard</string>
   <string name="send_ping">Pošlji ping</string>
   <string name="open_mpris_controls">Upravljanje večpredstavnosti</string>
   <string name="remotekeyboard_editing_only_title">Oddaljene tipke uporabljajte samo med urejanjem</string>
@@ -207,7 +207,7 @@
   </string-array>
   <string name="mpris_notifications_explanation">Dovoljenje za obvestila je potrebno za prikaz oddaljenih medijev v predalu za obvestila</string>
   <string name="mpris_notification_settings_title">Pokaži obvestilo o nadzoru medija</string>
-  <string name="mpris_notification_settings_summary">Dovoli nadzor nad predvajalniki medijev, ne da bi odprli KDE Connect</string>
+  <string name="mpris_notification_settings_summary">Dovoli nadzor nad predvajalniki medijev, ne da bi odprli PhoneBoard</string>
   <string name="share_to">Deli z…</string>
   <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">URL-ji, ki so v skupni rabi z nedosegljivo napravo, ji bodo dostavljeni, ko postane dosegljiva.\n\n</string>
@@ -248,13 +248,13 @@
   <string name="sftp_action_mode_menu_delete">Briši</string>
   <string name="sftp_no_storage_locations_configured">Lokacije shranjevanja niso nastavljene</string>
   <string name="sftp_saf_permission_explanation">Za dostop do datotek na daljavo morate nastaviti lokacije za shranjevanje</string>
-  <string name="sftp_manage_storage_permission_explanation">Da bi dovolili oddaljeni dostop do datotek na tej napravi, morate dovoliti, da KDE Connect upravlja s hrambo.</string>
+  <string name="sftp_manage_storage_permission_explanation">Da bi dovolili oddaljeni dostop do datotek na tej napravi, morate dovoliti, da PhoneBoard upravlja s hrambo.</string>
   <string name="no_players_connected">Ni najdenih predvajalnikov</string>
   <string name="send_files">Pošlji datoteke</string>
   <string name="block_notification_contents">Blokiraj vsebine obvestil</string>
   <string name="block_notification_images">Blokiraj slike v obvestilih</string>
-  <string name="pairing_title">Naprave KDE Connect</string>
-  <string name="pairing_description">Tu bi se morale prikazati druge naprave, ki poganjajo KDE Connect v istem omrežju.</string>
+  <string name="pairing_title">Naprave PhoneBoard</string>
+  <string name="pairing_description">Tu bi se morale prikazati druge naprave, ki poganjajo PhoneBoard v istem omrežju.</string>
   <string name="device_rename_title">Preimenuj napravo</string>
   <string name="device_rename_confirm">Preimenuj</string>
   <string name="refresh">Osveži</string>
@@ -265,7 +265,7 @@
   <string name="pref_plugin_telepathy">Pošlji SMS</string>
   <string name="pref_plugin_telepathy_desc">Pošlji besedilna sporočila z namizja</string>
   <string name="pref_plugin_telepathy_mms">Pošlji MMS</string>
-  <string name="pref_plugin_telepathy_mms_desc">Če želite pošiljati MMS iz KDE Connect, ga morate nastaviti kot privzeto aplikacijo za SMS.</string>
+  <string name="pref_plugin_telepathy_mms_desc">Če želite pošiljati MMS iz PhoneBoard, ga morate nastaviti kot privzeto aplikacijo za SMS.</string>
   <string name="findmyphone_title">Poišči moj telefon</string>
   <string name="findmyphone_title_tablet">Poišči mojo tablico</string>
   <string name="findmyphone_title_tv">Poišči moj TV</string>
@@ -284,7 +284,7 @@
   <string name="telephony_permission_explanation">Če želite videti telefonske klice na namizju, morate dati dovoljenje za dnevnike klicev in stanje telefona</string>
   <string name="telephony_optional_permission_explanation">Če želite namesto telefonske številke videti ime stika, morate omogočiti dostop do stikov telefona</string>
   <string name="contacts_permission_explanation">Če želite knjigo stikov deliti z namizjem, morate dati dovoljenje za dostop do stikov</string>
-  <string name="contacts_per_device_confirmation">Vaši telefonski stiki bodo prekopirani na to napravo, da jih lahko uporablja KDE Connect SMS in druge aplikacije.</string>
+  <string name="contacts_per_device_confirmation">Vaši telefonski stiki bodo prekopirani na to napravo, da jih lahko uporablja PhoneBoard SMS in druge aplikacije.</string>
   <string name="select_ringtone">Izberite melodijo zvonjenja</string>
   <string name="telephony_pref_blocked_title">Blokirane številke</string>
   <string name="telephony_pref_blocked_dialog_desc">Ne prikazuj klicev in SMS s teh številk. Navedite po eno telefonsko številko v vsaki vrsti</string>
@@ -295,7 +295,7 @@
   <string name="presenter_lock_tip">Napravo lahko zaklenete in s tipkami za glasnost prehajate na prejšnjo/naslednjo sliko</string>
   <string name="add_command">Dodaj ukaz</string>
   <string name="addcommand_explanation">Nobenih ukazov ni registriranih</string>
-  <string name="addcommand_explanation2">Nove ukaze lahko dodate v sistemskih nastavitvah KDE Connect</string>
+  <string name="addcommand_explanation2">Nove ukaze lahko dodate v sistemskih nastavitvah PhoneBoard</string>
   <string name="add_command_description">Ukaze lahko dodate na namizju</string>
   <string name="pref_plugin_mprisreceiver">Nadzor predvajalnika medijev</string>
   <string name="pref_plugin_mprisreceiver_desc">Upravljajte predstavnostne predvajalnike telefona iz druge naprave</string>
@@ -327,7 +327,7 @@
   <string name="devices">Naprave</string>
   <string name="settings_rename">Ime naprave</string>
   <string name="settings_dark_mode">Temna tema</string>
-  <string name="settings_export_logs">Izvozi dnevnike KDE Connect</string>
+  <string name="settings_export_logs">Izvozi dnevnike PhoneBoard</string>
   <string name="settings_export_logs_text">Ustvari datoteko z informacijami o izvajanju, ki lahko pomagajo pri odpravljanju težav.</string>
   <string name="settings_more_settings_title">Več nastavitev</string>
   <string name="settings_more_settings_text">Nastavitve posamezne naprave najdete v razdelku \'Nastavitve vtičnikov\' v napravi.</string>
@@ -341,7 +341,7 @@
   <string name="block_images">Blokiraj slike v obvestilih</string>
   <string name="notification_channel_receivenotification">Obvestila ostalih naprav</string>
   <string name="no_app_for_opening">Ni primerne aplikacije za odpiranje te datoteke</string>
-  <string name="remote_keyboard_service">Oddaljena tipkovnica KDE Connect</string>
+  <string name="remote_keyboard_service">Oddaljena tipkovnica PhoneBoard</string>
   <string name="presenter_pointer">Kazalec</string>
   <string name="trusted_networks">Zaupanje vredna omrežja</string>
   <string name="trusted_networks_desc">Omejite samodejno odkrivanje na znana omrežja</string>
@@ -349,8 +349,8 @@
   <string name="empty_trusted_networks_list_text">Niste še dodali nobenega zaupanja vrednega omrežja</string>
   <string name="allow_all_networks_text">Dovoli vse</string>
   <string name="location_permission_needed_title">Zahtevano dovoljenje</string>
-  <string name="bluetooth_permission_needed_desc">KDE Connect potrebuje dovoljenje za povezavo z bližnjimi napravami, da bodo naprave, seznanjene z Bluetoothom, na voljo v KDE Connect.</string>
-  <string name="location_permission_needed_desc">"KDE Connect potrebuje dovoljenje omrežja, da pozna WiFi omrežje, s katerim ste povezani, tudi če je aplikacija v ozadju. To je zato, ker se ime omrežja wifi  lahko uporabi za iskanje svoje lokacije, četudi to ne počne KDE Connect."</string>
+  <string name="bluetooth_permission_needed_desc">PhoneBoard potrebuje dovoljenje za povezavo z bližnjimi napravami, da bodo naprave, seznanjene z Bluetoothom, na voljo v PhoneBoard.</string>
+  <string name="location_permission_needed_desc">"PhoneBoard potrebuje dovoljenje omrežja, da pozna WiFi omrežje, s katerim ste povezani, tudi če je aplikacija v ozadju. To je zato, ker se ime omrežja wifi  lahko uporabi za iskanje svoje lokacije, četudi to ne počne PhoneBoard."</string>
   <string name="clipboard_android_x_incompat">Android 10 je odstranil dostop do odložišča za vse aplikacije. Ta vtičnik bo onemogočen.</string>
   <string name="mpris_open_url">Nadaljuj s predvajanjem tukaj</string>
   <string name="cant_open_url">Ne morem odpreti spletnega naslova za nadaljevanje predvajanja</string>
@@ -430,7 +430,7 @@
   <string name="holger_kaelberer_task">Vtičnik za oddaljeno tipkovnico in popravki napak</string>
   <string name="saikrishna_arcot_task">Podpora za uporabo tipkovnice vtičnika za oddaljen vnos, popravki napak in splošne izboljšave</string>
   <string name="shellwen_chen_task">Izboljšanje varnosti SFTP, izboljšanje vzdržljivosti tega projekta, popravki napak in splošne izboljšave</string>
-  <string name="everyone_else">Vsi ostali, ki so prispevali za KDE Connect v letih razvoja</string>
+  <string name="everyone_else">Vsi ostali, ki so prispevali za PhoneBoard v letih razvoja</string>
   <string name="send_clipboard">Pošlji odložišče</string>
   <string name="tap_to_execute">Tapkajte za izvedbo</string>
   <string name="plugin_stats">Stanje vtičnikov</string>

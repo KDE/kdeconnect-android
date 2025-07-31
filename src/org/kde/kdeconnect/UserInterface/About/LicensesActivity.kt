@@ -35,10 +35,7 @@ class LicensesActivity : BaseActivity<ActivityLicensesBinding>() {
         supportActionBar!!.setDisplayShowHomeEnabled(true)
 
         binding.licensesText.layoutManager = LinearLayoutManager(this)
-        binding.licensesText.adapter = StringListAdapter(getLicenses().split("\n\n"))
     }
-
-    private fun getLicenses(): String = resources.openRawResource(R.raw.license).use { inputStream -> IOUtils.toString(inputStream, Charset.defaultCharset()) }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_licenses, menu)

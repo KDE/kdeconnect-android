@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="kde_connect">KDE Connect</string>
+  <string name="kde_connect">PhoneBoard</string>
   <string name="manifest_label_share">Sendi al Aparato</string>
   <string name="foreground_notification_no_devices">Ne konektita al iu ajn aparato</string>
   <string name="foreground_notification_devices">Konektita al: %s</string>
@@ -43,7 +43,7 @@
   <string name="open_settings">Malfermi agordojn</string>
   <string name="no_permissions">Vi devas doni permeson aliri sciigojn</string>
   <string name="no_permission_mprisreceiver">Por povi regi viajn plurmediajn ludilojn, vi devas doni aliron al la sciigoj</string>
-  <string name="no_permissions_remotekeyboard">Por ricevi klavpremojn vi devas aktivigi la KDE Connect Remote Keyboard</string>
+  <string name="no_permissions_remotekeyboard">Por ricevi klavpremojn vi devas aktivigi la PhoneBoard Remote Keyboard</string>
   <string name="send_ping">Sendi ping</string>
   <string name="open_mpris_controls">Mastrumo de Aŭdvidaĵoj</string>
   <string name="remotekeyboard_editing_only_title">Pritrakti forajn klavojn nur dum redaktado</string>
@@ -189,7 +189,7 @@
   </string-array>
   <string name="mpris_notifications_explanation">La sciiga permeso estas necesa por montri malproksimajn datumportilojn en la sciigokesto</string>
   <string name="mpris_notification_settings_title">Montri sciigon pri rego de amaskomunikiloj</string>
-  <string name="mpris_notification_settings_summary">Permesu mastrumi viajn plurmediajn ludilojn sen malfermi KDE Connect</string>
+  <string name="mpris_notification_settings_summary">Permesu mastrumi viajn plurmediajn ludilojn sen malfermi PhoneBoard</string>
   <string name="share_to">Kunhavigi al…</string>
   <string name="unreachable_device_url_share_text">URL-oj kundividitaj al neatingebla aparato estos liveritaj al ĝi post kiam ĝi fariĝos atingebla.\n\n</string>
   <string name="protocol_version">Protokolversio:</string>
@@ -229,13 +229,13 @@
   <string name="sftp_action_mode_menu_delete">Forigi</string>
   <string name="sftp_no_storage_locations_configured">Neniuj konservejoj agordis</string>
   <string name="sftp_saf_permission_explanation">Por aliri dosierojn malproksime vi devas agordi konservadlokojn</string>
-  <string name="sftp_manage_storage_permission_explanation">Por permesi foran aliron al dosieroj sur ĉi tiu aparato, vi devas permesi al KDE Connect administri la konservejon.</string>
+  <string name="sftp_manage_storage_permission_explanation">Por permesi foran aliron al dosieroj sur ĉi tiu aparato, vi devas permesi al PhoneBoard administri la konservejon.</string>
   <string name="no_players_connected">Neniuj ludantoj trovitaj</string>
   <string name="send_files">Sendi dosierojn</string>
   <string name="block_notification_contents">Bloki sciigan enhavon</string>
   <string name="block_notification_images">Bloki sciigajn bildojn</string>
   <string name="pairing_title">KDE Konekti Aparatojn</string>
-  <string name="pairing_description">Aliaj aparatoj rulantaj KDE Connect en via sama reto devus aperi ĉi tie.</string>
+  <string name="pairing_description">Aliaj aparatoj rulantaj PhoneBoard en via sama reto devus aperi ĉi tie.</string>
   <string name="device_rename_title">Alinomi la aparaton</string>
   <string name="device_rename_confirm">Alinomi</string>
   <string name="refresh">Refreŝigi</string>
@@ -246,7 +246,7 @@
   <string name="pref_plugin_telepathy">Sendi SMS</string>
   <string name="pref_plugin_telepathy_desc">Sendi tekstmesaĝojn de via labortablo</string>
   <string name="pref_plugin_telepathy_mms">Sendi MMS</string>
-  <string name="pref_plugin_telepathy_mms_desc">Por povi sendi MMS de KDE Connect, vi devas agordi ĝin kiel la defaŭltan SMS-aplikaĵon.</string>
+  <string name="pref_plugin_telepathy_mms_desc">Por povi sendi MMS de PhoneBoard, vi devas agordi ĝin kiel la defaŭltan SMS-aplikaĵon.</string>
   <string name="findmyphone_title">Trovi mian telefonon</string>
   <string name="findmyphone_title_tablet">Trovi mian tableton</string>
   <string name="findmyphone_title_tv">Trovi mian televidilon</string>
@@ -265,7 +265,7 @@
   <string name="telephony_permission_explanation">Por vidi telefonvokojn sur la labortablo, vi devas doni permeson al telefonvokaj protokoloj kaj telefona stato</string>
   <string name="telephony_optional_permission_explanation">Por vidi kontaktonomon anstataŭ telefonnumero vi devas doni aliron al la kontaktoj de la telefono</string>
   <string name="contacts_permission_explanation">Por dividi vian kontaktlibron kun la labortablo, vi devas doni permeson al kontaktoj</string>
-  <string name="contacts_per_device_confirmation">Viaj telefonaj kontaktoj estos kopiitaj al ĉi tiu aparato, do ili povas esti uzataj de la KDE Connect SMS-aplikaĵo kaj aliaj aplikaĵoj.</string>
+  <string name="contacts_per_device_confirmation">Viaj telefonaj kontaktoj estos kopiitaj al ĉi tiu aparato, do ili povas esti uzataj de la PhoneBoard SMS-aplikaĵo kaj aliaj aplikaĵoj.</string>
   <string name="select_ringtone">Elekti sonoron</string>
   <string name="telephony_pref_blocked_title">Blokitaj nombroj</string>
   <string name="telephony_pref_blocked_dialog_desc">Ne montru vokojn kaj SMS de ĉi tiuj numeroj. Bonvolu specifi unu numeron po linio</string>
@@ -276,7 +276,7 @@
   <string name="presenter_lock_tip">Vi povas ŝlosi vian aparaton kaj uzi la laŭtec-klavojn por iri al la antaŭa/sekva lumbildo</string>
   <string name="add_command">Aldoni komandon</string>
   <string name="addcommand_explanation">Ne estas komandoj registritaj</string>
-  <string name="addcommand_explanation2">Vi povas aldoni novajn komandojn en la KDE Connect System Settings</string>
+  <string name="addcommand_explanation2">Vi povas aldoni novajn komandojn en la PhoneBoard System Settings</string>
   <string name="add_command_description">Vi povas aldoni komandojn sur la labortablo</string>
   <string name="pref_plugin_mprisreceiver">Media Player Regado</string>
   <string name="pref_plugin_mprisreceiver_desc">Mastrumi la plurmediajn ludilojn de via telefono de alia aparato</string>
@@ -328,8 +328,8 @@
   <string name="empty_trusted_networks_list_text">Vi ankoraŭ ne aldonis neniun fidindan reton</string>
   <string name="allow_all_networks_text">Permesi ĉion</string>
   <string name="location_permission_needed_title">Permeso bezonata</string>
-  <string name="bluetooth_permission_needed_desc">KDE Connect bezonas permeson por konekti al proksimaj aparatoj por fari aparatojn parigitaj per Bluetooth disponebla en KDE Connect.</string>
-  <string name="location_permission_needed_desc">KDE Connect bezonas la fonlokan permeson por scii la WiFi-reton al kiu vi estas konektita eĉ kiam la programo estas en la fono. Ĉi tio estas ĉar la nomo de la WiFi-retoj ĉirkaŭ vi povus esti uzata por trovi vian lokon, eĉ kiam tion ne faras KDE Connect.</string>
+  <string name="bluetooth_permission_needed_desc">PhoneBoard bezonas permeson por konekti al proksimaj aparatoj por fari aparatojn parigitaj per Bluetooth disponebla en PhoneBoard.</string>
+  <string name="location_permission_needed_desc">PhoneBoard bezonas la fonlokan permeson por scii la WiFi-reton al kiu vi estas konektita eĉ kiam la programo estas en la fono. Ĉi tio estas ĉar la nomo de la WiFi-retoj ĉirkaŭ vi povus esti uzata por trovi vian lokon, eĉ kiam tion ne faras PhoneBoard.</string>
   <string name="clipboard_android_x_incompat">Android 10 forigis aliron al tondujo al ĉiuj aplikaĵoj. Ĉi tiu kromaĵo estos malŝaltita.</string>
   <string name="mpris_open_url">Daŭre ludi ĉi tie</string>
   <string name="cant_open_url">Ne povas malfermi URL por daŭrigi ludadon</string>
@@ -409,7 +409,7 @@
   <string name="holger_kaelberer_task">Fora klavara kromaĵo kaj korektoj de cimoj</string>
   <string name="saikrishna_arcot_task">Subteno por uzi la klavaron en la fora eniga kromaĵo, korektoj de cimoj kaj ĝeneralaj plibonigoj</string>
   <string name="shellwen_chen_task">Plibonigi la sekurecon de SFTP, plibonigi la funkciteneblon de ĉi projekto, cimkorektoj kaj ĝeneralaj plibonigoj</string>
-  <string name="everyone_else">Ĉiuj aliaj, kiuj kontribuis al KDE Connect tra la jaroj</string>
+  <string name="everyone_else">Ĉiuj aliaj, kiuj kontribuis al PhoneBoard tra la jaroj</string>
   <string name="send_clipboard">Sendi tondujon</string>
   <string name="tap_to_execute">Frapi por plenumi</string>
   <string name="plugin_stats">Statistiko de kromprogramoj</string>

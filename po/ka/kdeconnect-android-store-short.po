@@ -14,5 +14,5 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.4\n"
 
-msgid "KDE Connect integrates your smartphone and computer"
-msgstr "KDE Connect თქვენი ტელეფონისა და კომპიუტერის ინტეგრაციას ახდენს"
+msgid "PhoneBoard integrates your smartphone and computer"
+msgstr "PhoneBoard თქვენი ტელეფონისა და კომპიუტერის ინტეგრაციას ახდენს"

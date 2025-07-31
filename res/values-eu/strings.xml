@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="kde_connect">KDE Connect</string>
+  <string name="kde_connect">PhoneBoard</string>
   <string name="manifest_label_share">Bidali gailura</string>
   <string name="foreground_notification_no_devices">Ez dago ezein gailuetara konektaturik</string>
   <string name="foreground_notification_devices">Honetara konektatua: %s</string>
@@ -43,7 +43,7 @@
   <string name="open_settings">Ireki ezarpenak</string>
   <string name="no_permissions">Jakinarazpenak atzitzeko baimena eman behar duzu</string>
   <string name="no_permission_mprisreceiver">Zure euskarri-jotzaileak kontrolatu ahal izateko jakinarazpenetara atzipena eman behar diozu</string>
-  <string name="no_permissions_remotekeyboard">Sakatzeak jasotzeko KDE Connecten urruneko teklatua aktibatu behar duzu</string>
+  <string name="no_permissions_remotekeyboard">Sakatzeak jasotzeko PhoneBoarden urruneko teklatua aktibatu behar duzu</string>
   <string name="send_ping">Bidali ping</string>
   <string name="open_mpris_controls">Multimedia kontrola</string>
   <string name="remotekeyboard_editing_only_title">Erabili urruneko teklak editatzean besterik ez</string>
@@ -191,8 +191,8 @@
   </string-array>
   <string name="mpris_notifications_explanation">Urruneko euskarria jakinarazpen tiraderan erakusteko jakinarazpen-baimena behar da</string>
   <string name="mpris_notification_settings_title">Erakutsi euskarri kontrolaren jakinarazpena</string>
-  <string name="mpris_notification_settings_summary">Utzi zure euskarri-jotzaileak kontrolatzen KDE Connect ireki gabe</string>
-  <string name="share_to">Partekatu honekin…</string>
+  <string name="mpris_notification_settings_summary">Utzi zure euskarri-jotzaileak kontrolatzen PhoneBoard ireki gabe</string>
+  <string name="share_to">Partekatu honekin...</string>
   <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">Gailu eskuraezinekin partekatutako URLak, hartara bidaliko dira eskuragarri dagoenean.\n\n</string>
   <string name="protocol_version">Protokoloaren bertsioa:</string>
@@ -232,13 +232,13 @@
   <string name="sftp_action_mode_menu_delete">Ezabatu</string>
   <string name="sftp_no_storage_locations_configured">Ez da biltegiratze kokalekurik konfiguratu</string>
   <string name="sftp_saf_permission_explanation">Fitxategiak urrunetik atzitzeko biltegiratze kokalekuak konfiguratu behar dituzu</string>
-  <string name="sftp_manage_storage_permission_explanation">gailu honetako fitxategietara urrutiko sarbidea baimentzeko, «KDE Connect»eri biltegiratzea kudeatzeko baimena eman behar diozu.</string>
+  <string name="sftp_manage_storage_permission_explanation">gailu honetako fitxategietara urrutiko sarbidea baimentzeko, «PhoneBoard»eri biltegiratzea kudeatzeko baimena eman behar diozu.</string>
   <string name="no_players_connected">Ez da jotzailerik aurkitu</string>
   <string name="send_files">Bidali fitxategiak</string>
   <string name="block_notification_contents">Oztopatu jakinarazpenen edukia</string>
   <string name="block_notification_images">Oztopatu jakinarazpenen irudiak</string>
-  <string name="pairing_title">KDE Connect gailuak</string>
-  <string name="pairing_description">KDE Connect darabilten sareko beste gailuak hemen agertu beharko lirateke.</string>
+  <string name="pairing_title">PhoneBoard gailuak</string>
+  <string name="pairing_description">PhoneBoard darabilten sareko beste gailuak hemen agertu beharko lirateke.</string>
   <string name="device_rename_title">Aldatu izena gailuari</string>
   <string name="device_rename_confirm">Aldatu izena</string>
   <string name="refresh">Freskatu</string>
@@ -249,7 +249,7 @@
   <string name="pref_plugin_telepathy">Bidali SMS</string>
   <string name="pref_plugin_telepathy_desc">Bidali testu-mezuak zure mahaigainetik</string>
   <string name="pref_plugin_telepathy_mms">Bidali MMS</string>
-  <string name="pref_plugin_telepathy_mms_desc">KDE Connect bidez MMSak bidali ahal izateko, SMS aplikazio lehenetsi gisa ezarri behar duzu.</string>
+  <string name="pref_plugin_telepathy_mms_desc">PhoneBoard bidez MMSak bidali ahal izateko, SMS aplikazio lehenetsi gisa ezarri behar duzu.</string>
   <string name="findmyphone_title">Bilatu nire telefonoa</string>
   <string name="findmyphone_title_tablet">Bilatu nire tableta</string>
   <string name="findmyphone_title_tv">Aurkitu nire TB</string>
@@ -268,7 +268,7 @@
   <string name="telephony_permission_explanation">Telefono deiak zure mahaigainetik ikusteko, telefono deien egunkarira eta telefonoaren egoerara baimena eman behar duzu</string>
   <string name="telephony_optional_permission_explanation">Telefono zenbakiaren ordez kontaktuaren izena ikusteko telefonoko kontaktuak atzitzeko baimena eman behar duzu</string>
   <string name="contacts_permission_explanation">Zure kontaktuen liburuak mahaigainarekin partekatzeko, kontaktuetara baimena eman behar duzu</string>
-  <string name="contacts_per_device_confirmation">Zure telefonoko kontaktuak gailu honetara kopiatuko dira, «KDE Connect SMS» aplikazioak eta beste aplikazio batzuek erabili ahal ditzaten.</string>
+  <string name="contacts_per_device_confirmation">Zure telefonoko kontaktuak gailu honetara kopiatuko dira, «PhoneBoard SMS» aplikazioak eta beste aplikazio batzuek erabili ahal ditzaten.</string>
   <string name="select_ringtone">Hautatu dei-tonu bat</string>
   <string name="telephony_pref_blocked_title">Blokeatutako zenbakiak</string>
   <string name="telephony_pref_blocked_dialog_desc">Ez erakutsi zenbaki hauen deiak eta SMSak. Zehaztu zenbaki bat lerroko</string>
@@ -279,7 +279,7 @@
   <string name="presenter_lock_tip">Zure gailua giltzatu dezakezu eta bolumen teklak botoi gisa erabili aurreko/hurrengo diapositibara joateko</string>
   <string name="add_command">Gehitu komando bat</string>
   <string name="addcommand_explanation">Ez dago komandorik erregistraturik</string>
-  <string name="addcommand_explanation2">Komando berriak gehitu ditzakezu KDE Connect sistemaren ezarpenetan</string>
+  <string name="addcommand_explanation2">Komando berriak gehitu ditzakezu PhoneBoard sistemaren ezarpenetan</string>
   <string name="add_command_description">Komandoak gehitu ditzakezu mahaigainean</string>
   <string name="pref_plugin_mprisreceiver">Euskarri-jotzailearen kontrola</string>
   <string name="pref_plugin_mprisreceiver_desc">Kontrolatu zure telefonoaren euskarri-jotzaileak beste gailu batetik</string>
@@ -311,7 +311,7 @@
   <string name="devices">Gailuak</string>
   <string name="settings_rename">Gailuaren izena</string>
   <string name="settings_dark_mode">Gai iluna</string>
-  <string name="settings_export_logs">Esportatu KDE Connect-en egunkariak</string>
+  <string name="settings_export_logs">Esportatu PhoneBoard-en egunkariak</string>
   <string name="settings_export_logs_text">Sortu arazoak konpontzen lagun dezakeen exekuzio informazioa duen fitxategi bat.</string>
   <string name="settings_more_settings_title">Ezarpen gehiago</string>
   <string name="settings_more_settings_text">Gailu-bakoitzeko ezarpenak aurki daitezke \'Pluginen ezarpenak\' barruan.</string>
@@ -325,7 +325,7 @@
   <string name="block_images">Oztopatu jakinarazpenen irudiak</string>
   <string name="notification_channel_receivenotification">Beste gailu batzuen jakinarazpenak</string>
   <string name="no_app_for_opening">Ez da fitxategi hau irekitzeko aplikazio egokirik aurkitu</string>
-  <string name="remote_keyboard_service">KDE Connect urruneko teklatua</string>
+  <string name="remote_keyboard_service">PhoneBoard urruneko teklatua</string>
   <string name="presenter_pointer">Erakuslea</string>
   <string name="trusted_networks">Konfiantza duten sareak</string>
   <string name="trusted_networks_desc">Mugatu aurkitze automatikoa sare ezagunetara</string>
@@ -333,8 +333,8 @@
   <string name="empty_trusted_networks_list_text">Oraindik ez duzu gehitu konfiantza duen sarerik</string>
   <string name="allow_all_networks_text">Baimendu guztiak</string>
   <string name="location_permission_needed_title">Baimena beharrezkoa da</string>
-  <string name="bluetooth_permission_needed_desc">KDE Connect-ek hurbileko gailuetara konektatzeko baimena behar du, Bluetooth bidez parekatutako gailuak KDE Connect-en erabilgarri ipintzeko.</string>
-  <string name="location_permission_needed_desc">KDE Connect-ek konektatuta zauden Wi-Fi sarea zein den jakiteko atzeko planoko kokapen baimena behar du, baita aplikazioa atzeko planoan dagoenean ere. Hori horrela da, zure inguruko Wi-Fi sareen izenak zure kokalekua aurkitzeko erabil daitezkeelako, nahiz eta hori ez izan KDE Connect-ek egiten duena.</string>
+  <string name="bluetooth_permission_needed_desc">PhoneBoard-ek hurbileko gailuetara konektatzeko baimena behar du, Bluetooth bidez parekatutako gailuak PhoneBoard-en erabilgarri ipintzeko.</string>
+  <string name="location_permission_needed_desc">PhoneBoard-ek konektatuta zauden Wi-Fi sarea zein den jakiteko atzeko planoko kokapen baimena behar du, baita aplikazioa atzeko planoan dagoenean ere. Hori horrela da, zure inguruko Wi-Fi sareen izenak zure kokalekua aurkitzeko erabil daitezkeelako, nahiz eta hori ez izan PhoneBoard-ek egiten duena.</string>
   <string name="clipboard_android_x_incompat">Android 10ek arbela atzitzeko aukera kendu die aplikazio guztiei. Plugin hau desgaitu egingo da.</string>
   <string name="mpris_open_url">Jarraitu hemen jotzen</string>
   <string name="cant_open_url">Ezin da ireki URLa jotzen jarraitzeko</string>
@@ -414,7 +414,7 @@
   <string name="holger_kaelberer_task">Urruneko teklatuaren plugina eta akatsen konponketa</string>
   <string name="saikrishna_arcot_task">Urruneko sarrerako pluginean teklatua erabiltzeko euskarria, akatsen konponketa eta hobekuntza orokorrak</string>
   <string name="shellwen_chen_task">SFTPren segurtasuna hobetu, proiektu honen mantentze-gaitasuna hobetu, akatsak konpondu eta hobekuntza orokorrak</string>
-  <string name="everyone_else">Urteetan KDE Connect-ekin lagundu duten gainerako guztiak</string>
+  <string name="everyone_else">Urteetan PhoneBoard-ekin lagundu duten gainerako guztiak</string>
   <string name="send_clipboard">Bidali arbelekoa</string>
   <string name="tap_to_execute">Tak egin exekutatzeko</string>
   <string name="plugin_stats">Pluginaren estatistikak</string>
@@ -429,7 +429,7 @@
   <string name="notification_channel_keepwatching">Jarraitu jotzen</string>
   <string name="ping_result">«Ping» %1$d milisegundotan egin da</string>
   <string name="ping_failed">Ezin izan dio gailuari «ping» egin</string>
-  <string name="ping_in_progress">«Ping» egiten…</string>
+  <string name="ping_in_progress">«Ping» egiten...</string>
   <string name="device_host_invalid">Ostalaria baliogabea da. Erabili balio duen ostalari-izen bat, IPv4, edo IPv6</string>
   <string name="device_host_duplicate">Ostalaria jada zerrendan dago</string>
 </resources>

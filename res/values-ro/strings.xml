@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="kde_connect">KDE Connect</string>
+  <string name="kde_connect">PhoneBoard</string>
   <string name="manifest_label_share">Trimite către dispozitiv</string>
   <string name="foreground_notification_no_devices">Niciun dispozitiv conectat</string>
   <string name="foreground_notification_devices">Conectat la: %s</string>
@@ -42,7 +42,7 @@
   <string name="open_settings">Deschide configurările</string>
   <string name="no_permissions">Trebuie să acordați permisiunea pentru accesarea notificărilor</string>
   <string name="no_permission_mprisreceiver">Pentru a putea controla lectorul multimedia, trebuie să permiteți accesul la notificări</string>
-  <string name="no_permissions_remotekeyboard">Pentru a primi apăsări de taste, trebuie să activați Tastatura de la distanță KDE Connect</string>
+  <string name="no_permissions_remotekeyboard">Pentru a primi apăsări de taste, trebuie să activați Tastatura de la distanță PhoneBoard</string>
   <string name="send_ping">Trimite ping</string>
   <string name="open_mpris_controls">Control multimedia</string>
   <string name="remotekeyboard_editing_only_title">Manipulează taste de la distanță numai la redactare</string>
@@ -191,7 +191,7 @@
   </string-array>
   <string name="mpris_notifications_explanation">Permisiunea pentru notificări e necesară pentru a arăta piesele distante în sertarul cu notificări</string>
   <string name="mpris_notification_settings_title">Arată notificare cu control multimedia</string>
-  <string name="mpris_notification_settings_summary">Permite controlul lectorilor multimedia fără a deschide KDE Connect</string>
+  <string name="mpris_notification_settings_summary">Permite controlul lectorilor multimedia fără a deschide PhoneBoard</string>
   <string name="protocol_version_newer">Acest dispozitiv folosește o versiune mai nouă a protocolului</string>
   <string name="plugin_settings_with_name">Configurări „%s”</string>
   <string name="invalid_device_name">Denumire nevalidă a dispozitivului</string>
@@ -227,13 +227,13 @@
   <string name="sftp_action_mode_menu_delete">Șterge</string>
   <string name="sftp_no_storage_locations_configured">Niciun loc de stocare configurat</string>
   <string name="sftp_saf_permission_explanation">Pentru a accesa fișiere de la distanță, trebuie să configurați locuri de stocare</string>
-  <string name="sftp_manage_storage_permission_explanation">Pentru a permite accesul de la distanță la fișierele de pe acest dispozitiv, trebuie să permiteți KDE Connect să gestioneze stocarea.</string>
+  <string name="sftp_manage_storage_permission_explanation">Pentru a permite accesul de la distanță la fișierele de pe acest dispozitiv, trebuie să permiteți PhoneBoard să gestioneze stocarea.</string>
   <string name="no_players_connected">Niciun program de redare găsit</string>
   <string name="send_files">Trimite fișiere</string>
   <string name="block_notification_contents">Blochează conținutul notificărilor</string>
   <string name="block_notification_images">Blochează imaginile notificărilor</string>
-  <string name="pairing_title">Dispozitive KDE Connect</string>
-  <string name="pairing_description">Aici ar trebui să apară alte dispozitive ce rulează KDE Connect în aceeași rețea.</string>
+  <string name="pairing_title">Dispozitive PhoneBoard</string>
+  <string name="pairing_description">Aici ar trebui să apară alte dispozitive ce rulează PhoneBoard în aceeași rețea.</string>
   <string name="device_rename_title">Redenumește dispozitivul</string>
   <string name="device_rename_confirm">Redenumește</string>
   <string name="refresh">Reîmprospătează</string>
@@ -244,7 +244,7 @@
   <string name="pref_plugin_telepathy">Expediază SMS</string>
   <string name="pref_plugin_telepathy_desc">Trimite mesaje textuale de pe calculatorul de birou</string>
   <string name="pref_plugin_telepathy_mms">Expediază MMS</string>
-  <string name="pref_plugin_telepathy_mms_desc">Pentru a putea trimite MMS-uri din KDE Connect, trebuie să-l indicați ca aplicație implicită de SMS.</string>
+  <string name="pref_plugin_telepathy_mms_desc">Pentru a putea trimite MMS-uri din PhoneBoard, trebuie să-l indicați ca aplicație implicită de SMS.</string>
   <string name="findmyphone_title">Găsește-mi telefonul</string>
   <string name="findmyphone_title_tablet">Găsește-mi tableta</string>
   <string name="findmyphone_title_tv">Găsește-mi televizorul</string>
@@ -263,7 +263,7 @@
   <string name="telephony_permission_explanation">Pentru a vedea apelurile pe calculatorul de birou, trebuie să acordați permisiuni asupra jurnalului de apeluri și stării telefonului</string>
   <string name="telephony_optional_permission_explanation">Pentru a vedea numele contactului în locul numărului de telefon, trebuie să permiteți accesul la contactele telefonului.</string>
   <string name="contacts_permission_explanation">Pentru a vă partaja agenda de contacte cu biroul, trebuie să permiteți accesul la contacte</string>
-  <string name="contacts_per_device_confirmation">"Contactele de pe telefon vor fi copiate pe acest dispozitiv, astfel încât să poată fi folosite de aplicația KDE Connect pentru SMS și alte aplicații. "</string>
+  <string name="contacts_per_device_confirmation">"Contactele de pe telefon vor fi copiate pe acest dispozitiv, astfel încât să poată fi folosite de aplicația PhoneBoard pentru SMS și alte aplicații. "</string>
   <string name="select_ringtone">Alegeți tonul de apel</string>
   <string name="telephony_pref_blocked_title">Numere blocate</string>
   <string name="telephony_pref_blocked_dialog_desc">Nu arăta apeluri și SMS de la aceste numere. Specificați un număr pe linie</string>
@@ -274,7 +274,7 @@
   <string name="presenter_lock_tip">Puteți bloca dispozitivul și folosi butoanele de volum pentru a merge la diapozitivul precedent/următor</string>
   <string name="add_command">Adaugă o comandă</string>
   <string name="addcommand_explanation">Nu sunt comenzi înregistrate</string>
-  <string name="addcommand_explanation2">Puteți adăuga noi comenzi în configurările de sistem KDE Connect</string>
+  <string name="addcommand_explanation2">Puteți adăuga noi comenzi în configurările de sistem PhoneBoard</string>
   <string name="add_command_description">Puteți adăuga comenzi pe calculatorul de birou</string>
   <string name="pref_plugin_mprisreceiver">Control lector multimedia</string>
   <string name="pref_plugin_mprisreceiver_desc">Controlați programele multimedia din telefon de pe alt dispozitiv</string>
@@ -318,7 +318,7 @@
   <string name="block_images">Blochează imaginile din notificări</string>
   <string name="notification_channel_receivenotification">Notificări de pe alte dispozitive</string>
   <string name="no_app_for_opening">Nu a fost găsită nicio aplicație care să deschidă acest fișier</string>
-  <string name="remote_keyboard_service">Tastatura de la distanță KDE Connect</string>
+  <string name="remote_keyboard_service">Tastatura de la distanță PhoneBoard</string>
   <string name="presenter_pointer">Indicator</string>
   <string name="trusted_networks">Rețele de încredere</string>
   <string name="trusted_networks_desc">Restricționează descoperirea automată la rețele de încredere</string>
@@ -326,7 +326,7 @@
   <string name="empty_trusted_networks_list_text">Încă nu ați adăugat nicio rețea de încredere</string>
   <string name="allow_all_networks_text">Permite toate</string>
   <string name="location_permission_needed_title">Permisiune cerută</string>
-  <string name="location_permission_needed_desc">KDE Connect necesită permisiunea de localizare în fundal pentru a ști rețeaua WiFi la care v-ați conectat chiar și atunci când aplicația e în fundal. Aceasta se datorează faptului că denumirile rețelelor din jur ar putea fi folosite pentru a vă localiza, chiar dacă aceasta nu e ceva ce face KDE Connect.</string>
+  <string name="location_permission_needed_desc">PhoneBoard necesită permisiunea de localizare în fundal pentru a ști rețeaua WiFi la care v-ați conectat chiar și atunci când aplicația e în fundal. Aceasta se datorează faptului că denumirile rețelelor din jur ar putea fi folosite pentru a vă localiza, chiar dacă aceasta nu e ceva ce face PhoneBoard.</string>
   <string name="clipboard_android_x_incompat">Android 10 a eliminat accesul la clipboard pentru toate aplicațiile. Această extensie va fi dezactivată.</string>
   <string name="mpris_open_url">Continuă redarea aici</string>
   <string name="cant_open_url">URL-ul nu poate fi deschis pentru a continua redarea</string>
@@ -403,7 +403,7 @@
   <string name="maxim_leshchenko_task">Îmbunătățiri ale interfeței și această pagină Despre</string>
   <string name="holger_kaelberer_task">Extensie pentru tastatura distantă și corecții de defecte</string>
   <string name="saikrishna_arcot_task">Suport pentru folosirea tastaturii în extensia de introducere de la distanță, corecții de defecte și îmbunătățiri generale</string>
-  <string name="everyone_else">Toți cei care au contribuit la KDE Connect de-a lungul anilor</string>
+  <string name="everyone_else">Toți cei care au contribuit la PhoneBoard de-a lungul anilor</string>
   <string name="send_clipboard">Trimite clipboard</string>
   <string name="tap_to_execute">Atingeți pentru a executa</string>
   <string name="plugin_stats">Statistici pentru extensii</string>

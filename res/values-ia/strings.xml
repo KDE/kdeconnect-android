@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="kde_connect">KDE Connect</string>
+  <string name="kde_connect">PhoneBoard</string>
   <string name="manifest_label_share">Invia a dispositivo</string>
   <string name="foreground_notification_no_devices">Non connectite a ulle dispositivo</string>
   <string name="foreground_notification_devices">Connectite : %s</string>
@@ -193,7 +193,7 @@
   <string name="developer">Disveloppator</string>
   <string name="bug_fixes_and_general_improvements">Fixationes de bug e melioramentos general</string>
   <string name="holger_kaelberer_task">Plugin de claviero remote e correctiones de falta</string>
-  <string name="everyone_else">Alcun altere qui ha contribuite a KDE Connect durante le annos</string>
+  <string name="everyone_else">Alcun altere qui ha contribuite a PhoneBoard durante le annos</string>
   <string name="send_clipboard">Invia Area de transferentia</string>
   <string name="tap_to_execute">Toccaper executar</string>
   <string name="plugin_stats">"Statisticas de plugin "</string>

@@ -396,7 +396,7 @@ public class MousePadActivity
             }
             plugin.sendSingleHold();
             dragging = true;
-        }   
+        }
     }
 
     @Override

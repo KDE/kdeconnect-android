@@ -1,4 +1,4 @@
-KDE Connect biedt een set mogelijkheden om uw werkmethode te integreren tussen apparaten:
+PhoneBoard biedt een set mogelijkheden om uw werkmethode te integreren tussen apparaten:
 
 - Stuur bestanden over tussen apparaten.
 - heb toegang tot bestanden op uw telefoon vanaf uw computer, zonder draden.
@@ -10,12 +10,12 @@ KDE Connect biedt een set mogelijkheden om uw werkmethode te integreren tussen a
 - WiFi verbinding: geen USB draad of bluetooth nodig.
 - End-to-end TLS versleuteling: uw informatie is veilig.
 
-Merk op dat u KDE Connect op uw computer moet installeren om deze toepassing te laten werken en houd de bureaubladversie up-to-date met de Android versie om de laatste mogelijkheden te laten werken.
+Merk op dat u PhoneBoard op uw computer moet installeren om deze toepassing te laten werken en houd de bureaubladversie up-to-date met de Android versie om de laatste mogelijkheden te laten werken.
 
 Informatie over gevoelige rechten:
 * Rechten voor toegang: vereist om invoer van een ander apparaat te ontvangen voor het besturen van uw Android telefoon, als u mogelijkheid invoer van afstand gebruikt.
 * Rechten voor achtergrondlocatie: vereist om te weten met welk WiFi-network u bent verbonden, als u de mogelijkheid vertrouwde netwerken gebruikt.
 
-KDE Connect verzendt nooit enige informatie naar KDE of naar een derde. KDE Connect verzendt gegevens van het ene apparaat direct naar het andere met gebruik van het lokale netwerk, nooit via het internet en gebruikt end-to-end versleuteling.
+PhoneBoard verzendt nooit enige informatie naar KDE of naar een derde. PhoneBoard verzendt gegevens van het ene apparaat direct naar het andere met gebruik van het lokale netwerk, nooit via het internet en gebruikt end-to-end versleuteling.
 
 Deze toepassing is onderdeel van een open-source project en het bestaat dankzij alle mensen die er aan hebben bijgedragen. Bezoek de website om de broncode te verkrijgen.

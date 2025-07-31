@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="kde_connect">KDE Connect</string>
+  <string name="kde_connect">PhoneBoard</string>
   <string name="manifest_label_share">שליחה למכשיר</string>
   <string name="foreground_notification_no_devices">לא מחובר לאף מכשיר</string>
   <string name="foreground_notification_devices">מחובר אל: %s</string>
@@ -43,7 +43,7 @@
   <string name="open_settings">פתיחת הגדרות</string>
   <string name="no_permissions">צריך להעניק הרשאת לגישה להתראות</string>
   <string name="no_permission_mprisreceiver">כדי לאפשר לשלוט בנגני המדיה שלך צריך להעניק גישה להתראות</string>
-  <string name="no_permissions_remotekeyboard">כדי לקבל לחיצות מקשים צריך להפעיל את המקלדת המרוחקת של KDE Connect</string>
+  <string name="no_permissions_remotekeyboard">כדי לקבל לחיצות מקשים צריך להפעיל את המקלדת המרוחקת של PhoneBoard</string>
   <string name="send_ping">שליחת פינג</string>
   <string name="open_mpris_controls">בקרת מדיה</string>
   <string name="remotekeyboard_editing_only_title">השתמש במקשים מרוחקים רק בעת עריכה</string>
@@ -207,7 +207,7 @@
   </string-array>
   <string name="mpris_notifications_explanation">צריך הרשאת התראות כדי להציג מדיה מרוחק במגירת ההתראות</string>
   <string name="mpris_notification_settings_title">הצגת התראות בקרת מדיה</string>
-  <string name="mpris_notification_settings_summary">לאפשר שליטה בנגני המדיה שלך מבלי לפתוח את KDE Connect</string>
+  <string name="mpris_notification_settings_summary">לאפשר שליטה בנגני המדיה שלך מבלי לפתוח את PhoneBoard</string>
   <string name="share_to">שיתוף אל…</string>
   <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">כתובות שותפו להתקן בלתי נגיש והן תועברנה אליו ברגע שישוב להיות נגיש.\n\n</string>
@@ -248,13 +248,13 @@
   <string name="sftp_action_mode_menu_delete">מחיקה</string>
   <string name="sftp_no_storage_locations_configured">לא מוגדר מקום אחסון</string>
   <string name="sftp_saf_permission_explanation">כדי לגשת לקבצים מרחוק צריך להגדיר מקומות אחסון</string>
-  <string name="sftp_manage_storage_permission_explanation">כדי לאפשר גישה מרחוק לקבצים במכשיר הזה צריך לאשר ל־KDE Connect לנהל את האחסון.</string>
+  <string name="sftp_manage_storage_permission_explanation">כדי לאפשר גישה מרחוק לקבצים במכשיר הזה צריך לאשר ל־PhoneBoard לנהל את האחסון.</string>
   <string name="no_players_connected">לא נמצאו נגנים</string>
   <string name="send_files">שליחת קובץ</string>
   <string name="block_notification_contents">חסימת תוכן התראות</string>
   <string name="block_notification_images">חסימת תמונות בהתראות</string>
-  <string name="pairing_title">מכשירי KDE Connect</string>
-  <string name="pairing_description">מכשירים אחרים שמריצים KDE Connect ברשת הנוכחית צריכים להופיע פה.</string>
+  <string name="pairing_title">מכשירי PhoneBoard</string>
+  <string name="pairing_description">מכשירים אחרים שמריצים PhoneBoard ברשת הנוכחית צריכים להופיע פה.</string>
   <string name="device_rename_title">שינוי שם מכשיר</string>
   <string name="device_rename_confirm">שינוי שם</string>
   <string name="refresh">ריענון</string>
@@ -265,7 +265,7 @@
   <string name="pref_plugin_telepathy">שליחת מסרון</string>
   <string name="pref_plugin_telepathy_desc">שליחת הודעות מהמחשב שלך</string>
   <string name="pref_plugin_telepathy_mms">שליחת MMS</string>
-  <string name="pref_plugin_telepathy_mms_desc">כדי לאפשר שליחת MMS מ־KDE Connect צריך להגדיר אותו כיישומון המסרונים כברירת המחדל.</string>
+  <string name="pref_plugin_telepathy_mms_desc">כדי לאפשר שליחת MMS מ־PhoneBoard צריך להגדיר אותו כיישומון המסרונים כברירת המחדל.</string>
   <string name="findmyphone_title">איתור הטלפון שלי</string>
   <string name="findmyphone_title_tablet">איתור מחשב הלוח שלי</string>
   <string name="findmyphone_title_tv">איתור הטלוויזיה שלי</string>
@@ -284,7 +284,7 @@
   <string name="telephony_permission_explanation">כדי לצפות בשיחות בשולחן העבודה צריך לתת הרשא ליומן השיחות של הטלפון ולמצב הטלפון</string>
   <string name="telephony_optional_permission_explanation">כדי לצפות בשם של איש קשר במקום מספר טלפון צריך לתת גישה לאנשי הקשר של הטלפון</string>
   <string name="contacts_permission_explanation">כדי לשתף את ספר הכתובות שלך עם שולחן העבודה, צריך להעניק הרשאה לאנשי הקשר</string>
-  <string name="contacts_per_device_confirmation">אנשי הקשר בטלפון שלך יועתקו למכשיר הזה, כדי שאפשר יהיה להשתמש בהם ביישום המסרונים של KDE Connect וביישומים אחרים.</string>
+  <string name="contacts_per_device_confirmation">אנשי הקשר בטלפון שלך יועתקו למכשיר הזה, כדי שאפשר יהיה להשתמש בהם ביישום המסרונים של PhoneBoard וביישומים אחרים.</string>
   <string name="select_ringtone">בחירת צלצול</string>
   <string name="telephony_pref_blocked_title">מספרים חסומים</string>
   <string name="telephony_pref_blocked_dialog_desc">לא להציג הודעות ושיחות מהמספרים האלה. נא לציין מספר טלפון אחד בכל שורה</string>
@@ -295,7 +295,7 @@
   <string name="presenter_lock_tip">אפשר לנעול את המכשיר שלך ולהשתמש במקשי עוצמת השמע כדי לעבור לשקופית הקודמת/הבאה</string>
   <string name="add_command">הוספת פקודה</string>
   <string name="addcommand_explanation">לא נרשמו פקודות</string>
-  <string name="addcommand_explanation2">אפשר להוסיף פקודות חדשות בהגדרות המערכת של KDE Connect</string>
+  <string name="addcommand_explanation2">אפשר להוסיף פקודות חדשות בהגדרות המערכת של PhoneBoard</string>
   <string name="add_command_description">אפשר להוסיף פקודות בשולחן העבודה</string>
   <string name="pref_plugin_mprisreceiver">בקרת נגן מדיה</string>
   <string name="pref_plugin_mprisreceiver_desc">שליטה בנגני המדיה של הטלפון שלך ממכשיר אחר</string>
@@ -327,7 +327,7 @@
   <string name="devices">מכשירים</string>
   <string name="settings_rename">שם המכשיר</string>
   <string name="settings_dark_mode">ערכת עיצוב כהה</string>
-  <string name="settings_export_logs">ייצוא היומנים של KDE Connect</string>
+  <string name="settings_export_logs">ייצוא היומנים של PhoneBoard</string>
   <string name="settings_export_logs_text">ליצור קובץ עם פרטי הפעלה שיכול לסייע בפתרון תקלות.</string>
   <string name="settings_more_settings_title">הגדרות נוספות</string>
   <string name="settings_more_settings_text">אפשר למצוא הגדרות נקודתיות למכשיר תחת ‚הגדרות תוסף’ מתוך המכשיר.</string>
@@ -341,7 +341,7 @@
   <string name="block_images">חסימת תמונות בהתראות</string>
   <string name="notification_channel_receivenotification">התראות ממכשירים אחרים</string>
   <string name="no_app_for_opening">לא נמצא יישומון מתאים לפתיחת הקובץ הזה</string>
-  <string name="remote_keyboard_service">מקלדת מרוחקת של KDE Connect</string>
+  <string name="remote_keyboard_service">מקלדת מרוחקת של PhoneBoard</string>
   <string name="presenter_pointer">מצביע</string>
   <string name="trusted_networks">רשתות מהימנות</string>
   <string name="trusted_networks_desc">הגבלת גילוי אוטומטי לרשתות מוכרות</string>
@@ -349,8 +349,8 @@
   <string name="empty_trusted_networks_list_text">עדיין לא הוספת רשתות מהימנות</string>
   <string name="allow_all_networks_text">לאפשר הכול</string>
   <string name="location_permission_needed_title">נדרשת הרשאה</string>
-  <string name="bluetooth_permission_needed_desc">KDE Connect זקוק להרשאה להתחבר להתקנים קרובים כדי שהתקנים שצומדו עם בלוטות׳ יהיו זמינים ב־KDE Connect.</string>
-  <string name="location_permission_needed_desc">KDE Connect צריך הרשאת איתור מקום ברקע כדי לדעת לאיזו רשת אלחוטית התחברת, אפילו אם היישום ברקע. מצב זה נחוץ כיוון ששם הרשתות האלחוטיות מסביבך יכולים לשמש לאיתור המקום שלך, אפילו אם זה לא מה ש־KDE Connect תוכנן לעשות.</string>
+  <string name="bluetooth_permission_needed_desc">PhoneBoard זקוק להרשאה להתחבר להתקנים קרובים כדי שהתקנים שצומדו עם בלוטות׳ יהיו זמינים ב־PhoneBoard.</string>
+  <string name="location_permission_needed_desc">PhoneBoard צריך הרשאת איתור מקום ברקע כדי לדעת לאיזו רשת אלחוטית התחברת, אפילו אם היישום ברקע. מצב זה נחוץ כיוון ששם הרשתות האלחוטיות מסביבך יכולים לשמש לאיתור המקום שלך, אפילו אם זה לא מה ש־PhoneBoard תוכנן לעשות.</string>
   <string name="clipboard_android_x_incompat">ב־Android 10 הוסרה הגישה ללוח הגזירים לכל היישומונים. התוסף הזה יושבת.</string>
   <string name="mpris_open_url">להמשיך לנגן מכאן</string>
   <string name="cant_open_url">לא ניתן לפתוח כתובת להמשיך לנגן</string>
@@ -430,7 +430,7 @@
   <string name="holger_kaelberer_task">תוסף מקלדת מרוחקת ותיקוני תקלות</string>
   <string name="saikrishna_arcot_task">תמיכה בשימוש במקלדת בתוסף הקלט המרוחק, תיקוני תקלות ושיפורים כלליים</string>
   <string name="shellwen_chen_task">שיפור האבטחה ב־SFTP, שיפור תחזוקתיות המיזם הזה, תיקוני תקלות ושיפורים כלליים</string>
-  <string name="everyone_else">כל מי שתרם ל־KDE Connect לאורך השנים</string>
+  <string name="everyone_else">כל מי שתרם ל־PhoneBoard לאורך השנים</string>
   <string name="send_clipboard">שליחת לוח גזירים</string>
   <string name="tap_to_execute">נגיעה תפעיל</string>
   <string name="plugin_stats">סטטיסטיקת תוסף</string>

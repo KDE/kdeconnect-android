@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="kde_connect">KDE Connect</string>
+  <string name="kde_connect">PhoneBoard</string>
   <string name="manifest_label_share">მოწყობილობაზე გაგზავნა</string>
   <string name="foreground_notification_no_devices">არც ერთ მოწყობილობასთან მიერთებული არ ბრძანდებით</string>
   <string name="foreground_notification_devices">მიერთებულია %s-თან</string>
@@ -164,7 +164,7 @@
   <string name="send_files">ფაილების გაგზავნა</string>
   <string name="block_notification_contents">გაფრთხილების შემცველობის დაბლოკვა</string>
   <string name="block_notification_images">გაფრთხილებების გამოსახულებების დაბლოკვა</string>
-  <string name="pairing_title">KDE Connect -ის მოწყობილობები</string>
+  <string name="pairing_title">PhoneBoard -ის მოწყობილობები</string>
   <string name="device_rename_title">მოწყობილობის სახელის გადარქმევა</string>
   <string name="device_rename_confirm">გადარქმევა</string>
   <string name="refresh">განახლება</string>
@@ -214,7 +214,7 @@
   <string name="devices">მოწყობილობები</string>
   <string name="settings_rename">მოწყობილობის სახელი</string>
   <string name="settings_dark_mode">ბნელი თემა</string>
-  <string name="settings_export_logs">KDE Connect-ის ჟურნალის გატანა</string>
+  <string name="settings_export_logs">PhoneBoard-ის ჟურნალის გატანა</string>
   <string name="settings_more_settings_title">მეტი პარამეტრი</string>
   <string name="extra_options">დამატებითი პარამეტრები</string>
   <string name="privacy_options">კონფიდენციალობის პარამეტრები</string>

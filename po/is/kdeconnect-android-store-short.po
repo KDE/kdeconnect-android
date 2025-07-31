@@ -15,5 +15,5 @@ msgstr ""
 "X-Generator: Lokalize 22.04.3\n"
 "Plural-Forms: Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-msgid "KDE Connect integrates your smartphone and computer"
-msgstr "KDE Connect tengir saman snjallsímann þinn og tölvu"
+msgid "PhoneBoard integrates your smartphone and computer"
+msgstr "PhoneBoard tengir saman snjallsímann þinn og tölvu"

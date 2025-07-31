@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="kde_connect">KDE Connect</string>
+  <string name="kde_connect">PhoneBoard</string>
   <string name="manifest_label_share">Siųsti į įrenginį</string>
   <string name="foreground_notification_no_devices">Neprisijungta prie jokio įrenginio</string>
   <string name="foreground_notification_devices">Prisijungta prie: %s</string>
@@ -42,7 +42,7 @@
   <string name="open_settings">Atverti nuostatas</string>
   <string name="no_permissions">Norėdami gauti prieigą prie pranešimų, turite suteikti leidimą</string>
   <string name="no_permission_mprisreceiver">Norėdami valdyti savo medijos leistuves, turite suteikti prieigą prie pranešimų</string>
-  <string name="no_permissions_remotekeyboard">Norėdami gauti klavišų paspaudimus, turite aktyvuoti KDE Connect nuotolinę klaviatūrą</string>
+  <string name="no_permissions_remotekeyboard">Norėdami gauti klavišų paspaudimus, turite aktyvuoti PhoneBoard nuotolinę klaviatūrą</string>
   <string name="send_ping">Tikrinti ryšį</string>
   <string name="open_mpris_controls">Įvairialypės terpės valdymas</string>
   <string name="remotekeyboard_editing_only_title">Apdoroti nuotolinius klavišus tik redaguojant</string>
@@ -191,7 +191,7 @@
     <item>2 minutės</item>
   </string-array>
   <string name="mpris_notification_settings_title">Rodyti įvairialypės terpės valdymo pranešimus</string>
-  <string name="mpris_notification_settings_summary">Leisti valdyti medijos leistuves neatveriant KDE Connect</string>
+  <string name="mpris_notification_settings_summary">Leisti valdyti medijos leistuves neatveriant PhoneBoard</string>
   <string name="protocol_version_newer">Šis įrenginys naudoja naujesnę protokolo versiją</string>
   <string name="plugin_settings_with_name">%s nuostatos</string>
   <string name="invalid_device_name">Netinkamas įrenginio pavadinimas</string>
@@ -229,8 +229,8 @@
   <string name="sftp_saf_permission_explanation">Norėdami gauti nuotolinę prieigą prie failų, turite sukonfigūruoti saugyklos vietas</string>
   <string name="no_players_connected">Nerasta jokių leistuvių</string>
   <string name="send_files">Siųsti failus</string>
-  <string name="pairing_title">KDE Connect įrenginiai</string>
-  <string name="pairing_description">Čia turėtų atsirasti kiti to paties tinklo įrenginiai, naudojantys KDE Connect.</string>
+  <string name="pairing_title">PhoneBoard įrenginiai</string>
+  <string name="pairing_description">Čia turėtų atsirasti kiti to paties tinklo įrenginiai, naudojantys PhoneBoard.</string>
   <string name="device_rename_title">Pervadinti įrenginį</string>
   <string name="device_rename_confirm">Pervadinti</string>
   <string name="refresh">Įkelti iš naujo</string>
@@ -241,7 +241,7 @@
   <string name="pref_plugin_telepathy">Siųsti SMS žinutę</string>
   <string name="pref_plugin_telepathy_desc">Siųsti tekstines žinutes iš savo darbalaukio</string>
   <string name="pref_plugin_telepathy_mms">Siųsti MMS žinutę</string>
-  <string name="pref_plugin_telepathy_mms_desc">Norėdami siųsti MMS iš KDE Connect, turite nustatyti ją kaip numatytąją SMS programėlę.</string>
+  <string name="pref_plugin_telepathy_mms_desc">Norėdami siųsti MMS iš PhoneBoard, turite nustatyti ją kaip numatytąją SMS programėlę.</string>
   <string name="findmyphone_title">Rasti telefoną</string>
   <string name="findmyphone_title_tablet">Rasti planšetę</string>
   <string name="findmyphone_title_tv">Rasti televizorių</string>
@@ -267,7 +267,7 @@
   <string name="presenter_lock_tip">Galite užrakinti savo įrenginį ir perėjimui prie kitos/ankstesnės skaidrės naudoti garsumo mygtukus</string>
   <string name="add_command">Pridėti komandą</string>
   <string name="addcommand_explanation">Nėra registruota jokių komandų</string>
-  <string name="addcommand_explanation2">Galite pridėti naujas komandas KDE Connect sistemos nuostatose</string>
+  <string name="addcommand_explanation2">Galite pridėti naujas komandas PhoneBoard sistemos nuostatose</string>
   <string name="add_command_description">Galite pridėti komandas darbalaukyje</string>
   <string name="pref_plugin_mprisreceiver">Medijos leistuvės valdymas</string>
   <string name="pref_plugin_mprisreceiver_desc">Valdyti savo telefono medijos leistuves iš kito įrenginio</string>
@@ -304,7 +304,7 @@
   <string name="block_images">Blokuoti pranešimuose paveiksliukus</string>
   <string name="notification_channel_receivenotification">Pranešimai iš kitų įrenginių</string>
   <string name="no_app_for_opening">Šio failo atvėrimui nerasta jokios tinkamos programėlės</string>
-  <string name="remote_keyboard_service">KDE Connect nuotolinė klaviatūra</string>
+  <string name="remote_keyboard_service">PhoneBoard nuotolinė klaviatūra</string>
   <string name="presenter_pointer">Rodyklė</string>
   <string name="trusted_networks">Patikimi tinklai</string>
   <string name="trusted_networks_desc">Apriboti automatinį aptikimą iki žinomų tinklų</string>
@@ -312,7 +312,7 @@
   <string name="empty_trusted_networks_list_text">Kol kas nesate pridėję jokių patikimų tinklų</string>
   <string name="allow_all_networks_text">Leisti visus</string>
   <string name="location_permission_needed_title">Reikalingas leidimas</string>
-  <string name="location_permission_needed_desc">KDE Connect reikia foninio vietovės leidimo, kad, netgi tuomet, kai programėlė veikia fone, ji žinotų belaidžio (WiFi) tinklo ryšius, prie kurių esate prisijungę. Taip yra todėl, kad aplink jus esančių belaidžių tinklų pavadinimai gali būti naudojami, siekiant geriau nustatyti jūsų buvimo vietą, nors KDE Connect to ir nedaro.</string>
+  <string name="location_permission_needed_desc">PhoneBoard reikia foninio vietovės leidimo, kad, netgi tuomet, kai programėlė veikia fone, ji žinotų belaidžio (WiFi) tinklo ryšius, prie kurių esate prisijungę. Taip yra todėl, kad aplink jus esančių belaidžių tinklų pavadinimai gali būti naudojami, siekiant geriau nustatyti jūsų buvimo vietą, nors PhoneBoard to ir nedaro.</string>
   <string name="clipboard_android_x_incompat">Android 10 pašalino iškarpinės prieigą prie visų programėlių. Šis papildinys bus išjungtas.</string>
   <string name="mpris_open_url">Tęsti atkūrimą čia</string>
   <string name="cant_open_url">Nepavyksta atverti URL, kad būtų tęsiamas atkūrimas</string>
@@ -387,7 +387,7 @@
   <string name="maxim_leshchenko_task">Naudotojo sąsajos patobulinimai ir šis puslapis apie programą</string>
   <string name="holger_kaelberer_task">Nuotolinės klaviatūros papildinys ir klaidų pataisymai</string>
   <string name="saikrishna_arcot_task">Palaikymas, skirtas naudoti klaviatūrą nuotolinio įvedimo papildinyje, klaidų pataisymai ir bendri patobulinimai</string>
-  <string name="everyone_else">Visiems, kas per ilgus metus talkino KDE Connect</string>
+  <string name="everyone_else">Visiems, kas per ilgus metus talkino PhoneBoard</string>
   <string name="send_clipboard">Siųsti iškarpinę</string>
   <string name="tap_to_execute">Bakstelėkite, norėdami vykdyti</string>
 </resources>

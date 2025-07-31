@@ -1,4 +1,4 @@
-KDE Connect proporciona una serie de funcionalidades para integrar tus flujos de trabajo entre distintos dispositivos:
+PhoneBoard proporciona una serie de funcionalidades para integrar tus flujos de trabajo entre distintos dispositivos:
 
 - Transferir archivos entre dispositivos.
 - Acceder a archivos en tu teléfono desde tu equipo, sin cables.
@@ -16,6 +16,6 @@ Información de permisos:
 * Permisos de acceso: Necesarios para recibir entradas desde otro dispositivo para controlar su dispositivo Android, si usa la funcionalidad de entrada remota.
 * Permisos de localización en segundo plano: Necesarios para saber a que red WiFi está conectado, si usa la funcionalidad de redes confiables.
 
-KDE Connect nunca envía ninguna información a KDE o a terceros. KDE Connect envía datos de un dispositivo a otro usando directamente la red local, nunca a través de internet, y usando cifrado extremo a extremo.
+PhoneBoard nunca envía ninguna información a KDE o a terceros. PhoneBoard envía datos de un dispositivo a otro usando directamente la red local, nunca a través de internet, y usando cifrado extremo a extremo.
 
 Esta aplicación es parte de un proyecto de código abierto y existe gracias a toda gente que ha contribuido a ella. Visita la página web para acceder al código fuente.

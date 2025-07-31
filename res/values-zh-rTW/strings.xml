@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="kde_connect">KDE Connect</string>
+  <string name="kde_connect">PhoneBoard</string>
   <string name="manifest_label_share">傳送到裝置</string>
   <string name="foreground_notification_no_devices">未與任何裝置產生連結</string>
   <string name="foreground_notification_devices">已連結：%s</string>
@@ -43,11 +43,11 @@
   <string name="open_settings">開啟設定</string>
   <string name="no_permissions">您必須給予存取通知的權限</string>
   <string name="no_permission_mprisreceiver">為了要能控制您的媒體播放器，您必須給予存取通知的權限</string>
-  <string name="no_permissions_remotekeyboard">若要接收鍵盤按鍵輸入活動，您必須啟用 KDE Connect 的遠端鍵盤功能</string>
+  <string name="no_permissions_remotekeyboard">若要接收鍵盤按鍵輸入活動，您必須啟用 PhoneBoard 的遠端鍵盤功能</string>
   <string name="send_ping">傳送 Ping 測試封包</string>
   <string name="open_mpris_controls">多媒體控制</string>
   <string name="remotekeyboard_editing_only_title">僅在編輯時處理遠端按鍵</string>
-  <string name="remotekeyboard_not_connected">沒有作用中的遠端鍵盤連線，請在 KDE Connect 中建立一個</string>
+  <string name="remotekeyboard_not_connected">沒有作用中的遠端鍵盤連線，請在 PhoneBoard 中建立一個</string>
   <string name="remotekeyboard_connected">遠端鍵盤連線已啟用</string>
   <string name="remotekeyboard_multiple_connections">遠端鍵盤連線有多個，請選擇裝置進行設定</string>
   <string name="open_mousepad">遠端輸入</string>
@@ -229,7 +229,7 @@
   <string name="send_files">傳送檔案</string>
   <string name="block_notification_contents">阻擋通知內容</string>
   <string name="block_notification_images">阻擋通知圖片</string>
-  <string name="pairing_title">KDE Connect 裝置</string>
+  <string name="pairing_title">PhoneBoard 裝置</string>
   <string name="pairing_description">在同一網路中執行 KDE Con​​nect 的其他裝置應該會出現在此。</string>
   <string name="device_rename_title">重新命名裝置</string>
   <string name="device_rename_confirm">重新命名</string>
@@ -241,7 +241,7 @@
   <string name="pref_plugin_telepathy">傳送簡訊</string>
   <string name="pref_plugin_telepathy_desc">傳送文字訊息到您的電腦桌面</string>
   <string name="pref_plugin_telepathy_mms">傳送 MMS</string>
-  <string name="pref_plugin_telepathy_mms_desc">要能夠從 KDE Connect 傳送 MMS 您必須先將其設為預設簡訊應用程式。</string>
+  <string name="pref_plugin_telepathy_mms_desc">要能夠從 PhoneBoard 傳送 MMS 您必須先將其設為預設簡訊應用程式。</string>
   <string name="findmyphone_title">尋找我的手機</string>
   <string name="findmyphone_title_tablet">尋找我的平板</string>
   <string name="findmyphone_title_tv">尋找我的電視</string>
@@ -260,7 +260,7 @@
   <string name="telephony_permission_explanation">要在電腦上查看手機通話，您必須給予電話通話紀錄和電話狀態的權限</string>
   <string name="telephony_optional_permission_explanation">要查看聯絡人姓名而不是電話號碼，您必須給予存取手機聯絡人的權限</string>
   <string name="contacts_permission_explanation">為了要與電腦分享您的通訊錄，您必須給予「聯絡人」的權限</string>
-  <string name="contacts_per_device_confirmation">您的電話通訊錄將會被複製到這個裝置，讓它們能夠被 KDE Connect 的簡訊應用程式和其他應用程式使用。</string>
+  <string name="contacts_per_device_confirmation">您的電話通訊錄將會被複製到這個裝置，讓它們能夠被 PhoneBoard 的簡訊應用程式和其他應用程式使用。</string>
   <string name="select_ringtone">選擇一個鈴聲</string>
   <string name="telephony_pref_blocked_title">封鎖的號碼</string>
   <string name="telephony_pref_blocked_dialog_desc">不顯示這些號碼的來電和簡訊。請每行指定一個數字</string>
@@ -303,7 +303,7 @@
   <string name="devices">裝置</string>
   <string name="settings_rename">裝置名稱</string>
   <string name="settings_dark_mode">暗色主題</string>
-  <string name="settings_export_logs">匯出 KDE Connect 紀錄</string>
+  <string name="settings_export_logs">匯出 PhoneBoard 紀錄</string>
   <string name="settings_export_logs_text">產生包含執行資訊的檔案來幫助發現問題。</string>
   <string name="settings_more_settings_title">更多設定</string>
   <string name="settings_more_settings_text">各裝置設定可在裝置內的「外掛程式設定」底下找到。</string>
@@ -317,7 +317,7 @@
   <string name="block_images">阻擋通知中的圖片</string>
   <string name="notification_channel_receivenotification">其他裝置上的通知</string>
   <string name="no_app_for_opening">找不到適合用來開啟此檔案的應用程式</string>
-  <string name="remote_keyboard_service">KDE Connect 遠端鍵盤</string>
+  <string name="remote_keyboard_service">PhoneBoard 遠端鍵盤</string>
   <string name="presenter_pointer">滑鼠游標</string>
   <string name="trusted_networks">可信任網路</string>
   <string name="trusted_networks_desc">限制只對已知網路自動探索</string>
@@ -326,7 +326,7 @@
   <string name="allow_all_networks_text">全部允許</string>
   <string name="location_permission_needed_title">需要權限</string>
   <string name="bluetooth_permission_needed_desc">KDE Con​​nect 需要連線到附近裝置的權限，以便在 KDE Con​​nect 中使用藍牙進行配對。</string>
-  <string name="location_permission_needed_desc">KDE Connect 需要背景位置權限，才能在背景執行時也能知道您目前所連線的 WiFi 網路。這是因為您週遭的 WiFi 網路名稱可以被用來推斷您的位置，即使這不是 KDE Connect 在做的事情。</string>
+  <string name="location_permission_needed_desc">PhoneBoard 需要背景位置權限，才能在背景執行時也能知道您目前所連線的 WiFi 網路。這是因為您週遭的 WiFi 網路名稱可以被用來推斷您的位置，即使這不是 PhoneBoard 在做的事情。</string>
   <string name="clipboard_android_x_incompat">Android 10 已移除所有應用程式的剪貼簿存取權限。此外掛程式將停用。</string>
   <string name="mpris_open_url">繼續在此播放</string>
   <string name="cant_open_url">無法開啟 URL 以繼續播放</string>

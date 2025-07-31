@@ -21,7 +21,6 @@ import androidx.annotation.RequiresApi;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.kde.kdeconnect.Helpers.SMSHelper;
 import org.kde.kdeconnect.Helpers.TelephonyHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
@@ -127,10 +126,6 @@ public class ConnectivityReportPlugin extends Plugin {
         connectivityInfo.set("signalStrengths", signalStrengths);
     }
 
-    private void runWithLooper(Runnable r) {
-        // We use the MessageLooper to avoid creating an extra thread for this
-        new Handler(Objects.requireNonNull(SMSHelper.MessageLooper.getLooper())).post(r);
-    }
 
     private PhoneStateListener createListener(Integer subID) {
         return new PhoneStateListener() {
@@ -193,37 +188,14 @@ public class ConnectivityReportPlugin extends Plugin {
     public boolean onCreate() {
         serializeSignalStrengths();
 
-        runWithLooper(() -> {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                // Multi-SIM supported on Nougat+
-                subscriptionsListen();
-            } else {
-                // Fallback to single SIM
-                listeners.put(0, createListener(0));
-                states.put(0, new SubscriptionState(0));
-            }
-        });
+
 
         return true;
     }
 
     @Override
     public void onDestroy() {
-        runWithLooper(() -> {
-            TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                if (subListener != null) {
-                    TelephonyHelper.cancelActiveSubscriptionIDsListener(context, subListener);
-                    subListener = null;
-                }
-            }
-            for (Integer subID : listeners.keySet()) {
-                Log.i("ConnectivityReport", "Removed subscription ID " + subID);
-                tm.listen(listeners.get(subID), PhoneStateListener.LISTEN_NONE);
-            }
-            listeners.clear();
-            states.clear();
-        });
+
     }
 
     @Override

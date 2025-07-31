@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="kde_connect">KDE Connect</string>
+  <string name="kde_connect">PhoneBoard</string>
   <string name="manifest_label_share">Kirim ke Peranti</string>
   <string name="foreground_notification_no_devices">Belum terhubung ke peranti apa pun</string>
   <string name="foreground_notification_devices">Terhubung ke: %s</string>
@@ -42,7 +42,7 @@
   <string name="open_settings">Buka pengaturan</string>
   <string name="no_permissions">Anda perlu memberikan izin untuk mengakses notifikasi</string>
   <string name="no_permission_mprisreceiver">Untuk dapat mengendalikan pemutar media, Anda perlu memberikan akses ke notifikasi</string>
-  <string name="no_permissions_remotekeyboard">Untuk menerima penekanan tombol, Anda perlu mengaktifkan KDE Connect Remote Keyboard</string>
+  <string name="no_permissions_remotekeyboard">Untuk menerima penekanan tombol, Anda perlu mengaktifkan PhoneBoard Remote Keyboard</string>
   <string name="send_ping">Kirim ping</string>
   <string name="open_mpris_controls">Kendali multimedia</string>
   <string name="remotekeyboard_editing_only_title">Menangani tombol jarak jauh hanya ketika mengedit</string>
@@ -172,7 +172,7 @@
   </string-array>
   <string name="mpris_notifications_explanation">Izin notifkasi diperlukan untuk menampilkan media jarak jauh dalam bilah notifikasi</string>
   <string name="mpris_notification_settings_title">Tampilkan notifikasi kendali media</string>
-  <string name="mpris_notification_settings_summary">Memungkinkan pengendalian pemutar media Anda tanpa membuka KDE Connect</string>
+  <string name="mpris_notification_settings_summary">Memungkinkan pengendalian pemutar media Anda tanpa membuka PhoneBoard</string>
   <string name="share_to">Bagikan ke…</string>
   <string name="protocol_version_newer">Perangkat ini menggunakan sebuah versi protokol baru</string>
   <string name="plugin_settings_with_name">Pengaturan %s</string>
@@ -211,8 +211,8 @@
   <string name="sftp_saf_permission_explanation">Untuk mengakses file secara jarak jauh, Anda harus mengkonfigurasi lokasi penyimpanan</string>
   <string name="no_players_connected">Tidak ada pemutar yang ditemukan</string>
   <string name="send_files">Kirim file</string>
-  <string name="pairing_title">Peranti KDE Connect</string>
-  <string name="pairing_description">Perangkat lain yang menjalankan KDE Connect dalam jaringan Anda yang sama seharusnya muncul di sini.</string>
+  <string name="pairing_title">Peranti PhoneBoard</string>
+  <string name="pairing_description">Perangkat lain yang menjalankan PhoneBoard dalam jaringan Anda yang sama seharusnya muncul di sini.</string>
   <string name="device_rename_title">Ubah nama peranti</string>
   <string name="device_rename_confirm">Ubah Nama</string>
   <string name="refresh">Segarkan</string>
@@ -223,7 +223,7 @@
   <string name="pref_plugin_telepathy">Kirim SMS</string>
   <string name="pref_plugin_telepathy_desc">Kirim teks perpesanan dari desktop Anda</string>
   <string name="pref_plugin_telepathy_mms">Kirim MMS</string>
-  <string name="pref_plugin_telepathy_mms_desc">Supaya dapat mengirim MMS dari KDE Connect, Anda perlu mengaturnya sebagai aplikasi SMS default.</string>
+  <string name="pref_plugin_telepathy_mms_desc">Supaya dapat mengirim MMS dari PhoneBoard, Anda perlu mengaturnya sebagai aplikasi SMS default.</string>
   <string name="findmyphone_title">Temukan ponsel saya</string>
   <string name="findmyphone_title_tablet">Temukan tablet saya</string>
   <string name="findmyphone_title_tv">Temukan TV saya</string>
@@ -249,7 +249,7 @@
   <string name="presenter_lock_tip">Anda dapat mengunci peranti Anda dan gunakanlah tombol volume untuk menuju ke salindia sebelumnya/selanjutnya</string>
   <string name="add_command">Tambahkan sebuah perintah</string>
   <string name="addcommand_explanation">Tidak ada perintah yang diregister</string>
-  <string name="addcommand_explanation2">Anda dapat menambahkan perintah baru dalam System Settings KDE Connect</string>
+  <string name="addcommand_explanation2">Anda dapat menambahkan perintah baru dalam System Settings PhoneBoard</string>
   <string name="add_command_description">Anda dapat menambahkan perintah pada desktop</string>
   <string name="pref_plugin_mprisreceiver">Kendali Pemutar Media</string>
   <string name="pref_plugin_mprisreceiver_desc">Kendalikan pemutar media ponsel Anda dari peranti lainnya</string>
@@ -285,7 +285,7 @@
   <string name="block_images">Blokir citra-citra dalam notifikasi</string>
   <string name="notification_channel_receivenotification">Notifikasi dari peranti lainnya</string>
   <string name="no_app_for_opening">Tidak menemukan aplikasi yang dapat membuka berkas ini</string>
-  <string name="remote_keyboard_service">Keyboard Remote KDE Connect</string>
+  <string name="remote_keyboard_service">Keyboard Remote PhoneBoard</string>
   <string name="presenter_pointer">Penunjuk</string>
   <string name="trusted_networks">Jaringan terpercaya</string>
   <string name="trusted_networks_desc">Membatasi autodiscovery untuk mengetahui jaringan</string>
@@ -367,7 +367,7 @@
   <string name="maxim_leshchenko_task">Peningkatan UI dan halaman tentang ini</string>
   <string name="holger_kaelberer_task">Plugin keyboard jarak jauh dan perbaikan kutu</string>
   <string name="saikrishna_arcot_task">Dukungan untuk penggunaan keyboard di dalam plugin masukan jarak jauh, perbaikan kutu dan peningkatan pada umumnya</string>
-  <string name="everyone_else">Semua orang yang telah berkontribusi pada KDE Connect selama bertahun-tahun</string>
+  <string name="everyone_else">Semua orang yang telah berkontribusi pada PhoneBoard selama bertahun-tahun</string>
   <string name="send_clipboard">Kirim papan klip</string>
   <string name="tap_to_execute">Ketuk untuk menjalankan</string>
   <string name="enable_bluetooth">Aktifkan Bluetooth (beta)</string>

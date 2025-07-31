@@ -1,4 +1,4 @@
-KDE Connect oferă o gamă de funcționalități ce permit integrarea lucrului pe mai multe dispozitive:
+PhoneBoard oferă o gamă de funcționalități ce permit integrarea lucrului pe mai multe dispozitive:
 
 - Transferați fișiere între dispozitive.
 - Accesați fișierele din telefon pe calculator, fără fire.
@@ -10,12 +10,12 @@ KDE Connect oferă o gamă de funcționalități ce permit integrarea lucrului p
 - Conexiune prin WiFi: fără necesitatea unui fir USB sau Bluetooth.
 - Criptare TLS de la capăt la capăt: informația dumneavoastră e în siguranță.
 
-Rețineți că e nevoie să instalați KDE Connect pe calculatorul dumneavoastră pentru ca această aplicație să funcționeze, și că trebuie să mențineți versiunea de pe calculator în pas cu cea a aplicației de pe Android pentru ca funcțiile cele mai recente să fie disponibile.
+Rețineți că e nevoie să instalați PhoneBoard pe calculatorul dumneavoastră pentru ca această aplicație să funcționeze, și că trebuie să mențineți versiunea de pe calculator în pas cu cea a aplicației de pe Android pentru ca funcțiile cele mai recente să fie disponibile.
 
 Informații despre permisiunile sensibile:
 * Accesibilitate: necesară pentru a primi comenzi de pe alt dispozitiv pentru a vă controla telefonul Android, dacă folosiți funcționalitate de control de la distanță.
 * Localizare în fundal: necesară pentru a ști la ce rețea WiFi v-ați conectat, dacă folosiți funcționalitatea pentru rețele de încredere.
 
-KDE Connect nu trimite niciodată vreun fel de informații spre KDE sau alte părți terțe. KDE Connect trimite direct datele de pe un dispozitiv pe altul folosind rețeaua locală, niciodată prin internet, și folosește criptare de la un capăt la celălalt.
+PhoneBoard nu trimite niciodată vreun fel de informații spre KDE sau alte părți terțe. PhoneBoard trimite direct datele de pe un dispozitiv pe altul folosind rețeaua locală, niciodată prin internet, și folosește criptare de la un capăt la celălalt.
 
 Această aplicație face parte dintr-un proiect cu sursă deschisă și există datorită tuturor celor care au contribuit la ea. Vizitați-ne saitul pentru a obține codul sursă.

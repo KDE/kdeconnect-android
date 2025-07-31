@@ -1,1 +1,1 @@
-KDE Connect integra teléfono e computador.
+PhoneBoard integra teléfono e computador.

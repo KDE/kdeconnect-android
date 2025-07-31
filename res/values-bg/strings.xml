@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="kde_connect">KDE Connect</string>
+  <string name="kde_connect">PhoneBoard</string>
   <string name="manifest_label_share">Изпращане до устройство</string>
   <string name="foreground_notification_no_devices">Няма свързано устройство</string>
   <string name="foreground_notification_devices">Свързан с: %s</string>
@@ -43,7 +43,7 @@
   <string name="open_settings">Отваряне на настройките</string>
   <string name="no_permissions">Трябва да осигурите права за достъп до уведомленията</string>
   <string name="no_permission_mprisreceiver">За да можете да контролирате вашия медиен плеър. трябва да осигурите права за достъп до известията</string>
-  <string name="no_permissions_remotekeyboard">За получавате клавишни набирания, трябва да активирате Отдалечена клавиатура на KDE Connect</string>
+  <string name="no_permissions_remotekeyboard">За получавате клавишни набирания, трябва да активирате Отдалечена клавиатура на PhoneBoard</string>
   <string name="send_ping">Изпращане на пинг</string>
   <string name="open_mpris_controls">Мултимедиен контрол</string>
   <string name="remotekeyboard_editing_only_title">Работете с отдалечените клавиши само при редактиране</string>
@@ -189,7 +189,7 @@
   </string-array>
   <string name="mpris_notifications_explanation">Разрешението за нотификации е необходимо, за да се показват отдалечени медии в чекмеджето за известия</string>
   <string name="mpris_notification_settings_title">Показване на известие за управление на медиите</string>
-  <string name="mpris_notification_settings_summary">Разрешаване на управлението на медийните плейъри, без да отваряте KDE Connect</string>
+  <string name="mpris_notification_settings_summary">Разрешаване на управлението на медийните плейъри, без да отваряте PhoneBoard</string>
   <string name="share_to">Споделяне към...</string>
   <string name="unreachable_device_url_share_text">URL адресите, споделени към недостъпно устройство, ще бъдат доставени до него, когато то стане достъпно.\n\n</string>
   <string name="protocol_version">Версия на протокол:</string>
@@ -229,13 +229,13 @@
   <string name="sftp_action_mode_menu_delete">Изтриване</string>
   <string name="sftp_no_storage_locations_configured">Няма конфигурирани места за съхранение</string>
   <string name="sftp_saf_permission_explanation">За да получите достъп до файлове от разстояние, трябва да конфигурирате местата за съхранение</string>
-  <string name="sftp_manage_storage_permission_explanation">За да разрешите отдалечен достъп до файловете на това устройство, трябва да разрешите KDE Connect да управлява хранилището.</string>
+  <string name="sftp_manage_storage_permission_explanation">За да разрешите отдалечен достъп до файловете на това устройство, трябва да разрешите PhoneBoard да управлява хранилището.</string>
   <string name="no_players_connected">Няма възпроизвеждане на медия</string>
   <string name="send_files">Изпращане на файлове</string>
   <string name="block_notification_contents">Блокиране на съдържанието в известията</string>
   <string name="block_notification_images">Блокиране на изображения в известията</string>
-  <string name="pairing_title">Устройства на KDE Connect</string>
-  <string name="pairing_description">Тук трябва да се появят други устройства, работещи с KDE Connect в същата мрежа.</string>
+  <string name="pairing_title">Устройства на PhoneBoard</string>
+  <string name="pairing_description">Тук трябва да се появят други устройства, работещи с PhoneBoard в същата мрежа.</string>
   <string name="device_rename_title">Преименуване на устройство</string>
   <string name="device_rename_confirm">Преименуване</string>
   <string name="refresh">Презареждане</string>
@@ -246,7 +246,7 @@
   <string name="pref_plugin_telepathy">Изпращане на SMS</string>
   <string name="pref_plugin_telepathy_desc">Изпращане на текстови съобщения от работния ви плот</string>
   <string name="pref_plugin_telepathy_mms">Изпращане на MMS</string>
-  <string name="pref_plugin_telepathy_mms_desc">За да можете да изпращате MMS от KDE Connect, трябва да го зададете като SMS приложение по подразбиране.</string>
+  <string name="pref_plugin_telepathy_mms_desc">За да можете да изпращате MMS от PhoneBoard, трябва да го зададете като SMS приложение по подразбиране.</string>
   <string name="findmyphone_title">Намиране на моя телефон</string>
   <string name="findmyphone_title_tablet">Намиране на моя таблет</string>
   <string name="findmyphone_title_tv">Намери моя телевизор</string>
@@ -265,7 +265,7 @@
   <string name="telephony_permission_explanation">За да виждате телефонни обаждания на работния плот, трябва да дадете разрешение за телефонни обаждания дневници и състояние на телефона</string>
   <string name="telephony_optional_permission_explanation">За да видите име на контакт вместо телефонен номер, трябва да дадете достъп до контактите на телефона</string>
   <string name="contacts_permission_explanation">За да споделите книгата си с контакти с десктопа, трябва да дадете разрешение за контакти разрешение</string>
-  <string name="contacts_per_device_confirmation">Телефонните ви контакти ще бъдат копирани на това устройство, така че те могат да бъдат използвани от приложението за SMS на KDE Connect и от други програми.</string>
+  <string name="contacts_per_device_confirmation">Телефонните ви контакти ще бъдат копирани на това устройство, така че те могат да бъдат използвани от приложението за SMS на PhoneBoard и от други програми.</string>
   <string name="select_ringtone">Избор на мелодия на звънене</string>
   <string name="telephony_pref_blocked_title">Блокирани номера</string>
   <string name="telephony_pref_blocked_dialog_desc">Не показвайте обажданията и SMS от тези номера. Моля, посочете по един номер за линия</string>
@@ -276,7 +276,7 @@
   <string name="presenter_lock_tip">Можете да заключите устройството си и да използвате клавишите за сила на звука, за да преминете към предишната/следващата слайд</string>
   <string name="add_command">Добавяне на команда</string>
   <string name="addcommand_explanation">Няма регистрирани команди</string>
-  <string name="addcommand_explanation2">Можете да добавите нови команди в системните настройки на KDE Connect</string>
+  <string name="addcommand_explanation2">Можете да добавите нови команди в системните настройки на PhoneBoard</string>
   <string name="add_command_description">Можете да добавяте команди на работния плот</string>
   <string name="pref_plugin_mprisreceiver">Управление на медийния плейър</string>
   <string name="pref_plugin_mprisreceiver_desc">Управление на медийните плейъри на телефона от друго устройство</string>
@@ -308,7 +308,7 @@
   <string name="devices">Устройства</string>
   <string name="settings_rename">Име на устройство</string>
   <string name="settings_dark_mode">Тъмна тема</string>
-  <string name="settings_export_logs">Експортиране на дневниците на KDE Connect</string>
+  <string name="settings_export_logs">Експортиране на дневниците на PhoneBoard</string>
   <string name="settings_export_logs_text">Генерирайте файл с информация за изпълнени команди, която може да помогне за отстраняването на проблеми.</string>
   <string name="settings_more_settings_title">Още настройки</string>
   <string name="settings_more_settings_text">Настройките за всяко устройство могат да бъдат намерени в раздел \"Настройки на плъгина\" в рамките на устройство.</string>
@@ -322,7 +322,7 @@
   <string name="block_images">Блокиране на изображения в известията</string>
   <string name="notification_channel_receivenotification">Известия от други устройства</string>
   <string name="no_app_for_opening">Не е намерено подходящо приложение за отваряне на този файл</string>
-  <string name="remote_keyboard_service">Отдалечена клавиатура KDE Connect</string>
+  <string name="remote_keyboard_service">Отдалечена клавиатура PhoneBoard</string>
   <string name="presenter_pointer">Показалец</string>
   <string name="trusted_networks">Доверени мрежи</string>
   <string name="trusted_networks_desc">Ограничаване на автоматичното откриване до познати мрежи</string>
@@ -330,8 +330,8 @@
   <string name="empty_trusted_networks_list_text">Все още не сте добавили надеждна мрежа</string>
   <string name="allow_all_networks_text">Allow all</string>
   <string name="location_permission_needed_title">Изисква се разрешение</string>
-  <string name="bluetooth_permission_needed_desc">KDE Connect се нуждае от разрешение за свързване с устройства наблизо, за да направи устройства, сдвоени чрез Bluetooth, достъпни в KDE Connect.</string>
-  <string name="location_permission_needed_desc">KDE Connect се нуждае от разрешение за местоположението във фонов режим, за да познава WiFi към която сте свързани, дори когато приложението е във фонов режим. Това е така, защото имената на WiFi мрежите около вас могат да бъдат използвани за намиране на вашето местоположение, дори когато KDE Connect не прави това.</string>
+  <string name="bluetooth_permission_needed_desc">PhoneBoard се нуждае от разрешение за свързване с устройства наблизо, за да направи устройства, сдвоени чрез Bluetooth, достъпни в PhoneBoard.</string>
+  <string name="location_permission_needed_desc">PhoneBoard се нуждае от разрешение за местоположението във фонов режим, за да познава WiFi към която сте свързани, дори когато приложението е във фонов режим. Това е така, защото имената на WiFi мрежите около вас могат да бъдат използвани за намиране на вашето местоположение, дори когато PhoneBoard не прави това.</string>
   <string name="clipboard_android_x_incompat">Android 10 премахна достъпа до клипборда за всички приложения. Тази приставка ще бъде деактивирана.</string>
   <string name="mpris_open_url">Продължаване на възпроизвеждането тук</string>
   <string name="cant_open_url">Не може да се отвори URL адреса, за да се продължи възпроизвежданете</string>
@@ -411,7 +411,7 @@
   <string name="holger_kaelberer_task">Плъгин за отдалечена клавиатура и поправки на грешки</string>
   <string name="saikrishna_arcot_task">Поддръжка за използване на клавиатура в плъгина за отдалечено въвеждане, поправки на грешки и общи подобрения</string>
   <string name="shellwen_chen_task">Внедряване на SFTP, подобряване на възможностите за поддръжка на този проект, поправки на грешки и общи подобрения</string>
-  <string name="everyone_else">Всички останали, които са допринесли за KDE Connect през годините</string>
+  <string name="everyone_else">Всички останали, които са допринесли за PhoneBoard през годините</string>
   <string name="send_clipboard">Изпращане на клипборд</string>
   <string name="tap_to_execute">Докоснете, за да се изпълни</string>
   <string name="plugin_stats">Данни на приставки</string>

@@ -83,9 +83,31 @@ public class KeyListenerView extends View {
     }
 
     public void sendChars(CharSequence chars) {
-        final NetworkPacket np = new NetworkPacket(MousePadPlugin.PACKET_TYPE_MOUSEPAD_REQUEST);
-        np.set("key", chars.toString());
-        sendKeyPressPacket(np);
+        for (int i = 0; i < chars.length(); i++) {
+            char c = chars.charAt(i);
+            final NetworkPacket np = new NetworkPacket(MousePadPlugin.PACKET_TYPE_MOUSEPAD_REQUEST);
+
+            switch (c) {
+                case '\n':
+                    np.set("specialKey", SpecialKeysMap.get(KeyEvent.KEYCODE_ENTER));
+                    break;
+                case '\b':
+                    np.set("specialKey", SpecialKeysMap.get(KeyEvent.KEYCODE_DEL));
+                    break;
+                case ' ':
+                    np.set("key", " ");
+                    break;
+                default:
+                    np.set("key", String.valueOf(c));
+                    break;
+            }
+            sendKeyPressPacket(np);
+            try {
+                Thread.sleep(20);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void sendKeyPressPacket(final NetworkPacket np) {

@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="kde_connect">KDE Connect</string>
+  <string name="kde_connect">PhoneBoard</string>
   <string name="manifest_label_share">Lähetä laitteeseen</string>
   <string name="foreground_notification_no_devices">Ei laiteyhteyttä</string>
   <string name="foreground_notification_devices">Yhdistetty laitteeseen: %s</string>
@@ -43,7 +43,7 @@
   <string name="open_settings">Avaa asetukset</string>
   <string name="no_permissions">Ilmoitusten näkemiseksi sinun on annettava käyttöoikeus ilmoituksiin</string>
   <string name="no_permission_mprisreceiver">Hallitaksesi mediasoittimiasi sinun on annettava käyttöoikeudet ilmoituksiin</string>
-  <string name="no_permissions_remotekeyboard">Näppäinpainallusten vastaanottamiseksi KDE Connectin etänäppäimistö on aktivoitava</string>
+  <string name="no_permissions_remotekeyboard">Näppäinpainallusten vastaanottamiseksi PhoneBoardin etänäppäimistö on aktivoitava</string>
   <string name="send_ping">Lähetä tiedustelupaketti</string>
   <string name="open_mpris_controls">Multimedian ohjaus</string>
   <string name="remotekeyboard_editing_only_title">Käsittele etänäppäimet vain muokattaessa</string>
@@ -191,7 +191,7 @@
   </string-array>
   <string name="mpris_notifications_explanation">Ilmoituskäyttöoikeus vaaditaan etämedian näyttämiseksi ilmoitussovelmassa</string>
   <string name="mpris_notification_settings_title">Näytä mediasäädinilmoitukset</string>
-  <string name="mpris_notification_settings_summary">Sallii mediasoitintesi hallinnan KDE Connectia avaamatta</string>
+  <string name="mpris_notification_settings_summary">Sallii mediasoitintesi hallinnan PhoneBoardia avaamatta</string>
   <string name="share_to">Jaa…</string>
   <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">Tavoittamattomissa olevalle laitteelle jaetut verkko-osoitteet välitetään heti kun laite tavoitetaan.\n\n</string>
@@ -232,13 +232,13 @@
   <string name="sftp_action_mode_menu_delete">Poista</string>
   <string name="sftp_no_storage_locations_configured">Tallennustiloja ei ole asetettu</string>
   <string name="sftp_saf_permission_explanation">Tallennustilat on asetettava etätiedostojen käyttämiseksi</string>
-  <string name="sftp_manage_storage_permission_explanation">Tiedostojen etäkäytön sallimiseksi tällä laitteella KDE Connectin on annettava hallita talletustilaa.</string>
+  <string name="sftp_manage_storage_permission_explanation">Tiedostojen etäkäytön sallimiseksi tällä laitteella PhoneBoardin on annettava hallita talletustilaa.</string>
   <string name="no_players_connected">Soittimia ei löytynyt</string>
   <string name="send_files">Lähetä tiedostoja</string>
   <string name="block_notification_contents">Estä ilmoitusten sisältö</string>
   <string name="block_notification_images">Estä ilmoitusten kuvat</string>
-  <string name="pairing_title">KDE Connect -laitteet</string>
-  <string name="pairing_description">Muiden samassa verkossa olevien KDE Connectia käyttävien laitteiden pitäisi ilmestyä tähän.</string>
+  <string name="pairing_title">PhoneBoard -laitteet</string>
+  <string name="pairing_description">Muiden samassa verkossa olevien PhoneBoardia käyttävien laitteiden pitäisi ilmestyä tähän.</string>
   <string name="device_rename_title">Muuta laitteen nimeä</string>
   <string name="device_rename_confirm">Muuta nimi</string>
   <string name="refresh">Päivitä</string>
@@ -249,7 +249,7 @@
   <string name="pref_plugin_telepathy">Lähetä tekstiviesti</string>
   <string name="pref_plugin_telepathy_desc">Lähetä tekstiviestejä työpöydältäsi</string>
   <string name="pref_plugin_telepathy_mms">Lähetä multimediaviesti</string>
-  <string name="pref_plugin_telepathy_mms_desc">Multimediaviestien lähettämiseksi KDE Connect on asetettava oletustekstiviestisovellukseksi.</string>
+  <string name="pref_plugin_telepathy_mms_desc">Multimediaviestien lähettämiseksi PhoneBoard on asetettava oletustekstiviestisovellukseksi.</string>
   <string name="findmyphone_title">Löydä puhelimeni</string>
   <string name="findmyphone_title_tablet">Löydä tablettini</string>
   <string name="findmyphone_title_tv">Etsi televeisioni</string>
@@ -268,7 +268,7 @@
   <string name="telephony_permission_explanation">Puhelujen näyttäminen työpöydällä vaatii käyttöoikeuden puhelulokiin ja puhelimen tilaan</string>
   <string name="telephony_optional_permission_explanation">Puhelimen yhteystietoihin on annettava käyttöoikeudet, jotta voit nähdä yhteystiedoissa nimet puhelinnumerojen sijaan</string>
   <string name="contacts_permission_explanation">Käyttääksesi yhteystietoja työpöydältä sinun on annettava yhteystietojen käyttöoikeudet</string>
-  <string name="contacts_per_device_confirmation">Puhelimen yhteystiedot kopioidaan tälle laitteelle, jotta KDE Connectin tekstiviesti- ja muut sovellukset voivat käyttää niitä.</string>
+  <string name="contacts_per_device_confirmation">Puhelimen yhteystiedot kopioidaan tälle laitteelle, jotta PhoneBoardin tekstiviesti- ja muut sovellukset voivat käyttää niitä.</string>
   <string name="select_ringtone">Valitse soittoääni</string>
   <string name="telephony_pref_blocked_title">Estetyt numerot</string>
   <string name="telephony_pref_blocked_dialog_desc">Älä näytä soittoja äläkä tekstiviestejä näistä numeroista. Anna numero per rivi.</string>
@@ -279,7 +279,7 @@
   <string name="presenter_lock_tip">Laitteen voi lukita ja käyttää äänenvoimakkuuspainikkeita edellinen/seuraava dia -painikkeina</string>
   <string name="add_command">Lisää komento</string>
   <string name="addcommand_explanation">Komentoja ei ole rekisteröity</string>
-  <string name="addcommand_explanation2">Voit lisätä uusia komentoja KDE Connectin järjestelmäasetuksissa</string>
+  <string name="addcommand_explanation2">Voit lisätä uusia komentoja PhoneBoardin järjestelmäasetuksissa</string>
   <string name="add_command_description">Voit lisätä komentoja työpöydälle</string>
   <string name="pref_plugin_mprisreceiver">Mediasoittimen hallinta</string>
   <string name="pref_plugin_mprisreceiver_desc">Hallitse puhelimesi mediasoittimia toiselta laitteelta</string>
@@ -311,7 +311,7 @@
   <string name="devices">Laitteet</string>
   <string name="settings_rename">Laitenimi</string>
   <string name="settings_dark_mode">Tumma teema</string>
-  <string name="settings_export_logs">Vie KDE Connectin lokit</string>
+  <string name="settings_export_logs">Vie PhoneBoardin lokit</string>
   <string name="settings_export_logs_text">Luo suoritustietotiedosto, josta voi olla apua ongelmien selvityksessä.</string>
   <string name="settings_more_settings_title">Lisää asetuksia</string>
   <string name="settings_more_settings_text">Laitekohtaiset asetukset löytyvät laitteen ”Liitännäisasetuksista”.</string>
@@ -325,7 +325,7 @@
   <string name="block_images">Estä ilmoitusten kuvat</string>
   <string name="notification_channel_receivenotification">Muiden laitteiden ilmoitukset</string>
   <string name="no_app_for_opening">Tämän tiedoston avaamiseen sopivaa sovellusta ei löytynyt</string>
-  <string name="remote_keyboard_service">KDE Connect -etänäppäimistö</string>
+  <string name="remote_keyboard_service">PhoneBoard -etänäppäimistö</string>
   <string name="presenter_pointer">Osoitin</string>
   <string name="trusted_networks">Luotetut verkot</string>
   <string name="trusted_networks_desc">Rajaa automaattihaku tunnettuihin verkkoihin</string>
@@ -333,8 +333,8 @@
   <string name="empty_trusted_networks_list_text">Luotettuja verkkoja ei ole vielä lisätty</string>
   <string name="allow_all_networks_text">Salli kaikki</string>
   <string name="location_permission_needed_title">Käyttöoikeus vaaditaan</string>
-  <string name="bluetooth_permission_needed_desc">KDE Connect vaatii oikeuden yhdistää lähellä oleviin laitteisiin, jotta voisi kytkeä niitä Bluetoothilla pariksi.</string>
-  <string name="location_permission_needed_desc">KDE Connect tarvitsee taustasijaintioikeudet tietääkseen myös sovelluksen olleessa taustalla, mihin langattomaan verkkoon on kirjauduttu. Ympärilläsi olevien langattomien verkkojen nimiä voi käyttää sijaintisi selvittämiseen, vaikka KDE Connect ei tietoa siihen käytäkään.</string>
+  <string name="bluetooth_permission_needed_desc">PhoneBoard vaatii oikeuden yhdistää lähellä oleviin laitteisiin, jotta voisi kytkeä niitä Bluetoothilla pariksi.</string>
+  <string name="location_permission_needed_desc">PhoneBoard tarvitsee taustasijaintioikeudet tietääkseen myös sovelluksen olleessa taustalla, mihin langattomaan verkkoon on kirjauduttu. Ympärilläsi olevien langattomien verkkojen nimiä voi käyttää sijaintisi selvittämiseen, vaikka PhoneBoard ei tietoa siihen käytäkään.</string>
   <string name="clipboard_android_x_incompat">Android 10 on poistanut kaikkien sovellusten leikepöytäkäytön. Liitännäinen poistetaan käytöstä.</string>
   <string name="mpris_open_url">Jatka toistoa tästä</string>
   <string name="cant_open_url">Verkko-osoitetta ei voi avata toiston jatkamiseksi</string>
@@ -414,7 +414,7 @@
   <string name="holger_kaelberer_task">Etänäppäimistöliitännäinen ja virheenkorjaukset</string>
   <string name="saikrishna_arcot_task">Tuki näppäimistön käytölle etäsyöteliitännäisessä, virheenkorjaukset ja yleisparannukset</string>
   <string name="shellwen_chen_task">Parantaa SFTP:n tietoturvaa ja tämän projektin ylläpidettävyyttä, korjaa virheitä ja yleisesti parantaa asioita</string>
-  <string name="everyone_else">Kaikki muut vuosien varrella KDE Connectia avustaneet</string>
+  <string name="everyone_else">Kaikki muut vuosien varrella PhoneBoardia avustaneet</string>
   <string name="send_clipboard">Lähetä leikepöytä</string>
   <string name="tap_to_execute">Suorita napauttamalla</string>
   <string name="plugin_stats">Liitännäisen tilastot</string>

@@ -17,5 +17,5 @@ msgstr ""
 "X-Text-Markup: kde4\n"
 "X-Generator: Lokalize 23.04.3\n"
 
-msgid "KDE Connect integrates your smartphone and computer"
-msgstr "KDE Connect は携帯電話と PC を連携させます"
+msgid "PhoneBoard integrates your smartphone and computer"
+msgstr "PhoneBoard は携帯電話と PC を連携させます"

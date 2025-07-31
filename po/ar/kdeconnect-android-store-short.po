@@ -16,5 +16,5 @@ msgstr ""
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
 "X-Generator: Lokalize 23.08.5\n"
 
-msgid "KDE Connect integrates your smartphone and computer"
+msgid "PhoneBoard integrates your smartphone and computer"
 msgstr "يدمج جسر كِيدِي هاتفك الذكي مع حاسوبك"

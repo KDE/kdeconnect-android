@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="kde_connect">KDE Connect</string>
+  <string name="kde_connect">PhoneBoard</string>
   <string name="manifest_label_share">장치로 보내기</string>
   <string name="foreground_notification_no_devices">연결된 장치 없음</string>
   <string name="foreground_notification_devices">연결됨: %s</string>
@@ -43,11 +43,11 @@
   <string name="open_settings">설정 열기</string>
   <string name="no_permissions">알림 접근 권한이 필요합니다</string>
   <string name="no_permission_mprisreceiver">미디어 재생기를 제어하려면 알림 접근 권한이 필요합니다</string>
-  <string name="no_permissions_remotekeyboard">키 입력을 받으려면 KDE Connect 원격 키보드를 활성화해야 합니다</string>
+  <string name="no_permissions_remotekeyboard">키 입력을 받으려면 PhoneBoard 원격 키보드를 활성화해야 합니다</string>
   <string name="send_ping">핑 보내기</string>
   <string name="open_mpris_controls">멀티미디어 제어</string>
   <string name="remotekeyboard_editing_only_title">편집할 때에만 원격 키 처리하기</string>
-  <string name="remotekeyboard_not_connected">활성화된 원격 키보드 연결이 없습니다. KDE Connect에서 설정하십시오</string>
+  <string name="remotekeyboard_not_connected">활성화된 원격 키보드 연결이 없습니다. PhoneBoard에서 설정하십시오</string>
   <string name="remotekeyboard_connected">원격 키보드 연결이 활성화됨</string>
   <string name="remotekeyboard_multiple_connections">원격 키보드 연결이 여러 개 있습니다. 설정할 장치를 선택하십시오</string>
   <string name="open_mousepad">원격 입력</string>
@@ -183,7 +183,7 @@
   </string-array>
   <string name="mpris_notifications_explanation">알림 서랍에 원격 미디어를 표시하려면 알림 권한이 필요합니다</string>
   <string name="mpris_notification_settings_title">미디어 제어 알림 표시</string>
-  <string name="mpris_notification_settings_summary">KDE Connect를 열지 않고 미디어 재생기 제어</string>
+  <string name="mpris_notification_settings_summary">PhoneBoard를 열지 않고 미디어 재생기 제어</string>
   <string name="share_to">다음으로 공유…</string>
   <string name="unreachable_device_dynamic_shortcut">%s(✕)</string>
   <string name="unreachable_device_url_share_text">접근할 수 없는 장치와 공유한 URL은 장치에 다시 접근할 수 있게 될 때 전달됩니다.\n\n</string>
@@ -224,13 +224,13 @@
   <string name="sftp_action_mode_menu_delete">삭제</string>
   <string name="sftp_no_storage_locations_configured">저장소 위치가 설정되지 않았음</string>
   <string name="sftp_saf_permission_explanation">원격으로 파일에 접근하려면 저장소 위치를 설정해야 함</string>
-  <string name="sftp_manage_storage_permission_explanation">이 장치에 있는 파일에 원격 접근을 허용하려면 KDE Connect에서 저장소를 관리할 수 있도록 허용해야 합니다.</string>
+  <string name="sftp_manage_storage_permission_explanation">이 장치에 있는 파일에 원격 접근을 허용하려면 PhoneBoard에서 저장소를 관리할 수 있도록 허용해야 합니다.</string>
   <string name="no_players_connected">재생기를 찾을 수 없음</string>
   <string name="send_files">파일 보내기</string>
   <string name="block_notification_contents">알림 내용 숨기기</string>
   <string name="block_notification_images">알림 이미지 숨기기</string>
-  <string name="pairing_title">KDE Connect 장치</string>
-  <string name="pairing_description">같은 네트워크에서 KDE Connect를 실행하는 다른 장치가 여기에 표시됩니다.</string>
+  <string name="pairing_title">PhoneBoard 장치</string>
+  <string name="pairing_description">같은 네트워크에서 PhoneBoard를 실행하는 다른 장치가 여기에 표시됩니다.</string>
   <string name="device_rename_title">장치 이름 바꾸기</string>
   <string name="device_rename_confirm">이름 바꾸기</string>
   <string name="refresh">새로 고침</string>
@@ -241,7 +241,7 @@
   <string name="pref_plugin_telepathy">SMS 보내기</string>
   <string name="pref_plugin_telepathy_desc">데스크톱에서 문자 메시지 보내기</string>
   <string name="pref_plugin_telepathy_mms">MMS 보내기</string>
-  <string name="pref_plugin_telepathy_mms_desc">KDE Connect에서 MMS를 보내려면 기본 SMS 앱으로 설정해야 합니다.</string>
+  <string name="pref_plugin_telepathy_mms_desc">PhoneBoard에서 MMS를 보내려면 기본 SMS 앱으로 설정해야 합니다.</string>
   <string name="findmyphone_title">내 휴대폰 찾기</string>
   <string name="findmyphone_title_tablet">내 태블릿 찾기</string>
   <string name="findmyphone_title_tv">내 TV 찾기</string>
@@ -260,7 +260,7 @@
   <string name="telephony_permission_explanation">데스크톱에서 통화와 문자 메시지를 보려면 통화 기록 및 휴대폰 상태 접근 권한이 필요합니다</string>
   <string name="telephony_optional_permission_explanation">전화번호 대신 연락처에 등록된 이름을 보려면 주소록 접근 권한이 필요합니다</string>
   <string name="contacts_permission_explanation">데스크톱과 주소록을 공유하려면 주소록 접근 권한이 필요합니다</string>
-  <string name="contacts_per_device_confirmation">휴대폰 연락처를 이 장치로 복사하여 KDE Connect SMS 앱이나 기타 앱에서 사용할 수 있습니다.</string>
+  <string name="contacts_per_device_confirmation">휴대폰 연락처를 이 장치로 복사하여 PhoneBoard SMS 앱이나 기타 앱에서 사용할 수 있습니다.</string>
   <string name="select_ringtone">벨소리 선택</string>
   <string name="telephony_pref_blocked_title">차단된 번호</string>
   <string name="telephony_pref_blocked_dialog_desc">다음 번호에서 걸려 온 통화나 보낸 문자를 표시하지 않습니다. 한 줄당 하나의 번호를 지정하십시오</string>
@@ -271,7 +271,7 @@
   <string name="presenter_lock_tip">장치 잠금 상태에서는 음량 키를 이전/다음 슬라이드 단추로 사용할 수 있습니다</string>
   <string name="add_command">명령 추가</string>
   <string name="addcommand_explanation">등록된 명령이 없습니다</string>
-  <string name="addcommand_explanation2">시스템 설정의 KDE Connect에서 새로운 명령을 추가할 수 있습니다</string>
+  <string name="addcommand_explanation2">시스템 설정의 PhoneBoard에서 새로운 명령을 추가할 수 있습니다</string>
   <string name="add_command_description">데스크톱에서 명령을 추가할 수 있습니다</string>
   <string name="pref_plugin_mprisreceiver">미디어 재생기 제어</string>
   <string name="pref_plugin_mprisreceiver_desc">다른 장치에서 휴대폰의 미디어 재생기 제어</string>
@@ -303,7 +303,7 @@
   <string name="devices">장치</string>
   <string name="settings_rename">장치 이름</string>
   <string name="settings_dark_mode">어두운 테마</string>
-  <string name="settings_export_logs">KDE Connect 로그 내보내기</string>
+  <string name="settings_export_logs">PhoneBoard 로그 내보내기</string>
   <string name="settings_export_logs_text">문제 해결을 위해서 실행 정보를 포함하는 파일을 생성합니다.</string>
   <string name="settings_more_settings_title">더 많은 설정</string>
   <string name="settings_more_settings_text">장치별 설정은 각각 장치의 \'플러그인 설정\'에서 확인할 수 있습니다.</string>
@@ -317,7 +317,7 @@
   <string name="block_images">알림 이미지 숨기기</string>
   <string name="notification_channel_receivenotification">다른 장치의 알림</string>
   <string name="no_app_for_opening">이 파일을 열 수 있는 앱을 찾을 수 없음</string>
-  <string name="remote_keyboard_service">KDE Connect 원격 키보드</string>
+  <string name="remote_keyboard_service">PhoneBoard 원격 키보드</string>
   <string name="presenter_pointer">포인터</string>
   <string name="trusted_networks">신뢰할 수 있는 네트워크</string>
   <string name="trusted_networks_desc">신뢰할 수 있는 네트워크에서만 자동 발견 사용</string>
@@ -325,8 +325,8 @@
   <string name="empty_trusted_networks_list_text">신뢰할 수 있는 네트워크를 추가하지 않았습니다</string>
   <string name="allow_all_networks_text">모두 허용</string>
   <string name="location_permission_needed_title">권한이 필요함</string>
-  <string name="bluetooth_permission_needed_desc">KDE Connect에서 블루투스를 사용하여 페어링된 장치를 사용하려면 근처 장치에 연결할 수 있는 권한이 필요합니다.</string>
-  <string name="location_permission_needed_desc">KDE Connect에서 현재 연결된 Wi-Fi 네트워크 정보를 얻으려면 앱이 백그라운드에서 실행 중일 때에도 백그라운드 권한이 필요합니다. KDE Connect에서는 사용자의 위치를 찾지 않지만, 내 주변에 있는 Wi-Fi 네트워크의 이름으로도 위치를 찾을 수 있기 때문입니다.</string>
+  <string name="bluetooth_permission_needed_desc">PhoneBoard에서 블루투스를 사용하여 페어링된 장치를 사용하려면 근처 장치에 연결할 수 있는 권한이 필요합니다.</string>
+  <string name="location_permission_needed_desc">PhoneBoard에서 현재 연결된 Wi-Fi 네트워크 정보를 얻으려면 앱이 백그라운드에서 실행 중일 때에도 백그라운드 권한이 필요합니다. PhoneBoard에서는 사용자의 위치를 찾지 않지만, 내 주변에 있는 Wi-Fi 네트워크의 이름으로도 위치를 찾을 수 있기 때문입니다.</string>
   <string name="clipboard_android_x_incompat">안드로이드 10부터는 앱에서 클립보드에 접근할 수 없습니다. 이 플러그인이 비활성화되었습니다.</string>
   <string name="mpris_open_url">여기에서 계속 재생</string>
   <string name="cant_open_url">계속 재생할 URL을 열 수 없음</string>
@@ -406,7 +406,7 @@
   <string name="holger_kaelberer_task">원격 키보드 플러그인과 버그 수정</string>
   <string name="saikrishna_arcot_task">원격 입력 플러그인에서 키보드 사용 지원, 버그 수정과 개선</string>
   <string name="shellwen_chen_task">SFTP 보안 개선, 프로젝트 관리 편의성 개선, 버그 수정과 개선</string>
-  <string name="everyone_else">그 외 오랫동안 KDE Connect에 기여한 사람들</string>
+  <string name="everyone_else">그 외 오랫동안 PhoneBoard에 기여한 사람들</string>
   <string name="send_clipboard">클립보드 보내기</string>
   <string name="tap_to_execute">실행하려면 누르십시오</string>
   <string name="plugin_stats">플러그인 통계</string>

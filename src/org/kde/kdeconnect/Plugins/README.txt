@@ -1,4 +1,4 @@
-Writing a plugin for KDE Connect
+Writing a plugin for PhoneBoard
 =================================
 
 For Android (this project):

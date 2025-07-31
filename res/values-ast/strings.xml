@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="kde_connect">KDE Connect</string>
+  <string name="kde_connect">PhoneBoard</string>
   <string name="foreground_notification_no_devices">Nun se conectó con nengún preséu</string>
   <string name="foreground_notification_devices">Coneutóse con %s</string>
   <string name="pref_plugin_telephony">Avisador telefónicu</string>
@@ -35,7 +35,7 @@
   <string name="cancel">Encaboxar</string>
   <string name="no_permissions">Precises conceder l\'accesu a los avisos</string>
   <string name="no_permission_mprisreceiver">Pa ser a controlar reproductores multimedia precises conceder l\'accesu a los avisos</string>
-  <string name="no_permissions_remotekeyboard">Pa recibir calcos de tecles precises activar el tecláu remotu de KDE Connect</string>
+  <string name="no_permissions_remotekeyboard">Pa recibir calcos de tecles precises activar el tecláu remotu de PhoneBoard</string>
   <string name="send_ping">Unviar un ping</string>
   <string name="open_mpris_controls">Mandu multimedia</string>
   <string name="remotekeyboard_editing_only_title">Remanar les tecles remotes namás al editar</string>
@@ -71,7 +71,7 @@
   <string name="error_could_not_send_package">Nun pudo unviase\'l paquete</string>
   <string name="error_timed_out">Escosó\'l tiempu d\'espera</string>
   <string name="encryption_info_title">Información del cifráu</string>
-  <string name="encryption_info_msg_no_ssl">L\'otru preséu nun executa una versión recién de KDE Connect y usa\'l métodu heredáu de cifráu.</string>
+  <string name="encryption_info_msg_no_ssl">L\'otru preséu nun executa una versión recién de PhoneBoard y usa\'l métodu heredáu de cifráu.</string>
   <string name="my_device_fingerprint">La buelga SHA256 d\'esti preséu ye:</string>
   <string name="remote_device_fingerprint">La buelga SHA256 del certificáu del preséu remotu:</string>
   <string name="pair_requested">Solicitóse l\'empareyamientu</string>
@@ -130,7 +130,7 @@
     <item>2 minutos</item>
   </string-array>
   <string name="mpris_notification_settings_title">Amosar l\'avisu del mandu multimedia</string>
-  <string name="mpris_notification_settings_summary">Permite\'l control de reproductores multimedia ensin abrir KDE Connect</string>
+  <string name="mpris_notification_settings_summary">Permite\'l control de reproductores multimedia ensin abrir PhoneBoard</string>
   <string name="share_to">Compartir con…</string>
   <string name="protocol_version_newer">Esti preséu una versión nueva del protocolu</string>
   <string name="plugin_settings_with_name">%s</string>
@@ -165,8 +165,8 @@
   <string name="sftp_saf_permission_explanation">P\'acceder remotamente a los ficheros tienes de configurar allugamientos d\'almacenamientu</string>
   <string name="no_players_connected">Nun s\'atoparon reproductores</string>
   <string name="send_files">Unviar ficheros</string>
-  <string name="pairing_title">Preseos con KDE Connect</string>
-  <string name="pairing_description">Equí deberíen apaecer los demás preseos que tean executando KDE Connect na mesma rede.</string>
+  <string name="pairing_title">Preseos con PhoneBoard</string>
+  <string name="pairing_description">Equí deberíen apaecer los demás preseos que tean executando PhoneBoard na mesma rede.</string>
   <string name="device_rename_title">Renomáu del preséu</string>
   <string name="device_rename_confirm">Renomar</string>
   <string name="refresh">Refrescar</string>
@@ -190,7 +190,7 @@
   <string name="presenter_lock_tip">Pues bloquiar esti preséu y usar les tecles de volume pa dir a la diapositiva anterior/siguiente</string>
   <string name="add_command">Amiestu d\'un comandu</string>
   <string name="addcommand_explanation">Nun hai comandos rexistraos.</string>
-  <string name="addcommand_explanation2">Pues amestar más nos axustes de KDE Connect del ordenador</string>
+  <string name="addcommand_explanation2">Pues amestar más nos axustes de PhoneBoard del ordenador</string>
   <string name="add_command_description">Pues amestar más comandos nel ordenador</string>
   <string name="pref_plugin_mprisreceiver">Mandu pa reproductores multimedia</string>
   <string name="pref_plugin_mprisreceiver_desc">Controla los reproductores multimedia d\'esti preséu dende otru</string>
@@ -226,7 +226,7 @@
   <string name="take_picture">Llanzamientu de la cámara</string>
   <string name="plugin_photo_desc">Llanza l\'aplicación de la cámara p\'acenciellar la fechura y tresferencia de semeyes</string>
   <string name="no_app_for_opening">Nun atopó nenguna aplicación afayadiza p\'abrir esti ficheru.</string>
-  <string name="remote_keyboard_service">Tecláu remotu de KDE Connect</string>
+  <string name="remote_keyboard_service">Tecláu remotu de PhoneBoard</string>
   <string name="presenter_pointer">Punteru</string>
   <string name="trusted_networks">Redes d\'enfotu</string>
   <string name="trusted_networks_desc">Torga la descubrición automática en redes conocíes</string>

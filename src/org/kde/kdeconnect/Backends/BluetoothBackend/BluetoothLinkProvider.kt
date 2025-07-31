@@ -135,7 +135,7 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
 
         override fun run() {
             serverSocket = try {
-                bluetoothAdapter!!.listenUsingRfcommWithServiceRecord("KDE Connect", SERVICE_UUID)
+                bluetoothAdapter!!.listenUsingRfcommWithServiceRecord("PhoneBoard", SERVICE_UUID)
             } catch (e: IOException) {
                 Log.e("KDEConnect", "Exception", e)
                 return
@@ -347,7 +347,7 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
                 socket.connect()
                 synchronized(sockets) { sockets.put(device, socket) }
             } catch (e: IOException) {
-                Log.e("BTLinkProvider/Client", "Could not connect to KDE Connect service on " + device!!.address, e)
+                Log.e("BTLinkProvider/Client", "Could not connect to PhoneBoard service on " + device!!.address, e)
                 return
             } catch (e: SecurityException) {
                 Log.e("BTLinkProvider/Client", "Security Exception connecting to " + device!!.address, e)

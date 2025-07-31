@@ -140,7 +140,7 @@ public class SslHelper {
 
                 X500NameBuilder nameBuilder = new X500NameBuilder(BCStyle.INSTANCE);
                 nameBuilder.addRDN(BCStyle.CN, deviceId);
-                nameBuilder.addRDN(BCStyle.OU, "KDE Connect");
+                nameBuilder.addRDN(BCStyle.OU, "PhoneBoard");
                 nameBuilder.addRDN(BCStyle.O, "KDE");
                 final LocalDate localDate = LocalDate.now();
                 final Instant notBefore = localDate.minusYears(1).atStartOfDay(ZoneId.systemDefault()).toInstant();

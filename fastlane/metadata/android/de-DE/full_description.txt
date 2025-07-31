@@ -1,4 +1,4 @@
-KDE Connect bietet eine Reihe von Funktionen, um Ihre Arbeitsabläufe über verschiedene Geräte zu vereinigen:
+PhoneBoard bietet eine Reihe von Funktionen, um Ihre Arbeitsabläufe über verschiedene Geräte zu vereinigen:
 
 - Daten zwischen Ihren Geräten übertragen.
 - Auf Daten auf Ihrem Telefon von Ihrem Computer aus zugreifen, ohne Kabel.
@@ -10,12 +10,12 @@ KDE Connect bietet eine Reihe von Funktionen, um Ihre Arbeitsabläufe über vers
 - WLAN-Verbindung: kein USB-Kabel oder Bluetooth erforderlich.
 - Ende-zu-Ende-TLS-Verschlüsselung: Ihre Informationen sind sicher.
 
-Bitte beachten Sie, dass Sie KDE Connect auf Ihrem Computer installieren müssen, damit diese App funktioniert und halten Sie die Desktop-Version mit der Android-Version auf dem aktuellen Stand, um die neuesten Funktionen nutzen zu können.
+Bitte beachten Sie, dass Sie PhoneBoard auf Ihrem Computer installieren müssen, damit diese App funktioniert und halten Sie die Desktop-Version mit der Android-Version auf dem aktuellen Stand, um die neuesten Funktionen nutzen zu können.
 
 Informationen zu sensiblen Berechtigungen:
 * Zugriffsberechtigung: Wird benötigt, um Eingaben zur Steuerung ihres Android-Telefons von einem anderen Gerät zu erhalten, wenn Sie die Ferneingabefunktion verwenden. 
 * Berechtigung den Standort im Hintergrund zu nutzen: Wird benötigt, um festzustellen, mit welchem WLAN-Netzwerk Sie verbunden sind, wenn Sie die Funktion „Vertrauenswürdige Netzwerke” verwenden.
 
-KDE Connect sendet niemals irgendwelche Informationen an KDE oder an Dritte. KDE Connect sendet Daten, unter Verwendung einer Ende-zu-Ende-Verschlüsselung, über das lokale Netzwerk direkt von einem Gerät zum anderen, niemals über das Internet.
+PhoneBoard sendet niemals irgendwelche Informationen an KDE oder an Dritte. PhoneBoard sendet Daten, unter Verwendung einer Ende-zu-Ende-Verschlüsselung, über das lokale Netzwerk direkt von einem Gerät zum anderen, niemals über das Internet.
 
 Diese App ist Teil eines Open-Scource-Projekts und besteht Dank all der Menschen die dazu beigetragen haben. Besuchen Sie die Internetseite, um sich den Quelltext zu holen.

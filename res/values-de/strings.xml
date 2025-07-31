@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="kde_connect">KDE Connect</string>
+  <string name="kde_connect">PhoneBoard</string>
   <string name="manifest_label_share">An Gerät senden</string>
   <string name="foreground_notification_no_devices">Keine bestehenden Verbindungen</string>
   <string name="foreground_notification_devices">Verbunden mit %s</string>
@@ -185,7 +185,7 @@
   </string-array>
   <string name="mpris_notifications_explanation">Benachrichtigungen müssen erlaubt sein, um entfernte Medien im Benachrichtigungsfenster zu zeigen.</string>
   <string name="mpris_notification_settings_title">Benachrichtigung zur Medienkontrolle anzeigen</string>
-  <string name="mpris_notification_settings_summary">Die Steuerung der Medienwiedergabe auch dann erlauben wenn KDE Connect nicht geöffnet ist</string>
+  <string name="mpris_notification_settings_summary">Die Steuerung der Medienwiedergabe auch dann erlauben wenn PhoneBoard nicht geöffnet ist</string>
   <string name="share_to">Freigeben für ...</string>
   <string name="unreachable_device_url_share_text">URLs, die mit einem nicht erreichbaren Gerät geteilt werden, werden zugestellt sobald es erreichbar wird.\n\n</string>
   <string name="protocol_version_newer">Dieses Gerät verwendet eine neuere Protokollversion</string>
@@ -223,13 +223,13 @@
   <string name="sftp_action_mode_menu_delete">Löschen</string>
   <string name="sftp_no_storage_locations_configured">Keine Speicherorte ausgewählt</string>
   <string name="sftp_saf_permission_explanation">Um von außerhalb auf Ihre Dateien zugreifen zu können, muss mindestens ein Speicherort vorhanden sein</string>
-  <string name="sftp_manage_storage_permission_explanation">Um den Fernzugriff auf Dateien auf diesem Gerät zu erlauben, müssen Sie KDE Connect erlauben den Speicher zu verwalten.</string>
+  <string name="sftp_manage_storage_permission_explanation">Um den Fernzugriff auf Dateien auf diesem Gerät zu erlauben, müssen Sie PhoneBoard erlauben den Speicher zu verwalten.</string>
   <string name="no_players_connected">Keine Medienspieler gefunden</string>
   <string name="send_files">Dateien senden</string>
   <string name="block_notification_contents">Benachrichtigungsinhalte blockieren</string>
   <string name="block_notification_images">Bilder in Benachrichtigungen blockieren</string>
   <string name="pairing_title">KDE-Connect-Geräte</string>
-  <string name="pairing_description">Andere Geräte im selben Netzwerk, auf denen KDE Connect läuft, sollten hier angezeigt werden</string>
+  <string name="pairing_description">Andere Geräte im selben Netzwerk, auf denen PhoneBoard läuft, sollten hier angezeigt werden</string>
   <string name="device_rename_title">Geräte umbenennen</string>
   <string name="device_rename_confirm">Umbenennen</string>
   <string name="refresh">Aktualisieren</string>
@@ -240,7 +240,7 @@
   <string name="pref_plugin_telepathy">SMS senden</string>
   <string name="pref_plugin_telepathy_desc">SMS von Ihrer Arbeitsfläche senden</string>
   <string name="pref_plugin_telepathy_mms">MMS senden</string>
-  <string name="pref_plugin_telepathy_mms_desc">Um MMS von KDE Connect aus versenden zu können, müssen Sie es als Standard-SMS-App festlegen.</string>
+  <string name="pref_plugin_telepathy_mms_desc">Um MMS von PhoneBoard aus versenden zu können, müssen Sie es als Standard-SMS-App festlegen.</string>
   <string name="findmyphone_title">Mein Telefon suchen</string>
   <string name="findmyphone_title_tablet">Mein Tablet suchen</string>
   <string name="findmyphone_title_tv">Meinen Fernseher suchen</string>
@@ -259,7 +259,7 @@
   <string name="telephony_permission_explanation">Um eingehende Anrufe auf der Arbeitsfläche anzuzeigen, muss der Zugriff auf die Anrufliste und den Telefonstatus gewährt werden</string>
   <string name="telephony_optional_permission_explanation">Um einen Namen anstelle der Telefonnummer anzuzeigen, muss der Zugriff auf das Adressbuch gewährt werden</string>
   <string name="contacts_permission_explanation">Um Ihre Kontakte mit der Arbeitsfläche zu teilen, muss der Zugriff auf die Kontakte gewährt werden</string>
-  <string name="contacts_per_device_confirmation">Ihre Telefonkontakte werden auf dieses Gerät übertragen, damit sie von der KDE Connect SMS App und anderen Apps verwendet werden können.</string>
+  <string name="contacts_per_device_confirmation">Ihre Telefonkontakte werden auf dieses Gerät übertragen, damit sie von der PhoneBoard SMS App und anderen Apps verwendet werden können.</string>
   <string name="select_ringtone">Einen Klingelton auswählen</string>
   <string name="telephony_pref_blocked_title">Unterdrückte Nummern</string>
   <string name="telephony_pref_blocked_dialog_desc">Keine Anrufe und SMS von diesen Telefonnummern anzeigen (Bitte geben Sie eine Nummer pro Zeile ein)</string>
@@ -270,7 +270,7 @@
   <string name="presenter_lock_tip">Sie können Ihr Gerät sperren und mit Hilfe der Lauter-/Leiser-Taste zur vorherigen/nächsten Folie wechseln</string>
   <string name="add_command">Einen Befehl hinzufügen</string>
   <string name="addcommand_explanation">Es sind keine Befehle vorhanden</string>
-  <string name="addcommand_explanation2">Sie können neue Befehle in den Systemeinstellungen für KDE Connect hinzufügen</string>
+  <string name="addcommand_explanation2">Sie können neue Befehle in den Systemeinstellungen für PhoneBoard hinzufügen</string>
   <string name="add_command_description">Sie können neue Befehle auf der Arbeitsfläche hinzufügen</string>
   <string name="pref_plugin_mprisreceiver">Steuerung der Medienwiedergabe</string>
   <string name="pref_plugin_mprisreceiver_desc">Ein verbundenes Gerät zum Steuern der lokalen Medienwiedergabe verwenden</string>
@@ -311,7 +311,7 @@
   <string name="block_images">Bilder in Benachrichtigungen blockieren</string>
   <string name="notification_channel_receivenotification">Benachrichtigungen verbundener Geräte</string>
   <string name="no_app_for_opening">Es wurde keine passende App zum Öffnen dieser Datei gefunden</string>
-  <string name="remote_keyboard_service">Entfernte Tastatur für KDE Connect</string>
+  <string name="remote_keyboard_service">Entfernte Tastatur für PhoneBoard</string>
   <string name="presenter_pointer">Laserpointer</string>
   <string name="trusted_networks">Vertrauenswürdiges Netzwerk</string>
   <string name="trusted_networks_desc">Automatische Erkennung auf bekannte Netzwerke beschränken</string>
@@ -319,7 +319,7 @@
   <string name="empty_trusted_networks_list_text">Sie haben bisher noch kein vertrauenswürdiges Netzwerk hinzugefügt</string>
   <string name="allow_all_networks_text">Alle erlauben</string>
   <string name="location_permission_needed_title">Berechtigung erforderlich</string>
-  <string name="location_permission_needed_desc">KDE connect benötigt die Berechtigung für die Verwendung des Standorts im Hintergrund, um festzustellen, mit welchem WLAN-Netzwerk Sie verbunden sind, auch wenn die App im Hintergrund ist. Dies ist notwendig, da die Name der WLAN-Netzwerke verwendet werden können, um Ihren Standort zu bestimmen, auch wenn KDE Connect dies nicht tut.</string>
+  <string name="location_permission_needed_desc">PhoneBoard benötigt die Berechtigung für die Verwendung des Standorts im Hintergrund, um festzustellen, mit welchem WLAN-Netzwerk Sie verbunden sind, auch wenn die App im Hintergrund ist. Dies ist notwendig, da die Name der WLAN-Netzwerke verwendet werden können, um Ihren Standort zu bestimmen, auch wenn PhoneBoard dies nicht tut.</string>
   <string name="clipboard_android_x_incompat">In Android 10 wurde der Zugriff auf die Zwischenablage für alle Apps entfernt. Diese Modul wird deaktiviert.</string>
   <string name="mpris_open_url">Wiedergabe hier fortsetzen</string>
   <string name="cant_open_url">Die URL zum Fortsetzen der Wiedergabe kann nicht geöffnet werden</string>
@@ -388,7 +388,7 @@
   <string name="aniket_kumar_task">Verbesserungen am SMS-Modul</string>
   <string name="alex_fiestas_task">Verbesserungen am Kontakte-Modul</string>
   <string name="maxim_leshchenko_task">UI-Verbesserungen und diese Infoseite</string>
-  <string name="everyone_else">Jeder, der über die Jahre noch zu KDE Connect beigetragen hat</string>
+  <string name="everyone_else">Jeder, der über die Jahre noch zu PhoneBoard beigetragen hat</string>
   <string name="send_clipboard">Zwischenablage senden</string>
   <string name="tap_to_execute">Tippen um auszuführen</string>
   <string name="enable_udp_broadcast">UDP-Geräteerkennung einschalten</string>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-    <string name="kde_connect">Debug KDE Connect</string>
+    <string name="PhoneBoard">PhoneBoard</string>
 </resources>

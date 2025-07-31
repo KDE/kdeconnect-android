@@ -107,8 +107,8 @@
   <string name="filter_apps_info">Bekendtgørelser vil blive synkroniseret for de valgte apps.</string>
   <string name="no_players_connected">Ingen afspillere fundet</string>
   <string name="send_files">Send filer</string>
-  <string name="pairing_title">KDE Connect-enheder</string>
-  <string name="pairing_description">Andre enheder som kører KDE Connect i samme netværk som dig, bør dukke op her.</string>
+  <string name="pairing_title">PhoneBoard-enheder</string>
+  <string name="pairing_description">Andre enheder som kører PhoneBoard i samme netværk som dig, bør dukke op her.</string>
   <string name="device_rename_title">Omdøb enhed</string>
   <string name="device_rename_confirm">Omdøb</string>
   <string name="refresh">Genopfrisk</string>
