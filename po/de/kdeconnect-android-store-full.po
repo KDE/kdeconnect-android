@@ -1,5 +1,5 @@
-# Frederik Schwarzer <schwarzer@kde.org>, 2023.
-# tobi <onewayme001@posteo.de>, 2024.
+# SPDX-FileCopyrightText: 2023 Frederik Schwarzer <schwarzer@kde.org>
+# SPDX-FileCopyrightText: 2024 tobi <onewayme001@posteo.de>
 #. extracted from ./metadata/android/en-US/full_description.txt
 msgid ""
 msgstr ""

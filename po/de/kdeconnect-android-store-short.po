@@ -1,4 +1,4 @@
-# Frederik Schwarzer <schwarzer@kde.org>, 2023.
+# SPDX-FileCopyrightText: 2023 Frederik Schwarzer <schwarzer@kde.org>
 #. extracted from ./metadata/android/en-US/short_description.txt
 msgid ""
 msgstr ""
