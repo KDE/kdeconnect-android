@@ -94,6 +94,7 @@
   <string name="sendkeystrokes_pref_category_title">Tastendrücke senden</string>
   <string name="sendkeystrokes_pref_enabled">Senden von Tastendrücken aktivieren</string>
   <string name="sendkeystrokes_pref_enabled_summary">Auf Daten mit dem MIME-Typ „text/x-keystrokes“ warten</string>
+  <string name="sendkeystrokes_safe_text_enabled_summary">Kurze Ziffernfolgen ohne Bestätigung senden</string>
   <string name="pref_plugin_mousepad_send_keystrokes">Als Tastendruck senden</string>
   <string name="mouse_receiver_plugin_description">Empfänger für entfernte Mauseingaben</string>
   <string name="mouse_receiver_plugin_name">Maus-Empfänger</string>
@@ -112,6 +113,7 @@
   <string name="error_not_reachable">Das Gerät ist nicht erreichbar</string>
   <string name="error_already_paired">Das Gerät ist bereits verbunden</string>
   <string name="error_timed_out">Zeitüberschreitung</string>
+  <string name="error_clocks_not_match">Uhren der Geräte sind nicht synchron</string>
   <string name="error_canceled_by_user">Abbruch durch Benutzer</string>
   <string name="error_canceled_by_other_peer">Abbruch durch Gegenstelle</string>
   <string name="encryption_info_title">Verschlüsselungsinformationen</string>
@@ -161,9 +163,11 @@
   <string name="middle_click">Mittelklick senden</string>
   <string name="show_keyboard">Tastatur anzeigen</string>
   <string name="device_not_paired">Das Gerät ist nicht verbunden</string>
+  <string name="pairing_duplicate_names">Achtung: Es gibt mehrere Geräte mit dem gleichen Namen.</string>
   <string name="request_pairing">Kopplung anfordern</string>
   <string name="pairing_accept">Annehmen</string>
   <string name="pairing_reject">Ablehnen</string>
+  <string name="pairing_explanation">Zwei Geräte zu koppeln ermöglicht diesen, auf das jeweils andere zuzugreifen. Koppeln Sie nur Ihre eigenen Geräte.</string>
   <string name="settings">Einstellungen</string>
   <string name="mpris_play">Wiedergabe</string>
   <string name="mpris_pause">Anhalten</string>
@@ -186,13 +190,16 @@
   <string name="mpris_notifications_explanation">Benachrichtigungen müssen erlaubt sein, um entfernte Medien im Benachrichtigungsfenster zu zeigen.</string>
   <string name="mpris_notification_settings_title">Benachrichtigung zur Medienkontrolle anzeigen</string>
   <string name="mpris_notification_settings_summary">Die Steuerung der Medienwiedergabe auch dann erlauben wenn KDE Connect nicht geöffnet ist</string>
-  <string name="share_to">Freigeben für ...</string>
+  <string name="share_to">Freigeben für …</string>
+  <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">URLs, die mit einem nicht erreichbaren Gerät geteilt werden, werden zugestellt sobald es erreichbar wird.\n\n</string>
+  <string name="protocol_version">Protokollversion:</string>
   <string name="protocol_version_newer">Dieses Gerät verwendet eine neuere Protokollversion</string>
   <string name="plugin_settings_with_name">%s-Einstellungen</string>
   <string name="invalid_device_name">Ungültiger Gerätename</string>
   <string name="shareplugin_text_saved">Text empfangen und in die Zwischenablage kopiert</string>
   <string name="custom_devices_settings">Benutzerdefinierte Geräteliste</string>
+  <string name="custom_devices_settings_summary">%d Geräte manuell hinzugefügt</string>
   <string name="custom_device_list">Geräte nach IP-Adresse hinzufügen</string>
   <string name="custom_device_deleted">Benutzerdefinierte Geräte gelöscht</string>
   <string name="custom_device_list_help">Falls Ihr Gerät nicht automatisch erkannt wird, können Sie es über die IP-Adresse oder den Gerätenamen hinzufügen. Klicken Sie dafür auf den schwebenden Aktionsknopf</string>
@@ -375,6 +382,7 @@
   <string name="kde_be_free">KDE - Freiheit genießen.</string>
   <string name="kde">KDE</string>
   <string name="konqi">Konqi</string>
+  <string name="click_here_to_type">Hier tippen, um zu schreiben</string>
   <string name="clear_compose">Leeren</string>
   <string name="send_compose">Senden</string>
   <string name="open_compose_send">Text schreiben</string>
@@ -391,10 +399,14 @@
   <string name="everyone_else">Jeder, der über die Jahre noch zu KDE Connect beigetragen hat</string>
   <string name="send_clipboard">Zwischenablage senden</string>
   <string name="tap_to_execute">Tippen um auszuführen</string>
+  <string name="plugin_stats">Modul-Statistik</string>
   <string name="enable_udp_broadcast">UDP-Geräteerkennung einschalten</string>
+  <string name="enable_bluetooth">Bluetooth aktivieren (Beta)</string>
   <string name="findmyphone_notifications_explanation">Benachrichtigungen müssen erlaubt sein, damit das Telefon klingeln kann, wenn die App im Hintergrund ist</string>
   <string name="no_notifications">Benachrichtigungen sind abgeschaltet, Sie erhalten keine Benachrichtigungen für eingehende Verbindungen.</string>
   <string name="mpris_keepwatching">Wiedergabe fortsetzen</string>
   <string name="mpris_keepwatching_settings_title">Wiedergabe fortsetzen</string>
   <string name="notification_channel_keepwatching">Wiedergabe fortsetzen</string>
+  <string name="ping_result">Ping-Dauer: %1$d Millisekunden</string>
+  <string name="ping_in_progress">Ping läuft …</string>
 </resources>
