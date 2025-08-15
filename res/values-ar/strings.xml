@@ -42,7 +42,7 @@
   <string name="cancel">ألغِ</string>
   <string name="open_settings">افتح الإعدادات</string>
   <string name="no_permissions">عليك إعطاء التّطبيق صلاحيّات للنّفاذ إلى الإشعارات</string>
-  <string name="no_permission_mprisreceiver">لتكون قادرًا على التحكم في مشغلات الوسائط الخاصة بك ، تحتاج إلى منح حق الوصول إلى الإشعارات</string>
+  <string name="no_permission_mprisreceiver">لتكون قادرًا على التحكم في مشغلات الوسائط الخاصة بك، تحتاج إلى منح حق الوصول إلى الإشعارات</string>
   <string name="no_permissions_remotekeyboard">لتلقي ضغطات المفاتيح تحتاج إلى تنشيط لوحة المفاتيح البعيدة لجسر كِيدِي</string>
   <string name="send_ping">أرسل وخزة ping</string>
   <string name="open_mpris_controls">متحكّمات الوسائط المتعدّدة</string>
