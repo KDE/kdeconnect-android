@@ -113,7 +113,7 @@
   <string name="cancel_pairing">ألغ الاقتران</string>
   <string name="unknown_device">جهاز مجهول</string>
   <string name="error_not_reachable">الجهاز غير قابل الوصول</string>
-  <string name="error_already_paired">الجهاز مقترن بالفعل</string>
+  <string name="error_already_paired">الجهاز مقترن فعلًا</string>
   <string name="error_timed_out">انتهت المهلة</string>
   <string name="error_clocks_not_match">ساعات الجهاز غير متزامنة</string>
   <string name="error_canceled_by_user">ألغاه المستخدم</string>
@@ -201,7 +201,7 @@
   <string name="request_pairing">اطلب الاقتران</string>
   <string name="pairing_accept">اقبل</string>
   <string name="pairing_reject">ارفض</string>
-  <string name="pairing_explanation">سيؤدي إقران جهازين إلى منحهما إمكانية الوصول إلى بعضهما البعض. قم بإقران أجهزتك الخاصة بك فقط.</string>
+  <string name="pairing_explanation">سيؤدي إقران جهازين إلى منحهما إمكانية الوصول إلى بعضهما البعض. أقرن أجهزتك الخاصة بك فقط.</string>
   <string name="settings">إعدادات</string>
   <string name="mpris_play">شغّل</string>
   <string name="mpris_pause">ألبث</string>
@@ -367,7 +367,7 @@
   <string name="location_permission_needed_title">الإذن مطلوب</string>
   <string name="bluetooth_permission_needed_desc">يحتاج جسر كِيدِي إلى إذن للاتصال بالأجهزة القريبة لإتاحة الأجهزة المقترنة باستخدام البلوتوث في جسر كِيدِي.</string>
   <string name="location_permission_needed_desc">يحتاج جسر كِيدِي إلى إذن الموقع في الخلفية لمعرفة شبكة الواي فاي التي تتصل بها حتى عندما يكون التطبيق في الخلفية. وذلك لأنه يمكن استخدام اسم شبكات الواي فاي من حولك للعثور على موقعك، حتى وإن لم يكن هذا ما يفعله جسر كِيدِي.</string>
-  <string name="clipboard_android_x_incompat">قام أندرويد 10 بإزالة وصول للحافظة إلى جميع التطبيقات. ستعطل هذه الملحقة.</string>
+  <string name="clipboard_android_x_incompat">أزال أندرويد 10 الوصول للحافظة إلى جميع التطبيقات. ستعطل هذه الملحقة.</string>
   <string name="mpris_open_url">استمر في التشغيل هنا</string>
   <string name="cant_open_url">تعذر فتح العنوان للاستمرار في التشغيل</string>
   <string name="bigscreen_home">المنزل</string>
@@ -431,10 +431,10 @@
   <string name="open_compose_send">اكتب نصًا</string>
   <string name="double_tap_to_drag">طرق مزدوج للسحب</string>
   <string name="hold_to_drag">اضغط مع الاستمرار للسحب</string>
-  <string name="about_kde_about"><h1>حول</h1>" "<p>كيدي مجتمع عالمي من مهندسي البرمجيات والفنانين والكتاب والمترجمين والمبدعين الملتزمين بتطوير البرمجيات الحرة. تُنتج كيدي بيئة سطح المكتب بلازما، ومئات التطبيقات، والعديد من مكتبات البرمجيات التي تدعمها.</p>" "<p>كيدي مشروع تعاوني: لا تتحكم جهة واحدة في توجهاته أو منتجاته. بل نعمل معًا لتحقيق هدفنا المشترك المتمثل في بناء أفضل برمجيات حرة في العالم. الجميع مدعوون للانضمام والمساهمة في كيدي، بمن فيهم أنت.</p>" قم بزيارة &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; للحصول على مزيد من المعلومات حول مجتمع كيدي والبرمجيات التي ننتجها"</string>
+  <string name="about_kde_about"><h1>حول</h1>" "<p>كيدي مجتمع عالمي من مهندسي البرمجيات والفنانين والكتاب والمترجمين والمبدعين الملتزمين بتطوير البرمجيات الحرة. تُنتج كيدي بيئة سطح المكتب بلازما، ومئات التطبيقات، والعديد من مكتبات البرمجيات التي تدعمها.</p>" "<p>كيدي مشروع تعاوني: لا تتحكم جهة واحدة في توجهاته أو منتجاته. بل نعمل معًا لتحقيق هدفنا المشترك المتمثل في بناء أفضل برمجيات حرة في العالم. الجميع مدعوون للانضمام والمساهمة في كيدي، بمن فيهم أنت.</p>" زر &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; للحصول على مزيد من المعلومات حول مجتمع كيدي والبرمجيات التي ننتجها"</string>
   <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;الإبلاغ عن الأخطاء أو الرغبات&lt;/h1&gt; &lt;p&gt;يمكن دائمًا تحسين البرامج، وفريق كيدي مستعدٌّ لذلك. ومع ذلك، يجب عليك - كمستخدم - إبلاغنا عندما لا يعمل شيءٌ ما كما هو متوقع أو عندما يكون من الممكن تحسينه.&lt;/p&gt; &lt;p&gt;تحتوي كيدي على نظام تتبع للأخطاء. تفضل بزيارة &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; أو استخدم زر \"الإبلاغ عن خطأ\" من شاشة \"حول\" للإبلاغ عن الأخطاء.&lt;/p&gt; إذا كانت لديك أي اقتراحات للتحسين، فنرحب بك باستخدام نظام تتبع الأخطاء لتسجيل رغبتك. تأكد من استخدام مستوى الخطورة المسمى \"قائمة الأمنيات\".</string>
-  <string name="about_kde_join_kde">&lt;h1&gt;انضم إلى كيدي&lt;/h1&gt; &lt;p&gt;لا يلزم أن تكون مطور برامج لكي تكون عضوًا في فريق كيدي. يمكنك الانضمام إلى فرق اللغات التي تترجم واجهات البرامج. يمكنك توفير الرسومات والموضوعات والأصوات والوثائق المُحسّنة. القرار لك! &lt;p&gt;قم بزيارة &lt;a href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/Get_Involved&lt;/a&gt; للحصول على معلومات حول بعض المشاريع التي يمكنك المشاركة فيها.&lt;/p&gt; إذا كنت بحاجة إلى مزيد من المعلومات أو الوثائق، فإن زيارة &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/&lt;/a&gt; ستوفر لك ما تحتاجه.</string>
-  <string name="about_kde_support_kde">&lt;h1&gt;دعم كيدي&lt;/h1&gt; &lt;p&gt;برامج كيدي متاحة دائمًا بالمجان، ولكن إنشاءها ليس مجانيًا.&lt;/p&gt; &lt;p&gt;لدعم التطوير، قام مجتمع كيدي بتأسيس KDE e.V.، وهي منظمة غير ربحية تأسست بشكل قانوني في ألمانيا. تمثل KDE e.V. مجتمع كيدي في الشؤون القانونية والمالية. انظر &lt;a href=https://ev.kde.org/&gt;https://ev.kde.org/&lt;/a&gt; للحصول على معلومات حول KDE e.V.&lt;/p&gt; &lt;p&gt;تستفيد كيدي من العديد من أنواع المساهمات، بما في ذلك المساهمات المالية. نحن نستخدم الأموال لتعويض الأعضاء وغيرهم عن النفقات التي يتكبد عند المساهمة. وتستخدم الأموال للدعم القانوني وتنظيم المؤتمرات والاجتماعات.&lt;/p&gt; &lt;p&gt;نود أن نشجعكم على دعم جهودنا من خلال التبرع المالي، باستخدام إحدى الطرق الموضحة في &lt;a href=https://www.kde.org/community/donations/&gt;https://www.kde.org/community/donations/&lt;/a&gt;.&lt;/p&gt; نشكركم جزيل الشكر مقدمًا على دعمكم.</string>
+  <string name="about_kde_join_kde">&lt;h1&gt;انضم إلى كيدي&lt;/h1&gt; &lt;p&gt;لا يلزم أن تكون مطور برامج لكي تكون عضوًا في فريق كيدي. يمكنك الانضمام إلى فرق اللغات التي تترجم واجهات البرامج. يمكنك توفير الرسومات والموضوعات والأصوات والوثائق المُحسّنة. القرار لك! &lt;p&gt;زر &lt;a href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/Get_Involved&lt;/a&gt; للحصول على معلومات حول بعض المشاريع التي يمكنك المشاركة فيها.&lt;/p&gt; إذا كنت بحاجة إلى مزيد من المعلومات أو الوثائق، فإن زيارة &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/&lt;/a&gt; ستوفر لك ما تحتاجه.</string>
+  <string name="about_kde_support_kde">"&lt;h1&gt;دعم كيدي&lt;/h1&gt; &lt;p&gt;برامج كيدي متاحة دائمًا بالمجان، ولكن إنشاءها ليس مجانيًا.&lt;/p&gt; &lt;p&gt;لدعم التطوير، أسس مجتمع كيدي  KDE e.V.، وهي منظمة غير ربحية تأسست بشكل قانوني في ألمانيا. تمثل KDE e.V. مجتمع كيدي في الشؤون القانونية والمالية. انظر &lt;a href=https://ev.kde.org/&gt;https://ev.kde.org/&lt;/a&gt; للحصول على معلومات حول KDE e.V.&lt;/p&gt; &lt;p&gt;تستفيد كيدي من العديد من أنواع المساهمات، بما في ذلك المساهمات المالية. نحن نستخدم الأموال لتعويض الأعضاء وغيرهم عن النفقات التي يتكبد عند المساهمة. وتستخدم الأموال للدعم القانوني وتنظيم المؤتمرات والاجتماعات.&lt;/p&gt; &lt;p&gt;نود أن نشجعكم على دعم جهودنا من خلال التبرع المالي، باستخدام إحدى الطرق الموضحة في &lt;a href=https://www.kde.org/community/donations/&gt;https://www.kde.org/community/donations/&lt;/a&gt;.&lt;/p&gt; نشكركم جزيل الشكر مقدمًا على دعمكم."</string>
   <string name="maintainer_and_developer">الصائن ومطوّر</string>
   <string name="developer">مطوّر</string>
   <string name="apple_support">دعم ماك أو إس. العمل على دعم iOS</string>
