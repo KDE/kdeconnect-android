@@ -115,6 +115,7 @@
   <string name="error_not_reachable">Dispositivo inacessível</string>
   <string name="error_already_paired">Dispositivo já emparelhado</string>
   <string name="error_timed_out">Tempo limite expirou</string>
+  <string name="error_clocks_not_match">Os relógios dos dispositivos estão dessincronizados</string>
   <string name="error_canceled_by_user">Cancelado pelo usuário</string>
   <string name="error_canceled_by_other_peer">Cancelado pelo outro dispositivo</string>
   <string name="encryption_info_title">Informação de criptografia</string>
@@ -164,9 +165,11 @@
   <string name="middle_click">Enviar um Botão do Meio</string>
   <string name="show_keyboard">Mostrar teclado</string>
   <string name="device_not_paired">Dispositivo não emparelhado</string>
+  <string name="pairing_duplicate_names">Cuidado: Há vários dispositivos com o mesmo nome.</string>
   <string name="request_pairing">Solicitar emparelhamento</string>
   <string name="pairing_accept">Aceitar</string>
   <string name="pairing_reject">Rejeitar</string>
+  <string name="pairing_explanation">Emparelhar dois dispositivos dará acesso um ao outro. Emparelhe apenas seus próprios dispositivos.</string>
   <string name="settings">Configurações</string>
   <string name="mpris_play">Reproduzir</string>
   <string name="mpris_pause">Pausar</string>
@@ -190,12 +193,15 @@
   <string name="mpris_notification_settings_title">Mostrar a notificação do controle multimídia</string>
   <string name="mpris_notification_settings_summary">Permite controlar os seus reprodutores de mídias sem abrir o KDE Connect</string>
   <string name="share_to">Compartilhar com...</string>
+  <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">URLs compartilhadas com um dispositivo inalcançável serão enviadas para ele assim que ele voltar a ficar disponível.\n\n</string>
+  <string name="protocol_version">Versão do protocolo:</string>
   <string name="protocol_version_newer">Este dispositivo usa uma versão mais recente do protocolo</string>
   <string name="plugin_settings_with_name">Configurações de %s</string>
   <string name="invalid_device_name">Nome do dispositivo inválido</string>
   <string name="shareplugin_text_saved">Texto recebido e salvo na área de transferência</string>
   <string name="custom_devices_settings">Lista de dispositivos personalizada</string>
+  <string name="custom_devices_settings_summary">%d dispositivos adicionados manualmente</string>
   <string name="custom_device_list">Adicionar dispositivos pelo IP</string>
   <string name="custom_device_deleted">Dispositivo personalizado excluído</string>
   <string name="custom_device_list_help">Se o seu dispositivo não for detectado automaticamente você pode adicionar o endereço IP ou nome de máquina dele clicando no botão de ação flutuante</string>
@@ -305,6 +311,8 @@
   <string name="devices">Dispositivos</string>
   <string name="settings_rename">Nome do dispositivo</string>
   <string name="settings_dark_mode">Tema escuro</string>
+  <string name="settings_export_logs">Exportar registros do KDE Connect</string>
+  <string name="settings_export_logs_text">Gera um arquivo com informações de execução que podem ajudar a solucionar problemas.</string>
   <string name="settings_more_settings_title">Mais opções</string>
   <string name="settings_more_settings_text">As configurações por dispositivo podem ser encontradas nas \'Configurações do plugin\' dentro de um determinado dispositivo.</string>
   <string name="setting_persistent_notification">Mostrar a notificação persistente</string>
@@ -325,6 +333,7 @@
   <string name="empty_trusted_networks_list_text">Você ainda não adicionou nenhuma rede confiável</string>
   <string name="allow_all_networks_text">Permitir tudo</string>
   <string name="location_permission_needed_title">É necessário ter permissão</string>
+  <string name="bluetooth_permission_needed_desc">O KDE Connect precisa de permissão para se conectar a dispositivos próximos para tornar os dispositivos pareados via Bluetooth disponíveis no KDE Connect.</string>
   <string name="location_permission_needed_desc">O KDE Connect precisa da permissão de localização em segundo plano para conhecer a rede WiFi à qual você está conectado, mesmo quando o aplicativo está em segundo plano. Isso ocorre porque o nome da rede WiFi ao seu redor pode ser usado para encontrar sua localização, mesmo quando não é isso que o KDE Connect faz.</string>
   <string name="clipboard_android_x_incompat">O Android 10 removeu o acesso à área de transferência para todos os aplicativos. Este plugin ficará desativado.</string>
   <string name="mpris_open_url">Continuar tocando aqui</string>
@@ -410,6 +419,7 @@
   <string name="tap_to_execute">Toque para executar</string>
   <string name="plugin_stats">Estatísticas do plugin</string>
   <string name="enable_udp_broadcast">Habilitar a descoberta de dispositivo via UDP</string>
+  <string name="enable_bluetooth">Habilitar o bluetooth (beta)</string>
   <string name="receive_notifications_permission_explanation">Notificações devem ser permitidas para receber notificações dos outros dispositivos</string>
   <string name="findmyphone_notifications_explanation">A permissão de notificação é necessária para que o telefone possa tocar quando o app estiver em segudo plano</string>
   <string name="no_notifications">As notificações estão desabilitadas, você não receberá notificações de solicitação de pareamento.</string>
@@ -417,4 +427,9 @@
   <string name="mpris_keepwatching_settings_title">Continuar a execução</string>
   <string name="mpris_keepwatching_settings_summary">Exibe uma notificação silenciosa para continuar a execução neste dispositivo após o fechamento da mídia.</string>
   <string name="notification_channel_keepwatching">Continuar a execução</string>
+  <string name="ping_result">Pingado em %1$d milissegundos</string>
+  <string name="ping_failed">Não foi possível pingar o dispositivo</string>
+  <string name="ping_in_progress">Pingando...</string>
+  <string name="device_host_invalid">O host é inválido. Use um nome de host válido, IPv4 ou IPv6.</string>
+  <string name="device_host_duplicate">O host já existe na lista</string>
 </resources>
