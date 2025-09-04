@@ -6,13 +6,18 @@
 
 package org.kde.kdeconnect.Plugins.MousePadPlugin;
 
+import static org.kde.kdeconnect.Plugins.MousePadPlugin.KeyListenerView.SpecialKeysMap;
+
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.view.KeyEvent;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 
+import org.kde.kdeconnect.DeviceType;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
@@ -25,6 +30,7 @@ public class MousePadPlugin extends Plugin {
     //public final static String PACKET_TYPE_MOUSEPAD = "kdeconnect.mousepad";
     public final static String PACKET_TYPE_MOUSEPAD_REQUEST = "kdeconnect.mousepad.request";
     private final static String PACKET_TYPE_MOUSEPAD_KEYBOARDSTATE = "kdeconnect.mousepad.keyboardstate";
+    private final static String PACKET_TYPE_BIGSCREEN_STT = "kdeconnect.bigscreen.stt";
 
     private boolean keyboardEnabled = true;
 
@@ -43,7 +49,7 @@ public class MousePadPlugin extends Plugin {
 
     @Override
     public @NonNull String getDescription() {
-        return context.getString(R.string.pref_plugin_mousepad_desc);
+        return context.getString(R.string.pref_plugin_mousepad_desc_nontv);
     }
 
     @Override
@@ -68,9 +74,15 @@ public class MousePadPlugin extends Plugin {
 
     @Override
     public void startMainActivity(Activity parentActivity) {
-        Intent intent = new Intent(parentActivity, MousePadActivity.class);
-        intent.putExtra("deviceId", getDevice().getDeviceId());
-        parentActivity.startActivity(intent);
+        if (getDevice().getDeviceType() == DeviceType.TV) {
+            Intent intent = new Intent(parentActivity, BigscreenActivity.class);
+            intent.putExtra("deviceId", getDevice().getDeviceId());
+            parentActivity.startActivity(intent);
+        } else {
+            Intent intent = new Intent(parentActivity, MousePadActivity.class);
+            intent.putExtra("deviceId", getDevice().getDeviceId());
+            parentActivity.startActivity(intent);
+        }
     }
 
     @Override
@@ -93,6 +105,10 @@ public class MousePadPlugin extends Plugin {
         np.set("dx", dx);
         np.set("dy", dy);
         getDevice().sendPacket(np);
+    }
+
+    public Boolean hasMicPermission() {
+        return isPermissionGranted(Manifest.permission.RECORD_AUDIO);
     }
 
     public void sendLeftClick() {
@@ -136,6 +152,50 @@ public class MousePadPlugin extends Plugin {
         np.set("scroll", true);
         np.set("dx", dx);
         np.set("dy", dy);
+        getDevice().sendPacket(np);
+    }
+
+    public void sendLeft() {
+        NetworkPacket np = new NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST);
+        np.set("specialKey", SpecialKeysMap.get(KeyEvent.KEYCODE_DPAD_LEFT));
+        getDevice().sendPacket(np);
+    }
+
+    public void sendRight() {
+        NetworkPacket np = new NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST);
+        np.set("specialKey", SpecialKeysMap.get(KeyEvent.KEYCODE_DPAD_RIGHT));
+        getDevice().sendPacket(np);
+    }
+
+    public void sendUp() {
+        NetworkPacket np = new NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST);
+        np.set("specialKey", SpecialKeysMap.get(KeyEvent.KEYCODE_DPAD_UP));
+        getDevice().sendPacket(np);
+    }
+
+    public void sendDown() {
+        NetworkPacket np = new NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST);
+        np.set("specialKey", SpecialKeysMap.get(KeyEvent.KEYCODE_DPAD_DOWN));
+        getDevice().sendPacket(np);
+    }
+
+    public void sendSelect() {
+        NetworkPacket np = new NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST);
+        np.set("specialKey", SpecialKeysMap.get(KeyEvent.KEYCODE_ENTER));
+        getDevice().sendPacket(np);
+    }
+
+    public void sendHome() {
+        NetworkPacket np = new NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST);
+        np.set("alt", true);
+        np.set("specialKey", SpecialKeysMap.get(KeyEvent.KEYCODE_F4));
+        getDevice().sendPacket(np);
+    }
+
+    public void sendSTT(String content) {
+        NetworkPacket np = new NetworkPacket(PACKET_TYPE_BIGSCREEN_STT);
+        np.set("type", "stt");
+        np.set("content", content);
         getDevice().sendPacket(np);
     }
 

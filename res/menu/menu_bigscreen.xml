@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:kdeconnect="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_use_mouse_and_keyboard"
+        android:icon="@drawable/touchpad_plugin_action_24dp"
+        android:title="@string/show_mouse_and_keyboard"
+        kdeconnect:iconTint="?colorOnBackground"
+        kdeconnect:showAsAction="ifRoom" />
+</menu>

@@ -268,7 +268,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
             </intent-filter>
         </activity>
         <activity
-            android:name="org.kde.kdeconnect.Plugins.BigscreenPlugin.BigscreenActivity"
+            android:name="org.kde.kdeconnect.Plugins.MousePadPlugin.BigscreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/pref_plugin_bigscreen"
             android:exported="true"

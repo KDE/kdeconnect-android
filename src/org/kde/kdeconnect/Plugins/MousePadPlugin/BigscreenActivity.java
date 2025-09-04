@@ -3,9 +3,9 @@
  * SPDX-FileCopyrightText: 2020 Sylvia van Os <sylvia@hackerchick.me>
  *
  * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
-*/
+ */
 
-package org.kde.kdeconnect.Plugins.BigscreenPlugin;
+package org.kde.kdeconnect.Plugins.MousePadPlugin;
 
 import android.Manifest;
 import android.app.Activity;
@@ -13,6 +13,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -33,9 +36,9 @@ import kotlin.LazyKt;
 public class BigscreenActivity extends BaseActivity<ActivityBigscreenBinding> {
 
     private static final int REQUEST_SPEECH = 100;
-    
+
     private final Lazy<ActivityBigscreenBinding> lazyBinding = LazyKt.lazy(() -> ActivityBigscreenBinding.inflate(getLayoutInflater()));
-    
+
     @NonNull
     @Override
     protected ActivityBigscreenBinding getBinding() {
@@ -57,7 +60,7 @@ public class BigscreenActivity extends BaseActivity<ActivityBigscreenBinding> {
             getBinding().micButton.setVisibility(View.INVISIBLE);
         }
 
-        BigscreenPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, BigscreenPlugin.class);
+        MousePadPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, MousePadPlugin.class);
         if (plugin == null) {
             finish();
             return;
@@ -91,6 +94,27 @@ public class BigscreenActivity extends BaseActivity<ActivityBigscreenBinding> {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_bigscreen, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.menu_use_mouse_and_keyboard) {
+            Intent intent = new Intent(this, MousePadActivity.class);
+            intent.putExtra("deviceId", getIntent().getStringExtra("deviceId"));
+            startActivity(intent);
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_SPEECH) {
@@ -99,7 +123,7 @@ public class BigscreenActivity extends BaseActivity<ActivityBigscreenBinding> {
                         .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                 if (result.get(0) != null) {
                     final String deviceId = getIntent().getStringExtra("deviceId");
-                    BigscreenPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, BigscreenPlugin.class);
+                    MousePadPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, MousePadPlugin.class);
                     if (plugin == null) {
                         finish();
                         return;
