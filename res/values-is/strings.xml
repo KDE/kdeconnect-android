@@ -17,7 +17,6 @@
   <string name="pref_plugin_clipboard_desc">Deildu innihaldi klippispjaldsins</string>
   <string name="pref_plugin_clipboard_sent">Klippispjald sent</string>
   <string name="pref_plugin_mousepad">Fjartengd ritun</string>
-  <string name="pref_plugin_mousepad_desc">Notaðu símann þinn eða spjaldtölvu sem snertiplatta og lyklaborð</string>
   <string name="pref_plugin_presenter">Kynningar-fjarstýring</string>
   <string name="pref_plugin_presenter_desc">Notaðu tækið þitt til að skipta á milli skyggna í kynningum</string>
   <string name="pref_plugin_remotekeyboard">"Tekur á móti  fjartengdum innslætti"</string>

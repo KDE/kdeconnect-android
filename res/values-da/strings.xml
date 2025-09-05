@@ -8,7 +8,6 @@
   <string name="pref_plugin_clipboard">Synk. af udklipsholder</string>
   <string name="pref_plugin_clipboard_desc">Del indholdet af udklipsholderen</string>
   <string name="pref_plugin_mousepad">Eksternt input</string>
-  <string name="pref_plugin_mousepad_desc">Brug din telefon eller tablet som mus og tastatur</string>
   <string name="pref_plugin_remotekeyboard">Modtag eksterne tastetryk</string>
   <string name="pref_plugin_remotekeyboard_desc">Modtag tastetryk-hændelser fra eksterne enheder</string>
   <string name="pref_plugin_mpris">Multimediekontroller</string>

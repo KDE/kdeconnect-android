@@ -17,7 +17,6 @@
   <string name="pref_plugin_clipboard_desc">பிடிப்புப்பலகை உள்ளடக்கத்தை பகிர்</string>
   <string name="pref_plugin_clipboard_sent">பிடிப்புப்பலகை அனுப்பப்பட்டது</string>
   <string name="pref_plugin_mousepad">தொலை உள்ளீடு</string>
-  <string name="pref_plugin_mousepad_desc">உங்கள் திறன்பேசியை தொடுபலகை அல்லது விசைப்பலகையாக பயன்படுத்துங்கள்</string>
   <string name="pref_plugin_presenter_desc">"உங்கள் சாதனத்தைக் கொண்டு வில்லைக்காட்சியில்  (slideshow) காட்சிகளை மாற்றுங்கள்"</string>
   <string name="pref_plugin_remotekeyboard">தொலை விசைகளை பெறு</string>
   <string name="pref_plugin_remotekeyboard_desc">தொலை சாதனங்களிலிருந்து விசையழுத்தல்களைப் பெறும்</string>

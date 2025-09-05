@@ -17,7 +17,6 @@
   <string name="pref_plugin_clipboard_desc">Sdílet obsah schránky</string>
   <string name="pref_plugin_clipboard_sent">Schránka poslána</string>
   <string name="pref_plugin_mousepad">Vzdálený vstup</string>
-  <string name="pref_plugin_mousepad_desc">Používejte svůj telefon nebo tablet jako touchpad a klávesnici</string>
   <string name="pref_plugin_presenter">Ovladač prezentace</string>
   <string name="pref_plugin_presenter_desc">Použijte své zařízení pro přepínání snímků prezentace</string>
   <string name="pref_plugin_remotekeyboard">Přijímat stisky kláves se vzdálených zařízení</string>

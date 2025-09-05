@@ -17,7 +17,6 @@
   <string name="pref_plugin_clipboard_desc">Comparta o contido do portapapeis.</string>
   <string name="pref_plugin_clipboard_sent">Enviouse o portapapeis</string>
   <string name="pref_plugin_mousepad">Entrada remota</string>
-  <string name="pref_plugin_mousepad_desc">Use o teléfono ou tableta como área táctil e teclado.</string>
   <string name="pref_plugin_presenter">Mando de presentación</string>
   <string name="pref_plugin_presenter_desc">Use o dispositivo para cambiar de dispositiva nunha presentación</string>
   <string name="pref_plugin_remotekeyboard">Recibir teclas premidas remotamente.</string>

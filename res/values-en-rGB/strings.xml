@@ -17,7 +17,6 @@
   <string name="pref_plugin_clipboard_desc">Share the clipboard content</string>
   <string name="pref_plugin_clipboard_sent">Clipboard Sent</string>
   <string name="pref_plugin_mousepad">Remote input</string>
-  <string name="pref_plugin_mousepad_desc">Use your phone or tablet as a touchpad and keyboard</string>
   <string name="pref_plugin_presenter">Presentation remote</string>
   <string name="pref_plugin_presenter_desc">Use your device to change slides in a presentation</string>
   <string name="pref_plugin_remotekeyboard">Receive remote keypresses</string>

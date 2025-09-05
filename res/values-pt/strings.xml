@@ -17,7 +17,6 @@
   <string name="pref_plugin_clipboard_desc">Partilhar o conteúdo da área de transferência</string>
   <string name="pref_plugin_clipboard_sent">Enviado para a Área de Transferência</string>
   <string name="pref_plugin_mousepad">Introdução remota de dados</string>
-  <string name="pref_plugin_mousepad_desc">Usar o seu telefone ou \'tablet\' como um rato ou teclado</string>
   <string name="pref_plugin_presenter_desc">Use o seu dispositivo para mudar de \'slides\' numa apresentação</string>
   <string name="pref_plugin_remotekeyboard">Receber as teclas remotamente</string>
   <string name="pref_plugin_remotekeyboard_desc">Receber eventos de teclas dos dispositivos remotos</string>

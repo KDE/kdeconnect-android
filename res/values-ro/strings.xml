@@ -17,7 +17,6 @@
   <string name="pref_plugin_clipboard_desc">Partajează conținutul clipboard-ului</string>
   <string name="pref_plugin_clipboard_sent">Clipboard trimis</string>
   <string name="pref_plugin_mousepad">Introducere de la distanță</string>
-  <string name="pref_plugin_mousepad_desc">Folosiți telefonul sau tableta ca zonă tactilă și tastatură</string>
   <string name="pref_plugin_presenter_desc">Folosiți dispozitivul pentru a schimba diapozitivele dintr-o prezentare</string>
   <string name="pref_plugin_remotekeyboard">Primește apăsări de taste de la distanță</string>
   <string name="pref_plugin_remotekeyboard_desc">Primește evenimente de apăsare a tastelor de la dispozitive distante</string>

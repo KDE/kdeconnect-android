@@ -17,7 +17,6 @@
   <string name="pref_plugin_clipboard_desc">共享剪貼簿的內容</string>
   <string name="pref_plugin_clipboard_sent">已傳送剪貼簿內容</string>
   <string name="pref_plugin_mousepad">遠端輸入</string>
-  <string name="pref_plugin_mousepad_desc">使用手機或平板電腦作為觸控板和鍵盤</string>
   <string name="pref_plugin_presenter">簡報遙控</string>
   <string name="pref_plugin_presenter_desc">使用您的裝置來切換簡報中的投影片</string>
   <string name="pref_plugin_remotekeyboard">接收遠端按鍵輸入</string>

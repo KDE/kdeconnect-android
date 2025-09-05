@@ -17,7 +17,6 @@
   <string name="pref_plugin_clipboard_desc">Pano içeriğini paylaş</string>
   <string name="pref_plugin_clipboard_sent">Pano Gönderildi</string>
   <string name="pref_plugin_mousepad">Uzaktan giriş</string>
-  <string name="pref_plugin_mousepad_desc">Telefonunuzu veya tabletinizi, dokunmatik veya klavye olarak kullanın</string>
   <string name="pref_plugin_presenter">Sunum uzaktan kumandası</string>
   <string name="pref_plugin_presenter_desc">Sunumdaki slaytları değiştirmek için aygıtınızı kullanın</string>
   <string name="pref_plugin_remotekeyboard">Uzaktan düğme basımlarını al</string>

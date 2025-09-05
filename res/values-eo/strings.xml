@@ -17,7 +17,6 @@
   <string name="pref_plugin_clipboard_desc">Kunhavigi la enhavon de la tondujo</string>
   <string name="pref_plugin_clipboard_sent">Clipboard Sendita</string>
   <string name="pref_plugin_mousepad">Fora enigo</string>
-  <string name="pref_plugin_mousepad_desc">Uzu vian telefonon aŭ tabuleton kiel tuŝplaton kaj klavaron</string>
   <string name="pref_plugin_presenter">Prezento fora</string>
   <string name="pref_plugin_presenter_desc">Uzu vian aparaton por ŝanĝi lumbildojn en prezento</string>
   <string name="pref_plugin_remotekeyboard">Ricevi forajn klavojn</string>

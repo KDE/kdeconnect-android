@@ -17,7 +17,6 @@
   <string name="pref_plugin_clipboard_desc">A vágólap tartalmának megosztása</string>
   <string name="pref_plugin_clipboard_sent">Vágólap elküldve</string>
   <string name="pref_plugin_mousepad">Távirányítás</string>
-  <string name="pref_plugin_mousepad_desc">A telefon vagy tablet használata érintőtáblaként és billentyűzetként</string>
   <string name="pref_plugin_presenter_desc">Az eszköz használata diák léptetésére prezentációkban</string>
   <string name="pref_plugin_remotekeyboard">Távoli billentyűlenyomások fogadása</string>
   <string name="pref_plugin_remotekeyboard_desc">Billentyűlenyomás események fogadása távoli eszközökről</string>

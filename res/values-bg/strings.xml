@@ -17,7 +17,6 @@
   <string name="pref_plugin_clipboard_desc">Споделяне съдържанието на буфера</string>
   <string name="pref_plugin_clipboard_sent">Изпратено съдържание на клипборда</string>
   <string name="pref_plugin_mousepad">Отдалечено входно устройство</string>
-  <string name="pref_plugin_mousepad_desc">Използване на телефона като тъчпад и клавиатура</string>
   <string name="pref_plugin_presenter">Отдалечена презентация</string>
   <string name="pref_plugin_presenter_desc">Използвайте устройството си за прелистване на слайдовете на презентация</string>
   <string name="pref_plugin_remotekeyboard">Отдалечени клавишни набирания</string>

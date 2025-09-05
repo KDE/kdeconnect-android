@@ -17,7 +17,6 @@
   <string name="pref_plugin_clipboard_desc">Partekatu arbelaren edukia</string>
   <string name="pref_plugin_clipboard_sent">Arbelekoa bidali da</string>
   <string name="pref_plugin_mousepad">Urrutiko sarrera</string>
-  <string name="pref_plugin_mousepad_desc">Erabili zure telefonoa edo tableta ukimen-sagu eta teklatu gisa</string>
   <string name="pref_plugin_presenter">Aurkezpenetarako urruneko agintea</string>
   <string name="pref_plugin_presenter_desc">Erabili zure gailua aurkezpen bateko diapositibak aldatzeko</string>
   <string name="pref_plugin_remotekeyboard">Jaso urruneko tekla-sakatzeak</string>

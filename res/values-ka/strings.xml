@@ -17,7 +17,6 @@
   <string name="pref_plugin_clipboard_desc">ბუფერის შემცველობის გაზიარება</string>
   <string name="pref_plugin_clipboard_sent">ბუფერი გაგზავნილია</string>
   <string name="pref_plugin_mousepad">დაშორებული შეყვანა</string>
-  <string name="pref_plugin_mousepad_desc">გამოიყენეთ თქვენი ტელეფონი ან ტაბლეტი როგორც თაჩპედი და კლავიატურა</string>
   <string name="pref_plugin_presenter">დაშორებული პრეზენტაცია</string>
   <string name="pref_plugin_presenter_desc">გამოიყენეთ თქვენი მოწყობილობა სლაიდშოუს სამართავად</string>
   <string name="pref_plugin_remotekeyboard">დაშორებული ღილაკების მიღება</string>

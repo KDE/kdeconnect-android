@@ -17,7 +17,6 @@
   <string name="pref_plugin_clipboard_desc">شارك محتوى الحافظة</string>
   <string name="pref_plugin_clipboard_sent">أرسل للحافظة</string>
   <string name="pref_plugin_mousepad">الإدخال البعيد</string>
-  <string name="pref_plugin_mousepad_desc">استخدم الهاتف أو اللوحيّ كفأرة ولوحة مفاتيح</string>
   <string name="pref_plugin_presenter">متحكم العرض التقديمي</string>
   <string name="pref_plugin_presenter_desc">استخدام جهازك لتغيير الشرائح في العرض التقديمي</string>
   <string name="pref_plugin_remotekeyboard">تلقي ضغطات المفاتيح البعيدة</string>

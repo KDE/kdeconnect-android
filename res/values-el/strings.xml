@@ -16,7 +16,6 @@
   <string name="pref_plugin_clipboard_desc">Διαμοιρασμός περιεχομένου προχείρου</string>
   <string name="pref_plugin_clipboard_sent">Το πρόχειρο εστάλη</string>
   <string name="pref_plugin_mousepad">Απομακρυσμένη είσοδος στοιχείων</string>
-  <string name="pref_plugin_mousepad_desc">Χρήση του τηλεφώνου ή της ταμπλέτας σας ως επιφάνεια αφής και πληκτρολόγιο</string>
   <string name="pref_plugin_presenter_desc">Χρησιμοποιήστε τη συσκευή σας για να αλλάξετε διαφάνειες σε μία παρουσίαση</string>
   <string name="pref_plugin_remotekeyboard">Λήψη απομακρυσμένων πληκτρολογήσεων</string>
   <string name="pref_plugin_remotekeyboard_desc">Λήψη συμβάντων πληκτρολόγησης από απομακρυσμένες συσκευές</string>
