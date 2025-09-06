@@ -17,6 +17,8 @@
   <string name="pref_plugin_clipboard_desc">Comparteix el contingut del porta-retalls</string>
   <string name="pref_plugin_clipboard_sent">S\'ha enviat al porta-retalls</string>
   <string name="pref_plugin_mousepad">Entrada remota</string>
+  <string name="pref_plugin_mousepad_desc_nontv">Useu el vostre telèfon o tauleta com un ratolí tàctil i un teclat</string>
+  <string name="pref_plugin_mousepad_desc_tv">Useu el vostre telèfon o tauleta com un control remot de TV</string>
   <string name="pref_plugin_presenter">Presentació remota</string>
   <string name="pref_plugin_presenter_desc">Usa el dispositiu per a canviar les diapositives d\'una presentació</string>
   <string name="pref_plugin_remotekeyboard">Rep les pulsacions remotes de tecles</string>
@@ -163,6 +165,7 @@
   <string name="right_click">Envia un clic dret</string>
   <string name="middle_click">Envia un clic del mig</string>
   <string name="show_keyboard">Mostra el teclat</string>
+  <string name="show_mouse_and_keyboard">Mostra el ratolí i el teclat</string>
   <string name="device_not_paired">El dispositiu no està aparellat</string>
   <string name="pairing_duplicate_names">Precaució: hi ha diversos dispositius amb el mateix nom.</string>
   <string name="request_pairing">Demana aparellar</string>

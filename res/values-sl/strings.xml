@@ -17,6 +17,8 @@
   <string name="pref_plugin_clipboard_desc">Deli skupno vsebino odložišča</string>
   <string name="pref_plugin_clipboard_sent">Odložišče je poslano</string>
   <string name="pref_plugin_mousepad">Oddaljeni vhod</string>
+  <string name="pref_plugin_mousepad_desc_nontv">Uporabi telefon ali tablični računalnik kot sledilno ploščico in tipkovnico</string>
+  <string name="pref_plugin_mousepad_desc_tv">Uporabi telefon ali tablični računalnik kot oddaljeni TV</string>
   <string name="pref_plugin_presenter">Oddaljena predstavitev</string>
   <string name="pref_plugin_presenter_desc">S svojo napravo lahko menjate slike v predstavitvi</string>
   <string name="pref_plugin_remotekeyboard">Sprejem oddaljenih pritiskov tipk</string>
@@ -179,6 +181,7 @@
   <string name="right_click">Pošlji desni klik</string>
   <string name="middle_click">Pošlji sredinski klik</string>
   <string name="show_keyboard">Pokaži tipkovnico</string>
+  <string name="show_mouse_and_keyboard">Pokaži muško in tipkovnico</string>
   <string name="device_not_paired">Naprava ni uparjena</string>
   <string name="pairing_duplicate_names">POZOR: Obstaja več naprav z istim imenom.</string>
   <string name="request_pairing">Zahtevaj uparjanje</string>

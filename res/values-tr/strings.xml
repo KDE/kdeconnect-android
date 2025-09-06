@@ -17,6 +17,8 @@
   <string name="pref_plugin_clipboard_desc">Pano içeriğini paylaş</string>
   <string name="pref_plugin_clipboard_sent">Pano Gönderildi</string>
   <string name="pref_plugin_mousepad">Uzaktan giriş</string>
+  <string name="pref_plugin_mousepad_desc_nontv">Telefonunuzu veya tabletinizi, dokunmatik yüzey veya klavye olarak kullanın</string>
+  <string name="pref_plugin_mousepad_desc_tv">Telefonunuzu veya tabletinizi, televizyon kumandası olarak kullanın</string>
   <string name="pref_plugin_presenter">Sunum uzaktan kumandası</string>
   <string name="pref_plugin_presenter_desc">Sunumdaki slaytları değiştirmek için aygıtınızı kullanın</string>
   <string name="pref_plugin_remotekeyboard">Uzaktan düğme basımlarını al</string>
@@ -163,6 +165,7 @@
   <string name="right_click">Sağ Tık Gönder</string>
   <string name="middle_click">Orta Tık Gönder</string>
   <string name="show_keyboard">Klavyeyi Göster</string>
+  <string name="show_mouse_and_keyboard">Fareyi ve Klavyeyi Göster</string>
   <string name="device_not_paired">Aygıt eşleşmemiş</string>
   <string name="pairing_duplicate_names">Dikkat: Aynı adlı birden çok aygıt var.</string>
   <string name="request_pairing">Eşleşme isteği</string>

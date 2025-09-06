@@ -17,6 +17,8 @@
   <string name="pref_plugin_clipboard_desc">שיתוף תוכן לוח הגזירים</string>
   <string name="pref_plugin_clipboard_sent">לוח הגזירים נשלח</string>
   <string name="pref_plugin_mousepad">שליטה מרחוק</string>
+  <string name="pref_plugin_mousepad_desc_nontv">להשתמש בטלפון או במחשב הלוח כמשטח מגע ומקלדת</string>
+  <string name="pref_plugin_mousepad_desc_tv">להשתמש בטלפון או במחשב הלוח כשלט לטלוויזיה</string>
   <string name="pref_plugin_presenter">מצב מצגת</string>
   <string name="pref_plugin_presenter_desc">שימוש במכשיר שלך כדי לעבור בין שקפים במצגת</string>
   <string name="pref_plugin_remotekeyboard">קבלת לחיצות מרחוק</string>
@@ -179,6 +181,7 @@
   <string name="right_click">שליחת לחיצה ימנית</string>
   <string name="middle_click">שליחת לחיצה אמצעית (גלגלת)</string>
   <string name="show_keyboard">הצגת מקלדת</string>
+  <string name="show_mouse_and_keyboard">הצגת עכבר ומקלדת</string>
   <string name="device_not_paired">המכשיר לא מצומד</string>
   <string name="pairing_duplicate_names">אזהרה: יש כמה מכשירים שונים באותו השם.</string>
   <string name="request_pairing">בקשת צימוד</string>

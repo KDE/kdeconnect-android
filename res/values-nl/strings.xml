@@ -17,6 +17,8 @@
   <string name="pref_plugin_clipboard_desc">De inhoud van het klembord delen</string>
   <string name="pref_plugin_clipboard_sent">Klembord verzonden</string>
   <string name="pref_plugin_mousepad">Invoer op afstand</string>
+  <string name="pref_plugin_mousepad_desc_nontv">Uw telefoon of tablet gebruiken als een touchpad en toetsenbord</string>
+  <string name="pref_plugin_mousepad_desc_tv">Uw telefoon of tablet gebruiken als afstandsbediening voor de TV</string>
   <string name="pref_plugin_presenter">Presentatie op afstand</string>
   <string name="pref_plugin_presenter_desc">Uw apparaat gebruiken om dia\'s te wisselen in een presentatie</string>
   <string name="pref_plugin_remotekeyboard">Toetsaanslagen van afstand ontvangen</string>
@@ -163,6 +165,7 @@
   <string name="right_click">Verstuur een rechter muisklik</string>
   <string name="middle_click">Verstuur een middelste muisklik</string>
   <string name="show_keyboard">Toetsenbord tonen</string>
+  <string name="show_mouse_and_keyboard">Muis en toetsenbord tonen</string>
   <string name="device_not_paired">Apparaat is niet gepaard</string>
   <string name="pairing_duplicate_names">Voorzichtig: er zijn meerdere apparaten met dezelfde naam.</string>
   <string name="request_pairing">Verzoek voor maken van paar</string>

@@ -17,6 +17,8 @@
   <string name="pref_plugin_clipboard_desc">Спільне використання буфера обміну даними</string>
   <string name="pref_plugin_clipboard_sent">Вміст буфера надіслано</string>
   <string name="pref_plugin_mousepad">Дистанційне введення</string>
+  <string name="pref_plugin_mousepad_desc_nontv">Скористайтеся телефоном або планшетом як замінником сенсорної панелі і клавіатури</string>
+  <string name="pref_plugin_mousepad_desc_tv">Скористайтеся телефоном або планшетом як пультом керування телевізором</string>
   <string name="pref_plugin_presenter">Керування презентацією</string>
   <string name="pref_plugin_presenter_desc">Скористайтеся вашим пристроєм для того, щоб змінювати слайди у презентації</string>
   <string name="pref_plugin_remotekeyboard">Отримувати віддалені натискання клавіш</string>
@@ -179,6 +181,7 @@
   <string name="right_click">Надіслати клацання правою кнопкою</string>
   <string name="middle_click">Надіслати клацання лівою кнопкою</string>
   <string name="show_keyboard">Показати клавіатуру</string>
+  <string name="show_mouse_and_keyboard">Показати мишу і клавіатуру</string>
   <string name="device_not_paired">Пристрій не пов’язано</string>
   <string name="pairing_duplicate_names">Попередження: маємо декілька пристроїв із однією назвою.</string>
   <string name="request_pairing">Надіслати запит щодо пов’язування</string>
