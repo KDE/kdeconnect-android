@@ -17,6 +17,8 @@
   <string name="pref_plugin_clipboard_desc">Compartilha o conteúdo da área de transferência</string>
   <string name="pref_plugin_clipboard_sent">Área de transferência enviada</string>
   <string name="pref_plugin_mousepad">Introdução de dados remota</string>
+  <string name="pref_plugin_mousepad_desc_nontv">Use seu celular ou tablet como mouse e teclado</string>
+  <string name="pref_plugin_mousepad_desc_tv">Use seu celular ou tablet como controle remoto de TV</string>
   <string name="pref_plugin_presenter">Controle remoto para apresentações</string>
   <string name="pref_plugin_presenter_desc">Use o seu dispositivo para mudar os slides de uma apresentação</string>
   <string name="pref_plugin_remotekeyboard">Receber pressionamento de teclas remoto</string>
@@ -163,6 +165,7 @@
   <string name="right_click">Enviar um Botão Direito</string>
   <string name="middle_click">Enviar um Botão do Meio</string>
   <string name="show_keyboard">Mostrar teclado</string>
+  <string name="show_mouse_and_keyboard">Mostrar mouse e teclado</string>
   <string name="device_not_paired">Dispositivo não emparelhado</string>
   <string name="pairing_duplicate_names">Cuidado: Há vários dispositivos com o mesmo nome.</string>
   <string name="request_pairing">Solicitar emparelhamento</string>
