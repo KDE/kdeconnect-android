@@ -17,6 +17,8 @@
   <string name="pref_plugin_clipboard_desc">共享剪贴板内容</string>
   <string name="pref_plugin_clipboard_sent">剪贴板已发送</string>
   <string name="pref_plugin_mousepad">远程输入</string>
+  <string name="pref_plugin_mousepad_desc_nontv">将您的手机或平板电脑用作触摸板和键盘</string>
+  <string name="pref_plugin_mousepad_desc_tv">将您的手机或平板电脑用作电视遥控器</string>
   <string name="pref_plugin_presenter">演示遥控</string>
   <string name="pref_plugin_presenter_desc">使用移动设备切换幻灯片</string>
   <string name="pref_plugin_remotekeyboard">接收远程按键</string>
@@ -155,6 +157,7 @@
   <string name="right_click">发送右键点击</string>
   <string name="middle_click">发送中键点击</string>
   <string name="show_keyboard">显示键盘</string>
+  <string name="show_mouse_and_keyboard">显示鼠标和键盘</string>
   <string name="device_not_paired">设备未配对</string>
   <string name="pairing_duplicate_names">注意：存在多个同名设备。</string>
   <string name="request_pairing">请求配对</string>

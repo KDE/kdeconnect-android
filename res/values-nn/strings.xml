@@ -17,7 +17,6 @@
   <string name="pref_plugin_clipboard_desc">Del innhaldet på utklippstavla</string>
   <string name="pref_plugin_clipboard_sent">Utklippstavle send</string>
   <string name="pref_plugin_mousepad">Fjernstyring</string>
-  <string name="pref_plugin_mousepad_desc">Bruk telefonen eller nettbrettet som styreplate og tastatur</string>
   <string name="pref_plugin_presenter">Fjernkontroll av presentasjon</string>
   <string name="pref_plugin_presenter_desc">Bruk eininga til å byta lysbilete i presentasjonar</string>
   <string name="pref_plugin_remotekeyboard">Ta imot eksterne tastetrykk</string>

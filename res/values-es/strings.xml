@@ -17,6 +17,8 @@
   <string name="pref_plugin_clipboard_desc">Compartir el contenido del portapapeles</string>
   <string name="pref_plugin_clipboard_sent">Enviado al portapapeles</string>
   <string name="pref_plugin_mousepad">Entrada remota</string>
+  <string name="pref_plugin_mousepad_desc_nontv">Usar su teléfono o tableta como teclado y teclado táctil</string>
+  <string name="pref_plugin_mousepad_desc_tv">Usar su teléfono o tableta como mando de la TV</string>
   <string name="pref_plugin_presenter">Presentación remota</string>
   <string name="pref_plugin_presenter_desc">Use su dispositivo para cambiar las diapositivas de una presentación</string>
   <string name="pref_plugin_remotekeyboard">Recibir pulsaciones de teclas remotas</string>
@@ -163,6 +165,7 @@
   <string name="right_click">Enviar clic derecho</string>
   <string name="middle_click">Enviar clic del botón central</string>
   <string name="show_keyboard">Mostrar teclado</string>
+  <string name="show_mouse_and_keyboard">Mostrar ratón y teclado</string>
   <string name="device_not_paired">Dispositivo no vinculado</string>
   <string name="pairing_duplicate_names">Precaución: Hay varios dispositivos con el mismo nombre.</string>
   <string name="request_pairing">Solicitar vinculación</string>

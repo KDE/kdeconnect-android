@@ -17,6 +17,8 @@
   <string name="pref_plugin_clipboard_desc">Condividi il contenuto degli appunti</string>
   <string name="pref_plugin_clipboard_sent">Appunti inviati</string>
   <string name="pref_plugin_mousepad">Impulso remoto</string>
+  <string name="pref_plugin_mousepad_desc_nontv">Usa il tuo telefono o tablet come touchpad e tastiera</string>
+  <string name="pref_plugin_mousepad_desc_tv">Usa il tuo telefono o tablet come telecomando della TV</string>
   <string name="pref_plugin_presenter">Presentazione remota</string>
   <string name="pref_plugin_presenter_desc">Utilizza il tuo dispositivo per cambiare le diapositive in una presentazione</string>
   <string name="pref_plugin_remotekeyboard">Ricevi pressioni dei tasti da remoto</string>
@@ -163,6 +165,7 @@
   <string name="right_click">Invia clic tasto destro</string>
   <string name="middle_click">Invia clic tasto centrale</string>
   <string name="show_keyboard">Mostra tastiera</string>
+  <string name="show_mouse_and_keyboard">Mostra mouse e tastiera</string>
   <string name="device_not_paired">Dispositivo non associato</string>
   <string name="pairing_duplicate_names">Attenzione: ci sono più dispositivi con lo stesso nome.</string>
   <string name="request_pairing">Richiedi associazione</string>
