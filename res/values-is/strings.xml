@@ -17,6 +17,8 @@
   <string name="pref_plugin_clipboard_desc">Deildu innihaldi klippispjaldsins</string>
   <string name="pref_plugin_clipboard_sent">Klippispjald sent</string>
   <string name="pref_plugin_mousepad">Fjartengd ritun</string>
+  <string name="pref_plugin_mousepad_desc_nontv">Notaðu símann þinn eða spjaldtölvu sem snertiplatta og lyklaborð</string>
+  <string name="pref_plugin_mousepad_desc_tv">Notaðu símann þinn eða spjaldtölvu sem sjónvarpsfjarstýringu</string>
   <string name="pref_plugin_presenter">Kynningar-fjarstýring</string>
   <string name="pref_plugin_presenter_desc">Notaðu tækið þitt til að skipta á milli skyggna í kynningum</string>
   <string name="pref_plugin_remotekeyboard">"Tekur á móti  fjartengdum innslætti"</string>
@@ -27,8 +29,8 @@
   <string name="pref_plugin_runcommand_desc">Settu fjartengt í gang skipanir frá símanum þínum eða spjaldtölvu</string>
   <string name="pref_plugin_contacts">Samstilling tengiliða</string>
   <string name="pref_plugin_contacts_desc">Gerir kleift að samstilla við tengiliðaskrá tækisins</string>
-  <string name="pref_plugin_ping">Ping-skipun</string>
-  <string name="pref_plugin_ping_desc">Senda og taka við ping-merkjum</string>
+  <string name="pref_plugin_ping">Ping-beiðni</string>
+  <string name="pref_plugin_ping_desc">Senda og taka við ping-beiðnum</string>
   <string name="pref_plugin_notifications">Samstilling tilkynninga</string>
   <string name="pref_plugin_notifications_desc">Fáðu aðgang að tilkynningum frá öðrum tækjum</string>
   <string name="pref_plugin_receive_notifications">Taka á móti tilkynningum</string>
@@ -41,6 +43,7 @@
   <string name="cancel">Hætta við</string>
   <string name="open_settings">Opna stillingar</string>
   <string name="no_permissions">Þú verður að gefa heimild til að fá aðgang að tilkynningum</string>
+  <string name="no_permission_mprisreceiver">Til að geta stýrt margmiðlunarspilurunum þínum þarftu að gefa heimild fyrir aðgang að tilkynningum</string>
   <string name="no_permissions_remotekeyboard">Til að taka við lyklaáslætti þarftu að virkja fjartengt lyklaborð KDE-tenginga</string>
   <string name="send_ping">"Senda ping-beiðni "</string>
   <string name="open_mpris_controls">Margmiðlunarstýring</string>
@@ -50,6 +53,7 @@
   <string name="remotekeyboard_multiple_connections">Það eru fleiri en ein tenging fjartengds lyklaborðs, veldu það tæki sem á að stilla</string>
   <string name="open_mousepad">Fjartengd ritun</string>
   <string name="mousepad_info">Færðu fingur á skjánum til að færa bendilinn. Pikkaðu til að smella og notaðu tvo/þrjá fingur sem hægri- og miðjuhnappa. Notaðu tvo fingur til að skruna. Ýttu lengi til að draga-sleppa. Snúningsskynjaraeiginleika músar er hægt að virkja í stillingum viðbótarinnar</string>
+  <string name="mousepad_info_no_gestures">Færðu fingur á skjánum til að færa bendilinn, pikkaðu til að smella.</string>
   <string name="mousepad_keyboard_input_not_supported">Lyklaborðsinnsláttur er ekki studdur af paraða tækinu</string>
   <string name="mousepad_single_tap_settings_title">Stilla aðgerð við pikk með einum fingri</string>
   <string name="mousepad_double_tap_settings_title">Stilla aðgerð við pikk með tveimur fingrum</string>
@@ -85,6 +89,7 @@
   <string name="sendkeystrokes_send_to">Senda lyklaáslátt til</string>
   <string name="sendkeystrokes_textbox_hint">Senda lyklaáslátt til hýsilvélar</string>
   <string name="sendkeystrokes_disabled_toast">Sending lyklaásláttar er ekki virkt, virkjaðu það í stillingunum</string>
+  <string name="sendkeystrokes_wrong_data">Ógild mime-tegund - þarf að vera \'text/x-keystrokes\'</string>
   <string name="sendkeystrokes_sent_text">Sendi %1$s til tækisins %2$s</string>
   <string name="sendkeystrokes_pref_category_title">Senda lyklaáslátt</string>
   <string name="sendkeystrokes_pref_enabled">Virkja sendingu lyklaásláttar</string>
@@ -109,6 +114,7 @@
   <string name="error_not_reachable">Tæki er ekki aðgengilegt</string>
   <string name="error_already_paired">Tæki er þegar parað</string>
   <string name="error_timed_out">Féll á tíma</string>
+  <string name="error_clocks_not_match">Klukkur tækjanna eru ekki samstilltar</string>
   <string name="error_canceled_by_user">Hætt við af notanda</string>
   <string name="error_canceled_by_other_peer">Hætt við af hinum notandanum</string>
   <string name="encryption_info_title">Upplýsingar um dulritun</string>
@@ -157,7 +163,9 @@
   <string name="right_click">Senda hægri músarsmell</string>
   <string name="middle_click">Senda miðjumúsarsmell</string>
   <string name="show_keyboard">Birta lyklaborð</string>
+  <string name="show_mouse_and_keyboard">Birta mús og lyklaborð</string>
   <string name="device_not_paired">Tæki er ekki parað</string>
+  <string name="pairing_duplicate_names">Varúð: Það eru mörg tæki með sama heiti</string>
   <string name="request_pairing">Biðja um pörun</string>
   <string name="pairing_accept">Samþykkja</string>
   <string name="pairing_reject">Hafna</string>
@@ -229,10 +237,12 @@
   <string name="device_rename_confirm">Endurnefna</string>
   <string name="refresh">Endurlesa</string>
   <string name="unreachable_description">Ekki næst í paraða tækið. Gakktu úr skugga um að það sé tengt inn á sama netkerfi.</string>
+  <string name="on_non_trusted_message">Ekki á treystu netkerfi: sjálfvirk uppgötvun er óvirk.</string>
   <string name="no_file_browser">Það eru engir skráavafrar uppsettir.</string>
   <string name="pref_plugin_telepathy">Senda SMS</string>
   <string name="pref_plugin_telepathy_desc">Sendu textaskilaboð úr tölvunni þinni</string>
   <string name="pref_plugin_telepathy_mms">Senda MMS</string>
+  <string name="pref_plugin_telepathy_mms_desc">Til að geta sent MMS með KDE Connect þarftu að skilgreina það sem sjálfgefið SMS-forrit.</string>
   <string name="findmyphone_title">Finna símann minn</string>
   <string name="findmyphone_title_tablet">Finna spjaldtölvuna mína</string>
   <string name="findmyphone_title_tv">Finna sjónvarpið mitt</string>
@@ -240,9 +250,15 @@
   <string name="findmyphone_found">Fann það</string>
   <string name="open">Opna</string>
   <string name="close">Loka</string>
+  <string name="plugins_need_permission">Sumar viðbætur þurfa viðbótarheimildir til að virka (ýttu til að sjá frekari upplýsingar):</string>
   <string name="permission_explanation">Þessi viðbót þarf sérstakar heimildir til að virka</string>
   <string name="all_permissions_granted">Allar heimildir veittar 🎉</string>
+  <string name="optional_permission_explanation">Þú þarft að veita viðbótarheimildir til að virkja alla eiginleika</string>
+  <string name="plugins_need_optional_permission">Sumar viðbætur eru með óvirka eiginleika vegna skorts á heimildum (ýttu til að sjá frekari upplýsingar):</string>
   <string name="share_optional_permission_explanation">Til að taka við skrám þarftu að veita aðgang að geymslurými</string>
+  <string name="telepathy_permission_explanation">Til að geta lesið og skrifað SMS á vinnutölvunni, þarft þú að gefa heimild til að nota SMS</string>
+  <string name="telephony_permission_explanation">Til að geta skoðað símtöl á vinnutölvunni, þarft þú að gefa heimild til að nota atvikaskrá símtala og stöðu síma</string>
+  <string name="telephony_optional_permission_explanation">Til að sjá nafn tengiliðar í stað símanúmers þarftu að leyfa aðgang að tengiliðaskrá símans</string>
   <string name="select_ringtone">Veldu hringitón</string>
   <string name="telephony_pref_blocked_title">Útilokuð símanúmer</string>
   <string name="mpris_coverart_description">Umslagsmyndefni núverandi gagnamiðils</string>
@@ -269,6 +285,7 @@
   <string name="runcommand_notpaired">Tækið er ekki parað</string>
   <string name="runcommand_nosuchdevice">Það er ekkert slíkt tæki</string>
   <string name="runcommand_category_device_controls_title">Stýringar tækis</string>
+  <string name="set_runcommand_name_as_title">set_runcommand_name_as_title</string>
   <string name="runcommand_name_as_title_title">Sýna nafn sem titil</string>
   <string name="pref_plugin_findremotedevice">Finna fjartengt tæki</string>
   <string name="pref_plugin_findremotedevice_desc">Hringdu fjartengda tækinu</string>
@@ -372,6 +389,7 @@
   <string name="alex_fiestas_task">Endurbætur á tengiliðaviðbót</string>
   <string name="maxim_leshchenko_task">Endurbætur á viðmóti og þessi síða</string>
   <string name="holger_kaelberer_task">Viðbót fyrir fjartengt lyklaborð og lagfæringar á villum</string>
+  <string name="shellwen_chen_task">Bætt öryggi SFTP, betra viðhald verkefnisins, villuleiðréttingar og almennar endurbætur</string>
   <string name="everyone_else">Allir aðrir sem hafa lagt af mörkum til KDE Connect í gegnum árin</string>
   <string name="send_clipboard">Senda klippispjald</string>
   <string name="tap_to_execute">Pikkaðu til að keyra</string>
@@ -382,7 +400,9 @@
   <string name="mpris_keepwatching">Halda áfram spilun</string>
   <string name="mpris_keepwatching_settings_title">Halda áfram spilun</string>
   <string name="notification_channel_keepwatching">Halda áfram spilun</string>
-  <string name="ping_failed">Gat ekki pikkað í tæki</string>
+  <string name="ping_result">Ping-beiðni tók %1$d millísekúndur</string>
+  <string name="ping_failed">Gat ekki sent ping-beiðni í tæki</string>
+  <string name="ping_in_progress">Sendi ping-beiðni…</string>
   <string name="device_host_invalid">Ógilt vélarheiti. Notaðu gilt vélarheiti, IPv4 eða IPv6</string>
   <string name="device_host_duplicate">Hýsivélin er nú þegar á listanum</string>
 </resources>

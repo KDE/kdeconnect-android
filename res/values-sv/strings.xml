@@ -17,6 +17,8 @@
   <string name="pref_plugin_clipboard_desc">Dela klippbordets innehåll</string>
   <string name="pref_plugin_clipboard_sent">Klippbordet skickat</string>
   <string name="pref_plugin_mousepad">Extern inmatning</string>
+  <string name="pref_plugin_mousepad_desc_nontv">Använd telefonen eller surfplattan som mus och tangentbord</string>
+  <string name="pref_plugin_mousepad_desc_tv">Använd telefonen eller surfplattan som en tv-fjärrkontroll</string>
   <string name="pref_plugin_presenter">Fjärrkontroll för presentation</string>
   <string name="pref_plugin_presenter_desc">Använd apparaten för att byta bilder i en presentation</string>
   <string name="pref_plugin_remotekeyboard">Ta emot externa tangentnedtryckningar</string>
@@ -163,6 +165,7 @@
   <string name="right_click">Skicka högerklick</string>
   <string name="middle_click">Skicka mittenklick</string>
   <string name="show_keyboard">Visa tangentbord</string>
+  <string name="show_mouse_and_keyboard">Visa mus och tangentbord</string>
   <string name="device_not_paired">Apparat inte parkopplad</string>
   <string name="pairing_duplicate_names">Varning: Det finns flera enheter med samma namn.</string>
   <string name="request_pairing">Begär parkoppling</string>
