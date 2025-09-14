@@ -17,6 +17,8 @@
   <string name="pref_plugin_clipboard_desc">Partage le contenu du presse-papiers</string>
   <string name="pref_plugin_clipboard_sent">Presse-papiers envoyé</string>
   <string name="pref_plugin_mousepad">Contrôle distant</string>
+  <string name="pref_plugin_mousepad_desc_nontv">Utilisez votre téléphone ou votre tablette comme un pavé tactile et clavier</string>
+  <string name="pref_plugin_mousepad_desc_tv">Utilisez votre téléphone ou votre tablette comme une télécommande de télévision</string>
   <string name="pref_plugin_presenter">Télécommande de présentation</string>
   <string name="pref_plugin_presenter_desc">Utilisez votre appareil pour changer les diapositives d\'une présentation</string>
   <string name="pref_plugin_remotekeyboard">Recevoir les appuis de touches distants</string>
@@ -163,6 +165,7 @@
   <string name="right_click">Envoyer un clic droit</string>
   <string name="middle_click">Envoyer un clic central</string>
   <string name="show_keyboard">Afficher le clavier</string>
+  <string name="show_mouse_and_keyboard">Afficher la souris et le clavier</string>
   <string name="device_not_paired">Périphérique non associé</string>
   <string name="pairing_duplicate_names">Attention : Il existe plusieurs périphériques portant le même nom.</string>
   <string name="request_pairing">Demande d\'association</string>
