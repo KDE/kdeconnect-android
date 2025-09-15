@@ -276,7 +276,7 @@
   <string name="telephony_pref_blocked_dialog_desc">Não mostrar as chamadas e SMS destes números. Indique um número por linha.</string>
   <string name="mpris_coverart_description">Capa da mídia atual</string>
   <string name="settings_icon_description">Ícone de configurações</string>
-  <string name="presenter_fullscreen">Tela inteira</string>
+  <string name="presenter_fullscreen">Tela cheia</string>
   <string name="presenter_exit">Sair da apresentação</string>
   <string name="presenter_lock_tip">Você pode bloquear o seu dispositivo e usar as teclas de volume para ir para o slide anterior/próximo</string>
   <string name="add_command">Adicionar um comando</string>
