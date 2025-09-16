@@ -17,6 +17,8 @@
   <string name="pref_plugin_clipboard_desc">Споделяне съдържанието на буфера</string>
   <string name="pref_plugin_clipboard_sent">Изпратено съдържание на клипборда</string>
   <string name="pref_plugin_mousepad">Отдалечено входно устройство</string>
+  <string name="pref_plugin_mousepad_desc_nontv">Използване на телефона като тъчпад и клавиатура</string>
+  <string name="pref_plugin_mousepad_desc_tv">Използване на телефона като таблет и дистанционно за TV</string>
   <string name="pref_plugin_presenter">Отдалечена презентация</string>
   <string name="pref_plugin_presenter_desc">Използвайте устройството си за прелистване на слайдовете на презентация</string>
   <string name="pref_plugin_remotekeyboard">Отдалечени клавишни набирания</string>
@@ -163,10 +165,13 @@
   <string name="right_click">Изпращане на щракване с десен бутон</string>
   <string name="middle_click">Изпращане на средно щракване</string>
   <string name="show_keyboard">Показване на клавиатурата</string>
+  <string name="show_mouse_and_keyboard">Показване на мишката и клавиатурата</string>
   <string name="device_not_paired">Устройството не е сдвоено</string>
+  <string name="pairing_duplicate_names">Внимание: Има няколко устройства с едно и също име.</string>
   <string name="request_pairing">Заявка за сдвояване</string>
   <string name="pairing_accept">Приемане</string>
   <string name="pairing_reject">Отхвърляне</string>
+  <string name="pairing_explanation">Сдвояването на две устройства ще им осигури достъп едно до друго. Сдвоявайте само собствените си устройства.</string>
   <string name="settings">Настройки</string>
   <string name="mpris_play">Възпроизвеждане</string>
   <string name="mpris_pause">Пауза</string>
@@ -190,6 +195,7 @@
   <string name="mpris_notification_settings_title">Показване на известие за управление на медиите</string>
   <string name="mpris_notification_settings_summary">Разрешаване на управлението на медийните плейъри, без да отваряте KDE Connect</string>
   <string name="share_to">Споделяне към...</string>
+  <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">URL адресите, споделени към недостъпно устройство, ще бъдат доставени до него, когато то стане достъпно.\n\n</string>
   <string name="protocol_version">Версия на протокол:</string>
   <string name="protocol_version_newer">Това устройство използва по-нова версия на протокола</string>
