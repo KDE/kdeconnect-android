@@ -17,6 +17,8 @@
   <string name="pref_plugin_clipboard_desc">شارك محتوى الحافظة</string>
   <string name="pref_plugin_clipboard_sent">أرسل للحافظة</string>
   <string name="pref_plugin_mousepad">الإدخال البعيد</string>
+  <string name="pref_plugin_mousepad_desc_nontv">استخدم الهاتف أو اللوحيّ كفأرة ولوحة مفاتيح</string>
+  <string name="pref_plugin_mousepad_desc_tv">استخدم الهاتف أو اللوحيّ كمتحكم بالتلفاز</string>
   <string name="pref_plugin_presenter">متحكم العرض التقديمي</string>
   <string name="pref_plugin_presenter_desc">استخدام جهازك لتغيير الشرائح في العرض التقديمي</string>
   <string name="pref_plugin_remotekeyboard">تلقي ضغطات المفاتيح البعيدة</string>
@@ -195,6 +197,7 @@
   <string name="right_click">أرسل نقرة باليمين</string>
   <string name="middle_click">أرسل نقرة بالوسط</string>
   <string name="show_keyboard">أظهر لوحة المفاتيح</string>
+  <string name="show_mouse_and_keyboard">أظهر لوحة المفاتيح والفأرة</string>
   <string name="device_not_paired">الجهاز غير مقترن</string>
   <string name="pairing_duplicate_names">تنبيه: هناك عدة أجهزة تحمل نفس الاسم.</string>
   <string name="request_pairing">اطلب الاقتران</string>
