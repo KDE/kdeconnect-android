@@ -19,7 +19,7 @@ object NetworkHelper {
     //
     // If we run across an interface that has this, we can safely
     // ignore it.  In fact, it's much safer to do.  If we don't, we
-    // might get invalid IP adddresses out of it.
+    // might get invalid IP addresses out of it.
     @JvmStatic
     val localIpAddress: InetAddress?
         get() {
@@ -34,7 +34,7 @@ object NetworkHelper {
                     //
                     // If we run across an interface that has this, we can safely
                     // ignore it.  In fact, it's much safer to do.  If we don't, we
-                    // might get invalid IP adddresses out of it.
+                    // might get invalid IP addresses out of it.
                     if (intf.displayName.contains("rmnet")) {
                         continue
                     }

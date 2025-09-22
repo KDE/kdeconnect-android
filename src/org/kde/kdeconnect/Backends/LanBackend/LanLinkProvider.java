@@ -287,7 +287,7 @@ public class LanLinkProvider extends BaseLinkProvider {
         String deviceName = identityPacket.getString("deviceName", "unknown");
         Log.i("KDE/LanLinkProvider", "Starting SSL handshake with " + deviceName + " trusted:" + deviceTrusted);
 
-        // If I'm the TCP server I will be the SSL client and viceversa.
+        // If I'm the TCP server I will be the SSL client and vice-versa.
         final boolean clientMode = (connectionStarted == LanLink.ConnectionStarted.Locally);
         final SSLSocket sslSocket = SslHelper.convertToSslSocket(context, socket, deviceId, deviceTrusted, clientMode);
         sslSocket.addHandshakeCompletedListener(event -> {

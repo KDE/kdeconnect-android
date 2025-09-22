@@ -144,7 +144,7 @@ public class TelephonyHelper {
             // From https://stackoverflow.com/a/25131061/3723163
             // Android added support for multi-sim devices in Lollypop v5.1 (api 22)
             // See: https://developer.android.com/about/versions/android-5.1.html#multisim
-            // There were vendor-specific implmentations before then, but those are very difficult to support
+            // There were vendor-specific implementations before then, but those are very difficult to support
             // S/O Reference: https://stackoverflow.com/a/28571835/3723163
             TelephonyManager telephonyManager = ContextCompat.getSystemService(context,
                     TelephonyManager.class);
@@ -229,7 +229,7 @@ public class TelephonyHelper {
      * [post 1](https://stackoverflow.com/a/18897139/3723163)
      * [post 2[(https://stackoverflow.com/a/7928751/3723163)
      *
-     * @param context Context of the requestor
+     * @param context Context of the requester
      * @param subscriptionId Subscription ID for which to get the preferred APN. Ignored for devices older than Lollypop
      * @return Null if the preferred APN can't be found or doesn't support MMS, otherwise an ApnSetting object
      */

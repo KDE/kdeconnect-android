@@ -151,7 +151,7 @@ internal object AlbumArtCache {
 
         //If not found, check the disk cache
         if (!this::diskCache.isInitialized) {
-            Log.e("KDE/Mpris/AlbumArtCache", "The disk cache is not intialized!")
+            Log.e("KDE/Mpris/AlbumArtCache", "The disk cache is not initialized!")
             return null
         }
         try {
@@ -200,7 +200,7 @@ internal object AlbumArtCache {
     private fun fetchUrl(url: Uri) {
         //We need the disk cache for this
         if (!this::diskCache.isInitialized) {
-            Log.e("KDE/Mpris/AlbumArtCache", "The disk cache is not intialized!")
+            Log.e("KDE/Mpris/AlbumArtCache", "The disk cache is not initialized!")
             return
         }
         if (ConnectivityManagerCompat.isActiveNetworkMetered(connectivityManager)) {
@@ -280,7 +280,7 @@ internal object AlbumArtCache {
             return
         }
         if (!this::diskCache.isInitialized) {
-            Log.e("KDE/Mpris/AlbumArtCache", "The disk cache is not intialized!")
+            Log.e("KDE/Mpris/AlbumArtCache", "The disk cache is not initialized!")
             payload.close()
             return
         }
