@@ -17,6 +17,8 @@
   <string name="pref_plugin_clipboard_desc">Partekatu arbelaren edukia</string>
   <string name="pref_plugin_clipboard_sent">Arbelekoa bidali da</string>
   <string name="pref_plugin_mousepad">Urrutiko sarrera</string>
+  <string name="pref_plugin_mousepad_desc_nontv">Erabili zure telefonoa edo tableta ukimen-sagu eta teklatu gisa</string>
+  <string name="pref_plugin_mousepad_desc_tv">Erabili zure telefonoa edo tableta TBren urruneko aginte gisa</string>
   <string name="pref_plugin_presenter">Aurkezpenetarako urruneko agintea</string>
   <string name="pref_plugin_presenter_desc">Erabili zure gailua aurkezpen bateko diapositibak aldatzeko</string>
   <string name="pref_plugin_remotekeyboard">Jaso urruneko tekla-sakatzeak</string>
@@ -163,6 +165,7 @@
   <string name="right_click">Bidali eskumako klik</string>
   <string name="middle_click">Bidali erdiko klik</string>
   <string name="show_keyboard">Erakutsi teklatua</string>
+  <string name="show_mouse_and_keyboard">Erakutsi sagua eta teklatua</string>
   <string name="device_not_paired">Gailua parekatu gabe</string>
   <string name="pairing_duplicate_names">Kontuz: Izen bereko hainbat gailu daude.</string>
   <string name="request_pairing">Eskatu parekatzea</string>

@@ -17,6 +17,8 @@
   <string name="pref_plugin_clipboard_desc">Jaa leikepöydän sisältö</string>
   <string name="pref_plugin_clipboard_sent">Leikepöytä lähetetty</string>
   <string name="pref_plugin_mousepad">Kauko-ohjaus</string>
+  <string name="pref_plugin_mousepad_desc_nontv">Käytä puhelinta tai tablettia kosketuslevynä ja näppäimistönä</string>
+  <string name="pref_plugin_mousepad_desc_tv">Käytä puhelinta tai tablettia TV-kaukosäätimenä</string>
   <string name="pref_plugin_presenter">Esityskaukosäädin</string>
   <string name="pref_plugin_presenter_desc">Käytä laitettasi esitysdiojen vaihtamiseen</string>
   <string name="pref_plugin_remotekeyboard">Vastaanota etänäppäinpainallukset</string>
@@ -163,6 +165,7 @@
   <string name="right_click">Lähetä oikean painikkeen napsautus</string>
   <string name="middle_click">Lähetä keskipainikkeen napsautus</string>
   <string name="show_keyboard">Näytä näppäimistö</string>
+  <string name="show_mouse_and_keyboard">Näytä hiiri ja näppäimistö</string>
   <string name="device_not_paired">Laitetta ei ole kytketty pariksi</string>
   <string name="pairing_duplicate_names">Varoitus: Useammalla laitteella on sama nimi.</string>
   <string name="request_pairing">Pyydä pariksi kytkemistä</string>
