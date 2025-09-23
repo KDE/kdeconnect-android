@@ -29,12 +29,6 @@ public class MouseReceiverPlugin extends Plugin {
     private final static String PACKET_TYPE_MOUSEPAD_REQUEST = "kdeconnect.mousepad.request";
 
     @Override
-    public boolean onCreate() {
-        Log.e("MouseReceiverPlugin", "onCreate()");
-        return super.onCreate();
-    }
-
-    @Override
     public boolean checkRequiredPermissions() {
         return MouseReceiverService.instance != null;
     }
