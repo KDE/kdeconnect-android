@@ -24,7 +24,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="pref_plugin_battery_desc">Periodically report battery status</string>
     <string name="pref_plugin_connectivity_report">Connectivity report</string>
     <string name="pref_plugin_connectivity_report_desc">Report network signal strength and status</string>
-    <string name="pref_plugin_sftp">Filesystem expose</string>
+    <string name="pref_plugin_sftp">Filesystem access</string>
     <string name="pref_plugin_sftp_desc">Allows to browse this device\'s filesystem remotely</string>
     <string name="pref_plugin_clipboard">Clipboard sync</string>
     <string name="pref_plugin_clipboard_desc">Share the clipboard content</string>
@@ -312,6 +312,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="sftp_no_storage_locations_configured">No storage locations configured</string>
     <string name="sftp_saf_permission_explanation">To access files remotely you have to configure storage locations</string>
     <string name="sftp_manage_storage_permission_explanation">To allow remote access to files on this device you need to allow KDE Connect to manage the storage.</string>
+    <string name="sftp_missing_permission_error">Permissions missing: filesystem access</string>
     <string name="no_players_connected">No players found</string>
     <string name="send_files">Send files</string>
 

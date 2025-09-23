@@ -74,8 +74,18 @@ class SftpPlugin : Plugin(), OnSharedPreferenceChangeListener {
         preferences?.unregisterOnSharedPreferenceChangeListener(this)
     }
 
+    override fun loadPluginWhenRequiredPermissionsMissing() = true
+
     override fun onPacketReceived(np: NetworkPacket): Boolean {
         if (!np.getBoolean("startBrowsing")) return false
+
+        if (!checkRequiredPermissions()) {
+            val noPermissionsPacket = NetworkPacket(PACKET_TYPE_SFTP).apply {
+                this["errorMessage"] = context.getString(R.string.sftp_missing_permission_error)
+            }
+            device.sendPacket(noPermissionsPacket)
+            return true
+        }
 
         if (!server.isInitialized || server.isClosed) {
             try {
