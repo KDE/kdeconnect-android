@@ -44,7 +44,6 @@ public class MouseReceiverService extends AccessibilityService {
 
     @Override
     public void onCreate() {
-        super.onCreate();
         MouseReceiverService.instance = this;
         Log.i("MouseReceiverService", "created");
     }

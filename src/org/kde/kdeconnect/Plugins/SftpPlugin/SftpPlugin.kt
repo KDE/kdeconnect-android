@@ -38,8 +38,6 @@ class SftpPlugin : Plugin(), OnSharedPreferenceChangeListener {
     override val description: String
         get() = context.resources.getString(R.string.pref_plugin_sftp_desc)
 
-    override fun onCreate(): Boolean = true
-
     override fun checkRequiredPermissions(): Boolean {
         return if (SimpleSftpServer.SUPPORTS_NATIVEFS) {
             Environment.isExternalStorageManager()

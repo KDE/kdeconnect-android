@@ -91,7 +91,6 @@ public class SharePlugin extends Plugin {
 
     @Override
     public boolean onCreate() {
-        super.onCreate();
         mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
         createOrUpdateDynamicShortcut(null);
         // Deliver URLs previously shared to this device now that it's connected
