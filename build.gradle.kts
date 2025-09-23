@@ -35,7 +35,7 @@ val hashProvider = project.providers.exec {
 
 android {
     namespace = "org.kde.kdeconnect_tp"
-    compileSdk = 35
+    compileSdk = 36
     defaultConfig {
         applicationId = "org.kde.kdeconnect_tp"
         minSdk = 21
