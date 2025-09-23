@@ -528,28 +528,9 @@ class Device : PacketReceiver {
 
     @Synchronized
     private fun addPlugin(pluginKey: String): Boolean {
-        val existing = loadedPlugins[pluginKey]
-        if (existing != null) {
-            if (!existing.isCompatible) {
-                Log.d("KDE/addPlugin", "Minimum requirements (e.g. API level) not fulfilled $pluginKey")
-                return false
-            }
-
-            // Log.w("KDE/addPlugin","plugin already present:" + pluginKey);
-            if (existing.checkOptionalPermissions()) {
-                Log.d("KDE/addPlugin", "Optional Permissions OK $pluginKey")
-                pluginsWithoutOptionalPermissions.remove(pluginKey)
-            } else {
-                Log.d("KDE/addPlugin", "No optional permission $pluginKey")
-                pluginsWithoutOptionalPermissions[pluginKey] = existing
-            }
-            return true
-        }
-
-        val plugin = PluginFactory.instantiatePluginForDevice(context, pluginKey, this) ?: run {
-            Log.e("KDE/addPlugin", "could not instantiate plugin: $pluginKey")
-            return false
-        }
+        val plugin = loadedPlugins[pluginKey]
+            ?: PluginFactory.instantiatePluginForDevice(context, pluginKey, this)
+                ?: return false
 
         if (!plugin.isCompatible) {
             Log.d("KDE/addPlugin", "Minimum requirements (e.g. API level) not fulfilled $pluginKey")
