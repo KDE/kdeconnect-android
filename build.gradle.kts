@@ -272,6 +272,7 @@ dependencies {
     coreLibraryDesugaring(libs.android.desugarJdkLibsNio)
 
     implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.material.icons)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.constraintlayout.compose)
@@ -291,7 +292,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.extensions)
     implementation(libs.androidx.lifecycle.common.java8)
     implementation(libs.androidx.gridlayout)
-    implementation(libs.material)
+    implementation(libs.google.android.material)
     implementation(libs.disklrucache) //For caching album art bitmaps
     implementation(libs.slf4j.handroid)
 
