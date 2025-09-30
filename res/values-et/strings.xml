@@ -8,7 +8,6 @@
   <string name="pref_plugin_telephony_desc">Sisenevate kõnede märguannete saatmine</string>
   <string name="pref_plugin_battery">Aku aruanne</string>
   <string name="pref_plugin_battery_desc">Perioodiline aku olekust teavitamine</string>
-  <string name="pref_plugin_sftp">Failisüsteemi sirvimine</string>
   <string name="pref_plugin_sftp_desc">Seadme failisüsteemi eemalt sirvimise võimaldamine</string>
   <string name="pref_plugin_clipboard">Lõikepuhvri sünkroonimine</string>
   <string name="pref_plugin_clipboard_desc">Lõikepuhvri sisu jagamine</string>

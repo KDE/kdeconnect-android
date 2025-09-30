@@ -11,7 +11,6 @@
   <string name="pref_plugin_battery_desc">Періодична інформація щодо стану акумулятора</string>
   <string name="pref_plugin_connectivity_report">Звіт щодо з\'єднання</string>
   <string name="pref_plugin_connectivity_report_desc">Повідомити про потужність сигналу мережі та її стан</string>
-  <string name="pref_plugin_sftp">Показ файлової системи</string>
   <string name="pref_plugin_sftp_desc">Надає змогу віддалено переглядати файлову систему цього пристрою</string>
   <string name="pref_plugin_clipboard">Синхронізація буфера</string>
   <string name="pref_plugin_clipboard_desc">Спільне використання буфера обміну даними</string>

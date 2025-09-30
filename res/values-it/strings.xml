@@ -11,7 +11,6 @@
   <string name="pref_plugin_battery_desc">Comunica periodicamente lo stato della batteria</string>
   <string name="pref_plugin_connectivity_report">Indicatore di connettività</string>
   <string name="pref_plugin_connectivity_report_desc">Riporta la potenza e lo stato del segnale di rete</string>
-  <string name="pref_plugin_sftp">Esposizione filesystem</string>
   <string name="pref_plugin_sftp_desc">Consente di navigare da remoto il filesystem del dispositivo</string>
   <string name="pref_plugin_clipboard">Sincronizzazione appunti</string>
   <string name="pref_plugin_clipboard_desc">Condividi il contenuto degli appunti</string>

@@ -11,7 +11,6 @@
   <string name="pref_plugin_battery_desc">Informar periódicamente del estado de la batería</string>
   <string name="pref_plugin_connectivity_report">Informe de conectividad</string>
   <string name="pref_plugin_connectivity_report_desc">Informe de fuerza de la señal de red y su estado</string>
-  <string name="pref_plugin_sftp">Mostrar el sistema de archivos</string>
   <string name="pref_plugin_sftp_desc">Permite examinar de forma remota el sistema de archivos de este dispositivo</string>
   <string name="pref_plugin_clipboard">Sincronización del portapapeles</string>
   <string name="pref_plugin_clipboard_desc">Compartir el contenido del portapapeles</string>

@@ -11,7 +11,6 @@
   <string name="pref_plugin_battery_desc">Okresowo zgłasza stan naładowania baterii</string>
   <string name="pref_plugin_connectivity_report">Zgłaszanie łączności</string>
   <string name="pref_plugin_connectivity_report_desc">Zgłasza siłę i stanu sygnału sieciowego</string>
-  <string name="pref_plugin_sftp">Udostępnianie systemu plików</string>
   <string name="pref_plugin_sftp_desc">Udostępnia system plików tego urządzenia do przeglądania innemu urządzeniu</string>
   <string name="pref_plugin_clipboard">Współdzielenie schowka</string>
   <string name="pref_plugin_clipboard_desc">Współdzieli schowek między urządzeniami</string>

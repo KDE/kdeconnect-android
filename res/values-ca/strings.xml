@@ -11,7 +11,6 @@
   <string name="pref_plugin_battery_desc">Informa periòdicament sobre l\'estat de la bateria</string>
   <string name="pref_plugin_connectivity_report">Informa de la connectivitat</string>
   <string name="pref_plugin_connectivity_report_desc">Informar la intensitat i l\'estat del senyal de la xarxa</string>
-  <string name="pref_plugin_sftp">Exposa el sistema de fitxers</string>
   <string name="pref_plugin_sftp_desc">Permet navegar de forma remota pel sistema de fitxers del dispositiu</string>
   <string name="pref_plugin_clipboard">Sincronitza el porta-retalls</string>
   <string name="pref_plugin_clipboard_desc">Comparteix el contingut del porta-retalls</string>

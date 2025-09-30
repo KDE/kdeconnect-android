@@ -10,7 +10,6 @@
   <string name="pref_plugin_battery_desc">Περιοδική αναφορά κατάστασης μπαταρίας</string>
   <string name="pref_plugin_connectivity_report">Αναφορά συνδεσιμότητας</string>
   <string name="pref_plugin_connectivity_report_desc">Αναφορά ισχύος δικτυακού σήματος και κατάστασης</string>
-  <string name="pref_plugin_sftp">Αποκάλυψη συστήματος αρχείων</string>
   <string name="pref_plugin_sftp_desc">Επιτρέπει την απομακρυσμένη περιήγηση του συστήματος αρχείων του κινητού</string>
   <string name="pref_plugin_clipboard">Συγχρονισμός προχείρου</string>
   <string name="pref_plugin_clipboard_desc">Διαμοιρασμός περιεχομένου προχείρου</string>

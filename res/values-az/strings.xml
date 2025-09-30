@@ -11,7 +11,6 @@
   <string name="pref_plugin_battery_desc">Batareya vəziyyətini vaxtaşırı bildirmək</string>
   <string name="pref_plugin_connectivity_report">Bağlantı hesabatı</string>
   <string name="pref_plugin_connectivity_report_desc">Şəbəkə siqnalının gücünü və vəziyyətini bildirin</string>
-  <string name="pref_plugin_sftp">Fayl sistemi açılır</string>
   <string name="pref_plugin_sftp_desc">Bu cihazın fayl sisteminə baxmağa icazə vermək</string>
   <string name="pref_plugin_clipboard">Mübadilə Buferini eyniləşdirmək</string>
   <string name="pref_plugin_clipboard_desc">Mübadilə buferi tərkiblərini paylaşmaq</string>

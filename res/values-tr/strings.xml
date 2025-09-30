@@ -11,7 +11,6 @@
   <string name="pref_plugin_battery_desc">Pil durumunu belirli aralıklarla raporla</string>
   <string name="pref_plugin_connectivity_report">Bağlantı raporu</string>
   <string name="pref_plugin_connectivity_report_desc">Ağ sinyal gücünü ve durumunu bildirin</string>
-  <string name="pref_plugin_sftp">Dosya sistemi gösterme</string>
   <string name="pref_plugin_sftp_desc">Bu aygıtın dosya sistemine uzaktan göz atılmasına izin verir</string>
   <string name="pref_plugin_clipboard">Pano eşzamanlama</string>
   <string name="pref_plugin_clipboard_desc">Pano içeriğini paylaş</string>

@@ -11,7 +11,6 @@
   <string name="pref_plugin_battery_desc">بلّغ عن حالة البطّاريّة دوريًّا</string>
   <string name="pref_plugin_connectivity_report">تقرير الاتصال</string>
   <string name="pref_plugin_connectivity_report_desc">تقرير قوة إشارة الشبكة والحالة</string>
-  <string name="pref_plugin_sftp">اكشف نظام الملفّات</string>
   <string name="pref_plugin_sftp_desc">تسمح بتصفّح نظام ملفّات هذا الهاتف عن بعد</string>
   <string name="pref_plugin_clipboard">مزامنة الحافظة</string>
   <string name="pref_plugin_clipboard_desc">شارك محتوى الحافظة</string>

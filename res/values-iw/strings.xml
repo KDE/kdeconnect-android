@@ -11,7 +11,6 @@
   <string name="pref_plugin_battery_desc">דיווח רציף על אחוז הסוללה למחשב</string>
   <string name="pref_plugin_connectivity_report">דוח קישוריות</string>
   <string name="pref_plugin_connectivity_report_desc">דיווח על עוצמת קליטה ומצב רשת</string>
-  <string name="pref_plugin_sftp">חשיפת מערכת הקבצים</string>
   <string name="pref_plugin_sftp_desc">לאפשר לעיין במערכת הקבצים של המכשיר הזה מרחוק</string>
   <string name="pref_plugin_clipboard">סנכרון לוח הגזירים</string>
   <string name="pref_plugin_clipboard_desc">שיתוף תוכן לוח הגזירים</string>

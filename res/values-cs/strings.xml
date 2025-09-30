@@ -11,7 +11,6 @@
   <string name="pref_plugin_battery_desc">Periodicky hlásit stav baterky</string>
   <string name="pref_plugin_connectivity_report">Hlášení spojení</string>
   <string name="pref_plugin_connectivity_report_desc">Nahlásit stav a sílu signálu sítě</string>
-  <string name="pref_plugin_sftp">Přístup k souborovému systému</string>
   <string name="pref_plugin_sftp_desc">Umožní vám vzdáleně prohlížet souborový systém tohoto zařízení</string>
   <string name="pref_plugin_clipboard">Synchronizace schránky</string>
   <string name="pref_plugin_clipboard_desc">Sdílet obsah schránky</string>

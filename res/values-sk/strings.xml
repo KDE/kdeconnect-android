@@ -10,7 +10,6 @@
   <string name="pref_plugin_battery">Hlásenia batérie</string>
   <string name="pref_plugin_battery_desc">Pravidelne hlási stav batérie</string>
   <string name="pref_plugin_connectivity_report_desc">Hlásenie o stave a sile sieťového signálu</string>
-  <string name="pref_plugin_sftp">Odhalenie súborového systému</string>
   <string name="pref_plugin_sftp_desc">Umožní vzdialené prehliadanie súborového systému zariadenia</string>
   <string name="pref_plugin_clipboard">Synchronizácia schránky</string>
   <string name="pref_plugin_clipboard_desc">Zdieľa obsah schránky</string>

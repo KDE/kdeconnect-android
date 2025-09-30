@@ -11,7 +11,6 @@
   <string name="pref_plugin_battery_desc">პერიოდულად ელემენტის მდგომარეობის შემოწმება</string>
   <string name="pref_plugin_connectivity_report">მიერთების ანგარიში</string>
   <string name="pref_plugin_connectivity_report_desc">ქსელის სიგნალის სიძლიერისა და სტატუსის ანგარიში</string>
-  <string name="pref_plugin_sftp">ფაილური სისტემის გამოჩენა</string>
   <string name="pref_plugin_sftp_desc">ამ მოწყობილობის ფაილური სისტემის დაშორებულად დათვალიერების ნების დართვა</string>
   <string name="pref_plugin_clipboard">ბაფერის სინქრონიზაცია</string>
   <string name="pref_plugin_clipboard_desc">ბუფერის შემცველობის გაზიარება</string>

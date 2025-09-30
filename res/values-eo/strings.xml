@@ -11,7 +11,6 @@
   <string name="pref_plugin_battery_desc">Periode raporti staton de la baterio</string>
   <string name="pref_plugin_connectivity_report">Raporto pri konektebleco</string>
   <string name="pref_plugin_connectivity_report_desc">Raporti retan signalforton kaj staton</string>
-  <string name="pref_plugin_sftp">Dosiersistemo elmontras</string>
   <string name="pref_plugin_sftp_desc">Permesas foliumi la dosiersistemon de ĉi tiu aparato malproksime</string>
   <string name="pref_plugin_clipboard">Sinkronigo de tondujo</string>
   <string name="pref_plugin_clipboard_desc">Kunhavigi la enhavon de la tondujo</string>

@@ -11,7 +11,6 @@
   <string name="pref_plugin_battery_desc">주기적으로 배터리 상태 보고</string>
   <string name="pref_plugin_connectivity_report">연결 상태 보고</string>
   <string name="pref_plugin_connectivity_report_desc">네트워크 신호 세기 및 상태 보고</string>
-  <string name="pref_plugin_sftp">파일 시스템 보기</string>
   <string name="pref_plugin_sftp_desc">원격으로 이 장치의 파일 시스템 보기</string>
   <string name="pref_plugin_clipboard">클립보드 동기화</string>
   <string name="pref_plugin_clipboard_desc">클립보드 내용 동기화</string>

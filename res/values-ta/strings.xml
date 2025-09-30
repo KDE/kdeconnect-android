@@ -11,7 +11,6 @@
   <string name="pref_plugin_battery_desc">மின்கல நிலையை அவ்வப்போது கூறு</string>
   <string name="pref_plugin_connectivity_report">இணைப்பு அறிக்கை</string>
   <string name="pref_plugin_connectivity_report_desc">பிணைய பலத்தையும் நிலையையும் தெரிவி</string>
-  <string name="pref_plugin_sftp">கோப்பு முறைமை வெளிப்பாடு</string>
   <string name="pref_plugin_sftp_desc">இச்சாதனத்தின் கோப்பு முறைமையை தொலைவிலிருந்து உலாவ உதவும்</string>
   <string name="pref_plugin_clipboard">"பிடிப்புப்பலகை ஒத்திசைவு "</string>
   <string name="pref_plugin_clipboard_desc">பிடிப்புப்பலகை உள்ளடக்கத்தை பகிர்</string>

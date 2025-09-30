@@ -11,7 +11,6 @@
   <string name="pref_plugin_battery_desc">定期回報電池狀態</string>
   <string name="pref_plugin_connectivity_report">連通性報告</string>
   <string name="pref_plugin_connectivity_report_desc">回報網路訊號強度和狀態</string>
-  <string name="pref_plugin_sftp">顯示檔案系統</string>
   <string name="pref_plugin_sftp_desc">允許遠端瀏覽此裝置的檔案系統</string>
   <string name="pref_plugin_clipboard">剪貼簿同步</string>
   <string name="pref_plugin_clipboard_desc">共享剪貼簿的內容</string>

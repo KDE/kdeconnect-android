@@ -11,7 +11,6 @@
   <string name="pref_plugin_battery_desc">Raportoi akun tila säännöllisesti</string>
   <string name="pref_plugin_connectivity_report">Verkkoyhteysraportti</string>
   <string name="pref_plugin_connectivity_report_desc">Ilmoita kentän voimakkuus ja tila</string>
-  <string name="pref_plugin_sftp">Tiedostojärjestelmän paljastaminen</string>
   <string name="pref_plugin_sftp_desc">Mahdollistaa tämän laitteen tiedostojärjestelmän etäselaamisen</string>
   <string name="pref_plugin_clipboard">Leikepöydän synkronointi</string>
   <string name="pref_plugin_clipboard_desc">Jaa leikepöydän sisältö</string>

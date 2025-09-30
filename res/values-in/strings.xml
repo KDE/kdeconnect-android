@@ -11,7 +11,6 @@
   <string name="pref_plugin_battery_desc">Status baterai laporkan secara berkala</string>
   <string name="pref_plugin_connectivity_report">Laporan koneksi</string>
   <string name="pref_plugin_connectivity_report_desc">Laporkan kekuatan sinyal jaringan dan status</string>
-  <string name="pref_plugin_sftp">Singkapan sistem file</string>
   <string name="pref_plugin_sftp_desc">Memungkinkan untuk menelusuri sistem file peranti ini secara jarak jauh</string>
   <string name="pref_plugin_clipboard">Sinkron papan klip</string>
   <string name="pref_plugin_clipboard_desc">Berbagi konten papan klip</string>

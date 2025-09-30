@@ -11,7 +11,6 @@
   <string name="pref_plugin_battery_desc">Periodically report battery status</string>
   <string name="pref_plugin_connectivity_report">Connectivity report</string>
   <string name="pref_plugin_connectivity_report_desc">Report network signal strength and status</string>
-  <string name="pref_plugin_sftp">Filesystem expose</string>
   <string name="pref_plugin_sftp_desc">Allows to browse this device\'s filesystem remotely</string>
   <string name="pref_plugin_clipboard">Clipboard sync</string>
   <string name="pref_plugin_clipboard_desc">Share the clipboard content</string>

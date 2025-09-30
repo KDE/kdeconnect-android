@@ -11,7 +11,6 @@
   <string name="pref_plugin_battery_desc">定期的にバッテリ状態を報告</string>
   <string name="pref_plugin_connectivity_report">接続性レポート</string>
   <string name="pref_plugin_connectivity_report_desc">信号強度とネットワークの状態を報告</string>
-  <string name="pref_plugin_sftp">ファイルシステムの参照</string>
   <string name="pref_plugin_sftp_desc">リモートからこのデバイスのファイルシステムを閲覧</string>
   <string name="pref_plugin_clipboard">クリップボードの同期</string>
   <string name="pref_plugin_clipboard_desc">クリップボードの内容を共有</string>

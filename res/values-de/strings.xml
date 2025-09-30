@@ -11,7 +11,6 @@
   <string name="pref_plugin_battery_desc">Den Akkustand periodisch berichten</string>
   <string name="pref_plugin_connectivity_report">Verbindungsbericht</string>
   <string name="pref_plugin_connectivity_report_desc">Signalstärke und Status des Netzwerks anzeigen</string>
-  <string name="pref_plugin_sftp">Dateisystem-Freigabe</string>
   <string name="pref_plugin_sftp_desc">Das Durchsuchen des Dateisystems auf verbundenen Geräten erlauben</string>
   <string name="pref_plugin_clipboard">Abgleich der Zwischenablage</string>
   <string name="pref_plugin_clipboard_desc">Den Inhalt der Zwischenablage mit verbundenen Geräten teilen</string>

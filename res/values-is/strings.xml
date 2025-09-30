@@ -11,7 +11,6 @@
   <string name="pref_plugin_battery_desc">Tilkynnir reglulega um stöðu rafhlöðu</string>
   <string name="pref_plugin_connectivity_report">Staða tenginga</string>
   <string name="pref_plugin_connectivity_report_desc">Tilkynnir reglulega um styrk merkis og ástand</string>
-  <string name="pref_plugin_sftp">Skoðun skráakerfis</string>
   <string name="pref_plugin_sftp_desc">Gerir kleift að fletta upp í skráakerfi þessa tækis</string>
   <string name="pref_plugin_clipboard">Samstilling klippispjalda</string>
   <string name="pref_plugin_clipboard_desc">Deildu innihaldi klippispjaldsins</string>
