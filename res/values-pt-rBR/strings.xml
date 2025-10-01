@@ -11,6 +11,7 @@
   <string name="pref_plugin_battery_desc">Informação periódica do status da bateria</string>
   <string name="pref_plugin_connectivity_report">Relatório de conectividade</string>
   <string name="pref_plugin_connectivity_report_desc">Reportar o nível de sinal da rede e o status</string>
+  <string name="pref_plugin_sftp">Acesso ao sistema de arquivos</string>
   <string name="pref_plugin_sftp_desc">Permite navegar remotamente pelo sistema de arquivos deste telefone</string>
   <string name="pref_plugin_clipboard">Sincronizar área de transferência</string>
   <string name="pref_plugin_clipboard_desc">Compartilha o conteúdo da área de transferência</string>
@@ -234,6 +235,7 @@
   <string name="sftp_no_storage_locations_configured">Nenhum local de armazenamento configurado</string>
   <string name="sftp_saf_permission_explanation">Para acessar arquivos remotamente você precisa configurar locais de armazenamento</string>
   <string name="sftp_manage_storage_permission_explanation">Para permitir o acesso remoto aos arquivos neste dispositivo, você precisapermitir que o KDE Connect gerencie o armazenamento.</string>
+  <string name="sftp_missing_permission_error">Permissões ausentes: acesso ao sistema de arquivos</string>
   <string name="no_players_connected">Nenhum reprodutor encontrado</string>
   <string name="send_files">Enviar arquivos</string>
   <string name="block_notification_contents">Bloquear os conteúdos das notificações</string>

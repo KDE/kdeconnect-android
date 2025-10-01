@@ -11,6 +11,7 @@
   <string name="pref_plugin_battery_desc">Comunica periodicamente lo stato della batteria</string>
   <string name="pref_plugin_connectivity_report">Indicatore di connettività</string>
   <string name="pref_plugin_connectivity_report_desc">Riporta la potenza e lo stato del segnale di rete</string>
+  <string name="pref_plugin_sftp">Accesso al file system</string>
   <string name="pref_plugin_sftp_desc">Consente di navigare da remoto il filesystem del dispositivo</string>
   <string name="pref_plugin_clipboard">Sincronizzazione appunti</string>
   <string name="pref_plugin_clipboard_desc">Condividi il contenuto degli appunti</string>
@@ -234,6 +235,7 @@
   <string name="sftp_no_storage_locations_configured">Nessuna posizione di archiviazione configurata</string>
   <string name="sftp_saf_permission_explanation">Per accedere da remoto ai file, devi configurare posizioni di archiviazione</string>
   <string name="sftp_manage_storage_permission_explanation">Per consentire l\'accesso remoto ai file su questo dispositivo devi consentire a KDE Connect di gestire l\'archiviazione.</string>
+  <string name="sftp_missing_permission_error">Permessi mancanti: accesso al file system</string>
   <string name="no_players_connected">Nessun lettore trovato</string>
   <string name="send_files">Invia file</string>
   <string name="block_notification_contents">Blocca i contenuti delle notifiche</string>

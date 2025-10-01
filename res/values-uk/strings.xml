@@ -11,6 +11,7 @@
   <string name="pref_plugin_battery_desc">Періодична інформація щодо стану акумулятора</string>
   <string name="pref_plugin_connectivity_report">Звіт щодо з\'єднання</string>
   <string name="pref_plugin_connectivity_report_desc">Повідомити про потужність сигналу мережі та її стан</string>
+  <string name="pref_plugin_sftp">Доступ до файлової системи</string>
   <string name="pref_plugin_sftp_desc">Надає змогу віддалено переглядати файлову систему цього пристрою</string>
   <string name="pref_plugin_clipboard">Синхронізація буфера</string>
   <string name="pref_plugin_clipboard_desc">Спільне використання буфера обміну даними</string>
@@ -250,6 +251,7 @@
   <string name="sftp_no_storage_locations_configured">Не налаштовано розташувань сховищ</string>
   <string name="sftp_saf_permission_explanation">Щоб отримувати віддалений доступ до файлів, вам слід налаштувати розташування сховищ</string>
   <string name="sftp_manage_storage_permission_explanation">Щоб уможливити віддалений доступу до файлів на цьому пристрої, вам слід дозволити KDE Connect керувати сховищем даних.</string>
+  <string name="sftp_missing_permission_error">Не вистачає прав доступу: доступ до файлової системи</string>
   <string name="no_players_connected">Не знайдено програвачів</string>
   <string name="send_files">Надіслати файли</string>
   <string name="block_notification_contents">Блокувати вміст сповіщення</string>

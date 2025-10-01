@@ -11,6 +11,7 @@
   <string name="pref_plugin_battery_desc">Pil durumunu belirli aralıklarla raporla</string>
   <string name="pref_plugin_connectivity_report">Bağlantı raporu</string>
   <string name="pref_plugin_connectivity_report_desc">Ağ sinyal gücünü ve durumunu bildirin</string>
+  <string name="pref_plugin_sftp">Dosya sistemi erişimi</string>
   <string name="pref_plugin_sftp_desc">Bu aygıtın dosya sistemine uzaktan göz atılmasına izin verir</string>
   <string name="pref_plugin_clipboard">Pano eşzamanlama</string>
   <string name="pref_plugin_clipboard_desc">Pano içeriğini paylaş</string>
@@ -234,6 +235,7 @@
   <string name="sftp_no_storage_locations_configured">Yapılandırılmış depolama yeri yok</string>
   <string name="sftp_saf_permission_explanation">Dosyalara uzaktan erişmek için depolama konumlarını yapılandırmanız gerekir</string>
   <string name="sftp_manage_storage_permission_explanation">Bu aygıttaki dosyalara uzak erişime izin vermek için KDE Bağlan’a depolamayı yönetmesi için izin vermeniz gerekiyor.</string>
+  <string name="sftp_missing_permission_error">Eksik izinler: Dosya sistemi erişimi</string>
   <string name="no_players_connected">Onatıcı bulunamadı</string>
   <string name="send_files">Dosyaları gönder</string>
   <string name="block_notification_contents">Bildirim içeriğini engelle</string>

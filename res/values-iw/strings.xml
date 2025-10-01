@@ -11,6 +11,7 @@
   <string name="pref_plugin_battery_desc">דיווח רציף על אחוז הסוללה למחשב</string>
   <string name="pref_plugin_connectivity_report">דוח קישוריות</string>
   <string name="pref_plugin_connectivity_report_desc">דיווח על עוצמת קליטה ומצב רשת</string>
+  <string name="pref_plugin_sftp">גישה למערכת הקבצים</string>
   <string name="pref_plugin_sftp_desc">לאפשר לעיין במערכת הקבצים של המכשיר הזה מרחוק</string>
   <string name="pref_plugin_clipboard">סנכרון לוח הגזירים</string>
   <string name="pref_plugin_clipboard_desc">שיתוף תוכן לוח הגזירים</string>
@@ -250,6 +251,7 @@
   <string name="sftp_no_storage_locations_configured">לא מוגדר מקום אחסון</string>
   <string name="sftp_saf_permission_explanation">כדי לגשת לקבצים מרחוק צריך להגדיר מקומות אחסון</string>
   <string name="sftp_manage_storage_permission_explanation">כדי לאפשר גישה מרחוק לקבצים במכשיר הזה צריך לאשר ל־KDE Connect לנהל את האחסון.</string>
+  <string name="sftp_missing_permission_error">חסרה הרשאה: גישה למערכת הקבצים</string>
   <string name="no_players_connected">לא נמצאו נגנים</string>
   <string name="send_files">שליחת קובץ</string>
   <string name="block_notification_contents">חסימת תוכן התראות</string>

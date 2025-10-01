@@ -11,6 +11,7 @@
   <string name="pref_plugin_battery_desc">Rapporteer periodiek de status van de batterij</string>
   <string name="pref_plugin_connectivity_report">Rapport over connectiviteit</string>
   <string name="pref_plugin_connectivity_report_desc">Signaalsterkte en status van netwerk rapporteren</string>
+  <string name="pref_plugin_sftp">Toegang tot bestandssysteem</string>
   <string name="pref_plugin_sftp_desc">Het bladeren in het bestandssysteem van het apparaat op afstand toestaan</string>
   <string name="pref_plugin_clipboard">Klembordsynchronisatie</string>
   <string name="pref_plugin_clipboard_desc">De inhoud van het klembord delen</string>
@@ -234,6 +235,7 @@
   <string name="sftp_no_storage_locations_configured">Geen opslaglocaties geconfigureerd</string>
   <string name="sftp_saf_permission_explanation">Om toegang te hebben tot bestanden op afstand moet u opslaglocaties configureren</string>
   <string name="sftp_manage_storage_permission_explanation">Om toegang tot bestanden op dit apparaat toe te staan moet u toestaan dat KDE Connect de opslag mag beheren.</string>
+  <string name="sftp_missing_permission_error">Toegangsrechten ontbreken: toegang tot bestandssysteem</string>
   <string name="no_players_connected">Geen spelers gevonden</string>
   <string name="send_files">Bestanden verzenden</string>
   <string name="block_notification_contents">Inhoud van meldingen blokkeren</string>

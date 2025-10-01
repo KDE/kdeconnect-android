@@ -11,6 +11,7 @@
   <string name="pref_plugin_battery_desc">Občasno poročaj o stanju baterije</string>
   <string name="pref_plugin_connectivity_report">Poročilo o povezovanju</string>
   <string name="pref_plugin_connectivity_report_desc">Poročilo moč signala omrežja in status</string>
+  <string name="pref_plugin_sftp">Dostop do datotečnega sistema</string>
   <string name="pref_plugin_sftp_desc">Omogoča oddaljeno brskanje po sistemu datotek te naprave</string>
   <string name="pref_plugin_clipboard">Uskladi odložišči</string>
   <string name="pref_plugin_clipboard_desc">Deli skupno vsebino odložišča</string>
@@ -250,6 +251,7 @@
   <string name="sftp_no_storage_locations_configured">Lokacije shranjevanja niso nastavljene</string>
   <string name="sftp_saf_permission_explanation">Za dostop do datotek na daljavo morate nastaviti lokacije za shranjevanje</string>
   <string name="sftp_manage_storage_permission_explanation">Da bi dovolili oddaljeni dostop do datotek na tej napravi, morate dovoliti, da KDE Connect upravlja s hrambo.</string>
+  <string name="sftp_missing_permission_error">Manjkajoča dovoljenja: dostop do datotečnega sistema</string>
   <string name="no_players_connected">Ni najdenih predvajalnikov</string>
   <string name="send_files">Pošlji datoteke</string>
   <string name="block_notification_contents">Blokiraj vsebine obvestil</string>

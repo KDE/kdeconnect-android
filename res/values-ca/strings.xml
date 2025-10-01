@@ -11,6 +11,7 @@
   <string name="pref_plugin_battery_desc">Informa periòdicament sobre l\'estat de la bateria</string>
   <string name="pref_plugin_connectivity_report">Informa de la connectivitat</string>
   <string name="pref_plugin_connectivity_report_desc">Informar la intensitat i l\'estat del senyal de la xarxa</string>
+  <string name="pref_plugin_sftp">Accés al sistema de fitxers</string>
   <string name="pref_plugin_sftp_desc">Permet navegar de forma remota pel sistema de fitxers del dispositiu</string>
   <string name="pref_plugin_clipboard">Sincronitza el porta-retalls</string>
   <string name="pref_plugin_clipboard_desc">Comparteix el contingut del porta-retalls</string>
@@ -234,6 +235,7 @@
   <string name="sftp_no_storage_locations_configured">No s\'ha configurat cap ubicació d\'emmagatzematge</string>
   <string name="sftp_saf_permission_explanation">Per a accedir remotament als fitxers cal configurar les ubicacions d\'emmagatzematge</string>
   <string name="sftp_manage_storage_permission_explanation">Per a permetre l\'accés remot als fitxers d\'aquest dispositiu, haureu de permetre que el KDE Connect gestioni l\'emmagatzematge.</string>
+  <string name="sftp_missing_permission_error">Permisos que manquen: accés al sistema de fitxers</string>
   <string name="no_players_connected">No s\'ha trobat cap reproductor</string>
   <string name="send_files">Envia fitxers</string>
   <string name="block_notification_contents">Bloca el contingut de les notificacions</string>
