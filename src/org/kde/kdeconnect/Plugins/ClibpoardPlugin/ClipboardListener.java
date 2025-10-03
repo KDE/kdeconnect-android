@@ -61,7 +61,7 @@ public class ClipboardListener {
     }
 
     private ClipboardListener(final Context ctx) {
-        context = ctx;
+        context = ctx.getApplicationContext();
 
         new Handler(Looper.getMainLooper()).post(() -> {
             cm = ContextCompat.getSystemService(context, ClipboardManager.class);
