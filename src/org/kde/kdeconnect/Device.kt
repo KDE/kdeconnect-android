@@ -429,17 +429,20 @@ class Device : PacketReceiver {
             Log.w("Device", "Ignoring packet with type ${np.type} because no plugin can handle it")
             return
         }
-        targetPlugins.asSequence().mapNotNull { loadedPlugins[it] }.forEach { plugin ->
-            runCatching {
-                if (isPaired) {
-                    plugin.onPacketReceived(np)
-                } else {
-                    plugin.onUnpairedDevicePacketReceived(np)
+        targetPlugins
+            .asSequence()
+            .mapNotNull { loadedPlugins[it] }
+            .forEach { plugin ->
+                runCatching {
+                    if (isPaired) {
+                        plugin.onPacketReceived(np)
+                    } else {
+                        plugin.onUnpairedDevicePacketReceived(np)
+                    }
+                }.onFailure { e ->
+                    Log.e("Device", "Exception in ${plugin.pluginKey}'s onPacketReceived()", e)
                 }
-            }.onFailure { e ->
-                Log.e("Device", "Exception in ${plugin.pluginKey}'s onPacketReceived()", e)
             }
-        }
     }
 
     abstract class SendPacketStatusCallback {

@@ -96,30 +96,30 @@ class KdeConnect : Application() {
         // Log.e("BackgroundService", "Loading remembered trusted devices")
         val preferences = getSharedPreferences("trusted_devices", MODE_PRIVATE)
         val trustedDevices: Set<String> = preferences.all.keys
-        trustedDevices.map { id ->
-            Log.d("KdeConnect", "Loading device $id")
-            id
-        }.filter { preferences.getBoolean(it, false) }.forEach {
-            try {
-                val device = Device(applicationContext, it)
-                val now = Date()
-                val x509Cert = device.certificate as X509Certificate
-                if(now < x509Cert.notBefore) {
-                    throw CertificateException("Certificate not effective yet: "+x509Cert.notBefore)
+        trustedDevices.asSequence()
+            .onEach { Log.d("KdeConnect", "Loading device $it") }
+            .filter { preferences.getBoolean(it, false) }
+            .forEach {
+                try {
+                    val device = Device(applicationContext, it)
+                    val now = Date()
+                    val x509Cert = device.certificate as X509Certificate
+                    if(now < x509Cert.notBefore) {
+                        throw CertificateException("Certificate not effective yet: "+x509Cert.notBefore)
+                    }
+                    else if(now > x509Cert.notAfter) {
+                        throw CertificateException("Certificate already expired: "+x509Cert.notAfter)
+                    }
+                    devices[it] = device
+                    device.addPairingCallback(devicePairingCallback)
+                } catch (e: CertificateException) {
+                    Log.w(
+                        "KdeConnect",
+                        "Couldn't load the certificate for a remembered device. Removing from trusted list.", e
+                    )
+                    preferences.edit { remove(it) }
                 }
-                else if(now > x509Cert.notAfter) {
-                    throw CertificateException("Certificate already expired: "+x509Cert.notAfter)
-                }
-                devices[it] = device
-                device.addPairingCallback(devicePairingCallback)
-            } catch (e: CertificateException) {
-                Log.w(
-                    "KdeConnect",
-                    "Couldn't load the certificate for a remembered device. Removing from trusted list.", e
-                )
-                preferences.edit { remove(it) }
             }
-        }
     }
     fun removeRememberedDevices() {
         // Log.e("BackgroundService", "Removing remembered trusted devices")

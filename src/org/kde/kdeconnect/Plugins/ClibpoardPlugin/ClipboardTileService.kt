@@ -24,9 +24,11 @@ class ClipboardTileService : TileService() {
             this, 0, Intent(this, ClipboardFloatingActivity::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                 val ids = KdeConnect.getInstance().devices.values
+                    .asSequence()
                     .filter { it.isReachable && it.isPaired }
                     .map { it.deviceId }
-                putExtra("connectedDeviceIds", ArrayList(ids))
+                    .toCollection(ArrayList())
+                putExtra("connectedDeviceIds", ids)
             }, PendingIntent.FLAG_ONE_SHOT, true
         ))
     }

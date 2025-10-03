@@ -17,11 +17,11 @@ object PluginFactory {
 
     fun initPluginInfo(context: Context) {
         try {
-            val plugins = com.albertvaka.classindexksp.LoadablePlugin
+            pluginInfo = com.albertvaka.classindexksp.LoadablePlugin
+                .asSequence()
                 .map { it.java.getDeclaredConstructor().newInstance() as Plugin }
-                .map { plugin -> plugin.apply { setContext(context, null) } }
-
-            pluginInfo = plugins.associate { plugin -> Pair(plugin.pluginKey, PluginInfo(plugin)) }
+                .onEach { it.setContext(context, null) }
+                .associate { Pair(it.pluginKey, PluginInfo(it)) }
         } catch (e: Exception) {
             throw RuntimeException(e)
         }
