@@ -527,8 +527,7 @@ object SMSHelper {
     private fun parseSMS(context: Context, messageInfo: Map<String, String?>): Message {
         val event = addEventFlag(Message.EVENT_UNKNOWN, Message.EVENT_TEXT_MESSAGE)
         val address = listOf(Address(context, messageInfo[Telephony.Sms.ADDRESS]!!))
-        val maybeBody = messageInfo.getOrDefault(Message.BODY, "")
-        val body = maybeBody ?: ""
+        val body = messageInfo.getOrDefault(Message.BODY, "") ?: ""
         val date = NumberUtils.toLong(messageInfo.getOrDefault(Message.DATE, null))
         val type = NumberUtils.toInt(messageInfo.getOrDefault(Message.TYPE, null))
         val read = NumberUtils.toInt(messageInfo.getOrDefault(Message.READ, null))
@@ -541,13 +540,6 @@ object SMSHelper {
         val uID = NumberUtils.toLong(messageInfo.getOrDefault(Message.U_ID, null))
         val subscriptionID = NumberUtils.toInt(messageInfo.getOrDefault(Message.SUBSCRIPTION_ID, null))
 
-        // Examine all the required SMS columns and emit a log if something seems amiss
-        val anyNulls = arrayOf(Telephony.Sms.ADDRESS, Message.BODY, Message.DATE, Message.TYPE, Message.READ, Message.THREAD_ID, Message.U_ID)
-            .map { key: String -> messageInfo.getOrDefault(key, null) }
-            .any { obj: String? -> Objects.isNull(obj) }
-        if (anyNulls) {
-            Log.e("parseSMS", "Some fields were invalid. This indicates either a corrupted SMS database or an unsupported device.")
-        }
         return Message(
             address,
             body,
