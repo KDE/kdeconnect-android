@@ -429,7 +429,7 @@ class Device : PacketReceiver {
             Log.w("Device", "Ignoring packet with type ${np.type} because no plugin can handle it")
             return
         }
-        targetPlugins.map { it to loadedPlugins[it]!! }.forEach { (pluginKey, plugin) ->
+        targetPlugins.mapNotNull { it to loadedPlugins[it] }.forEach { (pluginKey, plugin) ->
             plugin.runCatching {
                 if (isPaired) onPacketReceived(np) else onUnpairedDevicePacketReceived(np)
             }.onFailure { e ->
