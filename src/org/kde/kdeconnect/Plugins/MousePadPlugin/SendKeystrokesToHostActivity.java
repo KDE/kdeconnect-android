@@ -74,7 +74,6 @@ public class SendKeystrokesToHostActivity extends BaseActivity<ActivitySendkeyst
     }
 
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1) // needed for this.getReferrer()
     @Override
     protected void onStart() {
         super.onStart();

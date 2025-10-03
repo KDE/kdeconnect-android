@@ -39,7 +39,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @PluginFactory.LoadablePlugin
-@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
 public class MprisReceiverPlugin extends Plugin {
     private final static String PACKET_TYPE_MPRIS = "kdeconnect.mpris";
     private final static String PACKET_TYPE_MPRIS_REQUEST = "kdeconnect.mpris.request";
@@ -223,11 +222,6 @@ public class MprisReceiverPlugin extends Plugin {
         np.set("playerList", players.keySet());
         np.set("supportAlbumArtPayload", true);
         getDevice().sendPacket(np);
-    }
-
-    @Override
-    public int getMinSdk() {
-        return Build.VERSION_CODES.LOLLIPOP_MR1;
     }
 
     void sendAlbumArt(String playerName, @NonNull MprisReceiverCallback cb, @Nullable String requestedUrl) {

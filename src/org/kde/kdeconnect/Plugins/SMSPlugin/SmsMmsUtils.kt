@@ -163,14 +163,8 @@ object SmsMmsUtils {
             // but sending SMS doesn't needs the app to be set as the default app.
             // This is the reason why there are separate branch handling for SMS and MMS.
             if (transaction.checkMMS(message)) {
-                Log.v("", "Sending new MMS")
-                //transaction.sendNewMessage(message, Transaction.NO_THREAD_ID);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
-                    sendMmsMessageNative(context, message, settings)
-                } else {
-                    // Cross fingers and hope Klinker's library works for this case
-                    transaction.sendNewMessage(message, Transaction.NO_THREAD_ID)
-                }
+                Log.v(SENDING_MESSAGE, "Sending new MMS")
+                sendMmsMessageNative(context, message, settings)
             } else {
                 Log.v(SENDING_MESSAGE, "Sending new SMS")
                 transaction.sendNewMessage(message, Transaction.NO_THREAD_ID)
@@ -189,7 +183,6 @@ object SmsMmsUtils {
      * @param message
      * @param klinkerSettings
      */
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     internal fun sendMmsMessageNative(context: Context, message: Message, klinkerSettings: Settings) {
         val data = ArrayList<MMSPart>()
 

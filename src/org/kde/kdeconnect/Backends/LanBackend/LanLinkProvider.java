@@ -507,7 +507,7 @@ public class LanLinkProvider extends BaseLinkProvider {
         DatagramSocket socket;
         try {
             socket = new DatagramSocket();
-            if (network != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+            if (network != null) {
                 try {
                     network.bindSocket(socket);
                 } catch (IOException e) {

@@ -21,7 +21,6 @@ import java.io.ByteArrayOutputStream;
 import java.util.Arrays;
 import java.util.Objects;
 
-@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
 class MprisReceiverCallback extends MediaController.Callback {
     private final MprisReceiverPlayer player;
     private final MprisReceiverPlugin plugin;
