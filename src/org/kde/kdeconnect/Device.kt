@@ -46,6 +46,7 @@ import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.ConcurrentMap
 import java.util.concurrent.CopyOnWriteArrayList
 import androidx.core.content.edit
+import java.util.Collections
 
 class Device : PacketReceiver {
 
@@ -66,7 +67,7 @@ class Device : PacketReceiver {
     @VisibleForTesting
     var pairingHandler: PairingHandler
 
-    private val links = CopyOnWriteArrayList<BaseLink>()
+    private val links : MutableList<BaseLink> = Collections.synchronizedList(mutableListOf())
 
     /**
      * Plugins that have matching capabilities.
