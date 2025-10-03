@@ -19,6 +19,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
+import org.jetbrains.annotations.Nullable;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.kde.kdeconnect.Helpers.SMSHelper;
@@ -59,9 +60,32 @@ public class ConnectivityReportPlugin extends Plugin {
 
     private final NetworkPacket connectivityInfo = new NetworkPacket(PACKET_TYPE_CONNECTIVITY_REPORT);
 
-    OnSubscriptionsChangedListener subListener = null;
     private final HashMap<Integer, PhoneStateListener> listeners = new HashMap<>();
     private final HashMap<Integer, SubscriptionState> states = new HashMap<>();
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    TelephonySubscriptionsListener.SubscriptionCallback subListener = new TelephonySubscriptionsListener.SubscriptionCallback() {
+        @Override
+        public void onAdd(int subID) {
+            TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+            TelephonyManager subTm = tm.createForSubscriptionId(subID);
+            Log.i("ConnectivityReport", "Added subscription ID " + subID);
+
+            states.put(subID, new SubscriptionState(subID));
+            PhoneStateListener listener = createListener(subID);
+            listeners.put(subID, listener);
+            subTm.listen(listener, PhoneStateListener.LISTEN_SIGNAL_STRENGTHS | PhoneStateListener.LISTEN_DATA_CONNECTION_STATE);
+        }
+
+        @Override
+        public void onRemove(int subID) {
+            Log.i("ConnectivityReport", "Removed subscription ID " + subID);
+            TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+            tm.listen(listeners.get(subID), PhoneStateListener.LISTEN_NONE);
+            listeners.remove(subID);
+            states.remove(subID);
+        }
+    };
 
     @Override
     public @NonNull String getDisplayName() {
@@ -163,32 +187,6 @@ public class ConnectivityReportPlugin extends Plugin {
         };
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private void subscriptionsListen() {
-        TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        subListener = TelephonyHelper.listenActiveSubscriptionIDs(
-                context,
-                subID -> {
-                    TelephonyManager subTm = tm.createForSubscriptionId(subID);
-                    Log.i("ConnectivityReport", "Added subscription ID " + subID);
-
-                    states.put(subID, new SubscriptionState(subID));
-                    PhoneStateListener listener = createListener(subID);
-                    listeners.put(subID, listener);
-                    subTm.listen(
-                            listener,
-                            PhoneStateListener.LISTEN_SIGNAL_STRENGTHS | PhoneStateListener.LISTEN_DATA_CONNECTION_STATE
-                    );
-                },
-                subID -> {
-                    Log.i("ConnectivityReport", "Removed subscription ID " + subID);
-                    tm.listen(listeners.get(subID), PhoneStateListener.LISTEN_NONE);
-                    listeners.remove(subID);
-                    states.remove(subID);
-                }
-        );
-    }
-
     @Override
     public boolean onCreate() {
         serializeSignalStrengths();
@@ -196,7 +194,7 @@ public class ConnectivityReportPlugin extends Plugin {
         runWithLooper(() -> {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 // Multi-SIM supported on Nougat+
-                subscriptionsListen();
+                TelephonySubscriptionsListener.getInstance(context).listenActiveSubscriptionIDs(subListener);
             } else {
                 // Fallback to single SIM
                 listeners.put(0, createListener(0));
@@ -212,10 +210,7 @@ public class ConnectivityReportPlugin extends Plugin {
         runWithLooper(() -> {
             TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                if (subListener != null) {
-                    TelephonyHelper.cancelActiveSubscriptionIDsListener(context, subListener);
-                    subListener = null;
-                }
+                TelephonySubscriptionsListener.getInstance(context).cancelActiveSubscriptionIDsListener(subListener);
             }
             for (Integer subID : listeners.keySet()) {
                 Log.i("ConnectivityReport", "Removed subscription ID " + subID);
