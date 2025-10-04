@@ -536,6 +536,8 @@ class Device : PacketReceiver {
 
     @Synchronized
     private fun addPlugin(pluginKey: String): Boolean {
+        val isNewPlugin = loadedPlugins.containsKey(pluginKey)
+
         val plugin = loadedPlugins[pluginKey]
             ?: PluginFactory.instantiatePluginForDevice(context, pluginKey, this)
                 ?: return false
@@ -567,6 +569,9 @@ class Device : PacketReceiver {
             }
         }
 
+        if (!isNewPlugin) {
+            return true
+        }
         return runCatching {
             plugin.onCreate()
         }.onFailure {
