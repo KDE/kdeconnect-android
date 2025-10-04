@@ -208,14 +208,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         String packageName = statusBarNotification.getPackageName();
         String appName = AppsHelper.appNameLookup(context, packageName);
 
-        if ("com.facebook.orca".equals(packageName) &&
-                (statusBarNotification.getId() == 10012) &&
-                "Messenger".equals(appName) &&
-                notification.tickerText == null) {
-            //HACK: Hide weird Facebook empty "Messenger" notification that is actually not shown in the phone
-            return;
-        }
-
         if ("com.android.systemui".equals(packageName) &&
                 "low_battery".equals(statusBarNotification.getTag())) {
             //HACK: Android low battery notification are posted again every few seconds. Ignore them, as we already have a battery indicator.
