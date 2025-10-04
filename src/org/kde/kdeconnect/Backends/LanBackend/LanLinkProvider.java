@@ -440,8 +440,7 @@ public class LanLinkProvider extends BaseLinkProvider {
         int tcpPort = minPort;
         while (tcpPort <= MAX_PORT) {
             try {
-                ServerSocket candidateServer = new ServerSocket();
-                candidateServer.bind(new InetSocketAddress(tcpPort));
+                ServerSocket candidateServer = new ServerSocket(tcpPort);
                 Log.i("KDE/LanLink", "Using port " + tcpPort);
                 return candidateServer;
             } catch (IOException e) {
