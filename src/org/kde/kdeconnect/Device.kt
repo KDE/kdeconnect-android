@@ -643,4 +643,8 @@ class Device : PacketReceiver {
     fun disconnect() {
         links.forEach(BaseLink::disconnect)
     }
+
+    override fun toString(): String {
+        return "Device(name=$name, id=$deviceId)"
+    }
 }
