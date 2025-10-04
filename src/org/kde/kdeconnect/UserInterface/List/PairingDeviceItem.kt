@@ -14,6 +14,11 @@ class PairingDeviceItem(
     device: Device,
     callback: ((d: Device) -> Unit)
 ) : DeviceItem(device, callback) {
+
+    override fun toString(): String {
+        return "PairingDeviceItem(device=$device)"
+    }
+
     override fun inflateView(layoutInflater: LayoutInflater): View {
         return super.inflateView(layoutInflater).also {
             if (device.compareProtocolVersion() > 0) {

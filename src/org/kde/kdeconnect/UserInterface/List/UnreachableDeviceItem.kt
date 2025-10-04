@@ -14,6 +14,11 @@ class UnreachableDeviceItem(
     device: Device,
     callback: ((d: Device) -> Unit),
 ) : DeviceItem(device, callback) {
+
+    override fun toString(): String {
+        return "UnreachableDeviceItem(device=$device)"
+    }
+
     override fun inflateView(layoutInflater: LayoutInflater): View {
         return super.inflateView(layoutInflater).also {
             binding.listItemEntrySummary.setText(R.string.runcommand_notreachable)
