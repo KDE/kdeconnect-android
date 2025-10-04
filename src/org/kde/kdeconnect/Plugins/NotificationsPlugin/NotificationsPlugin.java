@@ -214,7 +214,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             return;
         }
 
-        if ("org.kde.kdeconnect_tp".equals(packageName)) {
+        if ("org.kde.kdeconnect_tp".equals(packageName) || "org.kde.kdeconnect_tp.debug".equals(packageName)) {
             // Don't send our own notifications
             return;
         }
