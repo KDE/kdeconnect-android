@@ -156,7 +156,7 @@ public class ContactsHelper {
                 }
                 final List<String> lines = IOUtils.readLines(input, Charsets.UTF_8);
                 toReturn.put(ID, new VCardBuilder(StringUtils.join(lines, '\n')));
-            } catch (IOException | NullPointerException e) {
+            } catch (Exception e) {
                 // If you are experiencing this, please open a bug report indicating how you got here
                 Log.e("Contacts", "Exception while fetching vcards", e);
             }
