@@ -647,4 +647,15 @@ class Device : PacketReceiver {
     override fun toString(): String {
         return "Device(name=$name, id=$deviceId)"
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is Device) return false
+        // There should never be two instances of Device if they have the same ID
+        return deviceId == other.deviceId
+    }
+
+    override fun hashCode(): Int {
+        return deviceId.hashCode()
+    }
 }
