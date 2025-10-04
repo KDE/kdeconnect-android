@@ -397,17 +397,6 @@ class SMSPlugin : Plugin() {
             Manifest.permission.READ_PHONE_STATE,
         )
 
-    /**
-     * With versions older than KITKAT, lots of the content providers used in SMSHelper become
-     * un-documented. Most manufacturers *did* do things the same way as was done in mainline
-     * Android at that time, but some did not. If the manufacturer followed the default route,
-     * everything will be fine. If not, the plugin will crash. But, since we have a global catch-all
-     * in [org.kde.kdeconnect.Device.onPacketReceived], it will not crash catastrophically.
-     * The [SMSPlugin.onCreate] method of this SMSPlugin complains if a version older than KitKat is loaded,
-     * but it still allowed in the optimistic hope that things will "just work"
-     */
-    override val minSdk: Int = Build.VERSION_CODES.FROYO
-
     companion object {
         /**
          * Packet used to indicate a batch of messages has been pushed from the remote device
