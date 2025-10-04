@@ -152,10 +152,10 @@ public class ContactsHelper {
 
             try (InputStream input = context.getContentResolver().openInputStream(vcardURI)) {
                 if (input == null) {
-                    throw new NullPointerException("ContentResolver did not give us a stream for the VCard for uID " + ID);
+                    Log.w("Contacts", "ContentResolver did not give us a stream for the VCard for uID " + ID);
+                    continue;
                 }
-                final List<String> lines = IOUtils.readLines(input, Charsets.UTF_8);
-                toReturn.put(ID, new VCardBuilder(StringUtils.join(lines, '\n')));
+                toReturn.put(ID, new VCardBuilder(IOUtils.toString(input, Charsets.UTF_8)));
             } catch (Exception e) {
                 // If you are experiencing this, please open a bug report indicating how you got here
                 Log.e("Contacts", "Exception while fetching vcards", e);
