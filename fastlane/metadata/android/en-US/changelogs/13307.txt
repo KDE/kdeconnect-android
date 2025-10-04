@@ -1,0 +1,16 @@
+1.33.7
+* Bug fixes and translation improvements.
+
+1.33.4
+* Extend offline URL sharing behavior to direct share targets.
+* Improve paring screen.
+
+1.33.3
+* Fix connection issues. Pairing again might be needed in some cases.
+* Add a setting to export the application logs.
+
+1.33.0
+* Add support for PeerTube links.
+* Allow filtering notifications from work profile.
+* Fix bug where devices would unpair without user interaction.
+* Verification key now changes every second (if both devices support it).
