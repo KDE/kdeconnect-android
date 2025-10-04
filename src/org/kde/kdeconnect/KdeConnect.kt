@@ -7,7 +7,10 @@ package org.kde.kdeconnect
 
 import android.app.Application
 import android.os.Build
+import android.os.StrictMode
+import android.os.StrictMode.VmPolicy
 import android.util.Log
+import androidx.core.content.edit
 import org.kde.kdeconnect.Backends.BaseLink
 import org.kde.kdeconnect.Backends.BaseLinkProvider.ConnectionReceiver
 import org.kde.kdeconnect.Helpers.DeviceHelper
@@ -25,7 +28,7 @@ import java.security.cert.CertificateException
 import java.security.cert.X509Certificate
 import java.util.Date
 import java.util.concurrent.ConcurrentHashMap
-import androidx.core.content.edit
+
 
 /*
  * This class holds all the active devices and makes them accessible from every other class.
@@ -54,6 +57,14 @@ class KdeConnect : Application() {
         NotificationHelper.initializeChannels(this)
         LifecycleHelper.initializeObserver()
         loadRememberedDevicesFromSettings()
+
+        if (BuildConfig.DEBUG) {
+            StrictMode.setVmPolicy(
+                VmPolicy.Builder(StrictMode.getVmPolicy())
+                    .detectLeakedClosableObjects()
+                    .build()
+            )
+        }
     }
 
     private fun setupSL4JLogging() {
