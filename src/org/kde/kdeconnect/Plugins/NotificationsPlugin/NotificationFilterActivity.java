@@ -124,7 +124,7 @@ public class NotificationFilterActivity extends BaseActivity<ActivityNotificatio
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        appDatabase = new AppDatabase(NotificationFilterActivity.this, false);
+        appDatabase = AppDatabase.getInstance(NotificationFilterActivity.this);
         if (getIntent()!= null){
             prefKey = getIntent().getStringExtra(NotificationsPlugin.getPrefKey());
         }

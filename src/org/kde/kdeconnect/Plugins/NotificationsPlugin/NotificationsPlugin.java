@@ -127,7 +127,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
         keyguardManager = (KeyguardManager) context.getSystemService(Context.KEYGUARD_SERVICE);
 
-        appDatabase = new AppDatabase(context, true);
+        appDatabase = AppDatabase.getInstance(context);
 
         NotificationReceiver.RunCommand(context, service -> {
 

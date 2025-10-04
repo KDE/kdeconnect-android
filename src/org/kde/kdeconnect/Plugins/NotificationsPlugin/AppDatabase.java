@@ -43,18 +43,21 @@ class AppDatabase {
             + KEY_PRIVACY_OPTIONS + " INTEGER NOT NULL); ";
 
 
-    private final SQLiteDatabase ourDatabase;
     private final DbHelper ourHelper;
     private final SharedPreferences prefs;
 
-    AppDatabase(Context context, boolean readonly) {
+    static private AppDatabase _instance = null;
+
+    static public AppDatabase getInstance(Context context) {
+        if (_instance == null) {
+            _instance = new AppDatabase(context.getApplicationContext());
+        }
+        return _instance;
+    }
+
+    private AppDatabase(Context context) {
         ourHelper = new DbHelper(context);
         prefs = context.getSharedPreferences(SETTINGS_NAME, Context.MODE_PRIVATE);
-        if (readonly) {
-            ourDatabase = ourHelper.getReadableDatabase();
-        } else {
-            ourDatabase = ourHelper.getWritableDatabase();
-        }
     }
 
     @Override
@@ -86,6 +89,7 @@ class AppDatabase {
 
     void setEnabled(String packageName, boolean isEnabled) {
         String[] columns = new String[]{KEY_IS_ENABLED};
+        SQLiteDatabase ourDatabase = ourHelper.getWritableDatabase();
         try (Cursor res = ourDatabase.query(TABLE_ENABLED, columns, KEY_PACKAGE_NAME + " =? ", new String[]{packageName}, null, null, null)) {
             ContentValues cv = new ContentValues();
             cv.put(KEY_IS_ENABLED, isEnabled ? 1 : 0);
@@ -105,11 +109,13 @@ class AppDatabase {
 
     void setAllEnabled(boolean enabled) {
         prefs.edit().putBoolean(SETTINGS_KEY_ALL_ENABLED, enabled).apply();
+        SQLiteDatabase ourDatabase = ourHelper.getWritableDatabase();
         ourDatabase.execSQL("UPDATE " + TABLE_ENABLED + " SET " + KEY_IS_ENABLED + "=" + (enabled? "1" : "0"));
     }
 
     boolean isEnabled(String packageName) {
         String[] columns = new String[]{KEY_IS_ENABLED};
+        SQLiteDatabase ourDatabase = ourHelper.getReadableDatabase();
         try (Cursor res = ourDatabase.query(TABLE_ENABLED, columns, KEY_PACKAGE_NAME + " =? ", new String[]{packageName}, null, null, null)) {
             boolean result;
             if (res.getCount() > 0) {
@@ -138,6 +144,7 @@ class AppDatabase {
     private int getPrivacyOptionsValue(String packageName)
     {
         String[] columns = new String[]{KEY_PRIVACY_OPTIONS};
+        SQLiteDatabase ourDatabase = ourHelper.getReadableDatabase();
         try (Cursor res = ourDatabase.query(TABLE_PRIVACY, columns, KEY_PACKAGE_NAME + " =? ", new String[]{packageName}, null, null, null)) {
             int result;
             if (res.getCount() > 0) {
@@ -152,6 +159,7 @@ class AppDatabase {
 
     private void setPrivacyOptionsValue(String packageName, int value) {
         String[] columns = new String[]{KEY_PRIVACY_OPTIONS};
+        SQLiteDatabase ourDatabase = ourHelper.getWritableDatabase();
         try (Cursor res = ourDatabase.query(TABLE_PRIVACY, columns, KEY_PACKAGE_NAME + " =? ", new String[]{packageName}, null, null, null)) {
             ContentValues cv = new ContentValues();
             cv.put(KEY_PRIVACY_OPTIONS, value);
