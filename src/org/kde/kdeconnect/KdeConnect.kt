@@ -8,6 +8,7 @@ package org.kde.kdeconnect
 import android.app.Application
 import android.os.Build
 import android.os.StrictMode
+import android.os.StrictMode.ThreadPolicy
 import android.os.StrictMode.VmPolicy
 import android.util.Log
 import androidx.core.content.edit
@@ -58,10 +59,26 @@ class KdeConnect : Application() {
         LifecycleHelper.initializeObserver()
         loadRememberedDevicesFromSettings()
 
-        if (BuildConfig.DEBUG) {
+        if (BuildConfig.DEBUG && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             StrictMode.setVmPolicy(
                 VmPolicy.Builder(StrictMode.getVmPolicy())
+                    .detectActivityLeaks()
                     .detectLeakedClosableObjects()
+                    .detectLeakedRegistrationObjects()
+                    .detectFileUriExposure()
+                    .detectContentUriWithoutPermission()
+                    .detectCredentialProtectedWhileLocked()
+                    .detectIncorrectContextUse()
+                    .detectUnsafeIntentLaunch()
+                    //.detectBlockedBackgroundActivityLaunch()
+                    .penaltyLog()
+                    .build()
+            )
+            StrictMode.setThreadPolicy(
+                ThreadPolicy.Builder(StrictMode.getThreadPolicy())
+                    .detectUnbufferedIo()
+                    .detectResourceMismatches()
+                    .penaltyLog()
                     .build()
             )
         }
