@@ -149,6 +149,9 @@ public class LanLink extends BaseLink {
                 writer.flush();
             } catch (Exception e) {
                 disconnect(); //main socket is broken, disconnect
+                if (server != null) {
+                    try { server.close(); } catch (Exception ignored) { }
+                }
                 throw e;
             }
 
