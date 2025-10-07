@@ -12,6 +12,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.drawable.Drawable
+import android.os.Build
 import android.util.Log
 import androidx.annotation.AnyThread
 import androidx.annotation.VisibleForTesting
@@ -46,7 +47,6 @@ import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.ConcurrentMap
 import java.util.concurrent.CopyOnWriteArrayList
 import androidx.core.content.edit
-import java.util.Collections
 
 class Device : PacketReceiver {
 
@@ -67,7 +67,7 @@ class Device : PacketReceiver {
     @VisibleForTesting
     var pairingHandler: PairingHandler
 
-    private val links : MutableList<BaseLink> = Collections.synchronizedList(mutableListOf())
+    private val links = CopyOnWriteArrayList<BaseLink>()
 
     /**
      * Plugins that have matching capabilities.
@@ -326,8 +326,18 @@ class Device : PacketReceiver {
         // FilesHelper.LogOpenFileCount();
         links.add(link)
 
-        links.sortWith { o1, o2 ->
-            o2.linkProvider.priority compareTo o1.linkProvider.priority
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+            // sorting CopyOnWriteArrayList is not supported in SDK < 26 (throws UnsupportedOperationException)
+            val copy = links.toMutableList()
+            copy.sortWith { o1, o2 ->
+                o2.linkProvider.priority compareTo o1.linkProvider.priority
+            }
+            links.clear()
+            links.addAll(copy)
+        } else {
+            links.sortWith { o1, o2 ->
+                o2.linkProvider.priority compareTo o1.linkProvider.priority
+            }
         }
 
         link.addPacketReceiver(this)
