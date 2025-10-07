@@ -11,6 +11,7 @@
   <string name="pref_plugin_battery_desc">Bidali bateriaren egoera aldiro</string>
   <string name="pref_plugin_connectivity_report">Konektagarritasun txostena</string>
   <string name="pref_plugin_connectivity_report_desc">Eman sareko seinale-sendotasunaren eta egoeraren berri</string>
+  <string name="pref_plugin_sftp">Fitxategi-sistemara sarbidea</string>
   <string name="pref_plugin_sftp_desc">Gailu honen fitxategi-sistema urrunetik arakatzea ahalbidetzen du</string>
   <string name="pref_plugin_clipboard">Arbelaren sinkronizazioa</string>
   <string name="pref_plugin_clipboard_desc">Partekatu arbelaren edukia</string>
@@ -234,6 +235,7 @@
   <string name="sftp_no_storage_locations_configured">Ez da biltegiratze kokalekurik konfiguratu</string>
   <string name="sftp_saf_permission_explanation">Fitxategiak urrunetik atzitzeko biltegiratze kokalekuak konfiguratu behar dituzu</string>
   <string name="sftp_manage_storage_permission_explanation">gailu honetako fitxategietara urrutiko sarbidea baimentzeko, «KDE Connect»eri biltegiratzea kudeatzeko baimena eman behar diozu.</string>
+  <string name="sftp_missing_permission_error">Baimenak falta dira: fitxategi-sistemara sarbidea</string>
   <string name="no_players_connected">Ez da jotzailerik aurkitu</string>
   <string name="send_files">Bidali fitxategiak</string>
   <string name="block_notification_contents">Oztopatu jakinarazpenen edukia</string>

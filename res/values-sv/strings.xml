@@ -11,6 +11,7 @@
   <string name="pref_plugin_battery_desc">Rapportera periodiskt batteriets status</string>
   <string name="pref_plugin_connectivity_report">Anslutningsrapport</string>
   <string name="pref_plugin_connectivity_report_desc">Rapportera nätverkssignalstyrka och status</string>
+  <string name="pref_plugin_sftp">Filsystemåtkomst</string>
   <string name="pref_plugin_sftp_desc">Gör det möjligt att bläddra i apparatens filsystem från annan apparat</string>
   <string name="pref_plugin_clipboard">Synkronisera klippbord</string>
   <string name="pref_plugin_clipboard_desc">Dela klippbordets innehåll</string>
@@ -234,6 +235,7 @@
   <string name="sftp_no_storage_locations_configured">Inga lagringsplatser inställda</string>
   <string name="sftp_saf_permission_explanation">För att komma åt filer från en annan apparat måste lagringsplatser ställas in</string>
   <string name="sftp_manage_storage_permission_explanation">För att tillåta åtkomst av filer på den här apparaten från en annan apparat måste du låta KDE-anslut hantera lagringsenheten.</string>
+  <string name="sftp_missing_permission_error">Rättigheter saknas: filsystemåtkomst</string>
   <string name="no_players_connected">Inga spelare hittades</string>
   <string name="send_files">Skicka filer</string>
   <string name="block_notification_contents">Blockera underrättelseinnehåll</string>

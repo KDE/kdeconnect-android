@@ -11,6 +11,7 @@
   <string name="pref_plugin_battery_desc">بلّغ عن حالة البطّاريّة دوريًّا</string>
   <string name="pref_plugin_connectivity_report">تقرير الاتصال</string>
   <string name="pref_plugin_connectivity_report_desc">تقرير قوة إشارة الشبكة والحالة</string>
+  <string name="pref_plugin_sftp">الوصول إلى نظام الملفات</string>
   <string name="pref_plugin_sftp_desc">تسمح بتصفّح نظام ملفّات هذا الهاتف عن بعد</string>
   <string name="pref_plugin_clipboard">مزامنة الحافظة</string>
   <string name="pref_plugin_clipboard_desc">شارك محتوى الحافظة</string>
@@ -266,6 +267,7 @@
   <string name="sftp_no_storage_locations_configured">لا توجد مواقع تخزين مضبوطة</string>
   <string name="sftp_saf_permission_explanation">للوصول إلى الملفات عن بُعد عليك ضبط مواقع التخزين</string>
   <string name="sftp_manage_storage_permission_explanation">للسماح بالوصول عن بُعد إلى الملفات الموجودة على هذا الجهاز، يجب أن تسمح لـ جسر كِيدِي بإدارة التخزين.</string>
+  <string name="sftp_missing_permission_error">أذونات مفقودة: الوصول إلى نظام الملفات</string>
   <string name="no_players_connected">لم يُعثر على مشغّلات</string>
   <string name="send_files">أرسل ملفّات</string>
   <string name="block_notification_contents">احظر محتويات الإشعار</string>
