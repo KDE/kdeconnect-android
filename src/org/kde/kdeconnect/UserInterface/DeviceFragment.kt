@@ -217,8 +217,8 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
         BackgroundService.ForceRefreshConnections(requireContext())
         errorBinding.errorMessageContainer.isRefreshing = true
         errorBinding.errorMessageContainer.postDelayed({
-            if (viewLifecycleOwner.lifecycle.currentState.isAtLeast(Lifecycle.State.CREATED)) {
-                errorBinding.errorMessageContainer.isRefreshing = false // check for null since the view might be destroyed by now
+            if (isResumed && !isDetached) { // the view might be destroyed by now
+                errorBinding.errorMessageContainer.isRefreshing = false
             }
         }, 1500)
     }

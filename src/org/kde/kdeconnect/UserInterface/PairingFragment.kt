@@ -156,7 +156,6 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
 
     private fun refreshDevicesAction() {
         ForceRefreshConnections(requireContext())
-
         binding.refreshListLayout.isRefreshing = true
         binding.refreshListLayout.postDelayed({
             if (isResumed && !isDetached) { // the view might be destroyed by now
