@@ -223,6 +223,11 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
         }, 1500)
     }
 
+    override fun onPause() {
+        errorBinding.errorMessageContainer.isRefreshing = false
+        super.onPause()
+    }
+
     private val pluginsChangedListener = PluginsChangedListener { mActivity?.runOnUiThread { refreshUI() } }
 
     override fun onDestroyView() {

@@ -164,6 +164,11 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
         }, 1500)
     }
 
+    override fun onPause() {
+        binding.refreshListLayout.isRefreshing = false
+        super.onPause()
+    }
+
     private fun updateDeviceList() {
         if (!isAdded) {
             //Fragment is not attached to an activity. We will crash if we try to do anything here.
