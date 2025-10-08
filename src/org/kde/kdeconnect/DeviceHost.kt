@@ -43,7 +43,7 @@ class DeviceHost private constructor(private val host: String) {
     companion object {
         /** Ping timeout */
         private const val PING_TIMEOUT = 3_000
-        private val hostnameValidityPattern = Regex("^[0-9A-Za-z.:_-]+$")
+        private val hostnameValidityPattern = Regex("^[0-9A-Za-z.:%_-]+$")
 
         @JvmStatic
         fun isValidDeviceHost(host: String): Boolean {
