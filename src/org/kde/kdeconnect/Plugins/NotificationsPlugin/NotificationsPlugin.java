@@ -208,10 +208,17 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         String packageName = statusBarNotification.getPackageName();
         String appName = AppsHelper.appNameLookup(context, packageName);
 
-        if ("com.android.systemui".equals(packageName) &&
-                "low_battery".equals(statusBarNotification.getTag())) {
-            //HACK: Android low battery notification are posted again every few seconds. Ignore them, as we already have a battery indicator.
-            return;
+        if ("com.android.systemui".equals(packageName)) {
+            if("low_battery".equals(statusBarNotification.getTag())) {
+                //HACK: Android low battery notification are posted again every few seconds. Ignore them, as we already have a battery indicator.
+                return;
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                if ("MediaOngoingActivity".equals(notification.getChannelId())) {
+                    //HACK: Samsung OneUI sends this notification when media playback is started. Ignore it, as this is handled by Mpris plugin
+                    return;
+                }
+            }
         }
 
         if ("org.kde.kdeconnect_tp".equals(packageName) || "org.kde.kdeconnect_tp.debug".equals(packageName)) {
