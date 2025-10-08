@@ -38,8 +38,9 @@ public class PermissionsAlertDialogFragment extends AlertDialogFragment {
 
         setCallback(new Callback() {
             @Override
-            public void onPositiveButtonClicked() {
+            public boolean onPositiveButtonClicked() {
                 ActivityCompat.requestPermissions(requireActivity(), permissions, requestCode);
+                return true;
             }
         });
     }

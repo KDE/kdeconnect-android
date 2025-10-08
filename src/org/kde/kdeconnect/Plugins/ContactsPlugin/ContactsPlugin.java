@@ -132,9 +132,10 @@ public class ContactsPlugin extends Plugin {
                 .create();
         dialog.setCallback(new AlertDialogFragment.Callback() {
             @Override
-            public void onPositiveButtonClicked() {
+            public boolean onPositiveButtonClicked() {
                 Objects.requireNonNull(getPreferences()).edit().putBoolean("acceptedToTransferContacts", true).apply();
                 Objects.requireNonNull(getDevice()).reloadPluginsFromSettings();
+                return true;
             }
         });
         return dialog;

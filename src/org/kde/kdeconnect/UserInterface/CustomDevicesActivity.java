@@ -214,7 +214,7 @@ public class CustomDevicesActivity extends BaseActivity<ActivityCustomDevicesBin
 
     private class AddDeviceDialogCallback extends EditTextAlertDialogFragment.Callback {
         @Override
-        public void onPositiveButtonClicked() {
+        public boolean onPositiveButtonClicked() {
             if (addDeviceDialog.editText.getText() != null) {
                 String deviceNameOrIP = addDeviceDialog.editText.getText().toString().trim();
                 DeviceHost host = DeviceHost.toDeviceHostOrNull(deviceNameOrIP);
@@ -253,6 +253,7 @@ public class CustomDevicesActivity extends BaseActivity<ActivityCustomDevicesBin
                         Context context = addDeviceDialog.getContext();
                         if (context != null) {
                             Toast.makeText(addDeviceDialog.getContext(), R.string.device_host_duplicate, Toast.LENGTH_SHORT).show();
+                            return false;
                         }
                     }
                 }
@@ -260,9 +261,11 @@ public class CustomDevicesActivity extends BaseActivity<ActivityCustomDevicesBin
                     Context context = addDeviceDialog.getContext();
                     if (context != null) {
                         Toast.makeText(addDeviceDialog.getContext(), R.string.device_host_invalid, Toast.LENGTH_SHORT).show();
+                        return false;
                     }
                 }
             }
+            return true;
         }
 
         @Override

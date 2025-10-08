@@ -38,7 +38,7 @@ public class DefaultSmsAppAlertDialogFragment extends AlertDialogFragment {
 
         setCallback(new Callback() {
             @Override
-            public void onPositiveButtonClicked() {
+            public boolean onPositiveButtonClicked() {
                 Activity host = requireActivity();
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                     RoleManager roleManager = host.getSystemService(RoleManager.class);
@@ -56,6 +56,7 @@ public class DefaultSmsAppAlertDialogFragment extends AlertDialogFragment {
                 }
 
                 ActivityCompat.requestPermissions(requireActivity(), permissions, requestCode);
+                return true;
             }
         });
     }

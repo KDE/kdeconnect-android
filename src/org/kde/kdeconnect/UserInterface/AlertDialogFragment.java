@@ -20,7 +20,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-public class AlertDialogFragment extends DialogFragment implements DialogInterface.OnClickListener {
+public class AlertDialogFragment extends DialogFragment {
     private static final String KEY_TITLE_RES_ID = "TitleResId";
     private static final String KEY_TITLE = "Title";
     private static final String KEY_MESSAGE_RES_ID = "MessageResId";
@@ -66,9 +66,10 @@ public class AlertDialogFragment extends DialogFragment implements DialogInterfa
 
         AlertDialog.Builder builder = new MaterialAlertDialogBuilder(requireContext())
                 .setTitle(titleString)
-                .setPositiveButton(positiveButtonResId, this);
+                // Set listeners to null so dialog does not auto-dismiss
+                .setPositiveButton(positiveButtonResId, null);
         if (negativeButtonResId != 0) {
-                builder.setNegativeButton(negativeButtonResId, this);
+            builder.setNegativeButton(negativeButtonResId, null);
         }
         if (customViewResId != 0) {
             builder.setView(customViewResId);
@@ -79,26 +80,31 @@ public class AlertDialogFragment extends DialogFragment implements DialogInterfa
         return builder.create();
     }
 
-    public void setCallback(@Nullable Callback callback) {
-        this.callback = callback;
+    @Override
+    public void onStart() {
+        super.onStart();
+        AlertDialog dialog = (AlertDialog) getDialog();
+        if (dialog == null) return;
+        // Set custom click listeners to prevent auto-dismiss
+        if (positiveButtonResId != 0) {
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
+                if (callback == null || callback.onPositiveButtonClicked()) {
+                    dismiss();
+                }
+            });
+        }
+        if (negativeButtonResId != 0) {
+            dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener(v -> {
+                if (callback != null) {
+                    callback.onNegativeButtonClicked();
+                }
+                dismiss();
+            });
+        }
     }
 
-    @Override
-    public void onClick(DialogInterface dialog, int which) {
-        if (callback == null) {
-            return;
-        }
-
-        switch (which) {
-            case AlertDialog.BUTTON_POSITIVE:
-                callback.onPositiveButtonClicked();
-                break;
-            case AlertDialog.BUTTON_NEGATIVE:
-                callback.onNegativeButtonClicked();
-                break;
-            default:
-                break;
-        }
+    public void setCallback(@Nullable Callback callback) {
+        this.callback = callback;
     }
 
     @Override
@@ -180,11 +186,11 @@ public class AlertDialogFragment extends DialogFragment implements DialogInterfa
         }
     }
 
-    //TODO: Generify so the actual AlertDialogFragment subclass can be passed as an argument
     public static abstract class Callback {
-        public void onPositiveButtonClicked() {}
-        void onNegativeButtonClicked() {}
+        // Return true to close the dialog, or false ot keep it open
+        public boolean onPositiveButtonClicked() { return true; }
+        public void onNegativeButtonClicked() { }
         public void onDismiss() {}
-        void onCancel() {}
+        public void onCancel() {}
     }
 }

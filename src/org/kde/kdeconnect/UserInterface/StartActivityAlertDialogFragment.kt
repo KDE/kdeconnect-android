@@ -34,7 +34,7 @@ class StartActivityAlertDialogFragment : AlertDialogFragment() {
         }
 
         setCallback(object : Callback() {
-            override fun onPositiveButtonClicked() {
+            override fun onPositiveButtonClicked(): Boolean {
                 val intentUrl = intentUrl
                 val intent = if (!intentUrl.isNullOrEmpty()) {
                     Intent(intentAction, intentUrl.toUri())
@@ -47,6 +47,7 @@ class StartActivityAlertDialogFragment : AlertDialogFragment() {
                 } else {
                     requireActivity().startActivity(intent)
                 }
+                return true
             }
         })
     }
