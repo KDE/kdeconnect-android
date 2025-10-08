@@ -93,6 +93,9 @@ class ConnectivityListener(context: Context) {
                     val listener = createListenerForSubscription(subID)
                     connectivityListeners[subID] = listener
                     subTm.listen(listener, PhoneStateListener.LISTEN_SIGNAL_STRENGTHS or PhoneStateListener.LISTEN_DATA_CONNECTION_STATE)
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                        statesChanged()
+                    }
                 }
             }
         }
