@@ -250,6 +250,9 @@ public class CustomDevicesActivity extends BaseActivity<ActivityCustomDevicesBin
                         showEmptyListMessageIfRequired();
                     }
                     else {
+                        if (editingDeviceAtPosition >= 0 && customDeviceList.get(editingDeviceAtPosition).toString().equals(host.toString())) {
+                            return true; // Allow saving without changes when editing an existing entry
+                        }
                         Context context = addDeviceDialog.getContext();
                         if (context != null) {
                             Toast.makeText(addDeviceDialog.getContext(), R.string.device_host_duplicate, Toast.LENGTH_SHORT).show();
