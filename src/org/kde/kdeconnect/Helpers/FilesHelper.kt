@@ -13,6 +13,7 @@ import android.provider.MediaStore
 import android.provider.OpenableColumns
 import android.util.Log
 import android.webkit.MimeTypeMap
+import androidx.annotation.WorkerThread
 import org.apache.commons.io.FilenameUtils
 import org.kde.kdeconnect.NetworkPacket
 import java.io.File
@@ -61,7 +62,7 @@ object FilesHelper {
 
     private fun getOpenFileCount(): Int? = File("/proc/self/fd").listFiles()?.size
 
-    fun LogOpenFileCount() {
+    fun logOpenFileCount() {
         Log.e("KDE/FileCount", "" + getOpenFileCount())
     }
 
@@ -69,6 +70,7 @@ object FilesHelper {
      * Creates a network packet from the given URI
      */
     @JvmStatic
+    @WorkerThread
     fun uriToNetworkPacket(context: Context, uri: Uri, type: String?): NetworkPacket? {
         try {
             val contentResolver = context.contentResolver

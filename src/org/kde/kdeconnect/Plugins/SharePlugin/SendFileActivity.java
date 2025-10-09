@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.kde.kdeconnect.Helpers.ThreadHelper;
 import org.kde.kdeconnect.KdeConnect;
 import org.kde.kdeconnect_tp.R;
 
@@ -68,12 +69,14 @@ public class SendFileActivity extends AppCompatActivity {
                     if (uris.isEmpty()) {
                         Log.w("SendFileActivity", "No files to send?");
                     } else {
-                        SharePlugin plugin = KdeConnect.getInstance().getDevicePlugin(mDeviceId, SharePlugin.class);
-                        if (plugin == null) {
-                            finish();
-                            return;
-                        }
-                        plugin.sendUriList(uris);
+                        ThreadHelper.execute(() -> {
+                            SharePlugin plugin = KdeConnect.getInstance().getDevicePlugin(mDeviceId, SharePlugin.class);
+                            if (plugin == null) {
+                                finish();
+                                return;
+                            }
+                            plugin.sendUriList(uris);
+                        });
                     }
                 }
                 finish();
