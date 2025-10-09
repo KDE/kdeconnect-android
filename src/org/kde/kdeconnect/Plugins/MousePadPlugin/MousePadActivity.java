@@ -259,7 +259,7 @@ public class MousePadActivity
                 return true;
             }
             if (plugin.isKeyboardEnabled()) {
-                showKeyboard();
+                toggleKeyboard();
             } else {
                 Toast toast = Toast.makeText(this, R.string.mousepad_keyboard_input_not_supported, Toast.LENGTH_SHORT);
                 toast.show();
@@ -523,11 +523,17 @@ public class MousePadActivity
         plugin.sendScroll(0, y);
     }
 
-    private void showKeyboard() {
+    private void toggleKeyboard() {
         InputMethodManager imm = ContextCompat.getSystemService(this, InputMethodManager.class);
         keyListenerView.requestFocus();
         imm.toggleSoftInputFromWindow(keyListenerView.getWindowToken(), 0, 0);
     }
+
+    private void hideKeyboard() {
+        InputMethodManager imm = ContextCompat.getSystemService(this, InputMethodManager.class);
+        imm.hideSoftInputFromWindow(keyListenerView.getWindowToken(), 0);
+    }
+
 
     private void showCompose() {
         Intent intent = new Intent(this, ComposeSendActivity.class);
@@ -607,6 +613,7 @@ public class MousePadActivity
 
     @Override
     public boolean onSupportNavigateUp() {
+        hideKeyboard();
         super.onBackPressed();
         return true;
     }
