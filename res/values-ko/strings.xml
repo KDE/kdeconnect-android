@@ -11,11 +11,14 @@
   <string name="pref_plugin_battery_desc">주기적으로 배터리 상태 보고</string>
   <string name="pref_plugin_connectivity_report">연결 상태 보고</string>
   <string name="pref_plugin_connectivity_report_desc">네트워크 신호 세기 및 상태 보고</string>
+  <string name="pref_plugin_sftp">파일 시스템 접근</string>
   <string name="pref_plugin_sftp_desc">원격으로 이 장치의 파일 시스템 보기</string>
   <string name="pref_plugin_clipboard">클립보드 동기화</string>
   <string name="pref_plugin_clipboard_desc">클립보드 내용 동기화</string>
   <string name="pref_plugin_clipboard_sent">클립보드 보냄</string>
   <string name="pref_plugin_mousepad">원격 입력</string>
+  <string name="pref_plugin_mousepad_desc_nontv">내 휴대폰이나 태블릿을 터치패드와 키보드로 사용하기</string>
+  <string name="pref_plugin_mousepad_desc_tv">내 휴대폰이나 태블릿을 TV 리모콘으로 사용하기</string>
   <string name="pref_plugin_presenter">프레젠테이션 리모콘</string>
   <string name="pref_plugin_presenter_desc">내 장치로 프레젠테이션 슬라이드 전환하기</string>
   <string name="pref_plugin_remotekeyboard">원격 키 입력 받기</string>
@@ -154,6 +157,7 @@
   <string name="right_click">오른쪽 단추 클릭 신호 보내기</string>
   <string name="middle_click">가운데 단추 클릭 신호 보내기</string>
   <string name="show_keyboard">키보드 표시</string>
+  <string name="show_mouse_and_keyboard">마우스와 키보드 표시</string>
   <string name="device_not_paired">장치가 페어링되지 않음</string>
   <string name="pairing_duplicate_names">경고: 이름이 같은 장치가 여러 대 있습니다.</string>
   <string name="request_pairing">페어링 요청</string>
@@ -223,6 +227,7 @@
   <string name="sftp_no_storage_locations_configured">저장소 위치가 설정되지 않았음</string>
   <string name="sftp_saf_permission_explanation">원격으로 파일에 접근하려면 저장소 위치를 설정해야 함</string>
   <string name="sftp_manage_storage_permission_explanation">이 장치에 있는 파일에 원격 접근을 허용하려면 KDE Connect에서 저장소를 관리할 수 있도록 허용해야 합니다.</string>
+  <string name="sftp_missing_permission_error">권한 없음: 파일 시스템 접근</string>
   <string name="no_players_connected">재생기를 찾을 수 없음</string>
   <string name="send_files">파일 보내기</string>
   <string name="block_notification_contents">알림 내용 숨기기</string>
