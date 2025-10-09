@@ -327,7 +327,8 @@ dependencies {
 
     // Testing
     testImplementation(libs.junit)
-    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockk)
+    testImplementation(libs.slf4j.simple) // do not try to use the Android logger backend in tests
     testImplementation(libs.jsonassert)
 
     // For device controls

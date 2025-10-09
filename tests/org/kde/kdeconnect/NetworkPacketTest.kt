@@ -5,13 +5,13 @@
 */
 package org.kde.kdeconnect
 
+import io.mockk.MockKAnnotations
+import io.mockk.mockk
 import org.json.JSONException
 import org.junit.Assert
 import org.junit.Test
 import org.kde.kdeconnect.DeviceInfo.Companion.fromIdentityPacketAndCert
 import org.kde.kdeconnect.NetworkPacket.Companion.unserialize
-import org.mockito.Mockito
-import org.mockito.internal.util.collections.Sets
 import java.security.cert.Certificate
 
 class NetworkPacketTest {
@@ -46,10 +46,8 @@ class NetworkPacketTest {
 
     @Test
     fun testIdentity() {
-        val cert = Mockito.mock(Certificate::class.java)
-
-        val deviceInfo =
-            DeviceInfo("myid", cert, "myname", DeviceType.TV, 12, Sets.newSet("ASDFG"), Sets.newSet("QWERTY"))
+        val cert = mockk<Certificate>()
+        val deviceInfo = DeviceInfo("myid", cert, "myname", DeviceType.TV, 12, setOf("ASDFG"), setOf("QWERTY"))
 
         val np = deviceInfo.toIdentityPacket()
 

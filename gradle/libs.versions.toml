@@ -28,12 +28,13 @@ composeMaterialIcons = "1.7.8"
 composeMaterial3 = "1.4.0"
 media = "1.7.1"
 minaCore = "2.2.4"
-mockitoCore = "5.20.0"
+mockk = "1.14.6"
 preferenceKtx = "1.2.1"
 reactiveStreams = "1.0.4"
 recyclerview = "1.4.0"
 rxjava = "2.2.21"
-sl4j = "2.0.13"
+slf4j-handroid = "2.0.13"
+slf4j-simple = "2.0.17"
 sshdCore = "2.16.0"
 swiperefreshlayout = "1.1.0"
 uiToolingPreview = "1.9.2"
@@ -80,11 +81,12 @@ apache-sshd-core = { module = "org.apache.sshd:sshd-core", version.ref = "sshdCo
 apache-sshd-sftp = { module = "org.apache.sshd:sshd-sftp", version.ref = "sshdCore" }
 apache-sshd-scp = { module = "org.apache.sshd:sshd-scp", version.ref = "sshdCore" }
 apache-sshd-mina = { module = "org.apache.sshd:sshd-mina", version.ref = "sshdCore" }
-mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 reactive-streams = { module = "org.reactivestreams:reactive-streams", version.ref = "reactiveStreams" }
 rxjava = { module = "io.reactivex.rxjava2:rxjava", version.ref = "rxjava" }
 univocity-parsers = { module = "com.univocity:univocity-parsers", version.ref = "univocityParsers" }
-slf4j-handroid = { group = "com.gitlab.mvysny.slf4j", name = "slf4j-handroid", version.ref = "sl4j" }
+slf4j-handroid = { module = "com.gitlab.mvysny.slf4j:slf4j-handroid", version.ref = "slf4j-handroid" }
+slf4j-simple = { module = "org.slf4j:slf4j-simple", version.ref = "slf4j-simple" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }

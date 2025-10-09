@@ -1,12 +1,11 @@
 package org.kde.kdeconnect.Helpers
 
 import android.net.Uri
+import io.mockk.every
+import io.mockk.mockk
 import org.junit.Assert
 import org.junit.Test
-import org.mockito.Mockito.mock
-import org.mockito.Mockito.`when`
 import java.net.URI
-import java.util.ArrayList
 
 class StorageHelperTest {
     @Test
@@ -19,11 +18,11 @@ class StorageHelperTest {
             "content://com.android.externalstorage.documents/tree/primary:DCIM" to "DCIM",
             "content://com.android.externalstorage.documents/tree/primary:Download/bla" to "Download/bla",
         ).mapKeys { entry ->
-            val mockUri = mock(Uri::class.java)
+            val mockUri = mockk<Uri>()
             // e.g. "content://com.android.providers.downloads.documents/tree/downloads" -> ["tree", "downloads"]
             val pathSegments = URI.create(entry.key).path.split("/").drop(1)
             val pathSegmentsJavaList: java.util.ArrayList<String> = ArrayList(pathSegments)
-            `when`(mockUri.pathSegments).thenReturn(pathSegmentsJavaList)
+            every { mockUri.pathSegments } returns pathSegmentsJavaList
             return@mapKeys mockUri
         }
 
@@ -35,9 +34,9 @@ class StorageHelperTest {
 
     @Test
     fun testMissingTree() {
-        val mockUri = mock(Uri::class.java)
-        val pathSegmentsJavaList: java.util.ArrayList<String> = ArrayList(listOf("branch", "downloads"))
-        `when`(mockUri.pathSegments).thenReturn(pathSegmentsJavaList)
+        val mockUri = mockk<Uri>()
+        val pathSegmentsJavaList = ArrayList(listOf("branch", "downloads"))
+        every { mockUri.pathSegments } returns pathSegmentsJavaList
         Assert.assertThrows(IllegalArgumentException::class.java) {
             StorageHelper.getDisplayName(mockUri)
         }

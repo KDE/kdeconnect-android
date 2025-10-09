@@ -6,54 +6,54 @@
 package org.kde.kdeconnect.Helpers
 
 import android.content.Context
+import io.mockk.every
+import io.mockk.mockk
+import io.mockk.mockkStatic
+import io.mockk.unmockkAll
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper
 import org.kde.kdeconnect.MockSharedPreference
-import org.mockito.ArgumentMatchers
-import org.mockito.MockedStatic
-import org.mockito.Mockito
-import org.mockito.invocation.InvocationOnMock
 import java.security.cert.X509Certificate
 import java.util.Base64
 
 class SSLHelperTest {
-    private lateinit var context: Context
+    private val context: Context = mockk()
     private lateinit var sharedPreferences: MockSharedPreference
-    private val certificateBase64 = "MIIBkzCCATmgAwIBAgIBATAKBggqhkjOPQQDBDBTMS0wKwYDVQQDDCRlZTA2MWE3NV9lNDAzXzRlY2NfOTI2MV81ZmZlMjcyMmY2OTgxFDASBgNVBAsMC0tERSBDb25uZWN0MQwwCgYDVQQKDANLREUwHhcNMjMwOTE1MjIwMDAwWhcNMzQwOTE1MjIwMDAwWjBTMS0wKwYDVQQDDCRlZTA2MWE3NV9lNDAzXzRlY2NfOTI2MV81ZmZlMjcyMmY2OTgxFDASBgNVBAsMC0tERSBDb25uZWN0MQwwCgYDVQQKDANLREUwWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAASqOIKTm5j6x8DKgYSkItLmjCgIXP0gkOW6bmVvloDGsYnvqYLMFGe7YW8g8lT/qPBTEfDOM4UpQ8X6jidE+XrnMAoGCCqGSM49BAMEA0gAMEUCIEpk6VNpbt3tfbWDf0TmoJftRq3wAs3Dke7d5vMZlivyAiEA/ZXtSRqPjs/2RN9SynKhSUA9/z0PNq6LYoAaC6TdomM="
+    private val certificateBase64 = """
+        MIIBkzCCATmgAwIBAgIBATAKBggqhkjOPQQDBDBTMS0wKwYDVQQDDCRlZTA2MWE3NV9lNDAzXzRl
+        Y2NfOTI2MV81ZmZlMjcyMmY2OTgxFDASBgNVBAsMC0tERSBDb25uZWN0MQwwCgYDVQQKDANLREUw
+        HhcNMjMwOTE1MjIwMDAwWhcNMzQwOTE1MjIwMDAwWjBTMS0wKwYDVQQDDCRlZTA2MWE3NV9lNDAz
+        XzRlY2NfOTI2MV81ZmZlMjcyMmY2OTgxFDASBgNVBAsMC0tERSBDb25uZWN0MQwwCgYDVQQKDANL
+        REUwWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAASqOIKTm5j6x8DKgYSkItLmjCgIXP0gkOW6bmVv
+        loDGsYnvqYLMFGe7YW8g8lT/qPBTEfDOM4UpQ8X6jidE+XrnMAoGCCqGSM49BAMEA0gAMEUCIEpk
+        6VNpbt3tfbWDf0TmoJftRq3wAs3Dke7d5vMZlivyAiEA/ZXtSRqPjs/2RN9SynKhSUA9/z0PNq6L
+        YoAaC6TdomM=
+        """.trimIndent().replace("\n", "\r\n") // the mime encoder adds \r\n line endings
     private val certificateHash = "fc:1f:b3:d3:d3:3b:23:42:e4:5c:74:b1:a6:13:dc:df:e5:e1:f0:29:d6:68:24:9f:50:49:52:a9:a8:04:1e:31:"
     private val deviceId = "testDevice"
     private val certificateKey = "certificate"
-    private lateinit var mockBase64: MockedStatic<android.util.Base64>
 
     @Before
     fun setup() {
-        context = Mockito.mock(Context::class.java)
         sharedPreferences = MockSharedPreference()
-        Mockito.`when`(context.getSharedPreferences(deviceId, Context.MODE_PRIVATE)).thenReturn(sharedPreferences)
+        every { context.getSharedPreferences(deviceId, Context.MODE_PRIVATE) } returns sharedPreferences
 
-        val mockBase64 = Mockito.mockStatic(android.util.Base64::class.java)
-
-        mockBase64.`when`<Any> {
-            android.util.Base64.encodeToString(ArgumentMatchers.any(ByteArray::class.java), ArgumentMatchers.anyInt())
-        }.thenAnswer { invocation: InvocationOnMock ->
-            Base64.getMimeEncoder().encodeToString(invocation.arguments[0] as ByteArray)
+        // implement android.util.Base64 using java.util.Base64
+        mockkStatic(android.util.Base64::class)
+        every { android.util.Base64.encodeToString(any<ByteArray>(), any()) } answers {
+            Base64.getMimeEncoder().encodeToString(firstArg())
         }
-
-        mockBase64.`when`<Any> {
-            android.util.Base64.decode(ArgumentMatchers.anyString(), ArgumentMatchers.anyInt())
-        }.thenAnswer { invocation: InvocationOnMock ->
-            Base64.getMimeDecoder().decode(invocation.arguments[0] as String)
+        every { android.util.Base64.decode(any<String>(), any()) } answers {
+            Base64.getMimeDecoder().decode(firstArg<String>())
         }
-
-        this.mockBase64 = mockBase64
     }
 
     @After
     fun tearDown() {
-        mockBase64.close()
+        unmockkAll()
     }
 
     @Test
@@ -81,7 +81,7 @@ class SSLHelperTest {
     fun getExpectedCertificate() {
         sharedPreferences.edit().putString(certificateKey, certificateBase64).apply()
         val cert = SslHelper.getDeviceCertificate(context, deviceId)
-        Assert.assertEquals(certificateBase64, Base64.getEncoder().encodeToString(cert.encoded))
+        Assert.assertEquals(certificateBase64, Base64.getMimeEncoder().encodeToString(cert.encoded))
     }
 
     @Test
@@ -94,7 +94,7 @@ class SSLHelperTest {
 
     @Test
     fun parseCertificate() {
-        val bytes = Base64.getDecoder().decode(certificateBase64)
+        val bytes = Base64.getMimeDecoder().decode(certificateBase64)
         val cert = SslHelper.parseCertificate(bytes)
         val hash = SslHelper.getCertificateHash(cert)
         Assert.assertEquals(certificateHash, hash)

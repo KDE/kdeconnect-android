@@ -10,6 +10,11 @@ import android.content.Context
 import android.preference.PreferenceManager
 import android.util.Base64
 import androidx.core.content.ContextCompat
+import io.mockk.every
+import io.mockk.mockk
+import io.mockk.mockkStatic
+import io.mockk.unmockkAll
+import io.mockk.verify
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before
@@ -25,23 +30,14 @@ import org.kde.kdeconnect.Helpers.DeviceHelper
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper
 import org.kde.kdeconnect.PairingHandler.PairingCallback
-import org.mockito.ArgumentMatchers
-import org.mockito.MockedStatic
-import org.mockito.Mockito
-import org.mockito.invocation.InvocationOnMock
 import java.security.cert.CertificateException
 
 class DeviceTest {
-    private lateinit var context: Context
-    private lateinit var mockBase64: MockedStatic<Base64>
-    private lateinit var preferenceManager: MockedStatic<PreferenceManager>
-    private lateinit var contextCompat: MockedStatic<ContextCompat>
+    private val context: Context = mockk()
 
     // Creating a paired device before each test case
     @Before
     fun setUp() {
-        // Save new test device in settings
-
         val deviceId = "testDevice"
         val name = "Test Device"
         val encodedCertificate = """
@@ -63,19 +59,13 @@ class DeviceTest {
             7n+KOQ==
             """.trimIndent()
 
-        val context = Mockito.mock(Context::class.java)
-        val mockBase64 = Mockito.mockStatic(Base64::class.java)
-
-        mockBase64.`when`<Any> {
-            Base64.encodeToString(ArgumentMatchers.any(ByteArray::class.java), ArgumentMatchers.anyInt())
-        }.thenAnswer { invocation: InvocationOnMock ->
-            java.util.Base64.getMimeEncoder().encodeToString(invocation.arguments[0] as ByteArray)
+        // implement android.util.Base64 using java.util.Base64
+        mockkStatic(android.util.Base64::class)
+        every { android.util.Base64.encodeToString(any<ByteArray>(), any()) } answers {
+            java.util.Base64.getMimeEncoder().encodeToString(firstArg())
         }
-
-        mockBase64.`when`<Any> {
-            Base64.decode(ArgumentMatchers.anyString(), ArgumentMatchers.anyInt())
-        }.thenAnswer { invocation: InvocationOnMock ->
-            java.util.Base64.getMimeDecoder().decode(invocation.arguments[0] as String)
+        every { android.util.Base64.decode(any<String>(), any()) } answers {
+            java.util.Base64.getMimeDecoder().decode(firstArg<String>())
         }
 
         // Store device information needed to create a Device object in a future
@@ -85,42 +75,32 @@ class DeviceTest {
         editor.putString("deviceType", DeviceType.PHONE.toString())
         editor.putString("certificate", encodedCertificate)
         editor.apply()
-        Mockito.`when`(context.getSharedPreferences(ArgumentMatchers.eq(deviceId), ArgumentMatchers.eq(Context.MODE_PRIVATE))).thenReturn(deviceSettings)
+        every { context.getSharedPreferences(deviceId, Context.MODE_PRIVATE) } returns deviceSettings
 
         // Store the device as trusted
         val trustedSettings = MockSharedPreference()
         trustedSettings.edit().putBoolean(deviceId, true).apply()
-        Mockito.`when`(context.getSharedPreferences(ArgumentMatchers.eq("trusted_devices"), ArgumentMatchers.eq(Context.MODE_PRIVATE))).thenReturn(trustedSettings)
+        every { context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE) } returns trustedSettings
 
         // Store an untrusted device
         val untrustedSettings = MockSharedPreference()
-        Mockito.`when`(context.getSharedPreferences(ArgumentMatchers.eq("unpairedTestDevice"), ArgumentMatchers.eq(Context.MODE_PRIVATE))).thenReturn(untrustedSettings)
+        every { context.getSharedPreferences("unpairedTestDevice", Context.MODE_PRIVATE) } returns untrustedSettings
 
-        // Default shared prefs, including our own private key
-        val preferenceManager = Mockito.mockStatic(PreferenceManager::class.java)
+        mockkStatic(PreferenceManager::class)
         val defaultSettings = MockSharedPreference()
-        preferenceManager.`when`<Any> {
-            PreferenceManager.getDefaultSharedPreferences(ArgumentMatchers.any(Context::class.java))
-        }.thenReturn(defaultSettings)
+        every { PreferenceManager.getDefaultSharedPreferences(any()) } returns defaultSettings
 
         RsaHelper.initialiseRsaKeys(context)
 
-        val contextCompat = Mockito.mockStatic(ContextCompat::class.java)
-        contextCompat.`when`<Any> {
-            ContextCompat.getSystemService(context!!, NotificationManager::class.java)
-        }.thenReturn(Mockito.mock(NotificationManager::class.java))
+        mockkStatic(ContextCompat::class)
+        every { ContextCompat.getSystemService(context, NotificationManager::class.java) } returns mockk(relaxed = true)
 
-        this.context = context
-        this.mockBase64 = mockBase64
-        this.preferenceManager = preferenceManager
-        this.contextCompat = contextCompat
+        mockkStatic(android.util.Log::class)
     }
 
     @After
     fun tearDown() {
-        mockBase64.close()
-        preferenceManager.close()
-        contextCompat.close()
+        unmockkAll()
     }
 
     @Test
@@ -210,8 +190,7 @@ class DeviceTest {
         fakeNetworkPacket["deviceName"] = "Unpaired Test Device"
         fakeNetworkPacket["protocolVersion"] = DeviceHelper.PROTOCOL_VERSION
         fakeNetworkPacket["deviceType"] = DeviceType.PHONE.toString()
-        val certificateString =
-            """
+        val certificateString = """
             MIIDVzCCAj+gAwIBAgIBCjANBgkqhkiG9w0BAQUFADBVMS8wLQYDVQQDDCZfZGExNzlhOTFfZjA2
             NF80NzhlX2JlOGNfMTkzNWQ3NTQ0ZDU0XzEMMAoGA1UECgwDS0RFMRQwEgYDVQQLDAtLZGUgY29u
             bmVjdDAeFw0xNTA2MDMxMzE0MzhaFw0yNTA2MDMxMzE0MzhaMFUxLzAtBgNVBAMMJl9kYTE3OWE5
@@ -233,12 +212,13 @@ class DeviceTest {
         val certificate = SslHelper.parseCertificate(certificateBytes)
         val deviceInfo = fromIdentityPacketAndCert(fakeNetworkPacket, certificate)
 
-        val linkProvider = Mockito.mock(LanLinkProvider::class.java)
-        Mockito.`when`(linkProvider.name).thenReturn("LanLinkProvider")
-        val link = Mockito.mock(LanLink::class.java)
-        Mockito.`when`(link.linkProvider).thenReturn(linkProvider)
-        Mockito.`when`(link.deviceId).thenReturn(deviceId)
-        Mockito.`when`(link.deviceInfo).thenReturn(deviceInfo)
+        val linkProvider = mockk<LanLinkProvider>()
+        every { linkProvider.name } returns "LanLinkProvider"
+        val link = mockk<LanLink>()
+        every { link.linkProvider } returns linkProvider
+        every { link.deviceId } returns deviceId
+        every { link.deviceInfo } returns deviceInfo
+        every { link.addPacketReceiver(any()) } returns Unit
         val device = Device(context, link)
 
         Assert.assertNotNull(device)
@@ -261,7 +241,6 @@ class DeviceTest {
         )
         Assert.assertEquals(settings.getString("deviceType", "tablet"), "phone")
 
-        // Cleanup for unpaired test device
         preferences.edit().remove(device.deviceId).apply()
         settings.edit().clear().apply()
     }
@@ -269,7 +248,7 @@ class DeviceTest {
     @Test
     @Throws(CertificateException::class)
     fun testUnpair() {
-        val pairingCallback = Mockito.mock(PairingCallback::class.java)
+        val pairingCallback = mockk<PairingCallback>(relaxed = true)
         val device = Device(context, "testDevice")
         device.addPairingCallback(pairingCallback)
 
@@ -280,6 +259,6 @@ class DeviceTest {
         val preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE)
         Assert.assertFalse(preferences.getBoolean(device.deviceId, false))
 
-        Mockito.verify(pairingCallback, Mockito.times(1)).unpaired()
+        verify(exactly = 1) { pairingCallback.unpaired() }
     }
 }
