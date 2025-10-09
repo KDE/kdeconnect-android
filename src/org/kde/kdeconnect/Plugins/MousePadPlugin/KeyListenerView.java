@@ -83,9 +83,11 @@ public class KeyListenerView extends View {
     }
 
     public void sendChars(CharSequence chars) {
-        final NetworkPacket np = new NetworkPacket(MousePadPlugin.PACKET_TYPE_MOUSEPAD_REQUEST);
-        np.set("key", chars.toString());
-        sendKeyPressPacket(np);
+        MousePadPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, MousePadPlugin.class);
+        if (plugin == null) {
+            return;
+        }
+        plugin.sendText(chars.toString());
     }
 
     private void sendKeyPressPacket(final NetworkPacket np) {
@@ -93,7 +95,7 @@ public class KeyListenerView extends View {
         if (plugin == null) {
             return;
         }
-        plugin.sendKeyboardPacket(np);
+        plugin.sendPacket(np);
     }
 
     @Override

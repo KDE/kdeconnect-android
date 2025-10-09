@@ -25,7 +25,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.preference.PreferenceManager
 import org.kde.kdeconnect.KdeConnect
-import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.UserInterface.compose.KdeTextButton
 import org.kde.kdeconnect.UserInterface.compose.KdeTextField
 import org.kde.kdeconnect.UserInterface.compose.KdeTheme
@@ -59,28 +58,13 @@ class ComposeSendActivity : AppCompatActivity() {
         }
     }
 
-    private fun sendChars(chars: String) {
-        val np = NetworkPacket(MousePadPlugin.PACKET_TYPE_MOUSEPAD_REQUEST)
-        np["key"] = chars
-        sendKeyPressPacket(np)
-    }
-
-    private fun sendKeyPressPacket(np: NetworkPacket) {
-        try {
-            Log.d("packed", np.serialize())
-        } catch (e: Exception) {
-            Log.e("KDE/ComposeSend", "Exception", e)
-        }
+    private fun sendComposed() {
         val plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, MousePadPlugin::class.java)
         if (plugin == null) {
             finish()
             return
         }
-        plugin.sendKeyboardPacket(np)
-    }
-
-    private fun sendComposed() {
-        sendChars(userInput.value)
+        plugin.sendText(userInput.value)
         clearComposeInput()
     }
 

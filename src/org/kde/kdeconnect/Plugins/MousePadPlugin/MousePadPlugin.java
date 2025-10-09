@@ -27,7 +27,6 @@ import org.kde.kdeconnect_tp.R;
 @PluginFactory.LoadablePlugin
 public class MousePadPlugin extends Plugin {
 
-    //public final static String PACKET_TYPE_MOUSEPAD = "kdeconnect.mousepad";
     public final static String PACKET_TYPE_MOUSEPAD_REQUEST = "kdeconnect.mousepad.request";
     private final static String PACKET_TYPE_MOUSEPAD_KEYBOARDSTATE = "kdeconnect.mousepad.keyboardstate";
 
@@ -77,13 +76,13 @@ public class MousePadPlugin extends Plugin {
 
     @Override
     public void startMainActivity(Activity parentActivity) {
-        if (getDevice().getDeviceType() == DeviceType.TV) {
+        if (device.getDeviceType() == DeviceType.TV) {
             Intent intent = new Intent(parentActivity, BigscreenActivity.class);
-            intent.putExtra("deviceId", getDevice().getDeviceId());
+            intent.putExtra("deviceId", device.getDeviceId());
             parentActivity.startActivity(intent);
         } else {
             Intent intent = new Intent(parentActivity, MousePadActivity.class);
-            intent.putExtra("deviceId", getDevice().getDeviceId());
+            intent.putExtra("deviceId", device.getDeviceId());
             parentActivity.startActivity(intent);
         }
     }
@@ -107,7 +106,7 @@ public class MousePadPlugin extends Plugin {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST);
         np.set("dx", dx);
         np.set("dy", dy);
-        getDevice().sendPacket(np);
+        sendPacket(np);
     }
 
     public Boolean hasMicPermission() {
@@ -117,37 +116,37 @@ public class MousePadPlugin extends Plugin {
     public void sendLeftClick() {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST);
         np.set("singleclick", true);
-        getDevice().sendPacket(np);
+        sendPacket(np);
     }
 
     public void sendDoubleClick() {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST);
         np.set("doubleclick", true);
-        getDevice().sendPacket(np);
+        sendPacket(np);
     }
 
     public void sendMiddleClick() {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST);
         np.set("middleclick", true);
-        getDevice().sendPacket(np);
+        sendPacket(np);
     }
 
     public void sendRightClick() {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST);
         np.set("rightclick", true);
-        getDevice().sendPacket(np);
+        sendPacket(np);
     }
 
     public void sendSingleHold() {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST);
         np.set("singlehold", true);
-        getDevice().sendPacket(np);
+        sendPacket(np);
     }
 
     public void sendSingleRelease() {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST);
         np.set("singlerelease", true);
-        device.sendPacket(np);
+        sendPacket(np);
     }
 
     public void sendScroll(float dx, float dy) {
@@ -155,37 +154,37 @@ public class MousePadPlugin extends Plugin {
         np.set("scroll", true);
         np.set("dx", dx);
         np.set("dy", dy);
-        getDevice().sendPacket(np);
+        sendPacket(np);
     }
 
     public void sendLeft() {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST);
         np.set("specialKey", SpecialKeysMap.get(KeyEvent.KEYCODE_DPAD_LEFT));
-        getDevice().sendPacket(np);
+        sendPacket(np);
     }
 
     public void sendRight() {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST);
         np.set("specialKey", SpecialKeysMap.get(KeyEvent.KEYCODE_DPAD_RIGHT));
-        getDevice().sendPacket(np);
+        sendPacket(np);
     }
 
     public void sendUp() {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST);
         np.set("specialKey", SpecialKeysMap.get(KeyEvent.KEYCODE_DPAD_UP));
-        getDevice().sendPacket(np);
+        sendPacket(np);
     }
 
     public void sendDown() {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST);
         np.set("specialKey", SpecialKeysMap.get(KeyEvent.KEYCODE_DPAD_DOWN));
-        getDevice().sendPacket(np);
+        sendPacket(np);
     }
 
     public void sendSelect() {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST);
         np.set("specialKey", SpecialKeysMap.get(KeyEvent.KEYCODE_ENTER));
-        getDevice().sendPacket(np);
+        sendPacket(np);
     }
 
     public void sendHome() {
@@ -204,11 +203,11 @@ public class MousePadPlugin extends Plugin {
     public void sendText(String content) {
         NetworkPacket np = new NetworkPacket(MousePadPlugin.PACKET_TYPE_MOUSEPAD_REQUEST);
         np.set("key", content);
-        getDevice().sendPacket(np);
+        sendPacket(np);
     }
 
-    public void sendKeyboardPacket(NetworkPacket np) {
-        getDevice().sendPacket(np);
+    void sendPacket(NetworkPacket np) {
+        device.sendPacket(np);
     }
 
     boolean isKeyboardEnabled() {

@@ -14,13 +14,11 @@ import android.preference.PreferenceManager;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.SafeTextChecker;
 import org.kde.kdeconnect.Helpers.WindowHelper;
 import org.kde.kdeconnect.KdeConnect;
-import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.UserInterface.List.DeviceItem;
 import org.kde.kdeconnect.UserInterface.List.ListAdapter;
 import org.kde.kdeconnect.UserInterface.List.SectionItem;
@@ -137,14 +135,12 @@ public class SendKeystrokesToHostActivity extends BaseActivity<ActivitySendkeyst
     private void sendKeys(Device deviceId) {
         String toSend;
         if (getBinding().textToSend.getText() != null && (toSend = getBinding().textToSend.getText().toString().trim()).length() > 0) {
-            final NetworkPacket np = new NetworkPacket(MousePadPlugin.PACKET_TYPE_MOUSEPAD_REQUEST);
-            np.set("key", toSend);
             MousePadPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId.getDeviceId(), MousePadPlugin.class);
             if (plugin == null) {
                 finish();
                 return;
             }
-            plugin.sendKeyboardPacket(np);
+            plugin.sendText(toSend);
             Toast.makeText(
                     getApplicationContext(),
                     getString(R.string.sendkeystrokes_sent_text, toSend, deviceId.getName()),
