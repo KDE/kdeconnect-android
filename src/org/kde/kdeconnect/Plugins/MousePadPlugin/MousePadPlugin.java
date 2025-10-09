@@ -63,7 +63,11 @@ public class MousePadPlugin extends Plugin {
 
     @Override
     public PluginSettingsFragment getSettingsFragment(Activity activity) {
-        return PluginSettingsFragment.newInstance(getPluginKey(), R.xml.mousepadplugin_preferences);
+        if (device.getDeviceType() == DeviceType.TV) {
+            return PluginSettingsFragment.newInstance(getPluginKey(), R.xml.mousepadplugin_preferences, R.xml.mousepadplugin_preferences_tv);
+        } else {
+            return PluginSettingsFragment.newInstance(getPluginKey(), R.xml.mousepadplugin_preferences);
+        }
     }
 
     @Override
@@ -191,6 +195,11 @@ public class MousePadPlugin extends Plugin {
         getDevice().sendPacket(np);
     }
 
+    public void sendBack() {
+        NetworkPacket np = new NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST);
+        np.set("specialKey", SpecialKeysMap.get(KeyEvent.KEYCODE_ESCAPE));
+        getDevice().sendPacket(np);
+    }
 
     public void sendText(String content) {
         NetworkPacket np = new NetworkPacket(MousePadPlugin.PACKET_TYPE_MOUSEPAD_REQUEST);

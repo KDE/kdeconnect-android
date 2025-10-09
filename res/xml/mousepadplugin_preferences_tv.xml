@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+SPDX-FileCopyrightText: 2014 Rahil Momin <rahil.rules.you@gmail.com>
+
+SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
+-->
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:keep="@xml/mousepadplugin_preferences_tv">
+
+    <PreferenceCategory app:title="@string/pref_plugin_bigscreen">
+
+        <SwitchPreference
+            android:id="@+id/bigscreen_show_back"
+            android:defaultValue="true"
+            android:key="@string/pref_bigscreen_show_back"
+            android:title="@string/bigscreen_show_back_title" />
+
+        <SwitchPreference
+            android:id="@+id/bigscreen_show_home"
+            android:defaultValue="false"
+            android:key="@string/pref_bigscreen_show_home"
+            android:title="@string/bigscreen_show_home_title" />
+    </PreferenceCategory>
+
+
+</PreferenceScreen>

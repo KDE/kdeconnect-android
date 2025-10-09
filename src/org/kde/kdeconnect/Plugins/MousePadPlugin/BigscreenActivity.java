@@ -10,6 +10,7 @@ package org.kde.kdeconnect.Plugins.MousePadPlugin;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
@@ -19,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.preference.PreferenceManager;
 
 import org.kde.kdeconnect.KdeConnect;
 import org.kde.kdeconnect.UserInterface.MainActivity;
@@ -72,6 +74,7 @@ public class BigscreenActivity extends BaseActivity<ActivityBigscreenBinding> {
         getBinding().downButton.setOnClickListener(v -> plugin.sendDown());
         getBinding().selectButton.setOnClickListener(v -> plugin.sendSelect());
         getBinding().homeButton.setOnClickListener(v -> plugin.sendHome());
+        getBinding().backButton.setOnClickListener(v -> plugin.sendBack());
         getBinding().micButton.setOnClickListener(v -> {
             if (plugin.hasMicPermission()) {
                 activateSTT();
@@ -84,6 +87,18 @@ public class BigscreenActivity extends BaseActivity<ActivityBigscreenBinding> {
                         .create().show(getSupportFragmentManager(), null);
             }
         });
+
+        SharedPreferences prefs =  PreferenceManager.getDefaultSharedPreferences(this);
+        if (prefs.getBoolean(getString(R.string.pref_bigscreen_show_back), true)) {
+            getBinding().backButton.setVisibility(View.VISIBLE);
+        } else {
+            getBinding().backButton.setVisibility(View.INVISIBLE);
+        }
+        if (prefs.getBoolean(getString(R.string.pref_bigscreen_show_home), false)) {
+            getBinding().homeButton.setVisibility(View.VISIBLE);
+        } else {
+            getBinding().homeButton.setVisibility(View.INVISIBLE);
+        }
     }
 
     public void activateSTT() {
