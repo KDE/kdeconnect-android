@@ -30,7 +30,6 @@ public class MousePadPlugin extends Plugin {
     //public final static String PACKET_TYPE_MOUSEPAD = "kdeconnect.mousepad";
     public final static String PACKET_TYPE_MOUSEPAD_REQUEST = "kdeconnect.mousepad.request";
     private final static String PACKET_TYPE_MOUSEPAD_KEYBOARDSTATE = "kdeconnect.mousepad.keyboardstate";
-    private final static String PACKET_TYPE_BIGSCREEN_STT = "kdeconnect.bigscreen.stt";
 
     private boolean keyboardEnabled = true;
 
@@ -192,10 +191,10 @@ public class MousePadPlugin extends Plugin {
         getDevice().sendPacket(np);
     }
 
-    public void sendSTT(String content) {
-        NetworkPacket np = new NetworkPacket(PACKET_TYPE_BIGSCREEN_STT);
-        np.set("type", "stt");
-        np.set("content", content);
+
+    public void sendText(String content) {
+        NetworkPacket np = new NetworkPacket(MousePadPlugin.PACKET_TYPE_MOUSEPAD_REQUEST);
+        np.set("key", content);
         getDevice().sendPacket(np);
     }
 

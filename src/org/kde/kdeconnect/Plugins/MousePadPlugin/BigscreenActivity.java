@@ -128,7 +128,7 @@ public class BigscreenActivity extends BaseActivity<ActivityBigscreenBinding> {
                         finish();
                         return;
                     }
-                    plugin.sendSTT(result.get(0));
+                    plugin.sendText(result.get(0));
                 }
             }
         }
