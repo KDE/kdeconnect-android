@@ -25,15 +25,14 @@ import java.util.UUID
 import kotlin.text.Charsets.UTF_8
 
 class BluetoothLink(
-    context: Context?,
-    connection: ConnectionMultiplexer,
+    context: Context,
+    private val connection: ConnectionMultiplexer,
     val input: InputStream,
     val output: OutputStream,
     val remoteAddress: BluetoothDevice,
     val theDeviceInfo: DeviceInfo,
     val linkProvider: BluetoothLinkProvider
-) : BaseLink(context!!, linkProvider) {
-    private val connection: ConnectionMultiplexer? = connection
+) : BaseLink(context, linkProvider) {
     private var continueAccepting = true
     private val receivingThread = Thread(object : Runnable {
         override fun run() {
@@ -99,13 +98,10 @@ class BluetoothLink(
     }
 
     override fun disconnect() {
-        if (connection == null) {
-            return
-        }
         continueAccepting = false
         try {
             connection.close()
-        } catch (ignored: IOException) {
+        } catch (_: IOException) {
         }
         linkProvider.disconnectedLink(this, remoteAddress)
     }
@@ -124,7 +120,7 @@ class BluetoothLink(
         return try {
             var transferUuid: UUID? = null
             if (np.hasPayload()) {
-                transferUuid = connection!!.newChannel()
+                transferUuid = connection.newChannel()
                 val payloadTransferInfo = JSONObject()
                 payloadTransferInfo.put("uuid", transferUuid.toString())
                 np.payloadTransferInfo = payloadTransferInfo
@@ -132,7 +128,7 @@ class BluetoothLink(
             sendMessage(np)
             if (transferUuid != null) {
                 try {
-                    connection!!.getChannelOutputStream(transferUuid).use { payloadStream ->
+                    connection.getChannelOutputStream(transferUuid).use { payloadStream ->
                         val BUFFER_LENGTH = 1024
                         val buffer = ByteArray(BUFFER_LENGTH)
                         var bytesRead: Int
