@@ -315,11 +315,13 @@ class ConnectionMultiplexer(socket: BluetoothSocket) : Closeable {
 
     @Throws(IOException::class)
     override fun close() {
-        socket!!.close()
-        for (channel in channels.values) {
-            channel.doClose()
+        lock.withLock {
+            socket.close()
+            for (channel in channels.values) {
+                channel.doClose()
+            }
+            channels.clear()
         }
-        channels.clear()
     }
 
     @Throws(IOException::class)
