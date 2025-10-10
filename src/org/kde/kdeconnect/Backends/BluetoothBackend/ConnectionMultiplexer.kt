@@ -80,21 +80,21 @@ class ConnectionMultiplexer(socket: BluetoothSocket) : Closeable {
 
     private class Channel(val multiplexer: ConnectionMultiplexer, val id: UUID) : Closeable {
         val readBuffer: ByteBuffer = ByteBuffer.allocate(BUFFER_SIZE)
-        val lock = ReentrantLock()
-        var lockCondition: Condition = lock.newCondition()
+        val channelLock = ReentrantLock()
+        var lockCondition: Condition = channelLock.newCondition()
 
         var open = true
         var requestedReadAmount = 0 //Number of times we requested some bytes from the channel
         var freeWriteAmount = 0 //Number of times we can safely send bytes over the channel
         fun available(): Int {
-            lock.withLock { return readBuffer.position() }
+            channelLock.withLock { return readBuffer.position() }
         }
 
         fun read(b: ByteArray, off: Int, len: Int): Int {
             if (len == 0) return 0
             while (true) {
                 var makeRequest: Boolean
-                lock.withLock {
+                channelLock.withLock {
                     if (readBuffer.position() >= len) {
                         readBuffer.flip()
                         readBuffer[b, off, len]
@@ -117,7 +117,7 @@ class ConnectionMultiplexer(socket: BluetoothSocket) : Closeable {
                 if (makeRequest) {
                     multiplexer.readRequest(id)
                 }
-                lock.withLock {
+                channelLock.withLock {
                     if (!open) return -1
                     if (readBuffer.position() <= 0) {
                         try {
@@ -132,7 +132,8 @@ class ConnectionMultiplexer(socket: BluetoothSocket) : Closeable {
         @Throws(IOException::class)
         override fun close() {
             flush()
-            lock.withLock {
+            channelLock.withLock {
+                if (!open) return
                 open = false
                 readBuffer.clear()
                 lockCondition.signalAll()
@@ -141,7 +142,7 @@ class ConnectionMultiplexer(socket: BluetoothSocket) : Closeable {
         }
 
         fun doClose() {
-            lock.withLock {
+            channelLock.withLock {
                 open = false
                 lockCondition.signalAll()
             }
@@ -152,13 +153,13 @@ class ConnectionMultiplexer(socket: BluetoothSocket) : Closeable {
             var offset = off
             var length = len
             while (length > 0) {
-                lock.withLock {
+                channelLock.withLock {
                     while (true) {
                         if (!open) throw IOException("Connection closed!")
                         if (freeWriteAmount == 0) {
                             try {
                                 lockCondition.await()
-                            } catch (ignored: Exception) {
+                            } catch (_: Exception) {
                             }
                         } else {
                             break
@@ -177,7 +178,7 @@ class ConnectionMultiplexer(socket: BluetoothSocket) : Closeable {
         }
     }
 
-    private var socket: BluetoothSocket?
+    private val socket: BluetoothSocket
     private val channels: MutableMap<UUID, Channel> = HashMap()
     private val lock = ReentrantLock()
     private var open = true
@@ -199,7 +200,7 @@ class ConnectionMultiplexer(socket: BluetoothSocket) : Closeable {
         message.position(19)
         message.putShort(1.toShort())
         message.putShort(1.toShort())
-        socket!!.outputStream.write(data)
+        socket.outputStream.write(data)
     }
 
     private fun handleException(@Suppress("UNUSED_PARAMETER") ignored: Exception) {
@@ -209,10 +210,10 @@ class ConnectionMultiplexer(socket: BluetoothSocket) : Closeable {
                 channel.doClose()
             }
             channels.clear()
-            if (socket != null && socket!!.isConnected) {
+            if (socket.isConnected) {
                 try {
-                    socket!!.close()
-                } catch (ignored: IOException) {
+                    socket.close()
+                } catch (_: IOException) {
                 }
             }
         }
@@ -230,7 +231,7 @@ class ConnectionMultiplexer(socket: BluetoothSocket) : Closeable {
                 message.putLong(id.mostSignificantBits)
                 message.putLong(id.leastSignificantBits)
                 try {
-                    socket!!.outputStream.write(data)
+                    socket.outputStream.write(data)
                 } catch (e: IOException) {
                     handleException(e)
                 }
@@ -242,7 +243,7 @@ class ConnectionMultiplexer(socket: BluetoothSocket) : Closeable {
         lock.withLock {
             val channel = channels[id] ?: return
             val data = ByteArray(21)
-            channel.lock.withLock {
+            channel.channelLock.withLock {
                 if (!channel.open) return
                 if (channel.readBuffer.position() + channel.requestedReadAmount >= BUFFER_SIZE) return
                 val amount = BUFFER_SIZE - channel.readBuffer.position() - channel.requestedReadAmount
@@ -254,7 +255,7 @@ class ConnectionMultiplexer(socket: BluetoothSocket) : Closeable {
                 message.putShort(amount.toShort())
                 channel.requestedReadAmount += amount
                 try {
-                    socket!!.outputStream.write(data)
+                    socket.outputStream.write(data)
                 } catch (e: IOException) {
                     handleException(e)
                 } catch (e: NullPointerException) {
@@ -271,7 +272,7 @@ class ConnectionMultiplexer(socket: BluetoothSocket) : Closeable {
             val channel = channels[id] ?: return 0
             val data = ByteArray(19 + BUFFER_SIZE)
             var length: Int
-            channel.lock.withLock {
+            channel.channelLock.withLock {
                 if (!channel.open) return 0
                 if (channel.freeWriteAmount == 0) return 0
                 length = channel.freeWriteAmount
@@ -296,7 +297,7 @@ class ConnectionMultiplexer(socket: BluetoothSocket) : Closeable {
                 channel.lockCondition.signalAll()
             }
             try {
-                socket!!.outputStream.write(data, 0, 19 + length)
+                socket.outputStream.write(data, 0, 19 + length)
             } catch (e: IOException) {
                 handleException(e)
             }
@@ -308,17 +309,13 @@ class ConnectionMultiplexer(socket: BluetoothSocket) : Closeable {
     private fun flush() {
         lock.withLock {
             if (!open) return
-            socket!!.outputStream.flush()
+            socket.outputStream.flush()
         }
     }
 
     @Throws(IOException::class)
     override fun close() {
-        if (socket == null) {
-            return
-        }
         socket!!.close()
-        socket = null
         for (channel in channels.values) {
             channel.doClose()
         }
@@ -337,7 +334,7 @@ class ConnectionMultiplexer(socket: BluetoothSocket) : Closeable {
             message.putLong(id.mostSignificantBits)
             message.putLong(id.leastSignificantBits)
             try {
-                socket!!.outputStream.write(data)
+                socket.outputStream.write(data)
             } catch (e: IOException) {
                 handleException(e)
                 throw e
@@ -437,7 +434,7 @@ class ConnectionMultiplexer(socket: BluetoothSocket) : Closeable {
                     if (amount < 0) amount += 0x10000
                     lock.withLock {
                         val channel = channels[channelId] ?: return
-                        channel.lock.withLock {
+                        channel.channelLock.withLock {
                             channel.freeWriteAmount += amount
                             channel.lockCondition.signalAll()
                         }
@@ -450,7 +447,7 @@ class ConnectionMultiplexer(socket: BluetoothSocket) : Closeable {
                     readBuffer(data, length)
                     lock.withLock {
                         val channel = channels[channelId] ?: return
-                        channel.lock.withLock {
+                        channel.channelLock.withLock {
                             if (channel.requestedReadAmount < length) {
                                 throw IOException("No outstanding read requests of this length!")
                             }
