@@ -334,8 +334,11 @@ class MprisPlugin : Plugin() {
             (playerStatus.url.startsWith("http://") || playerStatus.url.startsWith("https://"))
         ) {
             try {
-                val url = VideoUrlsHelper.formatUriWithSeek(playerStatus.url, playerStatus.position).toString()
-                val browserIntent = Intent(Intent.ACTION_VIEW, url.toUri())
+                val url = playerStatus.url
+                    .let { VideoUrlsHelper.convertToAndFromYoutubeTvLinks(it) }
+                    .let { VideoUrlsHelper.formatUriWithSeek(it, playerStatus.position) }
+                    .toUri()
+                val browserIntent = Intent(Intent.ACTION_VIEW, url)
                 val pendingIntent = PendingIntent.getActivity(context, 0, browserIntent, PendingIntent.FLAG_IMMUTABLE)
 
                 val notificationManager = ContextCompat.getSystemService(context, NotificationManager::class.java)

@@ -47,7 +47,7 @@ object DeviceHelper {
         ((config.screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE)
     }
 
-    private val isTv: Boolean by lazy {
+    val isTv: Boolean by lazy {
         val uiMode = Resources.getSystem().configuration.uiMode
         (uiMode and Configuration.UI_MODE_TYPE_MASK) == Configuration.UI_MODE_TYPE_TELEVISION
     }

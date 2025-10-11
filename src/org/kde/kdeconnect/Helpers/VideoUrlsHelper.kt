@@ -17,14 +17,13 @@ object VideoUrlsHelper {
     private val peerTubePathPattern = Regex("^/w/[1-9a-km-zA-HJ-NP-Z]{22}(\\?.+)?$")
 
     @Throws(MalformedURLException::class)
-    fun formatUriWithSeek(address: String, position: Long): URL {
+    fun formatUriWithSeek(address: String, position: Long): String {
         val positionSeconds = position / 1000 // milliseconds to seconds
-        val url = URL(address)
         if (positionSeconds <= 0) {
-            return url // nothing to do
+            return address // nothing to do
         }
+        val url = URL(address)
         val host = url.host.lowercase()
-
         return when {
             listOf("youtube.com", "youtu.be", "pornhub.com").any { site -> site in host } -> {
                 url.editParameter("t", Regex("\\d+")) { "$positionSeconds" }
@@ -42,7 +41,7 @@ object VideoUrlsHelper {
                 url.editParameter("start", Regex("(\\d+[hH])?(\\d+[mM])?\\d+[sS]")) { formatTimestampHMS(positionSeconds) }
             }
             else -> url
-        }
+        }.toString()
     }
 
     private fun URL.editParameter(parameter: CharSequence, valuePattern: Regex?, parameterValueModifier: (String) -> String): URL {
@@ -66,6 +65,19 @@ object VideoUrlsHelper {
             }
             .joinToString("&") { "${it.first}=${it.second}" } // [["v", "ovX5G0O5ZvA"], ["t", "14"]] -> "v=ovX5G0O5ZvA&t=14"
         return URL("${urlBase}?${modifiedUrlQuery}") // -> "https://www.youtube.com/watch?v=ovX5G0O5ZvA&t=14"
+    }
+
+    fun convertToAndFromYoutubeTvLinks(url : String): String {
+        if (url.contains("youtube.com/watch") || url.contains("youtube.com/tv")) {
+            val wantTvLinks = DeviceHelper.isTv
+            val isTvLink = url.contains("youtube\\.com/tv.*#/watch".toRegex())
+            if (wantTvLinks && !isTvLink) {
+                return url.replace("youtube.com/watch", "youtube.com/tv#/watch")
+            } else if (!wantTvLinks && isTvLink) {
+                return url.replace("youtube\\.com/tv.*#/watch".toRegex(), "youtube.com/watch")
+            }
+        }
+        return url
     }
 
     /**

@@ -5,16 +5,43 @@
 */
 package org.kde.kdeconnect.Helpers
 
+import io.mockk.every
+import io.mockk.mockkObject
+import io.mockk.unmockkObject
 import org.junit.Assert
 import org.junit.Test
 
 class VideoUrlsHelperTest {
+
+    @Test
+    fun checkYoutubeTvLinksConversion() {
+        fun check(isTv: Boolean, input: String, expected: String) {
+            mockkObject(DeviceHelper)
+            every { DeviceHelper.isTv } returns isTv
+            val formatted = VideoUrlsHelper.convertToAndFromYoutubeTvLinks(input)
+            Assert.assertEquals(expected, formatted)
+            unmockkObject(DeviceHelper)
+        }
+        val complexTvLink = "https://www.youtube.com/tv?is_account_switch=1&hrld=2&fltor=1#/watch?v=ZN471HiQD3o&t=13"
+        val tvLink = "https://www.youtube.com/tv#/watch?v=ZN471HiQD3o&t=13"
+        val pcLink = "https://www.youtube.com/watch?v=ZN471HiQD3o&t=13"
+        val unrelatedLink = "https://www.youtube.com/healthz"
+        check(isTv = true, input = pcLink, expected = tvLink)
+        check(isTv = true, input = tvLink, expected = tvLink)
+        check(isTv = true, input = complexTvLink, expected = complexTvLink)
+        check(isTv = true, input = unrelatedLink, expected = unrelatedLink)
+        check(isTv = false, input = pcLink, expected = pcLink)
+        check(isTv = false, input = tvLink, expected = pcLink)
+        check(isTv = false, input = complexTvLink, expected = pcLink)
+        check(isTv = false, input = unrelatedLink, expected = unrelatedLink)
+    }
+
     @Test
     fun checkYoutubeURL() {
         val url = "https://www.youtube.com/watch?v=ovX5G0O5ZvA&t=13"
         val formatted = VideoUrlsHelper.formatUriWithSeek(url, 51_000L)
         val expected = "https://www.youtube.com/watch?v=ovX5G0O5ZvA&t=51"
-        Assert.assertEquals(expected, formatted.toString())
+        Assert.assertEquals(expected, formatted)
     }
 
     @Test
@@ -22,7 +49,7 @@ class VideoUrlsHelperTest {
         val url = "https://www.youtube.com/watch?v=ovX5G0O5ZvA&t=13"
         val formatted = VideoUrlsHelper.formatUriWithSeek(url, 450L)
         val expected = "https://www.youtube.com/watch?v=ovX5G0O5ZvA&t=13"
-        Assert.assertEquals(expected, formatted.toString())
+        Assert.assertEquals(expected, formatted)
     }
 
     @Test
@@ -30,7 +57,7 @@ class VideoUrlsHelperTest {
         val url = "https://vimeo.com/347119375?foo=bar&t=13s"
         val formatted = VideoUrlsHelper.formatUriWithSeek(url, 51_000L)
         val expected = "https://vimeo.com/347119375?foo=bar&t=51s"
-        Assert.assertEquals(expected, formatted.toString())
+        Assert.assertEquals(expected, formatted)
     }
 
     @Test
@@ -38,7 +65,7 @@ class VideoUrlsHelperTest {
         val url = "https://vimeo.com/347119375?foo=bar&t=13s"
         val formatted = VideoUrlsHelper.formatUriWithSeek(url, 450L)
         val expected = "https://vimeo.com/347119375?foo=bar&t=13s"
-        Assert.assertEquals(expected, formatted.toString())
+        Assert.assertEquals(expected, formatted)
     }
 
     @Test
@@ -46,7 +73,7 @@ class VideoUrlsHelperTest {
         val url = "https://vimeo.com/347119375?t=13s"
         val formatted = VideoUrlsHelper.formatUriWithSeek(url, 51_000L)
         val expected = "https://vimeo.com/347119375?t=51s"
-        Assert.assertEquals(expected, formatted.toString())
+        Assert.assertEquals(expected, formatted)
     }
 
     @Test
@@ -54,7 +81,7 @@ class VideoUrlsHelperTest {
         val url = "https://www.dailymotion.com/video/xnopyt?foo=bar&start=13"
         val formatted = VideoUrlsHelper.formatUriWithSeek(url, 51_000L)
         val expected = "https://www.dailymotion.com/video/xnopyt?foo=bar&start=51"
-        Assert.assertEquals(expected, formatted.toString())
+        Assert.assertEquals(expected, formatted)
     }
 
     @Test
@@ -62,7 +89,7 @@ class VideoUrlsHelperTest {
         val url = "https://www.twitch.tv/videos/123?foo=bar&t=1h2m3s"
         val formatted = VideoUrlsHelper.formatUriWithSeek(url, 10_000_000)
         val expected = "https://www.twitch.tv/videos/123?foo=bar&t=02h46m40s"
-        Assert.assertEquals(expected, formatted.toString())
+        Assert.assertEquals(expected, formatted)
     }
 
     @Test
@@ -70,7 +97,7 @@ class VideoUrlsHelperTest {
         val url = "https://example.org/cool_video.mp4"
         val formatted = VideoUrlsHelper.formatUriWithSeek(url, 51_000L)
         val expected = "https://example.org/cool_video.mp4"
-        Assert.assertEquals(expected, formatted.toString())
+        Assert.assertEquals(expected, formatted)
     }
 
     @Test
@@ -84,7 +111,7 @@ class VideoUrlsHelperTest {
         )
         for ((from, to) in validUrls) {
             val formatted = VideoUrlsHelper.formatUriWithSeek(from, 90_000L)
-            Assert.assertEquals(to, formatted.toString())
+            Assert.assertEquals(to, formatted)
         }
         val invalidUrls = listOf(
             "https://video.blender.org/w/472h2s5srBFmAOhiZVw96R?start=01m27s", // invalid character (O)
@@ -96,7 +123,7 @@ class VideoUrlsHelperTest {
         )
         for (url in invalidUrls) {
             val formatted = VideoUrlsHelper.formatUriWithSeek(url, 90_000L)
-            Assert.assertEquals(url, formatted.toString()) // should not modify the URL
+            Assert.assertEquals(url, formatted) // should not modify the URL
         }
     }
 }

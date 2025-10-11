@@ -370,8 +370,11 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
         val targetPlayer = targetPlayer
         if (targetPlayer != null && item.itemId == MENU_OPEN_URL) {
             try {
-                val url = VideoUrlsHelper.formatUriWithSeek(targetPlayer.url, targetPlayer.position).toString()
-                val browserIntent = Intent(Intent.ACTION_VIEW, url.toUri())
+                val url = targetPlayer.url
+                    .let { VideoUrlsHelper.convertToAndFromYoutubeTvLinks(it) }
+                    .let { VideoUrlsHelper.formatUriWithSeek(it, targetPlayer.position) }
+                    .toUri()
+                val browserIntent = Intent(Intent.ACTION_VIEW, url)
                 startActivity(browserIntent)
                 targetPlayer.sendPause()
                 return true
