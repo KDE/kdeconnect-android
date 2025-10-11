@@ -79,7 +79,7 @@ class ConnectivityListener(context: Context) {
                     Log.i(TAG, "Removed subscription ID $subID")
                     try {
                         tm.listen(connectivityListeners[subID], PhoneStateListener.LISTEN_NONE)
-                    } catch (_: IllegalStateException) {
+                    } catch (_: Exception) {
                         // It seems like the subscription ID is no longer valid by this point, so this might trigger
                     }
                     connectivityListeners.remove(subID)
@@ -156,7 +156,7 @@ class ConnectivityListener(context: Context) {
             }
             for (subID in connectivityListeners.keys) {
                 Log.i(TAG, "Removed subscription ID $subID")
-                tm.listen(connectivityListeners.get(subID), PhoneStateListener.LISTEN_NONE)
+                tm.listen(connectivityListeners[subID], PhoneStateListener.LISTEN_NONE)
             }
             connectivityListeners.clear()
             states.clear()
