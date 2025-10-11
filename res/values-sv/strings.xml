@@ -65,6 +65,8 @@
   <string name="mousepad_scroll_sensitivity_title">Rullningskänslighet</string>
   <string name="gyro_mouse_enabled_title">Aktivera gyroskopisk mus</string>
   <string name="gyro_mouse_sensitivity_title">Gyroskop-känslighet</string>
+  <string name="bigscreen_show_home_title">Visa hemknapp</string>
+  <string name="bigscreen_show_back_title">Visa bakåtknapp</string>
   <string-array name="mousepad_tap_entries">
     <item>Vänsterklick</item>
     <item>Högerklick</item>
@@ -347,6 +349,7 @@
   <string name="bigscreen_select">Markera</string>
   <string name="bigscreen_right">Höger</string>
   <string name="bigscreen_down">Neråt</string>
+  <string name="bigscreen_back">Bakåt</string>
   <string name="bigscreen_mic">Mikrofon</string>
   <string name="pref_plugin_bigscreen">Fjärrkontroll för storskärm</string>
   <string name="pref_plugin_bigscreen_desc">Använd apparaten som en fjärrkontroll för Plasma storskärm</string>

@@ -65,6 +65,8 @@
   <string name="mousepad_scroll_sensitivity_title">Občutljivost drsenja</string>
   <string name="gyro_mouse_enabled_title">Omogoči žiroskopsko miško</string>
   <string name="gyro_mouse_sensitivity_title">Občutljivost žiroskopa</string>
+  <string name="bigscreen_show_home_title">Prikaži gumb Domov</string>
+  <string name="bigscreen_show_back_title">Prikaži gumb Nazaj</string>
   <string-array name="mousepad_tap_entries">
     <item>Levi klik</item>
     <item>Desni klik</item>
@@ -132,10 +134,10 @@
     <item quantity="other">Prejemanje %1$d datotek od %2$s</item>
   </plurals>
   <plurals name="incoming_files_text">
-    <item quantity="one">(Datoteka %2$d od %3$d) : %1$s</item>
+    <item quantity="one">(Datoteke %2$d od %3$d) : %1$s</item>
     <item quantity="two">(Datoteka %2$d od %3$d) : %1$s</item>
-    <item quantity="few">(Datoteka %2$d od %3$d) : %1$s</item>
-    <item quantity="other">(Datoteka %2$d od %3$d) : %1$s</item>
+    <item quantity="few">(Datoteki %2$d od %3$d) : %1$s</item>
+    <item quantity="other">(Datoteke %2$d od %3$d) : %1$s</item>
   </plurals>
   <plurals name="outgoing_file_title">
     <item quantity="one">Pošiljanje %1$d datotek na %2$s</item>
@@ -363,6 +365,7 @@
   <string name="bigscreen_select">Izberi</string>
   <string name="bigscreen_right">Desno</string>
   <string name="bigscreen_down">Dol</string>
+  <string name="bigscreen_back">Nazaj</string>
   <string name="bigscreen_mic">Mikrofon</string>
   <string name="pref_plugin_bigscreen">Oddaljeni veliki zaslon</string>
   <string name="pref_plugin_bigscreen_desc">Uporabite svojo napravo kot daljinec za Plasmin veliki zaslon</string>
