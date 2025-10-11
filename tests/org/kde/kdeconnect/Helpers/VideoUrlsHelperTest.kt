@@ -37,7 +37,15 @@ class VideoUrlsHelperTest {
     }
 
     @Test
-    fun checkYoutubeURL() {
+    fun checkYoutubeURLWithoutTime() {
+        val url = "https://www.youtube.com/watch?v=ovX5G0O5ZvA"
+        val formatted = VideoUrlsHelper.formatUriWithSeek(url, 51_000L)
+        val expected = "https://www.youtube.com/watch?v=ovX5G0O5ZvA&t=51"
+        Assert.assertEquals(expected, formatted)
+    }
+
+    @Test
+    fun checkYoutubeURLWithTime() {
         val url = "https://www.youtube.com/watch?v=ovX5G0O5ZvA&t=13"
         val formatted = VideoUrlsHelper.formatUriWithSeek(url, 51_000L)
         val expected = "https://www.youtube.com/watch?v=ovX5G0O5ZvA&t=51"
@@ -45,15 +53,15 @@ class VideoUrlsHelperTest {
     }
 
     @Test
-    fun checkYoutubeURLSubSecond() {
-        val url = "https://www.youtube.com/watch?v=ovX5G0O5ZvA&t=13"
-        val formatted = VideoUrlsHelper.formatUriWithSeek(url, 450L)
-        val expected = "https://www.youtube.com/watch?v=ovX5G0O5ZvA&t=13"
+    fun checkVimeoURLWithOtherArgsWithoutTime() {
+        val url = "https://vimeo.com/347119375?foo=bar"
+        val formatted = VideoUrlsHelper.formatUriWithSeek(url, 51_000L)
+        val expected = "https://vimeo.com/347119375?foo=bar&t=51s"
         Assert.assertEquals(expected, formatted)
     }
 
     @Test
-    fun checkVimeoURL() {
+    fun checkVimeoURLWithOtherArgsWithTime() {
         val url = "https://vimeo.com/347119375?foo=bar&t=13s"
         val formatted = VideoUrlsHelper.formatUriWithSeek(url, 51_000L)
         val expected = "https://vimeo.com/347119375?foo=bar&t=51s"
@@ -61,15 +69,14 @@ class VideoUrlsHelperTest {
     }
 
     @Test
-    fun checkVimeoURLSubSecond() {
-        val url = "https://vimeo.com/347119375?foo=bar&t=13s"
-        val formatted = VideoUrlsHelper.formatUriWithSeek(url, 450L)
-        val expected = "https://vimeo.com/347119375?foo=bar&t=13s"
+    fun checkVimeoURLWithoutTime() {
+        val url = "https://vimeo.com/347119375"
+        val formatted = VideoUrlsHelper.formatUriWithSeek(url, 51_000L)
+        val expected = "https://vimeo.com/347119375?t=51s"
         Assert.assertEquals(expected, formatted)
     }
-
     @Test
-    fun checkVimeoURLParamOrderCrash() {
+    fun checkVimeoURLWithTime() {
         val url = "https://vimeo.com/347119375?t=13s"
         val formatted = VideoUrlsHelper.formatUriWithSeek(url, 51_000L)
         val expected = "https://vimeo.com/347119375?t=51s"
@@ -103,10 +110,10 @@ class VideoUrlsHelperTest {
     @Test
     fun checkPeerTubeURL() {
         val validUrls = mapOf(
-            "https://video.blender.org/w/472h2s5srBFmAThiZVw96R?start=01m27s" to "https://video.blender.org/w/472h2s5srBFmAThiZVw96R?start=01m30s",
+            "https://video.blender.org/w/472h2s5srBFmAThiZVw96R" to "https://video.blender.org/w/472h2s5srBFmAThiZVw96R?start=01m30s",
             "https://video.blender.org/w/mDyZP2TrdjjjNRMoVUgPM2?start=01m27s" to "https://video.blender.org/w/mDyZP2TrdjjjNRMoVUgPM2?start=01m30s",
-            "https://video.blender.org/w/evhMcVhvK6VeAKJwCSuHSe?start=01m27s" to "https://video.blender.org/w/evhMcVhvK6VeAKJwCSuHSe?start=01m30s",
-            "https://video.blender.org/w/54tzKpEguEEu26Hi8Lcpna?start=01m27s" to "https://video.blender.org/w/54tzKpEguEEu26Hi8Lcpna?start=01m30s",
+            "https://video.blender.org/w/evhMcVhvK6VeAKJwCSuHSe#potato" to "https://video.blender.org/w/evhMcVhvK6VeAKJwCSuHSe?start=01m30s#potato",
+            "https://video.blender.org/w/54tzKpEguEEu26Hi8Lcpna?start=01m27s#potato" to "https://video.blender.org/w/54tzKpEguEEu26Hi8Lcpna?start=01m30s#potato",
             "https://video.blender.org/w/o5VtGNQaNpFNNHiJbLy4eM?start=01m27s" to "https://video.blender.org/w/o5VtGNQaNpFNNHiJbLy4eM?start=01m30s",
         )
         for ((from, to) in validUrls) {

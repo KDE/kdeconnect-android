@@ -17,54 +17,61 @@ object VideoUrlsHelper {
     private val peerTubePathPattern = Regex("^/w/[1-9a-km-zA-HJ-NP-Z]{22}(\\?.+)?$")
 
     @Throws(MalformedURLException::class)
-    fun formatUriWithSeek(address: String, position: Long): String {
-        val positionSeconds = position / 1000 // milliseconds to seconds
+    fun formatUriWithSeek(address: String, positionMillis: Long): String {
+        val positionSeconds = positionMillis / 1000
         if (positionSeconds <= 0) {
-            return address // nothing to do
+            return address // do not change the url if time is zero
         }
-        val url = URL(address)
-        val host = url.host.lowercase()
+        val (host, path) = URL(address).let { Pair(it.host.lowercase(), it.path) }
         return when {
             listOf("youtube.com", "youtu.be", "pornhub.com").any { site -> site in host } -> {
-                url.editParameter("t", Regex("\\d+")) { "$positionSeconds" }
+                editOrAddParameter(address, "t", Regex("\\d+"), "$positionSeconds")
             }
             host.contains("vimeo.com") -> {
-                url.editParameter("t", Regex("\\d+s")) { "${positionSeconds}s" }
+                editOrAddParameter(address, "t", Regex("\\d+s"), "${positionSeconds}s")
             }
             host.contains("dailymotion.com") -> {
-                url.editParameter("start", Regex("\\d+")) { "$positionSeconds" }
+                editOrAddParameter(address, "start", Regex("\\d+"), "$positionSeconds")
             }
             host.contains("twitch.tv") -> {
-                url.editParameter("t", Regex("(\\d+[hH])?(\\d+[mM])?\\d+[sS]")) { formatTimestampHMS(positionSeconds) }
+                editOrAddParameter(address, "t", Regex("(\\d+[hH])?(\\d+[mM])?\\d+[sS]"), formatTimestampHMS(positionSeconds))
             }
-            url.path.matches(peerTubePathPattern) -> {
-                url.editParameter("start", Regex("(\\d+[hH])?(\\d+[mM])?\\d+[sS]")) { formatTimestampHMS(positionSeconds) }
+            path.matches(peerTubePathPattern) -> {
+                editOrAddParameter(address, "start", Regex("(\\d+[hH])?(\\d+[mM])?\\d+[sS]"), formatTimestampHMS(positionSeconds))
             }
-            else -> url
-        }.toString()
+            else -> address
+        }
     }
 
-    private fun URL.editParameter(parameter: CharSequence, valuePattern: Regex?, parameterValueModifier: (String) -> String): URL {
-        // "https://www.youtube.com/watch?v=ovX5G0O5ZvA&t=13" -> ["https://www.youtube.com/watch", "v=ovX5G0O5ZvA&t=13"]
-        val urlSplit = this.toString().split("?")
-        if (urlSplit.size != 2) {
-            return this
-        }
-        val (urlBase, urlQuery) = urlSplit
-        val modifiedUrlQuery = urlQuery
-            .split("&") // "v=ovX5G0O5ZvA&t=13" -> ["v=ovX5G0O5ZvA", "t=13"]
-            .map { it.split("=", limit = 2) } // […, "t=13"] -> […, ["t", "13"]]
-            .map { Pair(it.first(), it.lastOrNull() ?: return this) }
-            .map { paramAndValue ->
-                // Modify matching parameter and optionally matches the old value with the provided pattern
-                if (paramAndValue.first == parameter && valuePattern?.matches(paramAndValue.second) != false) {
-                    Pair(paramAndValue.first, parameterValueModifier(paramAndValue.second)) // ["t", "13"] -> ["t", result]
-                } else {
-                    paramAndValue
+    fun editOrAddParameter(
+        url: String,
+        parameter: String,
+        valuePattern: Regex,
+        newValue: String
+    ): String {
+        val (urlWithoutFragment, fragment) = url.split("#", limit = 2).let { Pair(it[0], it.getOrNull(1)) }
+        val (baseUrl, query) = urlWithoutFragment.split("?", limit = 2).let { Pair(it[0], it.getOrElse(1) { "" }) }
+
+        val params = query
+            .split("&")
+            .filter { it.isNotEmpty() }
+            .associate {
+                val (key, value) = it.split("=", limit = 2).let { parts ->
+                    parts[0] to parts.getOrElse(1) { "" }
                 }
-            }
-            .joinToString("&") { "${it.first}=${it.second}" } // [["v", "ovX5G0O5ZvA"], ["t", "14"]] -> "v=ovX5G0O5ZvA&t=14"
-        return URL("${urlBase}?${modifiedUrlQuery}") // -> "https://www.youtube.com/watch?v=ovX5G0O5ZvA&t=14"
+                key to value
+            }.toMutableMap()
+
+        val currentValue = params[parameter]
+        if (currentValue != null && !currentValue.matches(valuePattern)) {
+            // The argument exists but it doesn't match the format we expect, did we match the wrong url?
+            return url
+        }
+        params[parameter] = newValue
+
+        val newQuery = params.entries.joinToString("&") { "${it.key}=${it.value}" }
+        val newUrlWithoutFragment = if (newQuery.isNotEmpty()) "$baseUrl?$newQuery" else baseUrl
+        return if (fragment != null) "$newUrlWithoutFragment#$fragment" else newUrlWithoutFragment
     }
 
     fun convertToAndFromYoutubeTvLinks(url : String): String {
