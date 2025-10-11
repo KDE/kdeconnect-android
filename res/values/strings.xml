@@ -284,7 +284,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="custom_devices_settings_summary">%d devices added manually</string>
     <string name="custom_device_list">Add devices by IP</string>
     <string name="custom_device_deleted">Custom device deleted</string>
-    <string name="custom_device_list_help">If your device is not automatically detected you can add its IP address or hostname by clicking on the Floating Action Button</string>
+    <string name="custom_device_list_help">If your device is not automatically detected, you can add its IP address or hostname by clicking on the button below</string>
     <string name="custom_device_fab_hint">Add a device</string>
     <string name="undo">Undo</string>
     <string name="share_notification_preference">Noisy notifications</string>
