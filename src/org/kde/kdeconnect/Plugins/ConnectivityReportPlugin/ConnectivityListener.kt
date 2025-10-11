@@ -77,7 +77,11 @@ class ConnectivityListener(context: Context) {
                 val tm = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
                 for (subID in removedSubs) {
                     Log.i(TAG, "Removed subscription ID $subID")
-                    tm.listen(connectivityListeners.get(subID), PhoneStateListener.LISTEN_NONE)
+                    try {
+                        tm.listen(connectivityListeners[subID], PhoneStateListener.LISTEN_NONE)
+                    } catch (_: IllegalStateException) {
+                        // It seems like the subscription ID is no longer valid by this point, so this might trigger
+                    }
                     connectivityListeners.remove(subID)
                     states.remove(subID)
                     statesChanged()
