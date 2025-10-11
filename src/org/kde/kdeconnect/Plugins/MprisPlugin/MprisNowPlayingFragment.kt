@@ -7,7 +7,6 @@ package org.kde.kdeconnect.Plugins.MprisPlugin
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.preference.PreferenceManager
@@ -35,6 +34,8 @@ import java.net.MalformedURLException
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
 import androidx.core.net.toUri
+import androidx.core.view.MenuProvider
+import androidx.lifecycle.Lifecycle
 
 private typealias MprisPlayerCallback = (MprisPlayer) -> Unit
 
@@ -351,42 +352,48 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
         }
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        activity?.addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) = Unit
+            override fun onPrepareMenu(menu: Menu) {
+                menu.clear()
+                if (!targetPlayer?.url.isNullOrEmpty()) {
+                    menu.add(0, MENU_OPEN_URL, Menu.NONE, R.string.mpris_open_url)
+                }
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                val targetPlayer = targetPlayer
+                if (targetPlayer != null && menuItem.itemId == MENU_OPEN_URL) {
+                    try {
+                        val url = targetPlayer.url
+                            .let { VideoUrlsHelper.convertToAndFromYoutubeTvLinks(it) }
+                            .let { VideoUrlsHelper.formatUriWithSeek(it, targetPlayer.position) }
+                            .toUri()
+                        val browserIntent = Intent(Intent.ACTION_VIEW, url)
+                        startActivity(browserIntent)
+                        targetPlayer.sendPause()
+                        return true
+                    } catch (e: MalformedURLException) {
+                        e.printStackTrace()
+                        Toast.makeText(requireContext(), getString(R.string.cant_open_url), Toast.LENGTH_LONG).show()
+                    } catch (e: ActivityNotFoundException) {
+                        e.printStackTrace()
+                        Toast.makeText(requireContext(), getString(R.string.cant_open_url), Toast.LENGTH_LONG).show()
+                    }
+                }
+                return false
+            }
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+    }
+
     override fun onVolumeUp() {
         updateVolume(DEFAULT_VOLUME_STEP)
     }
 
     override fun onVolumeDown() {
         updateVolume(-DEFAULT_VOLUME_STEP)
-    }
-
-    override fun onPrepareOptionsMenu(menu: Menu) {
-        menu.clear()
-        if (!targetPlayer?.url.isNullOrEmpty()) {
-            menu.add(0, MENU_OPEN_URL, Menu.NONE, R.string.mpris_open_url)
-        }
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val targetPlayer = targetPlayer
-        if (targetPlayer != null && item.itemId == MENU_OPEN_URL) {
-            try {
-                val url = targetPlayer.url
-                    .let { VideoUrlsHelper.convertToAndFromYoutubeTvLinks(it) }
-                    .let { VideoUrlsHelper.formatUriWithSeek(it, targetPlayer.position) }
-                    .toUri()
-                val browserIntent = Intent(Intent.ACTION_VIEW, url)
-                startActivity(browserIntent)
-                targetPlayer.sendPause()
-                return true
-            } catch (e: MalformedURLException) {
-                e.printStackTrace()
-                Toast.makeText(requireContext(), getString(R.string.cant_open_url), Toast.LENGTH_LONG).show()
-            } catch (e: ActivityNotFoundException) {
-                e.printStackTrace()
-                Toast.makeText(requireContext(), getString(R.string.cant_open_url), Toast.LENGTH_LONG).show()
-            }
-        }
-        return super.onOptionsItemSelected(item)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
