@@ -65,6 +65,8 @@
   <string name="mousepad_scroll_sensitivity_title">حساسية التمرير</string>
   <string name="gyro_mouse_enabled_title">تمكين الفأر التوجيهي</string>
   <string name="gyro_mouse_sensitivity_title">حساسية التوجيه</string>
+  <string name="bigscreen_show_home_title">اعرض زر المنزل</string>
+  <string name="bigscreen_show_back_title">أظهر زر العودة</string>
   <string-array name="mousepad_tap_entries">
     <item>النّقر باليسار</item>
     <item>النقر باليمين</item>
@@ -379,6 +381,7 @@
   <string name="bigscreen_select">اختر</string>
   <string name="bigscreen_right">يمين</string>
   <string name="bigscreen_down">أسفل</string>
+  <string name="bigscreen_back">عُد</string>
   <string name="bigscreen_mic">ميكروفون</string>
   <string name="pref_plugin_bigscreen">متحكم الشاشة الكبيرة</string>
   <string name="pref_plugin_bigscreen_desc">استخدم جهازك كجهاز تحكم عن بُعد لشاشة البلازما الكبيرة</string>

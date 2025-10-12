@@ -65,6 +65,8 @@
   <string name="mousepad_scroll_sensitivity_title">Sensibilità di scorrimento</string>
   <string name="gyro_mouse_enabled_title">Abilita il mouse giroscopico</string>
   <string name="gyro_mouse_sensitivity_title">Sensibilità del giroscopio</string>
+  <string name="bigscreen_show_home_title">Mostra il pulsante Home</string>
+  <string name="bigscreen_show_back_title">Mostra il pulsante Indietro</string>
   <string-array name="mousepad_tap_entries">
     <item>Clic sinistro</item>
     <item>Clic destro</item>
@@ -347,6 +349,7 @@
   <string name="bigscreen_select">Seleziona</string>
   <string name="bigscreen_right">A destra</string>
   <string name="bigscreen_down">Giù</string>
+  <string name="bigscreen_back">Indietro</string>
   <string name="bigscreen_mic">Mic</string>
   <string name="pref_plugin_bigscreen">Telecomando Bigscreen</string>
   <string name="pref_plugin_bigscreen_desc">Utilizza il tuo dispositivo come telecomando per Plasma Bigscreen</string>

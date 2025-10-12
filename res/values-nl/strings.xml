@@ -65,6 +65,8 @@
   <string name="mousepad_scroll_sensitivity_title">Gevoeligheid voor schuiven</string>
   <string name="gyro_mouse_enabled_title">Gyroscoopmuis inschakelen</string>
   <string name="gyro_mouse_sensitivity_title">Gyroscoopgevoeligheid</string>
+  <string name="bigscreen_show_home_title">Homeknop tonen</string>
+  <string name="bigscreen_show_back_title">Terugknop tonen</string>
   <string-array name="mousepad_tap_entries">
     <item>Linker muisklik</item>
     <item>Rechter muisklik</item>
@@ -347,6 +349,7 @@
   <string name="bigscreen_select">Selecteren</string>
   <string name="bigscreen_right">Rechts</string>
   <string name="bigscreen_down">Omlaag</string>
+  <string name="bigscreen_back">Terug</string>
   <string name="bigscreen_mic">Mic</string>
   <string name="pref_plugin_bigscreen">Bigscreen op afstand</string>
   <string name="pref_plugin_bigscreen_desc">Gebruik uw apparaat als een Bigscreen op afstand</string>
