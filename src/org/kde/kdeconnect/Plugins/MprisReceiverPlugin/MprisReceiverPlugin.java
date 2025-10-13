@@ -9,7 +9,6 @@ package org.kde.kdeconnect.Plugins.MprisReceiverPlugin;
 import android.content.ComponentName;
 import android.media.session.MediaController;
 import android.media.session.MediaSessionManager;
-import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.Settings;
@@ -17,7 +16,6 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 
@@ -32,6 +30,7 @@ import org.kde.kdeconnect.UserInterface.MainActivity;
 import org.kde.kdeconnect.UserInterface.StartActivityAlertDialogFragment;
 import org.kde.kdeconnect_tp.R;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
@@ -45,8 +44,10 @@ public class MprisReceiverPlugin extends Plugin {
 
     private static final String TAG = "MprisReceiver";
 
+    // TODO: Those two are always accessed together, merge them
     private HashMap<String, MprisReceiverPlayer> players;
     private HashMap<String, MprisReceiverCallback> playerCbs;
+
     private MediaSessionChangeListener mediaSessionChangeListener;
 
     public @NonNull String getDeviceId() {
@@ -194,7 +195,10 @@ public class MprisReceiverPlugin extends Plugin {
             if (null == controllers) {
                 return;
             }
-            for (MprisReceiverPlayer p : players.values()) {
+
+            // Make a copy to avoid ConcurrentModificationException
+            ArrayList<MprisReceiverPlayer> playersCopy = new ArrayList<>(players.values());
+            for (MprisReceiverPlayer p : playersCopy) {
                 p.getController().unregisterCallback(Objects.requireNonNull(playerCbs.get(p.getName())));
             }
             playerCbs.clear();
