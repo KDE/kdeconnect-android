@@ -189,7 +189,6 @@
   <string name="custom_devices_settings">விருப்ப சாதன பட்டியல்</string>
   <string name="custom_device_list">IP முகவரி மூலம் சாதனங்களைச் சேர்</string>
   <string name="custom_device_deleted">விருப்ப சாதனம் நீக்கப்பட்டது</string>
-  <string name="custom_device_list_help">உங்கள் சாதனம் தானாக கண்டறியப்படவில்லையெனில் நீங்கள் மிதக்கும் செயல் பொத்தானை அழுத்தி அதன் IP முகவரி அல்லது புரவன் பெயரை சேர்க்கலாம்</string>
   <string name="custom_device_fab_hint">சாதனத்தைச் சேர்</string>
   <string name="undo">செயல்நீக்கு</string>
   <string name="share_notification_preference">ஒலியெழுப்பும் அறிவிப்பு</string>

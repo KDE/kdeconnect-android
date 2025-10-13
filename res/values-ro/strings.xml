@@ -197,7 +197,6 @@
   <string name="custom_devices_settings">Listă de dispozitive personalizate</string>
   <string name="custom_device_list">Adaugă dispozitive după IP</string>
   <string name="custom_device_deleted">S-a șters dispozitiv personalizat</string>
-  <string name="custom_device_list_help">Dacă dispozitivul nu e detectat automat, îi puteți adăuga adresa IP sau numele de gazdă apăsând butonul flotant de acțiune</string>
   <string name="custom_device_fab_hint">Adaugă dispozitiv</string>
   <string name="undo">Desfă</string>
   <string name="share_notification_preference">Notificări zgomotoase</string>

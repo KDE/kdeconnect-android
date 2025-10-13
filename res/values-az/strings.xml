@@ -188,7 +188,6 @@
   <string name="custom_devices_settings">Fərdi cihaz siyahısı</string>
   <string name="custom_device_list">Cihazı İP ilə əlavə etmək</string>
   <string name="custom_device_deleted">Fərdi cihaz silindi</string>
-  <string name="custom_device_list_help">Əgər cihazınız avtomatik aşkar edilməmişsə, Üzən Fəaliyyət Düyməsinə vuraraq onun onun İP ünvanını və host adını daxil edə bilərsiniz</string>
   <string name="custom_device_fab_hint">Cihaz əlavə etmək</string>
   <string name="undo">Geriyə qaytarmaq</string>
   <string name="share_notification_preference">Səsli bildirişlər</string>

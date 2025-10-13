@@ -197,7 +197,6 @@
   <string name="custom_devices_settings">Tinkintų įrenginių sąrašas</string>
   <string name="custom_device_list">Pridėti įrenginius pagal IP</string>
   <string name="custom_device_deleted">Tinkintas įrenginys ištrintas</string>
-  <string name="custom_device_list_help">Jeigu jūsų įrenginys nėra automatiškai aptinkamas, galite pridėti jo IP adresą arba mazgo pavadinimą, spusteldami ant slankiojančio veiksmo mygtuko</string>
   <string name="custom_device_fab_hint">Pridėti įrenginį</string>
   <string name="undo">Atšaukti</string>
   <string name="share_notification_preference">Triukšmingi pranešimai</string>

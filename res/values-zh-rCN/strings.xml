@@ -197,7 +197,6 @@
   <string name="custom_devices_settings_summary">手动添加了 %d 个设备</string>
   <string name="custom_device_list">通过 IP 添加设备</string>
   <string name="custom_device_deleted">自定义设备已删除</string>
-  <string name="custom_device_list_help">如果您的设备未被自动检测到，您点击浮动操作按钮可以添加它的 IP 地址或主机名。</string>
   <string name="custom_device_fab_hint">添加设备</string>
   <string name="undo">撤销</string>
   <string name="share_notification_preference">出声通知</string>

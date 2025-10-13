@@ -200,7 +200,6 @@
   <string name="custom_devices_settings_summary">%d Geräte manuell hinzugefügt</string>
   <string name="custom_device_list">Geräte nach IP-Adresse hinzufügen</string>
   <string name="custom_device_deleted">Benutzerdefinierte Geräte gelöscht</string>
-  <string name="custom_device_list_help">Falls Ihr Gerät nicht automatisch erkannt wird, können Sie es über die IP-Adresse oder den Gerätenamen hinzufügen. Klicken Sie dafür auf den schwebenden Aktionsknopf</string>
   <string name="custom_device_fab_hint">Ein Gerät hinzufügen</string>
   <string name="undo">Rückgängig machen</string>
   <string name="share_notification_preference">Ausführliche Benachrichtigungen</string>

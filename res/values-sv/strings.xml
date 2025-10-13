@@ -208,7 +208,6 @@
   <string name="custom_devices_settings_summary">%d apparater manuellt tillagda</string>
   <string name="custom_device_list">Lägg till apparater enligt IP-adress</string>
   <string name="custom_device_deleted">Egen apparat borttagen</string>
-  <string name="custom_device_list_help">Om apparaten inte detekteras automatiskt kan dess IP-adress eller värddatornamn läggas till genom att klicka på den lösa åtgärdsknappen.</string>
   <string name="custom_device_fab_hint">Lägg till en apparat</string>
   <string name="undo">Ångra</string>
   <string name="share_notification_preference">Ljudliga underrättelser</string>

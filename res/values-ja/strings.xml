@@ -188,7 +188,6 @@
   <string name="custom_devices_settings">カスタムデバイスリスト</string>
   <string name="custom_device_list">IP アドレスでデバイスを追加</string>
   <string name="custom_device_deleted">カスタムデバイスが削除されました</string>
-  <string name="custom_device_list_help">デバイスが自動的に検出されない場合、アクションボタンから手動で IP アドレスやホストネームを追加できます</string>
   <string name="custom_device_fab_hint">デバイスを追加</string>
   <string name="undo">元に戻す</string>
   <string name="share_notification_preference">音声付きの通知</string>

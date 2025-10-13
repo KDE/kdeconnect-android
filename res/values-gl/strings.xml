@@ -202,7 +202,6 @@
   <string name="custom_devices_settings_summary">%d dispositivos engadidos manualmente</string>
   <string name="custom_device_list">Engadir dispositivos por IP</string>
   <string name="custom_device_deleted">Eliminouse o dispositivo personalizado</string>
-  <string name="custom_device_list_help">Se o seu dispositivo non se detecta automaticamente pode engadir o seu enderezo IP ou nome de máquina premendo o botón flotante de acción</string>
   <string name="custom_device_fab_hint">Engadir un dispositivo</string>
   <string name="undo">Desfacer</string>
   <string name="share_notification_preference">Notificacións sonoras</string>

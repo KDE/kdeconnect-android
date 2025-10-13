@@ -199,7 +199,6 @@
   <string name="custom_devices_settings_summary">%d aparatoj aldoniĝis permane</string>
   <string name="custom_device_list">Aldoni aparatojn per IP</string>
   <string name="custom_device_deleted">Propra aparato forigita</string>
-  <string name="custom_device_list_help">Se via aparato ne estas aŭtomate detektita, vi povas aldoni ĝian IP-adreson aŭ gastigan nomon alklakante la Ŝveban Ago-Butonon</string>
   <string name="custom_device_fab_hint">Aldoni aparaton</string>
   <string name="undo">Malfari</string>
   <string name="share_notification_preference">Bruaj sciigoj</string>

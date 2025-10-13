@@ -180,7 +180,6 @@
   <string name="custom_devices_settings">Saját eszközök listája</string>
   <string name="custom_device_list">Eszközök hozzáadása IP-cím alapján</string>
   <string name="custom_device_deleted">Saját eszköz észlelve</string>
-  <string name="custom_device_list_help">Ha az eszköz nem kerül automatikusan felismerésre, akkor hozzáadhatja az IP-címét vagy a gépnevét a lebegő műveletgombra kattintva</string>
   <string name="custom_device_fab_hint">Eszköz hozzáadása</string>
   <string name="undo">Visszavonás</string>
   <string name="share_notification_preference">Hangos értesítések</string>

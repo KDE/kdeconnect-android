@@ -212,7 +212,6 @@
   <string name="custom_devices_settings">Seznam vlastních zařízení</string>
   <string name="custom_device_list">Přidat zařízení podle IP</string>
   <string name="custom_device_deleted">Vlastní zařízení bylo smazáno</string>
-  <string name="custom_device_list_help">Pokud vaše zařízení není automaticky detekováno, můžete přidat jeho adresu IP nebo hostname kliknutím na tlačítko pro plovoucí činnosti</string>
   <string name="custom_device_fab_hint">Přidat zařízení</string>
   <string name="undo">Zpět</string>
   <string name="share_notification_preference">Hlasitá oznámení</string>

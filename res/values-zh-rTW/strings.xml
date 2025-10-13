@@ -194,7 +194,6 @@
   <string name="custom_devices_settings_summary">已成功加入 %d 台裝置</string>
   <string name="custom_device_list">透過 IP 新增裝置</string>
   <string name="custom_device_deleted">自訂裝置已刪除</string>
-  <string name="custom_device_list_help">如果未自動偵測到您的裝置，您可以透過點擊「浮動操作按鈕」來新增其 IP 位址或主機名稱</string>
   <string name="custom_device_fab_hint">新增裝置</string>
   <string name="undo">復原</string>
   <string name="share_notification_preference">通知方式</string>

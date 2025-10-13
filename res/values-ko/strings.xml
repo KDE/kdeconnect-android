@@ -198,7 +198,6 @@
   <string name="custom_devices_settings_summary">장치 %d개를 수동으로 추가함</string>
   <string name="custom_device_list">IP로 장치 추가</string>
   <string name="custom_device_deleted">사용자 정의 장치 삭제됨</string>
-  <string name="custom_device_list_help">장치가 자동으로 감지되지 않았다면 떠 다니는 동작 단추를 클릭해서 IP 주소나 호스트 이름으로 장치를 수동으로 추가할 수 있습니다</string>
   <string name="custom_device_fab_hint">장치 추가</string>
   <string name="undo">실행 취소</string>
   <string name="share_notification_preference">시끄러운 알림</string>

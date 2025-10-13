@@ -186,7 +186,6 @@
   <string name="custom_devices_settings">Lista de dispositivos personalizada</string>
   <string name="custom_device_list">Adicionar dispositivos pelo IP</string>
   <string name="custom_device_deleted">Dispositivo personalizado removido</string>
-  <string name="custom_device_list_help">Se o seu dispositivo não for detectado automaticamente, poderá adicionar o seu endereço IP ou nome da máquina, carregando no botão da Acção Flutuante</string>
   <string name="custom_device_fab_hint">Adicionar um dispositivo</string>
   <string name="undo">Desfazer</string>
   <string name="share_notification_preference">Notificações com ruído</string>

@@ -205,7 +205,6 @@
   <string name="custom_devices_settings_summary">%d périphériques ajoutés de façon manuelle</string>
   <string name="custom_device_list">Ajouter des périphériques par IP</string>
   <string name="custom_device_deleted">Périphérique personnalisé supprimé</string>
-  <string name="custom_device_list_help">Si votre périphérique n\'est pas détecté automatiquement, vous pouvez ajouter son adresse IP ou son nom d\'hôte en cliquant sur le bouton d\'action flottant</string>
   <string name="custom_device_fab_hint">Ajouter un périphérique</string>
   <string name="undo">Annuler</string>
   <string name="share_notification_preference">Notifications sonores</string>

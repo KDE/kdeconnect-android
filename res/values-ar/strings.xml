@@ -240,7 +240,6 @@
   <string name="custom_devices_settings_summary">%d أجهزة مضافة يدوياً</string>
   <string name="custom_device_list">أضف أجهزة بعنوان IP</string>
   <string name="custom_device_deleted">حُذف الجهاز المخصّص</string>
-  <string name="custom_device_list_help">إذا لم يُكتشف جهازك آليّاً يمكنك إضافة عنوان IP الخاص به أو اسم المضيف الخاص به من خلال النقر على زر الإجراء العائم</string>
   <string name="custom_device_fab_hint">أضف جهازاً</string>
   <string name="undo">تراجع</string>
   <string name="share_notification_preference">إشعارات مزعجة</string>

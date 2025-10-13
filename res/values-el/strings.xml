@@ -172,7 +172,6 @@
   <string name="custom_devices_settings">Προσαρμοσμένη λίστα συσκευών</string>
   <string name="custom_device_list">Προσθήκη συσκευών ανά IP</string>
   <string name="custom_device_deleted">Η προσαρμοσμένη λίστα διαγράφηκε</string>
-  <string name="custom_device_list_help">Αν η συσκευή σας δεν εντοπίζεται αυτόματα μπορείτε να προσθέσετε την IP διεύθυνσή της ή το όνομά της με κλικ στο κουμπί αιωρούμενης ενέργειας</string>
   <string name="custom_device_fab_hint">Προσθήκη συσκευής</string>
   <string name="undo">Αναίρεση</string>
   <string name="share_notification_preference">Θορυβώδεις ειδοποιήσεις</string>

@@ -205,7 +205,6 @@
   <string name="custom_devices_settings_summary">%d устройства, добавени ръчно</string>
   <string name="custom_device_list">Добавяне на устройства по IP адрес</string>
   <string name="custom_device_deleted">Изтрито потребителско устройство</string>
-  <string name="custom_device_list_help">Ако устройството ви не е открито автоматично, можете да добавите неговия IP адрес или име на хост, като щракнете върху плаващия бутон за действие</string>
   <string name="custom_device_fab_hint">Добавяне на устройство</string>
   <string name="undo">Отмяна</string>
   <string name="share_notification_preference">Шумни известия</string>

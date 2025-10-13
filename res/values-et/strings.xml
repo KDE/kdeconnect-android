@@ -148,7 +148,6 @@
   <string name="custom_devices_settings">Kohandatud seadmete loend</string>
   <string name="custom_device_list">Lisa seadmeid IP järgi</string>
   <string name="custom_device_deleted">Kohandatud seade kustutati</string>
-  <string name="custom_device_list_help">Kui sinu seadet automaatselt ei tuvastatud, võib lisada selle IP-aadressi või masinanime nupule klõpsates</string>
   <string name="custom_device_fab_hint">Lisa seade</string>
   <string name="undo">Võta tagasi</string>
   <string name="share_notification_preference">Mürarikkad märguanded</string>

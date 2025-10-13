@@ -208,7 +208,6 @@
   <string name="custom_devices_settings_summary">%d aygıt elle eklendi</string>
   <string name="custom_device_list">IP’ye göre aygıtları ekle</string>
   <string name="custom_device_deleted">Özel aygıt silindi</string>
-  <string name="custom_device_list_help">Aygıtınız kendiliğinden algılanmazsa İşlem Düğmesine tıklayarak IP adresini veya ana bilgisayar adını ekleyebilirsiniz</string>
   <string name="custom_device_fab_hint">Aygıt ekle</string>
   <string name="undo">Geri al</string>
   <string name="share_notification_preference">Sesli bildirimler</string>

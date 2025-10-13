@@ -187,7 +187,6 @@
   <string name="custom_devices_settings">Zoznam vlastných zariadení</string>
   <string name="custom_device_list">Pridať zariadenia podľa adries IP</string>
   <string name="custom_device_deleted">Vlastné zariadenie odstránené</string>
-  <string name="custom_device_list_help">Ak vaše zariadenie nie je automaticky zistené, môžete pridať jeho adresu IP alebo názov hostiteľa kliknutím na plávajúce tlačidlo</string>
   <string name="custom_device_fab_hint">Pridať zariadenie</string>
   <string name="undo">Vrátiť späť</string>
   <string name="share_notification_preference">Hlučné upozornenia</string>

@@ -179,7 +179,6 @@
   <string name="custom_devices_settings">Kustom daftar peranti</string>
   <string name="custom_device_list">Tambahkan peranti dengan IP</string>
   <string name="custom_device_deleted">Perangkat kustom yang dihapus</string>
-  <string name="custom_device_list_help">Jika peranti Anda tidak terdeteksi secara otomatis, Anda dapat menambahkan alamat IP atau nama host-nya dengan mengklik Tombol Aksi Yang Mengambang</string>
   <string name="custom_device_fab_hint">Tambahkan sebuah peranti</string>
   <string name="undo">Urungkan</string>
   <string name="share_notification_preference">Notifikasi bising</string>

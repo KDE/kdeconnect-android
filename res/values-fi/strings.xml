@@ -205,7 +205,6 @@
   <string name="custom_devices_settings_summary">Käyttäjä lisäsi %d laitetta</string>
   <string name="custom_device_list">Lisää laitteita IP:llä</string>
   <string name="custom_device_deleted">Poistettiin mukautettu laite</string>
-  <string name="custom_device_list_help">Ellei laitetta tunnisteta automaattisesti, sen IP-osoitteen tai konenimen voi lisätä napsauttamalla kelluvaa toimintopainiketta</string>
   <string name="custom_device_fab_hint">Lisää laite</string>
   <string name="undo">Kumoa</string>
   <string name="share_notification_preference">Äänekkäät ilmoitukset</string>
