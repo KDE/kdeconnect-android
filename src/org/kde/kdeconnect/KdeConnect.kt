@@ -11,6 +11,7 @@ import android.os.StrictMode
 import android.os.StrictMode.ThreadPolicy
 import android.os.StrictMode.VmPolicy
 import android.util.Log
+import androidx.annotation.WorkerThread
 import androidx.core.content.edit
 import org.kde.kdeconnect.Backends.BaseLink
 import org.kde.kdeconnect.Backends.BaseLinkProvider.ConnectionReceiver
@@ -179,6 +180,7 @@ class KdeConnect : Application() {
     }
 
     val connectionListener: ConnectionReceiver = object : ConnectionReceiver {
+        @WorkerThread
         override fun onConnectionReceived(link: BaseLink) {
             var device = devices[link.deviceId]
             if (device != null) {
@@ -191,6 +193,7 @@ class KdeConnect : Application() {
             onDeviceListChanged()
         }
 
+        @WorkerThread
         override fun onConnectionLost(link: BaseLink) {
             val device = devices[link.deviceId]
             Log.i("KDE/onConnectionLost", "removeLink, deviceId: ${link.deviceId}")
@@ -217,6 +220,7 @@ class KdeConnect : Application() {
             onDeviceListChanged()
         }
 
+        @WorkerThread
         override fun onDeviceInfoUpdated(deviceInfo: DeviceInfo) {
             val device = devices[deviceInfo.id]
             if (device == null) {

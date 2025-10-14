@@ -346,6 +346,7 @@ public class LanLinkProvider extends BaseLinkProvider {
      * @param deviceInfo       remote device info
      * @throws IOException if an exception is thrown by {@link LanLink#reset(SSLSocket, DeviceInfo)}
      */
+    @WorkerThread
     private void addOrUpdateLink(SSLSocket socket, DeviceInfo deviceInfo) throws IOException {
         LanLink link = visibleDevices.get(deviceInfo.id);
         if (link != null) {

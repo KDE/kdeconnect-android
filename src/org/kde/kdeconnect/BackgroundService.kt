@@ -23,6 +23,7 @@ import android.net.NetworkRequest
 import android.os.Build
 import android.os.IBinder
 import android.util.Log
+import androidx.annotation.MainThread
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
@@ -95,6 +96,7 @@ class BackgroundService : Service() {
     }
 
     /** This will called only once, even if we launch the service intent several times */
+    @MainThread
     override fun onCreate() {
         super.onCreate()
         Log.d("KdeConnect/BgService", "onCreate")
@@ -115,6 +117,9 @@ class BackgroundService : Service() {
         val networkRequestBuilder = createNonCellularNetworkRequestBuilder()
         val connectivityManager = this.getSystemService<ConnectivityManager>()
         connectivityManager?.registerNetworkCallback(networkRequestBuilder.build(), object : NetworkCallback() {
+
+            // All callbacks runs on a dedicated thread that isn't the main thread
+
             override fun onAvailable(network: Network) {
                 Log.i("BackgroundService", "Valid network available")
                 connectedToNonCellularNetwork.postValue(true)

@@ -59,6 +59,7 @@ public class LanLink extends BaseLink {
     }
 
     //Returns the old socket
+    @WorkerThread
     public SSLSocket reset(final SSLSocket newSocket, final DeviceInfo deviceInfo) throws IOException {
 
         this.deviceInfo = deviceInfo;
@@ -103,6 +104,7 @@ public class LanLink extends BaseLink {
         return oldSocket;
     }
 
+    @WorkerThread
     public LanLink(@NonNull Context context, @NonNull DeviceInfo deviceInfo, @NonNull BaseLinkProvider linkProvider, @NonNull SSLSocket socket) throws IOException {
         super(context, linkProvider);
         reset(socket, deviceInfo);

@@ -349,6 +349,7 @@ class Device : PacketReceiver {
         }
     }
 
+    @WorkerThread
     fun removeLink(link: BaseLink) {
         // FilesHelper.LogOpenFileCount();
 
@@ -626,6 +627,7 @@ class Device : PacketReceiver {
         }
     }
 
+    @WorkerThread
     fun reloadPluginsFromSettings() {
         Log.i("Device", "${deviceInfo.name}: reloading plugins")
         val newPluginsByIncomingInterface: MultiValuedMap<String, String> = ArrayListValuedHashMap()
