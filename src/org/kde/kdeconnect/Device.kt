@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Albert Vaca Cintora <albertvaka@gmail.com>
+ * SPDX-FileCopyrightText: 2025 Albert Vaca Cintora <albertvaka@gmail.com>
  *
  * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 */
@@ -19,6 +19,7 @@ import androidx.annotation.VisibleForTesting
 import androidx.annotation.WorkerThread
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.edit
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -46,7 +47,6 @@ import java.util.Vector
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.ConcurrentMap
 import java.util.concurrent.CopyOnWriteArrayList
-import androidx.core.content.edit
 
 class Device : PacketReceiver {
 
@@ -545,7 +545,7 @@ class Device : PacketReceiver {
         return loadedPlugins[pluginKey] ?: pluginsWithoutPermissions[pluginKey]
     }
 
-    @Synchronized
+    // Helper function for reloadPluginsFromSettings(), do not call from elsewhere
     private fun addPlugin(pluginKey: String): Boolean {
         val isNewPlugin = !loadedPlugins.containsKey(pluginKey)
 
@@ -591,7 +591,7 @@ class Device : PacketReceiver {
         }.getOrDefault(false)
     }
 
-    @Synchronized
+    // Helper function for reloadPluginsFromSettings(), do not call from elsewhere
     private fun removePlugin(pluginKey: String): Boolean {
         val plugin = loadedPlugins.remove(pluginKey) ?: return false
 
@@ -627,6 +627,7 @@ class Device : PacketReceiver {
         }
     }
 
+    @Synchronized
     @WorkerThread
     fun reloadPluginsFromSettings() {
         Log.i("Device", "${deviceInfo.name}: reloading plugins")
