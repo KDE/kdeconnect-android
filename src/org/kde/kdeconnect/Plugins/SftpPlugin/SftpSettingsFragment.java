@@ -328,7 +328,7 @@ public class SftpSettingsFragment
 
         Device device = KdeConnect.getInstance().getDevice(getDeviceId());
 
-        device.reloadPluginsFromSettings();
+        device.launchBackgroundReloadPluginsFromSettings();
     }
 
     @Override

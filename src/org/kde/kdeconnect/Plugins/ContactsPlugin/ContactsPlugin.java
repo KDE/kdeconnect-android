@@ -134,7 +134,7 @@ public class ContactsPlugin extends Plugin {
             @Override
             public boolean onPositiveButtonClicked() {
                 Objects.requireNonNull(getPreferences()).edit().putBoolean("acceptedToTransferContacts", true).apply();
-                Objects.requireNonNull(getDevice()).reloadPluginsFromSettings();
+                Objects.requireNonNull(getDevice()).launchBackgroundReloadPluginsFromSettings();
                 return true;
             }
         });

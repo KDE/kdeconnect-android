@@ -627,6 +627,12 @@ class Device : PacketReceiver {
         }
     }
 
+    fun launchBackgroundReloadPluginsFromSettings() {
+        CoroutineScope(Dispatchers.IO).launch {
+            reloadPluginsFromSettings()
+        }
+    }
+
     @Synchronized
     @WorkerThread
     fun reloadPluginsFromSettings() {

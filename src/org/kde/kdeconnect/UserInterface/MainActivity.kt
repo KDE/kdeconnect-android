@@ -42,6 +42,9 @@ import org.kde.kdeconnect_tp.databinding.ActivityMainBinding
 import androidx.core.content.edit
 import androidx.core.view.size
 import androidx.core.view.get
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 private const val MENU_ENTRY_ADD_DEVICE = 1 //0 means no-selection
 private const val MENU_ENTRY_SETTINGS = 2
@@ -338,7 +341,9 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when {
             requestCode == RESULT_NEEDS_RELOAD -> {
-                KdeConnect.getInstance().devices.values.forEach(Device::reloadPluginsFromSettings)
+                CoroutineScope(Dispatchers.IO).launch {
+                    KdeConnect.getInstance().devices.values.forEach(Device::reloadPluginsFromSettings)
+                }
             }
             requestCode == STORAGE_LOCATION_CONFIGURED && resultCode == RESULT_OK && data != null -> {
                 val uri = data.data
@@ -380,7 +385,9 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
             }
 
             //New permission granted, reload plugins
-            KdeConnect.getInstance().devices.values.forEach(Device::reloadPluginsFromSettings)
+            CoroutineScope(Dispatchers.IO).launch {
+                KdeConnect.getInstance().devices.values.forEach(Device::reloadPluginsFromSettings)
+            }
         }
     }
 
