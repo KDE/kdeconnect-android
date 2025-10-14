@@ -7,6 +7,7 @@
 package org.kde.kdeconnect.Helpers
 
 import android.os.Looper
+import android.util.Log
 import org.kde.kdeconnect_tp.BuildConfig
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -21,7 +22,7 @@ object ThreadHelper {
     fun assertMainThread() {
         if (BuildConfig.DEBUG) {
             if (Thread.currentThread() == Looper.getMainLooper().thread) {
-                throw IllegalStateException("This function must be called from the Main thread.")
+                Log.w("ThreadHelper", "This function must be called from the Main thread.", Exception("assertMainThread"))
             }
         }
     }
@@ -29,7 +30,7 @@ object ThreadHelper {
     fun assertNotMainThread() {
         if (BuildConfig.DEBUG) {
             if (Thread.currentThread() != Looper.getMainLooper().thread) {
-                throw IllegalStateException("This function must be called from a background thread.")
+                Log.w("ThreadHelper", "This function must NOT be called from the Main thread.", Exception("assertNotMainThread"))
             }
         }
     }
