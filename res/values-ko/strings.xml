@@ -65,6 +65,8 @@
   <string name="mousepad_scroll_sensitivity_title">스크롤 감도</string>
   <string name="gyro_mouse_enabled_title">자이로스코프 마우스 활성화</string>
   <string name="gyro_mouse_sensitivity_title">자이로스코프 감도</string>
+  <string name="bigscreen_show_home_title">홈 단추 표시</string>
+  <string name="bigscreen_show_back_title">뒤로 이동 단추 표시</string>
   <string-array name="mousepad_tap_entries">
     <item>왼쪽 클릭</item>
     <item>오른쪽 단추 클릭</item>
@@ -338,6 +340,7 @@
   <string name="bigscreen_select">선택</string>
   <string name="bigscreen_right">오른쪽</string>
   <string name="bigscreen_down">아래</string>
+  <string name="bigscreen_back">뒤로</string>
   <string name="bigscreen_mic">마이크</string>
   <string name="pref_plugin_bigscreen">큰 화면 리모콘</string>
   <string name="pref_plugin_bigscreen_desc">내 장치를 Plasma 큰 화면의 리모콘으로 사용</string>

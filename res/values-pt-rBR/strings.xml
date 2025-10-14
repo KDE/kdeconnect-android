@@ -208,6 +208,7 @@
   <string name="custom_devices_settings_summary">%d dispositivos adicionados manualmente</string>
   <string name="custom_device_list">Adicionar dispositivos pelo IP</string>
   <string name="custom_device_deleted">Dispositivo personalizado excluído</string>
+  <string name="custom_device_list_help">Se o seu dispositivo não for detectado automaticamente você pode adicionar o endereço IP ou nome de máquina dele clicando no botão abaixo</string>
   <string name="custom_device_fab_hint">Adicionar um dispositivo</string>
   <string name="undo">Desfazer</string>
   <string name="share_notification_preference">Notificações sonoras</string>

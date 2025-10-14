@@ -208,6 +208,7 @@
   <string name="custom_devices_settings_summary">%d apparaten handmatig toegevoegd</string>
   <string name="custom_device_list">Voeg apparaten toe per IP-adres</string>
   <string name="custom_device_deleted">Aangepaste apparaat verwijderd</string>
+  <string name="custom_device_list_help">Als uw apparaat niet automatisch wordt gedetecteerd kunt u zijn IP-adres of hostnaam toevoegen door te klikken op de onderstaande knop</string>
   <string name="custom_device_fab_hint">Een apparaat toevoegen</string>
   <string name="undo">Ongedaan maken</string>
   <string name="share_notification_preference">Luidruchtige meldingen</string>
