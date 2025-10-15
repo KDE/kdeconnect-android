@@ -358,7 +358,7 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) = Unit
             override fun onPrepareMenu(menu: Menu) {
                 menu.clear()
-                if (!targetPlayer?.url.isNullOrEmpty()) {
+                if (!targetPlayer?.getHttpUrl().isNullOrEmpty()) {
                     menu.add(0, MENU_OPEN_URL, Menu.NONE, R.string.mpris_open_url)
                 }
             }
@@ -367,11 +367,12 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
                 val targetPlayer = targetPlayer
                 if (targetPlayer != null && menuItem.itemId == MENU_OPEN_URL) {
                     try {
-                        val url = targetPlayer.url
+                        val httpUrl = targetPlayer.getHttpUrl() ?: return false
+                        val transformedUrl = httpUrl
                             .let { VideoUrlsHelper.convertToAndFromYoutubeTvLinks(it) }
                             .let { VideoUrlsHelper.formatUriWithSeek(it, targetPlayer.position) }
                             .toUri()
-                        val browserIntent = Intent(Intent.ACTION_VIEW, url)
+                        val browserIntent = Intent(Intent.ACTION_VIEW, transformedUrl)
                         startActivity(browserIntent)
                         targetPlayer.sendPause()
                         return true

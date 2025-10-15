@@ -47,12 +47,8 @@ class MprisPlugin : Plugin() {
             internal set
         var album: String = ""
             internal set
-        var albumArtUrl: String = ""
-            internal set
-
-        // @NonNull
-        var url: String = ""
-            internal set
+        internal var albumArtUrl: String = ""
+        internal var url: String = ""
         var loopStatus: String = ""
             internal set
         var isLoopStatusAllowed: Boolean = false
@@ -100,6 +96,10 @@ class MprisPlugin : Plugin() {
          */
         fun getAlbumArt(): Bitmap? {
             return getAlbumArt(albumArtUrl, this@MprisPlugin, playerName)
+        }
+
+        fun getHttpUrl(): String? {
+            return url?.takeIf { it.startsWith("http://") || it.startsWith("https://") }
         }
 
         val isSetVolumeAllowed: Boolean
@@ -329,15 +329,14 @@ class MprisPlugin : Plugin() {
 
     private fun showContinueWatchingNotification(playerStatus: MprisPlayer) {
         val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-        if (prefs.getBoolean(context.getString(R.string.mpris_keepwatching_key), true) &&
-            (playerStatus.url.startsWith("http://") || playerStatus.url.startsWith("https://"))
-        ) {
+        val httpUrl = playerStatus.getHttpUrl()
+        if (prefs.getBoolean(context.getString(R.string.mpris_keepwatching_key), true) && httpUrl != null) {
             try {
-                val url = playerStatus.url
+                val transformedUrl = httpUrl
                     .let { VideoUrlsHelper.convertToAndFromYoutubeTvLinks(it) }
                     .let { VideoUrlsHelper.formatUriWithSeek(it, playerStatus.position) }
                     .toUri()
-                val browserIntent = Intent(Intent.ACTION_VIEW, url)
+                val browserIntent = Intent(Intent.ACTION_VIEW, transformedUrl)
                 val pendingIntent = PendingIntent.getActivity(context, 0, browserIntent, PendingIntent.FLAG_IMMUTABLE)
 
                 val notificationManager = ContextCompat.getSystemService(context, NotificationManager::class.java)
