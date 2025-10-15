@@ -11,6 +11,7 @@
   <string name="pref_plugin_battery_desc">定期报告电池状态</string>
   <string name="pref_plugin_connectivity_report">连接报告</string>
   <string name="pref_plugin_connectivity_report_desc">报告网络信号强度和状态</string>
+  <string name="pref_plugin_sftp">文件系统访问</string>
   <string name="pref_plugin_sftp_desc">允许远程浏览设备的文件系统</string>
   <string name="pref_plugin_clipboard">剪贴板同步</string>
   <string name="pref_plugin_clipboard_desc">共享剪贴板内容</string>
@@ -64,6 +65,8 @@
   <string name="mousepad_scroll_sensitivity_title">滚动灵敏度</string>
   <string name="gyro_mouse_enabled_title">启用陀螺仪鼠标</string>
   <string name="gyro_mouse_sensitivity_title">陀螺仪灵敏度</string>
+  <string name="bigscreen_show_home_title">显示主页按钮</string>
+  <string name="bigscreen_show_back_title">显示返回按钮</string>
   <string-array name="mousepad_tap_entries">
     <item>左键点击</item>
     <item>右键点击</item>
@@ -197,6 +200,7 @@
   <string name="custom_devices_settings_summary">手动添加了 %d 个设备</string>
   <string name="custom_device_list">通过 IP 添加设备</string>
   <string name="custom_device_deleted">自定义设备已删除</string>
+  <string name="custom_device_list_help">如果您的设备未被自动检测到，您可以点击下面的按钮添加其 IP 地址或主机名。</string>
   <string name="custom_device_fab_hint">添加设备</string>
   <string name="undo">撤销</string>
   <string name="share_notification_preference">出声通知</string>
@@ -225,6 +229,7 @@
   <string name="sftp_no_storage_locations_configured">未配置存储位置</string>
   <string name="sftp_saf_permission_explanation">要远程访问文件，您需要配置存储位置</string>
   <string name="sftp_manage_storage_permission_explanation">要允许远程访问此设备上的文件，您必须允许 KDE Connect 管理它的存储。</string>
+  <string name="sftp_missing_permission_error">缺少权限：文件系统访问</string>
   <string name="no_players_connected">未找到播放器</string>
   <string name="send_files">发送文件</string>
   <string name="block_notification_contents">屏蔽通知内容</string>
@@ -336,6 +341,7 @@
   <string name="bigscreen_select">选择</string>
   <string name="bigscreen_right">右</string>
   <string name="bigscreen_down">下</string>
+  <string name="bigscreen_back">返回</string>
   <string name="bigscreen_mic">麦克风</string>
   <string name="pref_plugin_bigscreen">电视遥控</string>
   <string name="pref_plugin_bigscreen_desc">使用您手机遥控 Plasma 电视</string>
