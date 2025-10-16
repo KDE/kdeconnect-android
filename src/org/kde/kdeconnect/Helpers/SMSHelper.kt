@@ -614,20 +614,24 @@ object SMSHelper {
 
                             // Get the actual image from the mms database convert it into thumbnail and encode to Base64
                             val image = SmsMmsUtils.getMmsImage(context, partID)
-                            val thumbnailImage = ThumbnailUtils.extractThumbnail(
-                                image,
-                                THUMBNAIL_WIDTH,
-                                THUMBNAIL_HEIGHT
-                            )
-                            val encodedThumbnail = SmsMmsUtils.bitMapToBase64(thumbnailImage)
-                            attachments.add(
-                                Attachment(
-                                    partID,
-                                    contentType,
-                                    encodedThumbnail,
-                                    fileName
+                            if (image != null) {
+                                val thumbnailImage = ThumbnailUtils.extractThumbnail(
+                                    image,
+                                    THUMBNAIL_WIDTH,
+                                    THUMBNAIL_HEIGHT
                                 )
-                            )
+                                val encodedThumbnail = SmsMmsUtils.bitMapToBase64(thumbnailImage)
+                                attachments.add(
+                                    Attachment(
+                                        partID,
+                                        contentType,
+                                        encodedThumbnail,
+                                        fileName
+                                    )
+                                )
+                                thumbnailImage.recycle()
+                                if (!image.isRecycled) image.recycle()
+                            }
                         } else if (MimeType.isTypeVideo(contentType)) {
                             val fileName = data.substring(data.lastIndexOf('/') + 1)
 
