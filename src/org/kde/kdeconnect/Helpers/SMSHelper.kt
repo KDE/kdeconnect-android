@@ -638,17 +638,20 @@ object SMSHelper {
                                 ContentUris.withAppendedId(mMSPartUri, partID)
                             )
                             val videoThumbnail = retriever.frameAtTime
-                            val encodedThumbnail = SmsMmsUtils.bitMapToBase64(
-                                videoThumbnail!!.scale(THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT)
-                            )
-                            attachments.add(
-                                Attachment(
-                                    partID,
-                                    contentType,
-                                    encodedThumbnail,
-                                    fileName
+                            if (videoThumbnail != null) {
+                                val encodedThumbnail = SmsMmsUtils.bitMapToBase64(
+                                    videoThumbnail.scale(THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT)
                                 )
-                            )
+                                attachments.add(
+                                    Attachment(
+                                        partID,
+                                        contentType,
+                                        encodedThumbnail,
+                                        fileName
+                                    )
+                                )
+                            }
+                            retriever.release()
                         } else if (MimeType.isTypeAudio(contentType)) {
                             val fileName = data.substring(data.lastIndexOf('/') + 1)
                             attachments.add(Attachment(partID, contentType, null, fileName))
