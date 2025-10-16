@@ -9,20 +9,22 @@ package org.kde.kdeconnect.Plugins.PresenterPlugin;
 
 import static org.kde.kdeconnect.Plugins.MousePadPlugin.KeyListenerView.SpecialKeysMap;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.view.KeyEvent;
 
-import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.jetbrains.annotations.NotNull;
 import org.kde.kdeconnect.DeviceType;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect_tp.R;
+
+import java.util.List;
+
+import kotlin.Unit;
 
 @PluginFactory.LoadablePlugin
 public class PresenterPlugin extends Plugin {
@@ -50,8 +52,13 @@ public class PresenterPlugin extends Plugin {
     }
 
     @Override
-    public @DrawableRes int getIcon() {
-        return R.drawable.ic_presenter_24dp;
+    public @NotNull List<@NotNull PluginUiButton> getUiButtons() {
+        return List.of(new PluginUiButton(context.getString(R.string.pref_plugin_presenter), R.drawable.ic_presenter_24dp, parentActivity -> {
+            Intent intent = new Intent(parentActivity, PresenterActivity.class);
+            intent.putExtra("deviceId", getDevice().getDeviceId());
+            parentActivity.startActivity(intent);
+            return Unit.INSTANCE;
+        }));
     }
 
     @Override
@@ -60,28 +67,11 @@ public class PresenterPlugin extends Plugin {
     }
 
     @Override
-    public boolean displayAsButton(Context context) {
-        return true;
-    }
-
-    @Override
-    public void startMainActivity(Activity parentActivity) {
-        Intent intent = new Intent(parentActivity, PresenterActivity.class);
-        intent.putExtra("deviceId", getDevice().getDeviceId());
-        parentActivity.startActivity(intent);
-    }
-
-    @Override
     public @NonNull String[] getSupportedPacketTypes() {  return ArrayUtils.EMPTY_STRING_ARRAY; }
 
     @Override
     public @NonNull String[] getOutgoingPacketTypes() {
         return new String[]{PACKET_TYPE_MOUSEPAD_REQUEST, PACKET_TYPE_PRESENTER};
-    }
-
-    @Override
-    public @NonNull String getActionName() {
-        return context.getString(R.string.pref_plugin_presenter);
     }
 
     public void sendNext() {

@@ -33,7 +33,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.*
 import androidx.core.view.MenuProvider
-import androidx.lifecycle.Lifecycle
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.kde.kdeconnect.BackgroundService
 import org.kde.kdeconnect.Device
@@ -109,13 +108,11 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
             val device = device ?: return
 
             //Plugins button list
-            val plugins: Collection<Plugin> = device.loadedPlugins.values
-            for (p in plugins) {
-                if (p.displayInContextMenu()) {
-                    menu.add(p.actionName).setOnMenuItemClickListener {
-                        p.startMainActivity(mActivity!!)
-                        true
-                    }
+            val menuEntries: Collection<Plugin.PluginUiMenuEntry> = device.loadedPlugins.values.flatMap { it.getUiMenuEntries() }
+            for (p in menuEntries) {
+                menu.add(p.name).setOnMenuItemClickListener {
+                    p.onClick(mActivity!!)
+                    true
                 }
             }
             val intent = Intent(mActivity, PluginSettingsActivity::class.java)
@@ -298,7 +295,7 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
                 pairingBinding.pairingButtons.visibility = View.GONE
                 if (device.isReachable) {
                     val context = requireContext()
-                    val pluginsWithButtons = device.loadedPlugins.values.filter { it.displayAsButton(context) }
+                    val pluginsWithButtons = device.loadedPlugins.values.flatMap { it.getUiButtons() }
                     val pluginsNeedPermissions = device.pluginsWithoutPermissions.values.filter { device.isPluginEnabled(it.pluginKey) }
                     val pluginsNeedOptionalPermissions = device.pluginsWithoutOptionalPermissions.values.filter { device.isPluginEnabled(it.pluginKey) }
                     errorBinding.errorMessageContainer.visibility = View.GONE
@@ -390,28 +387,28 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
     fun PreviewCompose() {
         val plugins = listOf(MprisPlugin(), RunCommandPlugin(), PresenterPlugin())
         plugins.forEach { it.setContext(LocalContext.current, null) }
-        PluginButtons(plugins, 2)
+        PluginButtons(plugins.flatMap { it.getUiButtons() }, 2)
     }
 
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
-    fun PluginButton(plugin : Plugin, modifier: Modifier) {
+    fun PluginButton(button : Plugin.PluginUiButton, modifier: Modifier) {
         Card(
             shape = MaterialTheme.shapes.medium,
             modifier = modifier.semantics { role = Role.Button },
-            onClick = { plugin.startMainActivity(mActivity!!) }
+            onClick = { button.onClick(mActivity!!) }
         ) {
             Column(
                 verticalArrangement = Arrangement.spacedBy(10.dp),
                 modifier = Modifier.padding(horizontal=16.dp, vertical=10.dp)
             ) {
                 Icon(
-                    painter = painterResource(plugin.icon),
+                    painter = painterResource(button.iconRes),
                     modifier = Modifier.padding(top = 12.dp),
                     contentDescription = null
                 )
                 Text(
-                    text = plugin.actionName,
+                    text = button.name,
                     maxLines = 2,
                     minLines = 2,
                     fontSize = 18.sp,
@@ -422,10 +419,10 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
     }
 
     @Composable
-    fun PluginButtons(plugins: List<Plugin>, numColumns: Int) {
+    fun PluginButtons(buttons: List<Plugin.PluginUiButton>, numColumns: Int) {
         Column(modifier = Modifier.padding(horizontal = 16.dp)) {
-            val pluginIter = plugins.iterator()
-            while (pluginIter.hasNext()) {
+            val buttonIter = buttons.iterator()
+            while (buttonIter.hasNext()) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -433,9 +430,9 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     repeat(numColumns) {
-                        if (pluginIter.hasNext()) {
+                        if (buttonIter.hasNext()) {
                             PluginButton(
-                                plugin = pluginIter.next(),
+                                button = buttonIter.next(),
                                 modifier = Modifier.weight(1f)
                             )
                         } else {
@@ -467,7 +464,7 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
 
     @Composable
     fun PluginList(
-        pluginsWithButtons: List<Plugin>,
+        pluginsWithButtons: List<Plugin.PluginUiButton>,
         pluginsNeedPermissions: List<Plugin>,
         pluginsNeedOptionalPermissions: List<Plugin>
     ) {
