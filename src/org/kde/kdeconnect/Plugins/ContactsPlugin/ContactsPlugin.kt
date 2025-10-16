@@ -68,9 +68,10 @@ class ContactsPlugin : Plugin() {
                 .create()
                 .apply {
                     setCallback(object : AlertDialogFragment.Callback() {
-                        override fun onPositiveButtonClicked() {
+                        override fun onPositiveButtonClicked(): Boolean {
                             preferences!!.edit { putBoolean("acceptedToTransferContacts", true) }
-                            device!!.launchBackgroundReloadPluginsFromSettings()
+                            device.launchBackgroundReloadPluginsFromSettings()
+                            return true
                         }
                     })
                 }
@@ -134,7 +135,7 @@ class ContactsPlugin : Plugin() {
             return false
         }
 
-        val storedUIDs: List<uID>? = np.getStringList("uids")?.map { uID(it) }
+        val storedUIDs: List<uID>? = np.getStringList("uids")?.distinct()?.map { uID(it) }
         if (storedUIDs == null) {
             Log.e("ContactsPlugin", "handleRequestNamesByUIDs received a malformed packet with no uids")
             return false
