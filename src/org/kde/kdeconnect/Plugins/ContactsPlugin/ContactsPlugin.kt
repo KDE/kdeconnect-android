@@ -98,7 +98,6 @@ class ContactsPlugin : Plugin() {
         vcard.appendLine("X-KDECONNECT-ID-DEV-${device.deviceId}", uID.toString())
 
         val timestamp: Long = ContactsHelper.getContactTimestamp(context, uID)
-        vcard.appendLine("X-KDECONNECT-TIMESTAMP", timestamp.toString()) // For backwards compatibility TODO consider removal
         vcard.appendLine("REV", timestamp.toString())
 
         return vcard
