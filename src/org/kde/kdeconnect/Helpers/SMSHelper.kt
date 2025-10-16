@@ -53,21 +53,7 @@ object SMSHelper {
     // The constant Telephony.Mms.Part.CONTENT_URI was added in API 29
     val mMSPartUri : Uri = "content://mms/part/".toUri()
 
-    /**
-     * Get the base address for all message conversations
-     * We only use this to fetch thread_ids because the data it returns if often incomplete or useless
-     */
-    private fun getConversationUri(): Uri {
-        // Special case for Samsung
-        // For some reason, Samsung devices do not support the regular SmsMms column.
-        // However, according to https://stackoverflow.com/a/13640868/3723163, we can work around it this way.
-        // By my understanding, "simple=true" means we can't support multi-target messages.
-        // Go complain to Samsung about their annoying OS changes!
-        if ("Samsung".equals(Build.MANUFACTURER, ignoreCase = true)) {
-            Log.i("SMSHelper", "This appears to be a Samsung device. This may cause some features to not work properly.")
-        }
-        return "content://mms-sms/conversations?simple=true".toUri()
-    }
+    val mConversationUri : Uri = "content://mms-sms/conversations?simple=true".toUri()
 
     private fun getCompleteConversationsUri(): Uri {
         // This glorious - but completely undocumented - content URI gives us all messages, both MMS and SMS,
@@ -376,7 +362,7 @@ object SMSHelper {
         if (getSubscriptionIdSupport(uri, context)) {
             allColumns.addAll(Message.multiSIMColumns)
         }
-        if (uri != getConversationUri()) {
+        if (uri != mConversationUri) {
             // See https://issuetracker.google.com/issues/134592631
             allColumns.add(TRANSPORT_TYPE_DISCRIMINATOR_COLUMN)
         }
@@ -428,7 +414,6 @@ object SMSHelper {
      * @return Non-blocking iterable of the first message in each conversation
      */
     fun getConversations(context: Context): Sequence<Message> {
-        val uri = getConversationUri()
 
         // Used to avoid spewing logs in case there is an overall problem with fetching thread IDs
         var warnedForNullThreadIDs = false
@@ -443,7 +428,7 @@ object SMSHelper {
         // return conversations, but I doubt anyone will ever find it necessary.
         var threadIds: List<ThreadID>
         context.contentResolver.query(
-            uri,
+            mConversationUri,
             null,
             null,
             null,
@@ -776,15 +761,6 @@ object SMSHelper {
             throw MessageAccessException(partURI, e)
         }
         return body
-    }
-
-    /**
-     * Register a ContentObserver for the Messages database
-     *
-     * @param observer ContentObserver to alert on Message changes
-     */
-    fun registerObserver(observer: ContentObserver, context: Context) {
-        context.contentResolver.registerContentObserver(getConversationUri(), true, observer)
     }
 
     /**

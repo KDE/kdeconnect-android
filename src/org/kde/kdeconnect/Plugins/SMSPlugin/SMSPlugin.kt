@@ -28,6 +28,7 @@ import android.telephony.SmsManager
 import android.telephony.SmsMessage
 import androidx.annotation.WorkerThread
 import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
 import com.klinker.android.logger.Log
 import com.klinker.android.send_message.Transaction
 import org.json.JSONArray
@@ -43,7 +44,6 @@ import org.kde.kdeconnect.Helpers.SMSHelper.getMessagesInThread
 import org.kde.kdeconnect.Helpers.SMSHelper.getNewestMessageTimestamp
 import org.kde.kdeconnect.Helpers.SMSHelper.jsonArrayToAddressList
 import org.kde.kdeconnect.Helpers.SMSHelper.jsonArrayToAttachmentsList
-import org.kde.kdeconnect.Helpers.SMSHelper.registerObserver
 import org.kde.kdeconnect.Helpers.ThreadHelper.execute
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.Plugins.Plugin
@@ -133,6 +133,9 @@ class SMSPlugin : Plugin() {
             }
         }
     }
+
+    private val messageObserver: ContentObserver = MessageContentObserver(Handler(getLooper()!!))
+
 
     /**
      * Helper method to read the latest message from the sms-mms database and sends it to the desktop
@@ -232,9 +235,7 @@ class SMSPlugin : Plugin() {
         refreshFilter.priority = 500
         context.registerReceiver(messagesUpdateReceiver, refreshFilter, ContextCompat.RECEIVER_EXPORTED)
 
-        val helperLooper: Looper? = getLooper()
-        val messageObserver: ContentObserver = MessageContentObserver(Handler(helperLooper!!))
-        registerObserver(messageObserver, context)
+        context.contentResolver.registerContentObserver(SMSHelper.mConversationUri, true, messageObserver)
 
         // To see debug messages for Klinker library, uncomment the below line
         //Log.setDebug(true)
@@ -243,6 +244,12 @@ class SMSPlugin : Plugin() {
         mostRecentTimestampLock.unlock()
 
         return true
+    }
+
+    override fun onDestroy() {
+        context.unregisterReceiver(receiver)
+        context.unregisterReceiver(messagesUpdateReceiver)
+        context.contentResolver.unregisterContentObserver(messageObserver)
     }
 
     override val displayName: String
