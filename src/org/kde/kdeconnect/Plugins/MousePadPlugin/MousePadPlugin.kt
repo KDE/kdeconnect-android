@@ -7,10 +7,8 @@ package org.kde.kdeconnect.Plugins.MousePadPlugin
 
 import android.Manifest
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.view.KeyEvent
-import androidx.annotation.DrawableRes
 import org.kde.kdeconnect.DeviceType
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.Plugins.Plugin
@@ -32,16 +30,28 @@ class MousePadPlugin : Plugin() {
     override val displayName: String
         get() = context.getString(R.string.pref_plugin_mousepad)
 
-    override val actionName: String
-        get() = context.getString(R.string.open_mousepad)
+    override fun getUiButtons(): List<PluginUiButton> = listOf(
+        PluginUiButton(
+            context.getString(R.string.open_mousepad),
+            R.drawable.touchpad_plugin_action_24dp
+        ) { parentActivity ->
+            val intent = Intent(parentActivity, MousePadActivity::class.java)
+            intent.putExtra("deviceId", device.deviceId)
+            parentActivity.startActivity(intent)
+        }
+    ) + if (device.deviceType == DeviceType.TV) listOf(
+            PluginUiButton(
+                context.getString(R.string.open_mousepad_tv),
+                R.drawable.tv_remote_24px
+            ) { parentActivity ->
+                val intent = Intent(parentActivity, BigscreenActivity::class.java)
+                intent.putExtra("deviceId", device.deviceId)
+                parentActivity.startActivity(intent)
+            }
+        ) else emptyList()
 
     override val description: String
         get() = context.getString(R.string.pref_plugin_mousepad_desc_nontv)
-
-    @get:DrawableRes
-    override val icon: Int = R.drawable.touchpad_plugin_action_24dp
-
-    override fun displayAsButton(context: Context): Boolean = true
 
     override fun hasSettings(): Boolean = true
 
@@ -51,16 +61,6 @@ class MousePadPlugin : Plugin() {
         } else {
             newInstance(pluginKey, R.xml.mousepadplugin_preferences)
         }
-    }
-
-    override fun startMainActivity(parentActivity: Activity) {
-        val intent = if (device.deviceType == DeviceType.TV) {
-            Intent(parentActivity, BigscreenActivity::class.java)
-        } else {
-            Intent(parentActivity, MousePadActivity::class.java)
-        }
-        intent.putExtra("deviceId", device.deviceId)
-        parentActivity.startActivity(intent)
     }
 
     fun sendMouseDelta(dx: Float, dy: Float) {

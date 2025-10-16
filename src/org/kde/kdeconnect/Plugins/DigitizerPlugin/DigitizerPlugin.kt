@@ -12,9 +12,11 @@ import android.content.Intent
 import android.content.res.Configuration
 import android.util.Log
 import androidx.preference.PreferenceManager
+import org.kde.kdeconnect.Helpers.DeviceHelper
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.Plugins.Plugin
 import org.kde.kdeconnect.Plugins.PluginFactory
+import org.kde.kdeconnect.Plugins.PresenterPlugin.PresenterActivity
 import org.kde.kdeconnect.UserInterface.PluginSettingsFragment
 import org.kde.kdeconnect_tp.R
 
@@ -26,23 +28,22 @@ class DigitizerPlugin : Plugin() {
     override val description: String
         get() = context.resources.getString(R.string.pref_plugin_digitizer_desc)
 
-    override val icon: Int
-        get() = R.drawable.ic_draw_24dp
+    override val isEnabledByDefault: Boolean
+        get() = DeviceHelper.isTablet
+
+    override fun getUiButtons(): List<PluginUiButton> = listOf(
+        PluginUiButton(
+            context.getString(R.string.use_digitizer),
+            R.drawable.ic_draw_24dp
+        ) { parentActivity ->
+            val intent = Intent(parentActivity, DigitizerActivity::class.java)
+            intent.putExtra("deviceId", device.deviceId)
+            parentActivity.startActivity(intent)
+        })
 
     override fun onPacketReceived(np: NetworkPacket): Boolean {
         Log.e(TAG, "The drawing tablet plugin should not be able to receive any packets!")
         return false
-    }
-
-    override val actionName: String
-        get() = context.getString(R.string.use_digitizer)
-
-    override fun displayAsButton(context: Context): Boolean = shouldDisplayAsBigButton(context)
-
-    override fun startMainActivity(parentActivity: Activity) {
-        parentActivity.startActivity(Intent(parentActivity, DigitizerActivity::class.java).apply {
-            putExtra("deviceId", device.deviceId)
-        })
     }
 
     fun startSession(width: Int, height: Int, resolutionX: Int, resolutionY: Int) {
@@ -95,9 +96,5 @@ class DigitizerPlugin : Plugin() {
         private const val PACKET_TYPE_DIGITIZER = "kdeconnect.digitizer"
 
         private const val TAG = "DigitizerPlugin"
-
-        @JvmStatic
-        fun shouldDisplayAsBigButton(context: Context): Boolean =
-            context.resources.configuration.screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK >= Configuration.SCREENLAYOUT_SIZE_LARGE
     }
 }

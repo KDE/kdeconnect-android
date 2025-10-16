@@ -10,18 +10,17 @@ package org.kde.kdeconnect.Plugins.RunCommandPlugin;
 import static org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandWidgetProviderKt.forceRefreshWidgets;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.util.Log;
 
-import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.PreferenceManager;
 
 import org.apache.commons.collections4.iterators.IteratorIterable;
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,6 +33,9 @@ import org.kde.kdeconnect_tp.R;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
+
+import kotlin.Unit;
 
 @PluginFactory.LoadablePlugin
 public class RunCommandPlugin extends Plugin {
@@ -92,8 +94,13 @@ public class RunCommandPlugin extends Plugin {
     }
 
     @Override
-    public @DrawableRes int getIcon() {
-        return R.drawable.run_command_plugin_icon_24dp;
+    public @NotNull List<@NotNull PluginUiButton> getUiButtons() {
+        return List.of(new PluginUiButton(context.getString(R.string.pref_plugin_runcommand), R.drawable.run_command_plugin_icon_24dp, parentActivity -> {
+            Intent intent = new Intent(parentActivity, RunCommandActivity.class);
+            intent.putExtra("deviceId", getDevice().getDeviceId());
+            parentActivity.startActivity(intent);
+            return Unit.INSTANCE;
+        }));
     }
 
     @Override
@@ -179,23 +186,6 @@ public class RunCommandPlugin extends Plugin {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_RUNCOMMAND_REQUEST);
         np.set("requestCommandList", true);
         getDevice().sendPacket(np);
-    }
-
-    @Override
-    public boolean displayAsButton(Context context) {
-        return true;
-    }
-
-    @Override
-    public void startMainActivity(Activity parentActivity) {
-        Intent intent = new Intent(parentActivity, RunCommandActivity.class);
-        intent.putExtra("deviceId", getDevice().getDeviceId());
-        parentActivity.startActivity(intent);
-    }
-
-    @Override
-    public @NonNull String getActionName() {
-        return context.getString(R.string.pref_plugin_runcommand);
     }
 
     public boolean canAddCommand() {

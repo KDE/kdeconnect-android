@@ -20,7 +20,6 @@ import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 
-import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
@@ -34,6 +33,8 @@ import androidx.core.os.BundleCompat;
 import androidx.preference.PreferenceManager;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.jetbrains.annotations.NotNull;
 import org.kde.kdeconnect.Helpers.FilesHelper;
 import org.kde.kdeconnect.Helpers.IntentHelper;
 import org.kde.kdeconnect.NetworkPacket;
@@ -52,6 +53,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+
+import kotlin.Unit;
 
 /**
  * A Plugin for sharing and receiving files and uris.
@@ -177,30 +180,18 @@ public class SharePlugin extends Plugin {
     }
 
     @Override
-    public @DrawableRes int getIcon() {
-        return R.drawable.share_plugin_action_24dp;
-    }
-
-    @Override
     public @NonNull String getDescription() {
         return context.getResources().getString(R.string.pref_plugin_sharereceiver_desc);
     }
 
     @Override
-    public boolean displayAsButton(Context context) {
-        return true;
-    }
-
-    @Override
-    public @NonNull String getActionName() {
-        return context.getString(R.string.send_files);
-    }
-
-    @Override
-    public void startMainActivity(Activity parentActivity) {
-        Intent intent = new Intent(parentActivity, SendFileActivity.class);
-        intent.putExtra("deviceId", getDevice().getDeviceId());
-        parentActivity.startActivity(intent);
+    public @NotNull List<@NotNull PluginUiButton> getUiButtons() {
+        return List.of(new PluginUiButton(context.getString(R.string.send_files), R.drawable.share_plugin_action_24dp, parentActivity -> {
+            Intent intent = new Intent(parentActivity, SendFileActivity.class);
+            intent.putExtra("deviceId", getDevice().getDeviceId());
+            parentActivity.startActivity(intent);
+            return Unit.INSTANCE;
+        }));
     }
 
     @Override

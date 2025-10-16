@@ -6,16 +6,15 @@
 package org.kde.kdeconnect.Plugins.PresenterPlugin
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.view.KeyEvent
-import androidx.annotation.DrawableRes
 import org.kde.kdeconnect.DeviceType
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.Plugins.MousePadPlugin.KeyListenerView
 import org.kde.kdeconnect.Plugins.Plugin
 import org.kde.kdeconnect.Plugins.PluginFactory.LoadablePlugin
 import org.kde.kdeconnect_tp.R
+
 
 @LoadablePlugin
 class PresenterPlugin : Plugin() {
@@ -29,25 +28,21 @@ class PresenterPlugin : Plugin() {
     override val description: String
         get() = context.getString(R.string.pref_plugin_presenter_desc)
 
-    @get:DrawableRes
-    override val icon: Int = R.drawable.ic_presenter_24dp
-
     override fun hasSettings(): Boolean = false
 
-    override fun displayAsButton(context: Context): Boolean = true
-
-    override fun startMainActivity(parentActivity: Activity) {
-        val intent = Intent(parentActivity, PresenterActivity::class.java)
-        intent.putExtra("deviceId", device.deviceId)
-        parentActivity.startActivity(intent)
-    }
+    override fun getUiButtons(): List<PluginUiButton> = listOf(
+        PluginUiButton(
+            context.getString(R.string.pref_plugin_presenter),
+            R.drawable.ic_presenter_24dp
+        ) { parentActivity ->
+            val intent = Intent(parentActivity, PresenterActivity::class.java)
+            intent.putExtra("deviceId", device.deviceId)
+            parentActivity.startActivity(intent)
+        })
 
     override val supportedPacketTypes: Array<String> = emptyArray()
 
     override val outgoingPacketTypes: Array<String> = arrayOf(PACKET_TYPE_MOUSEPAD_REQUEST, PACKET_TYPE_PRESENTER)
-
-    override val actionName: String
-        get() = context.getString(R.string.pref_plugin_presenter)
 
     fun sendNext() {
         val np = NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST)

@@ -68,6 +68,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="remotekeyboard_connected" translatable="true">Remote keyboard connection is active</string>
     <string name="remotekeyboard_multiple_connections" translatable="true">There is more than one remote keyboard connection, select the device to configure</string>
     <string name="open_mousepad">Remote input</string>
+    <string name="open_mousepad_tv">TV remote</string>
     <string name="mousepad_info">Move a finger on the screen to move the mouse cursor. Tap for a click, and use two/three fingers for right and middle buttons. Use 2 fingers to scroll. Use a long press to drag\'n drop. Gyro mouse functionality can be enabled from plugin preferences</string>
     <string name="mousepad_info_no_gestures">Move a finger on the screen to move the mouse cursor, tap for a click.</string>
     <string name="mousepad_keyboard_input_not_supported">Keyboard input not supported by the paired device</string>
@@ -481,7 +482,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="bigscreen_down">Down</string>
     <string name="bigscreen_back">Back</string>
     <string name="bigscreen_mic">Mic</string>
-    <string name="pref_plugin_bigscreen">Bigscreen remote</string>
+    <string name="pref_plugin_bigscreen">TV remote</string>
     <string name="pref_plugin_bigscreen_desc">Use your device as a remote for Plasma Bigscreen</string>
     <string name="bigscreen_optional_permission_explanation">To share microphone input from your phone you need to give access to the phone\'s audio input</string>
     <string name="bigscreen_speech_extra_prompt">Speech</string>

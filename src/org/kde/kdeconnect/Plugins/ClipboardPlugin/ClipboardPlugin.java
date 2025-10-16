@@ -8,22 +8,25 @@ package org.kde.kdeconnect.Plugins.ClipboardPlugin;
 
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
-import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.widget.Toast;
 
-import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
+import org.jetbrains.annotations.NotNull;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect_tp.R;
+
+import java.util.Collections;
+import java.util.List;
+
+import kotlin.Unit;
 
 @PluginFactory.LoadablePlugin
 public class ClipboardPlugin extends Plugin {
@@ -130,26 +133,32 @@ public class ClipboardPlugin extends Plugin {
     }
 
     @Override
-    public @NonNull String getActionName() {
-        return context.getString(R.string.send_clipboard);
+    public @NotNull List<@NotNull PluginUiButton> getUiButtons() {
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P && canAccessLogs()) {
+            return List.of(new PluginUiButton(context.getString(R.string.send_clipboard), R.drawable.ic_baseline_content_paste_24, parentActivity -> {
+                userInitiatedSendClipboard();
+                return Unit.INSTANCE;
+            }));
+        } else {
+            return Collections.emptyList();
+        }
     }
 
     @Override
-    public boolean displayAsButton(Context context) {
-        return Build.VERSION.SDK_INT > Build.VERSION_CODES.P &&
-                ContextCompat.checkSelfPermission(context, Manifest.permission.READ_LOGS) == PackageManager.PERMISSION_DENIED;
+    public @NotNull List<@NotNull PluginUiMenuEntry> getUiMenuEntries() {
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P && !canAccessLogs()) {
+            return List.of(new PluginUiMenuEntry(context.getString(R.string.send_clipboard), parentActivity -> {
+                userInitiatedSendClipboard();
+                return Unit.INSTANCE;
+            }));
+        } else {
+            return Collections.emptyList();
+        }
     }
 
-    @Override
-    public @DrawableRes int getIcon() {
-        return R.drawable.ic_baseline_content_paste_24;
-    }
-
-    @Override
-    public void startMainActivity(Activity parentActivity) {
+    private void userInitiatedSendClipboard() {
         if (isDeviceInitialized()) {
-            ClipboardManager clipboardManager = ContextCompat.getSystemService(this.context,
-                    ClipboardManager.class);
+            ClipboardManager clipboardManager = ContextCompat.getSystemService(this.context, ClipboardManager.class);
             ClipData.Item item;
             if (clipboardManager.hasPrimaryClip()) {
                 item = clipboardManager.getPrimaryClip().getItemAt(0);
@@ -158,6 +167,10 @@ public class ClipboardPlugin extends Plugin {
                 Toast.makeText(this.context, R.string.pref_plugin_clipboard_sent, Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    private boolean canAccessLogs() {
+        return ContextCompat.checkSelfPermission(context, Manifest.permission.READ_LOGS) == PackageManager.PERMISSION_DENIED;
     }
 
 }

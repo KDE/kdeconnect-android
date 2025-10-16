@@ -5,7 +5,6 @@
  */
 package org.kde.kdeconnect.Plugins.FindRemoteDevicePlugin
 
-import android.app.Activity
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.Plugins.FindMyPhonePlugin.FindMyPhonePlugin
 import org.kde.kdeconnect.Plugins.Plugin
@@ -22,16 +21,11 @@ class FindRemoteDevicePlugin : Plugin() {
 
     override fun onPacketReceived(np: NetworkPacket): Boolean = true
 
-    override val actionName: String
-        get() = context.getString(R.string.ring)
-
-    override fun startMainActivity(parentActivity: Activity) {
-        if (isDeviceInitialized) {
+    override fun getUiMenuEntries(): List<PluginUiMenuEntry> = listOf(
+        PluginUiMenuEntry(context.getString(R.string.ring)) { parentActivity ->
             device.sendPacket(NetworkPacket(FindMyPhonePlugin.PACKET_TYPE_FINDMYPHONE_REQUEST))
         }
-    }
-
-    override fun displayInContextMenu(): Boolean = true
+    )
 
     override val supportedPacketTypes: Array<String> = emptyArray()
 

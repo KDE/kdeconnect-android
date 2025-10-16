@@ -9,14 +9,12 @@ import android.Manifest
 import android.app.Activity
 import android.app.NotificationManager
 import android.app.PendingIntent
-import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import androidx.annotation.DrawableRes
 import androidx.core.app.NotificationCompat
 import androidx.core.content.getSystemService
 import androidx.core.net.toUri
@@ -196,8 +194,16 @@ class MprisPlugin : Plugin() {
     override val description: String
         get() = context.resources.getString(R.string.pref_plugin_mpris_desc)
 
-    @DrawableRes
-    override val icon: Int = R.drawable.mpris_plugin_action_24dp
+    override fun getUiButtons(): List<PluginUiButton> = listOf(
+        PluginUiButton(
+            context.getString(R.string.open_mpris_controls),
+            R.drawable.mpris_plugin_action_24dp
+        ) { parentActivity ->
+            val intent = Intent(parentActivity, MprisActivity::class.java)
+            intent.putExtra(DEVICE_ID_KEY, device.deviceId)
+            parentActivity.startActivity(intent)
+        }
+    )
 
     override fun hasSettings(): Boolean = true
 
@@ -465,18 +471,6 @@ class MprisPlugin : Plugin() {
         }
         device.sendPacket(np)
     }
-
-    override fun displayAsButton(context: Context): Boolean = true
-
-    override fun startMainActivity(parentActivity: Activity) {
-        val intent = Intent(parentActivity, MprisActivity::class.java).apply {
-            putExtra(DEVICE_ID_KEY, device.deviceId)
-        }
-        parentActivity.startActivity(intent)
-    }
-
-    override val actionName: String
-        get() = context.getString(R.string.open_mpris_controls)
 
     fun fetchedAlbumArt(url: String) {
         if (players.values.stream().anyMatch { player -> url == player.albumArtUrl }) {

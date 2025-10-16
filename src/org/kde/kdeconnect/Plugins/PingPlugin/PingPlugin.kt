@@ -22,6 +22,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
 import org.kde.kdeconnect.Helpers.NotificationHelper
 import org.kde.kdeconnect.NetworkPacket
+import org.kde.kdeconnect.Plugins.FindMyPhonePlugin.FindMyPhonePlugin
 import org.kde.kdeconnect.Plugins.Plugin
 import org.kde.kdeconnect.Plugins.PluginFactory.LoadablePlugin
 import org.kde.kdeconnect.UserInterface.MainActivity
@@ -81,16 +82,13 @@ class PingPlugin : Plugin() {
         return true
     }
 
-    override val actionName: String
-        get() = context.getString(R.string.send_ping)
-
-    override fun startMainActivity(parentActivity: Activity) {
-        if (isDeviceInitialized) {
-            device.sendPacket(NetworkPacket(PACKET_TYPE_PING))
+    override fun getUiMenuEntries(): List<PluginUiMenuEntry> = listOf(
+        PluginUiMenuEntry(context.getString(R.string.send_ping)) { parentActivity ->
+            if (isDeviceInitialized) {
+                device.sendPacket(NetworkPacket(PACKET_TYPE_PING))
+            }
         }
-    }
-
-    override fun displayInContextMenu(): Boolean = true
+    )
 
     override val supportedPacketTypes: Array<String> = arrayOf(PACKET_TYPE_PING)
 

@@ -40,7 +40,7 @@ object DeviceHelper {
     private val NAME_INVALID_CHARACTERS_REGEX = "[\"',;:.!?()\\[\\]<>]".toRegex()
     const val MAX_DEVICE_NAME_LENGTH = 32
 
-    private val isTablet: Boolean by lazy {
+    val isTablet: Boolean by lazy {
         val config = Resources.getSystem().configuration
         //This assumes that the values for the screen sizes are consecutive, so XXLARGE > XLARGE > LARGE
         ((config.screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE)

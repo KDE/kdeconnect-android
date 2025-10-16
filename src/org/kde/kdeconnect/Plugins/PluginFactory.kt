@@ -7,7 +7,6 @@ package org.kde.kdeconnect.Plugins
 
 import android.content.Context
 import android.util.Log
-import androidx.annotation.DrawableRes
 import org.kde.kdeconnect.Device
 
 object PluginFactory {
@@ -70,20 +69,16 @@ object PluginFactory {
     class PluginInfo private constructor(
         val displayName: String,
         val description: String,
-        // DrawableRes needs to be in the primary constructor, which is why we need 2 constructors
-        @field:DrawableRes @get:DrawableRes @param:DrawableRes val icon: Int,
         val isEnabledByDefault: Boolean,
         val hasSettings: Boolean,
-        val supportsDeviceSpecificSettings: Boolean,
         val listenToUnpaired: Boolean,
         supportedPacketTypes: Array<String>,
         outgoingPacketTypes: Array<String>,
         val instantiableClass: Class<out Plugin>,
     ) {
-        internal constructor(p: Plugin) : this(p.displayName, p.description, p.icon,
-            p.isEnabledByDefault, p.hasSettings(), p.supportsDeviceSpecificSettings(),
-            p.listensToUnpairedDevices(), p.supportedPacketTypes,
-            p.outgoingPacketTypes, p.javaClass)
+        internal constructor(p: Plugin) : this(p.displayName, p.description,
+            p.isEnabledByDefault, p.hasSettings(), p.listensToUnpairedDevices(),
+            p.supportedPacketTypes, p.outgoingPacketTypes, p.javaClass)
 
         val supportedPacketTypes: Set<String> = supportedPacketTypes.toSet()
         val outgoingPacketTypes: Set<String> = outgoingPacketTypes.toSet()

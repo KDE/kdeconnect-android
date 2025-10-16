@@ -43,6 +43,19 @@ abstract class Plugin {
         }
     }
 
+    data class PluginUiButton(val name: String, @get:DrawableRes val iconRes: Int, val onClick: (parentActivity: Activity) -> Unit)
+    data class PluginUiMenuEntry(val name: String, val onClick: (parentActivity: Activity) -> Unit)
+
+    /**
+     * Return entries to display as buttons in the Device main view
+     */
+    open fun getUiButtons(): List<PluginUiButton> = listOf()
+
+    /**
+     * Return entries to display in the context menu instead of the main view
+     */
+    open fun getUiMenuEntries(): List<PluginUiMenuEntry> = listOf()
+
     val sharedPreferencesName: String
         get() {
             if (isDeviceInitialized.not()) {
@@ -90,20 +103,6 @@ abstract class Plugin {
     abstract val description: String
 
     /**
-     * Return the action name displayed in the main activity, that
-     * will call startMainActivity when clicked
-     */
-    open val actionName: String
-        get() = displayName
-
-    /**
-     * Return an icon associated to this plugin.
-     * Only needed if hasMainActivity() returns true and displayInContextMenu() returns false
-     */
-    @get:DrawableRes
-    open val icon: Int = -1
-
-    /**
      * Return true if this plugin should be enabled on new devices.
      * This function can access this.context and perform compatibility
      * checks with the Android version, but cannot access this.device.
@@ -133,23 +132,6 @@ abstract class Plugin {
      */
     open fun getSettingsFragment(activity: Activity): PluginSettingsFragment? {
         throw RuntimeException("Plugin doesn't reimplement getSettingsFragment: $pluginKey")
-    }
-
-    /**
-     * Return true if the plugin should display something in the Device main view
-     */
-    open fun displayAsButton(context: Context): Boolean = false
-
-    /**
-     * Return true if the entry for this app should appear in the context menu instead of the main view
-     */
-    open fun displayInContextMenu(): Boolean = false
-
-    /**
-     * Implement here what your plugin should do when clicked
-     */
-    open fun startMainActivity(parentActivity: Activity) {
-        /* no-op */
     }
 
     @get:CallSuper

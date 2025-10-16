@@ -22,7 +22,6 @@ import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputMethodInfo;
 import android.view.inputmethod.InputMethodManager;
 
-import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.core.util.Pair;
 import androidx.fragment.app.DialogFragment;
@@ -153,11 +152,6 @@ public class RemoteKeyboardPlugin extends Plugin implements SharedPreferences.On
     @Override
     public @NonNull String getDescription() {
         return context.getString(R.string.pref_plugin_remotekeyboard_desc);
-    }
-
-    @Override
-    public @DrawableRes int getIcon() {
-        return R.drawable.ic_action_keyboard_24dp;
     }
 
     @Override
