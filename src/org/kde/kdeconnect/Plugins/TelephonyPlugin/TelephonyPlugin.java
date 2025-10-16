@@ -56,31 +56,6 @@ public class TelephonyPlugin extends Plugin {
     public final static String PACKET_TYPE_TELEPHONY = "kdeconnect.telephony";
 
     /**
-     * Old-style packet sent to request a simple telephony action
-     * <p>
-     * The events handled were:
-     * - to request the device to mute its ringer
-     * - to request an SMS to be sent.
-     * <p>
-     * In case an SMS was being requested, the body was like so:
-     * { "sendSms": true,
-     * "phoneNumber": "542904563213",
-     * "messageBody": "Hi mom!"
-     * }
-     * <p>
-     * In case a ringer muted was requested, the body looked like so:
-     * { "action": "mute" }
-     * <p>
-     * Ringer mute requests are best handled by PACKET_TYPE_TELEPHONY_REQUEST_MUTE
-     * <p>
-     * This packet type is retained for backwards-compatibility with old desktop applications,
-     * but support should be dropped once those applications are no longer supported. New
-     * applications should not use this packet type.
-     */
-    @Deprecated
-    public final static String PACKET_TYPE_TELEPHONY_REQUEST = "kdeconnect.telephony.request";
-
-    /**
      * Packet sent to indicate the user has requested the device mute its ringer
      * <p>
      * The body should be empty
@@ -266,13 +241,7 @@ public class TelephonyPlugin extends Plugin {
 
     @Override
     public boolean onPacketReceived(@NonNull NetworkPacket np) {
-
         switch (np.getType()) {
-            case PACKET_TYPE_TELEPHONY_REQUEST:
-                if (np.getString("action").equals("mute")) {
-                    muteRinger();
-                }
-                break;
             case PACKET_TYPE_TELEPHONY_REQUEST_MUTE:
                 muteRinger();
                 break;
@@ -295,7 +264,6 @@ public class TelephonyPlugin extends Plugin {
     @Override
     public @NonNull String[] getSupportedPacketTypes() {
         return new String[]{
-                PACKET_TYPE_TELEPHONY_REQUEST,
                 PACKET_TYPE_TELEPHONY_REQUEST_MUTE,
         };
     }

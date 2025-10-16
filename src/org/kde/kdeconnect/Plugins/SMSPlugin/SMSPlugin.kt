@@ -281,27 +281,6 @@ class SMSPlugin : Plugin() {
 
             true
         }
-        TelephonyPlugin.PACKET_TYPE_TELEPHONY_REQUEST -> {
-            if (np.getBoolean("sendSms")) {
-                val phoneNo: String = np.getString("phoneNumber")
-                val sms: String = np.getString("messageBody")
-                val subID = np.getLong("subID", -1)
-
-                try {
-                    val smsManager: SmsManager = if (subID == -1L) SmsManager.getDefault() else SmsManager.getSmsManagerForSubscriptionId(subID.toInt())
-                    val parts: ArrayList<String> = smsManager.divideMessage(sms)
-
-                    // If this message turns out to fit in a single SMS, sendMultipartTextMessage properly handles that case
-                    smsManager.sendMultipartTextMessage(phoneNo, null, parts, null, null)
-
-                    //TODO: Notify other end
-                } catch (e: Exception) {
-                    //TODO: Notify other end
-                    Log.e("SMSPlugin", "Exception", e)
-                }
-            }
-            true
-        }
         PACKET_TYPE_SMS_REQUEST_ATTACHMENT -> {
             val partID: Long = np.getLong("part_id")
             val uniqueIdentifier: String = np.getString("unique_identifier")
@@ -380,7 +359,6 @@ class SMSPlugin : Plugin() {
     override val supportedPacketTypes: Array<String>
         get() = arrayOf(
             PACKET_TYPE_SMS_REQUEST,
-            TelephonyPlugin.PACKET_TYPE_TELEPHONY_REQUEST,
             PACKET_TYPE_SMS_REQUEST_CONVERSATIONS,
             PACKET_TYPE_SMS_REQUEST_CONVERSATION,
             PACKET_TYPE_SMS_REQUEST_ATTACHMENT
