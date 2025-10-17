@@ -65,6 +65,8 @@
   <string name="mousepad_scroll_sensitivity_title">רגישות גלילה</string>
   <string name="gyro_mouse_enabled_title">הפעלת עכבר גירוסקופי</string>
   <string name="gyro_mouse_sensitivity_title">רגישות גירוסקופ</string>
+  <string name="bigscreen_show_home_title">הצגת כפתור הבית</string>
+  <string name="bigscreen_show_back_title">הצגת כפתור חזרה</string>
   <string-array name="mousepad_tap_entries">
     <item>לחיצה שמאלית</item>
     <item>לחיצה ימנית</item>
@@ -222,6 +224,7 @@
   <string name="custom_devices_settings_summary">%d התקנים נוספו ידנית</string>
   <string name="custom_device_list">הוספת מכשירים לפי IP</string>
   <string name="custom_device_deleted">מכשיר מותאם אישית נמחק</string>
+  <string name="custom_device_list_help">אם המכשיר שלך לא מזוהה אוטומטית אפשר להוסיף את כתובת ה־IP או את שם המארח שלו בלחיצה על הכפתור שלהלן</string>
   <string name="custom_device_fab_hint">הוספת מכשיר</string>
   <string name="undo">החזרה</string>
   <string name="share_notification_preference">התראות רועשות</string>
@@ -362,6 +365,7 @@
   <string name="bigscreen_select">בחירה</string>
   <string name="bigscreen_right">ימין</string>
   <string name="bigscreen_down">למטה</string>
+  <string name="bigscreen_back">חזרה</string>
   <string name="bigscreen_mic">מיקרופון</string>
   <string name="pref_plugin_bigscreen">שלט Bigscreen</string>
   <string name="pref_plugin_bigscreen_desc">אפשר להשתמש במכשיר שלך כשלט ל־Bigscreen פלזמה</string>
