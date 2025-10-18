@@ -13,6 +13,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -205,6 +206,8 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
             for (device in moreDevices) {
                 if (seenNames.contains(device.name)) {
                     binding.devicesList.addHeaderView(duplicateNamesHeader)
+                    Log.w("PairingFragment", "Duplicate device name detected: ${device.name}")
+                    Log.w("PairingFragment", "Devices:" + moreDevices.toList().toString())
                     break
                 }
                 seenNames.add(device.name);
