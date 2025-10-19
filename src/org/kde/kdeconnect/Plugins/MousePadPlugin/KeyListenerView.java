@@ -99,6 +99,17 @@ public class KeyListenerView extends View {
     }
 
     @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        // consume events that otherwise would move the focus away from us
+        return keyCode == KeyEvent.KEYCODE_DPAD_DOWN ||
+            keyCode == KeyEvent.KEYCODE_DPAD_UP ||
+            keyCode == KeyEvent.KEYCODE_DPAD_LEFT ||
+            keyCode == KeyEvent.KEYCODE_DPAD_RIGHT ||
+            keyCode == KeyEvent.KEYCODE_NUMPAD_ENTER ||
+            keyCode == KeyEvent.KEYCODE_ENTER;
+    }
+
+    @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
 
         if (keyCode == KeyEvent.KEYCODE_BACK) {

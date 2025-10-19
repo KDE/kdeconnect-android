@@ -38,6 +38,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
             android:id="@+id/keyListener"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:focusedByDefault="true"
             android:layout_above="@id/mouse_buttons"
             android:contentDescription="@string/mousepad_info_no_gestures"
             />
