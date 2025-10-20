@@ -11,6 +11,7 @@
   <string name="pref_plugin_battery_desc">Raportoi akun tila säännöllisesti</string>
   <string name="pref_plugin_connectivity_report">Verkkoyhteysraportti</string>
   <string name="pref_plugin_connectivity_report_desc">Ilmoita kentän voimakkuus ja tila</string>
+  <string name="pref_plugin_sftp">Tiedostojärjestelmän käyttö</string>
   <string name="pref_plugin_sftp_desc">Mahdollistaa tämän laitteen tiedostojärjestelmän etäselaamisen</string>
   <string name="pref_plugin_clipboard">Leikepöydän synkronointi</string>
   <string name="pref_plugin_clipboard_desc">Jaa leikepöydän sisältö</string>
@@ -64,6 +65,8 @@
   <string name="mousepad_scroll_sensitivity_title">Vieritysherkkyys</string>
   <string name="gyro_mouse_enabled_title">Käytä gyroskooppihiirtä</string>
   <string name="gyro_mouse_sensitivity_title">Gyroskoopin herkkyys</string>
+  <string name="bigscreen_show_home_title">Näytä Koti-painike</string>
+  <string name="bigscreen_show_back_title">Näytä Takaisin-painike</string>
   <string-array name="mousepad_tap_entries">
     <item>Vasen napsautus</item>
     <item>Oikea napsautus</item>
@@ -205,6 +208,7 @@
   <string name="custom_devices_settings_summary">Käyttäjä lisäsi %d laitetta</string>
   <string name="custom_device_list">Lisää laitteita IP:llä</string>
   <string name="custom_device_deleted">Poistettiin mukautettu laite</string>
+  <string name="custom_device_list_help">Ellei laitetta tunnisteta automaattisesti, sen IP-osoitteen tai konenimen voi lisätä napsauttamalla alla olevaa painiketta</string>
   <string name="custom_device_fab_hint">Lisää laite</string>
   <string name="undo">Kumoa</string>
   <string name="share_notification_preference">Äänekkäät ilmoitukset</string>
@@ -233,6 +237,7 @@
   <string name="sftp_no_storage_locations_configured">Tallennustiloja ei ole asetettu</string>
   <string name="sftp_saf_permission_explanation">Tallennustilat on asetettava etätiedostojen käyttämiseksi</string>
   <string name="sftp_manage_storage_permission_explanation">Tiedostojen etäkäytön sallimiseksi tällä laitteella KDE Connectin on annettava hallita talletustilaa.</string>
+  <string name="sftp_missing_permission_error">Käyttöoikeuksia puuttuu: tiedostojärjestelmän käyttö</string>
   <string name="no_players_connected">Soittimia ei löytynyt</string>
   <string name="send_files">Lähetä tiedostoja</string>
   <string name="block_notification_contents">Estä ilmoitusten sisältö</string>
@@ -344,6 +349,7 @@
   <string name="bigscreen_select">Valitse</string>
   <string name="bigscreen_right">Oikea</string>
   <string name="bigscreen_down">Alemmas</string>
+  <string name="bigscreen_back">Takaisin</string>
   <string name="bigscreen_mic">Mikrofoni</string>
   <string name="pref_plugin_bigscreen">Bigscreen-kaukosäädin</string>
   <string name="pref_plugin_bigscreen_desc">Käytä laitetta Plasma Bigscreen -kaukosäätimenä</string>
