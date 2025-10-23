@@ -147,6 +147,7 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
 
     override fun onDestroyView() {
         disconnectFromPlugin()
+        mprisControlBinding.playerSpinner.adapter = null
         super.onDestroyView()
     }
 

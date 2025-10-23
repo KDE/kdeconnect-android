@@ -147,12 +147,13 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
     }
 
     override fun onDestroyView() {
-        super.onDestroyView()
+        binding.devicesList.adapter = null
         _textBinding = null
         _textNoWifiBinding = null
         _textNoNotificationsBinding = null
         _textNotTrustedBinding = null
         _duplicateNamesBinding = null
+        super.onDestroyView()
     }
 
 

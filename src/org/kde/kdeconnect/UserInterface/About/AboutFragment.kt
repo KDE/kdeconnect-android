@@ -115,6 +115,11 @@ class AboutFragment : BaseFragment<FragmentAboutBinding>() {
         }
     }
 
+    override fun onDestroyView() {
+        binding.authorsList.adapter = null
+        super.onDestroyView()
+    }
+
     private fun setupInfoButton(url: String?, button: FrameLayout) {
         if (url == null) {
             button.visibility = View.GONE
