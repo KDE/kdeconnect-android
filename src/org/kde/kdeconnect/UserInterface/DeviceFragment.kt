@@ -339,7 +339,7 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
             }
         }
 
-        override fun unpaired() {
+        override fun unpaired(device: Device) {
             mActivity?.runOnUiThread {
                 with(pairingBinding) {
                     pairMessage.setText(R.string.device_not_paired)

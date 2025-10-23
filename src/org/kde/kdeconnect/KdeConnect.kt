@@ -20,6 +20,7 @@ import org.kde.kdeconnect.Helpers.LifecycleHelper
 import org.kde.kdeconnect.Helpers.NotificationHelper
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper
+import org.kde.kdeconnect.Helpers.ThreadHelper
 import org.kde.kdeconnect.PairingHandler.PairingCallback
 import org.kde.kdeconnect.Plugins.Plugin
 import org.kde.kdeconnect.Plugins.PluginFactory
@@ -174,8 +175,11 @@ class KdeConnect : Application() {
             onDeviceListChanged()
         }
 
-        override fun unpaired() {
+        override fun unpaired(device: Device) {
             onDeviceListChanged()
+            if (!device.isReachable) {
+                scheduleForDeletion(device)
+            }
         }
     }
 
@@ -199,21 +203,9 @@ class KdeConnect : Application() {
             Log.i("KDE/onConnectionLost", "removeLink, deviceId: ${link.deviceId}")
             if (device != null) {
                 device.removeLink(link)
-                // FIXME: I commented out the code below that removes the Device from the `devices` array
-                //        because it didn't succeed in getting the Device garbage collected anyway. Ideally,
-                //        the `devices` array should be the only reference to each Device so that they get
-                //        GC'd after removing them from here, but there seem to be references leaking from
-                //        PairingFragment and PairingHandler that keep it alive. At least now, by keeping
-                //        them in `devices`, we reuse the same Device instance across discoveries of the
-                //        same device instead of creating a new object each time.
-                //        Also, if we ever fix this, there are two cases were we should be removing devices:
-                //            - When a device becomes unreachable, if it's unpaired (this case here)
-                //            - When a device becomes unpaired, if it's unreachable (not implemented ATM)
-                // if (!device.isReachable && !device.isPaired) {
-                //     Log.i("onConnectionLost","Removing device because it was not paired")
-                //     devices.remove(link.deviceId)
-                //     device.removePairingCallback(devicePairingCallback)
-                // }
+                if (!device.isReachable && !device.isPaired) {
+                    scheduleForDeletion(device)
+                }
             } else {
                 Log.d("KDE/onConnectionLost", "Removing connection to unknown device")
             }
@@ -231,6 +223,32 @@ class KdeConnect : Application() {
             if (hasChanges) {
                 onDeviceListChanged()
             }
+        }
+    }
+
+    fun scheduleForDeletion(device: Device) {
+        // Note: By this point the `devices` map should be the only reference to `device`, so it
+        //       should get garbage collected after removing it here. However, it's easy to leak
+        //       references to Device from views, preventing them from being freed. You can use the
+        //       debugger to check for alive instances of `Device` after a device is supposed to be
+        //       destroyed to make sure we don't have leaks. Note that you might need to trigger
+        //       `Runtime.getRuntime().gc()` to actually make them disappear. If we have leaks,
+        //       deleting devices from the map is actually counterproductive because each time we
+        //       detect the same device, a new Device object will be created (and leaked again).
+        Log.i("KdeConnect", "Scheduled for deletion: $device, paired: ${device.isPaired}, reachable: ${device.isReachable}")
+        ThreadHelper.execute {
+            try {Thread.sleep(1000)} catch (_: InterruptedException) { }
+            if (device.isReachable) {
+                Log.i("KdeConnect", "Not deleting device since it's reachable again: $device")
+                return@execute
+            }
+            if (device.isPaired) {
+                Log.i("KdeConnect", "Not deleting device since it's still paired: $device")
+                return@execute
+            }
+            Log.i("KdeConnect", "Deleting unpaired and unreachable device: $device")
+            device.removePairingCallback(devicePairingCallback)
+            devices.remove(device.deviceId)
         }
     }
 

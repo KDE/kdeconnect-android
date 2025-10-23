@@ -226,7 +226,8 @@ class Device : PacketReceiver {
                 pairingCallbacks.forEach { it.pairingFailed(error) }
             }
 
-            override fun unpaired() {
+            override fun unpaired(device: Device) {
+                assert(device == this@Device)
                 Log.i("Device", "unpaired, removing from trusted devices list")
                 val preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE)
                 preferences.edit { remove(deviceInfo.id) }
@@ -234,11 +235,11 @@ class Device : PacketReceiver {
                 val devicePreferences = context.getSharedPreferences(deviceInfo.id, Context.MODE_PRIVATE)
                 devicePreferences.edit { clear() }
 
-                pairingCallbacks.forEach(PairingCallback::unpaired)
-
                 notifyPluginsOfDeviceUnpaired(context, deviceInfo.id)
 
                 reloadPluginsFromSettings()
+
+                pairingCallbacks.forEach { it.unpaired(this@Device) }
             }
         }
     }

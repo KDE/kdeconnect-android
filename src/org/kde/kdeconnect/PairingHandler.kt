@@ -32,7 +32,7 @@ class PairingHandler(private val device: Device, private val callback: PairingCa
 
         fun pairingSuccessful()
 
-        fun unpaired()
+        fun unpaired(device: Device)
     }
 
     private val pairingJob = SupervisorJob()
@@ -59,14 +59,14 @@ class PairingHandler(private val device: Device, private val callback: PairingCa
                         // messages are identical, this could create an infinite loop if both devices are "accepting" each other pairs.
                         // Instead, unpair and handle as if "NotPaired". TODO: No longer true in protocol version 8
                         state = PairState.NotPaired
-                        callback.unpaired()
+                        callback.unpaired(device)
                     }
 
                     if (device.protocolVersion >= 8) {
                         pairingTimestamp = np.getLong("timestamp", -1L)
                         if (pairingTimestamp == -1L) {
                             state = PairState.NotPaired
-                            callback.unpaired()
+                            callback.unpaired(device)
                             return
                         }
                         val currentTimestamp = System.currentTimeMillis() / 1000L
@@ -102,7 +102,7 @@ class PairingHandler(private val device: Device, private val callback: PairingCa
 
                 PairState.Paired -> {
                     state = PairState.NotPaired
-                    callback.unpaired()
+                    callback.unpaired(device)
                 }
             }
         }
@@ -212,7 +212,7 @@ class PairingHandler(private val device: Device, private val callback: PairingCa
             np["pair"] = false
             device.sendPacket(np)
         }
-        callback.unpaired()
+        callback.unpaired(device)
     }
 
     private fun cancelTimer() {
