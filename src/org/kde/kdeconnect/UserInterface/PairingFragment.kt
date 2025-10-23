@@ -192,7 +192,7 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
         if (service == null) {
             updateConnectivityInfoHeader(true)
         } else {
-            service.isConnectedToNonCellularNetwork.observe(this, ::updateConnectivityInfoHeader)
+            service.isConnectedToNonCellularNetwork.observe(viewLifecycleOwner, ::updateConnectivityInfoHeader)
         }
 
         try {
