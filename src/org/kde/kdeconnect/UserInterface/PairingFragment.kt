@@ -212,7 +212,7 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
                 if (seenNames.contains(device.name)) {
                     binding.devicesList.addHeaderView(duplicateNamesHeader)
                     Log.w("PairingFragment", "Duplicate device name detected: ${device.name}")
-                    Log.w("PairingFragment", "Devices:" + moreDevices.toList().toString())
+                    Log.w("PairingFragment", "Devices:" + allDevices.toList().toString())
                     break
                 }
                 seenNames.add(device.name);
