@@ -8,7 +8,6 @@ package org.kde.kdeconnect
 import android.app.NotificationManager
 import android.content.Context
 import android.preference.PreferenceManager
-import android.util.Base64
 import androidx.core.content.ContextCompat
 import io.mockk.every
 import io.mockk.mockk
@@ -208,7 +207,7 @@ class DeviceTest {
             yygGiJbDZfAvN2XoaVEBii2GDDCWfaFwPVPYlNTvjkUkMP8YThlMsiJ8Q4693XoLOL94GpNlCfUg
             7n+KOQ==
             """.trimIndent()
-        val certificateBytes = Base64.decode(certificateString, 0)
+        val certificateBytes = android.util.Base64.decode(certificateString, 0)
         val certificate = SslHelper.parseCertificate(certificateBytes)
         val deviceInfo = fromIdentityPacketAndCert(fakeNetworkPacket, certificate)
 
@@ -259,6 +258,6 @@ class DeviceTest {
         val preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE)
         Assert.assertFalse(preferences.getBoolean(device.deviceId, false))
 
-        verify(exactly = 1) { pairingCallback.unpaired() }
+        verify(exactly = 1) { pairingCallback.unpaired(device) }
     }
 }
