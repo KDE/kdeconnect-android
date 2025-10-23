@@ -152,6 +152,7 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
         _textNoWifiBinding = null
         _textNoNotificationsBinding = null
         _textNotTrustedBinding = null
+        _duplicateNamesBinding = null
     }
 
 
