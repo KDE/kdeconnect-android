@@ -200,10 +200,13 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
             val connectedSection: SectionItem
             val res = resources
 
-            val moreDevices = KdeConnect.getInstance().devices.values
+            val allDevices = KdeConnect.getInstance().devices.values.filter {
+                // Since we don't delete unpaired devices after they disconnect, we need to filter them out here
+                it.isReachable || it.isPaired
+            }
 
             val seenNames = hashSetOf<String>()
-            for (device in moreDevices) {
+            for (device in allDevices) {
                 if (seenNames.contains(device.name)) {
                     binding.devicesList.addHeaderView(duplicateNamesHeader)
                     Log.w("PairingFragment", "Duplicate device name detected: ${device.name}")
@@ -216,8 +219,7 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
             connectedSection = SectionItem(res.getString(R.string.category_connected_devices))
             items.add(connectedSection)
 
-            val devices: Collection<Device> = KdeConnect.getInstance().devices.values
-            for (device in devices) {
+            for (device in allDevices) {
                 if (device.isReachable && device.isPaired) {
                     items.add(PairingDeviceItem(device, ::deviceClicked))
                     connectedSection.isEmpty = false
@@ -229,7 +231,7 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
 
             val availableSection = SectionItem(res.getString(R.string.category_not_paired_devices))
             items.add(availableSection)
-            for (device in devices) {
+            for (device in allDevices) {
                 if (device.isReachable && !device.isPaired) {
                     items.add(PairingDeviceItem(device, ::deviceClicked))
                     availableSection.isEmpty = false
@@ -241,7 +243,7 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
 
             val rememberedSection = SectionItem(res.getString(R.string.category_remembered_devices))
             items.add(rememberedSection)
-            for (device in devices) {
+            for (device in allDevices) {
                 if (!device.isReachable && device.isPaired) {
                     items.add(PairingDeviceItem(device, ::deviceClicked))
                     rememberedSection.isEmpty = false
