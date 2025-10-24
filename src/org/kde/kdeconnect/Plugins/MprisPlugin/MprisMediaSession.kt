@@ -79,10 +79,6 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
             notificationPlayer?.sendPrevious()
         }
 
-        override fun onStop() {
-            notificationPlayer?.sendStop()
-        }
-
         override fun onSeekTo(pos: Long) {
             notificationPlayer?.sendSetPosition(pos.toInt())
         }
