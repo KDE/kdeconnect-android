@@ -14,6 +14,7 @@ import android.util.Log
 import androidx.collection.LruCache
 import androidx.core.content.getSystemService
 import androidx.core.net.ConnectivityManagerCompat
+import androidx.core.net.toUri
 import com.jakewharton.disklrucache.DiskLruCache
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -29,7 +30,6 @@ import java.net.URL
 import java.net.URLDecoder
 import java.security.MessageDigest
 import java.util.concurrent.CopyOnWriteArrayList
-import androidx.core.net.toUri
 
 /**
  * Handles the cache for album art

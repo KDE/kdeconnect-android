@@ -14,7 +14,6 @@ import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.provider.Telephony
@@ -22,7 +21,6 @@ import android.telephony.SmsManager
 import android.text.TextUtils
 import android.util.Base64
 import android.util.Log
-import androidx.annotation.RequiresApi
 import com.android.mms.dom.smil.parser.SmilXmlSerializer
 import com.google.android.mms.ContentType
 import com.google.android.mms.InvalidHeaderValueException

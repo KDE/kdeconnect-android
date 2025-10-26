@@ -11,7 +11,12 @@ import android.os.Bundle
 import android.os.Handler
 import android.preference.PreferenceManager
 import android.util.Log
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.SeekBar
@@ -19,8 +24,10 @@ import android.widget.SeekBar.OnSeekBarChangeListener
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
+import androidx.core.net.toUri
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
-import org.apache.commons.lang3.StringUtils
+import androidx.lifecycle.Lifecycle
 import org.kde.kdeconnect.Helpers.DEFAULT_MAX_VOLUME
 import org.kde.kdeconnect.Helpers.DEFAULT_VOLUME_STEP
 import org.kde.kdeconnect.Helpers.VideoUrlsHelper
@@ -33,9 +40,6 @@ import org.kde.kdeconnect_tp.databinding.MprisNowPlayingBinding
 import java.net.MalformedURLException
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
-import androidx.core.net.toUri
-import androidx.core.view.MenuProvider
-import androidx.lifecycle.Lifecycle
 
 private typealias MprisPlayerCallback = (MprisPlayer) -> Unit
 

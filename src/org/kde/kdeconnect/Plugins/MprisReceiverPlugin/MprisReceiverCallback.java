@@ -11,11 +11,9 @@ import android.media.MediaMetadata;
 import android.media.session.MediaController;
 import android.media.session.PlaybackState;
 import android.net.Uri;
-import android.os.Build;
 import android.util.Pair;
 
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Arrays;

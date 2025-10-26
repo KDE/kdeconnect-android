@@ -8,7 +8,6 @@ package org.kde.kdeconnect.UserInterface.About
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +15,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import org.kde.kdeconnect.UserInterface.List.ListAdapter
 import org.kde.kdeconnect.base.BaseFragment
@@ -23,7 +23,6 @@ import org.kde.kdeconnect.extensions.getParcelableCompat
 import org.kde.kdeconnect.extensions.setupBottomPadding
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.FragmentAboutBinding
-import androidx.core.net.toUri
 
 class AboutFragment : BaseFragment<FragmentAboutBinding>() {
 

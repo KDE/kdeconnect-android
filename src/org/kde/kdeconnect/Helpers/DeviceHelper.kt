@@ -5,13 +5,13 @@
 */
 package org.kde.kdeconnect.Helpers
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.os.Build
 import android.preference.PreferenceManager
 import android.util.Log
+import androidx.core.content.edit
 import com.univocity.parsers.common.TextParsingException
 import com.univocity.parsers.csv.CsvParser
 import com.univocity.parsers.csv.CsvParserSettings
@@ -25,7 +25,6 @@ import java.io.InputStreamReader
 import java.net.URL
 import java.nio.charset.StandardCharsets
 import java.util.UUID
-import androidx.core.content.edit
 
 object DeviceHelper {
     const val PROTOCOL_VERSION = 8

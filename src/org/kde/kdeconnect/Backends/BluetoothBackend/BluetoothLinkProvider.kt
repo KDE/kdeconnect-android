@@ -20,6 +20,7 @@ import android.os.Parcelable
 import android.preference.PreferenceManager
 import android.util.Base64
 import android.util.Log
+import androidx.core.content.edit
 import org.apache.commons.io.IOUtils
 import org.kde.kdeconnect.Backends.BaseLinkProvider
 import org.kde.kdeconnect.Device
@@ -38,7 +39,6 @@ import java.io.Reader
 import java.security.cert.CertificateException
 import java.util.UUID
 import kotlin.text.Charsets.UTF_8
-import androidx.core.content.edit
 
 class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
     private val visibleDevices: MutableMap<String, BluetoothLink> = HashMap()

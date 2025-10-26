@@ -6,7 +6,6 @@
 package org.kde.kdeconnect.Plugins.ConnectivityReportPlugin
 
 import android.Manifest
-import android.util.Log
 import org.json.JSONException
 import org.json.JSONObject
 import org.kde.kdeconnect.NetworkPacket

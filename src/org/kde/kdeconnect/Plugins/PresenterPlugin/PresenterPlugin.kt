@@ -10,7 +10,6 @@ import android.content.Context
 import android.content.Intent
 import android.view.KeyEvent
 import androidx.annotation.DrawableRes
-import org.apache.commons.lang3.ArrayUtils
 import org.kde.kdeconnect.DeviceType
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.Plugins.MousePadPlugin.KeyListenerView

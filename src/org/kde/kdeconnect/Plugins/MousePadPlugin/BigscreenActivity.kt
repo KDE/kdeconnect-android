@@ -14,7 +14,6 @@ import android.speech.SpeechRecognizer
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import androidx.appcompat.app.ActionBar
 import androidx.preference.PreferenceManager
 import org.kde.kdeconnect.KdeConnect.Companion.getInstance
 import org.kde.kdeconnect.UserInterface.MainActivity
@@ -23,7 +22,6 @@ import org.kde.kdeconnect.base.BaseActivity
 import org.kde.kdeconnect.extensions.viewBinding
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.ActivityBigscreenBinding
-import java.util.Objects
 
 class BigscreenActivity : BaseActivity<ActivityBigscreenBinding>() {
 

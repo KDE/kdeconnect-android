@@ -7,9 +7,9 @@
 package org.kde.kdeconnect.Plugins.SftpPlugin
 
 import android.content.Context
-import android.net.Uri
 import android.os.Build
 import android.util.Log
+import androidx.core.net.toUri
 import org.apache.sshd.common.file.nativefs.NativeFileSystemFactory
 import org.apache.sshd.common.keyprovider.AbstractKeyPairProvider
 import org.apache.sshd.common.session.SessionContext
@@ -48,7 +48,6 @@ import java.security.KeyPair
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 import java.security.PublicKey
-import androidx.core.net.toUri
 
 internal class SimpleSftpServer {
     private lateinit var sshd: SshServer

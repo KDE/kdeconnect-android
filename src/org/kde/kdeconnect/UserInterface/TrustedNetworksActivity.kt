@@ -9,8 +9,10 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
-import android.widget.*
 import android.widget.AdapterView.OnItemClickListener
+import android.widget.ArrayAdapter
+import android.widget.CheckBox
+import android.widget.ListView
 import androidx.appcompat.app.AlertDialog
 import org.kde.kdeconnect.Helpers.TrustedNetworkHelper
 import org.kde.kdeconnect.base.BaseActivity

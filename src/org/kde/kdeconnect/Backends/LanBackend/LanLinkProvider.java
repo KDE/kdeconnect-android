@@ -9,7 +9,6 @@ package org.kde.kdeconnect.Backends.LanBackend;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Network;
-import android.os.Build;
 import android.util.Log;
 import android.util.Pair;
 

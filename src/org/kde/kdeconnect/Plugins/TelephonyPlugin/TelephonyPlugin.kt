@@ -210,7 +210,6 @@ class TelephonyPlugin : Plugin() {
         /**
          * Packet used for simple call events
          *
-         *
          * It contains the key "event" which maps to a string indicating the type of event:
          * - "ringing" - A phone call is incoming
          * - "missedCall" - An incoming call was not answered
@@ -218,14 +217,12 @@ class TelephonyPlugin : Plugin() {
          * - Note: As of this writing (15 May 2018) the SMS interface is being improved and this type of event
          * is no longer the preferred way of handling SMS. Use the packets defined by the SMS plugin instead.
          *
-         *
          * Depending on the event, other fields may be defined
          */
         const val PACKET_TYPE_TELEPHONY: String = "kdeconnect.telephony"
 
         /**
          * Packet sent to indicate the user has requested the device mute its ringer
-         *
          *
          * The body should be empty
          */

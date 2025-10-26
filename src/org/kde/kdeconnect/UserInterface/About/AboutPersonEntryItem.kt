@@ -8,14 +8,13 @@
 package org.kde.kdeconnect.UserInterface.About
 
 import android.content.Intent
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.widget.TooltipCompat
+import androidx.core.net.toUri
 import org.kde.kdeconnect.UserInterface.List.ListAdapter
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.AboutPersonListItemEntryBinding
-import androidx.core.net.toUri
 
 class AboutPersonEntryItem(val person: AboutPerson) : ListAdapter.Item {
     override fun inflateView(layoutInflater: LayoutInflater): View {

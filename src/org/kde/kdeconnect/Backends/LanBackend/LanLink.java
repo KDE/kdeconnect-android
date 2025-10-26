@@ -9,10 +9,10 @@ package org.kde.kdeconnect.Backends.LanBackend;
 import android.content.Context;
 import android.util.Log;
 
-import org.apache.commons.io.IOUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
+import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;

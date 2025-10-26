@@ -6,12 +6,12 @@
 
 package org.kde.kdeconnect.Plugins.SharePlugin;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.Manifest;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -34,7 +34,6 @@ import androidx.core.os.BundleCompat;
 import androidx.preference.PreferenceManager;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.kde.kdeconnect.Helpers.FilesHelper;
 import org.kde.kdeconnect.Helpers.IntentHelper;
 import org.kde.kdeconnect.NetworkPacket;

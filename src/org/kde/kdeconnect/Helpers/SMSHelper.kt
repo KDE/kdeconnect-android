@@ -26,7 +26,6 @@ import com.google.android.mms.pdu_alt.PduPersister
 import com.google.android.mms.util_alt.PduCache
 import com.google.android.mms.util_alt.PduCacheEntry
 import org.apache.commons.io.IOUtils
-import org.apache.commons.lang3.StringUtils
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject

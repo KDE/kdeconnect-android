@@ -7,7 +7,12 @@ package org.kde.kdeconnect
 
 import android.util.Log
 import androidx.annotation.VisibleForTesting
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancelChildren
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.bouncycastle.util.Arrays
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper
 import org.kde.kdeconnect_tp.R

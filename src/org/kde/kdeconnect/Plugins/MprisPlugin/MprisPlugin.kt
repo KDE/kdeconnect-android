@@ -18,10 +18,11 @@ import android.os.Looper
 import android.util.Log
 import androidx.annotation.DrawableRes
 import androidx.core.app.NotificationCompat
-import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
+import androidx.core.net.toUri
 import androidx.preference.PreferenceManager
 import org.kde.kdeconnect.Helpers.NotificationHelper
+import org.kde.kdeconnect.Helpers.ThreadHelper
 import org.kde.kdeconnect.Helpers.VideoUrlsHelper
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.Plugins.MprisPlugin.AlbumArtCache.deregisterPlugin
@@ -35,8 +36,6 @@ import org.kde.kdeconnect.UserInterface.PluginSettingsFragment
 import org.kde.kdeconnect_tp.R
 import java.net.MalformedURLException
 import java.util.concurrent.ConcurrentHashMap
-import androidx.core.net.toUri
-import org.kde.kdeconnect.Helpers.ThreadHelper
 
 @LoadablePlugin
 class MprisPlugin : Plugin() {

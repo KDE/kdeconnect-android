@@ -10,6 +10,7 @@ package org.kde.kdeconnect.Plugins.ContactsPlugin
 
 import android.Manifest
 import android.util.Log
+import androidx.core.content.edit
 import androidx.fragment.app.DialogFragment
 import org.kde.kdeconnect.Helpers.ContactsHelper
 import org.kde.kdeconnect.Helpers.ContactsHelper.ContactNotFoundException
@@ -20,7 +21,6 @@ import org.kde.kdeconnect.Plugins.Plugin
 import org.kde.kdeconnect.Plugins.PluginFactory.LoadablePlugin
 import org.kde.kdeconnect.UserInterface.AlertDialogFragment
 import org.kde.kdeconnect_tp.R
-import androidx.core.content.edit
 
 @LoadablePlugin
 class ContactsPlugin : Plugin() {

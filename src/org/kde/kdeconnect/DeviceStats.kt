@@ -10,7 +10,6 @@ import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.annotation.VisibleForTesting
-import java.util.*
 import java.util.concurrent.TimeUnit
 
 object DeviceStats {

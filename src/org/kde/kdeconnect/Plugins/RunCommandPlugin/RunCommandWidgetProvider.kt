@@ -13,14 +13,13 @@ import android.appwidget.AppWidgetProvider
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.util.Log
 import android.widget.RemoteViews
+import androidx.core.net.toUri
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect_tp.BuildConfig
 import org.kde.kdeconnect_tp.R
-import androidx.core.net.toUri
 
 const val RUN_COMMAND_ACTION = "RUN_COMMAND_ACTION"
 const val TARGET_COMMAND = "TARGET_COMMAND"

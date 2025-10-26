@@ -5,16 +5,12 @@
 */
 package org.kde.kdeconnect.Helpers
 
-import android.app.Notification
-import android.app.NotificationManager
 import android.content.Context
 import android.os.Build
 import android.preference.PreferenceManager
 import androidx.core.app.NotificationChannelCompat
 import androidx.core.app.NotificationManagerCompat
 import org.kde.kdeconnect_tp.R
-import java.util.Arrays
-import java.util.stream.Collectors
 
 object NotificationHelper {
     fun initializeChannels(context: Context) {
