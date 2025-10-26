@@ -527,16 +527,5 @@ class SMSPlugin : Plugin() {
 
             return reply
         }
-
-        /**
-         * Permissions required for sending and receiving MMs messages
-         */
-        val mmsPermissions: Array<String> = arrayOf(
-                Manifest.permission.RECEIVE_SMS,
-                Manifest.permission.RECEIVE_MMS,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.CHANGE_NETWORK_STATE,
-                Manifest.permission.WAKE_LOCK,
-            )
     }
 }
