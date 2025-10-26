@@ -15,7 +15,6 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
-import org.apache.commons.lang3.ArrayUtils
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.UserInterface.AlertDialogFragment
@@ -211,14 +210,14 @@ abstract class Plugin {
          * Should return the list of permissions from Manifest.permission.* that, if not present,
          * mean the plugin can't be loaded.
          */
-        get() = ArrayUtils.EMPTY_STRING_ARRAY
+        get() = emptyArray()
 
     protected open val optionalPermissions: Array<String>
         /**
          * Should return the list of permissions from Manifest.permission.* that enable additional
          * functionality in the plugin (without preventing the plugin to load).
          */
-        get() = ArrayUtils.EMPTY_STRING_ARRAY
+        get() = emptyArray()
 
     /**
      * Returns the string to display before asking for the required permissions for the plugin.

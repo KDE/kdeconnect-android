@@ -197,7 +197,7 @@ class TelephonyPlugin : Plugin() {
     override val requiredPermissions: Array<String> = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
         arrayOf(Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_CALL_LOG)
     } else {
-        arrayOf()
+        emptyArray()
     }
 
     override val optionalPermissions: Array<String> = arrayOf(Manifest.permission.READ_CONTACTS)

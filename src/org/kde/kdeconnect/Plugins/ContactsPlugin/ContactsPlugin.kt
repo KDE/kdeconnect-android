@@ -30,21 +30,16 @@ class ContactsPlugin : Plugin() {
     override val description: String
         get() = context.resources.getString(R.string.pref_plugin_contacts_desc)
 
-    override val supportedPacketTypes: Array<String>
-        get() = arrayOf(PACKET_TYPE_CONTACTS_REQUEST_ALL_UIDS_TIMESTAMPS, PACKET_TYPE_CONTACTS_REQUEST_VCARDS_BY_UIDS)
+    override val supportedPacketTypes: Array<String> = arrayOf(PACKET_TYPE_CONTACTS_REQUEST_ALL_UIDS_TIMESTAMPS, PACKET_TYPE_CONTACTS_REQUEST_VCARDS_BY_UIDS)
 
-    override val outgoingPacketTypes: Array<String>
-        get() = arrayOf(PACKET_TYPE_CONTACTS_RESPONSE_UIDS_TIMESTAMPS, PACKET_TYPE_CONTACTS_RESPONSE_VCARDS)
+    override val outgoingPacketTypes: Array<String> = arrayOf(PACKET_TYPE_CONTACTS_RESPONSE_UIDS_TIMESTAMPS, PACKET_TYPE_CONTACTS_RESPONSE_VCARDS)
 
-    override val permissionExplanation: Int
-        get() = R.string.contacts_permission_explanation
+    override val permissionExplanation: Int = R.string.contacts_permission_explanation
 
-    override val isEnabledByDefault: Boolean
-        get() = true
+    override val isEnabledByDefault: Boolean = true
 
     // One day maybe we will also support WRITE_CONTACTS, but not yet
-    override val requiredPermissions: Array<String>
-        get() = arrayOf(Manifest.permission.READ_CONTACTS)
+    override val requiredPermissions: Array<String> = arrayOf(Manifest.permission.READ_CONTACTS)
 
     override fun checkRequiredPermissions(): Boolean {
         if (!arePermissionsGranted(requiredPermissions)) {

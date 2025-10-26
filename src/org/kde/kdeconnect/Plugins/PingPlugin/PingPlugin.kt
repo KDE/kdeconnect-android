@@ -90,15 +90,11 @@ class PingPlugin : Plugin() {
         }
     }
 
-    override fun displayInContextMenu(): Boolean {
-        return true
-    }
+    override fun displayInContextMenu(): Boolean = true
 
-    override val supportedPacketTypes: Array<String>
-        get() = arrayOf(PACKET_TYPE_PING)
+    override val supportedPacketTypes: Array<String> = arrayOf(PACKET_TYPE_PING)
 
-    override val outgoingPacketTypes: Array<String>
-        get() = arrayOf(PACKET_TYPE_PING)
+    override val outgoingPacketTypes: Array<String> = arrayOf(PACKET_TYPE_PING)
 
     companion object {
         private const val PACKET_TYPE_PING = "kdeconnect.ping"

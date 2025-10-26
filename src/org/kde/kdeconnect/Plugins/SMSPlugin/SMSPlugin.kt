@@ -219,8 +219,7 @@ class SMSPlugin : Plugin() {
         device.sendPacket(np)
     }
 
-    override val permissionExplanation: Int
-        get() = R.string.telepathy_permission_explanation
+    override val permissionExplanation: Int = R.string.telepathy_permission_explanation
 
     override fun onCreate(): Boolean {
         val filter = IntentFilter(Telephony.Sms.Intents.SMS_RECEIVED_ACTION)
@@ -359,19 +358,16 @@ class SMSPlugin : Plugin() {
 
     override fun getSettingsFragment(activity: Activity): PluginSettingsFragment? = PluginSettingsFragment.newInstance(pluginKey, R.xml.smsplugin_preferences)
 
-    override val supportedPacketTypes: Array<String>
-        get() = arrayOf(
+    override val supportedPacketTypes: Array<String> = arrayOf(
             PACKET_TYPE_SMS_REQUEST,
             PACKET_TYPE_SMS_REQUEST_CONVERSATIONS,
             PACKET_TYPE_SMS_REQUEST_CONVERSATION,
             PACKET_TYPE_SMS_REQUEST_ATTACHMENT
         )
 
-    override val outgoingPacketTypes: Array<String>
-        get() = arrayOf(PACKET_TYPE_SMS_MESSAGE, PACKET_TYPE_SMS_ATTACHMENT_FILE)
+    override val outgoingPacketTypes: Array<String> = arrayOf(PACKET_TYPE_SMS_MESSAGE, PACKET_TYPE_SMS_ATTACHMENT_FILE)
 
-    override val requiredPermissions: Array<String>
-        get() = arrayOf(
+    override val requiredPermissions: Array<String> = arrayOf(
             Manifest.permission.SEND_SMS,
             Manifest.permission.READ_SMS,  // READ_PHONE_STATE should be optional, since we can just query the user, but that
             // requires a GUI implementation for querying the user!
@@ -535,8 +531,7 @@ class SMSPlugin : Plugin() {
         /**
          * Permissions required for sending and receiving MMs messages
          */
-        val mmsPermissions: Array<String>
-            get() = arrayOf(
+        val mmsPermissions: Array<String> = arrayOf(
                 Manifest.permission.RECEIVE_SMS,
                 Manifest.permission.RECEIVE_MMS,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,

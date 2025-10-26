@@ -102,11 +102,9 @@ class BatteryPlugin : Plugin() {
         return true
     }
 
-    override val supportedPacketTypes: Array<String>
-        get() = arrayOf(PACKET_TYPE_BATTERY)
+    override val supportedPacketTypes: Array<String> = arrayOf(PACKET_TYPE_BATTERY)
 
-    override val outgoingPacketTypes: Array<String>
-        get() = arrayOf(PACKET_TYPE_BATTERY)
+    override val outgoingPacketTypes: Array<String> = arrayOf(PACKET_TYPE_BATTERY)
 
     companion object {
         const val PACKET_TYPE_BATTERY = "kdeconnect.battery"

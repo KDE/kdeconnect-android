@@ -33,9 +33,7 @@ class FindRemoteDevicePlugin : Plugin() {
 
     override fun displayInContextMenu(): Boolean = true
 
-    override val supportedPacketTypes: Array<String>
-        get() = arrayOf()
+    override val supportedPacketTypes: Array<String> = emptyArray()
 
-    override val outgoingPacketTypes: Array<String>
-        get() = arrayOf(FindMyPhonePlugin.PACKET_TYPE_FINDMYPHONE_REQUEST)
+    override val outgoingPacketTypes: Array<String> = arrayOf(FindMyPhonePlugin.PACKET_TYPE_FINDMYPHONE_REQUEST)
 }
