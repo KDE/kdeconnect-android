@@ -56,7 +56,7 @@ class ReceiveNotification {
     }
 
     public void show() {
-        NotificationHelper.notifyCompat(notificationManager, notificationId, builder.build());
+        notificationManager.notify(notificationId, builder.build());
     }
 
     public void cancel() {

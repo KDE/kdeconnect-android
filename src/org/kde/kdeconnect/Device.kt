@@ -302,7 +302,7 @@ class Device : PacketReceiver {
             .setDefaults(Notification.DEFAULT_ALL)
             .build()
 
-        NotificationHelper.notifyCompat(notificationManager, notificationId, noti)
+        notificationManager.notify(notificationId, noti)
     }
 
     fun hidePairingNotification() {

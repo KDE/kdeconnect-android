@@ -17,26 +17,6 @@ import java.util.Arrays
 import java.util.stream.Collectors
 
 object NotificationHelper {
-    @JvmStatic
-    fun notifyCompat(notificationManager: NotificationManager, notificationId: Int, notification: Notification?) {
-        try {
-            notificationManager.notify(notificationId, notification)
-        } catch (e: Exception) {
-            //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
-            //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
-        }
-    }
-
-    @JvmStatic
-    fun notifyCompat(notificationManager: NotificationManager, tag: String?, notificationId: Int, notification: Notification?) {
-        try {
-            notificationManager.notify(tag, notificationId, notification)
-        } catch (e: Exception) {
-            //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
-            //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
-        }
-    }
-
     fun initializeChannels(context: Context) {
         val persistentChannel = NotificationChannelCompat.Builder(Channels.PERSISTENT, NotificationManagerCompat.IMPORTANCE_MIN)
             .setName(context.getString(R.string.notification_channel_persistent))

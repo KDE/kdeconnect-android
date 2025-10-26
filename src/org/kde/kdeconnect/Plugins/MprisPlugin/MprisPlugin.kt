@@ -355,8 +355,7 @@ class MprisPlugin : Plugin() {
                     .setTimeoutAfter(3000)
                     .setContentIntent(pendingIntent)
                     .setContentText(context.resources.getString(R.string.mpris_keepwatching) + " " + playerStatus.title)
-                NotificationHelper.notifyCompat(
-                    notificationManager,
+                notificationManager.notify(
                     System.currentTimeMillis().toInt(),
                     builder.build()
                 )

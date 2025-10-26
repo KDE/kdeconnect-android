@@ -76,7 +76,7 @@ class PingPlugin : Plugin() {
             .setStyle(NotificationCompat.BigTextStyle().bigText(message))
             .build()
 
-        NotificationHelper.notifyCompat(notificationManager, id, notification)
+        notificationManager.notify(id, notification)
 
         return true
     }

@@ -88,7 +88,7 @@ class UploadNotification {
     }
 
     void show() {
-        NotificationHelper.notifyCompat(notificationManager, notificationId, builder.build());
+        notificationManager.notify(notificationId, builder.build());
     }
 }
 

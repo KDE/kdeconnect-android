@@ -111,7 +111,7 @@ public class ReceiveNotificationsPlugin extends Plugin {
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(np.getString("ticker")))
                 .build();
 
-        NotificationHelper.notifyCompat(notificationManager, "kdeconnectId:" + np.getString("id", "0"), np.getInt("id", 0), noti);
+        notificationManager.notify("kdeconnectId:" + np.getString("id", "0"), np.getInt("id", 0), noti);
 
         return true;
     }
