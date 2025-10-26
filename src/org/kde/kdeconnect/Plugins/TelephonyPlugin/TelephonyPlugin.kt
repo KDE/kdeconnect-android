@@ -17,10 +17,8 @@ import android.os.Build
 import android.preference.PreferenceManager
 import android.telephony.PhoneNumberUtils
 import android.telephony.TelephonyManager
-import android.text.TextUtils
 import android.util.Log
 import androidx.core.content.ContextCompat
-import org.apache.commons.lang3.ArrayUtils
 import org.kde.kdeconnect.Helpers.ContactsHelper
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.Plugins.Plugin
@@ -61,10 +59,10 @@ class TelephonyPlugin : Plugin() {
     }
 
     override val displayName: String
-        get() = context.getResources().getString(R.string.pref_plugin_telephony)
+        get() = context.resources.getString(R.string.pref_plugin_telephony)
 
     override val description: String
-        get() = context.getResources().getString(R.string.pref_plugin_telephony_desc)
+        get() = context.resources.getString(R.string.pref_plugin_telephony_desc)
 
     private fun callBroadcastReceived(state: Int, phoneNumber: String?) {
         if (isNumberBlocked(phoneNumber)) return
@@ -111,10 +109,11 @@ class TelephonyPlugin : Plugin() {
                 np["event"] = "talking"
                 device.sendPacket(np)
             }
-            TelephonyManager.CALL_STATE_IDLE -> if (lastPacket != null) {
+            TelephonyManager.CALL_STATE_IDLE -> {
+                val lastPacket = lastPacket ?: return
                 // Resend a cancel of the last event (can either be "ringing" or "talking")
-                lastPacket!!["isCancel"] = "true"
-                device.sendPacket(lastPacket!!)
+                lastPacket["isCancel"] = "true"
+                device.sendPacket(lastPacket)
 
                 if (isMuted) {
                     val timer = Timer()
@@ -126,10 +125,10 @@ class TelephonyPlugin : Plugin() {
                 }
 
                 // Emit a missed call notification if needed
-                if ("ringing" == lastPacket!!.getString("event")) {
+                if ("ringing" == lastPacket.getString("event")) {
                     np["event"] = "missedCall"
-                    np["phoneNumber"] = lastPacket!!.getStringOrNull("phoneNumber")
-                    np["contactName"] = lastPacket!!.getStringOrNull("contactName")
+                    np["phoneNumber"] = lastPacket.getStringOrNull("phoneNumber")
+                    np["contactName"] = lastPacket.getStringOrNull("contactName")
                     device.sendPacket(np)
                 }
             }
@@ -205,7 +204,7 @@ class TelephonyPlugin : Plugin() {
 
     override fun hasSettings(): Boolean = true
 
-    override fun getSettingsFragment(activity: Activity): PluginSettingsFragment? = newInstance(pluginKey, R.xml.telephonyplugin_preferences)
+    override fun getSettingsFragment(activity: Activity): PluginSettingsFragment = newInstance(pluginKey, R.xml.telephonyplugin_preferences)
 
     companion object {
         /**
