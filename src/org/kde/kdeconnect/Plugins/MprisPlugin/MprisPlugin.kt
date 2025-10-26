@@ -253,6 +253,9 @@ class MprisPlugin : Plugin() {
                 playerStatus.artist = np.getString("artist", playerStatus.artist)
                 playerStatus.album = np.getString("album", playerStatus.album)
                 playerStatus.url = np.getString("url", playerStatus.url)
+                if (isInvalidPlayerUrl(playerStatus.url)) {
+                    playerStatus.url = ""
+                }
                 if (np.has("loopStatus")) {
                     playerStatus.loopStatus = np.getString("loopStatus", playerStatus.loopStatus)
                     playerStatus.isLoopStatusAllowed = true
@@ -326,6 +329,11 @@ class MprisPlugin : Plugin() {
         }
 
         return true
+    }
+
+    private fun isInvalidPlayerUrl(url: String): Boolean {
+        // Not a valid video URL. Can happen when an on-hover preview is playing.
+        return url == "https://www.youtube.com/" || url == "https://www.youtube.com/tv#/"
     }
 
     private fun showContinueWatchingNotification(playerStatus: MprisPlayer) {
