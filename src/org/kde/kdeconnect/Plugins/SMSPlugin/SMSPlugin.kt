@@ -63,16 +63,16 @@ class SMSPlugin : Plugin() {
             //Log.e("TelephonyPlugin","Telephony event: " + action)
             if (Telephony.Sms.Intents.SMS_RECEIVED_ACTION == action) {
                 val bundle: Bundle = intent.extras ?: return
-                val pdus: Array<Any>? = bundle.get("pdus") as Array<Any>?
+                val pdus: Array<ByteArray?> = bundle.get("pdus") as Array<ByteArray?>
                 val messages: MutableList<SmsMessage> = mutableListOf()
 
-                for (pdu: Any? in pdus!!) {
+                for (pdu in pdus) {
                     // I hope, but am not sure, that the pdus array is in the order that the parts
                     // of the SMS message should be
                     // If it is not, I believe the pdu contains the information necessary to put it
                     // in order, but in my testing the order seems to be correct, so I won't worry
                     // about it now.
-                    messages.add(SmsMessage.createFromPdu(pdu as ByteArray?))
+                    messages.add(SmsMessage.createFromPdu(pdu))
                 }
 
                 smsBroadcastReceivedDeprecated(messages)
@@ -153,9 +153,9 @@ class SMSPlugin : Plugin() {
         val messages: List<SMSHelper.Message> = getMessagesInRange(context, null, mostRecentTimestamp, null, false)
 
         var newMostRecentTimestamp: Long = mostRecentTimestamp
-        for (message: SMSHelper.Message? in messages) {
-            if (message == null || message.date >= newMostRecentTimestamp) {
-                newMostRecentTimestamp = message!!.date
+        for (message: SMSHelper.Message in messages) {
+            if (message.date >= newMostRecentTimestamp) {
+                newMostRecentTimestamp = message.date
             }
         }
 
@@ -204,12 +204,14 @@ class SMSPlugin : Plugin() {
         if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
             val contactInfo: Map<String, String> = ContactsHelper.phoneNumberLookup(context, phoneNumber)
 
-            if (contactInfo.containsKey("name")) {
-                np["contactName"] = contactInfo["name"]
+            val name = contactInfo["name"]
+            if (name != null) {
+                np["contactName"] = name
             }
 
-            if (contactInfo.containsKey("photoID")) {
-                np["phoneThumbnail"] = ContactsHelper.photoId64Encoded(context, contactInfo["photoID"])
+            val photoID = contactInfo["photoID"]
+            if (photoID != null) {
+                np["phoneThumbnail"] = ContactsHelper.photoId64Encoded(context, photoID)
             }
         }
         if (phoneNumber != null) {
