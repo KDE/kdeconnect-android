@@ -34,6 +34,7 @@ import org.kde.kdeconnect_tp.R
 import java.net.MalformedURLException
 import java.util.concurrent.ConcurrentHashMap
 import androidx.core.net.toUri
+import org.kde.kdeconnect.Helpers.ThreadHelper
 
 @LoadablePlugin
 class MprisPlugin : Plugin() {
@@ -41,6 +42,13 @@ class MprisPlugin : Plugin() {
         var playerName: String = ""
             internal set
         var isPlaying: Boolean = false
+            internal set(value) {
+                if (value && !field) {
+                    playStartTime = System.currentTimeMillis()
+                }
+                field = value
+            }
+        var playStartTime: Long = 0L
             internal set
         var title: String = ""
             internal set
@@ -329,6 +337,10 @@ class MprisPlugin : Plugin() {
     }
 
     private fun showContinueWatchingNotification(playerStatus: MprisPlayer) {
+        if (playerStatus.playStartTime + 5000 > System.currentTimeMillis()) {
+            Log.i("MprisPlugin", "Not showing continue watching notification, playback was too short")
+            return
+        }
         val prefs = PreferenceManager.getDefaultSharedPreferences(context)
         val httpUrl = playerStatus.getHttpUrl()
         if (prefs.getBoolean(context.getString(R.string.mpris_keepwatching_key), true) && httpUrl != null) {
