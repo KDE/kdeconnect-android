@@ -13,6 +13,8 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Build
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.annotation.DrawableRes
 import androidx.core.app.NotificationCompat
@@ -34,6 +36,7 @@ import org.kde.kdeconnect_tp.R
 import java.net.MalformedURLException
 import java.util.concurrent.ConcurrentHashMap
 import androidx.core.net.toUri
+import org.kde.kdeconnect.Helpers.ThreadHelper
 
 @LoadablePlugin
 class MprisPlugin : Plugin() {
@@ -41,6 +44,13 @@ class MprisPlugin : Plugin() {
         var playerName: String = ""
             internal set
         var isPlaying: Boolean = false
+            internal set(value) {
+                if (value && !field) {
+                    playStartTime = System.currentTimeMillis()
+                }
+                field = value
+            }
+        var playStartTime: Long = 0L
             internal set
         var title: String = ""
             internal set
@@ -337,30 +347,43 @@ class MprisPlugin : Plugin() {
     }
 
     private fun showContinueWatchingNotification(playerStatus: MprisPlayer) {
-        val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-        val httpUrl = playerStatus.getHttpUrl()
-        if (prefs.getBoolean(context.getString(R.string.mpris_keepwatching_key), true) && httpUrl != null) {
-            try {
-                val transformedUrl = httpUrl
-                    .let { VideoUrlsHelper.convertToAndFromYoutubeTvLinks(it) }
-                    .let { VideoUrlsHelper.formatUriWithSeek(it, playerStatus.position) }
-                    .toUri()
-                val browserIntent = Intent(Intent.ACTION_VIEW, transformedUrl)
-                val pendingIntent = PendingIntent.getActivity(context, 0, browserIntent, PendingIntent.FLAG_IMMUTABLE)
+        if (playerStatus.playStartTime + 5000 > System.currentTimeMillis()) {
+            // Playback was too short
+            return
+        }
+        ThreadHelper.execute {
+            Thread.sleep(500)
+            if (playerStatus.isPlaying) {
+                // Pause was too short. Probably just the gap between songs
+                return@execute
+            }
+            val prefs = PreferenceManager.getDefaultSharedPreferences(context)
+            val httpUrl = playerStatus.getHttpUrl()
+            if (prefs.getBoolean(context.getString(R.string.mpris_keepwatching_key), true) && httpUrl != null) {
+                try {
+                    val transformedUrl = httpUrl
+                        .let { VideoUrlsHelper.convertToAndFromYoutubeTvLinks(it) }
+                        .let { VideoUrlsHelper.formatUriWithSeek(it, playerStatus.position) }
+                        .toUri()
+                    val browserIntent = Intent(Intent.ACTION_VIEW, transformedUrl)
+                    val pendingIntent = PendingIntent.getActivity(context, 0, browserIntent, PendingIntent.FLAG_IMMUTABLE)
 
-                val notificationManager = context.getSystemService<NotificationManager>()!!
-                val builder = NotificationCompat.Builder(context, NotificationHelper.Channels.CONTINUEWATCHING)
-                    .setContentTitle(context.resources.getString(R.string.kde_connect))
-                    .setSmallIcon(R.drawable.ic_play_white)
-                    .setTimeoutAfter(3000)
-                    .setContentIntent(pendingIntent)
-                    .setContentText(context.resources.getString(R.string.mpris_keepwatching) + " " + playerStatus.title)
-                notificationManager.notify(
-                    System.currentTimeMillis().toInt(),
-                    builder.build()
-                )
-            } catch (e: MalformedURLException) {
-                e.printStackTrace()
+                    Handler(Looper.getMainLooper()).post {
+                        val notificationManager = context.getSystemService<NotificationManager>()!!
+                        val builder = NotificationCompat.Builder(context, NotificationHelper.Channels.CONTINUEWATCHING)
+                            .setContentTitle(context.resources.getString(R.string.kde_connect))
+                            .setSmallIcon(R.drawable.ic_play_white)
+                            .setTimeoutAfter(3000)
+                            .setContentIntent(pendingIntent)
+                            .setContentText(context.resources.getString(R.string.mpris_keepwatching) + " " + playerStatus.title)
+                        notificationManager.notify(
+                            System.currentTimeMillis().toInt(),
+                            builder.build()
+                        )
+                    }
+                } catch (e: MalformedURLException) {
+                    e.printStackTrace()
+                }
             }
         }
     }
