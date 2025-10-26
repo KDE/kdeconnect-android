@@ -505,11 +505,11 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
         }
     }
 
-    override fun onProviderStateChanged(volumeProvider: SystemVolumeProvider, isActive: Boolean) {
+    override fun onProviderStateChanged(systemVolumeProvider: SystemVolumeProvider, isActive: Boolean) {
         val mediaSession = mediaSession ?: return
 
         if (isActive) {
-            mediaSession.setPlaybackToRemote(volumeProvider)
+            mediaSession.setPlaybackToRemote(systemVolumeProvider)
         } else {
             mediaSession.setPlaybackToLocal(AudioManager.STREAM_MUSIC)
         }

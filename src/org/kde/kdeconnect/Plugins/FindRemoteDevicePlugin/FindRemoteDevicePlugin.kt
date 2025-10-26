@@ -25,7 +25,7 @@ class FindRemoteDevicePlugin : Plugin() {
     override val actionName: String
         get() = context.getString(R.string.ring)
 
-    override fun startMainActivity(activity: Activity) {
+    override fun startMainActivity(parentActivity: Activity) {
         if (isDeviceInitialized) {
             device.sendPacket(NetworkPacket(FindMyPhonePlugin.PACKET_TYPE_FINDMYPHONE_REQUEST))
         }

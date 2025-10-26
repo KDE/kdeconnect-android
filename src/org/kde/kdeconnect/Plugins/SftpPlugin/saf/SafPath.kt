@@ -15,8 +15,12 @@ import java.nio.file.LinkOption
 class SafPath(
     fileSystem: SafFileSystem,
     var safUri: Uri?,
-    val root: String?, val names: List<String>
+    root: String?,
+    names: List<String>
 ) : BasePath<SafPath, SafFileSystem>(fileSystem, root, names) {
+
+    fun getNames(): List<String> = super.names
+
     override fun toRealPath(vararg options: LinkOption?): SafPath {
         return this.normalize()
     }

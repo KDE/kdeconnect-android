@@ -93,7 +93,7 @@ class SafFileSystemProvider(
         }
         val parent = path.parent.getDocumentFile(context)
             ?: throw IOException("Parent directory does not exist")
-        val docFile = parent.createFile(Files.probeContentType(path), path.names.last())
+        val docFile = parent.createFile(Files.probeContentType(path), path.getNames().last())
             ?: throw IOException("Failed to create $path")
         val uri = docFile.uri
         path.safUri = uri
@@ -182,7 +182,7 @@ class SafFileSystemProvider(
             }
         }
 
-        check(dir.names.isNotEmpty())
+        check(dir.getNames().isNotEmpty())
 
         return object : DirectoryStream<Path> {
             override fun iterator(): MutableIterator<Path> {
@@ -190,7 +190,7 @@ class SafFileSystemProvider(
                 return documentFile.listFiles().mapNotNull {
                     if (it.uri.path?.endsWith(".android_secure") == true) return@mapNotNull null
 
-                    val newPath = SafPath(dir.fileSystem, it.uri, null, dir.names + it.name!!)
+                    val newPath = SafPath(dir.fileSystem, it.uri, null, dir.getNames() + it.name!!)
                     if (filter.accept(newPath)) newPath else null
                 }.toMutableList().iterator()
             }
@@ -211,7 +211,7 @@ class SafFileSystemProvider(
         }
         val parent = dir.parent.getDocumentFile(context)
             ?: throw IOException("Parent directory does not exist")
-        parent.createDirectory(dir.names.last())
+        parent.createDirectory(dir.getNames().last())
     }
 
     override fun delete(path: Path) {
@@ -263,7 +263,7 @@ class SafFileSystemProvider(
                     val newUri = DocumentsContract.renameDocument(
                         context.contentResolver,
                         sourceUri,
-                        target.names.last()
+                        target.getNames().last()
                     )
                     if (newUri == null) { // renameDocument returns null on failure
                         return@firstStep
@@ -301,7 +301,7 @@ class SafFileSystemProvider(
     override fun isSameFile(p1: Path, p2: Path): Boolean {
         check(p1 is SafPath)
         check(p2 is SafPath)
-        return p1.root == p2.root && p1.names == p2.names &&
+        return p1.root == p2.root && p1.getNames() == p2.getNames() &&
                 p1.getDocumentFile(context)!!.uri == p2.getDocumentFile(context)!!.uri
     }
 
@@ -312,7 +312,7 @@ class SafFileSystemProvider(
             return false
         }
 
-        return path.names.last().startsWith(".")
+        return path.getNames().last().startsWith(".")
     }
 
     override fun getFileStore(path: Path): FileStore? {

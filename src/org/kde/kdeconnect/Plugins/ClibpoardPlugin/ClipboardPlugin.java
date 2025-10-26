@@ -142,7 +142,7 @@ public class ClipboardPlugin extends Plugin {
     }
 
     @Override
-    public void startMainActivity(Activity activity) {
+    public void startMainActivity(Activity parentActivity) {
         if (isDeviceInitialized()) {
             ClipboardManager clipboardManager = ContextCompat.getSystemService(this.context,
                     ClipboardManager.class);
