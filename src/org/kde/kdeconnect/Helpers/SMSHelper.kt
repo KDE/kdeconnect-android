@@ -207,9 +207,9 @@ object SMSHelper {
             }
         } catch (e: SQLiteException) {
             // With uri content://mms-sms/conversations this query throws an exception if sub_id is not supported
-            return !StringUtils.contains(e.message, Telephony.Sms.SUBSCRIPTION_ID)
+            return !e.message.orEmpty().contains(Telephony.Sms.SUBSCRIPTION_ID)
         } catch (e: IllegalArgumentException) {
-            return !StringUtils.contains(e.message, Telephony.Sms.SUBSCRIPTION_ID)
+            return !e.message.orEmpty().contains(Telephony.Sms.SUBSCRIPTION_ID)
         }
     }
 

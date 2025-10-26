@@ -113,7 +113,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     private boolean hasNotificationsPermission() {
         //Notifications use a different kind of permission, because it was added before the current runtime permissions model
         String notificationListenerList = Settings.Secure.getString(context.getContentResolver(), "enabled_notification_listeners");
-        return StringUtils.contains(notificationListenerList, context.getPackageName());
+        return notificationListenerList.contains(context.getPackageName());
     }
 
     @Override
@@ -593,7 +593,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         String result;
         // first check if it's one of our remoteIds
         String tag = statusBarNotification.getTag();
-        if (StringUtils.startsWith(tag, "kdeconnectId:"))
+        if (tag.startsWith("kdeconnectId:"))
             result = Integer.toString(statusBarNotification.getId());
         else {
             result = statusBarNotification.getKey();

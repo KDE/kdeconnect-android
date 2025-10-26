@@ -312,7 +312,7 @@ public class MprisReceiverPlugin extends Plugin {
 
     private boolean hasPermission() {
         String notificationListenerList = Settings.Secure.getString(context.getContentResolver(), "enabled_notification_listeners");
-        return StringUtils.contains(notificationListenerList, context.getPackageName());
+        return notificationListenerList.contains(context.getPackageName());
     }
 
 }

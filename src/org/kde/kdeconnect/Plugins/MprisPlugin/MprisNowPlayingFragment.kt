@@ -265,7 +265,7 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
         }
 
         var song = playerStatus.title
-        if (!StringUtils.isEmpty(playerStatus.artist)) {
+        if (playerStatus.artist.isNotEmpty()) {
             song += " - " + playerStatus.artist
         }
         if (mprisControlBinding.nowPlayingTextview.text.toString() != song) {

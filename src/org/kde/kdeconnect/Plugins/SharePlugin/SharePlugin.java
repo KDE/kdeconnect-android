@@ -328,7 +328,7 @@ public class SharePlugin extends Plugin {
             String subject = extras.getString(Intent.EXTRA_SUBJECT);
 
             //Hack: Detect shared youtube videos, so we can open them in the browser instead of as text
-            if (StringUtils.endsWith(subject, "YouTube")) {
+            if (subject != null && subject.endsWith("YouTube")) {
                 int index = text.indexOf(": http://youtu.be/");
                 if (index > 0) {
                     text = text.substring(index + 2); //Skip ": "
