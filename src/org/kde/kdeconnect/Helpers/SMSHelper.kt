@@ -9,19 +9,16 @@ package org.kde.kdeconnect.Helpers
 import android.annotation.SuppressLint
 import android.content.ContentUris
 import android.content.Context
-import android.database.ContentObserver
 import android.database.sqlite.SQLiteException
 import android.media.MediaMetadataRetriever
 import android.media.ThumbnailUtils
 import android.net.Uri
-import android.os.Build
 import android.os.Looper
 import android.provider.Telephony
 import android.telephony.PhoneNumberUtils
 import android.telephony.TelephonyManager
 import android.util.Log
 import android.util.Pair
-import androidx.annotation.RequiresApi
 import androidx.core.graphics.scale
 import androidx.core.net.toUri
 import com.google.android.mms.pdu_alt.MultimediaMessagePdu
@@ -30,7 +27,6 @@ import com.google.android.mms.util_alt.PduCache
 import com.google.android.mms.util_alt.PduCacheEntry
 import org.apache.commons.io.IOUtils
 import org.apache.commons.lang3.StringUtils
-import org.apache.commons.lang3.math.NumberUtils
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -38,7 +34,6 @@ import org.kde.kdeconnect.Helpers.TelephonyHelper.LocalPhoneNumber
 import org.kde.kdeconnect.Plugins.SMSPlugin.MimeType
 import org.kde.kdeconnect.Plugins.SMSPlugin.SmsMmsUtils
 import java.io.IOException
-import java.util.Objects
 import java.util.SortedMap
 import java.util.TreeMap
 import java.util.concurrent.locks.Lock
@@ -510,32 +505,17 @@ object SMSHelper {
      * Parse all parts of an SMS into a Message
      */
     private fun parseSMS(context: Context, messageInfo: Map<String, String?>): Message {
-        val event = addEventFlag(Message.EVENT_UNKNOWN, Message.EVENT_TEXT_MESSAGE)
-        val address = listOf(Address(context, messageInfo[Telephony.Sms.ADDRESS]!!))
-        val body = messageInfo.getOrDefault(Message.BODY, "") ?: ""
-        val date = NumberUtils.toLong(messageInfo.getOrDefault(Message.DATE, null))
-        val type = NumberUtils.toInt(messageInfo.getOrDefault(Message.TYPE, null))
-        val read = NumberUtils.toInt(messageInfo.getOrDefault(Message.READ, null))
-        val threadID = ThreadID(
-            NumberUtils.toLong(
-                messageInfo.getOrDefault(Message.THREAD_ID, null),
-                ThreadID.invalidThreadId.threadID
-            )
-        )
-        val uID = NumberUtils.toLong(messageInfo.getOrDefault(Message.U_ID, null))
-        val subscriptionID = NumberUtils.toInt(messageInfo.getOrDefault(Message.SUBSCRIPTION_ID, null))
-
         return Message(
-            address,
-            body,
-            date,
-            type,
-            read,
-            threadID,
-            uID,
-            event,
-            subscriptionID,
-            null
+            addresses = listOf(Address(context, messageInfo[Telephony.Sms.ADDRESS]!!)),
+            body = messageInfo[Message.BODY] ?: "",
+            date = messageInfo[Message.DATE]?.toLongOrNull() ?: 0L,
+            type = messageInfo[Message.TYPE]?.toIntOrNull() ?: 0,
+            read = messageInfo[Message.READ]?.toIntOrNull() ?: 0,
+            threadID = ThreadID(messageInfo[Message.THREAD_ID]?.toLongOrNull() ?: ThreadID.invalidThreadId.threadID),
+            uID = messageInfo[Message.U_ID]?.toLongOrNull() ?: 0L,
+            event = addEventFlag(Message.EVENT_UNKNOWN, Message.EVENT_TEXT_MESSAGE),
+            subscriptionID = messageInfo[Message.SUBSCRIPTION_ID]?.toIntOrNull() ?: 0,
+            attachments = null,
         )
     }
 
@@ -546,15 +526,10 @@ object SMSHelper {
     private fun parseMMS(context: Context, messageInfo: Map<String, String?>, userPhoneNumbers: List<LocalPhoneNumber>): Message {
         var event = Message.EVENT_UNKNOWN
         var body = ""
-        val read = NumberUtils.toInt(messageInfo[Message.READ])
-        val threadID = ThreadID(
-            NumberUtils.toLong(
-                messageInfo.getOrDefault(Message.THREAD_ID, null),
-                ThreadID.invalidThreadId.threadID
-            )
-        )
-        val uID = NumberUtils.toLong(messageInfo[Message.U_ID])
-        val subscriptionID = NumberUtils.toInt(messageInfo[Message.SUBSCRIPTION_ID])
+        val read = messageInfo[Message.READ]?.toIntOrNull() ?: 0
+        val threadID = ThreadID(messageInfo[Message.THREAD_ID]?.toLongOrNull() ?: ThreadID.invalidThreadId.threadID)
+        val uID = messageInfo[Message.U_ID]?.toLongOrNull() ?: 0L
+        val subscriptionID = messageInfo[Message.SUBSCRIPTION_ID]?.toIntOrNull() ?: 0
         val attachments: MutableList<Attachment> = ArrayList()
         val columns = arrayOf(
             Telephony.Mms.Part._ID,  // The content ID of this part
@@ -655,20 +630,16 @@ object SMSHelper {
         }
 
         // Determine whether the message was in- our out- bound
-        val messageBox = NumberUtils.toLong(messageInfo[Telephony.Mms.MESSAGE_BOX])
+        val messageBox = messageInfo[Telephony.Mms.MESSAGE_BOX]?.toIntOrNull() ?: 0
         val type = when (messageBox) {
-            Telephony.Mms.MESSAGE_BOX_INBOX.toLong() -> {
-                Telephony.Sms.MESSAGE_TYPE_INBOX
-            }
-            Telephony.Mms.MESSAGE_BOX_SENT.toLong() -> {
-                Telephony.Sms.MESSAGE_TYPE_SENT
-            }
+            Telephony.Mms.MESSAGE_BOX_INBOX -> Telephony.Sms.MESSAGE_TYPE_INBOX
+            Telephony.Mms.MESSAGE_BOX_SENT -> Telephony.Sms.MESSAGE_TYPE_SENT
             else -> {
                 // As an undocumented feature, it looks like the values of Mms.MESSAGE_BOX_*
                 // are the same as Sms.MESSAGE_TYPE_* of the same type. So by default let's just use
                 // the value we've got.
                 // This includes things like drafts, which are a far-distant plan to support
-                NumberUtils.toInt(messageInfo[Telephony.Mms.MESSAGE_BOX])
+                messageBox
             }
         }
 
@@ -708,7 +679,7 @@ object SMSHelper {
 
         // Canonicalize the date field
         // SMS uses epoch milliseconds, MMS uses epoch seconds. Standardize on milliseconds.
-        val rawDate = NumberUtils.toLong(messageInfo[Message.DATE])
+        val rawDate = messageInfo[Message.DATE]?.toLongOrNull() ?: 0L
         val date = rawDate * 1000
         return Message(
             addresses,
