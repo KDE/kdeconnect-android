@@ -48,8 +48,7 @@ class NetworkPacket private constructor(
         return mBody.optString(key, defaultValue)
     }
 
-    operator fun set(key: String, value: String?) {
-        if (value == null) return
+    operator fun set(key: String, value: String) {
         try {
             mBody.put(key, value)
         } catch (ignored: Exception) {

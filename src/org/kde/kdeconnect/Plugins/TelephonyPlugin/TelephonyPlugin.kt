@@ -74,8 +74,9 @@ class TelephonyPlugin : Plugin() {
         if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
             val contactInfo = ContactsHelper.phoneNumberLookup(context, phoneNumber)
 
-            if (contactInfo.containsKey("name")) {
-                np["contactName"] = contactInfo["name"]
+            val name = contactInfo["name"]
+            if (name != null) {
+                np["contactName"] = name
             }
 
             if (contactInfo.containsKey("photoID")) {
@@ -91,7 +92,7 @@ class TelephonyPlugin : Plugin() {
                     }
                 }
             }
-        } else {
+        } else if (phoneNumber != null) {
             np["contactName"] = phoneNumber
         }
 
@@ -127,8 +128,14 @@ class TelephonyPlugin : Plugin() {
                 // Emit a missed call notification if needed
                 if ("ringing" == lastPacket.getString("event")) {
                     np["event"] = "missedCall"
-                    np["phoneNumber"] = lastPacket.getStringOrNull("phoneNumber")
-                    np["contactName"] = lastPacket.getStringOrNull("contactName")
+                    val phoneNumber = lastPacket.getStringOrNull("phoneNumber")
+                    if (phoneNumber != null) {
+                        np["phoneNumber"] = phoneNumber
+                    }
+                    val contactName = lastPacket.getStringOrNull("contactName")
+                    if (contactName != null) {
+                        np["contactName"] = contactName
+                    }
                     device.sendPacket(np)
                 }
             }

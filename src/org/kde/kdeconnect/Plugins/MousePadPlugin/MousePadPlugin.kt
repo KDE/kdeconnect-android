@@ -161,7 +161,7 @@ class MousePadPlugin : Plugin() {
         device.sendPacket(np)
     }
 
-    fun sendText(content: String?) {
+    fun sendText(content: String) {
         val np = NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST)
         np["key"] = content
         sendPacket(np)

@@ -444,7 +444,7 @@ object SmsMmsUtils {
     /**
      * Create a SMS attachment packet using the partID of the file requested by the device
      */
-    fun partIdToMessageAttachmentPacket(context: Context, partID: Long, filename: String?, type: String): NetworkPacket? {
+    fun partIdToMessageAttachmentPacket(context: Context, partID: Long, filename: String, type: String): NetworkPacket? {
         val attachment = loadAttachment(context, partID)
         val size = attachment.size.toLong()
         if (size == 0L) {
