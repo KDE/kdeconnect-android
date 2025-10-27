@@ -19,8 +19,6 @@ import org.kde.kdeconnect_tp.R
 
 @LoadablePlugin
 class PresenterPlugin : Plugin() {
-    val isPointerSupported: Boolean
-        get() = device.supportsPacketType(PACKET_TYPE_PRESENTER)
 
     override val displayName: String
         get() = context.getString(R.string.pref_plugin_presenter)

@@ -459,9 +459,6 @@ class SMSPlugin : Plugin() {
          */
         private const val PACKET_TYPE_SMS_REQUEST: String = "kdeconnect.sms.request"
 
-        /** We *handle* packets of this version or lower. Update this number only if future packets break backwards-compatibility. **/
-        private const val SMS_REQUEST_PACKET_VERSION: Int = 2
-
         /**
          * Packet sent to request the most-recent message in each conversations on the device
          *
