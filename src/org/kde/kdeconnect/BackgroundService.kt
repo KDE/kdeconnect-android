@@ -242,7 +242,7 @@ class BackgroundService : Service() {
                 try {
                     startForeground(FOREGROUND_NOTIFICATION_ID, createForegroundNotification(), ServiceInfo.FOREGROUND_SERVICE_TYPE_CONNECTED_DEVICE)
                 } catch (e: IllegalStateException) { // To catch ForegroundServiceStartNotAllowedException
-                    Log.w("BackgroundService", "Couldn't startForeground", e);
+                    Log.w("BackgroundService", "Couldn't startForeground", e)
                     return START_STICKY
                 }
             }

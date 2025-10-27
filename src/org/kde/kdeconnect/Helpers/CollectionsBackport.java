@@ -272,7 +272,7 @@ public final class CollectionsBackport {
         }
 
         public Iterator<E> iterator() {
-            return new Iterator<E>() {
+            return new Iterator<>() {
                 private final Iterator<? extends E> i = c.iterator();
 
                 public boolean hasNext() {
@@ -722,7 +722,7 @@ public final class CollectionsBackport {
             }
 
             public Iterator<Map.Entry<K, V>> iterator() {
-                return new Iterator<Map.Entry<K, V>>() {
+                return new Iterator<>() {
                     private final Iterator<? extends Map.Entry<? extends K, ? extends V>> i = c.iterator();
 
                     public boolean hasNext() {

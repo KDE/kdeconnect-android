@@ -215,7 +215,7 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
                     Log.w("PairingFragment", "Devices:" + allDevices.toList().toString())
                     break
                 }
-                seenNames.add(device.name);
+                seenNames.add(device.name)
             }
 
             connectedSection = SectionItem(res.getString(R.string.category_connected_devices))

@@ -5,7 +5,6 @@
 */
 package org.kde.kdeconnect
 
-import io.mockk.MockKAnnotations
 import io.mockk.mockk
 import org.json.JSONException
 import org.junit.Assert

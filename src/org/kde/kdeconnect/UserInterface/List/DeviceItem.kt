@@ -23,9 +23,9 @@ open class DeviceItem(
         binding.listItemEntryIcon.setImageDrawable(device.icon)
         binding.listItemEntryTitle.text = device.name
 
-        binding.getRoot().setOnClickListener(View.OnClickListener { v1: View? ->
+        binding.getRoot().setOnClickListener { v1: View? ->
             callback(device)
-        })
+        }
 
         return binding.getRoot()
     }
