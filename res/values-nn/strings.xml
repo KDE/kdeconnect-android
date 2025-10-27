@@ -202,7 +202,6 @@
   <string name="custom_devices_settings_summary">%d lagde til manuelt</string>
   <string name="custom_device_list">Legg til eining basert på IP</string>
   <string name="custom_device_deleted">Tilpassa eining er sletta</string>
-  <string name="custom_device_list_help">Viss eininga ikkje vert funnen automatisk, kan du leggja til IP-adressa eller vertsnamnet til eininga ved å trykka på handlingsknappen</string>
   <string name="custom_device_fab_hint">Legg til eining</string>
   <string name="undo">Angra</string>
   <string name="share_notification_preference">Lydvarsling</string>
