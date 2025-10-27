@@ -16,7 +16,7 @@ import org.kde.kdeconnect.Plugins.SystemVolumePlugin.SystemVolumePlugin.SinkList
 import kotlin.math.ceil
 import kotlin.math.floor
 
-class SystemVolumeProvider private constructor(plugin: SystemVolumePlugin) :
+class SystemVolumeProvider :
         VolumeProviderCompat(VOLUME_CONTROL_ABSOLUTE, DEFAULT_MAX_VOLUME, 0),
         SinkListener,
         UpdateListener {
@@ -31,11 +31,8 @@ class SystemVolumeProvider private constructor(plugin: SystemVolumePlugin) :
             private set
 
         @JvmStatic
-        fun fromPlugin(systemVolumePlugin: SystemVolumePlugin): SystemVolumeProvider {
-            val currentProvider = currentProvider ?: SystemVolumeProvider(systemVolumePlugin)
-
-            currentProvider.update(systemVolumePlugin)
-
+        fun getInstance(): SystemVolumeProvider {
+            val currentProvider = currentProvider ?: SystemVolumeProvider()
             return currentProvider
         }
 
@@ -49,28 +46,27 @@ class SystemVolumeProvider private constructor(plugin: SystemVolumePlugin) :
         }
     }
 
-    private val stateListeners: MutableList<ProviderStateListener>
+    private val stateListeners: MutableList<ProviderStateListener> = mutableListOf()
 
     private var defaultSink: Sink? = null
 
-    private var systemVolumePlugin: SystemVolumePlugin
+    private var systemVolumePlugin: SystemVolumePlugin? = null
 
-    init {
-        systemVolumePlugin = plugin
-        stateListeners = mutableListOf()
-    }
-
-    private fun update(plugin: SystemVolumePlugin) {
+    fun setPlugin(plugin: SystemVolumePlugin?) {
         if (plugin === systemVolumePlugin) return
 
         propagateState(false)
         defaultSink = null
         stopListeningForSinks()
         systemVolumePlugin = plugin
-        startListeningForSinks()
+        if (plugin != null) {
+            startListeningForSinks()
+        }
     }
 
     override fun sinksChanged() {
+        val systemVolumePlugin = systemVolumePlugin ?: return
+
         for (sink in systemVolumePlugin.sinks) {
             sink.addListener(this)
         }
@@ -109,6 +105,8 @@ class SystemVolumeProvider private constructor(plugin: SystemVolumePlugin) :
     }
 
     private fun updateLocalAndRemoteVolume(sink: Sink?, volume: Int) {
+        val systemVolumePlugin = systemVolumePlugin ?: return
+
         val shouldUpdateRemote = updateLocalVolume(volume)
         if (!shouldUpdateRemote || sink == null) return
         val remoteVolume = scaleFromLocal(volume, sink.maxVolume)
@@ -156,6 +154,7 @@ class SystemVolumeProvider private constructor(plugin: SystemVolumePlugin) :
     }
 
     fun startListeningForSinks() {
+        val systemVolumePlugin = systemVolumePlugin ?: return
         systemVolumePlugin.addSinkListener(this)
         systemVolumePlugin.requestSinkList()
     }
@@ -167,6 +166,7 @@ class SystemVolumeProvider private constructor(plugin: SystemVolumePlugin) :
     }
 
     private fun stopListeningForSinks() {
+        val systemVolumePlugin = systemVolumePlugin ?: return
         for (sink in systemVolumePlugin.sinks) {
             sink.removeListener(this)
         }
