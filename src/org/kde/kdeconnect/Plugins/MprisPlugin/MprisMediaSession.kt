@@ -34,7 +34,6 @@ import org.kde.kdeconnect.Plugins.NotificationsPlugin.NotificationReceiver
 import org.kde.kdeconnect.Plugins.SystemVolumePlugin.SystemVolumePlugin
 import org.kde.kdeconnect.Plugins.SystemVolumePlugin.SystemVolumeProvider
 import org.kde.kdeconnect.Plugins.SystemVolumePlugin.SystemVolumeProvider.Companion.currentProvider
-import org.kde.kdeconnect.Plugins.SystemVolumePlugin.SystemVolumeProvider.Companion.fromPlugin
 import org.kde.kdeconnect.Plugins.SystemVolumePlugin.SystemVolumeProvider.ProviderStateListener
 import org.kde.kdeconnect_tp.R
 
@@ -133,6 +132,10 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
         plugin.removePlayerListUpdatedHandler("media_notification")
         updateMediaNotification()
 
+        val systemVolumeProvider = SystemVolumeProvider.getInstance()
+        systemVolumeProvider.setPlugin(null)
+        systemVolumeProvider.removeStateListener( this)
+
         if (mprisDevices.isEmpty()) {
             val prefs = PreferenceManager.getDefaultSharedPreferences(context)
             prefs.unregisterOnSharedPreferenceChangeListener(this)
@@ -210,8 +213,9 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
     private fun updateRemoteDeviceVolumeControl() {
         val plugin = KdeConnect.getInstance().getDevicePlugin(notificationDeviceId, SystemVolumePlugin::class.java)
             ?: return
-        val systemVolumeProvider = fromPlugin(plugin)
-        systemVolumeProvider.addStateListener(this)
+        val systemVolumeProvider = SystemVolumeProvider.getInstance()
+        systemVolumeProvider.setPlugin(plugin)
+        systemVolumeProvider.addStateListener( this)
     }
 
     /**
