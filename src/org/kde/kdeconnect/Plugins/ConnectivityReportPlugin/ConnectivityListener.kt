@@ -160,6 +160,7 @@ class ConnectivityListener(context: Context) {
             }
             connectivityListeners.clear()
             states.clear()
+            activeIDs.clear()
         }
     }
 
