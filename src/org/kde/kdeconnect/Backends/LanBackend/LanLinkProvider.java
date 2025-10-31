@@ -133,6 +133,12 @@ public class LanLinkProvider extends BaseLinkProvider {
     private void tcpPacketReceived(Socket socket) throws IOException {
 
         InetAddress address = socket.getInetAddress();
+
+        if (!address.isSiteLocalAddress() && !address.isLinkLocalAddress()) {
+            Log.i("LanLinkProvider", "Discarding UDP packet from a non-local IP");
+            return;
+        }
+
         if (rateLimitByIp(address)) {
             Log.i("LanLinkProvider", "Discarding second TCP packet from the same ip " + address + " received too quickly");
             return;
@@ -222,6 +228,11 @@ public class LanLinkProvider extends BaseLinkProvider {
     private void udpPacketReceived(DatagramPacket packet) throws JSONException, IOException {
 
         final InetAddress address = packet.getAddress();
+
+        if (!address.isSiteLocalAddress() && !address.isLinkLocalAddress()) {
+            Log.i("LanLinkProvider", "Discarding UDP packet from a non-local IP");
+            return;
+        }
 
         if (rateLimitByIp(address)) {
             Log.i("LanLinkProvider", "Discarding second UDP packet from the same ip " + address + " received too quickly");
