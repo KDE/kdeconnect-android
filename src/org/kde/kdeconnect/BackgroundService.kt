@@ -34,7 +34,7 @@ import org.kde.kdeconnect.Backends.BaseLinkProvider.ConnectionReceiver
 import org.kde.kdeconnect.Backends.BluetoothBackend.BluetoothLinkProvider
 import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider
 import org.kde.kdeconnect.Helpers.NotificationHelper
-import org.kde.kdeconnect.Plugins.ClibpoardPlugin.ClipboardFloatingActivity
+import org.kde.kdeconnect.Plugins.ClipboardPlugin.ClipboardFloatingActivity
 import org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandActivity
 import org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandPlugin
 import org.kde.kdeconnect.Plugins.SharePlugin.SendFileActivity
