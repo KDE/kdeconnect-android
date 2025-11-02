@@ -8,12 +8,16 @@
 package org.kde.kdeconnect.Backends.LanBackend;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.nsd.NsdManager;
 import android.net.nsd.NsdServiceInfo;
 import android.net.wifi.WifiManager;
 import android.util.Log;
 
+import androidx.preference.PreferenceManager;
+
 import org.kde.kdeconnect.Helpers.DeviceHelper;
+import org.kde.kdeconnect.UserInterface.SettingsFragment;
 
 import java.net.InetAddress;
 import java.util.Collections;
@@ -46,6 +50,11 @@ public class MdnsDiscovery {
     }
 
     void startDiscovering() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        if (!preferences.getBoolean(SettingsFragment.KEY_MDNS_DISCOVERY_ENABLED, false)) {
+            Log.i("MdnsDiscovery", "MDNS discovery is disabled in settings. Skipping.");
+            return;
+        }
         if (discoveryListener == null) {
             multicastLock.acquire();
             discoveryListener = createDiscoveryListener();
@@ -77,6 +86,11 @@ public class MdnsDiscovery {
     }
 
     void startAnnouncing() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        if (!preferences.getBoolean(SettingsFragment.KEY_MDNS_DISCOVERY_ENABLED, false)) {
+            Log.i("MdnsDiscovery", "MDNS discovery is disabled in settings. Skipping.");
+            return;
+        }
         if (registrationListener == null) {
             NsdServiceInfo serviceInfo;
             try {
