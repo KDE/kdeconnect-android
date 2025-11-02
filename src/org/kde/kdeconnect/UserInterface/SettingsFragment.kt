@@ -77,6 +77,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         setDefaultValue(false)
         key = KEY_MDNS_DISCOVERY_ENABLED
         setTitle(R.string.enable_mdns_broadcast)
+        setSummary(R.string.enable_mdns_broadcast_explanation)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

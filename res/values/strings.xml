@@ -587,6 +587,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
 
     <string name="enable_udp_broadcast">Enable UDP device discovery</string>
     <string name="enable_mdns_broadcast">Enable MDNS device discovery</string>
+    <string name="enable_mdns_broadcast_explanation">MDNS discovery is being deprecated. Please report a bug if KDE Connect only works when this is enabled.</string>
     <string name="enable_bluetooth">Enable bluetooth (beta)</string>
 
     <string name="receive_notifications_permission_explanation">Notifications need to be allowed to receive them from other devices</string>
