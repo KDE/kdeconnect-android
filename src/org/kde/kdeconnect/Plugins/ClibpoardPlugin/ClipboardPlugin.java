@@ -95,6 +95,10 @@ public class ClipboardPlugin extends Plugin {
 
     private void sendConnectPacket() {
         String content = ClipboardListener.instance(context).getCurrentContent();
+        if (content == null) {
+            // Send clipboard only if it had been initialized
+            return;
+        }
         NetworkPacket np = new NetworkPacket(ClipboardPlugin.PACKET_TYPE_CLIPBOARD_CONNECT);
         long timestamp = ClipboardListener.instance(context).getUpdateTimestamp();
         np.set("timestamp", timestamp);
