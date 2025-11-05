@@ -11,6 +11,7 @@
   <string name="pref_plugin_battery_desc">Rapport périodique sur l\'état de la batterie</string>
   <string name="pref_plugin_connectivity_report">Rapport sur la connectivité</string>
   <string name="pref_plugin_connectivity_report_desc">Signaler la force du signal du réseau et son état</string>
+  <string name="pref_plugin_sftp">Accès au système de fichiers</string>
   <string name="pref_plugin_sftp_desc">Permettre de parcourir le système de fichiers du périphérique à distance</string>
   <string name="pref_plugin_clipboard">Synchronisation avec le presse-papiers</string>
   <string name="pref_plugin_clipboard_desc">Partage le contenu du presse-papiers</string>
@@ -64,6 +65,8 @@
   <string name="mousepad_scroll_sensitivity_title">Sensibilité du défilement</string>
   <string name="gyro_mouse_enabled_title">Activer la souris avec gyroscope</string>
   <string name="gyro_mouse_sensitivity_title">Sensibilité du gyroscope</string>
+  <string name="bigscreen_show_home_title">Afficher le bouton de retour à l\'accueil</string>
+  <string name="bigscreen_show_back_title">Afficher les boutons de retour en arrière</string>
   <string-array name="mousepad_tap_entries">
     <item>Clic gauche</item>
     <item>Clic droit</item>
@@ -95,7 +98,7 @@
   <string name="sendkeystrokes_pref_enabled">Autoriser l\'envoi des appuis de touches</string>
   <string name="sendkeystrokes_pref_enabled_summary">Attendre des données avec le type « MIME » « text / x-keystrokes »</string>
   <string name="sendkeystrokes_safe_text_enabled">Envoyez du texte confirmé immédiatement</string>
-  <string name="sendkeystrokes_safe_text_enabled_summary">Envoyez des chaînes courtes uniquement numériques sans confirmation</string>
+  <string name="sendkeystrokes_safe_text_enabled_summary">Envoyez des chaines courtes uniquement numériques sans confirmation</string>
   <string name="pref_plugin_mousepad_send_keystrokes">Envoyez comme appuis de touches</string>
   <string name="mouse_receiver_plugin_description">Recevoir les mouvements de la souri distante</string>
   <string name="mouse_receiver_plugin_name">Récepteur de souris</string>
@@ -205,12 +208,13 @@
   <string name="custom_devices_settings_summary">%d périphériques ajoutés de façon manuelle</string>
   <string name="custom_device_list">Ajouter des périphériques par IP</string>
   <string name="custom_device_deleted">Périphérique personnalisé supprimé</string>
+  <string name="custom_device_list_help">Si votre périphérique n\'est pas détecté automatiquement, vous pouvez ajouter son adresse IP ou son nom d\'hôte grâce à un clic sur le bouton ci-dessous</string>
   <string name="custom_device_fab_hint">Ajouter un périphérique</string>
   <string name="undo">Annuler</string>
   <string name="share_notification_preference">Notifications sonores</string>
   <string name="share_notification_preference_summary">Vibrer et jouer un son quand un fichier est reçu</string>
   <string name="share_destination_customize">Personnaliser le dossier de destination</string>
-  <string name="share_destination_customize_summary_disabled">Les fichiers reçus apparaîtront dans le dossier de téléchargement</string>
+  <string name="share_destination_customize_summary_disabled">Les fichiers reçus apparaitront dans le dossier de téléchargement</string>
   <string name="share_destination_customize_summary_enabled">Les fichiers seront enregistrés dans le dossier ci-dessous</string>
   <string name="share_destination_folder_preference">Dossier de destination</string>
   <string name="share">Partager</string>
@@ -233,6 +237,7 @@
   <string name="sftp_no_storage_locations_configured">Aucun emplacement stockage n\'est configuré</string>
   <string name="sftp_saf_permission_explanation">Vous devez configurer des emplacements de stockage pour accéder aux fichiers à distance</string>
   <string name="sftp_manage_storage_permission_explanation">Pour permettre l\'accès à distance aux fichiers sur ce périphérique, vous devez autoriser KDEConnect à gérer l\'enregistrement.</string>
+  <string name="sftp_missing_permission_error">Autorisations manquantes : accès au système de fichiers</string>
   <string name="no_players_connected">Aucun lecteur trouvé</string>
   <string name="send_files">Envoyer des fichiers</string>
   <string name="block_notification_contents">Bloquer les contenus de notifications</string>
@@ -298,7 +303,7 @@
   <string name="runcommand_nosuchdevice">Ce périphérique n\'existe pas</string>
   <string name="runcommand_noruncommandplugin">Le module externe Exécuter une commande n\'est pas activé sur ce périphérique</string>
   <string name="runcommand_category_device_controls_title">Contrôles de périphérique</string>
-  <string name="runcommand_device_controls_summary">Si votre périphérique prend en charge les commandes de périphérique, les commandes que vous avez configurées y apparaîtront.</string>
+  <string name="runcommand_device_controls_summary">Si votre périphérique prend en charge les commandes de périphérique, les commandes que vous avez configurées y apparaitront.</string>
   <string name="set_runcommand_name_as_title">set_runcommand_name_as_title</string>
   <string name="runcommand_name_as_title_title">Afficher un nom comme titre</string>
   <string name="pref_plugin_findremotedevice">Trouver un périphérique distant</string>
@@ -344,6 +349,7 @@
   <string name="bigscreen_select">Sélectionner</string>
   <string name="bigscreen_right">Vers la droite</string>
   <string name="bigscreen_down">Vers le bas</string>
+  <string name="bigscreen_back">Précédent</string>
   <string name="bigscreen_mic">Mic</string>
   <string name="pref_plugin_bigscreen">Télécommande Bigscreen</string>
   <string name="pref_plugin_bigscreen_desc">Utiliser votre périphérique comme télécommande pour Plasma Bigscreen</string>
