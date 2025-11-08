@@ -17,7 +17,7 @@ import org.kde.kdeconnect.Plugins.PingPlugin.PingPlugin
 
 class PingPluginTest {
     // Mocks the necessary components to test the PingPlugin
-    private fun executeWithMocks(test: (plugin: PingPlugin, notificationManager: NotificationManager) -> Unit) {
+    private fun executeWithMocks(test: (device: Device, plugin: PingPlugin, notificationManager: NotificationManager) -> Unit) {
         val plugin = PingPlugin()
         val notificationManager = mockk<NotificationManager> {
             every { notify(any(), any()) } returns Unit
@@ -28,6 +28,7 @@ class PingPluginTest {
         }
         val device = mockk<Device> {
             every { name } returns "Test Device"
+            every { sendPacket(any()) } returns Unit
         }
         mockkStatic(PendingIntent::class) {
             every<PendingIntent> {
@@ -38,8 +39,17 @@ class PingPluginTest {
                 every { anyConstructed<NotificationCompat.Builder>().build() } returns mockk()
                 plugin.setContext(context, device)
 
-                test(plugin, notificationManager)
+                test(device, plugin, notificationManager)
             }
+        }
+    }
+
+    @Test
+    fun startPlugin() {
+        executeWithMocks { device, plugin, notificationManager ->
+            plugin.startMainActivity(mockk())
+
+            verify(exactly = 1) { device.sendPacket(match { np -> np.type == "kdeconnect.ping" && np.payload == null }) }
         }
     }
 
@@ -47,7 +57,7 @@ class PingPluginTest {
 
     @Test
     fun wrongPacketType() {
-        executeWithMocks { plugin, notificationManager ->
+        executeWithMocks { device, plugin, notificationManager ->
             val np = NetworkPacket("kdeconnect.wrench")
             np["message"] = "Test Ping"
             assert(!plugin.onPacketReceived(np))
@@ -56,7 +66,7 @@ class PingPluginTest {
 
     @Test
     fun sendsNotificationNoMessage() {
-        executeWithMocks { plugin, notificationManager ->
+        executeWithMocks { device, plugin, notificationManager ->
             val np = NetworkPacket("kdeconnect.ping")
             // np["message"] not set here
             assert(plugin.onPacketReceived(np))
@@ -67,7 +77,7 @@ class PingPluginTest {
 
     @Test
     fun sendsNotification() {
-        executeWithMocks { plugin, notificationManager ->
+        executeWithMocks { device, plugin, notificationManager ->
             val np = NetworkPacket("kdeconnect.ping")
             np["message"] = "Test Ping"
             assert(plugin.onPacketReceived(np))
