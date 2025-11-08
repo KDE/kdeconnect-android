@@ -259,13 +259,18 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
             Pair<String, String> conversation = extractConversation(notification);
 
-            if (conversation.first != null) {
-                np.set("title", conversation.first);
-            } else {
-                np.set("title", extractStringFromExtra(getExtras(notification), NotificationCompat.EXTRA_TITLE));
+            String title = conversation.first;
+            if (title == null) {
+                title = extractStringFromExtra(getExtras(notification), NotificationCompat.EXTRA_TITLE);
+            }
+            if (title != null) {
+                np.set("title", title);
             }
 
-            np.set("text", extractText(notification, conversation));
+            String text = extractText(notification, conversation);
+            if (text != null) {
+                np.set("text", text);
+            }
         }
 
         getDevice().sendPacket(np);

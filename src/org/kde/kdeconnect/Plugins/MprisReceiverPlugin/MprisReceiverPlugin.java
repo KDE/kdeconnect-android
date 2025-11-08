@@ -255,7 +255,9 @@ public class MprisReceiverPlugin extends Plugin {
         np.setPayload(new NetworkPacket.Payload(p));
         np.set("player", playerName);
         np.set("transferringAlbumArt", true);
-        np.set("albumArtUrl", artUrl);
+        if (artUrl != null) {
+            np.set("albumArtUrl", artUrl);
+        }
         getDevice().sendPacket(np);
     }
 
