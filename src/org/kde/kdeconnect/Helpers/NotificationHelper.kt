@@ -27,6 +27,9 @@ object NotificationHelper {
             .setName(context.getString(R.string.notification_channel_filetransfer))
             .setVibrationEnabled(false)
             .build()
+        val fileTransferDownloadCompleteChannel = NotificationChannelCompat.Builder(Channels.FILETRANSFER_COMPLETE, NotificationManagerCompat.IMPORTANCE_HIGH)
+            .setName(context.getString(R.string.notification_channel_filetransfer_complete))
+            .build()
         val fileTransferUploadChannel = NotificationChannelCompat.Builder(Channels.FILETRANSFER_UPLOAD, NotificationManagerCompat.IMPORTANCE_LOW)
             .setName(context.getString(R.string.notification_channel_filetransfer_upload))
             .setVibrationEnabled(false)
@@ -51,7 +54,7 @@ object NotificationHelper {
             .build()
         val channels = listOf(
             persistentChannel,
-            defaultChannel, mediaChannel, fileTransferDownloadChannel, fileTransferUploadChannel,
+            defaultChannel, mediaChannel, fileTransferDownloadChannel, fileTransferDownloadCompleteChannel, fileTransferUploadChannel,
             fileTransferErrorChannel, receiveNotificationChannel, highPriorityChannel,
             continueWatchingChannel
         )
@@ -86,6 +89,7 @@ object NotificationHelper {
         const val FILETRANSFER_DOWNLOAD: String = "filetransfer"
         const val FILETRANSFER_UPLOAD: String = "filetransfer_upload"
         const val FILETRANSFER_ERROR: String = "filetransfer_error"
+        const val FILETRANSFER_COMPLETE: String = "filetransfer_complete"
 
         const val RECEIVENOTIFICATION: String = "receive"
         const val HIGHPRIORITY: String = "highpriority"
