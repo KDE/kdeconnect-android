@@ -94,7 +94,6 @@ public class ShareSettingsFragment extends PluginSettingsFragment {
         if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(PREFERENCE_CUSTOMIZE_DESTINATION, false)) {
             String path = PreferenceManager.getDefaultSharedPreferences(context).getString(PREFERENCE_DESTINATION, null);
             if (path != null) {
-                //There should be no way to enter here on api level < kitkat
                 DocumentFile treeDocumentFile = DocumentFile.fromTreeUri(context, Uri.parse(path));
                 if (treeDocumentFile.canWrite()) { //Checks for FLAG_DIR_SUPPORTS_CREATE on directories
                     return treeDocumentFile;

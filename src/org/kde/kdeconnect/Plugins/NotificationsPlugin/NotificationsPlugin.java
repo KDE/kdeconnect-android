@@ -483,9 +483,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     }
 
     /**
-     * Returns the ticker text of the notification.
-     * If device android version is KitKat or newer, the title and text of the notification is used
-     * instead the ticker text.
+     * Returns the the title and text of the notification.
      */
     private String getTickerText(Notification notification) {
         String ticker = "";
