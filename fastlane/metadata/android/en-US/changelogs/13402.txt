@@ -1,0 +1,11 @@
+We recently disabled mDNS device discovery by default. Please report any new problems finding devices.
+
+1.34.2
+* Made the notification for received files not silent by default.
+
+1.34.0
+* Disabled mDNS device discovery by default.
+* Fix cellular network connectivity not being reported.
+* Fix unwantedly stopping multimedia players after pausing them.
+* Fix arrow keys input when using remote input.
+* Display "continue watching" notifications less often.
