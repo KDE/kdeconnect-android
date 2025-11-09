@@ -155,8 +155,8 @@ class ReceiveNotification {
             intent.setDataAndType(destinationUri, mimeType);
             shareIntent.putExtra(Intent.EXTRA_STREAM, destinationUri);
         }
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
         PendingIntent resultPendingIntent = PendingIntent.getActivity(
                 device.getContext(),
