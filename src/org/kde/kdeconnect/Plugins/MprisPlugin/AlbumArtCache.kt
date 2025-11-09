@@ -11,15 +11,16 @@ import android.graphics.BitmapFactory
 import android.net.ConnectivityManager
 import android.net.Uri
 import android.util.Log
+import androidx.annotation.WorkerThread
 import androidx.collection.LruCache
 import androidx.core.content.getSystemService
 import androidx.core.net.ConnectivityManagerCompat
 import androidx.core.net.toUri
 import com.jakewharton.disklrucache.DiskLruCache
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import org.kde.kdeconnect.NetworkPacket.Payload
 import org.kde.kdeconnect_tp.BuildConfig
 import java.io.File
@@ -79,6 +80,8 @@ internal object AlbumArtCache {
      */
     @JvmStatic
     private val REMOTE_FETCH_SCHEMES = listOf("file", "kdeconnect")
+
+    private val cacheScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
 
     /**
      * Initializes the disk cache. Needs to be called at least once before trying to use the cache
@@ -248,7 +251,7 @@ internal object AlbumArtCache {
             }
 
             //Do the actual fetch in the background
-            GlobalScope.launch { fetchURL(url, null, cacheItem) }
+            cacheScope.launch { fetchURL(url, null, cacheItem) }
         } catch (e: IOException) {
             Log.e("KDE/Mpris/AlbumArtCache", "Problems with the disk cache", e)
             --numFetching
@@ -324,7 +327,7 @@ internal object AlbumArtCache {
             }
 
             //Do the actual fetch in the background
-            GlobalScope.launch { fetchURL(url, payload, cacheItem) }
+            cacheScope.launch { fetchURL(url, payload, cacheItem) }
         } catch (e: IOException) {
             Log.e("KDE/Mpris/AlbumArtCache", "Problems with the disk cache", e)
             --numFetching
@@ -340,56 +343,41 @@ internal object AlbumArtCache {
      * @param payload      A NetworkPacket Payload (if from the connected device). null if fetched from http(s)
      * @param cacheItem    The disk cache item to edit
      */
-    private suspend fun fetchURL(url: Uri, payload: Payload?, cacheItem: DiskLruCache.Editor) {
-        var success = withContext(Dispatchers.IO) {
-            //See if we need to open a http(s) connection here, or if we use a payload input stream
-            val output = cacheItem.newOutputStream(0)
-            try {
-                val inputStream = payload?.inputStream ?: openHttp(url)
-                val buffer = ByteArray(4096)
-                var bytesRead: Int
-                if (inputStream != null) {
-                    while (inputStream.read(buffer).also { bytesRead = it } != -1) {
-                        output.write(buffer, 0, bytesRead)
-                    }
-                }
-                output.flush()
-                output.close()
-                return@withContext true
-            } catch (e: IOException) {
-                return@withContext false
-            } catch (e: AssertionError) {
-                return@withContext false
-            } finally {
-                payload?.close()
-            }
-        }
-
+    @WorkerThread
+    private fun fetchURL(url: Uri, payload: Payload?, cacheItem: DiskLruCache.Editor) {
         try {
-            // Since commit() and abort() are blocking calls, they have to be executed in the IO
-            // dispatcher.
-            withContext(Dispatchers.IO) {
-                if (success) {
-                    cacheItem.commit()
-                } else {
-                    cacheItem.abort()
+            //See if we need to open a http(s) connection here, or if we use a payload input stream
+            val inputStream = payload?.inputStream ?: openHttp(url)
+            val buffer = ByteArray(4096)
+            var bytesRead: Int
+            val output = cacheItem.newOutputStream(0)
+            if (inputStream != null) {
+                while (inputStream.read(buffer).also { bytesRead = it } != -1) {
+                    output.write(buffer, 0, bytesRead)
                 }
+                inputStream.close()
             }
-        } catch (e: IOException) {
-            success = false
-            Log.e("KDE/Mpris/AlbumArtCache", "Problem with the disk cache", e)
-        }
-        if (success) {
-            // Now it's in the disk cache, the getAlbumArt() function should be able to read it
+            output.flush()
+            output.close()
+            cacheItem.commit()
 
+            // Now it's in the disk cache, the getAlbumArt() function should be able to read it
             // So notify the mpris plugins of the fetched art
             for (mpris in registeredPlugins) {
                 val stringUrl = url.toString()
                 mpris.fetchedAlbumArt(stringUrl)
             }
-        } else {
+        } catch (e: Exception) {
+            e.printStackTrace()
+            try {
+                cacheItem.abort()
+            } catch (e: IOException) {
+                Log.e("KDE/Mpris/AlbumArtCache", "Problem with the disk cache", e)
+            }
             //Mark the fetch as failed in the memory cache
             memoryCache.put(url.toString(), MemoryCacheItem(true))
+        } finally {
+            payload?.close()
         }
 
         //Remove the url from the fetching list
@@ -404,6 +392,7 @@ internal object AlbumArtCache {
      *
      * @return True if succeeded
      */
+    @WorkerThread
     private fun openHttp(url: Uri): InputStream? {
         //Default android behaviour does not follow https -> http urls, so do this manually
         if (url.scheme !in arrayOf("http", "https")) {

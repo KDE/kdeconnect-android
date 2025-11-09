@@ -297,7 +297,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.common.java8)
     implementation(libs.androidx.gridlayout)
     implementation(libs.google.android.material)
-    implementation(libs.disklrucache) //For caching album art bitmaps
+    implementation(libs.disklrucache) //For caching album art bitmaps. FIXME: Not updated in 10+ years. Replace with Kache.
     implementation(libs.slf4j.handroid)
 
     implementation(libs.apache.sshd.core)
