@@ -441,6 +441,8 @@
   <string name="tap_to_execute">Торкніться, щоб виконати</string>
   <string name="plugin_stats">Статистика щодо додатків</string>
   <string name="enable_udp_broadcast">Увімкнути виявлення пристроїв UDP</string>
+  <string name="enable_mdns_broadcast">Увімкнути виявлення пристроїв MDNS</string>
+  <string name="enable_mdns_broadcast_explanation">Виявлення пристроїв за допомогою MDNS вважається застарілим. Будь ласка, повідомте про ваду, якщо KDE Connect працює, лише якщо увімкнено таке виявлення.</string>
   <string name="enable_bluetooth">Увімкнути Bluetooth (тест)</string>
   <string name="receive_notifications_permission_explanation">Для отримання сповіщень з інших пристроїв має бути уможливлено показ сповіщень</string>
   <string name="findmyphone_notifications_explanation">Для уможливлення дзвінків, коли програма перебуває у фоновому режимі, потрібні права доступу до сповіщень</string>

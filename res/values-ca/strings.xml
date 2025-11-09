@@ -33,7 +33,7 @@
   <string name="pref_plugin_ping_desc">Envia i rep els «ping»</string>
   <string name="pref_plugin_notifications">Sincronitza les notificacions</string>
   <string name="pref_plugin_notifications_desc">Accedeix a les vostres notificacions des d\'altres dispositius</string>
-  <string name="pref_plugin_receive_notifications">Rep les notificacions</string>
+  <string name="pref_plugin_receive_notifications">Recepció de notificacions</string>
   <string name="pref_plugin_receive_notifications_desc">Rep notificacions des d\'altres dispositius i mostrar-les a l\'Android</string>
   <string name="pref_plugin_sharereceiver">Comparteix i rep</string>
   <string name="pref_plugin_sharereceiver_desc">Comparteix els fitxers i URL entre els dispositius</string>
@@ -425,6 +425,8 @@
   <string name="tap_to_execute">Toqueu per a executar</string>
   <string name="plugin_stats">Estadístiques del connector</string>
   <string name="enable_udp_broadcast">Activa el descobriment UDP de dispositius</string>
+  <string name="enable_mdns_broadcast">Activa el descobriment MDN5 de dispositius</string>
+  <string name="enable_mdns_broadcast_explanation">El descobriment de MDNS està en desús. Informeu d\'un error si el KDE Connect només funciona quan està activat.</string>
   <string name="enable_bluetooth">Activa el Bluetooth (beta)</string>
   <string name="receive_notifications_permission_explanation">Cal permetre que les notificacions es rebin des d\'altres dispositius</string>
   <string name="findmyphone_notifications_explanation">Cal el permís de notificacions perquè el telèfon pugui sonar quan l\'aplicació estigui en segon pla</string>

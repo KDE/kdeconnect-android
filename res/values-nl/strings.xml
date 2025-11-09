@@ -425,6 +425,8 @@
   <string name="tap_to_execute">Tik om uit te voeren</string>
   <string name="plugin_stats">Plug-in-statistieken</string>
   <string name="enable_udp_broadcast">Ontdekken van UDP-apparaat inschakelen</string>
+  <string name="enable_mdns_broadcast">MDNS ontdekken van apparaten inschakelen</string>
+  <string name="enable_mdns_broadcast_explanation">Met MDNS ontdekken wordt afgekeurd. Rapporteer een bug als KDE Connect alleen werkt wanneer dit is ingeschakeld.</string>
   <string name="enable_bluetooth">Bluetooth inschakelen (beta)</string>
   <string name="receive_notifications_permission_explanation">Meldingen moeten toegestaan worden om ze te ontvangen van andere apparaten</string>
   <string name="findmyphone_notifications_explanation">Het recht op meldingen is nodig zodat de telefoon af kan gaan wanneer de toepassing in de achtergrond is</string>
