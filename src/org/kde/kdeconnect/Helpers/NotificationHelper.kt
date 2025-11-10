@@ -41,12 +41,12 @@ object NotificationHelper {
         val receiveNotificationChannel = NotificationChannelCompat.Builder(Channels.RECEIVENOTIFICATION, NotificationManagerCompat.IMPORTANCE_DEFAULT)
             .setName(context.getString(R.string.notification_channel_receivenotification))
             .build()
-        val continueWatchingChannel = NotificationChannelCompat.Builder(Channels.HIGHPRIORITY, NotificationManagerCompat.IMPORTANCE_HIGH)
+        val  highPriorityChannel= NotificationChannelCompat.Builder(Channels.HIGHPRIORITY, NotificationManagerCompat.IMPORTANCE_HIGH)
             .setName(context.getString(R.string.notification_channel_high_priority))
             .build()
         /* This notification should be highly visible *only* if the user looks at their phone */
         /* It should not be a distraction. It should be a convenient button to press          */
-        val highPriorityChannel = NotificationChannelCompat.Builder(Channels.CONTINUEWATCHING, NotificationManagerCompat.IMPORTANCE_HIGH)
+        val continueWatchingChannel = NotificationChannelCompat.Builder(Channels.CONTINUEWATCHING, NotificationManagerCompat.IMPORTANCE_HIGH)
             .setName(context.getString(R.string.notification_channel_keepwatching))
             .setVibrationEnabled(false)
             .setLightsEnabled(false)
