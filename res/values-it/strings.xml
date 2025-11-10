@@ -425,6 +425,8 @@
   <string name="tap_to_execute">Tocca per eseguire</string>
   <string name="plugin_stats">Statistiche delle estensioni</string>
   <string name="enable_udp_broadcast">Abilita rilevamento UDP dei dispositivi</string>
+  <string name="enable_mdns_broadcast">Abilita rilevamento MDNS dei dispositivi</string>
+  <string name="enable_mdns_broadcast_explanation">La funzionalità di rilevamento MDNS è deprecata. Segnala un bug se KDE Connect funziona solo quando questa funzionalità è abilitata.</string>
   <string name="enable_bluetooth">Abilita bluetooth (beta)</string>
   <string name="receive_notifications_permission_explanation">Le notifiche devono essere consentite per riceverle da altri dispositivi</string>
   <string name="findmyphone_notifications_explanation">L\'autorizzazione alle notifiche è necessaria affinché il telefono possa squillare quando l\'applicazione è sullo sfondo</string>
