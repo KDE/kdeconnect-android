@@ -29,6 +29,7 @@ object NotificationHelper {
             .build()
         val fileTransferDownloadCompleteChannel = NotificationChannelCompat.Builder(Channels.FILETRANSFER_COMPLETE, NotificationManagerCompat.IMPORTANCE_HIGH)
             .setName(context.getString(R.string.notification_channel_filetransfer_complete))
+            .setVibrationEnabled(false)
             .build()
         val fileTransferUploadChannel = NotificationChannelCompat.Builder(Channels.FILETRANSFER_UPLOAD, NotificationManagerCompat.IMPORTANCE_LOW)
             .setName(context.getString(R.string.notification_channel_filetransfer_upload))
