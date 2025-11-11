@@ -396,7 +396,7 @@ internal object AlbumArtCache {
     private fun openHttp(url: Uri): InputStream? {
         //Default android behaviour does not follow https -> http urls, so do this manually
         if (url.scheme !in arrayOf("http", "https")) {
-            throw AssertionError("Invalid url: not http(s) in background album art fetch")
+            throw IllegalArgumentException("Invalid url: not http(s) in background album art fetch")
         }
         // TODO: Should use contentResolver from android instead of opening our own connection
         var currentUrl = URL(url.toString())
