@@ -308,6 +308,7 @@
   <string name="notification_channel_persistent">Постійний індикатор</string>
   <string name="notification_channel_media_control">Керування відтворенням</string>
   <string name="notification_channel_filetransfer">Вхідне перенесення файла</string>
+  <string name="notification_channel_filetransfer_complete">Передавання вхідного файла завершено</string>
   <string name="notification_channel_filetransfer_upload">Вихідне перенесення файла</string>
   <string name="notification_channel_filetransfer_error">Помилка передавання файлів</string>
   <string name="notification_channel_high_priority">Високий пріоритет</string>

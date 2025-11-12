@@ -308,6 +308,7 @@
   <string name="notification_channel_persistent">Trajni indikator</string>
   <string name="notification_channel_media_control">Nadzor medija</string>
   <string name="notification_channel_filetransfer">Prenos datotek sem</string>
+  <string name="notification_channel_filetransfer_complete">Prenos datotek sem dokončan</string>
   <string name="notification_channel_filetransfer_upload">Prenos datotek tja</string>
   <string name="notification_channel_filetransfer_error">Napaka pri prenosu datoteke</string>
   <string name="notification_channel_high_priority">Visoka prednost</string>

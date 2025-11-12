@@ -292,6 +292,7 @@
   <string name="notification_channel_persistent">Indicador de persistència</string>
   <string name="notification_channel_media_control">Control multimèdia</string>
   <string name="notification_channel_filetransfer">Transferència de fitxer entrant</string>
+  <string name="notification_channel_filetransfer_complete">S\'ha completat la transferència de fitxer entrant</string>
   <string name="notification_channel_filetransfer_upload">Transferència de fitxer de sortida</string>
   <string name="notification_channel_filetransfer_error">Error de transferència de fitxer</string>
   <string name="notification_channel_high_priority">Prioritat alta</string>

@@ -308,6 +308,7 @@
   <string name="notification_channel_persistent">מחוון קבוע</string>
   <string name="notification_channel_media_control">בקרת מדיה</string>
   <string name="notification_channel_filetransfer">קובץ נכנס</string>
+  <string name="notification_channel_filetransfer_complete">העברת קובץ נכנס הושלמה</string>
   <string name="notification_channel_filetransfer_upload">העברת קבצים יוצאת</string>
   <string name="notification_channel_filetransfer_error">שגיאת העברת קובץ</string>
   <string name="notification_channel_high_priority">עדיפות גבוהה</string>

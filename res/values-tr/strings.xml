@@ -292,6 +292,7 @@
   <string name="notification_channel_persistent">Kalıcı gösterge</string>
   <string name="notification_channel_media_control">Ortam denetimi</string>
   <string name="notification_channel_filetransfer">Gelen dosya aktarımı</string>
+  <string name="notification_channel_filetransfer_complete">Gelen dosya aktarımı tamamlandı</string>
   <string name="notification_channel_filetransfer_upload">Giden dosya aktarımı</string>
   <string name="notification_channel_filetransfer_error">Dosya aktarımı hatası</string>
   <string name="notification_channel_high_priority">Yüksek öncelik</string>
