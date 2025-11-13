@@ -292,6 +292,7 @@
   <string name="notification_channel_persistent">Notification persistante</string>
   <string name="notification_channel_media_control">Contrôle multimédia</string>
   <string name="notification_channel_filetransfer">Réception en cours d\'un fichier</string>
+  <string name="notification_channel_filetransfer_complete">Réception en cours d\'un fichier terminée</string>
   <string name="notification_channel_filetransfer_upload">Envoi en cours d\'un fichier</string>
   <string name="notification_channel_filetransfer_error">Erreur de transfert de fichiers</string>
   <string name="notification_channel_high_priority">Haute priorité</string>
