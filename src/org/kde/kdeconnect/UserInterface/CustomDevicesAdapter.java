@@ -77,7 +77,7 @@ public class CustomDevicesAdapter extends RecyclerView.Adapter<CustomDevicesAdap
         ViewHolder(@NonNull CustomDeviceItemBinding itemBinding, Context context) {
             super(itemBinding.getRoot());
             this.itemBinding = itemBinding;
-            itemBinding.deviceNameOrIP.setOnClickListener(v -> callback.onCustomDeviceClicked(customDevices.get(getAdapterPosition())));
+            itemBinding.deviceNameOrIP.setOnClickListener(v -> callback.onCustomDeviceClicked(customDevices.get(getAbsoluteAdapterPosition())));
             this.context = context;
         }
 
@@ -155,7 +155,7 @@ public class CustomDevicesAdapter extends RecyclerView.Adapter<CustomDevicesAdap
 
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-            callback.onItemDismissed(viewHolder.getAdapterPosition());
+            callback.onItemDismissed(viewHolder.getAbsoluteAdapterPosition());
         }
 
         private interface Callback {
