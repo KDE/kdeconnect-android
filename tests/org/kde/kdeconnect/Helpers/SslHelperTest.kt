@@ -104,11 +104,8 @@ class SSLHelperTest {
     fun getCommonName() {
         sharedPreferences.edit().putString(certificateKey, certificateBase64).apply()
         val cert = SslHelper.getDeviceCertificate(context, deviceId)
-        val method = SslHelper::class.java.getDeclaredMethod("getCommonNameFromCertificate", X509Certificate::class.java)
-        method.isAccessible = true
-        val commonName = method.invoke(null, cert) as String
-        val expected = "ee061a75_e403_4ecc_9261_5ffe2722f698"
-        Assert.assertEquals(expected, commonName)
+        val commonName = SslHelper.getCommonNameFromCertificate(cert as X509Certificate)
+        Assert.assertEquals("ee061a75_e403_4ecc_9261_5ffe2722f698", commonName)
     }
 
 }

@@ -223,7 +223,7 @@ object SslHelper {
         return factory.generateCertificate(ByteArrayInputStream(certificateBytes))
     }
 
-    private fun getCommonNameFromCertificate(cert: X509Certificate): String {
+    fun getCommonNameFromCertificate(cert: X509Certificate): String {
         val principal = cert.getSubjectX500Principal()
         val x500name = X500Name(principal.name)
         val rdn = x500name.getRDNs(BCStyle.CN).first()
