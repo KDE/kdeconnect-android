@@ -88,11 +88,7 @@ class SftpPlugin : Plugin(), OnSharedPreferenceChangeListener {
         }
 
         if (!server.isInitialized || server.isClosed) {
-            try {
-                server.initialize(context, device)
-            } catch (e: GeneralSecurityException) {
-                throw RuntimeException(e)
-            }
+            server.initialize(context, device)
         }
 
         val paths = mutableListOf<String>()

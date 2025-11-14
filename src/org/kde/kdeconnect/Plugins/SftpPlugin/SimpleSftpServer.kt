@@ -82,7 +82,6 @@ internal class SimpleSftpServer {
         safFileSystemFactory!!.initRoots(storageInfoList)
     }
 
-    @Throws(GeneralSecurityException::class)
     fun initialize(context: Context, device: Device) {
         val sshd = ServerBuilder.builder().apply {
             fileSystemFactory(

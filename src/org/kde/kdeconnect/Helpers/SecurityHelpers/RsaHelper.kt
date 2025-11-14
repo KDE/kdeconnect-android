@@ -12,6 +12,7 @@ import android.preference.PreferenceManager
 import android.security.keystore.KeyProperties
 import android.util.Base64
 import android.util.Log
+import androidx.core.content.edit
 import java.security.GeneralSecurityException
 import java.security.KeyFactory
 import java.security.KeyPair
@@ -26,7 +27,7 @@ object RsaHelper {
     private const val RSA = "RSA" // KeyProperties.KEY_ALGORITHM_RSA isn't available until API 23+
 
     @JvmStatic
-    fun initialiseRsaKeys(context: Context?) {
+    fun initialiseRsaKeys(context: Context) {
         val settings = PreferenceManager.getDefaultSharedPreferences(context)
 
         if (!settings.contains("publicKey") || !settings.contains("privateKey")) {
@@ -53,29 +54,26 @@ object RsaHelper {
             val publicKey = keyPair.public.encoded
             val privateKey = keyPair.private.encoded
 
-            settings.edit().apply {
+            settings.edit {
                 putString("publicKey", Base64.encodeToString(publicKey, 0))
                 putString("privateKey", Base64.encodeToString(privateKey, 0))
                 putString("keyAlgorithm", keyAlgorithm)
-                apply()
             }
         }
     }
 
     /** For backwards compat: if no keyAlgorithm setting is set, it means it was generated using RSA */
-    private fun algorithmFromSettings(pref: SharedPreferences) = pref.getString("keyAlgorithm", RSA)
+    private fun algorithmFromSettings(pref: SharedPreferences) = pref.getString("keyAlgorithm", RSA)!!
 
     @JvmStatic
-    @Throws(GeneralSecurityException::class)
-    fun getPublicKey(context: Context?): PublicKey {
+    fun getPublicKey(context: Context): PublicKey {
         val settings = PreferenceManager.getDefaultSharedPreferences(context)
         val publicKeyBytes = Base64.decode(settings.getString("publicKey", ""), 0)
         return KeyFactory.getInstance(algorithmFromSettings(settings)).generatePublic(X509EncodedKeySpec(publicKeyBytes))
     }
 
     @JvmStatic
-    @Throws(GeneralSecurityException::class)
-    fun getPrivateKey(context: Context?): PrivateKey {
+    fun getPrivateKey(context: Context): PrivateKey {
         val settings = PreferenceManager.getDefaultSharedPreferences(context)
         val privateKeyBytes = Base64.decode(settings.getString("privateKey", ""), 0)
         return KeyFactory.getInstance(algorithmFromSettings(settings)).generatePrivate(PKCS8EncodedKeySpec(privateKeyBytes))
