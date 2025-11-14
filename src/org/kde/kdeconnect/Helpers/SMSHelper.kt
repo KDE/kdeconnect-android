@@ -19,7 +19,6 @@ import android.telephony.PhoneNumberUtils
 import android.telephony.TelephonyManager
 import android.util.Log
 import android.util.Pair
-import androidx.core.graphics.scale
 import androidx.core.net.toUri
 import com.google.android.mms.pdu_alt.MultimediaMessagePdu
 import com.google.android.mms.pdu_alt.PduPersister
@@ -596,25 +595,32 @@ object SMSHelper {
 
                             // Can't use try-with-resources since MediaMetadataRetriever's close method was only added in API 29
                             val retriever = MediaMetadataRetriever()
-                            retriever.setDataSource(
-                                context,
-                                ContentUris.withAppendedId(mMSPartUri, partID)
-                            )
-                            val videoThumbnail = retriever.frameAtTime
-                            if (videoThumbnail != null) {
-                                val encodedThumbnail = SmsMmsUtils.bitMapToBase64(
-                                    videoThumbnail.scale(THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT)
+                            try {
+                                retriever.setDataSource(
+                                    context,
+                                    ContentUris.withAppendedId(mMSPartUri, partID)
                                 )
-                                attachments.add(
-                                    Attachment(
-                                        partID,
-                                        contentType,
-                                        encodedThumbnail,
-                                        fileName
+                                val videoThumbnail = retriever.getScaledFrameAtTime(
+                                    -1,
+                                    MediaMetadataRetriever.OPTION_CLOSEST_SYNC,
+                                    THUMBNAIL_WIDTH,
+                                    THUMBNAIL_HEIGHT
+                                )
+                                if (videoThumbnail != null) {
+                                    val encodedThumbnail = SmsMmsUtils.bitMapToBase64(videoThumbnail)
+                                    attachments.add(
+                                        Attachment(
+                                            partID,
+                                            contentType,
+                                            encodedThumbnail,
+                                            fileName
+                                        )
                                     )
-                                )
+                                    videoThumbnail.recycle()
+                                }
+                            } finally {
+                                retriever.release()
                             }
-                            retriever.release()
                         } else if (MimeType.isTypeAudio(contentType)) {
                             val fileName = data.substring(data.lastIndexOf('/') + 1)
                             attachments.add(Attachment(partID, contentType, null, fileName))
