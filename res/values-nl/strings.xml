@@ -292,6 +292,7 @@
   <string name="notification_channel_persistent">Blijvende indicator</string>
   <string name="notification_channel_media_control">Besturing van media</string>
   <string name="notification_channel_filetransfer">Inkomende bestandsoverdracht</string>
+  <string name="notification_channel_filetransfer_complete">Overdracht van inkomende bestand voltooid</string>
   <string name="notification_channel_filetransfer_upload">Uitgaande bestandsoverdracht</string>
   <string name="notification_channel_filetransfer_error">Bestandsoverdrachtfout</string>
   <string name="notification_channel_high_priority">Hoge prioriteit</string>
