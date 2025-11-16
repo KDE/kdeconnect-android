@@ -309,7 +309,13 @@ public class LanLinkProvider extends BaseLinkProvider {
                         }
                         int newProtocolVersion = secureIdentityPacket.getInt("protocolVersion");
                         if (newProtocolVersion != protocolVersion) {
-                            Log.w("KDE/LanLinkProvider", "Protocol version changed half-way through the handshake: " + protocolVersion + " ->" + newProtocolVersion);
+                            Log.e("KDE/LanLinkProvider", "Protocol version changed half-way through the handshake: " + protocolVersion + " ->" + newProtocolVersion);
+                            return;
+                        }
+                        String newDeviceId = secureIdentityPacket.getString("deviceId");
+                        if (!newDeviceId.equals(deviceId)) {
+                            Log.e("KDE/LanLinkProvider", "Device ID changed half-way through the handshake: " + protocolVersion + " ->" + newProtocolVersion);
+                            return;
                         }
                     } else {
                         secureIdentityPacket = identityPacket;
