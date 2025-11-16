@@ -162,9 +162,89 @@ class MousePadPlugin : Plugin() {
     }
 
     fun sendText(content: String) {
-        val np = NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST)
-        np["key"] = content
-        sendPacket(np)
+        android.util.Log.d("MousePadPlugin", "sendText called with length: ${content.length}")
+        android.util.Log.d("MousePadPlugin", "Contains newlines: ${content.contains('\n')}")
+        android.util.Log.d("MousePadPlugin", "Text preview: ${content.take(100)}")
+        
+        // For multi-line text, send line by line with Enter key events
+        if (content.contains('\n')) {
+            val lines = content.split('\n')
+            android.util.Log.d("MousePadPlugin", "Sending ${lines.size} lines")
+            
+            for (i in lines.indices) {
+                val line = lines[i]
+                
+                // Send the line text (even if empty to preserve blank lines)
+                if (line.isNotEmpty()) {
+                    val np = NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST)
+                    np["key"] = line
+                    sendPacket(np)
+                }
+                
+                // After each line except the last one
+                if (i < lines.size - 1) {
+                    // Press Enter to go to next line
+                    val enterNp = NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST)
+                    enterNp["specialKey"] = 12 // Enter key code
+                    sendPacket(enterNp)
+                    
+                    // Small delay to let IDE process the Enter
+                    Thread.sleep(10)
+                    
+                    // Select all content on the current line (Ctrl+Shift+End then Backspace)
+                    // This clears any auto-completion or auto-indentation the IDE added
+                    
+                    // Shift+End: Select to end of line
+                    val shiftEndNp = NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST)
+                    shiftEndNp["specialKey"] = 11 // End key
+                    shiftEndNp["shift"] = true
+                    sendPacket(shiftEndNp)
+                    
+                    Thread.sleep(5)
+                    
+                    // Backspace to delete selected content
+                    val backspaceNp = NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST)
+                    backspaceNp["specialKey"] = 1 // Backspace key
+                    sendPacket(backspaceNp)
+                    
+                    Thread.sleep(5)
+                    
+                    // Also clear the next line (down arrow, select line, delete)
+                    val downNp = NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST)
+                    downNp["specialKey"] = 7 // Down arrow
+                    sendPacket(downNp)
+                    
+                    Thread.sleep(5)
+                    
+                    // Select entire next line (Ctrl+Shift+End or just Shift+End)
+                    val shiftEndNp2 = NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST)
+                    shiftEndNp2["specialKey"] = 11 // End key
+                    shiftEndNp2["shift"] = true
+                    sendPacket(shiftEndNp2)
+                    
+                    Thread.sleep(5)
+                    
+                    // Delete selected content
+                    val deleteNp = NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST)
+                    deleteNp["specialKey"] = 13 // Delete key
+                    sendPacket(deleteNp)
+                    
+                    Thread.sleep(5)
+                    
+                    // Go back up to our line
+                    val upNp = NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST)
+                    upNp["specialKey"] = 5 // Up arrow
+                    sendPacket(upNp)
+                    
+                    Thread.sleep(10)
+                }
+            }
+        } else {
+            // Single line text - send as before
+            val np = NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST)
+            np["key"] = content
+            sendPacket(np)
+        }
     }
 
     fun sendPacket(np: NetworkPacket) {

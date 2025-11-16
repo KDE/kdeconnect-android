@@ -9,19 +9,30 @@ package org.kde.kdeconnect.Plugins.MousePadPlugin
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Send
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.preference.PreferenceManager
 import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect.UserInterface.compose.KdeTextButton
@@ -63,6 +74,11 @@ class ComposeSendActivity : AppCompatActivity() {
             finish()
             return
         }
+        // Debug: Log what we're about to send
+        android.util.Log.d("ComposeSendActivity", "Sending text with length: ${userInput.value.length}")
+        android.util.Log.d("ComposeSendActivity", "Contains newlines: ${userInput.value.contains('\n')}")
+        android.util.Log.d("ComposeSendActivity", "Newline count: ${userInput.value.count { it == '\n' }}")
+        
         plugin.sendText(userInput.value)
         clearComposeInput()
     }
@@ -92,14 +108,33 @@ class ComposeSendActivity : AppCompatActivity() {
                 },
             ) { scaffoldPadding ->
                 Box(modifier = Modifier.padding(scaffoldPadding).fillMaxSize()) {
-                    KdeTextField(
+                    // Enhanced multi-line text field with monospace font for code
+                    OutlinedTextField(
                         modifier = Modifier
                             .padding(horizontal = 16.dp)
                             .padding(bottom = 80.dp)
                             .align(Alignment.BottomStart)
-                            .fillMaxWidth(),
-                        input = userInput,
-                        label = stringResource(R.string.click_here_to_type),
+                            .fillMaxWidth()
+                            .verticalScroll(rememberScrollState()),
+                        value = userInput.value,
+                        onValueChange = { userInput.value = it },
+                        label = { Text(stringResource(R.string.click_here_to_type)) },
+                        textStyle = TextStyle(
+                            fontFamily = FontFamily.Monospace, // Monospace font for code
+                            fontSize = 14.sp
+                        ),
+                        maxLines = Int.MAX_VALUE, // Allow unlimited lines
+                        singleLine = false, // Multi-line mode
+                        keyboardOptions = KeyboardOptions(
+                            capitalization = KeyboardCapitalization.None, // Don't auto-capitalize
+                            imeAction = ImeAction.Default // Allow newlines with Enter key
+                        ),
+                        placeholder = { 
+                            Text(
+                                text = "Type or paste your text here.\nNewlines and formatting will be preserved.",
+                                style = TextStyle(fontFamily = FontFamily.Monospace)
+                            ) 
+                        }
                     )
                     KdeTextButton(
                         onClick = { sendComposed() },

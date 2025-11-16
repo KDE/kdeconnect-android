@@ -310,14 +310,19 @@ public class RemoteKeyboardPlugin extends Plugin implements SharedPreferences.On
     }
 
     private boolean handleVisibleKey(String key, boolean shift, boolean ctrl, boolean alt) {
-//        Log.d("RemoteKeyboardPlugin", "Handling visible key " + key + " shift=" + shift + " ctrl=" + ctrl + " alt=" + alt + " " + key.equalsIgnoreCase("c") + " " + key.length());
+        Log.d("RemoteKeyboardPlugin", "Handling visible key with length: " + key.length());
+        Log.d("RemoteKeyboardPlugin", "Contains newlines: " + key.contains("\n"));
+        Log.d("RemoteKeyboardPlugin", "Contains tabs: " + key.contains("\t"));
+        Log.d("RemoteKeyboardPlugin", "First 50 chars: " + (key.length() > 50 ? key.substring(0, 50) : key));
 
         if (key.isEmpty())
             return false;
 
         InputConnection inputConn = RemoteKeyboardService.instance.getCurrentInputConnection();
-        if (inputConn == null)
+        if (inputConn == null) {
+            Log.e("RemoteKeyboardPlugin", "InputConnection is null!");
             return false;
+        }
 
         // ctrl+c/v/x
         if (key.equalsIgnoreCase("c") && ctrl) {
@@ -330,7 +335,39 @@ public class RemoteKeyboardPlugin extends Plugin implements SharedPreferences.On
             return inputConn.performContextMenuAction(android.R.id.selectAll);
 
 //        Log.d("RemoteKeyboardPlugin", "Committing visible key '" + key + "'");
-        inputConn.commitText(key, key.length());
+        
+        // For multi-line text or text with special characters (bulk text from Compose & Send),
+        // we need to handle newlines and formatting properly
+        if (key.length() > 1 && (key.contains("\n") || key.contains("\r") || key.contains("\t"))) {
+            // Begin batch edit for better performance and to ensure atomic operation
+            inputConn.beginBatchEdit();
+            try {
+                // Split by different line ending types and handle them properly
+                String normalizedText = key.replace("\r\n", "\n").replace("\r", "\n");
+                String[] lines = normalizedText.split("\n", -1); // -1 to keep trailing empty strings
+                
+                for (int i = 0; i < lines.length; i++) {
+                    String line = lines[i];
+                    
+                    // Commit the line text (preserving tabs and spaces)
+                    if (!line.isEmpty()) {
+                        inputConn.commitText(line, 1);
+                    }
+                    
+                    // Send actual Enter key event for newlines (except after the last line)
+                    if (i < lines.length - 1) {
+                        inputConn.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
+                        inputConn.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_ENTER));
+                    }
+                }
+            } finally {
+                inputConn.endBatchEdit();
+            }
+        } else {
+            // Single character or short text without special formatting
+            inputConn.commitText(key, key.length());
+        }
+        
         return true;
     }
 

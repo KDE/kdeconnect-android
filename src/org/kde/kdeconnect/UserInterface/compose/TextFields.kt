@@ -28,6 +28,8 @@ fun KdeTextField(modifier: Modifier = Modifier, input: MutableState<String>, lab
         value = value,
         onValueChange = { userInput -> value = userInput },
         label = { Text(label) },
+        maxLines = Int.MAX_VALUE, // Allow unlimited lines for multi-line input
+        singleLine = false, // Enable multi-line mode
     )
 }
 
