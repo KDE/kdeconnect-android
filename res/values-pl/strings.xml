@@ -11,11 +11,14 @@
   <string name="pref_plugin_battery_desc">Okresowo zgłasza stan naładowania baterii</string>
   <string name="pref_plugin_connectivity_report">Zgłaszanie łączności</string>
   <string name="pref_plugin_connectivity_report_desc">Zgłasza siłę i stanu sygnału sieciowego</string>
+  <string name="pref_plugin_sftp">Dostęp do systemu plików</string>
   <string name="pref_plugin_sftp_desc">Udostępnia system plików tego urządzenia do przeglądania innemu urządzeniu</string>
   <string name="pref_plugin_clipboard">Współdzielenie schowka</string>
   <string name="pref_plugin_clipboard_desc">Współdzieli schowek między urządzeniami</string>
   <string name="pref_plugin_clipboard_sent">Wysłano ze schowka</string>
   <string name="pref_plugin_mousepad">Obsługa zdalna</string>
+  <string name="pref_plugin_mousepad_desc_nontv">Używa telefonu lub tabletu jako gładzika i klawiatury do sterowania innym urządzeniem</string>
+  <string name="pref_plugin_mousepad_desc_tv">Używa telefonu lub tabletu jako pilota do TV</string>
   <string name="pref_plugin_presenter">Pilot do prezentacji</string>
   <string name="pref_plugin_presenter_desc">Przełącza strony przy użyciu telefonu</string>
   <string name="pref_plugin_remotekeyboard">Odbieranie klawiszy</string>
@@ -62,6 +65,8 @@
   <string name="mousepad_scroll_sensitivity_title">Czułość przewijania</string>
   <string name="gyro_mouse_enabled_title">Włącz mysz żyroskopową</string>
   <string name="gyro_mouse_sensitivity_title">Czułość żyroskopu</string>
+  <string name="bigscreen_show_home_title">Pokaż przycisk domu</string>
+  <string name="bigscreen_show_back_title">Pokaż przycisk wstecz</string>
   <string-array name="mousepad_tap_entries">
     <item>Kliknięcie lewym</item>
     <item>Kliknięcie prawym</item>
@@ -178,6 +183,7 @@
   <string name="right_click">Wyślij kliknięcie prawym</string>
   <string name="middle_click">Wyślij kliknięcie środkowym</string>
   <string name="show_keyboard">Pokaż klawiaturę</string>
+  <string name="show_mouse_and_keyboard">Pokaż mysz i klawiaturę</string>
   <string name="device_not_paired">Urządzenie niesparowane</string>
   <string name="pairing_duplicate_names">Uwaga: Istnieje wiele urządzeń o tej samej nazwie.</string>
   <string name="request_pairing">Prośba o sparowanie</string>
@@ -218,6 +224,7 @@
   <string name="custom_devices_settings_summary">%d urządzeń dodanych ręcznie</string>
   <string name="custom_device_list">Dodaj urządzenie po adresie IP</string>
   <string name="custom_device_deleted">Usunięto własne urządzenie</string>
+  <string name="custom_device_list_help">Jeśli twoje urządzenie nie zostało wykryte samoczynnie, to możesz dodać je ręcznie po wpisaniu jego adresu IP lub nazwy gospodarza. Aby to zrobić, naciśnij na przycisk u dołu ekranu.</string>
   <string name="custom_device_fab_hint">Dodaj urządzenie</string>
   <string name="undo">Cofnij</string>
   <string name="share_notification_preference">Hałaśliwe powiadomienia</string>
@@ -246,6 +253,7 @@
   <string name="sftp_no_storage_locations_configured">Nie ustawiono miejsc w pamięci</string>
   <string name="sftp_saf_permission_explanation">Aby przeglądać pliki zdalnie, należy ustawić miejsca w pamięci</string>
   <string name="sftp_manage_storage_permission_explanation">Aby zezwolić na zdalny dostęp do plików tego urządzenia, musisz zezwolić na zarządzanie pamięcią przez KDE Connect.</string>
+  <string name="sftp_missing_permission_error">Brakuje uprawnień: dostęp do systemu plików</string>
   <string name="no_players_connected">Nie znaleziono żadnych odtwarzaczy</string>
   <string name="send_files">Wysyłanie plików</string>
   <string name="block_notification_contents">Blokuj treść powiadomień</string>
@@ -300,6 +308,7 @@
   <string name="notification_channel_persistent">Nieznikający wskaźnik</string>
   <string name="notification_channel_media_control">Sterowanie multimediami</string>
   <string name="notification_channel_filetransfer">Przychodzący plik</string>
+  <string name="notification_channel_filetransfer_complete">Ukończono odbieranie pliku</string>
   <string name="notification_channel_filetransfer_upload">Wychodzący plik</string>
   <string name="notification_channel_filetransfer_error">Błąd przesyłania pliku</string>
   <string name="notification_channel_high_priority">Wysoki priorytet</string>
@@ -357,6 +366,7 @@
   <string name="bigscreen_select">Wybierz</string>
   <string name="bigscreen_right">Prawo</string>
   <string name="bigscreen_down">Dół</string>
+  <string name="bigscreen_back">Wstecz</string>
   <string name="bigscreen_mic">Mikrofon</string>
   <string name="pref_plugin_bigscreen">Sterowanie Dużym Ekranem</string>
   <string name="pref_plugin_bigscreen_desc">Steruje Dużym Ekranem Plazmy</string>
@@ -432,6 +442,8 @@
   <string name="tap_to_execute">Stuknij, aby wykonać</string>
   <string name="plugin_stats">Statystyki wtyczek</string>
   <string name="enable_udp_broadcast">Włącz wykrywanie urządzeń UDP</string>
+  <string name="enable_mdns_broadcast">Włącz wykrywanie urządzeń MDNS</string>
+  <string name="enable_mdns_broadcast_explanation">Wykrywanie MDNS jest przestarzałym sposobem. Zalecamy zgłoszenie błędu, jeśli KDE Connect działa tylko wtedy, gdy jest to włączone.</string>
   <string name="enable_bluetooth">Włącz Bluetooth (beta)</string>
   <string name="receive_notifications_permission_explanation">Należy zezwolić na powiadomienia, aby móc je otrzymywać z innych urządzeń</string>
   <string name="findmyphone_notifications_explanation">Uprawnienia powiadomień są potrzebne, aby telefon mógł dzwonić, gdy aplikacja działa w tle</string>
