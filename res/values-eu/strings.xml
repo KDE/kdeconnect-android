@@ -292,6 +292,7 @@
   <string name="notification_channel_persistent">Adierazle iraunkorra</string>
   <string name="notification_channel_media_control">Euskarrien kontrola</string>
   <string name="notification_channel_filetransfer">Sarrerako fitxategi transmisioa</string>
+  <string name="notification_channel_filetransfer_complete">Sarrerako fitxategi transmisioa osatu da</string>
   <string name="notification_channel_filetransfer_upload">Irteerako fitxategi transmisioa</string>
   <string name="notification_channel_filetransfer_error">Fitxategi transmisio errorea</string>
   <string name="notification_channel_high_priority">Lehentasun handia</string>
@@ -425,6 +426,8 @@
   <string name="tap_to_execute">Tak egin exekutatzeko</string>
   <string name="plugin_stats">Pluginaren estatistikak</string>
   <string name="enable_udp_broadcast">Gaitu UDP bidez gailua aurkitzea</string>
+  <string name="enable_mdns_broadcast">Gaitu MDNS bidez gailua aurkitzea</string>
+  <string name="enable_mdns_broadcast_explanation">MDNS bidez aurkitzea zaharkitua gelditu da. KDE Connect hau gaituta dagoenean bakarrik ibiltzen bada, mesedez, akats baten berri eman.</string>
   <string name="enable_bluetooth">Gaitu bluetooth (beta)</string>
   <string name="receive_notifications_permission_explanation">Jakinarazpenak baimendu behar dira beste gailuetatik haiek jasotzeko</string>
   <string name="findmyphone_notifications_explanation">Aplikazioa atzeko planoan dagoenean telefonoak jo dezan jakinarazpen-baimena behar da</string>

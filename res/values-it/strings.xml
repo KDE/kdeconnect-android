@@ -292,6 +292,7 @@
   <string name="notification_channel_persistent">Indicatore persistente</string>
   <string name="notification_channel_media_control">Controllo multimediale</string>
   <string name="notification_channel_filetransfer">Trasferimento di file in arrivo</string>
+  <string name="notification_channel_filetransfer_complete">Trasferimento di file in arrivo completato</string>
   <string name="notification_channel_filetransfer_upload">Trasferimento di file in uscita</string>
   <string name="notification_channel_filetransfer_error">Errore di trasferimento del file</string>
   <string name="notification_channel_high_priority">Priorità alta</string>
