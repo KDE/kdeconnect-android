@@ -292,6 +292,7 @@
   <string name="notification_channel_persistent">Indicador persistente</string>
   <string name="notification_channel_media_control">Control multimedia</string>
   <string name="notification_channel_filetransfer">Transferencia de archivo entrante</string>
+  <string name="notification_channel_filetransfer_complete">Transferencia de archivo entrante completada</string>
   <string name="notification_channel_filetransfer_upload">Transferencia de archivo saliente</string>
   <string name="notification_channel_filetransfer_error">Error al transferir un archivo</string>
   <string name="notification_channel_high_priority">Alta prioridad</string>
@@ -425,6 +426,8 @@
   <string name="tap_to_execute">Pulse para ejecutar</string>
   <string name="plugin_stats">Estadísticas del complemento</string>
   <string name="enable_udp_broadcast">Activar descubrimiento de dispositivos por UDP</string>
+  <string name="enable_mdns_broadcast">Activar descubrimiento de dispositivos por MDSN</string>
+  <string name="enable_mdns_broadcast_explanation">MDSN está siendo deprecado. Reporte un error si KDE Connect solo funciona cuando esta opción está activada.</string>
   <string name="enable_bluetooth">Activar Bluetooth (beta)</string>
   <string name="receive_notifications_permission_explanation">Las notificaciones tienen que estar activadas para recibirlas desde otros dispositivos</string>
   <string name="findmyphone_notifications_explanation">Se necesita el permiso de notificaciones para que el teléfono pueda sonar cuando la aplicación está en segundo plano</string>
