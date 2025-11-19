@@ -15,6 +15,8 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.StringRes
 import androidx.annotation.UiThread
 import androidx.compose.foundation.clickable
@@ -110,6 +112,16 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): ActivityDeviceBinding {
+        val fromDeviceList = requireArguments().getBoolean(ARG_FROM_DEVICE_LIST, false)
+        if (fromDeviceList) {
+            val callback = object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    // Handle back button, so we go to the list of devices in case we came from there
+                    mActivity?.onDeviceSelected(null)
+                }
+            }
+            requireActivity().onBackPressedDispatcher.addCallback(getViewLifecycleOwner(), callback)
+        }
         return ActivityDeviceBinding.inflate(inflater, container, false)
     }
 
@@ -249,23 +261,11 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
         super.onDestroyView()
     }
 
-
     override fun onResume() {
         super.onResume()
         with(requireView()) {
             isFocusableInTouchMode = true
             requestFocus()
-            setOnKeyListener { _, keyCode, event ->
-                if (event.action == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
-                    val fromDeviceList = requireArguments().getBoolean(ARG_FROM_DEVICE_LIST, false)
-                    // Handle back button, so we go to the list of devices in case we came from there
-                    if (fromDeviceList) {
-                        mActivity?.onDeviceSelected(null)
-                        return@setOnKeyListener true
-                    }
-                }
-                false
-            }
         }
     }
 
@@ -461,7 +461,9 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
     fun PluginsWithoutPermissions(title : String, plugins: Collection<Plugin>, action : (plugin: Plugin) -> Unit) {
         Text(
             text = title,
-            modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp).semantics { heading() }
+            modifier = Modifier
+                .padding(horizontal = 16.dp, vertical = 6.dp)
+                .semantics { heading() }
         )
         plugins.forEach { plugin ->
             Text(
