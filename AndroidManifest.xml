@@ -404,6 +404,18 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
         </activity>
 
         <activity
+            android:name="org.kde.kdeconnect.Plugins.DigitizerPlugin.DigitizerActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/pref_plugin_digitizer"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.kde.kdeconnect.UserInterface.MainActivity" />
+        </activity>
+
+        <activity
             android:name="org.kde.kdeconnect.UserInterface.TrustedNetworksActivity"
             android:label="@string/trusted_networks"
             android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity">

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+SPDX-FileCopyrightText: 2025 Martin Sh <hemisputnik@proton.me>
+
+SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
+-->
+
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:keep="@xml/digitizer_preferences">
+
+    <SwitchPreference
+        android:id="@+id/digitizer_preference_key_hide_draw_button"
+        android:defaultValue="false"
+        android:key="@string/digitizer_preference_key_hide_draw_button"
+        android:title="@string/digitizer_preference_title_hide_draw_button"
+        android:summary="@string/digitizer_preference_summary_hide_draw_button"/>
+
+    <ListPreference
+        android:id="@+id/digitizer_preference_key_draw_button_side"
+        android:defaultValue="@string/digitizer_preference_value_default_draw_button_side"
+        android:entries="@array/digitizer_preference_entries_draw_button_side"
+        android:entryValues="@array/digitizer_preference_values_draw_button_side"
+        android:key="@string/digitizer_preference_key_draw_button_side"
+        android:summary="%s"
+        android:title="@string/digitizer_preference_title_draw_button_side" />
+
+</androidx.preference.PreferenceScreen>

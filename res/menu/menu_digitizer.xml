@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:kdeconnect="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_fullscreen"
+        android:icon="@drawable/ic_open_in_full_24dp"
+        android:title="@string/enable_fullscreen"
+        kdeconnect:iconTint="?colorOnBackground"
+        kdeconnect:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menu_open_settings"
+        android:title="@string/device_menu_plugins"
+        android:icon="@drawable/ic_settings_24dp"
+        kdeconnect:iconTint="?colorOnBackground"
+        kdeconnect:showAsAction="never"/>
+</menu>

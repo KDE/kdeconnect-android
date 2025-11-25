@@ -24,6 +24,8 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="pref_plugin_battery_desc">Periodically report battery status</string>
     <string name="pref_plugin_connectivity_report">Connectivity report</string>
     <string name="pref_plugin_connectivity_report_desc">Report network signal strength and status</string>
+    <string name="pref_plugin_digitizer">Drawing tablet</string>
+    <string name="pref_plugin_digitizer_desc">Use your device as a pressure sensitive drawing tablet</string>
     <string name="pref_plugin_sftp">Filesystem access</string>
     <string name="pref_plugin_sftp_desc">Allows to browse this device\'s filesystem remotely</string>
     <string name="pref_plugin_clipboard">Clipboard sync</string>
@@ -321,6 +323,29 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="sftp_missing_permission_error">Permissions missing: filesystem access</string>
     <string name="no_players_connected">No players found</string>
     <string name="send_files">Send files</string>
+    <string name="use_digitizer">Use as drawing tablet</string>
+    <string name="digitizer_draw_button">Draw using finger</string>
+    <string name="digitizer_preference_key_hide_draw_button" translatable="false">digitizer_hide_draw_button</string>
+    <string name="digitizer_preference_title_hide_draw_button">Hide draw button</string>
+    <string name="digitizer_preference_summary_hide_draw_button">Completely hides the draw button, making finger drawing impossible. Only enable this if your device supports stylus input.</string>
+    <string name="digitizer_preference_key_draw_button_side" translatable="false">digitizer_draw_button_side</string>
+    <string name="digitizer_preference_title_draw_button_side">Side of “Draw with finger” button</string>
+    <string name="digitizer_preference_key_enable_exit_fullscreen_gesture" translatable="false">digitizer_enable_exit_fullscreen_gesture</string>
+    <string name="digitizer_preference_title_enable_exit_fullscreen_gesture">Enable fullscreen exit gesture</string>
+    <string name="digitizer_preference_summary_enable_exit_fullscreen_gesture">If enabled, tapping and holding on the drawing pad with your finger will disable fullscreen mode.</string>
+    <string-array name="digitizer_preference_values_draw_button_side" translatable="false">
+      <item>top_left</item>
+      <item>top_right</item>
+      <item>bottom_left</item>
+      <item>bottom_right</item>
+    </string-array>
+    <string-array name="digitizer_preference_entries_draw_button_side">
+      <item>Top left</item>
+      <item>Top right</item>
+      <item>Bottom left</item>
+      <item>Bottom right</item>
+    </string-array>
+    <string name="digitizer_preference_value_default_draw_button_side" translatable="false">bottom_left</string>
 
     <string name="block_notification_contents">Block notification contents</string>
     <string name="block_notification_images">Block notification images</string>
@@ -608,5 +633,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
 
     <string name="device_host_invalid">Host is invalid. Use a valid hostname, IPv4, or IPv6</string>
     <string name="device_host_duplicate">Host already exists in the list</string>
+
+    <string name="enable_fullscreen">Enable fullscreen</string>
 
 </resources>

@@ -28,6 +28,7 @@ import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
 import org.kde.kdeconnect.KdeConnect;
+import org.kde.kdeconnect.Plugins.DigitizerPlugin.DigitizerPlugin;
 import org.kde.kdeconnect.UserInterface.PluginSettingsActivity;
 import org.kde.kdeconnect.base.BaseActivity;
 import org.kde.kdeconnect_tp.R;
@@ -231,8 +232,14 @@ public class MousePadActivity
 
         boolean mouseButtonsEnabled = prefs
                 .getBoolean(getString(R.string.mousepad_mouse_buttons_enabled_pref), true);
+        boolean digitizerEnabled =
+                KdeConnect.getInstance().getDevicePlugin(deviceId, DigitizerPlugin.class) != null;
+
         menu.findItem(R.id.menu_right_click).setVisible(!mouseButtonsEnabled);
         menu.findItem(R.id.menu_middle_click).setVisible(!mouseButtonsEnabled);
+        menu.findItem(R.id.menu_open_digitizer).setVisible(
+                digitizerEnabled && !DigitizerPlugin.shouldDisplayAsBigButton(this)
+        );
 
         return true;
     }
@@ -251,6 +258,16 @@ public class MousePadActivity
                     .putExtra(PluginSettingsActivity.EXTRA_DEVICE_ID, deviceId)
                     .putExtra(PluginSettingsActivity.EXTRA_PLUGIN_KEY, MousePadPlugin.class.getSimpleName());
             startActivity(intent);
+            return true;
+        } else if (id == R.id.menu_open_digitizer) {
+            DigitizerPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, DigitizerPlugin.class);
+            if (plugin == null) {
+                finish();
+                return true;
+            }
+
+            plugin.startMainActivity(this);
+
             return true;
         } else if (id == R.id.menu_show_keyboard) {
             MousePadPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, MousePadPlugin.class);
