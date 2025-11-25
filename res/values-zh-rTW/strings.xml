@@ -11,11 +11,14 @@
   <string name="pref_plugin_battery_desc">定期回報電池狀態</string>
   <string name="pref_plugin_connectivity_report">連通性報告</string>
   <string name="pref_plugin_connectivity_report_desc">回報網路訊號強度和狀態</string>
+  <string name="pref_plugin_sftp">檔案系統存取權</string>
   <string name="pref_plugin_sftp_desc">允許遠端瀏覽此裝置的檔案系統</string>
   <string name="pref_plugin_clipboard">剪貼簿同步</string>
   <string name="pref_plugin_clipboard_desc">共享剪貼簿的內容</string>
   <string name="pref_plugin_clipboard_sent">已傳送剪貼簿內容</string>
   <string name="pref_plugin_mousepad">遠端輸入</string>
+  <string name="pref_plugin_mousepad_desc_nontv">使用手機或平板電腦作為觸控板和鍵盤</string>
+  <string name="pref_plugin_mousepad_desc_tv">使用手機或平板電腦作為電視遙控器</string>
   <string name="pref_plugin_presenter">簡報遙控</string>
   <string name="pref_plugin_presenter_desc">使用您的裝置來切換簡報中的投影片</string>
   <string name="pref_plugin_remotekeyboard">接收遠端按鍵輸入</string>
@@ -62,6 +65,8 @@
   <string name="mousepad_scroll_sensitivity_title">捲動靈敏度</string>
   <string name="gyro_mouse_enabled_title">啟用陀螺儀滑鼠</string>
   <string name="gyro_mouse_sensitivity_title">陀螺儀靈敏度</string>
+  <string name="bigscreen_show_home_title">顯示首頁按鈕</string>
+  <string name="bigscreen_show_back_title">顯示返回按鈕</string>
   <string-array name="mousepad_tap_entries">
     <item>左鍵點擊</item>
     <item>右鍵點擊</item>
@@ -154,6 +159,7 @@
   <string name="right_click">傳送右鍵點擊</string>
   <string name="middle_click">傳送中鍵點擊</string>
   <string name="show_keyboard">顯示鍵盤</string>
+  <string name="show_mouse_and_keyboard">顯示鍵盤與滑鼠</string>
   <string name="device_not_paired">裝置未配對</string>
   <string name="pairing_duplicate_names">請小心：有多台裝置有相同的名稱。</string>
   <string name="request_pairing">請求配對</string>
@@ -194,6 +200,7 @@
   <string name="custom_devices_settings_summary">已成功加入 %d 台裝置</string>
   <string name="custom_device_list">透過 IP 新增裝置</string>
   <string name="custom_device_deleted">自訂裝置已刪除</string>
+  <string name="custom_device_list_help">如果未自動偵測到您的裝置，您可以點擊下方按鈕來新增其 IP 位址或主機名稱</string>
   <string name="custom_device_fab_hint">新增裝置</string>
   <string name="undo">復原</string>
   <string name="share_notification_preference">通知方式</string>
@@ -222,6 +229,7 @@
   <string name="sftp_no_storage_locations_configured">未設定存放位置</string>
   <string name="sftp_saf_permission_explanation">要遠端存取檔案，您必須設定存放位置</string>
   <string name="sftp_manage_storage_permission_explanation">要允許遠端存取此裝置上的檔案，您需要允許 KDE Con​​nect 可以管理儲存空間。</string>
+  <string name="sftp_missing_permission_error">缺乏權限：檔案系統存取權</string>
   <string name="no_players_connected">沒有找到播放器</string>
   <string name="send_files">傳送檔案</string>
   <string name="block_notification_contents">阻擋通知內容</string>
@@ -276,6 +284,7 @@
   <string name="notification_channel_persistent">持續性指示器</string>
   <string name="notification_channel_media_control">多媒體控制</string>
   <string name="notification_channel_filetransfer">檔案傳入</string>
+  <string name="notification_channel_filetransfer_complete">檔案傳入完成</string>
   <string name="notification_channel_filetransfer_upload">檔案傳出</string>
   <string name="notification_channel_filetransfer_error">檔案傳輸錯誤</string>
   <string name="notification_channel_high_priority">高優先度</string>
@@ -333,6 +342,7 @@
   <string name="bigscreen_select">選擇</string>
   <string name="bigscreen_right">右</string>
   <string name="bigscreen_down">下</string>
+  <string name="bigscreen_back">返回</string>
   <string name="bigscreen_mic">麥克風</string>
   <string name="pref_plugin_bigscreen">大螢幕遙控器</string>
   <string name="pref_plugin_bigscreen_desc">使用您的裝置作為 Plasma Bigscreen 的遙控器</string>
@@ -408,6 +418,8 @@
   <string name="tap_to_execute">點擊以執行</string>
   <string name="plugin_stats">外掛程式統計</string>
   <string name="enable_udp_broadcast">啟用 UDP 裝置探索</string>
+  <string name="enable_mdns_broadcast">啟用 MDNS 裝置探索</string>
+  <string name="enable_mdns_broadcast_explanation">MDNS 探索功能將被棄用。如果您的 KDE Connect 需要啟用此功能才能運作，請到我們的錯誤追蹤系統回報以讓我們知道。</string>
   <string name="enable_bluetooth">啟用藍牙 (beta)</string>
   <string name="receive_notifications_permission_explanation">需要被允許從其他裝置收到通知</string>
   <string name="findmyphone_notifications_explanation">需要通知權限，以便當應用程式在背景時手機可以響鈴</string>
