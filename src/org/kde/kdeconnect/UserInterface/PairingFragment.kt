@@ -62,8 +62,6 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
 
     private var listRefreshCalledThisFrame = false
 
-    private val mainActivity by lazy { activity as MainActivity }
-
     private val menuProvider = object : MenuProvider {
 
         override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
@@ -77,17 +75,19 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
                     true
                 }
                 R.id.menu_custom_device_list -> {
-                    startActivity(Intent(mainActivity, CustomDevicesActivity::class.java))
+                    startActivity(Intent(mActivity, CustomDevicesActivity::class.java))
                     true
                 }
                 R.id.menu_trusted_networks -> {
-                    startActivity(Intent(mainActivity, TrustedNetworksActivity::class.java))
+                    startActivity(Intent(mActivity, TrustedNetworksActivity::class.java))
                     true
                 }
                 else -> false
             }
         }
     }
+
+    override fun getActionBarTitle() = getString(R.string.pairing_title)
 
     override fun onInflateBinding(
         inflater: LayoutInflater,
@@ -110,8 +110,7 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
         binding.devicesList.itemsCanFocus = true
         binding.devicesList.setupBottomPadding()
 
-        mainActivity.supportActionBar?.setTitle(R.string.pairing_title)
-        mainActivity.addMenuProvider(menuProvider, viewLifecycleOwner, Lifecycle.State.RESUMED)
+        mActivity?.addMenuProvider(menuProvider, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
         notTrustedText.setOnClickListener(null)
         notTrustedText.setOnLongClickListener(null)
@@ -260,7 +259,7 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
             val v = binding.devicesList.getChildAt(0)
             val top = if ((v == null)) 0 else (v.top - binding.devicesList.paddingTop)
 
-            binding.devicesList.adapter = ListAdapter(mainActivity, items)
+            binding.devicesList.adapter = ListAdapter(requireContext(), items)
 
             //Restore scroll
             binding.devicesList.setSelectionFromTop(index, top)
@@ -310,9 +309,9 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
     override fun onStart() {
         super.onStart()
         KdeConnect.getInstance().addDeviceListChangedCallback("PairingFragment") {
-            mainActivity.runOnUiThread { this.updateDeviceList() }
+            mActivity?.runOnUiThread { this.updateDeviceList() }
         }
-        ForceRefreshConnections(mainActivity) // force a network re-discover
+        ForceRefreshConnections(requireContext()) // force a network re-discover
         updateDeviceList()
     }
 
@@ -322,14 +321,14 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
     }
 
     fun deviceClicked(device: Device) {
-        mainActivity.onDeviceSelected(device.deviceId, !device.isPaired || !device.isReachable)
+        (mActivity as? MainActivity)?.onDeviceSelected(device.deviceId, !device.isPaired || !device.isReachable)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when (requestCode) {
             RESULT_PAIRING_SUCCESFUL -> if (resultCode == 1) {
                 val deviceId = data?.getStringExtra("deviceId")
-                mainActivity.onDeviceSelected(deviceId)
+                (mActivity as? MainActivity)?.onDeviceSelected(deviceId)
             }
 
             else -> super.onActivityResult(requestCode, resultCode, data)

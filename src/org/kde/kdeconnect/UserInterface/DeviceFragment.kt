@@ -19,6 +19,7 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.StringRes
 import androidx.annotation.UiThread
+import androidx.appcompat.app.ActionBar
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -82,16 +83,15 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
             return frag
         }
     }
-    
-    
+
+    override fun getActionBarTitle() = null
+
     val deviceId: String by lazy {
         arguments?.getString(ARG_DEVICE_ID)
             ?: throw RuntimeException("You must instantiate a new DeviceFragment using DeviceFragment.newInstance()")
     }
     
-    private var device: Device? = null
-    
-    private val mActivity: MainActivity? by lazy { activity as MainActivity? }
+    private val device by lazy { KdeConnect.getInstance().getDevice(deviceId) }
 
     /**
      * Not-yet-paired ViewBinding.
@@ -117,7 +117,7 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
             val callback = object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
                     // Handle back button, so we go to the list of devices in case we came from there
-                    mActivity?.onDeviceSelected(null)
+                    (mActivity as? MainActivity)?.onDeviceSelected(null)
                 }
             }
             requireActivity().onBackPressedDispatcher.addCallback(getViewLifecycleOwner(), callback)
@@ -135,7 +135,7 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
             for (p in plugins) {
                 if (p.displayInContextMenu()) {
                     menu.add(p.actionName).setOnMenuItemClickListener {
-                        p.startMainActivity(mActivity!!)
+                        mActivity?.let { p.startMainActivity(it) }
                         true
                     }
                 }
@@ -180,7 +180,7 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
                         removePluginsChangedListener(pluginsChangedListener)
                         unpair()
                     }
-                    mActivity?.onDeviceSelected(null)
+                    (mActivity as? MainActivity)?.onDeviceSelected(null)
                     true
                 }
             }
@@ -220,16 +220,15 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
                 removePairingCallback(pairingCallback)
                 cancelPairing()
             }
-            mActivity?.onDeviceSelected(null)
+            (mActivity as? MainActivity)?.onDeviceSelected(null)
         }
-        device = KdeConnect.getInstance().getDevice(deviceId)
         device?.apply {
             mActivity?.supportActionBar?.title = name
             addPairingCallback(pairingCallback)
             addPluginsChangedListener(pluginsChangedListener)
         } ?: run { // device is null
             Log.e(TAG, "Trying to display a device fragment but the device is not present")
-            mActivity?.onDeviceSelected(null)
+            (mActivity as? MainActivity)?.onDeviceSelected(null)
         }
         mActivity?.addMenuProvider(menuProvider, viewLifecycleOwner)
         refreshUI()
@@ -257,7 +256,6 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
             removePluginsChangedListener(pluginsChangedListener)
             removePairingCallback(pairingCallback)
         }
-        device = null
         super.onDestroyView()
     }
 
@@ -390,11 +388,6 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
         }
     }
 
-    override fun onDetach() {
-        super.onDetach()
-        mActivity?.supportActionBar?.subtitle = null
-    }
-
     @Composable
     @Preview
     fun PreviewCompose() {
@@ -409,7 +402,7 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
         Card(
             shape = MaterialTheme.shapes.medium,
             modifier = modifier.semantics { role = Role.Button },
-            onClick = { plugin.startMainActivity(mActivity!!) }
+            onClick = { mActivity?.let { plugin.startMainActivity(it) } }
         ) {
             Column(
                 verticalArrangement = Arrangement.spacedBy(10.dp),

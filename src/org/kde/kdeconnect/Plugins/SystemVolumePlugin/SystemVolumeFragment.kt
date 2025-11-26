@@ -32,6 +32,8 @@ class SystemVolumeFragment : BaseFragment<SystemVolumeFragmentBinding>(),
     private var tracking = false
     private val trackingConsumer = Consumer { aBoolean: Boolean -> tracking = aBoolean }
 
+    override fun getActionBarTitle() = getString(R.string.open_mpris_controls)
+
     override fun onInflateBinding(
         inflater: LayoutInflater,
         container: ViewGroup?,

@@ -49,7 +49,8 @@ import java.io.InputStreamReader
 class SettingsFragment : PreferenceFragmentCompat() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         if (activity != null) {
-            (activity as MainActivity).supportActionBar?.setTitle(R.string.settings)
+            (activity as? MainActivity)?.supportActionBar?.setTitle(R.string.settings)
+            (activity as? MainActivity)?.supportActionBar?.subtitle = null
         }
         return super.onCreateView(inflater, container, savedInstanceState)
     }
