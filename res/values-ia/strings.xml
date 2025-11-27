@@ -104,6 +104,12 @@
   <string name="sftp_storage_preference_display_name">Nomine de monstrar</string>
   <string name="sftp_action_mode_menu_delete">Dele</string>
   <string name="send_files">Invia files</string>
+  <string-array name="digitizer_preference_entries_draw_button_side">
+    <item>Top left</item>
+    <item>Top right</item>
+    <item>Bottom left</item>
+    <item>Bottom right</item>
+  </string-array>
   <string name="block_notification_contents">Bloca contentos de notification</string>
   <string name="block_notification_images">Bloca imagines de notification</string>
   <string name="device_rename_confirm">Renomina</string>

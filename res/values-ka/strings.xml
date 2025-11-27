@@ -160,6 +160,12 @@
   <string name="sftp_no_storage_locations_configured">საცავის მდებარეობები მითითებული არაა</string>
   <string name="no_players_connected">დამკვრელები ნაპოვნი არაა</string>
   <string name="send_files">ფაილების გაგზავნა</string>
+  <string-array name="digitizer_preference_entries_draw_button_side">
+    <item>Top left</item>
+    <item>Top right</item>
+    <item>Bottom left</item>
+    <item>Bottom right</item>
+  </string-array>
   <string name="block_notification_contents">გაფრთხილების შემცველობის დაბლოკვა</string>
   <string name="block_notification_images">გაფრთხილებების გამოსახულებების დაბლოკვა</string>
   <string name="pairing_title">KDE Connect -ის მოწყობილობები</string>

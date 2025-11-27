@@ -240,6 +240,12 @@
   <string name="sftp_missing_permission_error">Falta de permisos: acceso al sistema de archivos</string>
   <string name="no_players_connected">Ningún reproductor encontrado</string>
   <string name="send_files">Enviar archivos</string>
+  <string-array name="digitizer_preference_entries_draw_button_side">
+    <item>Top left</item>
+    <item>Top right</item>
+    <item>Bottom left</item>
+    <item>Bottom right</item>
+  </string-array>
   <string name="block_notification_contents">Bloquear los contenidos de las notificaciones</string>
   <string name="block_notification_images">Bloquear las imágenes de las notificaciones</string>
   <string name="pairing_title">Dispositivos de KDE Connect</string>

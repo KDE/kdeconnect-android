@@ -216,6 +216,12 @@
   <string name="sftp_manage_storage_permission_explanation">Para permitir o acesso remoto aos ficheiros neste dispositivo, precisa de autorizar o KDE Connect a gerir o armazenamento.</string>
   <string name="no_players_connected">Não foram encontrados leitores</string>
   <string name="send_files">Enviar os ficheiros</string>
+  <string-array name="digitizer_preference_entries_draw_button_side">
+    <item>Top left</item>
+    <item>Top right</item>
+    <item>Bottom left</item>
+    <item>Bottom right</item>
+  </string-array>
   <string name="block_notification_contents">Bloquear os conteúdos das notificações</string>
   <string name="block_notification_images">Bloquear as imagens das notificações</string>
   <string name="pairing_title">Dispositivos do KDE Connect</string>

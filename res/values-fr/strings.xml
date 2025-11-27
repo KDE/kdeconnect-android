@@ -240,6 +240,12 @@
   <string name="sftp_missing_permission_error">Autorisations manquantes : accès au système de fichiers</string>
   <string name="no_players_connected">Aucun lecteur trouvé</string>
   <string name="send_files">Envoyer des fichiers</string>
+  <string-array name="digitizer_preference_entries_draw_button_side">
+    <item>Top left</item>
+    <item>Top right</item>
+    <item>Bottom left</item>
+    <item>Bottom right</item>
+  </string-array>
   <string name="block_notification_contents">Bloquer les contenus de notifications</string>
   <string name="block_notification_images">Bloquer les images de notifications</string>
   <string name="pairing_title">Périphériques KDEConnect</string>

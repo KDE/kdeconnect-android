@@ -240,6 +240,12 @@
   <string name="sftp_missing_permission_error">Toegangsrechten ontbreken: toegang tot bestandssysteem</string>
   <string name="no_players_connected">Geen spelers gevonden</string>
   <string name="send_files">Bestanden verzenden</string>
+  <string-array name="digitizer_preference_entries_draw_button_side">
+    <item>Top left</item>
+    <item>Top right</item>
+    <item>Bottom left</item>
+    <item>Bottom right</item>
+  </string-array>
   <string name="block_notification_contents">Inhoud van meldingen blokkeren</string>
   <string name="block_notification_images">Afbeeldingen van meldingen blokkeren</string>
   <string name="pairing_title">Apparaten van KDE Connect</string>

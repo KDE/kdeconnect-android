@@ -240,6 +240,12 @@
   <string name="sftp_missing_permission_error">Eksik izinler: Dosya sistemi erişimi</string>
   <string name="no_players_connected">Onatıcı bulunamadı</string>
   <string name="send_files">Dosyaları gönder</string>
+  <string-array name="digitizer_preference_entries_draw_button_side">
+    <item>Top left</item>
+    <item>Top right</item>
+    <item>Bottom left</item>
+    <item>Bottom right</item>
+  </string-array>
   <string name="block_notification_contents">Bildirim içeriğini engelle</string>
   <string name="block_notification_images">Bildirim görsellerini engelle</string>
   <string name="pairing_title">KDE Bağlan Aygıtları</string>

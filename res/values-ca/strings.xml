@@ -240,6 +240,12 @@
   <string name="sftp_missing_permission_error">Permisos que manquen: accés al sistema de fitxers</string>
   <string name="no_players_connected">No s\'ha trobat cap reproductor</string>
   <string name="send_files">Envia fitxers</string>
+  <string-array name="digitizer_preference_entries_draw_button_side">
+    <item>Top left</item>
+    <item>Top right</item>
+    <item>Bottom left</item>
+    <item>Bottom right</item>
+  </string-array>
   <string name="block_notification_contents">Bloca el contingut de les notificacions</string>
   <string name="block_notification_images">Bloca les imatges de les notificacions</string>
   <string name="pairing_title">Dispositius del KDE Connect</string>

@@ -232,6 +232,12 @@
   <string name="sftp_missing_permission_error">Heimildir vantar: aðgangur að skráakerfi</string>
   <string name="no_players_connected">Engir spilarar fundust</string>
   <string name="send_files">Senda skrár</string>
+  <string-array name="digitizer_preference_entries_draw_button_side">
+    <item>Top left</item>
+    <item>Top right</item>
+    <item>Bottom left</item>
+    <item>Bottom right</item>
+  </string-array>
   <string name="block_notification_contents">Loka á efni í tilkynningum</string>
   <string name="block_notification_images">Loka á myndir í tilkynningum</string>
   <string name="pairing_title">KDE Connect tæki</string>

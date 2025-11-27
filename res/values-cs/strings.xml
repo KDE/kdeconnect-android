@@ -242,6 +242,12 @@
   <string name="sftp_manage_storage_permission_explanation">Pro umožnění vzdáleného přístupu k souborům na tomto zařízení musíte povolit aplikaci KDE Connect spravovat úložiště.</string>
   <string name="no_players_connected">Přehrávač nenalezen</string>
   <string name="send_files">Odeslat soubory</string>
+  <string-array name="digitizer_preference_entries_draw_button_side">
+    <item>Top left</item>
+    <item>Top right</item>
+    <item>Bottom left</item>
+    <item>Bottom right</item>
+  </string-array>
   <string name="block_notification_contents">Blokovat obsah upozornění</string>
   <string name="block_notification_images">Blokovat obrázky upozornění</string>
   <string name="pairing_title">Zařízení KDE Connect</string>

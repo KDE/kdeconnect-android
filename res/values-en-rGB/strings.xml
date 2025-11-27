@@ -226,6 +226,12 @@
   <string name="sftp_manage_storage_permission_explanation">To allow remote access to files on this device you need to allow KDE Connect to manage the storage.</string>
   <string name="no_players_connected">No players found</string>
   <string name="send_files">Send files</string>
+  <string-array name="digitizer_preference_entries_draw_button_side">
+    <item>Top left</item>
+    <item>Top right</item>
+    <item>Bottom left</item>
+    <item>Bottom right</item>
+  </string-array>
   <string name="block_notification_contents">Block notification contents</string>
   <string name="block_notification_images">Block notification images</string>
   <string name="pairing_title">KDE Connect Devices</string>

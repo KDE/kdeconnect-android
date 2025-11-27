@@ -227,6 +227,12 @@
   <string name="sftp_manage_storage_permission_explanation">Pentru a permite accesul de la distanță la fișierele de pe acest dispozitiv, trebuie să permiteți KDE Connect să gestioneze stocarea.</string>
   <string name="no_players_connected">Niciun program de redare găsit</string>
   <string name="send_files">Trimite fișiere</string>
+  <string-array name="digitizer_preference_entries_draw_button_side">
+    <item>Top left</item>
+    <item>Top right</item>
+    <item>Bottom left</item>
+    <item>Bottom right</item>
+  </string-array>
   <string name="block_notification_contents">Blochează conținutul notificărilor</string>
   <string name="block_notification_images">Blochează imaginile notificărilor</string>
   <string name="pairing_title">Dispozitive KDE Connect</string>

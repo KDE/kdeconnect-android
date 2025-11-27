@@ -79,6 +79,12 @@
   <string name="title_activity_notification_filter">Filter napomena</string>
   <string name="filter_apps_info">Notifikacije će biti sinhronizovane s izabranim aplikacijama.</string>
   <string name="no_players_connected">Nema nađenih igrača</string>
+  <string-array name="digitizer_preference_entries_draw_button_side">
+    <item>Top left</item>
+    <item>Top right</item>
+    <item>Bottom left</item>
+    <item>Bottom right</item>
+  </string-array>
   <string-array name="convert_to_mms_after_entries">
     <item>After one message</item>
     <item>After two messages</item>

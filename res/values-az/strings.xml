@@ -218,6 +218,12 @@
   <string name="sftp_manage_storage_permission_explanation">Bu cihazdakı fayllara giriş əldə etmək üçün KDE Connect-ə yaddaşı idarə etməyə icazə vermək lazımdır.</string>
   <string name="no_players_connected">Pleyer tapılmadı</string>
   <string name="send_files">Faylları göndərmək</string>
+  <string-array name="digitizer_preference_entries_draw_button_side">
+    <item>Top left</item>
+    <item>Top right</item>
+    <item>Bottom left</item>
+    <item>Bottom right</item>
+  </string-array>
   <string name="block_notification_contents">Bildirilərin tərkiblərini kilidləmək</string>
   <string name="block_notification_images">Bildiriş şəlkillərini kilidləmək</string>
   <string name="pairing_title">KDE Connect Cihazları</string>

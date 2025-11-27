@@ -209,6 +209,12 @@
   <string name="sftp_saf_permission_explanation">A fájlok távoli eléréséhez be kell állítania a tárolóhelyeket</string>
   <string name="no_players_connected">Nem találhatók lejátszók</string>
   <string name="send_files">Fájlok küldése</string>
+  <string-array name="digitizer_preference_entries_draw_button_side">
+    <item>Top left</item>
+    <item>Top right</item>
+    <item>Bottom left</item>
+    <item>Bottom right</item>
+  </string-array>
   <string name="pairing_title">KDE Connect eszközök</string>
   <string name="pairing_description">Itt kell megjelennie az Ön hálózatában lévő többi, KDE Connectet futtató eszköznek.</string>
   <string name="device_rename_title">Eszköz átnevezése</string>

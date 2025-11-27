@@ -229,6 +229,12 @@
   <string name="sftp_manage_storage_permission_explanation">Por permesi foran aliron al dosieroj sur ĉi tiu aparato, vi devas permesi al KDE Connect administri la konservejon.</string>
   <string name="no_players_connected">Neniuj ludantoj trovitaj</string>
   <string name="send_files">Sendi dosierojn</string>
+  <string-array name="digitizer_preference_entries_draw_button_side">
+    <item>Top left</item>
+    <item>Top right</item>
+    <item>Bottom left</item>
+    <item>Bottom right</item>
+  </string-array>
   <string name="block_notification_contents">Bloki sciigan enhavon</string>
   <string name="block_notification_images">Bloki sciigajn bildojn</string>
   <string name="pairing_title">KDE Konekti Aparatojn</string>

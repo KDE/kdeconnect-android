@@ -105,6 +105,12 @@
   <string name="filter_apps_info">Bekendtgørelser vil blive synkroniseret for de valgte apps.</string>
   <string name="no_players_connected">Ingen afspillere fundet</string>
   <string name="send_files">Send filer</string>
+  <string-array name="digitizer_preference_entries_draw_button_side">
+    <item>Top left</item>
+    <item>Top right</item>
+    <item>Bottom left</item>
+    <item>Bottom right</item>
+  </string-array>
   <string name="pairing_title">KDE Connect-enheder</string>
   <string name="pairing_description">Andre enheder som kører KDE Connect i samme netværk som dig, bør dukke op her.</string>
   <string name="device_rename_title">Omdøb enhed</string>

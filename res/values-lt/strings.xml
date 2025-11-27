@@ -226,6 +226,12 @@
   <string name="sftp_saf_permission_explanation">Norėdami gauti nuotolinę prieigą prie failų, turite sukonfigūruoti saugyklos vietas</string>
   <string name="no_players_connected">Nerasta jokių leistuvių</string>
   <string name="send_files">Siųsti failus</string>
+  <string-array name="digitizer_preference_entries_draw_button_side">
+    <item>Top left</item>
+    <item>Top right</item>
+    <item>Bottom left</item>
+    <item>Bottom right</item>
+  </string-array>
   <string name="pairing_title">KDE Connect įrenginiai</string>
   <string name="pairing_description">Čia turėtų atsirasti kiti to paties tinklo įrenginiai, naudojantys KDE Connect.</string>
   <string name="device_rename_title">Pervadinti įrenginį</string>

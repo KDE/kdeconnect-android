@@ -256,6 +256,12 @@
   <string name="sftp_missing_permission_error">Не вистачає прав доступу: доступ до файлової системи</string>
   <string name="no_players_connected">Не знайдено програвачів</string>
   <string name="send_files">Надіслати файли</string>
+  <string-array name="digitizer_preference_entries_draw_button_side">
+    <item>Top left</item>
+    <item>Top right</item>
+    <item>Bottom left</item>
+    <item>Bottom right</item>
+  </string-array>
   <string name="block_notification_contents">Блокувати вміст сповіщення</string>
   <string name="block_notification_images">Блокувати зображення сповіщення</string>
   <string name="pairing_title">Пристрої KDE Connect</string>

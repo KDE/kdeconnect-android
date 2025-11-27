@@ -256,6 +256,12 @@
   <string name="sftp_missing_permission_error">Brakuje uprawnień: dostęp do systemu plików</string>
   <string name="no_players_connected">Nie znaleziono żadnych odtwarzaczy</string>
   <string name="send_files">Wysyłanie plików</string>
+  <string-array name="digitizer_preference_entries_draw_button_side">
+    <item>Top left</item>
+    <item>Top right</item>
+    <item>Bottom left</item>
+    <item>Bottom right</item>
+  </string-array>
   <string name="block_notification_contents">Blokuj treść powiadomień</string>
   <string name="block_notification_images">Blokuj obrazy powiadomień</string>
   <string name="pairing_title">Urządzenia KDE Connect</string>

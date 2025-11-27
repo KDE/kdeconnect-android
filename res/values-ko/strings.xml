@@ -231,6 +231,12 @@
   <string name="sftp_missing_permission_error">권한 없음: 파일 시스템 접근</string>
   <string name="no_players_connected">재생기를 찾을 수 없음</string>
   <string name="send_files">파일 보내기</string>
+  <string-array name="digitizer_preference_entries_draw_button_side">
+    <item>Top left</item>
+    <item>Top right</item>
+    <item>Bottom left</item>
+    <item>Bottom right</item>
+  </string-array>
   <string name="block_notification_contents">알림 내용 숨기기</string>
   <string name="block_notification_images">알림 이미지 숨기기</string>
   <string name="pairing_title">KDE Connect 장치</string>

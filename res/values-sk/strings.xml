@@ -215,6 +215,12 @@
   <string name="sftp_saf_permission_explanation">Na vzdialený prístup k súborom musíte nastaviť umiestnenia úložísk</string>
   <string name="no_players_connected">Nenašli sa žiadne prehrávače</string>
   <string name="send_files">Odoslať súbory</string>
+  <string-array name="digitizer_preference_entries_draw_button_side">
+    <item>Top left</item>
+    <item>Top right</item>
+    <item>Bottom left</item>
+    <item>Bottom right</item>
+  </string-array>
   <string name="pairing_title">Zariadenia aplikácie KDE Connect</string>
   <string name="pairing_description">Tu by sa mali objaviť iné zariadenie so spustenou aplikáciou KDE Connect v rovnakej sieti.</string>
   <string name="device_rename_title">Premenovanie zariadenia</string>

@@ -256,6 +256,12 @@
   <string name="sftp_missing_permission_error">Manjkajoča dovoljenja: dostop do datotečnega sistema</string>
   <string name="no_players_connected">Ni najdenih predvajalnikov</string>
   <string name="send_files">Pošlji datoteke</string>
+  <string-array name="digitizer_preference_entries_draw_button_side">
+    <item>Top left</item>
+    <item>Top right</item>
+    <item>Bottom left</item>
+    <item>Bottom right</item>
+  </string-array>
   <string name="block_notification_contents">Blokiraj vsebine obvestil</string>
   <string name="block_notification_images">Blokiraj slike v obvestilih</string>
   <string name="pairing_title">Naprave KDE Connect</string>

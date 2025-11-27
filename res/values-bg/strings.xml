@@ -235,6 +235,12 @@
   <string name="sftp_manage_storage_permission_explanation">За да разрешите отдалечен достъп до файловете на това устройство, трябва да разрешите KDE Connect да управлява хранилището.</string>
   <string name="no_players_connected">Няма възпроизвеждане на медия</string>
   <string name="send_files">Изпращане на файлове</string>
+  <string-array name="digitizer_preference_entries_draw_button_side">
+    <item>Top left</item>
+    <item>Top right</item>
+    <item>Bottom left</item>
+    <item>Bottom right</item>
+  </string-array>
   <string name="block_notification_contents">Блокиране на съдържанието в известията</string>
   <string name="block_notification_images">Блокиране на изображения в известията</string>
   <string name="pairing_title">Устройства на KDE Connect</string>
