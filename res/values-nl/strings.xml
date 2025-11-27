@@ -11,6 +11,8 @@
   <string name="pref_plugin_battery_desc">Rapporteer periodiek de status van de batterij</string>
   <string name="pref_plugin_connectivity_report">Rapport over connectiviteit</string>
   <string name="pref_plugin_connectivity_report_desc">Signaalsterkte en status van netwerk rapporteren</string>
+  <string name="pref_plugin_digitizer">Tekentablet</string>
+  <string name="pref_plugin_digitizer_desc">Gebruik uw apparaat als een drukgevoelige tekentablet</string>
   <string name="pref_plugin_sftp">Toegang tot bestandssysteem</string>
   <string name="pref_plugin_sftp_desc">Het bladeren in het bestandssysteem van het apparaat op afstand toestaan</string>
   <string name="pref_plugin_clipboard">Klembordsynchronisatie</string>
@@ -240,11 +242,18 @@
   <string name="sftp_missing_permission_error">Toegangsrechten ontbreken: toegang tot bestandssysteem</string>
   <string name="no_players_connected">Geen spelers gevonden</string>
   <string name="send_files">Bestanden verzenden</string>
+  <string name="use_digitizer">Gebruiken als tekentablet</string>
+  <string name="digitizer_draw_button">Tekenen met vinger</string>
+  <string name="digitizer_preference_title_hide_draw_button">Tekenknop verbergen</string>
+  <string name="digitizer_preference_summary_hide_draw_button">Verberg de tekenknop helemaal, maakt tekenen met de vinger onmogelijk. Schakel dit alleen in als uw apparaat invoer met stylus ondersteunt.</string>
+  <string name="digitizer_preference_title_draw_button_side">Zijkant van knop “Met vinger tekenen”</string>
+  <string name="digitizer_preference_title_enable_exit_fullscreen_gesture">Gebaar voor \"Uit volledige scherm gaan\" inschakelen</string>
+  <string name="digitizer_preference_summary_enable_exit_fullscreen_gesture">Indien ingeschakeld, tikken en zo houden op het tekenpad met uw vinger zal modus volledig scherm uitschakelen.</string>
   <string-array name="digitizer_preference_entries_draw_button_side">
-    <item>Top left</item>
-    <item>Top right</item>
-    <item>Bottom left</item>
-    <item>Bottom right</item>
+    <item>Linksboven</item>
+    <item>Rechtsboven</item>
+    <item>Linksonder</item>
+    <item>Rechtsonder</item>
   </string-array>
   <string name="block_notification_contents">Inhoud van meldingen blokkeren</string>
   <string name="block_notification_images">Afbeeldingen van meldingen blokkeren</string>
@@ -447,4 +456,5 @@
   <string name="ping_in_progress">Ping wordt verstuurt</string>
   <string name="device_host_invalid">Host is ongeldig. Gebruik een geldige hostnaam, IPv4 of IPv6</string>
   <string name="device_host_duplicate">Host bestaat al in de lijst</string>
+  <string name="enable_fullscreen">Volledig scherm inschakelen</string>
 </resources>

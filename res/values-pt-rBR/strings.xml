@@ -11,6 +11,8 @@
   <string name="pref_plugin_battery_desc">Informação periódica do status da bateria</string>
   <string name="pref_plugin_connectivity_report">Relatório de conectividade</string>
   <string name="pref_plugin_connectivity_report_desc">Reportar o nível de sinal da rede e o status</string>
+  <string name="pref_plugin_digitizer">Mesa digitalizadora</string>
+  <string name="pref_plugin_digitizer_desc">Usar seu dispositivo como uma mesa digitalizadora sensível à pressão</string>
   <string name="pref_plugin_sftp">Acesso ao sistema de arquivos</string>
   <string name="pref_plugin_sftp_desc">Permite navegar remotamente pelo sistema de arquivos deste telefone</string>
   <string name="pref_plugin_clipboard">Sincronizar área de transferência</string>
@@ -240,11 +242,18 @@
   <string name="sftp_missing_permission_error">Permissões ausentes: acesso ao sistema de arquivos</string>
   <string name="no_players_connected">Nenhum reprodutor encontrado</string>
   <string name="send_files">Enviar arquivos</string>
+  <string name="use_digitizer">Usar como mesa digitalizadora</string>
+  <string name="digitizer_draw_button">Desenhar usando o dedo</string>
+  <string name="digitizer_preference_title_hide_draw_button">Ocultar botão de desenho</string>
+  <string name="digitizer_preference_summary_hide_draw_button">Oculta completamente o botão de desenho, impossibilitando o desenho com o dedo. Ative esta opção somente se o seu dispositivo for compatível com entrada por caneta stylus.</string>
+  <string name="digitizer_preference_title_draw_button_side">Lateral do botão “Desenhar com o dedo”</string>
+  <string name="digitizer_preference_title_enable_exit_fullscreen_gesture">Ativar gesto de saída do modo tela cheia</string>
+  <string name="digitizer_preference_summary_enable_exit_fullscreen_gesture">Se ativado, tocar e manter pressionado o dedo na área de desenho irá desativar o modo de tela cheia.</string>
   <string-array name="digitizer_preference_entries_draw_button_side">
-    <item>Top left</item>
-    <item>Top right</item>
-    <item>Bottom left</item>
-    <item>Bottom right</item>
+    <item>Superior esquerdo</item>
+    <item>Superior direito</item>
+    <item>Inferior esquerdo</item>
+    <item>Inferior direito</item>
   </string-array>
   <string name="block_notification_contents">Bloquear os conteúdos das notificações</string>
   <string name="block_notification_images">Bloquear as imagens das notificações</string>
@@ -447,4 +456,5 @@
   <string name="ping_in_progress">Pingando...</string>
   <string name="device_host_invalid">O host é inválido. Use um nome de host válido, IPv4 ou IPv6.</string>
   <string name="device_host_duplicate">O host já existe na lista</string>
+  <string name="enable_fullscreen">Ativar tela cheia</string>
 </resources>

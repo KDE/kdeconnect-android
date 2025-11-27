@@ -11,6 +11,8 @@
   <string name="pref_plugin_battery_desc">Періодична інформація щодо стану акумулятора</string>
   <string name="pref_plugin_connectivity_report">Звіт щодо з\'єднання</string>
   <string name="pref_plugin_connectivity_report_desc">Повідомити про потужність сигналу мережі та її стан</string>
+  <string name="pref_plugin_digitizer">Планшет для малювання</string>
+  <string name="pref_plugin_digitizer_desc">Використовувати пристрій як графічний планшет з детектором тиску</string>
   <string name="pref_plugin_sftp">Доступ до файлової системи</string>
   <string name="pref_plugin_sftp_desc">Надає змогу віддалено переглядати файлову систему цього пристрою</string>
   <string name="pref_plugin_clipboard">Синхронізація буфера</string>
@@ -256,11 +258,18 @@
   <string name="sftp_missing_permission_error">Не вистачає прав доступу: доступ до файлової системи</string>
   <string name="no_players_connected">Не знайдено програвачів</string>
   <string name="send_files">Надіслати файли</string>
+  <string name="use_digitizer">Використати як планшет для малювання</string>
+  <string name="digitizer_draw_button">Малювати пальцем</string>
+  <string name="digitizer_preference_title_hide_draw_button">Приховати кнопку малювання</string>
+  <string name="digitizer_preference_summary_hide_draw_button">Повністю приховати кнопку малювання і зробити малювання пальцем неможливим. Позначайте цей пункт, лише якщо на вашому пристрої передбачено можливість користування стилом.</string>
+  <string name="digitizer_preference_title_draw_button_side">Місце кнопки «Малювати пальцем»</string>
+  <string name="digitizer_preference_title_enable_exit_fullscreen_gesture">Увімкнути жест виходу з повноекранного режиму</string>
+  <string name="digitizer_preference_summary_enable_exit_fullscreen_gesture">Якщо позначено, торкання панелі малювання з утриманням на ній пальця вимикатиме повноекранний режим.</string>
   <string-array name="digitizer_preference_entries_draw_button_side">
-    <item>Top left</item>
-    <item>Top right</item>
-    <item>Bottom left</item>
-    <item>Bottom right</item>
+    <item>Згори ліворуч</item>
+    <item>Згори праворуч</item>
+    <item>Знизу ліворуч</item>
+    <item>Внизу праворуч</item>
   </string-array>
   <string name="block_notification_contents">Блокувати вміст сповіщення</string>
   <string name="block_notification_images">Блокувати зображення сповіщення</string>
@@ -463,4 +472,5 @@
   <string name="ping_in_progress">Зондування…</string>
   <string name="device_host_invalid">Вузол є некоректним. Скористайтеся коректною назвою вузла, IPv4 або IPv6</string>
   <string name="device_host_duplicate">Запис вузла вже є у списку</string>
+  <string name="enable_fullscreen">Увімкнути повноекранний режим</string>
 </resources>

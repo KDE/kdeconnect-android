@@ -11,6 +11,8 @@
   <string name="pref_plugin_battery_desc">Pil durumunu belirli aralıklarla raporla</string>
   <string name="pref_plugin_connectivity_report">Bağlantı raporu</string>
   <string name="pref_plugin_connectivity_report_desc">Ağ sinyal gücünü ve durumunu bildirin</string>
+  <string name="pref_plugin_digitizer">Çizim tableti</string>
+  <string name="pref_plugin_digitizer_desc">Aygıtınızı basınca duyarlı bir çizim tableti olarak kullanın</string>
   <string name="pref_plugin_sftp">Dosya sistemi erişimi</string>
   <string name="pref_plugin_sftp_desc">Bu aygıtın dosya sistemine uzaktan göz atılmasına izin verir</string>
   <string name="pref_plugin_clipboard">Pano eşzamanlama</string>
@@ -240,11 +242,18 @@
   <string name="sftp_missing_permission_error">Eksik izinler: Dosya sistemi erişimi</string>
   <string name="no_players_connected">Onatıcı bulunamadı</string>
   <string name="send_files">Dosyaları gönder</string>
+  <string name="use_digitizer">Çizim tableti olarak kullan</string>
+  <string name="digitizer_draw_button">Parmakla çizim yap</string>
+  <string name="digitizer_preference_title_hide_draw_button">Çizim düğmesini gizle</string>
+  <string name="digitizer_preference_summary_hide_draw_button">Çizim düğmesini tümüyle gizleyerek parmakla çizim yapmayı tümüyle olanaksız kılar. Bunu yalnızca aygıtınız kalemle girişi destekliyorsa etkinleştirin.</string>
+  <string name="digitizer_preference_title_draw_button_side">“Parmakla çizim yap” düğmesinin yanı</string>
+  <string name="digitizer_preference_title_enable_exit_fullscreen_gesture">Tam ekrandan çıkış hareketini etkinleştir</string>
+  <string name="digitizer_preference_summary_enable_exit_fullscreen_gesture">Etkinleştirilmişse çizim alanına parmağınızla basıp basılı tutmak tam ekran kipinden çıkar.</string>
   <string-array name="digitizer_preference_entries_draw_button_side">
-    <item>Top left</item>
-    <item>Top right</item>
-    <item>Bottom left</item>
-    <item>Bottom right</item>
+    <item>Sol üst</item>
+    <item>Sağ üst</item>
+    <item>Sol alt</item>
+    <item>Sağ alt</item>
   </string-array>
   <string name="block_notification_contents">Bildirim içeriğini engelle</string>
   <string name="block_notification_images">Bildirim görsellerini engelle</string>
@@ -447,4 +456,5 @@
   <string name="ping_in_progress">Pingleniyor…</string>
   <string name="device_host_invalid">Makine geçersiz. Geçerli bir makine adı kullanın; IPv4 veya IPv6 gibi</string>
   <string name="device_host_duplicate">Makine listede halihazırda var</string>
+  <string name="enable_fullscreen">Tam ekranı etkinleştir</string>
 </resources>

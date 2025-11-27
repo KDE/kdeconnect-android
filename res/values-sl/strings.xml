@@ -11,6 +11,8 @@
   <string name="pref_plugin_battery_desc">Občasno poročaj o stanju baterije</string>
   <string name="pref_plugin_connectivity_report">Poročilo o povezovanju</string>
   <string name="pref_plugin_connectivity_report_desc">Poročilo moč signala omrežja in status</string>
+  <string name="pref_plugin_digitizer">Risalna tablica</string>
+  <string name="pref_plugin_digitizer_desc">Uporabite svojo napravo kot risalno tablico, občutljivo na pritisk</string>
   <string name="pref_plugin_sftp">Dostop do datotečnega sistema</string>
   <string name="pref_plugin_sftp_desc">Omogoča oddaljeno brskanje po sistemu datotek te naprave</string>
   <string name="pref_plugin_clipboard">Uskladi odložišči</string>
@@ -256,11 +258,18 @@
   <string name="sftp_missing_permission_error">Manjkajoča dovoljenja: dostop do datotečnega sistema</string>
   <string name="no_players_connected">Ni najdenih predvajalnikov</string>
   <string name="send_files">Pošlji datoteke</string>
+  <string name="use_digitizer">Uporabi kot risalno tablico</string>
+  <string name="digitizer_draw_button">Nariši s prstom</string>
+  <string name="digitizer_preference_title_hide_draw_button">Skrij gumb za risanje</string>
+  <string name="digitizer_preference_summary_hide_draw_button">Popolnoma skrije gumb za risanje, zaradi česar je risanje s prsti nemogoče. To omogočite le, če vaša naprava podpira vnos s pisalom.</string>
+  <string name="digitizer_preference_title_draw_button_side">Stran gumba »Risanje s prstom«</string>
+  <string name="digitizer_preference_title_enable_exit_fullscreen_gesture">Omogoči gesto za izhod iz celozaslonskega načina</string>
+  <string name="digitizer_preference_summary_enable_exit_fullscreen_gesture">Če je omogočeno, boste s tapkanjem in držanjem risalne površine s prstom onemogočili celozaslonski način.</string>
   <string-array name="digitizer_preference_entries_draw_button_side">
-    <item>Top left</item>
-    <item>Top right</item>
-    <item>Bottom left</item>
-    <item>Bottom right</item>
+    <item>Zgoraj levo</item>
+    <item>Zgoraj desno</item>
+    <item>Spodaj levo</item>
+    <item>Spodaj desno</item>
   </string-array>
   <string name="block_notification_contents">Blokiraj vsebine obvestil</string>
   <string name="block_notification_images">Blokiraj slike v obvestilih</string>
@@ -463,4 +472,5 @@
   <string name="ping_in_progress">Pinganje…</string>
   <string name="device_host_invalid">Gostitelj ni veljaven. Uporabite veljavno ime gostitelja, IPv4 ali IPv6</string>
   <string name="device_host_duplicate">Gostitelj že obstaja na seznamu</string>
+  <string name="enable_fullscreen">Omogoči celotni zaslon</string>
 </resources>

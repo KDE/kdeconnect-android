@@ -11,6 +11,8 @@
   <string name="pref_plugin_battery_desc">Informa periòdicament sobre l\'estat de la bateria</string>
   <string name="pref_plugin_connectivity_report">Informa de la connectivitat</string>
   <string name="pref_plugin_connectivity_report_desc">Informar la intensitat i l\'estat del senyal de la xarxa</string>
+  <string name="pref_plugin_digitizer">Tauleta de dibuix</string>
+  <string name="pref_plugin_digitizer_desc">Useu el dispositiu com a una tauleta de dibuix sensible a la pressió</string>
   <string name="pref_plugin_sftp">Accés al sistema de fitxers</string>
   <string name="pref_plugin_sftp_desc">Permet navegar de forma remota pel sistema de fitxers del dispositiu</string>
   <string name="pref_plugin_clipboard">Sincronitza el porta-retalls</string>
@@ -240,11 +242,18 @@
   <string name="sftp_missing_permission_error">Permisos que manquen: accés al sistema de fitxers</string>
   <string name="no_players_connected">No s\'ha trobat cap reproductor</string>
   <string name="send_files">Envia fitxers</string>
+  <string name="use_digitizer">Ús com a tauleta de dibuix</string>
+  <string name="digitizer_draw_button">Dibuixeu fent servir un dit</string>
+  <string name="digitizer_preference_title_hide_draw_button">Oculta el botó de dibuixar</string>
+  <string name="digitizer_preference_summary_hide_draw_button">Oculta completament el botó de dibuix, fent impossible el dibuix amb el dit. Activeu-ho només si el vostre dispositiu admet l\'entrada de llapis.</string>
+  <string name="digitizer_preference_title_draw_button_side">El costat del botó «Dibuixa amb un dit»</string>
+  <string name="digitizer_preference_title_enable_exit_fullscreen_gesture">Activa el gest de sortida de pantalla completa</string>
+  <string name="digitizer_preference_summary_enable_exit_fullscreen_gesture">Si està activat, prémer i mantenir premut al plafó de dibuix amb el dit desactivarà el mode de pantalla completa.</string>
   <string-array name="digitizer_preference_entries_draw_button_side">
-    <item>Top left</item>
-    <item>Top right</item>
-    <item>Bottom left</item>
-    <item>Bottom right</item>
+    <item>Part superior esquerra</item>
+    <item>Part superior dreta</item>
+    <item>Part inferior esquerra</item>
+    <item>Part inferior dreta</item>
   </string-array>
   <string name="block_notification_contents">Bloca el contingut de les notificacions</string>
   <string name="block_notification_images">Bloca les imatges de les notificacions</string>
@@ -447,4 +456,5 @@
   <string name="ping_in_progress">S\'està fent «ping»…</string>
   <string name="device_host_invalid">L\'ordinador no és vàlid. Useu un nom d\'ordinador, IPv4 o IPv6 vàlids</string>
   <string name="device_host_duplicate">L\'ordinador ja existeix a la llista</string>
+  <string name="enable_fullscreen">Activa la pantalla completa</string>
 </resources>

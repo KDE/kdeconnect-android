@@ -11,6 +11,8 @@
   <string name="pref_plugin_battery_desc">דיווח רציף על אחוז הסוללה למחשב</string>
   <string name="pref_plugin_connectivity_report">דוח קישוריות</string>
   <string name="pref_plugin_connectivity_report_desc">דיווח על עוצמת קליטה ומצב רשת</string>
+  <string name="pref_plugin_digitizer">לוח ציור</string>
+  <string name="pref_plugin_digitizer_desc">אפשר להשתמש במכשיר שלך כלוח ציור שרגיש לחוזק הלחיצה</string>
   <string name="pref_plugin_sftp">גישה למערכת הקבצים</string>
   <string name="pref_plugin_sftp_desc">לאפשר לעיין במערכת הקבצים של המכשיר הזה מרחוק</string>
   <string name="pref_plugin_clipboard">סנכרון לוח הגזירים</string>
@@ -256,11 +258,18 @@
   <string name="sftp_missing_permission_error">חסרה הרשאה: גישה למערכת הקבצים</string>
   <string name="no_players_connected">לא נמצאו נגנים</string>
   <string name="send_files">שליחת קובץ</string>
+  <string name="use_digitizer">להשתמש כלוח ציור</string>
+  <string name="digitizer_draw_button">לצייר בעזרת האצבע</string>
+  <string name="digitizer_preference_title_hide_draw_button">הסתרת כפתור הציור</string>
+  <string name="digitizer_preference_summary_hide_draw_button">הסתרת כפתור הציור לחלוטין, מה שמאפשר לצייר עם האצבע. יש להפעיל את זה רק אם המכשיר שלך תומך בקלט עט מגע.</string>
+  <string name="digitizer_preference_title_draw_button_side">הצג של כפתור „ציור עם האצבע”</string>
+  <string name="digitizer_preference_title_enable_exit_fullscreen_gesture">הפעלת מחוות יציאה ממסך מלא</string>
+  <string name="digitizer_preference_summary_enable_exit_fullscreen_gesture">אם האפשרות פעילה, נקישה והחזקה על לוח הציור עם האצבע שלך תצא ממצב מסך מלא.</string>
   <string-array name="digitizer_preference_entries_draw_button_side">
-    <item>Top left</item>
-    <item>Top right</item>
-    <item>Bottom left</item>
-    <item>Bottom right</item>
+    <item>שמאל למעלה</item>
+    <item>ימין למעלה</item>
+    <item>שמאל למטה</item>
+    <item>ימין למטה</item>
   </string-array>
   <string name="block_notification_contents">חסימת תוכן התראות</string>
   <string name="block_notification_images">חסימת תמונות בהתראות</string>
@@ -463,4 +472,5 @@
   <string name="ping_in_progress">נשלח פינג…</string>
   <string name="device_host_invalid">המארח שגוי. נא להשתמש בשם מארח, IPv4 או IPv6 תקניים.</string>
   <string name="device_host_duplicate">המארח כבר קיים ברשימה</string>
+  <string name="enable_fullscreen">הפעלת מסך מלא</string>
 </resources>
