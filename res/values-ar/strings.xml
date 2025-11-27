@@ -11,6 +11,8 @@
   <string name="pref_plugin_battery_desc">بلّغ عن حالة البطّاريّة دوريًّا</string>
   <string name="pref_plugin_connectivity_report">تقرير الاتصال</string>
   <string name="pref_plugin_connectivity_report_desc">تقرير قوة إشارة الشبكة والحالة</string>
+  <string name="pref_plugin_digitizer">لوح رسم</string>
+  <string name="pref_plugin_digitizer_desc">استخدم جهازك كلوحة رسم حساسة للضغط</string>
   <string name="pref_plugin_sftp">الوصول إلى نظام الملفات</string>
   <string name="pref_plugin_sftp_desc">تسمح بتصفّح نظام ملفّات هذا الهاتف عن بعد</string>
   <string name="pref_plugin_clipboard">مزامنة الحافظة</string>
@@ -272,11 +274,18 @@
   <string name="sftp_missing_permission_error">أذونات مفقودة: الوصول إلى نظام الملفات</string>
   <string name="no_players_connected">لم يُعثر على مشغّلات</string>
   <string name="send_files">أرسل ملفّات</string>
+  <string name="use_digitizer">استعمله كلوح رسم</string>
+  <string name="digitizer_draw_button">ارسم بإصبعك</string>
+  <string name="digitizer_preference_title_hide_draw_button">أخفِ زر الرسم</string>
+  <string name="digitizer_preference_summary_hide_draw_button">يخفي زر الرسم تمامًا، مما يجعل الرسم بالإصبع مستحيلًا. لا تمكّن هذه الميزة إلا إذا كان جهازك يدعم الإدخال بالقلم.</string>
+  <string name="digitizer_preference_title_draw_button_side">جانب زر ” ارسم بإصبعك ”</string>
+  <string name="digitizer_preference_title_enable_exit_fullscreen_gesture">مكّن إيماءة الخروج من وضع ملء الشاشة</string>
+  <string name="digitizer_preference_summary_enable_exit_fullscreen_gesture">إذا مُكِّن هذا الخيار، فإن النقر مع الاستمرار بإصبعك على لوحة الرسم سيؤدي إلى تعطيل وضع ملء الشاشة.</string>
   <string-array name="digitizer_preference_entries_draw_button_side">
-    <item>Top left</item>
-    <item>Top right</item>
-    <item>Bottom left</item>
-    <item>Bottom right</item>
+    <item>أعلى اليسار</item>
+    <item>أعلى اليمين</item>
+    <item>أسفل اليسار</item>
+    <item>أسفل اليمين</item>
   </string-array>
   <string name="block_notification_contents">احظر محتويات الإشعار</string>
   <string name="block_notification_images">احظر صور الإشعار</string>
@@ -479,4 +488,5 @@
   <string name="ping_in_progress">يتعقب…</string>
   <string name="device_host_invalid">المضيف غير صالح. استخدم اسم مضيف أو IPv4 أو IPv6 صالحاً</string>
   <string name="device_host_duplicate">المضيف موجود مسبقًا في القائمة</string>
+  <string name="enable_fullscreen">مكّن ملء الشّاشة</string>
 </resources>
