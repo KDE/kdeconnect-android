@@ -11,6 +11,8 @@
   <string name="pref_plugin_battery_desc">Rapport périodique sur l\'état de la batterie</string>
   <string name="pref_plugin_connectivity_report">Rapport sur la connectivité</string>
   <string name="pref_plugin_connectivity_report_desc">Signaler la force du signal du réseau et son état</string>
+  <string name="pref_plugin_digitizer">Tablette graphique</string>
+  <string name="pref_plugin_digitizer_desc">Utiliser votre périphérique pour une tablette graphique sensible aux appuis tactiles</string>
   <string name="pref_plugin_sftp">Accès au système de fichiers</string>
   <string name="pref_plugin_sftp_desc">Permettre de parcourir le système de fichiers du périphérique à distance</string>
   <string name="pref_plugin_clipboard">Synchronisation avec le presse-papiers</string>
@@ -240,11 +242,18 @@
   <string name="sftp_missing_permission_error">Autorisations manquantes : accès au système de fichiers</string>
   <string name="no_players_connected">Aucun lecteur trouvé</string>
   <string name="send_files">Envoyer des fichiers</string>
+  <string name="use_digitizer">Utiliser comme une tablette graphique</string>
+  <string name="digitizer_draw_button">Dessiner en utilisant le doigt</string>
+  <string name="digitizer_preference_title_hide_draw_button">Masquer le bouton pour dessiner</string>
+  <string name="digitizer_preference_summary_hide_draw_button">Masque complètement le bouton pour dessiner, rendant impossible le dessin avec un doigt. Ne l\'activez que si votre périphérique prend en charge l\'entrée avec stylet.</string>
+  <string name="digitizer_preference_title_draw_button_side">Côté du bouton « Dessiner avec le doigt »</string>
+  <string name="digitizer_preference_title_enable_exit_fullscreen_gesture">Activer le geste de sortie du mode de plein écran</string>
+  <string name="digitizer_preference_summary_enable_exit_fullscreen_gesture">Si cette option est activée, l\'appui et le maintien sur le pavé tactile avec votre doigt désactivera le mode plein écran.</string>
   <string-array name="digitizer_preference_entries_draw_button_side">
-    <item>Top left</item>
-    <item>Top right</item>
-    <item>Bottom left</item>
-    <item>Bottom right</item>
+    <item>En haut à gauche</item>
+    <item>En haut à droite</item>
+    <item>En bas à gauche</item>
+    <item>En bas à droite</item>
   </string-array>
   <string name="block_notification_contents">Bloquer les contenus de notifications</string>
   <string name="block_notification_images">Bloquer les images de notifications</string>
@@ -447,4 +456,5 @@
   <string name="ping_in_progress">Interrogation par ping en cours...</string>
   <string name="device_host_invalid">L\'hôte est non valable. Veuillez utiliser un nom d\'hôte valable, IPv4 ou IPv6</string>
   <string name="device_host_duplicate">L\'hôte existe déjà dans la liste.</string>
+  <string name="enable_fullscreen">Activer le mode en plein écran</string>
 </resources>
