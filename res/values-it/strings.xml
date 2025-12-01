@@ -11,6 +11,8 @@
   <string name="pref_plugin_battery_desc">Comunica periodicamente lo stato della batteria</string>
   <string name="pref_plugin_connectivity_report">Indicatore di connettività</string>
   <string name="pref_plugin_connectivity_report_desc">Riporta la potenza e lo stato del segnale di rete</string>
+  <string name="pref_plugin_digitizer">Tavoletta grafica</string>
+  <string name="pref_plugin_digitizer_desc">Utilizza il tuo dispositivo come tavoletta grafica sensibile alla pressione</string>
   <string name="pref_plugin_sftp">Accesso al file system</string>
   <string name="pref_plugin_sftp_desc">Consente di navigare da remoto il filesystem del dispositivo</string>
   <string name="pref_plugin_clipboard">Sincronizzazione appunti</string>
@@ -240,11 +242,18 @@
   <string name="sftp_missing_permission_error">Permessi mancanti: accesso al file system</string>
   <string name="no_players_connected">Nessun lettore trovato</string>
   <string name="send_files">Invia file</string>
+  <string name="use_digitizer">Utilizza come tavoletta grafica</string>
+  <string name="digitizer_draw_button">Disegna utilizzando il dito</string>
+  <string name="digitizer_preference_title_hide_draw_button">Nascondi il pulsante di disegno</string>
+  <string name="digitizer_preference_summary_hide_draw_button">Nasconde completamente il pulsante di disegno, rendendo impossibile disegnare con le dita. Abilita questa opzione solo se il tuo dispositivo supporta l\'input tramite stilo.</string>
+  <string name="digitizer_preference_title_draw_button_side">Lato del pulsante «Disegna con il dito»</string>
+  <string name="digitizer_preference_title_enable_exit_fullscreen_gesture">Abilita il gesto di uscita a schermo intero</string>
+  <string name="digitizer_preference_summary_enable_exit_fullscreen_gesture">Se abilitata, toccando e tenendo premuto il dito sul tavolo da disegno, la modalità a schermo intero sarà disattivata.</string>
   <string-array name="digitizer_preference_entries_draw_button_side">
-    <item>Top left</item>
-    <item>Top right</item>
-    <item>Bottom left</item>
-    <item>Bottom right</item>
+    <item>In alto a sinistra</item>
+    <item>In alto a destra</item>
+    <item>In basso a sinistra</item>
+    <item>In basso a destra</item>
   </string-array>
   <string name="block_notification_contents">Blocca i contenuti delle notifiche</string>
   <string name="block_notification_images">Blocca le immagini nelle notifiche</string>
@@ -447,4 +456,5 @@
   <string name="ping_in_progress">Ping in corso…</string>
   <string name="device_host_invalid">L\'host non è valido. Utilizza un nome host valido, IPv4 o IPv6</string>
   <string name="device_host_duplicate">L\'host esiste già nell\'elenco</string>
+  <string name="enable_fullscreen">Abilita schermo intero</string>
 </resources>
