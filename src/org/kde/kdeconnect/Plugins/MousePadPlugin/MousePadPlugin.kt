@@ -9,6 +9,7 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.view.KeyEvent
+import androidx.preference.PreferenceManager
 import org.kde.kdeconnect.DeviceType
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.Plugins.Plugin
@@ -30,8 +31,8 @@ class MousePadPlugin : Plugin() {
     override val displayName: String
         get() = context.getString(R.string.pref_plugin_mousepad)
 
-    override fun getUiButtons(): List<PluginUiButton> = listOf(
-        PluginUiButton(
+    override fun getUiButtons(): List<PluginUiButton> {
+        val mouseAndKeyboardInput = PluginUiButton(
             context.getString(R.string.open_mousepad),
             R.drawable.touchpad_plugin_action_24dp
         ) { parentActivity ->
@@ -39,8 +40,8 @@ class MousePadPlugin : Plugin() {
             intent.putExtra("deviceId", device.deviceId)
             parentActivity.startActivity(intent)
         }
-    ) + if (device.deviceType == DeviceType.TV) listOf(
-            PluginUiButton(
+        return if (device.deviceType == DeviceType.TV) {
+            val tvInput = PluginUiButton(
                 context.getString(R.string.open_mousepad_tv),
                 R.drawable.tv_remote_24px
             ) { parentActivity ->
@@ -48,7 +49,17 @@ class MousePadPlugin : Plugin() {
                 intent.putExtra("deviceId", device.deviceId)
                 parentActivity.startActivity(intent)
             }
-        ) else emptyList()
+            val prefs = PreferenceManager.getDefaultSharedPreferences(context)
+            if (prefs.getBoolean(context.getString(R.string.pref_bigscreen_hide_mouse_input), false)) {
+                listOf(tvInput)
+            } else {
+                listOf(mouseAndKeyboardInput, tvInput)
+            }
+        } else {
+            listOf(mouseAndKeyboardInput)
+        }
+    }
+
 
     override val description: String
         get() = context.getString(R.string.pref_plugin_mousepad_desc_nontv)
