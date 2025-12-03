@@ -455,7 +455,7 @@
   <string name="everyone_else">כל מי שתרם ל־KDE Connect לאורך השנים</string>
   <string name="send_clipboard">שליחת לוח גזירים</string>
   <string name="tap_to_execute">נגיעה תפעיל</string>
-  <string name="plugin_stats">סטטיסטיקת תוסף</string>
+  <string name="plugin_stats">סטטיסטיקת תוספים</string>
   <string name="enable_udp_broadcast">הפעלת גילוי מכשירים ב־UDP</string>
   <string name="enable_mdns_broadcast">הפעלת גילוי מכשירים דרך MDNS</string>
   <string name="enable_mdns_broadcast_explanation">גילוי דרך MDNS יופסק בקרוב. נא לדווח עך תקלות אם KDE Connect עובד רק כשהאפשרות הזאת פעילה.</string>
