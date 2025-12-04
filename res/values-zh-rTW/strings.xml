@@ -359,7 +359,6 @@
   <string name="bigscreen_down">下</string>
   <string name="bigscreen_back">返回</string>
   <string name="bigscreen_mic">麥克風</string>
-  <string name="pref_plugin_bigscreen">大螢幕遙控器</string>
   <string name="pref_plugin_bigscreen_desc">使用您的裝置作為 Plasma Bigscreen 的遙控器</string>
   <string name="bigscreen_optional_permission_explanation">為了與電腦共享手機麥克風端的音效輸入，需要您允許本軟體存取手機的音訊輸入權限</string>
   <string name="bigscreen_speech_extra_prompt">聲控功能</string>

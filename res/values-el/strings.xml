@@ -298,7 +298,6 @@
   <string name="bigscreen_right">Δεξιά</string>
   <string name="bigscreen_down">Κάτω</string>
   <string name="bigscreen_mic">Μικ</string>
-  <string name="pref_plugin_bigscreen">Απομακρυσμένη μεγάλη οθόνη</string>
   <string name="pref_plugin_bigscreen_desc">Χρησιμοποιήστε τη συσκευή σας ως απομακρυσμένη για το Plasma Bigscreen</string>
   <string name="bigscreen_optional_permission_explanation">Για να μοιραστείτε την είσοδο του μικροφώνου από το τηλέφωνό σας απαιτείται να παραχωρήσετε πρόσβαση στην είσοδο ήχου του τηλεφώνου</string>
   <string name="bigscreen_speech_extra_prompt">Ομιλία</string>

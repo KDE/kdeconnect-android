@@ -306,7 +306,6 @@
   <string name="bigscreen_right">Kanan</string>
   <string name="bigscreen_down">Turun</string>
   <string name="bigscreen_mic">Mic</string>
-  <string name="pref_plugin_bigscreen">Remot bigscreen</string>
   <string name="pref_plugin_bigscreen_desc">Gunakan peranti Anda sebagai remot untuk Plasma Bigscreen</string>
   <string name="bigscreen_optional_permission_explanation">Untuk membagikan masukan mikrofon dari ponsel Anda perlu memberikan akses terhadap masukan audio ponsel</string>
   <string name="bigscreen_speech_extra_prompt">Lisankan</string>

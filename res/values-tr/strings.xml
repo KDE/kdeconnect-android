@@ -367,7 +367,6 @@
   <string name="bigscreen_down">Aşağı</string>
   <string name="bigscreen_back">Geri</string>
   <string name="bigscreen_mic">Mikrofon</string>
-  <string name="pref_plugin_bigscreen">Büyük Ekran uzaktan kumandası</string>
   <string name="pref_plugin_bigscreen_desc">Aygıtınızı Plasma Büyük Ekran için uzaktan kumanda olarak kullanın</string>
   <string name="bigscreen_optional_permission_explanation">Telefonunuzdan mikrofon girişini paylaşmak için telefonun ses girişine erişim izni vermeniz gerekir</string>
   <string name="bigscreen_speech_extra_prompt">Konuşma</string>

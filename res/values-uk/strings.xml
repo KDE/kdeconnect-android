@@ -54,6 +54,7 @@
   <string name="remotekeyboard_connected">З’єднання з віддаленою клавіатурою є активним</string>
   <string name="remotekeyboard_multiple_connections">Існує декілька з’єднань із віддаленою клавіатурою. Виберіть пристрій для налаштовування.</string>
   <string name="open_mousepad">Дистанційне введення</string>
+  <string name="open_mousepad_tv">Пульт керування телевізором</string>
   <string name="mousepad_info">Проведіть по екрану пальцем, щоб пересунути вказівник миші. Дотик одним пальцем означатиме клацання, дотиком двома або трьома пальцями можна імітувати праву і середню кнопки. Гортання відбувається за допомогою двох пальців. Для перетягування зі скиданням скористайтеся тривалим натисканням. Можливості гіроскопічного керування вказівником миші можна увімкнути у налаштуваннях додатка.</string>
   <string name="mousepad_info_no_gestures">Пересувайте палець екраном, щоб пересунути вказівник миші; торкніться екрана для клацання.</string>
   <string name="mousepad_keyboard_input_not_supported">Підтримки введення з клавіатури на пов\'язаному пристрої не передбачено</string>
@@ -67,6 +68,7 @@
   <string name="mousepad_scroll_sensitivity_title">Чутливість до гортання</string>
   <string name="gyro_mouse_enabled_title">Увімкнути гіроскопічну мишу</string>
   <string name="gyro_mouse_sensitivity_title">Чутливість гіроскопа</string>
+  <string name="bigscreen_hide_mouse_input">Кнопка приховування миші і клавіатури пульту дистанційного керування</string>
   <string name="bigscreen_show_home_title">Показувати кнопку «Домівка»</string>
   <string name="bigscreen_show_back_title">Показувати кнопку «Назад»</string>
   <string-array name="mousepad_tap_entries">
@@ -383,7 +385,7 @@
   <string name="bigscreen_down">Вниз</string>
   <string name="bigscreen_back">Назад</string>
   <string name="bigscreen_mic">Мікрофон</string>
-  <string name="pref_plugin_bigscreen">Керування великим екраном</string>
+  <string name="pref_plugin_bigscreen">Пульт керування телевізором</string>
   <string name="pref_plugin_bigscreen_desc">Скористайтеся вашим пристроєм як дистанційним керуванням для великого екрана Плазми</string>
   <string name="bigscreen_optional_permission_explanation">Щоб оприлюднити вхідні дані з мікрофона вашого телефону, вам слід надати програми доступ до вхідного звукового каналу телефону</string>
   <string name="bigscreen_speech_extra_prompt">Озвучення</string>

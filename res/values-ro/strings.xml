@@ -340,7 +340,6 @@
   <string name="bigscreen_right">Dreapta</string>
   <string name="bigscreen_down">Jos</string>
   <string name="bigscreen_mic">Mic</string>
-  <string name="pref_plugin_bigscreen">Telecomandă pentru ecran mare</string>
   <string name="pref_plugin_bigscreen_desc">Folosiți dispozitivul ca telecomandă pentru Plasma Bigscreen</string>
   <string name="bigscreen_optional_permission_explanation">Pentru a partaja microfonul de la telefon, trebuie să permiteți accesul laintrarea de sunet a telefonului dumneavoastră.</string>
   <string name="bigscreen_speech_extra_prompt">Vorbire</string>

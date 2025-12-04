@@ -331,7 +331,6 @@
   <string name="bigscreen_right">右</string>
   <string name="bigscreen_down">下へ</string>
   <string name="bigscreen_mic">マイク</string>
-  <string name="pref_plugin_bigscreen">Bigscreen リモート</string>
   <string name="pref_plugin_bigscreen_desc">デバイスを Plasma Bigscreen のリモコンとして使う</string>
   <string name="bigscreen_optional_permission_explanation">端末のマイク入力を共有するには、端末の音声入力へのアクセスを許可する必要があります</string>
   <string name="bigscreen_speech_extra_prompt">発声</string>

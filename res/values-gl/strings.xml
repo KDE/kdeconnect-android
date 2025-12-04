@@ -348,7 +348,6 @@
   <string name="bigscreen_right">Dereita</string>
   <string name="bigscreen_down">Baixar</string>
   <string name="bigscreen_mic">Micrófono</string>
-  <string name="pref_plugin_bigscreen">Mando de Bigscreen</string>
   <string name="pref_plugin_bigscreen_desc">Use o seu dispositivo como mando de Plasma Bigscreen</string>
   <string name="bigscreen_optional_permission_explanation">Para compartir entrada de micrófono do seu teléfono ten que dar acceso á entrada de son do teléfono.</string>
   <string name="bigscreen_speech_extra_prompt">Fala</string>

@@ -331,7 +331,6 @@
   <string name="bigscreen_right">வலதுபுறமாக</string>
   <string name="bigscreen_down">கீழே</string>
   <string name="bigscreen_mic">ஒலிவாங்கி</string>
-  <string name="pref_plugin_bigscreen">பெருந்திரை தொலையியக்கி</string>
   <string name="pref_plugin_bigscreen_desc">பிளாஸ்மா பெருந்திரைக்கு உங்கள் சாதனத்தை தொலையியக்கியாக பயன்படுத்துங்கள்</string>
   <string name="bigscreen_optional_permission_explanation">உங்கள் திறன்பேசியிலிருந்து ஒலிவாங்கி உள்ளீட்டைப் பகிர நீங்கள் அதன் ஒலி உள்ளீட்டுக்கு அணுகல் அளிக்க வேண்டும்</string>
   <string name="bigscreen_speech_extra_prompt">பேச்சு</string>

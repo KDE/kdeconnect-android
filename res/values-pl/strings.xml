@@ -374,7 +374,6 @@
   <string name="bigscreen_down">Dół</string>
   <string name="bigscreen_back">Wstecz</string>
   <string name="bigscreen_mic">Mikrofon</string>
-  <string name="pref_plugin_bigscreen">Sterowanie Dużym Ekranem</string>
   <string name="pref_plugin_bigscreen_desc">Steruje Dużym Ekranem Plazmy</string>
   <string name="bigscreen_optional_permission_explanation">Aby zezwolić na używanie mikrofonu twojego telefonu, musisz udzielić do niego dostępu na telefonie</string>
   <string name="bigscreen_speech_extra_prompt">Mowa</string>

@@ -358,7 +358,6 @@
   <string name="bigscreen_down">Abajo</string>
   <string name="bigscreen_back">Atrás</string>
   <string name="bigscreen_mic">Micrófono</string>
-  <string name="pref_plugin_bigscreen">Bigscreen remoto</string>
   <string name="pref_plugin_bigscreen_desc">Use su dispositivo como mando remoto para Plasma Bigscreen</string>
   <string name="bigscreen_optional_permission_explanation">Para compartir la entrada del micrófono desde su teléfono, necesita dar acceso a la entrada de audio de su teléfono</string>
   <string name="bigscreen_speech_extra_prompt">Habla</string>

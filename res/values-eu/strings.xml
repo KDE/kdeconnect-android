@@ -358,7 +358,6 @@
   <string name="bigscreen_down">Behera</string>
   <string name="bigscreen_back">Atzera</string>
   <string name="bigscreen_mic">Mikrofonoa</string>
-  <string name="pref_plugin_bigscreen">Bigscreen-en urrutiko agintea</string>
   <string name="pref_plugin_bigscreen_desc">Erabili zure gailua Plasma Bigscreen-en urrutiko aginte gisa</string>
   <string name="bigscreen_optional_permission_explanation">Zure telefonoko mikrofonoko sarrerakoa partekatzeko, telefonoko audio sarrerakora sarbidea eman behar diozu</string>
   <string name="bigscreen_speech_extra_prompt">Hizketa</string>

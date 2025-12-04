@@ -337,7 +337,6 @@
   <string name="bigscreen_down">Niður</string>
   <string name="bigscreen_back">Til baka</string>
   <string name="bigscreen_mic">Hljóðnemi</string>
-  <string name="pref_plugin_bigscreen">Bigscreen-fjarstýring</string>
   <string name="pref_plugin_bigscreen_desc">Notaðu tækið þitt sem fjarstýringu fyrir Plasma Bigscreen</string>
   <string name="bigscreen_speech_extra_prompt">Tal</string>
   <string name="message_reply_label">SVARA</string>

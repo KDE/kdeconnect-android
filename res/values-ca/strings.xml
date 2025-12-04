@@ -54,6 +54,7 @@
   <string name="remotekeyboard_connected">La connexió amb el teclat remot està activa</string>
   <string name="remotekeyboard_multiple_connections">Hi ha més d\'una connexió amb un teclat remot, seleccioneu el dispositiu per a configurar-lo</string>
   <string name="open_mousepad">Entrada remota</string>
+  <string name="open_mousepad_tv">Control remot de TV</string>
   <string name="mousepad_info">Moveu un dit per la pantalla per a moure el cursor del ratolí. Toqueu per a un clic, i empreu dos/tres dits per als botons dret i mig. Useu 2 dits per a desplaçar. Empreu un toc llarg per a arrossegar i deixar anar. La funcionalitat giroscòpica dels ratolins es pot activar des de les preferències del connector</string>
   <string name="mousepad_info_no_gestures">Moveu un dit a la pantalla per a moure el cursor del ratolí, toqueu per a fer un clic.</string>
   <string name="mousepad_keyboard_input_not_supported">El dispositiu aparellat no permet l\'entrada de teclat</string>
@@ -67,6 +68,7 @@
   <string name="mousepad_scroll_sensitivity_title">Sensibilitat del desplaçament</string>
   <string name="gyro_mouse_enabled_title">Activa el ratolí giroscòpic</string>
   <string name="gyro_mouse_sensitivity_title">Sensibilitat del giroscopi</string>
+  <string name="bigscreen_hide_mouse_input">Oculta el botó d\'entrada remota de ratolí i teclat</string>
   <string name="bigscreen_show_home_title">Mostra el botó inici</string>
   <string name="bigscreen_show_back_title">Mostra el botó enrere</string>
   <string-array name="mousepad_tap_entries">
@@ -367,7 +369,7 @@
   <string name="bigscreen_down">Avall</string>
   <string name="bigscreen_back">Enrere</string>
   <string name="bigscreen_mic">Micròfon</string>
-  <string name="pref_plugin_bigscreen">Bigscreen remota</string>
+  <string name="pref_plugin_bigscreen">Control remot de TV</string>
   <string name="pref_plugin_bigscreen_desc">Useu el dispositiu com a remot per a la Bigscreen del Plasma</string>
   <string name="bigscreen_optional_permission_explanation">Per a compartir l\'entrada del micròfon del telèfon cal donar accés a l\'entrada d\'àudio del telèfon</string>
   <string name="bigscreen_speech_extra_prompt">Veu</string>

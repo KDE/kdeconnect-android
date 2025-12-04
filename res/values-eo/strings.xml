@@ -343,7 +343,6 @@
   <string name="bigscreen_right">Dekstra</string>
   <string name="bigscreen_down">Malsupren</string>
   <string name="bigscreen_mic">Mikrofono</string>
-  <string name="pref_plugin_bigscreen">Grandekrana fora</string>
   <string name="pref_plugin_bigscreen_desc">Uzu vian aparaton kiel fora por Plasma Bigscreen</string>
   <string name="bigscreen_optional_permission_explanation">Por dividi mikrofonan enigon de via telefono, vi devas doni aliron al la sonenigo de la telefono</string>
   <string name="bigscreen_speech_extra_prompt">Parolado</string>

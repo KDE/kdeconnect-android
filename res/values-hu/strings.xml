@@ -307,7 +307,6 @@
   <string name="bigscreen_right">Jobbra</string>
   <string name="bigscreen_down">Le</string>
   <string name="bigscreen_mic">Mikrofon</string>
-  <string name="pref_plugin_bigscreen">Bigscreen távirányító</string>
   <string name="pref_plugin_bigscreen_desc">Használja eszközét a Plasma Bigscreen távirányítójaként</string>
   <string name="bigscreen_optional_permission_explanation">A telefon mikrofonbemenetének megosztásához hozzáférést kell biztosítania a telefon hangbemenetéhez</string>
   <string name="bigscreen_speech_extra_prompt">Beszéljen</string>

@@ -357,7 +357,6 @@
   <string name="bigscreen_down">Neråt</string>
   <string name="bigscreen_back">Bakåt</string>
   <string name="bigscreen_mic">Mikrofon</string>
-  <string name="pref_plugin_bigscreen">Fjärrkontroll för storskärm</string>
   <string name="pref_plugin_bigscreen_desc">Använd apparaten som en fjärrkontroll för Plasma storskärm</string>
   <string name="bigscreen_optional_permission_explanation">För att dela mikrofoningången från telefonen måste du ge tillgång till telefonens ljudingång</string>
   <string name="bigscreen_speech_extra_prompt">Tal</string>

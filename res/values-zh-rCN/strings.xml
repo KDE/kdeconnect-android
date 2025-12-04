@@ -350,7 +350,6 @@
   <string name="bigscreen_down">下</string>
   <string name="bigscreen_back">返回</string>
   <string name="bigscreen_mic">麦克风</string>
-  <string name="pref_plugin_bigscreen">电视遥控</string>
   <string name="pref_plugin_bigscreen_desc">使用您手机遥控 Plasma 电视</string>
   <string name="bigscreen_optional_permission_explanation">请开启手机的麦克风以共享语音输入。</string>
   <string name="bigscreen_speech_extra_prompt">语音</string>

@@ -54,6 +54,7 @@
   <string name="remotekeyboard_connected">اتصال لوحة المفاتيح بعيدة نشط</string>
   <string name="remotekeyboard_multiple_connections">هناك أكثر من اتصال لوحة مفاتيح بعيدة، حدد الجهاز لتضبطه</string>
   <string name="open_mousepad">الإدخال البعيد</string>
+  <string name="open_mousepad_tv">جهاز التحكم عن بعد للتلفاز</string>
   <string name="mousepad_info">حرك إصبعًا على الشاشة لتحريك مؤشر الفأرة. اطرق للنقرة، واستخدم اثنين أو ثلاث أصابع للأزرار اليمنى والوسطى. استخدام أصبعين للتمرير. استخدم الضغط طويلًا للسحب والإفلات. يمكن تمكين وظيفة الفأرة التوجيهية Gyro من تفضيلات الملحقة.</string>
   <string name="mousepad_info_no_gestures">حرك إصبعًا على الشاشة لتحريك مؤشر الفأرة، اطرق للنقرة.</string>
   <string name="mousepad_keyboard_input_not_supported">إدخال لوحة المفاتيح غير مدعوم من قبل الجهاز المقترن</string>
@@ -67,6 +68,7 @@
   <string name="mousepad_scroll_sensitivity_title">حساسية التمرير</string>
   <string name="gyro_mouse_enabled_title">تمكين الفأر التوجيهي</string>
   <string name="gyro_mouse_sensitivity_title">حساسية التوجيه</string>
+  <string name="bigscreen_hide_mouse_input">أخفِ زر الإدخال عن بُعد للفأرة ولوحة المفاتيح</string>
   <string name="bigscreen_show_home_title">اعرض زر المنزل</string>
   <string name="bigscreen_show_back_title">أظهر زر العودة</string>
   <string-array name="mousepad_tap_entries">
@@ -399,7 +401,7 @@
   <string name="bigscreen_down">أسفل</string>
   <string name="bigscreen_back">عُد</string>
   <string name="bigscreen_mic">ميكروفون</string>
-  <string name="pref_plugin_bigscreen">متحكم الشاشة الكبيرة</string>
+  <string name="pref_plugin_bigscreen">جهاز التحكم عن بعد للتلفاز</string>
   <string name="pref_plugin_bigscreen_desc">استخدم جهازك كجهاز تحكم عن بُعد لشاشة البلازما الكبيرة</string>
   <string name="bigscreen_optional_permission_explanation">لمشاركة إدخال الميكروفون من هاتفك تحتاج إلى إتاحة الوصول إلى إدخال الصوت في الهاتف</string>
   <string name="bigscreen_speech_extra_prompt">حديث</string>

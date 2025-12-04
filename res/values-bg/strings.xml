@@ -351,7 +351,6 @@
   <string name="bigscreen_right">Дясно</string>
   <string name="bigscreen_down">Преместване надолу</string>
   <string name="bigscreen_mic">Микрофон</string>
-  <string name="pref_plugin_bigscreen">Дистанционно управление за Bigscreen</string>
   <string name="pref_plugin_bigscreen_desc">Използвайте устройството си като дистанционно за Plasma Bigscreen</string>
   <string name="bigscreen_optional_permission_explanation">За да споделите входа на микрофона от телефона си, трябва да дадете достъп до аудиовхода на телефона</string>
   <string name="bigscreen_speech_extra_prompt">Реч</string>

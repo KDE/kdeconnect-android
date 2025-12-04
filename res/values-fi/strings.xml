@@ -357,7 +357,6 @@
   <string name="bigscreen_down">Alemmas</string>
   <string name="bigscreen_back">Takaisin</string>
   <string name="bigscreen_mic">Mikrofoni</string>
-  <string name="pref_plugin_bigscreen">Bigscreen-kaukosäädin</string>
   <string name="pref_plugin_bigscreen_desc">Käytä laitetta Plasma Bigscreen -kaukosäätimenä</string>
   <string name="bigscreen_optional_permission_explanation">Jakaaksesi puhelimen mikrofonisyötteen puhelimen äänisyötteeseen on annettava käyttöoikeus</string>
   <string name="bigscreen_speech_extra_prompt">Puhe</string>

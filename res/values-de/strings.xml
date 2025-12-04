@@ -340,7 +340,6 @@
   <string name="bigscreen_right">Rechts</string>
   <string name="bigscreen_down">Unten</string>
   <string name="bigscreen_mic">Mikrofon</string>
-  <string name="pref_plugin_bigscreen">Fernbedienung für Großbildschirm</string>
   <string name="pref_plugin_bigscreen_desc">Verwenden Sie ihr Gerät als Fernbedienung für einen Plasma-Großbildschirm</string>
   <string name="bigscreen_optional_permission_explanation">Um den Mikrofoneingang des Mobiltelefons freizugeben, müssen Sie den Zugriff auf den Audioeingang des Mobiltelefons erlauben</string>
   <string name="bigscreen_speech_extra_prompt">Sprache</string>

@@ -54,6 +54,7 @@
   <string name="remotekeyboard_connected">Verbinding met toetsenbord op afstand is actief</string>
   <string name="remotekeyboard_multiple_connections">Er is meer dan een verbinding met een toetsenbord op afstand, selecteer het te configureren apparaat</string>
   <string name="open_mousepad">Invoer op afstand</string>
+  <string name="open_mousepad_tv">TV op afstand</string>
   <string name="mousepad_info">Veeg met een vinger op het scherm om de muiscursor te verplaatsen. Tik om te klikken en gebruik twee/drie vingers voor rechter en middelste knop. Twee vingers gebruiken voor schuiven. Druk lang voor slepen en loslaten. Functionaliteit van gyro-muis kan ingeschakeld worden vanuit voorkeuren in plug-in</string>
   <string name="mousepad_info_no_gestures">Veeg met een vinger op het scherm om de muiscursor te verplaatsen, tik om te klikken</string>
   <string name="mousepad_keyboard_input_not_supported">Toetsenbordinvoer wordt niet ondersteund door het gepaarde apparaat</string>
@@ -67,6 +68,7 @@
   <string name="mousepad_scroll_sensitivity_title">Gevoeligheid voor schuiven</string>
   <string name="gyro_mouse_enabled_title">Gyroscoopmuis inschakelen</string>
   <string name="gyro_mouse_sensitivity_title">Gyroscoopgevoeligheid</string>
+  <string name="bigscreen_hide_mouse_input">Invoerknop verbergen van muis en toetsenbord op afstand</string>
   <string name="bigscreen_show_home_title">Homeknop tonen</string>
   <string name="bigscreen_show_back_title">Terugknop tonen</string>
   <string-array name="mousepad_tap_entries">
@@ -367,7 +369,7 @@
   <string name="bigscreen_down">Omlaag</string>
   <string name="bigscreen_back">Terug</string>
   <string name="bigscreen_mic">Mic</string>
-  <string name="pref_plugin_bigscreen">Bigscreen op afstand</string>
+  <string name="pref_plugin_bigscreen">TV op afstand</string>
   <string name="pref_plugin_bigscreen_desc">Gebruik uw apparaat als een Bigscreen op afstand</string>
   <string name="bigscreen_optional_permission_explanation">Om microfooninvoer vanaf uw telefoon te delen moet u toegang geven tot de geluidsinvoer van de telefoon</string>
   <string name="bigscreen_speech_extra_prompt">Spraak</string>

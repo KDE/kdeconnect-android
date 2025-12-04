@@ -54,6 +54,7 @@
   <string name="remotekeyboard_connected">Povezava z oddaljeno tipkovnico je dejavna</string>
   <string name="remotekeyboard_multiple_connections">Obstaja več kot ena povezava na oddaljeno tipkovnico, izberite napravo in nastavitve</string>
   <string name="open_mousepad">Oddaljeni input</string>
+  <string name="open_mousepad_tv">TV daljinec</string>
   <string name="mousepad_info">Premaknite prst po zaslonu da bi premikali miško. Tapnite za klik in uporabite dva/tri prste za desni in srednji gumb. Za pomikanje uporabite dva prsta. Uporabite dolg pritisk za povleci in spusti. Žiroskopsko zmožnost miške lahko omogočite iz nastavitve vtičnika</string>
   <string name="mousepad_info_no_gestures">Premaknite prst po zaslonu, da premaknete kazalec miške, tapnite za klik.</string>
   <string name="mousepad_keyboard_input_not_supported">Vnos s tipkovnice ni podprt na sparjeni napravi</string>
@@ -67,6 +68,7 @@
   <string name="mousepad_scroll_sensitivity_title">Občutljivost drsenja</string>
   <string name="gyro_mouse_enabled_title">Omogoči žiroskopsko miško</string>
   <string name="gyro_mouse_sensitivity_title">Občutljivost žiroskopa</string>
+  <string name="bigscreen_hide_mouse_input">Skrij gumb za vnos z miško in tipkovnico na daljinskem upravljalniku</string>
   <string name="bigscreen_show_home_title">Prikaži gumb Domov</string>
   <string name="bigscreen_show_back_title">Prikaži gumb Nazaj</string>
   <string-array name="mousepad_tap_entries">
@@ -383,7 +385,7 @@
   <string name="bigscreen_down">Dol</string>
   <string name="bigscreen_back">Nazaj</string>
   <string name="bigscreen_mic">Mikrofon</string>
-  <string name="pref_plugin_bigscreen">Oddaljeni veliki zaslon</string>
+  <string name="pref_plugin_bigscreen">TV daljinec</string>
   <string name="pref_plugin_bigscreen_desc">Uporabite svojo napravo kot daljinec za Plasmin veliki zaslon</string>
   <string name="bigscreen_optional_permission_explanation">Če želite deliti vhod mikrofona iz telefona, morate imeti dostop do avdio vhoda telefona</string>
   <string name="bigscreen_speech_extra_prompt">Govor</string>

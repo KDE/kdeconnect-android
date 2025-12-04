@@ -54,6 +54,7 @@
   <string name="remotekeyboard_connected">A conexão ao teclado remoto está ativa</string>
   <string name="remotekeyboard_multiple_connections">Existe mais que uma conexão a teclados remotos. Selecione o dispositivo a configurar</string>
   <string name="open_mousepad">Introdução de dados remota</string>
+  <string name="open_mousepad_tv">Controle remoto da TV</string>
   <string name="mousepad_info">Mova um dedo pela tela para mover o ponteiro do mouse. Dê um toque para clicar e use dois/três dedos para os botões da direita e do meio. Use dois dedos para rolar a tela. Use uma pressão longa para arrastar e soltar. A funcionalidade do mouse giroscópio pode ser habilitada nas preferências do plugin.</string>
   <string name="mousepad_info_no_gestures">Mova o dedo na tela para mover o cursor do mouse, toque para um clique.</string>
   <string name="mousepad_keyboard_input_not_supported">Entrada de teclado não suportada pelo dispositivo emparelhado</string>
@@ -67,6 +68,7 @@
   <string name="mousepad_scroll_sensitivity_title">Sensibilidade da rolagem</string>
   <string name="gyro_mouse_enabled_title">Ativar mouse giroscópio</string>
   <string name="gyro_mouse_sensitivity_title">Sensibilidade do giroscópio</string>
+  <string name="bigscreen_hide_mouse_input">Ocultar botão de entrada remota do mouse e do teclado</string>
   <string name="bigscreen_show_home_title">Mostrar botão de início</string>
   <string name="bigscreen_show_back_title">Mostrar botão de voltar</string>
   <string-array name="mousepad_tap_entries">
@@ -367,7 +369,7 @@
   <string name="bigscreen_down">Para baixo</string>
   <string name="bigscreen_back">Voltar</string>
   <string name="bigscreen_mic">Mic</string>
-  <string name="pref_plugin_bigscreen">Controle remoto do Bigscreen</string>
+  <string name="pref_plugin_bigscreen">Controle remoto da TV</string>
   <string name="pref_plugin_bigscreen_desc">Use seu dispositivo como um controle remoto para o Plasma Bigscreen</string>
   <string name="bigscreen_optional_permission_explanation">Para compartilhar a entrada do microfone de seu telefone você precisa conceder acesso à entrada de áudio do celular</string>
   <string name="bigscreen_speech_extra_prompt">Falar</string>
