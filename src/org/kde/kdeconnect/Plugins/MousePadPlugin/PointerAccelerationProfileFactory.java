@@ -7,6 +7,8 @@
 package org.kde.kdeconnect.Plugins.MousePadPlugin;
 
 
+import androidx.annotation.NonNull;
+
 public class PointerAccelerationProfileFactory {
 
     /* The simplest profile. Merely adds the mouse deltas without any processing. */
@@ -20,17 +22,14 @@ public class PointerAccelerationProfileFactory {
             accumulatedY += deltaY;
         }
 
+        @NonNull
         @Override
         public MouseDelta commitAcceleratedMouseDelta(MouseDelta reusedObject) {
-            MouseDelta result;
-            if (reusedObject == null) result = new MouseDelta();
-            else result = reusedObject;
-
-            result.x = accumulatedX;
-            result.y = accumulatedY;
+            reusedObject.x = accumulatedX;
+            reusedObject.y = accumulatedY;
             accumulatedY = 0;
             accumulatedX = 0;
-            return result;
+            return reusedObject;
         }
     }
 
@@ -110,21 +109,18 @@ public class PointerAccelerationProfileFactory {
          * for the touch delta. ( mouse_delta = touch_delta * multiplier ) */
         abstract float calculateMultiplier(float speed);
 
+        @NonNull
         @Override
         public MouseDelta commitAcceleratedMouseDelta(MouseDelta reusedObject) {
-            MouseDelta result;
-            if (reusedObject == null) result = new MouseDelta();
-            else result = reusedObject;
-
             /* This makes sure that only the integer components of the deltas are sent,
              * since the coordinates are converted to integers in the desktop client anyway.
              * The leftover fractional part is stored and added later; this makes
              * the cursor move much smoother in slow speeds. */
-            result.x = (int) accumulatedX;
-            result.y = (int) accumulatedY;
+            reusedObject.x = (int) accumulatedX;
+            reusedObject.y = (int) accumulatedY;
             accumulatedY = accumulatedY % 1.0f;
             accumulatedX = accumulatedX % 1.0f;
-            return result;
+            return reusedObject;
         }
     }
 

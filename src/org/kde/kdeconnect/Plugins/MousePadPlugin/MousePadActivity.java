@@ -72,7 +72,7 @@ public class MousePadActivity
     private MousePadGestureDetector mMousePadGestureDetector;
     private PointerAccelerationProfile mPointerAccelerationProfile;
 
-    private PointerAccelerationProfile.MouseDelta mouseDelta; // to be reused on every touch move event
+    private PointerAccelerationProfile.MouseDelta mouseDelta = new PointerAccelerationProfile.MouseDelta(); // to be reused on every touch move event
 
     private KeyListenerView keyListenerView;
 
