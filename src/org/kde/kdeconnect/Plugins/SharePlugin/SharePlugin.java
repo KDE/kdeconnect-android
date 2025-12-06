@@ -312,31 +312,36 @@ public class SharePlugin extends Plugin {
         ArrayList<Uri> streams = streamsFromIntent(intent, extras);
         if (streams != null && !streams.isEmpty()) {
             sendUriList(streams);
-        } else if (extras != null && extras.containsKey(Intent.EXTRA_TEXT)) {
-            Log.i("SharePlugin", "Intent contains text to share");
-            String text = extras.getString(Intent.EXTRA_TEXT);
-            String subject = extras.getString(Intent.EXTRA_SUBJECT);
-
-            //Hack: Detect shared youtube videos, so we can open them in the browser instead of as text
-            if (subject != null && subject.endsWith("YouTube")) {
-                int index = text.indexOf(": http://youtu.be/");
-                if (index > 0) {
-                    text = text.substring(index + 2); //Skip ": "
-                }
-            }
-            boolean isUrl;
-            try {
-                new URL(text);
-                isUrl = true;
-            } catch (MalformedURLException e) {
-                isUrl = false;
-            }
-            NetworkPacket np = new NetworkPacket(SharePlugin.PACKET_TYPE_SHARE_REQUEST);
-            np.set(isUrl ? "url" : "text", text);
-            device.sendPacket(np);
-        } else {
-            Log.e("SharePlugin", "There's nothing we know how to share");
+            return;
         }
+        if (extras != null) {
+            String text = extras.getString(Intent.EXTRA_TEXT);
+            if (StringUtils.isNotEmpty(text)) {
+                Log.i("SharePlugin", "Intent contains text to share");
+
+                //Hack: Detect shared youtube videos, so we can open them in the browser instead of as text
+                String subject = extras.getString(Intent.EXTRA_SUBJECT);
+                if (subject != null && subject.endsWith("YouTube")) {
+                    int index = text.indexOf(": http://youtu.be/");
+                    if (index > 0) {
+                        text = text.substring(index + 2); //Skip ": "
+                    }
+                }
+
+                boolean isUrl;
+                try {
+                    new URL(text);
+                    isUrl = true;
+                } catch (MalformedURLException e) {
+                    isUrl = false;
+                }
+                NetworkPacket np = new NetworkPacket(SharePlugin.PACKET_TYPE_SHARE_REQUEST);
+                np.set(isUrl ? "url" : "text", text);
+                device.sendPacket(np);
+                return;
+            }
+        }
+        Log.e("SharePlugin", "There's nothing we know how to share");
     }
 
     private ArrayList<Uri> streamsFromIntent(Intent intent, Bundle extras) {
