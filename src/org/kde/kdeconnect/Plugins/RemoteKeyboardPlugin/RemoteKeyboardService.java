@@ -39,12 +39,6 @@ public class RemoteKeyboardService
     public static RemoteKeyboardService instance = null;
 
     /**
-     * Whether input is currently accepted
-     * Implies visible == true
-     */
-    private boolean active = false;
-
-    /**
      * Whether this InputMethod is currently visible.
      */
     public boolean visible = false;
@@ -70,7 +64,6 @@ public class RemoteKeyboardService
     @Override
     public void onCreate() {
         super.onCreate();
-        active = false;
         visible = false;
         instance = this;
         handler = new Handler();
@@ -125,20 +118,6 @@ public class RemoteKeyboardService
         }
 
         getWindow().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-    }
-
-    @Override
-    public void onStartInput(EditorInfo attribute, boolean restarting) {
-//        Log.d("RemoteKeyboardService", "onStartInput");
-        super.onStartInput(attribute, restarting);
-        active = true;
-    }
-
-    @Override
-    public void onFinishInput() {
-//        Log.d("RemoteKeyboardService", "onFinishInput");
-        super.onFinishInput();
-        active = false;
     }
 
     @Override
