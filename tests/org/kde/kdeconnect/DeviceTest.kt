@@ -28,6 +28,7 @@ import org.kde.kdeconnect.DeviceType.Companion.fromString
 import org.kde.kdeconnect.Helpers.DeviceHelper
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper
+import org.kde.kdeconnect.Helpers.TrustedDevices
 import org.kde.kdeconnect.PairingHandler.PairingCallback
 import java.security.cert.CertificateException
 
@@ -106,8 +107,7 @@ class DeviceTest {
     @Throws(CertificateException::class)
     fun testDeviceInfoToIdentityPacket() {
         val deviceId = "testDevice"
-        val settings = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE)
-        val deviceInfo = loadFromSettings(context, deviceId, settings)
+        val deviceInfo = loadFromSettings(context, deviceId)
         deviceInfo.protocolVersion = DeviceHelper.PROTOCOL_VERSION
         deviceInfo.incomingCapabilities = hashSetOf("kdeconnect.plugin1State", "kdeconnect.plugin2State")
         deviceInfo.outgoingCapabilities = hashSetOf("kdeconnect.plugin1State.request", "kdeconnect.plugin2State.request")
@@ -230,18 +230,16 @@ class DeviceTest {
 
         Assert.assertTrue(device.isPaired)
 
-        val preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE)
-        Assert.assertTrue(preferences.getBoolean(device.deviceId, false))
+        Assert.assertTrue(TrustedDevices.isTrustedDevice(context, device.deviceId))
 
-        val settings = context.getSharedPreferences(device.deviceId, Context.MODE_PRIVATE)
+        val settings = TrustedDevices.getDeviceSettings(context, device.deviceId)
         Assert.assertEquals(
             settings.getString("deviceName", "Unknown device"),
             "Unpaired Test Device"
         )
         Assert.assertEquals(settings.getString("deviceType", "tablet"), "phone")
 
-        preferences.edit().remove(device.deviceId).apply()
-        settings.edit().clear().apply()
+        TrustedDevices.removeTrustedDevice(context, device.deviceId)
     }
 
     @Test
@@ -255,8 +253,7 @@ class DeviceTest {
 
         Assert.assertFalse(device.isPaired)
 
-        val preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE)
-        Assert.assertFalse(preferences.getBoolean(device.deviceId, false))
+        Assert.assertFalse(TrustedDevices.isTrustedDevice(context, device.deviceId))
 
         verify(exactly = 1) { pairingCallback.unpaired(device) }
     }

@@ -12,7 +12,6 @@ import android.os.StrictMode.ThreadPolicy
 import android.os.StrictMode.VmPolicy
 import android.util.Log
 import androidx.annotation.WorkerThread
-import androidx.core.content.edit
 import org.kde.kdeconnect.Backends.BaseLink
 import org.kde.kdeconnect.Backends.BaseLinkProvider.ConnectionReceiver
 import org.kde.kdeconnect.Helpers.DeviceHelper
@@ -21,6 +20,7 @@ import org.kde.kdeconnect.Helpers.NotificationHelper
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper
 import org.kde.kdeconnect.Helpers.ThreadHelper
+import org.kde.kdeconnect.Helpers.TrustedDevices
 import org.kde.kdeconnect.PairingHandler.PairingCallback
 import org.kde.kdeconnect.Plugins.Plugin
 import org.kde.kdeconnect.Plugins.PluginFactory
@@ -124,11 +124,9 @@ class KdeConnect : Application() {
 
     private fun loadRememberedDevicesFromSettings() {
         // Log.e("BackgroundService", "Loading remembered trusted devices")
-        val preferences = getSharedPreferences("trusted_devices", MODE_PRIVATE)
-        val trustedDevices: Set<String> = preferences.all.keys
+        val trustedDevices = TrustedDevices.getAllTrustedDevices(this)
         trustedDevices.asSequence()
             .onEach { Log.d("KdeConnect", "Loading device $it") }
-            .filter { preferences.getBoolean(it, false) }
             .forEach {
                 try {
                     val device = Device(applicationContext, it)
@@ -147,18 +145,8 @@ class KdeConnect : Application() {
                         "KdeConnect",
                         "Couldn't load the certificate for a remembered device. Removing from trusted list.", e
                     )
-                    preferences.edit { remove(it) }
+                    TrustedDevices.removeTrustedDevice(this, it)
                 }
-            }
-    }
-    fun removeRememberedDevices() {
-        // Log.e("BackgroundService", "Removing remembered trusted devices")
-        val preferences = getSharedPreferences("trusted_devices", MODE_PRIVATE)
-        val trustedDevices: Set<String> = preferences.all.keys
-        trustedDevices.filter { preferences.getBoolean(it, false) }
-            .forEach {
-                Log.d("KdeConnect", "Removing devices: $it")
-                preferences.edit { remove(it) }
             }
     }
 

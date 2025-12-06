@@ -22,7 +22,7 @@ import org.kde.kdeconnect.Helpers.DeviceHelper.getDeviceId
 import org.kde.kdeconnect.Helpers.RandomHelper
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper.getPrivateKey
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper.getPublicKey
-import org.kde.kdeconnect.KdeConnect.Companion.getInstance
+import org.kde.kdeconnect.Helpers.TrustedDevices
 import java.io.ByteArrayInputStream
 import java.math.BigInteger
 import java.net.Socket
@@ -96,7 +96,7 @@ object SslHelper {
         }
 
         if (needsToGenerateCertificate) {
-            getInstance().removeRememberedDevices()
+            TrustedDevices.removeAllTrustedDevices(context)
             Log.i(LOG_TAG, "Generating a certificate")
             //Fix for https://issuetracker.google.com/issues/37095309
             val initialLocale = Locale.getDefault()
@@ -139,22 +139,6 @@ object SslHelper {
         resources.updateConfiguration(config, resources.displayMetrics)
     }
 
-    @JvmStatic
-    fun isCertificateStored(context: Context, deviceId: String): Boolean {
-        val devicePreferences = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE)
-        val cert: String = devicePreferences.getString("certificate", "")!!
-        return cert.isNotEmpty()
-    }
-
-    /**
-     * Returns the stored certificate for a trusted device
-     */
-    fun getDeviceCertificate(context: Context, deviceId: String): Certificate {
-        val devicePreferences = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE)
-        val certificateBytes = Base64.decode(devicePreferences.getString("certificate", ""), 0)
-        return parseCertificate(certificateBytes)
-    }
-
     private fun getSslContextForDevice(context: Context, deviceId: String, isDeviceTrusted: Boolean): SSLContext {
         // TODO: This method is called for each payload that is sent. Cache the result.
         val privateKey = getPrivateKey(context)
@@ -166,7 +150,7 @@ object SslHelper {
 
         // Add device certificate if device trusted
         if (isDeviceTrusted) {
-            val remoteDeviceCertificate = getDeviceCertificate(context, deviceId)
+            val remoteDeviceCertificate = TrustedDevices.getDeviceCertificate(context, deviceId)
             keyStore.setCertificateEntry(deviceId, remoteDeviceCertificate)
         }
 
