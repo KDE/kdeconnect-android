@@ -84,7 +84,7 @@ internal class RunCommandWidgetDataProvider(private val context: Context, val in
     }
 
     override fun getItemId(i: Int): Long {
-        return getPlugin()?.commandItems?.get(i)?.key?.hashCode()?.toLong() ?: 0
+        return getPlugin()?.commandItems?.getOrNull(i)?.key?.hashCode()?.toLong() ?: 0
     }
 
     override fun hasStableIds(): Boolean {
