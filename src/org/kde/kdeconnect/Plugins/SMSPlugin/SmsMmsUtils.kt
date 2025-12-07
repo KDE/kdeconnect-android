@@ -243,7 +243,7 @@ object SmsMmsUtils {
     /**
      * Copy of the same-name method from https://github.com/klinker41/android-smsmms
      */
-    private fun buildPdu(context: Context, fromAddress: String, recipients: Array<String>, subject: String, parts: List<MMSPart>, settings: Settings): SendReq {
+    private fun buildPdu(context: Context, fromAddress: String, recipients: Array<String>, subject: String?, parts: List<MMSPart>, settings: Settings): SendReq {
         val req = SendReq()
         // From, per spec
         req.prepareFromAddress(context, fromAddress, settings.subscriptionId)
