@@ -11,6 +11,8 @@
   <string name="pref_plugin_battery_desc">定期报告电池状态</string>
   <string name="pref_plugin_connectivity_report">连接报告</string>
   <string name="pref_plugin_connectivity_report_desc">报告网络信号强度和状态</string>
+  <string name="pref_plugin_digitizer">数位板</string>
+  <string name="pref_plugin_digitizer_desc">使用您的设备作为带有压感的数位板</string>
   <string name="pref_plugin_sftp">文件系统访问</string>
   <string name="pref_plugin_sftp_desc">允许远程浏览设备的文件系统</string>
   <string name="pref_plugin_clipboard">剪贴板同步</string>
@@ -52,6 +54,7 @@
   <string name="remotekeyboard_connected">远程键盘连接已启用</string>
   <string name="remotekeyboard_multiple_connections">发现多个远程键盘连接，请选择要配置的设备</string>
   <string name="open_mousepad">远程输入</string>
+  <string name="open_mousepad_tv">电视遥控器</string>
   <string name="mousepad_info">在屏幕上移动手指来移动光标。轻击代表左键，双指或三指点击代表右键或中键。用双指滚动。用长按来拖放。基于陀螺仪的空中鼠标功能可以在插件的首选项中启用。</string>
   <string name="mousepad_info_no_gestures">在屏幕上移动手指来移动鼠标光标，手指轻点来进行鼠标键点击。</string>
   <string name="mousepad_keyboard_input_not_supported">配对的设备不支持键盘输入</string>
@@ -65,6 +68,7 @@
   <string name="mousepad_scroll_sensitivity_title">滚动灵敏度</string>
   <string name="gyro_mouse_enabled_title">启用陀螺仪鼠标</string>
   <string name="gyro_mouse_sensitivity_title">陀螺仪灵敏度</string>
+  <string name="bigscreen_hide_mouse_input">隐藏鼠标和遥控输入按钮</string>
   <string name="bigscreen_show_home_title">显示主页按钮</string>
   <string name="bigscreen_show_back_title">显示返回按钮</string>
   <string-array name="mousepad_tap_entries">
@@ -232,11 +236,18 @@
   <string name="sftp_missing_permission_error">缺少权限：文件系统访问</string>
   <string name="no_players_connected">未找到播放器</string>
   <string name="send_files">发送文件</string>
+  <string name="use_digitizer">用作数位板</string>
+  <string name="digitizer_draw_button">用手指绘画</string>
+  <string name="digitizer_preference_title_hide_draw_button">隐藏绘画按钮</string>
+  <string name="digitizer_preference_summary_hide_draw_button">完全隐藏绘画按钮，不允许用手指绘画。请仅在您的设备支持压感笔输入时才启用此选项。</string>
+  <string name="digitizer_preference_title_draw_button_side">“用手指绘画”按钮的旁边</string>
+  <string name="digitizer_preference_title_enable_exit_fullscreen_gesture">启用全屏退出手势</string>
+  <string name="digitizer_preference_summary_enable_exit_fullscreen_gesture">如果启用，用手指点击并按住数位板将退出全屏模式。</string>
   <string-array name="digitizer_preference_entries_draw_button_side">
-    <item>Top left</item>
-    <item>Top right</item>
-    <item>Bottom left</item>
-    <item>Bottom right</item>
+    <item>左上</item>
+    <item>右上</item>
+    <item>左下</item>
+    <item>右下</item>
   </string-array>
   <string name="block_notification_contents">屏蔽通知内容</string>
   <string name="block_notification_images">屏蔽通知图像</string>
@@ -350,6 +361,7 @@
   <string name="bigscreen_down">下</string>
   <string name="bigscreen_back">返回</string>
   <string name="bigscreen_mic">麦克风</string>
+  <string name="pref_plugin_bigscreen">电视遥控器</string>
   <string name="pref_plugin_bigscreen_desc">使用您手机遥控 Plasma 电视</string>
   <string name="bigscreen_optional_permission_explanation">请开启手机的麦克风以共享语音输入。</string>
   <string name="bigscreen_speech_extra_prompt">语音</string>
@@ -438,4 +450,5 @@
   <string name="ping_in_progress">正在执行 ping 命令…</string>
   <string name="device_host_invalid">主机无效。请使用有效的主机名、IPv4 或 IPv6 地址</string>
   <string name="device_host_duplicate">主机已在列表中</string>
+  <string name="enable_fullscreen">启用全屏</string>
 </resources>
