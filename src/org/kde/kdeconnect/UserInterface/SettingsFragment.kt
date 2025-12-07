@@ -22,6 +22,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.preference.EditTextPreference
 import androidx.preference.ListPreference
@@ -168,20 +169,25 @@ class SettingsFragment : PreferenceFragmentCompat() {
             }
         }
 
+    val activityLauncherWithDevicesByIpRefresh = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        updateDevicesByIpSummary()
+    }
+
     private fun trustedNetworkPref(context: Context) = Preference(context).apply {
         isPersistent = false
         setTitle(R.string.trusted_networks)
         setSummary(R.string.trusted_networks_desc)
         onPreferenceClickListener = Preference.OnPreferenceClickListener {
-            startActivityForResult(Intent(context, TrustedNetworksActivity::class.java), REQUEST_REFRESH_NETWORKS)
+            activityLauncherWithNetworkRefresh.launch(Intent(context, TrustedNetworksActivity::class.java))
             true
         }
     }
 
-    private val REQUEST_REFRESH_DEVICES_BY_IP = 1
-    private val REQUEST_REFRESH_NETWORKS = 2
-
     private lateinit var devicesByIpPref : Preference
+
+    val activityLauncherWithNetworkRefresh = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        BackgroundService.instance?.onNetworkChange(null)
+    }
 
     /** Opens activity to configure device by IP when clicked */
     private fun devicesByIpPref(context: Context) = Preference(context).apply {
@@ -190,16 +196,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
         setTitle(R.string.custom_device_list)
         updateDevicesByIpSummary()
         onPreferenceClickListener = Preference.OnPreferenceClickListener {
-            startActivityForResult(Intent(context, CustomDevicesActivity::class.java), REQUEST_REFRESH_DEVICES_BY_IP)
+            activityLauncherWithDevicesByIpRefresh.launch(Intent(context, CustomDevicesActivity::class.java))
             true
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        when (requestCode) {
-            REQUEST_REFRESH_DEVICES_BY_IP -> updateDevicesByIpSummary()
-            REQUEST_REFRESH_NETWORKS -> BackgroundService.instance?.onNetworkChange(null)
-            else -> super.onActivityResult(requestCode, resultCode, data)
         }
     }
 
