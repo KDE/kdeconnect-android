@@ -54,6 +54,7 @@
   <string name="remotekeyboard_connected">La connessione della tastiera remota è attiva</string>
   <string name="remotekeyboard_multiple_connections">Ci sono più connessioni di tastiere remote, seleziona il dispositivo da configurare</string>
   <string name="open_mousepad">Impulso remoto</string>
+  <string name="open_mousepad_tv">Telecomando TV</string>
   <string name="mousepad_info">Muovi un dito sullo schermo per spostare il puntatore del mouse. Tocca per un clic e usa due/tre dita per i pulsanti destro e centrale. Utilizza 2 dita per scorrere. Utilizza una pressione lunga per trascinare e rilasciare. È possibile abilitare la funzionalità del mouse giroscopico dalle preferenze dell\'estensione</string>
   <string name="mousepad_info_no_gestures">Sposta un dito sullo schermo per spostare il cursore del mouse, tocca per un clic.</string>
   <string name="mousepad_keyboard_input_not_supported">Immissione da tastiera non supportata dal dispositivo associato</string>
@@ -67,6 +68,7 @@
   <string name="mousepad_scroll_sensitivity_title">Sensibilità di scorrimento</string>
   <string name="gyro_mouse_enabled_title">Abilita il mouse giroscopico</string>
   <string name="gyro_mouse_sensitivity_title">Sensibilità del giroscopio</string>
+  <string name="bigscreen_hide_mouse_input">Nascondi il pulsante di input remoto del mouse e della tastiera</string>
   <string name="bigscreen_show_home_title">Mostra il pulsante Home</string>
   <string name="bigscreen_show_back_title">Mostra il pulsante Indietro</string>
   <string-array name="mousepad_tap_entries">
@@ -367,6 +369,7 @@
   <string name="bigscreen_down">Giù</string>
   <string name="bigscreen_back">Indietro</string>
   <string name="bigscreen_mic">Mic</string>
+  <string name="pref_plugin_bigscreen">Telecomando TV</string>
   <string name="pref_plugin_bigscreen_desc">Utilizza il tuo dispositivo come telecomando per Plasma Bigscreen</string>
   <string name="bigscreen_optional_permission_explanation">Per condividere l\'ingresso del microfono dal telefono è necessario consentire l\'accesso all\'ingresso audio del telefono</string>
   <string name="bigscreen_speech_extra_prompt">Parlato</string>
