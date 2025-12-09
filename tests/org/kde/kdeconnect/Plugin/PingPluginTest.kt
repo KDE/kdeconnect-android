@@ -25,6 +25,7 @@ class PingPluginTest {
         val context = mockk<Context> {
             every { getSharedPreferences(any(), any()) } returns mockk<SharedPreferences>()
             every { getSystemService(any()) } returns notificationManager
+            every { getString(any()) } returns "STRING"
         }
         val device = mockk<Device> {
             every { name } returns "Test Device"
@@ -38,7 +39,6 @@ class PingPluginTest {
                 mockkConstructor(NotificationCompat.Builder::class)
                 every { anyConstructed<NotificationCompat.Builder>().build() } returns mockk()
                 plugin.setContext(context, device)
-
                 test(device, plugin, notificationManager)
             }
         }
@@ -47,8 +47,8 @@ class PingPluginTest {
     @Test
     fun startPlugin() {
         executeWithMocks { device, plugin, notificationManager ->
-            plugin.startMainActivity(mockk())
-
+            val entries = plugin.getUiMenuEntries()
+            entries.single().onClick(mockk())
             verify(exactly = 1) { device.sendPacket(match { np -> np.type == "kdeconnect.ping" && np.payload == null }) }
         }
     }
