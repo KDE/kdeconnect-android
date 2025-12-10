@@ -255,9 +255,7 @@ public class MprisReceiverPlugin extends Plugin {
         np.setPayload(new NetworkPacket.Payload(p));
         np.set("player", playerName);
         np.set("transferringAlbumArt", true);
-        if (artUrl != null) {
-            np.set("albumArtUrl", artUrl);
-        }
+        np.set("albumArtUrl", artUrl);
         getDevice().sendPacket(np);
     }
 
@@ -279,17 +277,15 @@ public class MprisReceiverPlugin extends Plugin {
         np.set("canGoNext", player.canGoNext());
         np.set("canSeek", player.canSeek());
         np.set("volume", player.getVolume());
+        String artUrl = "";
         MprisReceiverCallback cb = playerCbs.get(player.getName());
-        String artUrl = null;
         if (cb != null) {
-            artUrl = cb.getArtUrl();
+            String url = cb.getArtUrl();
+            if (url != null) {
+                artUrl = url;
+            }
         }
-        if (artUrl != null) {
-            np.set("albumArtUrl", artUrl);
-            Log.v(TAG, "Sending metadata with url " + artUrl);
-        } else {
-            Log.v(TAG, "Sending metadata without url ");
-        }
+        np.set("albumArtUrl", artUrl);
         getDevice().sendPacket(np);
     }
 
