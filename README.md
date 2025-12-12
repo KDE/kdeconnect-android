@@ -5,15 +5,7 @@ This is a fork of the original [KDE/kdeconnect-android](https://github.com/KDE/k
 
 ### ✨ New Features
 - **Enhanced Voice Input Interface**: Three-button layout for improved text input
-  - **Delete Last Button**: Remove recent voice input with long-press for continuous character deletion
-  - **Large Mic Button**: Accessible voice input for hands-free typing
-  - **Enter Button**: Quick return key access for form submissions and line breaks
-- **Automatic Mouse Disabling**: Voice input mode automatically disables mouse functionality for cleaner interface
-- **Improved UI Layout**: Better spacing and sizing for remote control use cases
-- **Long-Press Functionality**: Hold delete button for precise character-by-character deletion
 
-### 🎯 Use Case
-Perfect for using your Android device as a remote control when giving presentations, controlling media centers, or any scenario where voice-based text input is preferred over touch typing.
 
 **For the original project, see:** [KDE/kdeconnect-android](https://github.com/KDE/kdeconnect-android)
 
