@@ -17,6 +17,13 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
         kdeconnect:showAsAction="ifRoom" />
 
     <item
+        android:id="@+id/menu_voice_input"
+        android:icon="@drawable/ic_mic_black"
+        android:title="@string/mousepad_voice_input_title"
+        kdeconnect:iconTint="?colorOnBackground"
+        kdeconnect:showAsAction="ifRoom" />
+
+    <item
         android:id="@+id/menu_open_compose_send"
         android:icon="@drawable/ic_edit_note_24dp"
         android:title="@string/open_compose_send"

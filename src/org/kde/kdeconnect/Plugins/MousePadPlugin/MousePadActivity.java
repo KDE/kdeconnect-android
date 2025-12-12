@@ -8,11 +8,16 @@ package org.kde.kdeconnect.Plugins.MousePadPlugin;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.speech.RecognizerIntent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.GestureDetector;
 import android.view.HapticFeedbackConstants;
 import android.view.Menu;
@@ -22,6 +27,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -52,6 +60,7 @@ public class MousePadActivity
     private final static float MinDistanceToSendScroll = 2.5f; // touch gesture scroll
     private final static float MinDistanceToSendGenericScroll = 0.1f; // real mouse scroll wheel event
     private final static float StandardDpi = 240.0f; // = hdpi
+    private static final int VOICE_RECOGNITION_REQUEST_CODE = 1234;
 
     private float mPrevX;
     private float mPrevY;
@@ -63,9 +72,18 @@ public class MousePadActivity
     private boolean allowGyro = false;
     private boolean gyroEnabled = false;
     private boolean doubleTapDragEnabled = false;
+    private boolean mouseInputDisabled = false;
+    private boolean voiceInputMode = false;
+    private boolean voiceButtonClickListenerSet = false;
+    private boolean enterButtonClickListenerSet = false;
+    private boolean deleteButtonClickListenerSet = false;
     private int gyroscopeSensitivity = 100;
     private boolean isScrolling = false;
     private float accumulatedDistanceY = 0;
+    private String lastVoiceInput = "";
+    private boolean isDeleteLongPress = false;
+    private Handler deleteHandler;
+    private Runnable deleteRunnable;
 
     private GestureDetector mDetector;
     private SensorManager mSensorManager;
@@ -113,6 +131,12 @@ public class MousePadActivity
 
     @Override
     public void onSensorChanged(SensorEvent event) {
+        // Disable gyroscope mouse if mouse input is disabled OR voice input mode is enabled
+        boolean effectiveMouseInputDisabled = mouseInputDisabled || voiceInputMode;
+        if (effectiveMouseInputDisabled) {
+            return;
+        }
+
         float[] values = event.values;
 
         float X = -values[2] * 70 * (gyroscopeSensitivity/100.0f);
@@ -148,9 +172,29 @@ public class MousePadActivity
         setSupportActionBar(getBinding().toolbarLayout.toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getBinding().mouseClickLeft.setOnClickListener(v -> sendLeftClick());
-        getBinding().mouseClickMiddle.setOnClickListener(v -> sendMiddleClick());
-        getBinding().mouseClickRight.setOnClickListener(v -> sendRightClick());
+
+        // Initialize delete handler
+        deleteHandler = new Handler(Looper.getMainLooper());
+        deleteRunnable = new Runnable() {
+            @Override
+            public void run() {
+                if (isDeleteLongPress) {
+                    sendSingleBackspace();
+                    // Schedule next deletion every 100ms (10 characters per second)
+                    deleteHandler.postDelayed(this, 100);
+                }
+            }
+        };
+
+        // Check if mouse input is disabled before setting click listeners
+        mouseInputDisabled = PreferenceManager.getDefaultSharedPreferences(this)
+                .getBoolean(getString(R.string.mousepad_mouse_input_disabled), false);
+
+        if (!mouseInputDisabled) {
+            getBinding().mouseClickLeft.setOnClickListener(v -> sendLeftClick());
+            getBinding().mouseClickMiddle.setOnClickListener(v -> sendMiddleClick());
+            getBinding().mouseClickRight.setOnClickListener(v -> sendRightClick());
+        }
 
         deviceId = getIntent().getStringExtra("deviceId");
 
@@ -238,6 +282,9 @@ public class MousePadActivity
 
         menu.findItem(R.id.menu_right_click).setVisible(!mouseButtonsEnabled);
         menu.findItem(R.id.menu_middle_click).setVisible(!mouseButtonsEnabled);
+
+        // Show voice input menu item only if voice recognition is available
+        menu.findItem(R.id.menu_voice_input).setVisible(isVoiceRecognitionAvailable());
         return true;
     }
 
@@ -255,6 +302,9 @@ public class MousePadActivity
                     .putExtra(PluginSettingsActivity.EXTRA_DEVICE_ID, deviceId)
                     .putExtra(PluginSettingsActivity.EXTRA_PLUGIN_KEY, MousePadPlugin.class.getSimpleName());
             startActivity(intent);
+            return true;
+        } else if (id == R.id.menu_voice_input) {
+            startVoiceRecognition();
             return true;
         } else if (id == R.id.menu_show_keyboard) {
             MousePadPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, MousePadPlugin.class);
@@ -289,6 +339,13 @@ public class MousePadActivity
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        // If mouse input is disabled OR voice input mode is enabled, only allow keyboard input
+        boolean effectiveMouseInputDisabled = mouseInputDisabled || voiceInputMode;
+        if (effectiveMouseInputDisabled) {
+            // Only process touch events for the keyboard view
+            return false;
+        }
+
         if (mMousePadGestureDetector.onTouchEvent(event)) {
             return true;
         }
@@ -356,6 +413,12 @@ public class MousePadActivity
 
     @Override
     public boolean onGenericMotionEvent(MotionEvent e) {
+        // Disable mouse scroll if mouse input is disabled OR voice input mode is enabled
+        boolean effectiveMouseInputDisabled = mouseInputDisabled || voiceInputMode;
+        if (effectiveMouseInputDisabled) {
+            return super.onGenericMotionEvent(e);
+        }
+
         if (e.getAction() == MotionEvent.ACTION_SCROLL) {
             final float distanceY = e.getAxisValue(MotionEvent.AXIS_VSCROLL);
 
@@ -372,6 +435,12 @@ public class MousePadActivity
 
     @Override
     public boolean onScroll(MotionEvent e1, MotionEvent e2, final float distanceX, final float distanceY) {
+        // Disable mouse scroll if mouse input is disabled OR voice input mode is enabled
+        boolean effectiveMouseInputDisabled = mouseInputDisabled || voiceInputMode;
+        if (effectiveMouseInputDisabled) {
+            return false;
+        }
+
         // If only one thumb is used then cancel the scroll gesture
         if (e2.getPointerCount() <= 1) {
             return false;
@@ -391,6 +460,12 @@ public class MousePadActivity
 
     @Override
     public void onLongPress(MotionEvent e) {
+        // Disable long press drag if mouse input is disabled OR voice input mode is enabled
+        boolean effectiveMouseInputDisabled = mouseInputDisabled || voiceInputMode;
+        if (effectiveMouseInputDisabled) {
+            return;
+        }
+
         if (!doubleTapDragEnabled) {
             getWindow().getDecorView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
             MousePadPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, MousePadPlugin.class);
@@ -400,7 +475,7 @@ public class MousePadActivity
             }
             plugin.sendSingleHold();
             dragging = true;
-        }   
+        }
     }
 
     @Override
@@ -410,6 +485,12 @@ public class MousePadActivity
 
     @Override
     public boolean onSingleTapConfirmed(MotionEvent e) {
+        // Disable mouse clicks if mouse input is disabled OR voice input mode is enabled
+        boolean effectiveMouseInputDisabled = mouseInputDisabled || voiceInputMode;
+        if (effectiveMouseInputDisabled) {
+            return false;
+        }
+
         switch (singleTapAction) {
             case LEFT:
                 sendLeftClick();
@@ -427,6 +508,12 @@ public class MousePadActivity
 
     @Override
     public boolean onDoubleTap(MotionEvent e) {
+        // Disable mouse double-click if mouse input is disabled OR voice input mode is enabled
+        boolean effectiveMouseInputDisabled = mouseInputDisabled || voiceInputMode;
+        if (effectiveMouseInputDisabled) {
+            return false;
+        }
+
         MousePadPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, MousePadPlugin.class);
         if (plugin == null) {
             finish();
@@ -448,6 +535,12 @@ public class MousePadActivity
 
     @Override
     public boolean onTripleFingerTap(MotionEvent ev) {
+        // Disable mouse clicks if mouse input is disabled OR voice input mode is enabled
+        boolean effectiveMouseInputDisabled = mouseInputDisabled || voiceInputMode;
+        if (effectiveMouseInputDisabled) {
+            return false;
+        }
+
         switch (tripleTapAction) {
             case LEFT:
                 sendLeftClick();
@@ -465,6 +558,12 @@ public class MousePadActivity
 
     @Override
     public boolean onDoubleFingerTap(MotionEvent ev) {
+        // Disable mouse clicks if mouse input is disabled OR voice input mode is enabled
+        boolean effectiveMouseInputDisabled = mouseInputDisabled || voiceInputMode;
+        if (effectiveMouseInputDisabled) {
+            return false;
+        }
+
         switch (doubleTapAction) {
             case LEFT:
                 sendLeftClick();
@@ -516,6 +615,32 @@ public class MousePadActivity
             return;
         }
         plugin.sendRightClick();
+    }
+
+    private void sendEnterKey() {
+        MousePadPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, MousePadPlugin.class);
+        if (plugin == null) {
+            finish();
+            return;
+        }
+        plugin.sendSelect();
+    }
+
+    private void deleteLastVoiceInput() {
+        if (lastVoiceInput != null && !lastVoiceInput.isEmpty()) {
+            // Send backspace characters to delete the last voice input
+            String backspaces = new String(new char[lastVoiceInput.length()]).replace('\0', '\b');
+            if (keyListenerView != null) {
+                keyListenerView.sendChars(backspaces);
+            }
+            lastVoiceInput = ""; // Clear the stored voice input
+        }
+    }
+
+    private void sendSingleBackspace() {
+        if (keyListenerView != null) {
+            keyListenerView.sendChars("\b");
+        }
     }
 
     private void sendScroll(final float y) {
@@ -608,11 +733,140 @@ public class MousePadActivity
 
         doubleTapDragEnabled = prefs.getBoolean(getString(R.string.mousepad_doubletap_drag_enabled_pref), true);
 
+        mouseInputDisabled = prefs.getBoolean(getString(R.string.mousepad_mouse_input_disabled), false);
+
+        // Hide mouse buttons if mouse input is disabled
+        if (mouseInputDisabled) {
+            getBinding().mouseButtons.setVisibility(View.GONE);
+            getBinding().mousepadInfoText.setText(R.string.mousepad_info_mouse_disabled);
+        } else {
+            getBinding().mousepadInfoText.setText(R.string.mousepad_info);
+        }
+
+        voiceInputMode = prefs.getBoolean(getString(R.string.mousepad_voice_input_mode), false);
+
+        // Automatically disable mouse input when voice input mode is enabled
+        boolean effectiveMouseInputDisabled = mouseInputDisabled || voiceInputMode;
+
+        // Show or hide the voice input button based on the setting
+        if (voiceInputMode && isVoiceRecognitionAvailable()) {
+            getBinding().voiceInputButton.setVisibility(View.VISIBLE);
+        } else {
+            getBinding().voiceInputButton.setVisibility(View.GONE);
+        }
+
+        // Show or hide the enter button based on the voice input mode
+        if (voiceInputMode) {
+            getBinding().enterKeyButton.setVisibility(View.VISIBLE);
+            getBinding().deleteLastInputButton.setVisibility(View.VISIBLE);
+        } else {
+            getBinding().enterKeyButton.setVisibility(View.GONE);
+            getBinding().deleteLastInputButton.setVisibility(View.GONE);
+        }
+
+        // Hide mouse buttons if mouse input is disabled OR voice input mode is enabled
+        if (effectiveMouseInputDisabled) {
+            getBinding().mouseButtons.setVisibility(View.GONE);
+            getBinding().mousepadInfoText.setText(R.string.mousepad_info_mouse_disabled);
+        } else {
+            getBinding().mouseButtons.setVisibility(View.VISIBLE);
+            getBinding().mousepadInfoText.setText(R.string.mousepad_info);
+        }
+
+        // Set up the voice input button click listener if voice mode is enabled
+        if (voiceInputMode && !voiceButtonClickListenerSet) {
+            getBinding().voiceInputButton.setOnClickListener(v -> {
+                startVoiceRecognition();
+            });
+            voiceButtonClickListenerSet = true;
+        }
+
+        // Set up the enter button click listener if voice mode is enabled
+        if (voiceInputMode && !enterButtonClickListenerSet) {
+            getBinding().enterKeyButton.setOnClickListener(v -> {
+                sendEnterKey();
+            });
+            enterButtonClickListenerSet = true;
+        }
+
+        // Set up the delete button click and long-press listeners if voice mode is enabled
+        if (voiceInputMode && !deleteButtonClickListenerSet) {
+            getBinding().deleteLastInputButton.setOnClickListener(v -> {
+                // Handle quick click - delete last voice input
+                deleteLastVoiceInput();
+            });
+
+            getBinding().deleteLastInputButton.setOnLongClickListener(v -> {
+                isDeleteLongPress = true;
+                // First delete any remaining voice input
+                deleteLastVoiceInput();
+                // Start continuous deletion after 1 second
+                deleteHandler.postDelayed(deleteRunnable, 1000);
+                return true; // Consume the long click event
+            });
+
+            getBinding().deleteLastInputButton.setOnTouchListener((v, event) -> {
+                if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL) {
+                    // Stop the continuous deletion when finger is lifted
+                    isDeleteLongPress = false;
+                    deleteHandler.removeCallbacks(deleteRunnable);
+                }
+                return false; // Let other touch events be processed normally
+            });
+
+            deleteButtonClickListenerSet = true;
+        }
+
         prefsApplied = true;
     }
 
     private boolean isGyroSensorAvailable() {
         return mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE) != null;
+    }
+
+    private boolean isVoiceRecognitionAvailable() {
+        PackageManager pm = getPackageManager();
+        List<ResolveInfo> activities = pm.queryIntentActivities(
+                new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH), 0);
+        return activities.size() > 0;
+    }
+
+    private void startVoiceRecognition() {
+        if (!isVoiceRecognitionAvailable()) {
+            Toast.makeText(this, "Voice recognition not available", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak to send text");
+        intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 1);
+
+        try {
+            startActivityForResult(intent, VOICE_RECOGNITION_REQUEST_CODE);
+        } catch (Exception e) {
+            Toast.makeText(this, "Failed to start voice recognition", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == VOICE_RECOGNITION_REQUEST_CODE && resultCode == RESULT_OK) {
+            ArrayList<String> matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+            if (matches != null && !matches.isEmpty()) {
+                String spokenText = matches.get(0);
+
+                // Store the last voice input for potential deletion
+                lastVoiceInput = spokenText;
+
+                // Send the spoken text through the KeyListenerView
+                if (keyListenerView != null) {
+                    keyListenerView.sendChars(spokenText);
+                }
+            }
+        }
     }
 
     @Override

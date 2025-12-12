@@ -85,6 +85,20 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
         android:layout_width="wrap_content" />
 
     <SwitchPreference
+        android:id="@+id/mousepad_mouse_input_disabled_pref"
+        android:defaultValue="false"
+        android:key="@string/mousepad_mouse_input_disabled"
+        android:title="@string/mousepad_mouse_input_disabled_title"
+        android:summary="@string/mousepad_mouse_input_disabled_summary" />
+
+    <SwitchPreference
+        android:id="@+id/mousepad_voice_input_mode_pref"
+        android:defaultValue="false"
+        android:key="@string/mousepad_voice_input_mode"
+        android:title="@string/mousepad_voice_input_mode_title"
+        android:summary="@string/mousepad_voice_input_mode_summary" />
+
+    <SwitchPreference
         android:id="@+id/mousepad_mouse_buttons_enabled_pref"
         android:defaultValue="true"
         android:key="@string/mousepad_mouse_buttons_enabled_pref"

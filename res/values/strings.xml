@@ -69,8 +69,9 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="remotekeyboard_multiple_connections" translatable="true">There is more than one remote keyboard connection, select the device to configure</string>
     <string name="open_mousepad">Remote input</string>
     <string name="open_mousepad_tv">TV remote</string>
-    <string name="mousepad_info">Move a finger on the screen to move the mouse cursor. Tap for a click, and use two/three fingers for right and middle buttons. Use 2 fingers to scroll. Use a long press to drag\'n drop. Gyro mouse functionality can be enabled from plugin preferences</string>
+    <string name="mousepad_info">Move a finger on the screen to move the mouse cursor. Tap for a click, and use two/three fingers for right and middle buttons. Use 2 fingers to scroll. Use a long press to drag\'n drop. Gyro mouse functionality can be enabled from plugin preferences. Mouse input and voice input modes can be configured in plugin settings.</string>
     <string name="mousepad_info_no_gestures">Move a finger on the screen to move the mouse cursor, tap for a click.</string>
+    <string name="mousepad_info_mouse_disabled">Mouse Disabled</string>
     <string name="mousepad_keyboard_input_not_supported">Keyboard input not supported by the paired device</string>
     <string name="mousepad_single_tap_settings_title">Set one finger tap action</string>
     <string name="mousepad_double_tap_settings_title">Set two finger tap action</string>
@@ -93,6 +94,15 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="gyro_mouse_enabled_title">Enable gyroscope mouse</string>
     <string name="gyro_mouse_sensitivity_title">Gyroscope sensitivity</string>
     <string name="gyro_mouse_sensitivity" translatable="false">gyro_mouse_sensitivity</string>
+    <string name="mousepad_mouse_input_disabled" translatable="false">mousepad_mouse_input_disabled</string>
+    <string name="mousepad_mouse_input_disabled_title">Disable mouse input</string>
+    <string name="mousepad_mouse_input_disabled_summary">When enabled, only keyboard input will be sent</string>
+    <string name="mousepad_voice_input_mode" translatable="false">mousepad_voice_input_mode</string>
+    <string name="mousepad_voice_input_mode_title">Show voice input button</string>
+    <string name="mousepad_voice_input_mode_summary">Display a large voice input button for easy access</string>
+    <string name="mousepad_voice_input_title">Voice Input</string>
+    <string name="mousepad_enter_key">Enter</string>
+    <string name="mousepad_delete_last_input">Delete Last</string>
     <string name="bigscreen_hide_mouse_input">Hide mouse and keyboard remote input button</string>
     <string name="bigscreen_show_home_title">Show Home button</string>
     <string name="bigscreen_show_back_title">Show Back button</string>

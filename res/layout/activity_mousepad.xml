@@ -25,6 +25,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <TextView
+            android:id="@+id/mousepad_info_text"
             style="@android:style/TextAppearance.Medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,6 +34,48 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
             android:padding="12dip"
             android:importantForAccessibility="no"
             android:text="@string/mousepad_info" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/delete_last_input_button"
+            android:layout_width="220dp"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@id/voice_input_button"
+            android:layout_marginBottom="120dp"
+            android:visibility="gone"
+            android:text="@string/mousepad_delete_last_input"
+            android:textSize="24sp"
+            style="@style/Widget.Material3.Button.TonalButton" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/voice_input_button"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            android:contentDescription="@string/mousepad_voice_input_title"
+            app:icon="@drawable/ic_mic_black"
+            app:iconSize="100dp"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconTint="?colorOnPrimary"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:insetLeft="0dp"
+            android:insetRight="0dp"
+            style="@style/KdeConnectButton.Primary" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/enter_key_button"
+            android:layout_width="220dp"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/voice_input_button"
+            android:layout_marginTop="120dp"
+            android:visibility="gone"
+            android:text="@string/mousepad_enter_key"
+            android:textSize="24sp"
+            style="@style/Widget.Material3.Button.TonalButton" />
 
         <org.kde.kdeconnect.Plugins.MousePadPlugin.KeyListenerView
             android:id="@+id/keyListener"

@@ -50,6 +50,13 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
         <item name="cornerRadius">12dp</item>
     </style>
 
+    <style name="KdeConnectButton.Primary" parent="Widget.Material3.Button">
+        <item name="backgroundTint">?attr/colorPrimary</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="cornerRadius">100dp</item>
+        <item name="android:elevation">8dp</item>
+    </style>
+
     <style name="ActionModeStyle" parent="Widget.AppCompat.ActionMode">
     </style>
     <style name="Theme.Transparent" parent="@style/Theme.AppCompat.NoActionBar">
