@@ -11,14 +11,19 @@
   <string name="pref_plugin_battery_desc">Periodicky hlásit stav baterky</string>
   <string name="pref_plugin_connectivity_report">Hlášení spojení</string>
   <string name="pref_plugin_connectivity_report_desc">Nahlásit stav a sílu signálu sítě</string>
+  <string name="pref_plugin_digitizer">Grafický tablet</string>
+  <string name="pref_plugin_digitizer_desc">Používejte své zařízení jako kreslící tablet citlivý na tlak</string>
+  <string name="pref_plugin_sftp">Přístup k souborovému systému</string>
   <string name="pref_plugin_sftp_desc">Umožní vám vzdáleně prohlížet souborový systém tohoto zařízení</string>
   <string name="pref_plugin_clipboard">Synchronizace schránky</string>
   <string name="pref_plugin_clipboard_desc">Sdílet obsah schránky</string>
   <string name="pref_plugin_clipboard_sent">Schránka poslána</string>
   <string name="pref_plugin_mousepad">Vzdálený vstup</string>
+  <string name="pref_plugin_mousepad_desc_nontv">Používejte svůj telefon nebo tablet jako touchpad a klávesnici</string>
+  <string name="pref_plugin_mousepad_desc_tv">Používejte svůj telefon nebo tablet jako ovladač TV</string>
   <string name="pref_plugin_presenter">Ovladač prezentace</string>
   <string name="pref_plugin_presenter_desc">Použijte své zařízení pro přepínání snímků prezentace</string>
-  <string name="pref_plugin_remotekeyboard">Přijímat stisky kláves se vzdálených zařízení</string>
+  <string name="pref_plugin_remotekeyboard">Přijímat stisky kláves ze vzdálených zařízení</string>
   <string name="pref_plugin_remotekeyboard_desc">Přijímat události stisku kláves ze vzdálených zařízení</string>
   <string name="pref_plugin_mpris">Ovládání multimédií</string>
   <string name="pref_plugin_mpris_desc">Poskytuje dálkové ovládání přehrávačů médií</string>
@@ -49,6 +54,7 @@
   <string name="remotekeyboard_connected">Vzdálené připojení klávesnice je aktivní</string>
   <string name="remotekeyboard_multiple_connections">Je k dispozici více než jedno připojení klávesnice. Vyberte zařízení pro jeho nastavení.</string>
   <string name="open_mousepad">Vzdálený vstup</string>
+  <string name="open_mousepad_tv">Ovladač TV</string>
   <string name="mousepad_info">Pohybujte prstem po obrazovce pro pohybování kurzorem myši. Ťukněte pro kliknutí a použijte dva/tři prsty jako pravé a prostřední tlačítko. Použijte 2 prsty pro posunování. Pro přetažení dlouze podržte. Funkčnost gyro myš lze povolit v předvolbách modulu.</string>
   <string name="mousepad_info_no_gestures">Pohybujte prstem po obrazovce pro pohybování kurzorem myši, ťukněte pro kliknutí.</string>
   <string name="mousepad_keyboard_input_not_supported">Vstup pomocí klávesnice není spárovaným zařízením podporován</string>
@@ -62,6 +68,9 @@
   <string name="mousepad_scroll_sensitivity_title">Citlivost posunu</string>
   <string name="gyro_mouse_enabled_title">Povolit gyroskopickou myš</string>
   <string name="gyro_mouse_sensitivity_title">Citlivost gyroskopu</string>
+  <string name="bigscreen_hide_mouse_input">Skrýt tlačítko vzdáleného vstupu myši a klávesnice</string>
+  <string name="bigscreen_show_home_title">Zobrazit tlačítko Domů</string>
+  <string name="bigscreen_show_back_title">Zobrazit tlačítko Zpět</string>
   <string-array name="mousepad_tap_entries">
     <item>Kliknutí levým tlačítkem myši</item>
     <item>Kliknutí pravým tlačítkem myši</item>
@@ -113,6 +122,7 @@
   <string name="error_not_reachable">Zařízení je nedostupné</string>
   <string name="error_already_paired">Zařízení je již spárováno</string>
   <string name="error_timed_out">Čas vypršel</string>
+  <string name="error_clocks_not_match">Hodiny zařízení jsou rozsynchronizované</string>
   <string name="error_canceled_by_user">Přerušeno uživatelem</string>
   <string name="error_canceled_by_other_peer">Přerušeno druhým uživatelem</string>
   <string name="encryption_info_title">Informace o šifrování</string>
@@ -177,10 +187,13 @@
   <string name="right_click">Poslat kliknutí pravým tlačítkem</string>
   <string name="middle_click">Poslat kliknutí prostředním tlačítkem</string>
   <string name="show_keyboard">Zobrazit klávesnici</string>
+  <string name="show_mouse_and_keyboard">Zobrazit myš a klávesnici</string>
   <string name="device_not_paired">Zařízení není spárováno</string>
+  <string name="pairing_duplicate_names">"Upozorněné:  Nalezeno více zařízení se stejným názvem."</string>
   <string name="request_pairing">Vyžádat párování</string>
   <string name="pairing_accept">Přijmout</string>
   <string name="pairing_reject">Odmítnout</string>
+  <string name="pairing_explanation">Párování dvou zařízení jim navzájem umožní oboustranný přístup. Ujistěte se, že párujete pouze svá zařízení.</string>
   <string name="settings">Nastavení</string>
   <string name="mpris_play">Přehrát</string>
   <string name="mpris_pause">Pozastavit</string>
@@ -204,14 +217,18 @@
   <string name="mpris_notification_settings_title">Obrazit oznámení pro ovládání médií</string>
   <string name="mpris_notification_settings_summary">Umožnit ovládání přehrávače médií bez otevření KDE Connect</string>
   <string name="share_to">Sdílet s...</string>
+  <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">URL sdílená s nedostupným zařízením budou zaslána jakmile se stane dostupným.\n\n</string>
+  <string name="protocol_version">Verze protokolu:</string>
   <string name="protocol_version_newer">Toto zařízení používá novější verzi protokolu</string>
   <string name="plugin_settings_with_name">Nastavení %s</string>
   <string name="invalid_device_name">Neplatný název zařízení</string>
   <string name="shareplugin_text_saved">Přijatý text byl uložen do schránky</string>
   <string name="custom_devices_settings">Seznam vlastních zařízení</string>
+  <string name="custom_devices_settings_summary">%d ručně přidaných zařízení</string>
   <string name="custom_device_list">Přidat zařízení podle IP</string>
   <string name="custom_device_deleted">Vlastní zařízení bylo smazáno</string>
+  <string name="custom_device_list_help">Pokud vaše zařízení není automaticky detekováno, můžete přidat jeho adresu IP nebo název kliknutím na tlačítko níže</string>
   <string name="custom_device_fab_hint">Přidat zařízení</string>
   <string name="undo">Zpět</string>
   <string name="share_notification_preference">Hlasitá oznámení</string>
@@ -240,13 +257,21 @@
   <string name="sftp_no_storage_locations_configured">Nebyla nastavena umístění úložiště.</string>
   <string name="sftp_saf_permission_explanation">Pro vzdálený přístup k souborům musíte nastavit umístění úložišť</string>
   <string name="sftp_manage_storage_permission_explanation">Pro umožnění vzdáleného přístupu k souborům na tomto zařízení musíte povolit aplikaci KDE Connect spravovat úložiště.</string>
+  <string name="sftp_missing_permission_error">Chybí oprávnění: přístup k souborovému systému</string>
   <string name="no_players_connected">Přehrávač nenalezen</string>
   <string name="send_files">Odeslat soubory</string>
+  <string name="use_digitizer">Používat jako grafický tablet</string>
+  <string name="digitizer_draw_button">Kreslení pomocí prstu</string>
+  <string name="digitizer_preference_title_hide_draw_button">Skrýt tlačítko kreslení</string>
+  <string name="digitizer_preference_summary_hide_draw_button">Úplně skryje tlačítko kreslení, takže znemožní kreslení prstem. Toto zapněte pouze v případě, že vaše zařízení podporuje vstup pomocí stylusu.</string>
+  <string name="digitizer_preference_title_draw_button_side">Postranní tlačítko \"Kreslení pomocí prstu\"</string>
+  <string name="digitizer_preference_title_enable_exit_fullscreen_gesture">Povolit gesto na opuštění celoobrazovkového režimu</string>
+  <string name="digitizer_preference_summary_enable_exit_fullscreen_gesture">Pokud je zapnuté, klepnutím nebo podržením prstu na kreslící podložce bude zakázán režim na celou obrazovku.</string>
   <string-array name="digitizer_preference_entries_draw_button_side">
-    <item>Top left</item>
-    <item>Top right</item>
-    <item>Bottom left</item>
-    <item>Bottom right</item>
+    <item>Vlevo nahoře</item>
+    <item>Vpravo nahoře</item>
+    <item>Vlevo dole</item>
+    <item>Vpravo dole</item>
   </string-array>
   <string name="block_notification_contents">Blokovat obsah upozornění</string>
   <string name="block_notification_images">Blokovat obrázky upozornění</string>
@@ -300,6 +325,7 @@
   <string name="notification_channel_persistent">Stálý ukazatel</string>
   <string name="notification_channel_media_control">Ovládání médií</string>
   <string name="notification_channel_filetransfer">Příchozí přenos souboru</string>
+  <string name="notification_channel_filetransfer_complete">Příchozí přenos souboru byl dokončen</string>
   <string name="notification_channel_filetransfer_upload">Odchozí přenos souboru</string>
   <string name="notification_channel_filetransfer_error">Chyba v přenosu souboru</string>
   <string name="notification_channel_high_priority">Vysoká priorita</string>
@@ -312,6 +338,7 @@
   <string name="runcommand_noruncommandplugin">Toto zařízení nemá povolený modul pro spouštění příkazů</string>
   <string name="runcommand_category_device_controls_title">Ovládání zařízení</string>
   <string name="runcommand_device_controls_summary">Pokud vaše zařízení podporuje Ovládání zařízení, zobrazí se zde příkazy, které jste nastavili.</string>
+  <string name="set_runcommand_name_as_title">set_runcommand_name_as_title</string>
   <string name="runcommand_name_as_title_title">Zobrazit název jako popisek</string>
   <string name="pref_plugin_findremotedevice">Najít vzdálené zařízení</string>
   <string name="pref_plugin_findremotedevice_desc">Prozvonit vzdálené zařízení</string>
@@ -323,6 +350,8 @@
   <string name="devices">Zařízení</string>
   <string name="settings_rename">Název zařízení</string>
   <string name="settings_dark_mode">Tmavý motiv</string>
+  <string name="settings_export_logs">Exportovat záznamy KDE Connect</string>
+  <string name="settings_export_logs_text">Vygenerovat soubor s informacemi o spuštění, které mohou pomoci ladit problémy.</string>
   <string name="settings_more_settings_title">Více nastavení</string>
   <string name="settings_more_settings_text">Nastavení \"pro každé zařízení\" lze najít v \'Nastavení modulu\' v zařízení.</string>
   <string name="setting_persistent_notification">Ukázat stálé upozornění</string>
@@ -343,6 +372,7 @@
   <string name="empty_trusted_networks_list_text">Nepřidali jste žádné důvěryhodné sítě</string>
   <string name="allow_all_networks_text">Povolit všechny</string>
   <string name="location_permission_needed_title">Získán přístup</string>
+  <string name="bluetooth_permission_needed_desc">KDE Connect vyžaduje oprávnění na připojení nedalekých zařízení, aby bylo možné párovat zařízení pomocí Bluetooth, které je dostupné v KDE Connect.</string>
   <string name="location_permission_needed_desc">KDE Connect vyžaduje oprávnění o poloze na pozadí aby poznal WiFi, ke které jste připojeni i když je aplikace samotná na pozadí. To je kvůli tomu, že názvy sítí WiFi okolo vás by mohly být použity pro nalezení vaší polohy i když to není to, co KDE Connect dělá.</string>
   <string name="clipboard_android_x_incompat">Android 10 odstranit přístup ke schránce pro všechny aplikace. Tento modul bude zakázán.</string>
   <string name="mpris_open_url">Pokračovat v přehrávání zde</string>
@@ -353,7 +383,9 @@
   <string name="bigscreen_select">Vybrat</string>
   <string name="bigscreen_right">Vpravo</string>
   <string name="bigscreen_down">Dolů</string>
+  <string name="bigscreen_back">Zpět</string>
   <string name="bigscreen_mic">Mikrofon</string>
+  <string name="pref_plugin_bigscreen">Ovladač TV</string>
   <string name="pref_plugin_bigscreen_desc">Používejte své zařízení jako ovladač pro Plasma Bigscreen</string>
   <string name="bigscreen_optional_permission_explanation">Pro sdílení vstupu mikrofonu z vašeho telefonu je potřeba udělit přístup ke vstupnímu audio zařízení telefonu</string>
   <string name="bigscreen_speech_extra_prompt">Mluvené slovo</string>
@@ -398,9 +430,12 @@
   <string name="kde_be_free">KDE - Buďte svobodní!</string>
   <string name="kde">KDE</string>
   <string name="konqi">Konqi</string>
+  <string name="rise_up">Posunout nahoru</string>
+  <string name="rise_down">Posunout dolů</string>
   <string name="click_here_to_type">Pro psaní ťukněte sem</string>
   <string name="clear_compose">Vyprázdnit</string>
   <string name="send_compose">Odeslat</string>
+  <string name="compose_send_title">Odeslat</string>
   <string name="open_compose_send">Napsat text</string>
   <string name="double_tap_to_drag">Přetáhnout dvojitým ťuknutím</string>
   <string name="hold_to_drag">Přetáhnout podržením</string>
@@ -424,6 +459,8 @@
   <string name="tap_to_execute">Pro spuštění ťukněte sem</string>
   <string name="plugin_stats">Statistiky modulů</string>
   <string name="enable_udp_broadcast">Povolit prohledávání sítě UDP</string>
+  <string name="enable_mdns_broadcast">Povolit prohledávání sítě MDNS</string>
+  <string name="enable_mdns_broadcast_explanation">Prohledávání pomocí MDNS je zastaralé. Prosím nahlašte chybu, pokud KDE Connect funguje pouze v případě, že je toto povolené.</string>
   <string name="enable_bluetooth">Povolit Bluetooth (beta)</string>
   <string name="receive_notifications_permission_explanation">Je potřeba povolit oznámení aby e šlo přijímat z ostatních zařízení</string>
   <string name="findmyphone_notifications_explanation">Oprávnění k upozorněním je potřeba aby telefon mohl zvonit když je aplikace na pozadí</string>
@@ -432,4 +469,10 @@
   <string name="mpris_keepwatching_settings_title">Pokračovat v přehrávání</string>
   <string name="mpris_keepwatching_settings_summary">Zobrazit tiché upozornění pro pokračování přehrávání na tomto zařízení po zavření médií</string>
   <string name="notification_channel_keepwatching">Pokračovat v přehrávání</string>
+  <string name="ping_result">Ping proveden v čase %1$d milisekund</string>
+  <string name="ping_failed">Zařízení nelze pingnout</string>
+  <string name="ping_in_progress">Pinguji...</string>
+  <string name="device_host_invalid">Hostitel je neplatný. Použijte platný název hosta, IPv4 nebo IPv6</string>
+  <string name="device_host_duplicate">Hostitel je již na seznamu</string>
+  <string name="enable_fullscreen">Povolit celou obrazovku</string>
 </resources>
