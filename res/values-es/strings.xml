@@ -11,6 +11,8 @@
   <string name="pref_plugin_battery_desc">Informar periódicamente del estado de la batería</string>
   <string name="pref_plugin_connectivity_report">Informe de conectividad</string>
   <string name="pref_plugin_connectivity_report_desc">Informe de fuerza de la señal de red y su estado</string>
+  <string name="pref_plugin_digitizer">Tableta de dibujo</string>
+  <string name="pref_plugin_digitizer_desc">Use su dispositivo como una tableta de dibujo sensible a la presión</string>
   <string name="pref_plugin_sftp">Acceso al sistema de archivos</string>
   <string name="pref_plugin_sftp_desc">Permite examinar de forma remota el sistema de archivos de este dispositivo</string>
   <string name="pref_plugin_clipboard">Sincronización del portapapeles</string>
@@ -52,6 +54,7 @@
   <string name="remotekeyboard_connected">La conexión remota de teclado está activa</string>
   <string name="remotekeyboard_multiple_connections">Hay más de una conexión remota de teclado, seleccione el dispositivo a configurar</string>
   <string name="open_mousepad">Entrada remota</string>
+  <string name="open_mousepad_tv">Control remoto TV</string>
   <string name="mousepad_info">Mueva un dedo sobre la pantalla para mover el cursor del ratón. Pulse para ejecutar un clic y use dos/tres dedos para emular los botones derecho y central. Use 2 dedos para desplazar las pantalla. Use una pulsación larga para arrastrar y soltar. La funcionalidad de la rueda del ratón puede ser activada desde las preferencias del complemento.</string>
   <string name="mousepad_info_no_gestures">Mueva un dedo sobre la pantalla para mover el cursor del ratón, tóquela pata hacer clic.</string>
   <string name="mousepad_keyboard_input_not_supported">Entrada de teclado no soportada por el dispositivo vinculado.</string>
@@ -65,6 +68,7 @@
   <string name="mousepad_scroll_sensitivity_title">Sensibilidad del desplazamiento</string>
   <string name="gyro_mouse_enabled_title">Activar ratón giroscópico</string>
   <string name="gyro_mouse_sensitivity_title">Sensibilidad del giroscopio</string>
+  <string name="bigscreen_hide_mouse_input">Ocultar el botón de entrada remota de ratón y teclado</string>
   <string name="bigscreen_show_home_title">Mostrar botón de inicio</string>
   <string name="bigscreen_show_back_title">Mostrar botón atrás</string>
   <string-array name="mousepad_tap_entries">
@@ -240,11 +244,18 @@
   <string name="sftp_missing_permission_error">Falta de permisos: acceso al sistema de archivos</string>
   <string name="no_players_connected">Ningún reproductor encontrado</string>
   <string name="send_files">Enviar archivos</string>
+  <string name="use_digitizer">Usar como tableta de dibujo</string>
+  <string name="digitizer_draw_button">Dibujar usando el dedo</string>
+  <string name="digitizer_preference_title_hide_draw_button">Ocultar botón de dibujo</string>
+  <string name="digitizer_preference_summary_hide_draw_button">Esconde completamente el botón de dibujo, haciendo que no se pueda dibujar con el dedo. Solo active esta opción si su dispositivo reconoce lápiz óptico.</string>
+  <string name="digitizer_preference_title_draw_button_side">Lugar del botón «Dibujar con el dedo»</string>
+  <string name="digitizer_preference_title_enable_exit_fullscreen_gesture">Activar gesto para salir de pantalla completa</string>
+  <string name="digitizer_preference_summary_enable_exit_fullscreen_gesture">Si está activado, pulse y mantenga pulsado el dispositivo de dibujo con su dedo para salir del modo pantalla completa.</string>
   <string-array name="digitizer_preference_entries_draw_button_side">
-    <item>Top left</item>
-    <item>Top right</item>
-    <item>Bottom left</item>
-    <item>Bottom right</item>
+    <item>Arriba a la izquierda</item>
+    <item>Arriba a la derecha</item>
+    <item>Abajo a la izquierda</item>
+    <item>Abajo a la derecha</item>
   </string-array>
   <string name="block_notification_contents">Bloquear los contenidos de las notificaciones</string>
   <string name="block_notification_images">Bloquear las imágenes de las notificaciones</string>
@@ -358,6 +369,7 @@
   <string name="bigscreen_down">Abajo</string>
   <string name="bigscreen_back">Atrás</string>
   <string name="bigscreen_mic">Micrófono</string>
+  <string name="pref_plugin_bigscreen">Control remoto TV</string>
   <string name="pref_plugin_bigscreen_desc">Use su dispositivo como mando remoto para Plasma Bigscreen</string>
   <string name="bigscreen_optional_permission_explanation">Para compartir la entrada del micrófono desde su teléfono, necesita dar acceso a la entrada de audio de su teléfono</string>
   <string name="bigscreen_speech_extra_prompt">Habla</string>
@@ -446,4 +458,5 @@
   <string name="ping_in_progress">Conectando</string>
   <string name="device_host_invalid">El servidor es inválido. Use un nombre válido de servidor, IPv4 o IPv6</string>
   <string name="device_host_duplicate">El servidor ya existe en la lista</string>
+  <string name="enable_fullscreen">Activar pantalla completa</string>
 </resources>
