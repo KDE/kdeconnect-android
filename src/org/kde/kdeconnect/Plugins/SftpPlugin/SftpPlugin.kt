@@ -130,7 +130,7 @@ class SftpPlugin : Plugin(), OnSharedPreferenceChangeListener {
             this["user"] = SimpleSftpServer.USER
             this["password"] = server.regeneratePassword()
             // Kept for compatibility, in case "multiPaths" is not possible or the other end does not support it
-            this["path"] = if (paths.size == 1) paths[0] else "/"
+            this["path"] = if (paths.size == 1) paths[0] else "/storage/emulated/0"
             if (paths.isNotEmpty()) {
                 this["multiPaths"] = paths
                 this["pathNames"] = pathNames
