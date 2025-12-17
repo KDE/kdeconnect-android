@@ -11,6 +11,8 @@
   <string name="pref_plugin_battery_desc">Okresowo zgłasza stan naładowania baterii</string>
   <string name="pref_plugin_connectivity_report">Zgłaszanie łączności</string>
   <string name="pref_plugin_connectivity_report_desc">Zgłasza siłę i stanu sygnału sieciowego</string>
+  <string name="pref_plugin_digitizer">Tablet rysunkowy</string>
+  <string name="pref_plugin_digitizer_desc">Używaj swojego urządzenia jako tabletu rysunkowego czułego na nacisk</string>
   <string name="pref_plugin_sftp">Dostęp do systemu plików</string>
   <string name="pref_plugin_sftp_desc">Udostępnia system plików tego urządzenia do przeglądania innemu urządzeniu</string>
   <string name="pref_plugin_clipboard">Współdzielenie schowka</string>
@@ -52,6 +54,7 @@
   <string name="remotekeyboard_connected">Połączenie zdalnej klawiatury jest nawiązane</string>
   <string name="remotekeyboard_multiple_connections">Nawiązano więcej niż jedno połączenie zdalnej klawiatury, wybierz urządzenie do ustawienia</string>
   <string name="open_mousepad">Zdalne sterowanie</string>
+  <string name="open_mousepad_tv">Pilot do TV</string>
   <string name="mousepad_info">Przesuwanie palcem po ekranie przesuwa wskaźnik myszy. Stuknięcie jednym, dwoma i trzema palcami wywołuje odpowiednio naciśnięcie lewym, prawym i środkowym przyciskiem myszy. Dwa palce przewijają. Długie naciśnięcie rozpoczyna czynność przeciągania i upuszczania. Zachowania żyroskopowe myszy mogą być włączone z poziomu ustawień wtyczki.</string>
   <string name="mousepad_info_no_gestures">Przesuń palcem po ekranie, aby przesunąć wskaźnikiem myszy, dotknij, aby kliknąć.</string>
   <string name="mousepad_keyboard_input_not_supported">Wpisywanie z klawiatury jest nieobsługiwane przez sparowane urządzenie</string>
@@ -65,6 +68,7 @@
   <string name="mousepad_scroll_sensitivity_title">Czułość przewijania</string>
   <string name="gyro_mouse_enabled_title">Włącz mysz żyroskopową</string>
   <string name="gyro_mouse_sensitivity_title">Czułość żyroskopu</string>
+  <string name="bigscreen_hide_mouse_input">Ukryj przycisk zdalnej obsługi myszą i klawiaturą</string>
   <string name="bigscreen_show_home_title">Pokaż przycisk domu</string>
   <string name="bigscreen_show_back_title">Pokaż przycisk wstecz</string>
   <string-array name="mousepad_tap_entries">
@@ -256,11 +260,18 @@
   <string name="sftp_missing_permission_error">Brakuje uprawnień: dostęp do systemu plików</string>
   <string name="no_players_connected">Nie znaleziono żadnych odtwarzaczy</string>
   <string name="send_files">Wysyłanie plików</string>
+  <string name="use_digitizer">Użyj jako tabletu rysunkowego</string>
+  <string name="digitizer_draw_button">Rysuj przy użyciu palca</string>
+  <string name="digitizer_preference_title_hide_draw_button">Ukryj przycisk rysowania</string>
+  <string name="digitizer_preference_summary_hide_draw_button">Całkowicie ukrywa przycisk rysowania, uniemożliwiając rysowanie palcem. Włącz to, tylko gdy twoje urządzenie da się obsługiwać rysikiem.</string>
+  <string name="digitizer_preference_title_draw_button_side">Strona przycisku \"Rysuj palcem\"</string>
+  <string name="digitizer_preference_title_enable_exit_fullscreen_gesture">Włącz gest wyjścia z trybu pełnego ekranu</string>
+  <string name="digitizer_preference_summary_enable_exit_fullscreen_gesture">Po włączeniu, stuknięcie i przytrzymanie palcem na obszarze rysowania zaprzestanie wyświetlania w trybie na całym ekranie.</string>
   <string-array name="digitizer_preference_entries_draw_button_side">
-    <item>Top left</item>
-    <item>Top right</item>
-    <item>Bottom left</item>
-    <item>Bottom right</item>
+    <item>Na górze po lewej</item>
+    <item>Na górze po prawej</item>
+    <item>Na dole po lewej</item>
+    <item>Prawy dolny</item>
   </string-array>
   <string name="block_notification_contents">Blokuj treść powiadomień</string>
   <string name="block_notification_images">Blokuj obrazy powiadomień</string>
@@ -374,6 +385,7 @@
   <string name="bigscreen_down">Dół</string>
   <string name="bigscreen_back">Wstecz</string>
   <string name="bigscreen_mic">Mikrofon</string>
+  <string name="pref_plugin_bigscreen">Pilot do TV</string>
   <string name="pref_plugin_bigscreen_desc">Steruje Dużym Ekranem Plazmy</string>
   <string name="bigscreen_optional_permission_explanation">Aby zezwolić na używanie mikrofonu twojego telefonu, musisz udzielić do niego dostępu na telefonie</string>
   <string name="bigscreen_speech_extra_prompt">Mowa</string>
@@ -462,4 +474,5 @@
   <string name="ping_in_progress">Wysyłanie pingu…</string>
   <string name="device_host_invalid">Nazwa gospodarza jest nieprawidłowa. Użyj prawidłowej nazwy, adresu IPv4 lub IPv6</string>
   <string name="device_host_duplicate">Nazwa gospodarza już znajduje się na liście</string>
+  <string name="enable_fullscreen">Pokaż na całym ekranie</string>
 </resources>
