@@ -400,5 +400,4 @@
   <string name="enable_udp_broadcast">UDP சாதன கண்டுபிடிப்பை இயக்கு</string>
   <string name="receive_notifications_permission_explanation">மற்ற சாதனங்களில் அறிவிப்புகளைப் பெறுவதற்கு அறிவிப்புகள் அனுமதி தேவை</string>
   <string name="findmyphone_notifications_explanation">செயலி செயலில் இல்லாதபோதும் தொலைபேசியை இசைக்கச்செய்ய அறிவிப்புகள் அனுமதி தேவை</string>
-  <string name="no_notifications">அறிவிப்புகள் முடக்கப்பட்டுள்ளன. உள்வரும் இணைப்புக்கோரிக்கைகளை பெறமாட்டீர்.</string>
 </resources>

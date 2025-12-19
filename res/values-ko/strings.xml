@@ -424,7 +424,6 @@
   <string name="enable_bluetooth">블루투스 활성화(베타)</string>
   <string name="receive_notifications_permission_explanation">다른 장치에서 알림을 받으려면 알림을 허용해야 합니다</string>
   <string name="findmyphone_notifications_explanation">앱이 백그라운드에서 실행 중일 때 장치를 울리게 하려면 알림 권한이 필요합니다</string>
-  <string name="no_notifications">알림이 비활성화되어 있습니다. 들어오는 페어링 알림을 받을 수 없습니다</string>
   <string name="mpris_keepwatching">계속 재생</string>
   <string name="mpris_keepwatching_settings_title">계속 재생</string>
   <string name="mpris_keepwatching_settings_summary">미디어를 닫은 후 이 장치에서 계속 재생할 수 있는 조용한 알림 표시</string>

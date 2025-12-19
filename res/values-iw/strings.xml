@@ -464,7 +464,6 @@
   <string name="enable_bluetooth">הפעלת בלוטות׳ (בטא)</string>
   <string name="receive_notifications_permission_explanation">יש לאשר התראות כדי לקבל אותן במכשירים אחרים</string>
   <string name="findmyphone_notifications_explanation">הרשאת ההתראות נחוצה כדי שהטלפון יצלצל גם אם היישומון ברקע</string>
-  <string name="no_notifications">התראות מושבתות, לא תתקבלנה התראות צימוד נכנסות.</string>
   <string name="mpris_keepwatching">להמשיך לנגן</string>
   <string name="mpris_keepwatching_settings_title">להמשיך לנגן</string>
   <string name="mpris_keepwatching_settings_summary">הצגת התראה שקטה כדי להמשיך לנגן בהתקן הזה לאחר סגירת המדיה</string>

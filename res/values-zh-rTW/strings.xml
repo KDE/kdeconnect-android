@@ -437,7 +437,6 @@
   <string name="enable_bluetooth">啟用藍牙 (beta)</string>
   <string name="receive_notifications_permission_explanation">需要被允許從其他裝置收到通知</string>
   <string name="findmyphone_notifications_explanation">需要通知權限，以便當應用程式在背景時手機可以響鈴</string>
-  <string name="no_notifications">通知已停用，您將不會收到傳入的配對通知。</string>
   <string name="mpris_keepwatching">繼續播放</string>
   <string name="mpris_keepwatching_settings_title">繼續播放</string>
   <string name="mpris_keepwatching_settings_summary">顯示無聲通知以在關閉媒體後繼續在此裝置上播放</string>

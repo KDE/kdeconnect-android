@@ -405,7 +405,6 @@
   <string name="enable_udp_broadcast">UDP-Geräteerkennung einschalten</string>
   <string name="enable_bluetooth">Bluetooth aktivieren (Beta)</string>
   <string name="findmyphone_notifications_explanation">Benachrichtigungen müssen erlaubt sein, damit das Telefon klingeln kann, wenn die App im Hintergrund ist</string>
-  <string name="no_notifications">Benachrichtigungen sind abgeschaltet, Sie erhalten keine Benachrichtigungen für eingehende Verbindungen.</string>
   <string name="mpris_keepwatching">Wiedergabe fortsetzen</string>
   <string name="mpris_keepwatching_settings_title">Wiedergabe fortsetzen</string>
   <string name="notification_channel_keepwatching">Wiedergabe fortsetzen</string>

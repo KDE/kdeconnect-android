@@ -427,7 +427,6 @@
   <string name="enable_bluetooth">Активиране на Bluetooth(бета)</string>
   <string name="receive_notifications_permission_explanation">Известията трябва са разрешени, за да може да се получават от други устройства</string>
   <string name="findmyphone_notifications_explanation">Разрешение за известия е необходимо, за да може телефонът да звъни, когато приложението е във фонов режим</string>
-  <string name="no_notifications">Известията са деактивирани, няма да получавате известия за входящи двойки.</string>
   <string name="mpris_keepwatching">Продължаване на възпроизвеждането</string>
   <string name="mpris_keepwatching_settings_title">Продължаване на възпроизвеждането</string>
   <string name="mpris_keepwatching_settings_summary">Показване на безшумно известие за продължаване на възпроизвеждането на това устройство след затваряне на медия</string>

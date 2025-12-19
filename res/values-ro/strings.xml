@@ -412,5 +412,4 @@
   <string name="enable_udp_broadcast">Activează descoperirea UDP</string>
   <string name="receive_notifications_permission_explanation">Notificările trebuiesc permise pentru a le primi de pe alte dispozitive</string>
   <string name="findmyphone_notifications_explanation">Permisiunea pentru notificări e necesară pentru ca telefonul să poată suna când aplicația e în fundal</string>
-  <string name="no_notifications">Notificările sunt dezactivate, nu veți primi notificări pentru cererile de asociere.</string>
 </resources>

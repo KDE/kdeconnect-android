@@ -416,7 +416,6 @@
   <string name="enable_bluetooth">Enable bluetooth (beta)</string>
   <string name="receive_notifications_permission_explanation">Notifications need to be allowed to receive them from other devices</string>
   <string name="findmyphone_notifications_explanation">The notifications permission is needed so the phone can ring when the app is in the background</string>
-  <string name="no_notifications">Notifications are disabled, you won\'t receive incoming pair notifications.</string>
   <string name="mpris_keepwatching">Continue playing</string>
   <string name="mpris_keepwatching_settings_title">Continue playing</string>
   <string name="mpris_keepwatching_settings_summary">Show a silent notification to continue playing on this device after closing media</string>

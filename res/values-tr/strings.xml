@@ -445,7 +445,6 @@
   <string name="enable_bluetooth">Bluetooth’u Etkinleştir (Beta)</string>
   <string name="receive_notifications_permission_explanation">Başka aygıtlardan gelen bildirimleri alabilmek için bildirimlere izin verilmesi gereklidir</string>
   <string name="findmyphone_notifications_explanation">Uygulama arka plandayken telefonun çalabilmesi için bildirim izni gereklidir</string>
-  <string name="no_notifications">Bildirimler devre dışı; herhangi bir gelen eş bildirimi almayacaksınız.</string>
   <string name="mpris_keepwatching">Oynamayı Sürdür</string>
   <string name="mpris_keepwatching_settings_title">Oynamayı Sürdür</string>
   <string name="mpris_keepwatching_settings_summary">Ortamı kapattıktan sonra bu aygıtta oynatmayı sürdürmek için sessiz bir bildirim göster</string>

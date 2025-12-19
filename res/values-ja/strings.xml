@@ -402,7 +402,6 @@
   <string name="enable_udp_broadcast">UDP デバイス検知を有効化</string>
   <string name="receive_notifications_permission_explanation">他のデバイスからの通知を受け取るためには、通知を許可する必要があります。</string>
   <string name="findmyphone_notifications_explanation">アプリがバックグラウンドで動作しているときに携帯電話を鳴動させるには、通知の許可が必要です。</string>
-  <string name="no_notifications">通知は無効化されています。ペア要求通知は受信されません。</string>
   <string name="mpris_keepwatching">再生を続ける</string>
   <string name="mpris_keepwatching_settings_title">再生を続ける</string>
   <string name="mpris_keepwatching_settings_summary">メディアを閉じた後、このデバイスで続けて再生するためのサイレント通知を表示する</string>

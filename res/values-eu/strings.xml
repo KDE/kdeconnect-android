@@ -436,7 +436,6 @@
   <string name="enable_bluetooth">Gaitu bluetooth (beta)</string>
   <string name="receive_notifications_permission_explanation">Jakinarazpenak baimendu behar dira beste gailuetatik haiek jasotzeko</string>
   <string name="findmyphone_notifications_explanation">Aplikazioa atzeko planoan dagoenean telefonoak jo dezan jakinarazpen-baimena behar da</string>
-  <string name="no_notifications">Jakinarazpenak ezgaituta daude, ez duzu jasoko parekatzeko sarrerako jakinarazpenik.</string>
   <string name="mpris_keepwatching">Jarraitu jotzen</string>
   <string name="mpris_keepwatching_settings_title">Jarraitu jotzen</string>
   <string name="mpris_keepwatching_settings_summary">Hedabidea itxi ondoren, gailu honetan jotzen jarraitzeko jakinarazpen ixil bat erakutsi.</string>

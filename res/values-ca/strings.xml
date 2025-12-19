@@ -448,7 +448,6 @@
   <string name="enable_bluetooth">Activa el Bluetooth (beta)</string>
   <string name="receive_notifications_permission_explanation">Cal permetre que les notificacions es rebin des d\'altres dispositius</string>
   <string name="findmyphone_notifications_explanation">Cal el permís de notificacions perquè el telèfon pugui sonar quan l\'aplicació estigui en segon pla</string>
-  <string name="no_notifications">Les notificacions estan desactivades, no rebreu notificacions entrants d\'emparellament.</string>
   <string name="mpris_keepwatching">Continua reproduint</string>
   <string name="mpris_keepwatching_settings_title">Continua reproduint</string>
   <string name="mpris_keepwatching_settings_summary">Mostra una notificació silenciosa per a continuar reproduint en aquest dispositiu després de tancar l\'element multimèdia</string>

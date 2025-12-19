@@ -433,7 +433,6 @@
   <string name="enable_bluetooth">Aktivera Blåtand (beta)</string>
   <string name="receive_notifications_permission_explanation">Underrättelser måste vara tillåtna för att kunna ta emot dem från andra apparater</string>
   <string name="findmyphone_notifications_explanation">Underrättelserättigheter krävs så att telefonen kan ringa när programmet är i bakgrunden</string>
-  <string name="no_notifications">Underrättelser är inaktiverade, så en underrättelse om inkommande begäran att para ihop inte tas emot.</string>
   <string name="mpris_keepwatching">Fortsätt spela</string>
   <string name="mpris_keepwatching_settings_title">Fortsätt spela</string>
   <string name="mpris_keepwatching_settings_summary">Visa en tyst underrättelse för att fortsätta spela på apparaten efter att media har stängts.</string>

@@ -464,7 +464,6 @@
   <string name="enable_bluetooth">Włącz Bluetooth (beta)</string>
   <string name="receive_notifications_permission_explanation">Należy zezwolić na powiadomienia, aby móc je otrzymywać z innych urządzeń</string>
   <string name="findmyphone_notifications_explanation">Uprawnienia powiadomień są potrzebne, aby telefon mógł dzwonić, gdy aplikacja działa w tle</string>
-  <string name="no_notifications">Powiadomienia są wyłączone, więc nie otrzymasz żadnych próśb o sparowanie.</string>
   <string name="mpris_keepwatching">Kontynuuj odtwarzanie</string>
   <string name="mpris_keepwatching_settings_title">Kontynuuj odtwarzanie</string>
   <string name="mpris_keepwatching_settings_summary">Pokaż ciche powiadomienie, aby kontynuować odtwarzanie na tym urządzeniu po zamknięciu mediów</string>

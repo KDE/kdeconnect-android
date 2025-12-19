@@ -464,7 +464,6 @@
   <string name="enable_bluetooth">Povolit Bluetooth (beta)</string>
   <string name="receive_notifications_permission_explanation">Je potřeba povolit oznámení aby e šlo přijímat z ostatních zařízení</string>
   <string name="findmyphone_notifications_explanation">Oprávnění k upozorněním je potřeba aby telefon mohl zvonit když je aplikace na pozadí</string>
-  <string name="no_notifications">Upozornění jsou zakázána. Neuvidíte upozornění na párování.</string>
   <string name="mpris_keepwatching">Pokračovat v přehrávání</string>
   <string name="mpris_keepwatching_settings_title">Pokračovat v přehrávání</string>
   <string name="mpris_keepwatching_settings_summary">Zobrazit tiché upozornění pro pokračování přehrávání na tomto zařízení po zavření médií</string>

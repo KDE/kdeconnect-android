@@ -448,7 +448,6 @@
   <string name="enable_bluetooth">Activar Bluetooth (beta)</string>
   <string name="receive_notifications_permission_explanation">Las notificaciones tienen que estar activadas para recibirlas desde otros dispositivos</string>
   <string name="findmyphone_notifications_explanation">Se necesita el permiso de notificaciones para que el teléfono pueda sonar cuando la aplicación está en segundo plano</string>
-  <string name="no_notifications">Las notificaciones están desactivadas, no recibirá notificaciones de vinculación entrantes.</string>
   <string name="mpris_keepwatching">Continuar reproduciendo</string>
   <string name="mpris_keepwatching_settings_title">Continuar reproduciendo</string>
   <string name="mpris_keepwatching_settings_summary">Mostrar una notificación silenciosa para continuar reproduciendo en este dispositivo tras cerrar el reproductor.</string>

@@ -433,7 +433,6 @@
   <string name="enable_bluetooth">Käytä Bluetoothia (beeta)</string>
   <string name="receive_notifications_permission_explanation">Ilmoitukset tulee sallia, jotta niitä voi vastaanottaa muilta laitteilta</string>
   <string name="findmyphone_notifications_explanation">Ilmoituskäyttöoikeus vaaditaan, jotta puhelin voisi soida sovelluksen toimiessa taustalla</string>
-  <string name="no_notifications">Ilmoitukset eivät ole käytössä, joten paritusilmoituksia ei vastaanoteta.</string>
   <string name="mpris_keepwatching">Jatka toistoa</string>
   <string name="mpris_keepwatching_settings_title">Jatka toistoa</string>
   <string name="mpris_keepwatching_settings_summary">Näytä hiljainen ilmoitus toiston jatkamisesta laitteella median sulkeuduttua</string>

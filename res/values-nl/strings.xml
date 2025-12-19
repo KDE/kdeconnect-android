@@ -448,7 +448,6 @@
   <string name="enable_bluetooth">Bluetooth inschakelen (beta)</string>
   <string name="receive_notifications_permission_explanation">Meldingen moeten toegestaan worden om ze te ontvangen van andere apparaten</string>
   <string name="findmyphone_notifications_explanation">Het recht op meldingen is nodig zodat de telefoon af kan gaan wanneer de toepassing in de achtergrond is</string>
-  <string name="no_notifications">Meldingen zijn uitgeschakeld, u zult inkomende paringmeldingen ontvangen.</string>
   <string name="mpris_keepwatching">Doorgaan met afspelen</string>
   <string name="mpris_keepwatching_settings_title">Doorgaan met afspelen</string>
   <string name="mpris_keepwatching_settings_summary">Een stille melding tonen om door te gaan met afspelen op dit apparaat na sluiten van het medium</string>
