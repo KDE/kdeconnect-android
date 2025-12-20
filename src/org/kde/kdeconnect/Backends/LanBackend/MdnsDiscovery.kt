@@ -122,7 +122,7 @@ class MdnsDiscovery {
         // Also, it must be unique, otherwise it will be automatically renamed. For these reasons we use the deviceId.
         serviceInfo.serviceName = deviceId
         serviceInfo.serviceType = SERVICE_TYPE
-        serviceInfo.port = LanLinkProvider.UDP_PORT
+        serviceInfo.port = lanLinkProvider.tcpPort
 
         // The following fields aren't really used for anything, since we can't include enough info
         // for it to be useful (namely: we can't include the device certificate).

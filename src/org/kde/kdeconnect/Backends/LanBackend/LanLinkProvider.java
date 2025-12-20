@@ -596,4 +596,6 @@ public class LanLinkProvider extends BaseLinkProvider {
     @Override
     public int getPriority() { return 20; }
 
+    public int getTcpPort() { return tcpServer.getLocalPort(); }
+
 }
