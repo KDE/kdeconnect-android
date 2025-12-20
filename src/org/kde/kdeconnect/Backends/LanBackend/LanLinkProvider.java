@@ -271,8 +271,8 @@ public class LanLinkProvider extends BaseLinkProvider {
     @WorkerThread
     private void identityPacketReceived(final NetworkPacket identityPacket, final Socket socket, final LanLink.ConnectionStarted connectionStarted, final boolean deviceTrusted) throws IOException {
         final String deviceId = identityPacket.getString("deviceId");
+        final int protocolVersion = identityPacket.getInt("protocolVersion");
 
-        int protocolVersion = identityPacket.getInt("protocolVersion");
         if (deviceTrusted && isProtocolDowngrade(deviceId, protocolVersion)) {
             Log.w("KDE/LanLinkProvider", "Refusing to connect to a device using an older protocol version:" + protocolVersion);
             return;
@@ -283,8 +283,7 @@ public class LanLinkProvider extends BaseLinkProvider {
             return;
         }
 
-        String deviceName = identityPacket.getString("deviceName", "unknown");
-        Log.i("KDE/LanLinkProvider", "Starting SSL handshake with " + deviceName + " trusted:" + deviceTrusted);
+        Log.i("KDE/LanLinkProvider", "Starting SSL handshake with " + deviceId + " trusted:" + deviceTrusted);
 
         // If I'm the TCP server I will be the SSL client and vice-versa.
         final boolean clientMode = (connectionStarted == LanLink.ConnectionStarted.Locally);
@@ -322,12 +321,12 @@ public class LanLinkProvider extends BaseLinkProvider {
                     }
                     Certificate certificate = event.getPeerCertificates()[0];
                     DeviceInfo deviceInfo = DeviceInfo.fromIdentityPacketAndCert(secureIdentityPacket, certificate);
-                    Log.i("KDE/LanLinkProvider", "Handshake as " + mode + " successful with " + deviceName + " secured with " + event.getCipherSuite());
+                    Log.i("KDE/LanLinkProvider", "Handshake as " + mode + " successful with " + deviceInfo.name + " secured with " + event.getCipherSuite());
                     addOrUpdateLink(sslSocket, deviceInfo);
                 } catch (JSONException e) {
                     Log.e("KDE/LanLinkProvider", "Remote device doesn't correctly implement protocol version 8", e);
                 } catch (IOException e) {
-                    Log.e("KDE/LanLinkProvider", "Handshake as " + mode + " failed with " + deviceName, e);
+                    Log.e("KDE/LanLinkProvider", "Handshake as " + mode + " failed with " + deviceId, e);
                 }
             });
         });
