@@ -464,6 +464,7 @@
   <string name="enable_bluetooth">Omogoči bluetooth (beta)</string>
   <string name="receive_notifications_permission_explanation">Morate imeti dovoljenje za obvestila, če jih želite sprejemati iz drugih naprav</string>
   <string name="findmyphone_notifications_explanation">Potrebno je dovoljenje za obvestila, da lahko telefon zazvoni, ko je aplikacija v ozadju</string>
+  <string name="no_notifications">Obvestila so onemogočena, ne boste prejemali obvestil o dohodnih zahtevah za uparjanje.</string>
   <string name="mpris_keepwatching">Nadaljuj s predvajanjem</string>
   <string name="mpris_keepwatching_settings_title">Nadaljuj s predvajanjem</string>
   <string name="mpris_keepwatching_settings_summary">Pokaži tiho obvestilo za nadaljevanje predvajanja v tej napravi po zaprtju predstavnosti</string>

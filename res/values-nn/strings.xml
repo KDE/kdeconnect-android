@@ -232,6 +232,12 @@
   <string name="sftp_manage_storage_permission_explanation">For fjerntilgang til filer på denne eininga må du gje KDE Connect tilgangsløyve til lagringsområdet.</string>
   <string name="no_players_connected">Fann ingen spelarar</string>
   <string name="send_files">Send filer</string>
+  <string-array name="digitizer_preference_entries_draw_button_side">
+    <item>Top left</item>
+    <item>Top right</item>
+    <item>Bottom left</item>
+    <item>Bottom right</item>
+  </string-array>
   <string name="block_notification_contents">Blokker varslingsinnhald</string>
   <string name="block_notification_images">Blokker varslingsbilete</string>
   <string name="pairing_title">KDE Connect-einingar</string>
@@ -340,7 +346,6 @@
   <string name="bigscreen_right">Høgre</string>
   <string name="bigscreen_down">Ned</string>
   <string name="bigscreen_mic">Mikrofon</string>
-  <string name="pref_plugin_bigscreen">Bigscreen-fjernkontroll</string>
   <string name="pref_plugin_bigscreen_desc">Bruk eininga som fjernkontroll for Plasma Bigscreen</string>
   <string name="bigscreen_optional_permission_explanation">For å kunna dela mikrofon­lyd frå telefonen må du gje appen mikrofontilgang</string>
   <string name="bigscreen_speech_extra_prompt">Tale</string>
@@ -417,7 +422,6 @@
   <string name="enable_bluetooth">Bruk Bluetooth (beta)</string>
   <string name="receive_notifications_permission_explanation">Du må tillata varslingar for å kunna frå varslingar frå andre einingar</string>
   <string name="findmyphone_notifications_explanation">Varslingsløyvet trengst for at telefonen skal kunna ringja når appen er i bakgrunnsmodus</string>
-  <string name="no_notifications">Varslingar er slåtte av, så du vil ikkje få varsling om parings­førespurnadar.</string>
   <string name="mpris_keepwatching">Hald fram avspeling</string>
   <string name="mpris_keepwatching_settings_title">Hald fram avspeling</string>
   <string name="mpris_keepwatching_settings_summary">Vis ei stille varsling om framhald av medie­avspeling på eininga etter avspelingsstopp</string>
