@@ -66,20 +66,12 @@ class SettingsFragment : PreferenceFragmentCompat() {
             persistentNotificationPref(context),
             trustedNetworkPref(context),
             devicesByIpPref(context),
-            mdnsDiscoveryPref(context),
             bluetoothSupportPref(context),
             exportLogsPref(context),
             moreSettingsPref(context),
         ).forEach(screen::addPreference)
 
         preferenceScreen = screen
-    }
-
-    private fun mdnsDiscoveryPref(context: Context) = SwitchPreference(context).apply {
-        setDefaultValue(false)
-        key = KEY_MDNS_DISCOVERY_ENABLED
-        setTitle(R.string.enable_mdns_broadcast)
-        setSummary(R.string.enable_mdns_broadcast_explanation)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -263,7 +255,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
     }
 
     companion object {
-        const val KEY_MDNS_DISCOVERY_ENABLED = "mdns_enabled"
         const val KEY_BLUETOOTH_ENABLED: String = "bluetooth_enabled"
         const val KEY_APP_THEME: String = "theme_pref"
     }

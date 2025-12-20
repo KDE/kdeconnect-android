@@ -13,12 +13,10 @@ import android.net.nsd.NsdServiceInfo
 import android.net.wifi.WifiManager
 import android.net.wifi.WifiManager.MulticastLock
 import android.util.Log
-import androidx.preference.PreferenceManager
 import org.kde.kdeconnect.Helpers.DeviceHelper
 import org.kde.kdeconnect.Helpers.DeviceHelper.deviceType
 import org.kde.kdeconnect.Helpers.DeviceHelper.getDeviceId
 import org.kde.kdeconnect.Helpers.DeviceHelper.getDeviceName
-import org.kde.kdeconnect.UserInterface.SettingsFragment
 import java.net.InetAddress
 
 class MdnsDiscovery {
@@ -40,11 +38,6 @@ class MdnsDiscovery {
     }
 
     fun startDiscovering() {
-        val preferences = PreferenceManager.getDefaultSharedPreferences(context)
-        if (!preferences.getBoolean(SettingsFragment.KEY_MDNS_DISCOVERY_ENABLED, false)) {
-            Log.i("MdnsDiscovery", "MDNS discovery is disabled in settings. Skipping.")
-            return
-        }
         if (discoveryListener == null) {
             multicastLock.acquire()
             discoveryListener = createDiscoveryListener()
@@ -65,11 +58,6 @@ class MdnsDiscovery {
     }
 
     fun startAnnouncing() {
-        val preferences = PreferenceManager.getDefaultSharedPreferences(context)
-        if (!preferences.getBoolean(SettingsFragment.KEY_MDNS_DISCOVERY_ENABLED, false)) {
-            Log.i("MdnsDiscovery", "MDNS discovery is disabled in settings. Skipping.")
-            return
-        }
         if (registrationListener == null) {
             val serviceInfo: NsdServiceInfo?
             try {
