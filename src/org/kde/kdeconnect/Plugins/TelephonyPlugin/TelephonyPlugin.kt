@@ -147,11 +147,7 @@ class TelephonyPlugin : Plugin() {
     private fun unmuteRinger() {
         if (isMuted) {
             val am = ContextCompat.getSystemService(context, AudioManager::class.java) ?: return
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                am.setStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_UNMUTE, 0)
-            } else {
-                am.setStreamMute(AudioManager.STREAM_RING, false)
-            }
+            am.setStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_UNMUTE, 0)
             isMuted = false
         }
     }
@@ -159,11 +155,7 @@ class TelephonyPlugin : Plugin() {
     private fun muteRinger() {
         if (!isMuted) {
             val am = ContextCompat.getSystemService(context, AudioManager::class.java) ?: return
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                am.setStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_MUTE, 0)
-            } else {
-                am.setStreamMute(AudioManager.STREAM_RING, true)
-            }
+            am.setStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_MUTE, 0)
             isMuted = true
         }
     }
@@ -201,11 +193,7 @@ class TelephonyPlugin : Plugin() {
 
     override val outgoingPacketTypes: Array<String> = arrayOf(PACKET_TYPE_TELEPHONY)
 
-    override val requiredPermissions: Array<String> = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-        arrayOf(Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_CALL_LOG)
-    } else {
-        emptyArray()
-    }
+    override val requiredPermissions: Array<String> = arrayOf(Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_CALL_LOG)
 
     override val optionalPermissions: Array<String> = arrayOf(Manifest.permission.READ_CONTACTS)
 

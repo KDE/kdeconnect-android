@@ -57,11 +57,9 @@ public class RunCommandUrlActivity extends AppCompatActivity {
                 plugin.runCommand(uri.getPathSegments().get(1));
                 RunCommandUrlActivity.this.finish();
 
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                    Vibrator vibrator = getSystemService(Vibrator.class);
-                    if(vibrator != null && vibrator.hasVibrator()) {
-                        vibrator.vibrate(100);
-                    }
+                Vibrator vibrator = getSystemService(Vibrator.class);
+                if(vibrator != null && vibrator.hasVibrator()) {
+                    vibrator.vibrate(100);
                 }
             } catch (Exception e) {
                 Log.e("RuncommandPlugin", "Exception", e);

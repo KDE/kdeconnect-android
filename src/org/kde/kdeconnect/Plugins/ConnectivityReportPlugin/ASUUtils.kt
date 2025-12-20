@@ -17,68 +17,7 @@ object ASUUtils {
 
     fun signalStrengthToLevel(signalStrength: SignalStrength?): Int {
         if (signalStrength == null) return 0
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            return signalStrength.level
-        } else {
-            // Should work on all supported versions, uses copied functions from modern SDKs
-            // Needs testing
-
-            var gsmLevel = signalStrength.gsmSignalStrength
-            if (gsmLevel >= 0 && gsmLevel <= 31) {
-                // Convert getGsmSignalStrength range (0..31) to getLevel range (0..4)
-                gsmLevel = gsmLevel * 4 / 31
-            } else {
-                gsmLevel = 0
-            }
-
-            val cdmaLevel = getCdmaLevel(signalStrength.cdmaDbm, signalStrength.cdmaEcio)
-            val evdoLevel = getEvdoLevel(signalStrength.evdoDbm, signalStrength.evdoSnr)
-
-            return max(gsmLevel, max(cdmaLevel, evdoLevel))
-        }
-    }
-
-    /**
-     * Get cdma as level 0..4
-     */
-    private fun getCdmaLevel(cdmaDbm: Int, cdmaEcio: Int): Int {
-        val levelDbm: Int = if (cdmaDbm == CellInfo.UNAVAILABLE) 0
-        else if (cdmaDbm >= -75) 4
-        else if (cdmaDbm >= -85) 3
-        else if (cdmaDbm >= -95) 2
-        else if (cdmaDbm >= -100) 1
-        else 0
-
-        // Ec/Io are in dB*10
-        val levelEcio: Int = if (cdmaEcio == CellInfo.UNAVAILABLE) 0
-        else if (cdmaEcio >= -90) 4
-        else if (cdmaEcio >= -110) 3
-        else if (cdmaEcio >= -130) 2
-        else if (cdmaEcio >= -150) 1
-        else 0
-
-        return min(levelDbm, levelEcio)
-    }
-
-    /**
-     * Get Evdo as level 0..4
-     */
-    private fun getEvdoLevel(evdoDbm: Int, evdoSnr: Int): Int {
-        val levelEvdoDbm: Int = if (evdoDbm == CellInfo.UNAVAILABLE) 0
-        else if (evdoDbm >= -65) 4
-        else if (evdoDbm >= -75) 3
-        else if (evdoDbm >= -90) 2
-        else if (evdoDbm >= -105) 1
-        else 0
-
-        val levelEvdoSnr: Int = if (evdoSnr == CellInfo.UNAVAILABLE) 0
-        else if (evdoSnr >= 7) 4
-        else if (evdoSnr >= 5) 3
-        else if (evdoSnr >= 3) 2
-        else if (evdoSnr >= 1) 1
-        else 0
-
-        return min(levelEvdoDbm, levelEvdoSnr)
+        return signalStrength.level
     }
 
     fun networkTypeToString(networkType: Int): String {

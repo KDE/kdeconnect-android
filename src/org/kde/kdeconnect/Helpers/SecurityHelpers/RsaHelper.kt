@@ -34,16 +34,10 @@ object RsaHelper {
             val keyPair: KeyPair
             val keyAlgorithm: String
             try {
-                val newSdk = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
-                keyAlgorithm = if (newSdk) KeyProperties.KEY_ALGORITHM_EC else RSA
+                keyAlgorithm = KeyProperties.KEY_ALGORITHM_EC
                 val generator = KeyPairGenerator.getInstance(keyAlgorithm)
-                if (newSdk) {
-                    val spec = ECGenParameterSpec("secp256r1")
-                    generator.initialize(spec)
-                }
-                else {
-                    generator.initialize(2048)
-                }
+                val spec = ECGenParameterSpec("secp256r1")
+                generator.initialize(spec)
                 keyPair = generator.generateKeyPair()
             }
             catch (e: Exception) {
