@@ -54,6 +54,7 @@
   <string name="remotekeyboard_connected">遠端鍵盤連線已啟用</string>
   <string name="remotekeyboard_multiple_connections">遠端鍵盤連線有多個，請選擇裝置進行設定</string>
   <string name="open_mousepad">遠端輸入</string>
+  <string name="open_mousepad_tv">電視遙控器</string>
   <string name="mousepad_info">在手機螢幕上移動手指即可移動滑鼠游標。點擊一次，然後使用兩根/三根手指操作右側和中間按鈕。使用 2 根手指捲動頁面。長按進行拖放。可從右上角選單的外掛程式設定中啟用陀螺儀滑鼠功能以更靈活的操控滑鼠游標</string>
   <string name="mousepad_info_no_gestures">在螢幕上移動手指就可以移動滑鼠游標，手指輕點就代表點擊一下。</string>
   <string name="mousepad_keyboard_input_not_supported">配對裝置不支援鍵盤輸入</string>
@@ -67,6 +68,7 @@
   <string name="mousepad_scroll_sensitivity_title">捲動靈敏度</string>
   <string name="gyro_mouse_enabled_title">啟用陀螺儀滑鼠</string>
   <string name="gyro_mouse_sensitivity_title">陀螺儀靈敏度</string>
+  <string name="bigscreen_hide_mouse_input">隱藏滑鼠與鍵盤遠端輸入按鈕</string>
   <string name="bigscreen_show_home_title">顯示首頁按鈕</string>
   <string name="bigscreen_show_back_title">顯示返回按鈕</string>
   <string-array name="mousepad_tap_entries">
@@ -359,6 +361,7 @@
   <string name="bigscreen_down">下</string>
   <string name="bigscreen_back">返回</string>
   <string name="bigscreen_mic">麥克風</string>
+  <string name="pref_plugin_bigscreen">電視遙控器</string>
   <string name="pref_plugin_bigscreen_desc">使用您的裝置作為 Plasma Bigscreen 的遙控器</string>
   <string name="bigscreen_optional_permission_explanation">為了與電腦共享手機麥克風端的音效輸入，需要您允許本軟體存取手機的音訊輸入權限</string>
   <string name="bigscreen_speech_extra_prompt">聲控功能</string>
@@ -437,6 +440,7 @@
   <string name="enable_bluetooth">啟用藍牙 (beta)</string>
   <string name="receive_notifications_permission_explanation">需要被允許從其他裝置收到通知</string>
   <string name="findmyphone_notifications_explanation">需要通知權限，以便當應用程式在背景時手機可以響鈴</string>
+  <string name="no_notifications">通知已停用，您不會收到傳入的配對請求通知。</string>
   <string name="mpris_keepwatching">繼續播放</string>
   <string name="mpris_keepwatching_settings_title">繼續播放</string>
   <string name="mpris_keepwatching_settings_summary">顯示無聲通知以在關閉媒體後繼續在此裝置上播放</string>

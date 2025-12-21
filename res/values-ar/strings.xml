@@ -480,6 +480,7 @@
   <string name="enable_bluetooth">مكّن بلوتوث (بيتا)</string>
   <string name="receive_notifications_permission_explanation">يجب السماح بتلقي الإشعارات من الأجهزة الأخرى</string>
   <string name="findmyphone_notifications_explanation">إذن الإشعارات مطلوب حتى يتمكن الهاتف من الرنين عندما يكون التطبيق في الخلفية</string>
+  <string name="no_notifications">الإشعارات معطلة، لن تتلقى إشعارات طلبات الاقتران الواردة.</string>
   <string name="mpris_keepwatching">استمر في التشغيل</string>
   <string name="mpris_keepwatching_settings_title">استمر في التشغيل</string>
   <string name="mpris_keepwatching_settings_summary">أظهر إشعارًا صامتًا للمواصلة التشغيل على هذا الجهاز بعد إغلاق الوسائط</string>
