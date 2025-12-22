@@ -381,20 +381,22 @@ class Device : PacketReceiver {
             }
         }
 
-        val incomingCapabilities = deviceInfo.incomingCapabilities
-        val outgoingCapabilities = deviceInfo.outgoingCapabilities
+        val oldIncomingCapabilities = deviceInfo.incomingCapabilities
+        val oldOutgoingCapabilities = deviceInfo.outgoingCapabilities
         val newIncomingCapabilities = newDeviceInfo.incomingCapabilities
         val newOutgoingCapabilities = newDeviceInfo.outgoingCapabilities
         if (
             !newIncomingCapabilities.isNullOrEmpty() &&
             !newOutgoingCapabilities.isNullOrEmpty() &&
             (
-                incomingCapabilities != newIncomingCapabilities ||
-                outgoingCapabilities != newOutgoingCapabilities
+                oldIncomingCapabilities != newIncomingCapabilities ||
+                oldOutgoingCapabilities != newOutgoingCapabilities
             )
         ) {
             hasChanges = true
             Log.i("updateDeviceInfo", "Updating supported plugins according to new capabilities")
+            deviceInfo.outgoingCapabilities = newOutgoingCapabilities
+            deviceInfo.incomingCapabilities = newIncomingCapabilities
             supportedPlugins = Vector(
                 PluginFactory.pluginsForCapabilities(
                     newIncomingCapabilities,
