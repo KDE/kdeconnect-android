@@ -304,16 +304,20 @@ public class LanLinkProvider extends BaseLinkProvider {
                         // Do not trust the identity packet we received unencrypted
                         secureIdentityPacket = NetworkPacket.unserialize(line);
                         if (!DeviceInfo.isValidIdentityPacket(secureIdentityPacket)) {
-                            throw new JSONException("Invalid identity packet");
+                            Log.e("KDE/LanLinkProvider", "Identity packet isn't valid");
+                            socket.close();
+                            return;
                         }
                         int newProtocolVersion = secureIdentityPacket.getInt("protocolVersion");
                         if (newProtocolVersion != protocolVersion) {
                             Log.e("KDE/LanLinkProvider", "Protocol version changed half-way through the handshake: " + protocolVersion + " -> " + newProtocolVersion);
+                            socket.close();
                             return;
                         }
                         String newDeviceId = secureIdentityPacket.getString("deviceId");
                         if (!newDeviceId.equals(deviceId)) {
                             Log.e("KDE/LanLinkProvider", "Device ID changed half-way through the handshake: " + deviceId + " -> " + newDeviceId);
+                            socket.close();
                             return;
                         }
                     } else {
