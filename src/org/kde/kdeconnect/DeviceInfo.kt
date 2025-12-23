@@ -13,6 +13,7 @@ import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import org.kde.kdeconnect.Helpers.DeviceHelper
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper
+import org.kde.kdeconnect.Helpers.TrustedDevices
 import org.kde.kdeconnect_tp.R
 import java.security.cert.Certificate
 import java.security.cert.CertificateEncodingException
@@ -37,10 +38,10 @@ class DeviceInfo(
      * This is used to keep info from paired devices, even when they are not reachable.
      * The capabilities and protocol version are not persisted.
      */
-    fun saveInSettings(settings: SharedPreferences) {
+    fun saveInSettings(context: Context) {
         try {
             val encodedCertificate = Base64.encodeToString(certificate.encoded, 0)
-            settings.edit {
+            TrustedDevices.getDeviceSettings(context, id).edit {
                 putString("certificate", encodedCertificate)
                 putString("deviceName", name)
                 putString("deviceType", type.toString())
@@ -73,15 +74,24 @@ class DeviceInfo(
          */
         @JvmStatic
         @Throws(CertificateException::class)
-        fun loadFromSettings(context: Context, deviceId: String, settings: SharedPreferences) =
-            with(settings) {
+        fun loadFromSettings(context: Context, deviceId: String) =
+            with(TrustedDevices.getDeviceSettings(context, deviceId)) {
                 DeviceInfo(
                     id = deviceId,
                     name = getString("deviceName", "unknown")!!,
                     type = DeviceType.fromString(getString("deviceType", "desktop")!!),
-                    certificate = SslHelper.getDeviceCertificate(context, deviceId),
+                    certificate = TrustedDevices.getDeviceCertificate(context, deviceId),
                     protocolVersion = getInt("protocolVersion", 0),
                 )
+            }
+
+        /**
+         * Reads the stored
+         */
+        @JvmStatic
+        fun loadProtocolVersionFromSettings(context: Context, deviceId: String) =
+            with(TrustedDevices.getDeviceSettings(context, deviceId)) {
+                getInt("protocolVersion", 0)
             }
 
         /**

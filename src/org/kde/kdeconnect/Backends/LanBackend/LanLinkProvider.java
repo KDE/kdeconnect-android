@@ -23,6 +23,7 @@ import org.kde.kdeconnect.DeviceInfo;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.Helpers.ThreadHelper;
+import org.kde.kdeconnect.Helpers.TrustedDevices;
 import org.kde.kdeconnect.Helpers.TrustedNetworkHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.UserInterface.CustomDevicesActivity;
@@ -118,7 +119,7 @@ public class LanLinkProvider extends BaseLinkProvider {
             return null;
         }
 
-        boolean deviceTrusted = isDeviceTrusted(deviceId);
+        boolean deviceTrusted = TrustedDevices.isTrustedDevice(context, deviceId);
         if (!deviceTrusted && !TrustedNetworkHelper.isTrustedNetwork(context)) {
             Log.i("KDE/LanLinkProvider", "Ignoring identity packet because the device is not trusted and I'm not on a trusted network.");
             return null;
@@ -253,11 +254,6 @@ public class LanLinkProvider extends BaseLinkProvider {
         }
     }
 
-    private boolean isDeviceTrusted(String deviceId) {
-        SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
-        return preferences.getBoolean(deviceId, false);
-    }
-
     /**
      * Called when a new 'identity' packet is received. Those are passed here by
      * {@link #tcpPacketReceived(Socket)} and {@link #udpPacketReceived(DatagramPacket)}.
@@ -278,7 +274,7 @@ public class LanLinkProvider extends BaseLinkProvider {
             return;
         }
 
-        if (deviceTrusted && !SslHelper.isCertificateStored(context, deviceId)) {
+        if (deviceTrusted && !TrustedDevices.isCertificateStored(context, deviceId)) {
             Log.e("KDE/LanLinkProvider", "Device trusted but no cert stored. This should not happen.");
             return;
         }
@@ -342,8 +338,7 @@ public class LanLinkProvider extends BaseLinkProvider {
     }
 
     private boolean isProtocolDowngrade(String deviceId, int protocolVersion) {
-        SharedPreferences devicePrefs = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE);
-        int lastKnownProtocolVersion = devicePrefs.getInt("protocolVersion", 0);
+        int lastKnownProtocolVersion = DeviceInfo.loadProtocolVersionFromSettings(context, deviceId);
         return lastKnownProtocolVersion > protocolVersion;
     }
 

@@ -35,6 +35,7 @@ import org.kde.kdeconnect.DeviceStats.countReceived
 import org.kde.kdeconnect.DeviceStats.countSent
 import org.kde.kdeconnect.Helpers.DeviceHelper
 import org.kde.kdeconnect.Helpers.NotificationHelper
+import org.kde.kdeconnect.Helpers.TrustedDevices
 import org.kde.kdeconnect.PairingHandler.PairingCallback
 import org.kde.kdeconnect.Plugins.Plugin
 import org.kde.kdeconnect.Plugins.Plugin.Companion.getPluginKey
@@ -96,8 +97,6 @@ class Device : PacketReceiver {
      */
     private var pluginsByIncomingInterface: MultiValuedMap<String, String> = ArrayListValuedHashMap()
 
-    private val settings: SharedPreferences
-
     private val pairingCallbacks = CopyOnWriteArrayList<PairingCallback>()
     private val pluginsChangedListeners = CopyOnWriteArrayList<PluginsChangedListener>()
 
@@ -110,8 +109,7 @@ class Device : PacketReceiver {
      */
     internal constructor(context: Context, deviceId: String) {
         this.context = context
-        this.settings = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE)
-        this.deviceInfo = loadFromSettings(context, deviceId, settings)
+        this.deviceInfo = loadFromSettings(context, deviceId)
         this.pairingHandler = PairingHandler(this, createDefaultPairingCallback(), PairingHandler.PairState.Paired)
         this.supportedPlugins = Vector(PluginFactory.availablePlugins) // Assume all are supported until we receive capabilities
         Log.i("Device", "Loading trusted device: ${deviceInfo.name}")
@@ -125,7 +123,6 @@ class Device : PacketReceiver {
     internal constructor(context: Context, link: BaseLink) {
         this.context = context
         this.deviceInfo = link.deviceInfo
-        this.settings = context.getSharedPreferences(deviceInfo.id, Context.MODE_PRIVATE)
         this.pairingHandler = PairingHandler(this, createDefaultPairingCallback(), PairingHandler.PairState.NotPaired)
         this.supportedPlugins = Vector(PluginFactory.availablePlugins) // Assume all are supported until we receive capabilities
         Log.i("Device", "Creating untrusted device: " + deviceInfo.name)
@@ -206,11 +203,10 @@ class Device : PacketReceiver {
                 hidePairingNotification()
 
                 // Store current device certificate so we can check it in the future (TOFU)
-                deviceInfo.saveInSettings(this@Device.settings)
+                deviceInfo.saveInSettings(context)
 
                 // Store as trusted device
-                val preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE)
-                preferences.edit { putBoolean(deviceInfo.id, true) }
+                TrustedDevices.addTrustedDevice(context, deviceInfo.id)
 
                 try {
                     reloadPluginsFromSettings()
@@ -229,11 +225,7 @@ class Device : PacketReceiver {
             override fun unpaired(device: Device) {
                 assert(device == this@Device)
                 Log.i("Device", "unpaired, removing from trusted devices list")
-                val preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE)
-                preferences.edit { remove(deviceInfo.id) }
-
-                val devicePreferences = context.getSharedPreferences(deviceInfo.id, Context.MODE_PRIVATE)
-                devicePreferences.edit { clear() }
+                TrustedDevices.removeTrustedDevice(context, deviceInfo.id)
 
                 notifyPluginsOfDeviceUnpaired(context, deviceInfo.id)
 
@@ -377,7 +369,7 @@ class Device : PacketReceiver {
             deviceInfo.type = newDeviceInfo.type
             deviceInfo.protocolVersion = newDeviceInfo.protocolVersion
             if (isPaired) {
-                deviceInfo.saveInSettings(settings)
+                deviceInfo.saveInSettings(context)
             }
         }
 
@@ -609,13 +601,13 @@ class Device : PacketReceiver {
     }
 
     fun setPluginEnabled(pluginKey: String, value: Boolean) {
-        settings.edit { putBoolean(pluginKey, value) }
+        TrustedDevices.getDeviceSettings(context, deviceId).edit { putBoolean(pluginKey, value) }
         reloadPluginsFromSettings()
     }
 
     fun isPluginEnabled(pluginKey: String): Boolean {
         val enabledByDefault = PluginFactory.getPluginInfo(pluginKey).isEnabledByDefault
-        return settings.getBoolean(pluginKey, enabledByDefault)
+        return TrustedDevices.getDeviceSettings(context, deviceId).getBoolean(pluginKey, enabledByDefault)
     }
 
     fun notifyPluginsOfDeviceUnpaired(context: Context, deviceId: String) {
