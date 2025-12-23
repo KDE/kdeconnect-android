@@ -17,6 +17,7 @@ import org.kde.kdeconnect_tp.R
 import java.security.cert.Certificate
 import java.security.cert.CertificateEncodingException
 import java.security.cert.CertificateException
+import androidx.core.content.edit
 
 /**
  * DeviceInfo contains all the properties needed to instantiate a Device.
@@ -39,13 +40,11 @@ class DeviceInfo(
     fun saveInSettings(settings: SharedPreferences) {
         try {
             val encodedCertificate = Base64.encodeToString(certificate.encoded, 0)
-
-            with(settings.edit()) {
+            settings.edit {
                 putString("certificate", encodedCertificate)
                 putString("deviceName", name)
                 putString("deviceType", type.toString())
                 putInt("protocolVersion", protocolVersion)
-                apply()
             }
         } catch (e: CertificateEncodingException) {
             throw RuntimeException(e)

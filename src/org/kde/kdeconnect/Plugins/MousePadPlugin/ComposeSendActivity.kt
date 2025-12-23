@@ -30,6 +30,7 @@ import org.kde.kdeconnect.UserInterface.compose.KdeTheme
 import org.kde.kdeconnect.UserInterface.compose.KdeTopAppBar
 import org.kde.kdeconnect.extensions.safeDrawPadding
 import org.kde.kdeconnect_tp.R
+import androidx.core.content.edit
 
 private const val INPUT_CACHE_KEY = "compose_send_input_cache"
 
@@ -51,9 +52,9 @@ class ComposeSendActivity : AppCompatActivity() {
 
     override fun onStop() {
         super.onStop()
-        with(prefs.edit()) {
-            if (userInput.value.isNotBlank()) putString(INPUT_CACHE_KEY, userInput.value) else remove(INPUT_CACHE_KEY)
-            apply()
+        prefs.edit {
+            if (userInput.value.isNotBlank()) putString(INPUT_CACHE_KEY,userInput.value)
+            else remove(INPUT_CACHE_KEY)
         }
     }
 

@@ -11,6 +11,7 @@ import android.preference.PreferenceManager
 import androidx.core.app.NotificationChannelCompat
 import androidx.core.app.NotificationManagerCompat
 import org.kde.kdeconnect_tp.R
+import androidx.core.content.edit
 
 object NotificationHelper {
     fun initializeChannels(context: Context) {
@@ -71,7 +72,7 @@ object NotificationHelper {
 
     fun setPersistentNotificationEnabled(context: Context?, enabled: Boolean) {
         val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-        prefs.edit().putBoolean("persistentNotification", enabled).apply()
+        prefs.edit { putBoolean("persistentNotification", enabled) }
     }
 
     fun isPersistentNotificationEnabled(context: Context?): Boolean {
