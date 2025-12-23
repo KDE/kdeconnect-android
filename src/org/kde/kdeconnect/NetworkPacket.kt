@@ -59,6 +59,11 @@ class NetworkPacket private constructor(
         return mBody.optInt(key, -1)
     }
 
+    fun getIntOrNull(key: String): Int? {
+        return if (mBody.has(key)) mBody.getInt(key)
+        else null
+    }
+
     fun getInt(key: String, defaultValue: Int): Int {
         return mBody.optInt(key, defaultValue)
     }
