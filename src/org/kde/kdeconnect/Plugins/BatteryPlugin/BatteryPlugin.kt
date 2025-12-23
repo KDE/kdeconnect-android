@@ -10,6 +10,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.BatteryManager
+import androidx.annotation.VisibleForTesting
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.Plugins.Plugin
 import org.kde.kdeconnect.Plugins.PluginFactory.LoadablePlugin
@@ -38,7 +39,8 @@ class BatteryPlugin : Plugin() {
     override val description: String
         get() = context.resources.getString(R.string.pref_plugin_battery_desc)
 
-    private val receiver: BroadcastReceiver = object : BroadcastReceiver() {
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    internal val receiver: BroadcastReceiver = object : BroadcastReceiver() {
         var wasLowBattery: Boolean = false // will trigger a low battery notification when the device is connected
 
         override fun onReceive(context: Context, batteryIntent: Intent) {
