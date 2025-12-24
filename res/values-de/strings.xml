@@ -433,8 +433,6 @@
   <string name="tap_to_execute">Tippen, um auszuführen</string>
   <string name="plugin_stats">Modulstatistik</string>
   <string name="enable_udp_broadcast">UDP-Geräteerkennung aktivieren</string>
-  <string name="enable_mdns_broadcast">MDNS-Geräteerkennung aktivieren</string>
-  <string name="enable_mdns_broadcast_explanation">MDNS-Geräteerkennung wird in Zukunft nicht mehr unterstützt. Bitte erstellen Sie einen Fehlerbericht, wenn KDE Connect nur dann funktioniert, wenn dies aktiviert ist.</string>
   <string name="enable_bluetooth">Bluetooth aktivieren (Beta)</string>
   <string name="receive_notifications_permission_explanation">Benachrichtigungen müssen erlaubt sein, um sie von anderen Geräten empfangen zu können</string>
   <string name="findmyphone_notifications_explanation">Die Berechtigung für Benachrichtigungen wird benötigt, damit das Telefon klingeln kann, wenn die App im Hintergrund ist</string>

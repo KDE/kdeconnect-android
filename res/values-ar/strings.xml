@@ -475,8 +475,6 @@
   <string name="tap_to_execute">اطرق لتنفيذه</string>
   <string name="plugin_stats">ملحقة الإحصائيات</string>
   <string name="enable_udp_broadcast">مكّن اكتشاف الجهاز عن طريق UDP</string>
-  <string name="enable_mdns_broadcast">مكّن اكتشاف الجهاز عن طريق MDNS</string>
-  <string name="enable_mdns_broadcast_explanation">يجرى التخلي عن اكتشاف MDNS. يرجى الإبلاغ عن أي خطأ إذا كان جسر كيدي لا يعمل إلا عند تمكين هذه الميزة.</string>
   <string name="enable_bluetooth">مكّن بلوتوث (بيتا)</string>
   <string name="receive_notifications_permission_explanation">يجب السماح بتلقي الإشعارات من الأجهزة الأخرى</string>
   <string name="findmyphone_notifications_explanation">إذن الإشعارات مطلوب حتى يتمكن الهاتف من الرنين عندما يكون التطبيق في الخلفية</string>

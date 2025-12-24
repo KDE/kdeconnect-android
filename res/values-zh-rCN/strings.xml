@@ -435,8 +435,6 @@
   <string name="tap_to_execute">轻触执行</string>
   <string name="plugin_stats">插件状态</string>
   <string name="enable_udp_broadcast">启用 UPnP 设备发现</string>
-  <string name="enable_mdns_broadcast">启用 MDNS 设备发现</string>
-  <string name="enable_mdns_broadcast_explanation">MDNS 发现功能已进入废弃日程。如果 KDE Connect 只能在启用此功能时工作，请将此情况报告为一个程序缺陷。</string>
   <string name="enable_bluetooth">启用蓝牙 (测试)</string>
   <string name="receive_notifications_permission_explanation">需要允许通知才能从其他设备接收通知</string>
   <string name="findmyphone_notifications_explanation">需要通知权限，这样当应用程序处于后台时手机可以发出铃声</string>

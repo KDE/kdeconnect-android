@@ -443,8 +443,6 @@
   <string name="tap_to_execute">Toqueu per a executar</string>
   <string name="plugin_stats">Estadístiques del connector</string>
   <string name="enable_udp_broadcast">Activa el descobriment UDP de dispositius</string>
-  <string name="enable_mdns_broadcast">Activa el descobriment MDN5 de dispositius</string>
-  <string name="enable_mdns_broadcast_explanation">El descobriment de MDNS està en desús. Informeu d\'un error si el KDE Connect només funciona quan està activat.</string>
   <string name="enable_bluetooth">Activa el Bluetooth (beta)</string>
   <string name="receive_notifications_permission_explanation">Cal permetre que les notificacions es rebin des d\'altres dispositius</string>
   <string name="findmyphone_notifications_explanation">Cal el permís de notificacions perquè el telèfon pugui sonar quan l\'aplicació estigui en segon pla</string>

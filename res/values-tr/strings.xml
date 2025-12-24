@@ -443,8 +443,6 @@
   <string name="tap_to_execute">Yürütmek için Dokun</string>
   <string name="plugin_stats">Eklenti İstatistikleri</string>
   <string name="enable_udp_broadcast">UDP Aygıt Keşfini Etkinleştir</string>
-  <string name="enable_mdns_broadcast">MDNS Aygıt Keşfini Etkinleştir</string>
-  <string name="enable_mdns_broadcast_explanation">MDNS ile bulma artık kullanılmıyor. KDE Bağlan yalnızca bu etkinken çalışıyorsa lütfen bir hata kaydı açın.</string>
   <string name="enable_bluetooth">Bluetooth’u Etkinleştir (Beta)</string>
   <string name="receive_notifications_permission_explanation">Başka aygıtlardan gelen bildirimleri alabilmek için bildirimlere izin verilmesi gereklidir</string>
   <string name="findmyphone_notifications_explanation">Uygulama arka plandayken telefonun çalabilmesi için bildirim izni gereklidir</string>

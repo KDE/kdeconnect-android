@@ -459,8 +459,6 @@
   <string name="tap_to_execute">Tapkajte za izvedbo</string>
   <string name="plugin_stats">Stanje vtičnikov</string>
   <string name="enable_udp_broadcast">Omogoči odkrivanje naprav UDP</string>
-  <string name="enable_mdns_broadcast">Omogoči odkrivanje naprav MDNS</string>
-  <string name="enable_mdns_broadcast_explanation">Odkrivanje MDNS je zastarelo. Prosimo, prijavite napako, če KDE Connect deluje samo, če je to omogočeno.</string>
   <string name="enable_bluetooth">Omogoči bluetooth (beta)</string>
   <string name="receive_notifications_permission_explanation">Morate imeti dovoljenje za obvestila, če jih želite sprejemati iz drugih naprav</string>
   <string name="findmyphone_notifications_explanation">Potrebno je dovoljenje za obvestila, da lahko telefon zazvoni, ko je aplikacija v ozadju</string>

@@ -435,8 +435,6 @@
   <string name="tap_to_execute">點擊以執行</string>
   <string name="plugin_stats">外掛程式統計</string>
   <string name="enable_udp_broadcast">啟用 UDP 裝置探索</string>
-  <string name="enable_mdns_broadcast">啟用 MDNS 裝置探索</string>
-  <string name="enable_mdns_broadcast_explanation">MDNS 探索功能將被棄用。如果您的 KDE Connect 需要啟用此功能才能運作，請到我們的錯誤追蹤系統回報以讓我們知道。</string>
   <string name="enable_bluetooth">啟用藍牙 (beta)</string>
   <string name="receive_notifications_permission_explanation">需要被允許從其他裝置收到通知</string>
   <string name="findmyphone_notifications_explanation">需要通知權限，以便當應用程式在背景時手機可以響鈴</string>
