@@ -438,6 +438,7 @@
   <string name="enable_bluetooth">启用蓝牙 (测试)</string>
   <string name="receive_notifications_permission_explanation">需要允许通知才能从其他设备接收通知</string>
   <string name="findmyphone_notifications_explanation">需要通知权限，这样当应用程序处于后台时手机可以发出铃声</string>
+  <string name="no_notifications">通知已禁用，您将不会收到传入的配对通知。</string>
   <string name="mpris_keepwatching">继续播放</string>
   <string name="mpris_keepwatching_settings_title">继续播放</string>
   <string name="mpris_keepwatching_settings_summary">关闭媒体后显示一条用于继续在此设备上播放的静音通知</string>
