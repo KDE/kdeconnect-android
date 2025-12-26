@@ -1,16 +1,16 @@
 KDE Connect bietet eine Reihe von Funktionen, um Ihre Arbeitsabläufe über verschiedene Geräte zu vereinigen:
 
-- Daten zwischen Ihren Geräten übertragen.
+- Dateien zwischen Ihren Geräten übertragen.
 - Auf Daten auf Ihrem Telefon von Ihrem Computer aus zugreifen, ohne Kabel.
 - Geteilte Zwischenablage: Kopieren und Einfügen zwischen Ihren Geräten.
 - Erhalten Sie Benachrichtigungen über eingehende Anrufe und Nachrichten auf Ihren Computer.
 - Virtuelles Touchpad: Verwenden Sie den Bildschirm Ihres Telefons als Touchpad für Ihren Computer.
-- Abgleich der Benachrichtigungen: Greifen Sie über den Computer auf Ihre Telefonbenachrichtigungen zu und antworten Sie auf Nachrichten.
+- Benachrichtigungen synchronisieren: Greifen Sie über den Computer auf Ihre Telefonbenachrichtigungen zu und antworten Sie auf Nachrichten.
 - Multimedia-Fernbedienung: Verwenden Sie Ihr Telefon als Fernbedienung für Linux-Medienspieler.
-- WLAN-Verbindung: kein USB-Kabel oder Bluetooth erforderlich.
+- WLAN-Verbindung: Kein USB-Kabel oder Bluetooth erforderlich.
 - Ende-zu-Ende-TLS-Verschlüsselung: Ihre Informationen sind sicher.
 
-Bitte beachten Sie, dass Sie KDE Connect auf Ihrem Computer installieren müssen, damit diese App funktioniert und halten Sie die Desktop-Version mit der Android-Version auf dem aktuellen Stand, um die neuesten Funktionen nutzen zu können.
+Bitte beachten Sie, dass Sie KDE Connect auf Ihrem Computer installieren müssen, damit diese App funktioniert. Halten Sie die Desktop-Version auf dem gleichen Stand wie die Android-Version, um die neuesten Funktionen nutzen zu können.
 
 Informationen zu sensiblen Berechtigungen:
 * Zugriffsberechtigung: Wird benötigt, um Eingaben zur Steuerung ihres Android-Telefons von einem anderen Gerät zu erhalten, wenn Sie die Ferneingabefunktion verwenden. 
@@ -18,4 +18,4 @@ Informationen zu sensiblen Berechtigungen:
 
 KDE Connect sendet niemals irgendwelche Informationen an KDE oder an Dritte. KDE Connect sendet Daten, unter Verwendung einer Ende-zu-Ende-Verschlüsselung, über das lokale Netzwerk direkt von einem Gerät zum anderen, niemals über das Internet.
 
-Diese App ist Teil eines Open-Scource-Projekts und besteht Dank all der Menschen die dazu beigetragen haben. Besuchen Sie die Internetseite, um sich den Quelltext zu holen.
+Diese App ist Teil eines Open-Source-Projekts und besteht Dank all der Menschen, die dazu beigetragen haben. Um den Quelltext zu holen, besuchen Sie die Internetseite.
