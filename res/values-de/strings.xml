@@ -54,6 +54,7 @@
   <string name="remotekeyboard_connected">Verbindung zu entfernter Tastatur ist aktiv</string>
   <string name="remotekeyboard_multiple_connections">Es besteht mehr als eine Verbindung zu einer entfernten Tastatur. Um Ihre Konfiguration anzupassen, wählen Sie bitte ein Gerät aus</string>
   <string name="open_mousepad">Ferneingabe</string>
+  <string name="open_mousepad_tv">TV-Fernbedienung</string>
   <string name="mousepad_info">Bewegen Sie Ihren Finger über den Bildschirm, um den Mauszeiger zu bewegen. Tippen Sie auf den Bildschirm, um einen Klick zu simulieren und verwenden Sie entsprechend zwei/drei Finger für einen Rechts-/Mittelklick. Verwenden Sie zwei Finger, um zu scrollen und einen langen Druck für „Ziehen und Ablegen“. Gyroskop-Maus-Funktionen können Sie in den Modul-Einstellungen aktivieren.</string>
   <string name="mousepad_info_no_gestures">Bewegen Sie den Finger auf dem Bildschirm, um den Mauszeiger zu bewegen. Tippen Sie, um zu klicken.</string>
   <string name="mousepad_keyboard_input_not_supported">Das gekoppelte Gerät unterstützt keine Tasteneingaben</string>
@@ -67,6 +68,7 @@
   <string name="mousepad_scroll_sensitivity_title">Bildlaufgeschwindigkeit</string>
   <string name="gyro_mouse_enabled_title">Gyroskop-Maus aktivieren</string>
   <string name="gyro_mouse_sensitivity_title">Gyroskop-Empfindlichkeit</string>
+  <string name="bigscreen_hide_mouse_input">Knopf für entfernte Maus- und Tastatureingaben ausblenden</string>
   <string name="bigscreen_show_home_title">Home-Knopf anzeigen</string>
   <string name="bigscreen_show_back_title">Zurück-Knopf anzeigen</string>
   <string-array name="mousepad_tap_entries">
@@ -319,6 +321,7 @@
   <string name="runcommand_nosuchdevice">Ein solches Gerät existiert nicht</string>
   <string name="runcommand_noruncommandplugin">Dieses Gerät hat das Modul zum Ausführen von Befehlen nicht aktiviert</string>
   <string name="runcommand_category_device_controls_title">Gerätesteuerung</string>
+  <string name="runcommand_device_controls_summary">Wenn Ihr Gerät die Gerätesteuerung unterstützt, erscheinen Ihre eingerichteten Befehle dort.</string>
   <string name="runcommand_name_as_title_title">Den Namen als Titel anzeigen</string>
   <string name="pref_plugin_findremotedevice">Entferntes Gerät finden</string>
   <string name="pref_plugin_findremotedevice_desc">Entferntes Gerät anklingeln</string>
@@ -365,6 +368,7 @@
   <string name="bigscreen_down">Unten</string>
   <string name="bigscreen_back">Zurück</string>
   <string name="bigscreen_mic">Mikrofon</string>
+  <string name="pref_plugin_bigscreen">TV-Fernbedienung</string>
   <string name="pref_plugin_bigscreen_desc">Verwenden Sie ihr Gerät als Fernbedienung für Plasma Bigscreen</string>
   <string name="bigscreen_optional_permission_explanation">Um den Mikrofoneingang des Telefons freizugeben, müssen Sie den Zugriff auf den Audioeingang des Telefons erlauben</string>
   <string name="bigscreen_speech_extra_prompt">Sprache</string>
@@ -428,6 +432,8 @@
   <string name="alex_fiestas_task">Verbesserungen am Kontakte-Modul</string>
   <string name="maxim_leshchenko_task">UI-Verbesserungen und diese Infoseite</string>
   <string name="holger_kaelberer_task">Modul „Entfernte Tastatur“ und Fehlerbehebungen</string>
+  <string name="saikrishna_arcot_task">Tastaturunterstützung im Ferneingabemodul, Fehlerbehebungen und allgemeine Verbesserungen</string>
+  <string name="shellwen_chen_task">Verbesserung der SFTP-Sicherheit und der Wartbarkeit dieses Projekts, Fehlerbehebungen und allgemeine Verbesserungen</string>
   <string name="everyone_else">Jeder, der über die Jahre noch zu KDE Connect beigetragen hat</string>
   <string name="send_clipboard">Zwischenablage senden</string>
   <string name="tap_to_execute">Tippen, um auszuführen</string>
@@ -436,6 +442,7 @@
   <string name="enable_bluetooth">Bluetooth aktivieren (Beta)</string>
   <string name="receive_notifications_permission_explanation">Benachrichtigungen müssen erlaubt sein, um sie von anderen Geräten empfangen zu können</string>
   <string name="findmyphone_notifications_explanation">Die Berechtigung für Benachrichtigungen wird benötigt, damit das Telefon klingeln kann, wenn die App im Hintergrund ist</string>
+  <string name="no_notifications">Benachrichtigungen sind deaktiviert, Sie erhalten keine Benachrichtigungen bei Kopplungsanfragen.</string>
   <string name="mpris_keepwatching">Wiedergabe fortsetzen</string>
   <string name="mpris_keepwatching_settings_title">Wiedergabe fortsetzen</string>
   <string name="mpris_keepwatching_settings_summary">Eine stumme Benachrichtigung anzeigen, um nach dem Schließen von Medien die Wiedergabe auf diesem Gerät fortzusetzen</string>

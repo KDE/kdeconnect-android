@@ -11,6 +11,8 @@
   <string name="pref_plugin_battery_desc">Bidali bateriaren egoera aldiro</string>
   <string name="pref_plugin_connectivity_report">Konektagarritasun txostena</string>
   <string name="pref_plugin_connectivity_report_desc">Eman sareko seinale-sendotasunaren eta egoeraren berri</string>
+  <string name="pref_plugin_digitizer">Marrazketa-tableta</string>
+  <string name="pref_plugin_digitizer_desc">Erabili gailu hau presioarekiko sentikorra den marrazketa-tableta gisa</string>
   <string name="pref_plugin_sftp">Fitxategi-sistemara sarbidea</string>
   <string name="pref_plugin_sftp_desc">Gailu honen fitxategi-sistema urrunetik arakatzea ahalbidetzen du</string>
   <string name="pref_plugin_clipboard">Arbelaren sinkronizazioa</string>
@@ -52,6 +54,7 @@
   <string name="remotekeyboard_connected">Urruneko teklatuarekin konexioa aktibo dago</string>
   <string name="remotekeyboard_multiple_connections">Urruneko teklatuekin konexio bat baino gehiago dago, hautatu konfiguratu beharreko gailua</string>
   <string name="open_mousepad">Urruneko sarrera</string>
+  <string name="open_mousepad_tv">TBko urrutiko agintea</string>
   <string name="mousepad_info">Mugitu hatz bat pantailan zehar saguaren erakuslea mugitzeko. Egin tak klik baterako, eta erabili bi/hiru hatz eskuin eta erdiko botoietarako. Erabili 2 hatz kiribiltzeko. Erabili sakatze luze bat arrastatu eta jaregiteko. Saguaren giroskopio funtzionalitatea pluginen hobespenetatik gaitu daiteke.</string>
   <string name="mousepad_info_no_gestures">Mugitu hatz bat pantailan kurtsorea mugitzeko, egin tak klik egiteko.</string>
   <string name="mousepad_keyboard_input_not_supported">Parekatutako gailuak ez du teklatuko sarreraren euskarririk</string>
@@ -65,6 +68,7 @@
   <string name="mousepad_scroll_sensitivity_title">Kiribiltze sentikortasuna</string>
   <string name="gyro_mouse_enabled_title">Gaitu giroskopio-sagua</string>
   <string name="gyro_mouse_sensitivity_title">Giroskopioaren sentikortasuna</string>
+  <string name="bigscreen_hide_mouse_input">Ezkutatu saguaren eta teklatuaren urrutiko agintearen sarrera-botoia</string>
   <string name="bigscreen_show_home_title">Erakutsi Etxe botoia</string>
   <string name="bigscreen_show_back_title">Erakutsi Atzera botoia</string>
   <string-array name="mousepad_tap_entries">
@@ -240,11 +244,18 @@
   <string name="sftp_missing_permission_error">Baimenak falta dira: fitxategi-sistemara sarbidea</string>
   <string name="no_players_connected">Ez da jotzailerik aurkitu</string>
   <string name="send_files">Bidali fitxategiak</string>
+  <string name="use_digitizer">Erabili marrazketa-tableta gisa</string>
+  <string name="digitizer_draw_button">Marraztu hatza erabiliz</string>
+  <string name="digitizer_preference_title_hide_draw_button">Ezkutatu marrazteko botoia</string>
+  <string name="digitizer_preference_summary_hide_draw_button">Marrazteko botoia erabat ezkutatzen du, hatzekin marraztea ezinezkoa bihurtuz. Gaitu hau zure gailuak arkatz-digitalaren sarrera onartzen badu bakarrik.</string>
+  <string name="digitizer_preference_title_draw_button_side">\"Marraztu hatzarekin\" botoiaren alboa</string>
+  <string name="digitizer_preference_title_enable_exit_fullscreen_gesture">Gaitu pantaila osotik irteteko keinua</string>
+  <string name="digitizer_preference_summary_enable_exit_fullscreen_gesture">Gaituta badago, hatzarekin marrazteko panelean tak egin eta eutsiz gero pantaila osoko modua ezgaituko du.</string>
   <string-array name="digitizer_preference_entries_draw_button_side">
-    <item>Top left</item>
-    <item>Top right</item>
-    <item>Bottom left</item>
-    <item>Bottom right</item>
+    <item>Goian ezkerrean</item>
+    <item>Goian eskuinean</item>
+    <item>Behean ezkerrean</item>
+    <item>Behean eskuinean</item>
   </string-array>
   <string name="block_notification_contents">Oztopatu jakinarazpenen edukia</string>
   <string name="block_notification_images">Oztopatu jakinarazpenen irudiak</string>
@@ -358,6 +369,7 @@
   <string name="bigscreen_down">Behera</string>
   <string name="bigscreen_back">Atzera</string>
   <string name="bigscreen_mic">Mikrofonoa</string>
+  <string name="pref_plugin_bigscreen">TBko urrutiko agintea</string>
   <string name="pref_plugin_bigscreen_desc">Erabili zure gailua Plasma Bigscreen-en urrutiko aginte gisa</string>
   <string name="bigscreen_optional_permission_explanation">Zure telefonoko mikrofonoko sarrerakoa partekatzeko, telefonoko audio sarrerakora sarbidea eman behar diozu</string>
   <string name="bigscreen_speech_extra_prompt">Hizketa</string>
@@ -434,6 +446,7 @@
   <string name="enable_bluetooth">Gaitu bluetooth (beta)</string>
   <string name="receive_notifications_permission_explanation">Jakinarazpenak baimendu behar dira beste gailuetatik haiek jasotzeko</string>
   <string name="findmyphone_notifications_explanation">Aplikazioa atzeko planoan dagoenean telefonoak jo dezan jakinarazpen-baimena behar da</string>
+  <string name="no_notifications">Jakinarazpenak ezgaituta daude, ez duzu parekatzeko sarrerako eskaera-jakinarazpenik jasoko.</string>
   <string name="mpris_keepwatching">Jarraitu jotzen</string>
   <string name="mpris_keepwatching_settings_title">Jarraitu jotzen</string>
   <string name="mpris_keepwatching_settings_summary">Hedabidea itxi ondoren, gailu honetan jotzen jarraitzeko jakinarazpen ixil bat erakutsi.</string>
@@ -443,4 +456,5 @@
   <string name="ping_in_progress">«Ping» egiten…</string>
   <string name="device_host_invalid">Ostalaria baliogabea da. Erabili balio duen ostalari-izen bat, IPv4, edo IPv6</string>
   <string name="device_host_duplicate">Ostalaria jada zerrendan dago</string>
+  <string name="enable_fullscreen">Gaitu pantaila osoa</string>
 </resources>
