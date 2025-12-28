@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.webkit.URLUtil;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -159,6 +160,7 @@ public class ShareActivity extends BaseActivity<ActivityShareBinding> {
             newUrlSet.addAll(oldUrlSet);
         }
         mSharedPrefs.edit().putStringSet(KEY_UNREACHABLE_URL_LIST + device.getDeviceId(), newUrlSet).apply();
+        Toast.makeText(this, getString(R.string.unreachable_share_toast), Toast.LENGTH_LONG).show();
     }
 
     @Override
