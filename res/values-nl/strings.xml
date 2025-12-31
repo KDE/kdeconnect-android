@@ -203,6 +203,7 @@
   <string name="share_to">Delen met…</string>
   <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">URL\'s gedeeld met een niet bereikbaar apparaat zullen er afgeleverd worden wanneer deze bereikbaar wordt.\n\n</string>
+  <string name="unreachable_share_toast">De URL zal gedeeld worden de volgende keer dat het apparaat wordt verbonden.</string>
   <string name="protocol_version">Protocolversie:</string>
   <string name="protocol_version_newer">Dit apparaat gebruikt een nieuwere protocolversie</string>
   <string name="plugin_settings_with_name">Instellingen van %s</string>

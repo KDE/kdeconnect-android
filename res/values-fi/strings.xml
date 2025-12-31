@@ -298,6 +298,7 @@
   <string name="notification_channel_persistent">Pysyvä ilmaisin</string>
   <string name="notification_channel_media_control">Mediaohjaimet</string>
   <string name="notification_channel_filetransfer">Saapuva tiedostonsiirto</string>
+  <string name="notification_channel_filetransfer_complete">Saapuva tiedostonsiirto valmis</string>
   <string name="notification_channel_filetransfer_upload">Lähtevä tiedostonsiirto</string>
   <string name="notification_channel_filetransfer_error">Tiedostonsiirtovirhe</string>
   <string name="notification_channel_high_priority">Korkea etusija</string>

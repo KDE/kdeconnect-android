@@ -203,6 +203,7 @@
   <string name="share_to">Şuraya Paylaş…</string>
   <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">Erişilemeyen bir aygıta gönderilen URL’ler, aygıt erişilebilir olduğunda teslim edilir.\n\n</string>
+  <string name="unreachable_share_toast">URL, aygıtın bir sonraki bağlanışında paylaşılacak.</string>
   <string name="protocol_version">Protokol sürümü:</string>
   <string name="protocol_version_newer">Bu aygıt, daha yeni bir protokol sürümü kullanıyor</string>
   <string name="plugin_settings_with_name">%s ayarları</string>

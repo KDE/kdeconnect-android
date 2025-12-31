@@ -219,6 +219,7 @@
   <string name="share_to">שיתוף אל…</string>
   <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">כתובות שותפו להתקן בלתי נגיש והן תועברנה אליו ברגע שישוב להיות נגיש.\n\n</string>
+  <string name="unreachable_share_toast">הכתובת תשותף בפעם הבאה שהמכשיר יהיה מחובר.</string>
   <string name="protocol_version">גרסת פרוטוקול:</string>
   <string name="protocol_version_newer">המכשיר משתמש בגרסה חדשה יותר</string>
   <string name="plugin_settings_with_name">הגדרות %s</string>
