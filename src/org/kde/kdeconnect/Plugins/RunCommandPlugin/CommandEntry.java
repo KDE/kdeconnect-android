@@ -12,7 +12,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.kde.kdeconnect.UserInterface.List.EntryItem;
 
-class CommandEntry extends EntryItem {
+public class CommandEntry extends EntryItem {
     private final String key;
 
     public CommandEntry(@NonNull JSONObject o) throws JSONException {

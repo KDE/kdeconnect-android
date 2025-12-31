@@ -23,7 +23,7 @@
             android:clipToPadding="false"
             android:padding="4dp"
             android:scrollbars="vertical"
-            app:spanCount="3"
+            app:spanCount="5"
             tools:listitem="@layout/item_command_button" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton

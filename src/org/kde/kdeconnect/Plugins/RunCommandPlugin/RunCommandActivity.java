@@ -20,12 +20,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.KdeConnect;
-import org.kde.kdeconnect.UserInterface.List.ListAdapter;
 import org.kde.kdeconnect.base.BaseActivity;
 import org.kde.kdeconnect_tp.R;
 import org.kde.kdeconnect_tp.databinding.ActivityRunCommandBinding;
@@ -56,35 +56,57 @@ public class RunCommandActivity extends BaseActivity<ActivityRunCommandBinding> 
     private void updateView() {
         RunCommandPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, RunCommandPlugin.class);
         if (plugin == null) {
+            Log.e("RunCommand", "Plugin is null");
             finish();
             return;
         }
 
-        registerForContextMenu(getBinding().runCommandsList);
+        try {
+            registerForContextMenu(getBinding().runCommandsList);
 
-        commandItems = new ArrayList<>();
-        for (JSONObject obj : plugin.getCommandList()) {
-            try {
-                commandItems.add(new CommandEntry(obj));
-            } catch (JSONException e) {
-                Log.e("RunCommand", "Error parsing JSON", e);
+            commandItems = new ArrayList<>();
+            List<JSONObject> commandList = plugin.getCommandList();
+            Log.d("RunCommand", "Found " + commandList.size() + " commands");
+            
+            for (JSONObject obj : commandList) {
+                try {
+                    CommandEntry entry = new CommandEntry(obj);
+                    commandItems.add(entry);
+                    Log.d("RunCommand", "Added command: " + entry.getName());
+                } catch (JSONException e) {
+                    Log.e("RunCommand", "Error parsing command: " + obj.toString(), e);
+                }
             }
+
+            if (commandItems.isEmpty()) {
+                Log.d("RunCommand", "No commands found, showing explanation");
+                getBinding().addCommandExplanation.setVisibility(View.VISIBLE);
+                return;
+            }
+
+            Collections.sort(commandItems, Comparator.comparing(CommandEntry::getName));
+
+            runOnUiThread(() -> {
+                // Set up RecyclerView with GridLayoutManager (3 columns)
+                getBinding().runCommandsList.setLayoutManager(new GridLayoutManager(this, 3));
+                
+                // Create and set the adapter
+                CommandEntryAdapter adapter = new CommandEntryAdapter(
+                    commandItems,
+                    (CommandEntry command) -> {
+                        Log.d("RunCommand", "Running command: " + command.getName());
+                        plugin.runCommand(command.getKey());
+                        return kotlin.Unit.INSTANCE;
+                    }
+                );
+                getBinding().runCommandsList.setAdapter(adapter);
+                getBinding().addCommandExplanation.setVisibility(View.GONE);
+            });
+        } catch (Exception e) {
+            Log.e("RunCommand", "Error in updateView", e);
+            getBinding().addCommandExplanation.setText("Error loading commands: " + e.getMessage());
+            getBinding().addCommandExplanation.setVisibility(View.VISIBLE);
         }
-
-        Collections.sort(commandItems, Comparator.comparing(CommandEntry::getName));
-
-        ListAdapter adapter = new ListAdapter(RunCommandActivity.this, commandItems);
-
-        getBinding().runCommandsList.setAdapter(adapter);
-        getBinding().runCommandsList.setOnItemClickListener((adapterView, view1, i, l) ->
-                plugin.runCommand(commandItems.get(i).getKey()));
-
-        String text = getString(R.string.addcommand_explanation);
-        if (!plugin.canAddCommand()) {
-            text += "\n" + getString(R.string.addcommand_explanation2);
-        }
-        getBinding().addCommandExplanation.setText(text);
-        getBinding().addCommandExplanation.setVisibility(commandItems.isEmpty() ? View.VISIBLE : View.GONE);
     }
 
     @Override
@@ -119,25 +141,39 @@ public class RunCommandActivity extends BaseActivity<ActivityRunCommandBinding> 
         updateView();
     }
 
+    // Context menu handling for RecyclerView
+    private int selectedPosition = -1;
+
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.runcommand_context, menu);
+        
+        // Get the position of the long-pressed item
+        View view = getCurrentFocus();
+        if (view != null) {
+            selectedPosition = getBinding().runCommandsList.getChildAdapterPosition(view);
+        }
     }
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        if (selectedPosition == -1) {
+            return super.onContextItemSelected(item);
+        }
+        
         if (item.getItemId() == R.id.copy_url_to_clipboard) {
-            CommandEntry entry = commandItems.get(info.position);
+            CommandEntry entry = commandItems.get(selectedPosition);
             String url = "kdeconnect://runcommand/" + deviceId + "/" + entry.getKey();
             ClipboardManager cm = ContextCompat.getSystemService(this, ClipboardManager.class);
             cm.setText(url);
             Toast toast = Toast.makeText(this, R.string.clipboard_toast, Toast.LENGTH_SHORT);
             toast.show();
+            selectedPosition = -1; // Reset after handling
             return true;
         }
+        selectedPosition = -1; // Reset if not handled
         return false;
     }
 
