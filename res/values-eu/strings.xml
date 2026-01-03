@@ -203,6 +203,7 @@
   <string name="share_to">Partekatu honekin…</string>
   <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">Gailu eskuraezinekin partekatutako URLak, hartara bidaliko dira eskuragarri dagoenean.\n\n</string>
+  <string name="unreachable_share_toast">URLa gailua konektatuta dagoen hurrengo aldian partekatuko da.</string>
   <string name="protocol_version">Protokoloaren bertsioa:</string>
   <string name="protocol_version_newer">Gailu honek protokoloaren bertsio berriago bat erabiltzen du</string>
   <string name="plugin_settings_with_name">%s ezarpenak</string>
