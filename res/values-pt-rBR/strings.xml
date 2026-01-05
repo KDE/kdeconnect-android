@@ -203,6 +203,7 @@
   <string name="share_to">Compartilhar com...</string>
   <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">URLs compartilhadas com um dispositivo inalcançável serão enviadas para ele assim que ele voltar a ficar disponível.\n\n</string>
+  <string name="unreachable_share_toast">O URL será compartilhado na próxima vez que o dispositivo for conectado.</string>
   <string name="protocol_version">Versão do protocolo:</string>
   <string name="protocol_version_newer">Este dispositivo usa uma versão mais recente do protocolo</string>
   <string name="plugin_settings_with_name">Configurações de %s</string>

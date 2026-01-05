@@ -156,6 +156,17 @@ public class LanLinkProvider extends BaseLinkProvider {
 
         Log.i("KDE/LanLinkProvider", "identity packet received from a TCP connection from " + identityPacket.getString("deviceName"));
 
+        String targetDeviceId = identityPacket.getStringOrNull("targetDeviceId");
+        Integer targetProtocolVersion = identityPacket.getIntOrNull("targetProtocolVersion");
+        if (targetDeviceId != null && !targetDeviceId.equals(DeviceHelper.getDeviceId(context))) {
+            Log.e("KDE/LanLinkProvider","Received a connection request for a device that isn't me: " + targetDeviceId);
+            return;
+        }
+        if (targetProtocolVersion != null && targetProtocolVersion != DeviceHelper.PROTOCOL_VERSION) {
+            Log.e("KDE/LanLinkProvider","Received a connection request for a protocol version that isn't mine: " + targetProtocolVersion);
+            return;
+        }
+
         identityPacketReceived(identityPacket, socket, LanLink.ConnectionStarted.Locally, deviceTrusted);
     }
 
@@ -238,7 +249,8 @@ public class LanLinkProvider extends BaseLinkProvider {
 
         DeviceInfo myDeviceInfo = DeviceHelper.getDeviceInfo(context);
         NetworkPacket myIdentity = myDeviceInfo.toIdentityPacket();
-
+        myIdentity.set("targetDeviceId", identityPacket.getString("deviceId"));
+        myIdentity.set("targetProtocolVersion", identityPacket.getString("protocolVersion"));
         OutputStream out = socket.getOutputStream();
         out.write(myIdentity.serialize().getBytes());
         out.flush();

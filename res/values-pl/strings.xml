@@ -219,6 +219,7 @@
   <string name="share_to">Udostępnij urządzeniu...</string>
   <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">Adres URL udostępniony nieosiągalnemu urządzeniu zostanie do niego dostarczony zaraz po tym jak stanie się osiągalne.\n\n</string>
+  <string name="unreachable_share_toast">Adres URL zostanie udostępniony podczas kolejnego podłączenia urządzenia.</string>
   <string name="protocol_version">Wersja protokołu:</string>
   <string name="protocol_version_newer">Urządzenie to używa nowszej wersji protokołu</string>
   <string name="plugin_settings_with_name">Ustawienia %s</string>
