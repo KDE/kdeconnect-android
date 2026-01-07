@@ -7,8 +7,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import org.kde.kdeconnect_tp.R
+
 class CommandEntryAdapter(
-    private val commands: List<CommandEntry>,
+    private val commands: MutableList<CommandEntry>,
     private val onItemClick: (CommandEntry) -> kotlin.Unit
 ) : RecyclerView.Adapter<CommandEntryAdapter.CommandViewHolder>() {
 
@@ -46,4 +47,26 @@ class CommandEntryAdapter(
     }
 
     override fun getItemCount() = commands.size
+
+    fun setCommands(newCommands: List<CommandEntry>) {
+        commands.clear()
+        commands.addAll(newCommands)
+        notifyDataSetChanged()
+    }
+
+    fun moveItem(fromPosition: Int, toPosition: Int) {
+        if (fromPosition == toPosition) return
+        val item = commands.removeAt(fromPosition)
+        commands.add(toPosition, item)
+        notifyItemMoved(fromPosition, toPosition)
+    }
+
+    fun getCommandKeys(): List<String> {
+        return commands.map { it.key }
+    }
+
+    fun getCommandAt(position: Int): CommandEntry? {
+        if (position < 0 || position >= commands.size) return null
+        return commands[position]
+    }
 }
