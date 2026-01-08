@@ -264,11 +264,12 @@ public class CompositeReceiveFileJob extends BackgroundJob<Device, Void> {
         //If the file should be opened immediately store it in the standard location to avoid the FileProvider trouble (See ReceiveNotification::setURI)
         if (open || !ShareSettingsFragment.isCustomDestinationEnabled(getDevice().getContext())) {
             final String defaultPath = ShareSettingsFragment.getDefaultDestinationDirectory().getAbsolutePath();
-            filenameToUse = FilesHelper.findNonExistingNameForNewFile(defaultPath, filenameToUse);
+            filenameToUse = FilesHelper.findValidNonExistingFileNameForFile(defaultPath, filenameToUse);
             destinationFolderDocument = DocumentFile.fromFile(new File(defaultPath));
         } else {
             destinationFolderDocument = ShareSettingsFragment.getDestinationDirectory(getDevice().getContext());
         }
+
         String displayName = FilenameUtils.getBaseName(filenameToUse);
         String mimeType = FilesHelper.getMimeTypeFromFile(filenameToUse);
 

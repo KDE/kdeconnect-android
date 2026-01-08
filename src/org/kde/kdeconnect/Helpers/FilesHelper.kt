@@ -17,6 +17,7 @@ import androidx.annotation.WorkerThread
 import org.apache.commons.io.FilenameUtils
 import org.kde.kdeconnect.NetworkPacket
 import java.io.File
+import java.nio.charset.StandardCharsets
 import kotlin.math.min
 
 object FilesHelper {
@@ -29,36 +30,61 @@ object FilesHelper {
     }
 
     @JvmStatic
-    fun findNonExistingNameForNewFile(path: String, filename: String): String {
-        var newFilename = filename
-        val name = FilenameUtils.getBaseName(newFilename)
-        val ext = FilenameUtils.getExtension(newFilename)
+    fun findValidNonExistingFileNameForFile(path: String, filename: String): String {
+        var validFilename : String
+        val baseName = File(filename).nameWithoutExtension
+        val ext = File(filename).extension
+        var num = 0
 
-        var num = 1
-        while (File("$path/$newFilename").exists()) {
-            newFilename = "$name ($num).$ext"
-            num++
-        }
+        do {
+            validFilename = buildValidFatFilename("$baseName%s.$ext".format(if (num == 0) "" else " ($num)"))
+            num++;
+        } while (File(path, validFilename).exists())
 
-        return newFilename
+        return validFilename
     }
 
-    /**
-     * Converts any string into a string that is safe to use as a file name.
-     * The result will only include ascii characters and numbers, and the "-","_", and "." characters.
+    /*
+        Source https://android.googlesource.com/platform/frameworks/base/+/refs/heads/main/core/java/android/os/FileUtils.java
      */
-    private fun toFileSystemSafeName(name: String, dirSeparators: Boolean, maxFileLength: Int): String {
-        fun isSafeChar(c: Char): Boolean =
-            c in 'a'..'z' || c in 'A'..'Z' || c in '0'..'9' ||
-            c == '_' || c == '-' || c == '.' ||
-            (dirSeparators && ((c == '/') || (c == '\\')))
+    private fun buildValidFatFilename(name: String?): String {
+        val res = StringBuilder(name!!.length)
 
-        val nameSafeChars = name.filter(::isSafeChar)
-        val nameSafeLength = nameSafeChars.substring(nameSafeChars.length - min(nameSafeChars.length, maxFileLength))
-        return nameSafeLength
+        for (c in name) {
+            if (isValidFatFilenameChar(c)) {
+                res.append(c)
+            } else {
+                res.append('_')
+            }
+        }
+        // Even though vfat allows 255 UCS-2 chars, we might eventually write to
+        // ext4 through a FUSE layer, so use that limit.
+        trimFilename(res, 255)
+        return res.toString()
     }
-    fun toFileSystemSafeName(name: String, dirSeparators: Boolean): String = toFileSystemSafeName(name, dirSeparators, 255)
-    fun toFileSystemSafeName(name: String): String = toFileSystemSafeName(name, true, 255)
+
+    private fun isValidFatFilenameChar(c: Char): Boolean {
+        if (c.code in 0x00..0x1f || c.code == 0x7F) {
+            return false
+        }
+        return when (c) {
+            '"', '*', '/', ':', '<', '>', '?', '\\', '|' -> false
+            else -> true
+        }
+    }
+
+    private fun trimFilename(res: StringBuilder, maxBytes: Int) {
+        var maxBytes = maxBytes
+        var raw = res.toString().toByteArray(StandardCharsets.UTF_8)
+        if (raw.size > maxBytes) {
+            maxBytes -= 3
+            while (raw.size > maxBytes) {
+                res.deleteCharAt(res.length / 2)
+                raw = res.toString().toByteArray(StandardCharsets.UTF_8)
+            }
+            res.insert(res.length / 2, "...")
+        }
+    }
 
     private fun getOpenFileCount(): Int? = File("/proc/self/fd").listFiles()?.size
 
