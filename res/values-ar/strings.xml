@@ -235,6 +235,7 @@
   <string name="share_to">شارك مع…</string>
   <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">شاركنا العناوين إلى جهاز لا يمكن الوصول إليه، ستُسلم إليه بمجرد أن يصبح الوصول إليه ممكناً.\n\n</string>
+  <string name="unreachable_share_toast">"سيقوم الجهاز بمشاركة العنوان  عند اتصاله بالإنترنت في المرة القادمة."</string>
   <string name="protocol_version">إصدار الميفاق:</string>
   <string name="protocol_version_newer">يستخدم هذا الجهاز إصدار ميفاق أحدث</string>
   <string name="plugin_settings_with_name">إعدادات %s</string>
