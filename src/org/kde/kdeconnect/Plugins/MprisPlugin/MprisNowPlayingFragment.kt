@@ -108,9 +108,8 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
         performActionOnClick(mprisControlBinding.stopButton, MprisPlayer::sendStop)
 
         mprisControlBinding.volumeSeek.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
-            override fun onProgressChanged(seekBar: SeekBar, i: Int, b: Boolean) {
-                val targetPlayer = targetPlayer ?: return
-                targetPlayer.sendSetVolume(seekBar.progress)
+            override fun onProgressChanged(seekBar: SeekBar, progress: Int, isFromUser: Boolean) {
+                if (isFromUser) targetPlayer?.sendSetVolume(seekBar.progress)
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar) {}
