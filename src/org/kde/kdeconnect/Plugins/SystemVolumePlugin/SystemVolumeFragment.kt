@@ -140,7 +140,7 @@ class SystemVolumeFragment : BaseFragment<SystemVolumeFragmentBinding>(),
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SinkItemHolder {
             val viewBinding = ListItemSystemvolumeBinding.inflate(layoutInflater, parent, false)
-            return SinkItemHolder(viewBinding, plugin,  { isUserTracking -> tracking = isUserTracking })
+            return SinkItemHolder(viewBinding, plugin) { isUserTracking -> tracking = isUserTracking }
         }
 
         override fun onBindViewHolder(holder: SinkItemHolder, position: Int) {
