@@ -63,13 +63,13 @@ class SinkItemHolder(
         }
 
         viewBinding.apply {
+            //Volume seek
             systemvolumeSeek.setOnSeekBarChangeListener(volumeSeekBarChangeListener)
+            systemvolumeSeek.max = sink.maxVolume
+            systemvolumeSeek.progress = sink.volume
             //Radio button
             systemvolumeLabel.isChecked = sink.isDefault
             systemvolumeLabel.text = sink.description
-            //Volume seek
-            systemvolumeSeek.max = sink.maxVolume
-            systemvolumeSeek.progress = sink.volume
             //Icon
             val iconRes = if (sink.mute) drawable.ic_volume_mute else drawable.ic_volume
             systemvolumeMute.setImageResource(iconRes)
