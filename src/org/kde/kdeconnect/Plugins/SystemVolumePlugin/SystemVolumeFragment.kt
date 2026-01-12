@@ -30,7 +30,9 @@ class SystemVolumeFragment : BaseFragment<SystemVolumeFragmentBinding>(),
     private lateinit var plugin: SystemVolumePlugin
     private lateinit var recyclerAdapter: RecyclerSinkAdapter
     private var tracking = false
-    private val trackingConsumer = Consumer { aBoolean: Boolean -> tracking = aBoolean }
+
+    private val deviceId: String?
+        get() = arguments?.getString(MprisPlugin.DEVICE_ID_KEY)
 
     override fun getActionBarTitle() = getString(R.string.open_mpris_controls)
 
@@ -134,18 +136,16 @@ class SystemVolumeFragment : BaseFragment<SystemVolumeFragmentBinding>(),
         plugin.sendVolume(defaultSink.name, newVolume)
     }
 
-    private val deviceId: String?
-        get() = arguments?.getString(MprisPlugin.DEVICE_ID_KEY)
-
     private inner class RecyclerSinkAdapter : ListAdapter<Sink?, SinkItemHolder>(SinkItemCallback()) {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SinkItemHolder {
             val viewBinding = ListItemSystemvolumeBinding.inflate(layoutInflater, parent, false)
-            return SinkItemHolder(viewBinding, plugin, trackingConsumer)
+            return SinkItemHolder(viewBinding, plugin,  { isUserTracking -> tracking = isUserTracking })
         }
 
         override fun onBindViewHolder(holder: SinkItemHolder, position: Int) {
-            holder.bind(getItem(position))
+            val sink = getItem(position)
+            sink?.let { holder.bind(it) }
         }
     }
 
