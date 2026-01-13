@@ -173,7 +173,7 @@
   <string name="show_keyboard">Afficher le clavier</string>
   <string name="show_mouse_and_keyboard">Afficher la souris et le clavier</string>
   <string name="device_not_paired">Périphérique non associé</string>
-  <string name="pairing_duplicate_names">Attention : Il existe plusieurs périphériques portant le même nom.</string>
+  <string name="pairing_duplicate_names">Attention : il existe plusieurs périphériques portant le même nom.</string>
   <string name="request_pairing">Demande d\'association</string>
   <string name="pairing_accept">Accepter</string>
   <string name="pairing_reject">Rejeter</string>
@@ -203,7 +203,7 @@
   <string name="share_to">Partager vers…</string>
   <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">Les URL partagées vers un appareil inaccessible lui seront transmises une fois qu\'il re-deviendra accessible.\n\n</string>
-  <string name="unreachable_share_toast">L’URL sera partagée à la prochaine connexion du périphérique.</string>
+  <string name="unreachable_share_toast">L\'URL sera partagée à la prochaine connexion du périphérique.</string>
   <string name="protocol_version">Version de protocole :</string>
   <string name="protocol_version_newer">Le périphérique utilise une version plus récente du protocole</string>
   <string name="plugin_settings_with_name">Configuration %s</string>
