@@ -7,6 +7,8 @@
 package org.kde.kdeconnect.Plugins.MousePadPlugin
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.Box
@@ -24,6 +26,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.preference.PreferenceManager
 import org.kde.kdeconnect.KdeConnect
+import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.UserInterface.compose.KdeTextButton
 import org.kde.kdeconnect.UserInterface.compose.KdeTextField
 import org.kde.kdeconnect.UserInterface.compose.KdeTheme
@@ -59,12 +62,24 @@ class ComposeSendActivity : AppCompatActivity() {
     }
 
     private fun sendComposed() {
-        val plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, MousePadPlugin::class.java)
-        if (plugin == null) {
+        val device = KdeConnect.getInstance().getDevice(deviceId)
+        if (device == null) {
             finish()
             return
         }
-        plugin.sendText(userInput.value)
+        // クリップボード経由で送信（日本語テキストの文字化け対策）
+        val clipboardPacket = NetworkPacket("kdeconnect.clipboard")
+        clipboardPacket.set("content", userInput.value)
+        device.sendPacket(clipboardPacket)
+
+        // 少し待ってからCtrl+Vを送信して自動貼り付け
+        Handler(Looper.getMainLooper()).postDelayed({
+            val pastePacket = NetworkPacket("kdeconnect.mousepad.request")
+            pastePacket.set("key", "v")
+            pastePacket.set("ctrl", true)
+            device.sendPacket(pastePacket)
+        }, 150)
+
         clearComposeInput()
     }
 
