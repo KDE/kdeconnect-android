@@ -1,7 +1,6 @@
 package org.kde.kdeconnect.Plugins.SystemVolumePlugin
 
 import android.view.View
-import android.widget.CompoundButton
 import android.widget.SeekBar
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
@@ -12,59 +11,44 @@ class SinkItemHolder(
     val viewBinding: ListItemSystemvolumeBinding,
     val plugin: SystemVolumePlugin,
     val onTrackingChanged: (Boolean) -> Unit
-) : RecyclerView.ViewHolder(viewBinding.root),
-    View.OnClickListener,
-    CompoundButton.OnCheckedChangeListener,
-    SeekBar.OnSeekBarChangeListener,
-    View.OnLongClickListener {
+) : RecyclerView.ViewHolder(viewBinding.root) {
 
-    private var sink: Sink? = null
+    private fun getOnVolumeSeekChanged(sink: Sink) = object : SeekBar.OnSeekBarChangeListener {
 
-    init {
-        viewBinding.sinkCard.setOnLongClickListener(this)
-        viewBinding.systemvolumeLabel.setOnLongClickListener(this)
-        viewBinding.systemvolumeLabel.setOnCheckedChangeListener(this)
-        viewBinding.systemvolumeMute.setOnClickListener(this)
-        viewBinding.systemvolumeSeek.setOnSeekBarChangeListener(this)
-    }
+        override fun onProgressChanged(seekBar: SeekBar, i: Int, triggeredByUser: Boolean) {
+            if (triggeredByUser) {
+                plugin.sendVolume(sink.name, seekBar.progress)
+            }
+        }
 
-    override fun onProgressChanged(seekBar: SeekBar, i: Int, triggeredByUser: Boolean) {
-        if (triggeredByUser) {
-            sink?.let { plugin.sendVolume(it.name, seekBar.progress) }
+        override fun onStartTrackingTouch(seekBar: SeekBar) {
+            onTrackingChanged(true)
+        }
+
+        override fun onStopTrackingTouch(seekBar: SeekBar) {
+            onTrackingChanged(false)
+            plugin.sendVolume(sink.name, seekBar.progress)
         }
     }
 
-    override fun onStartTrackingTouch(seekBar: SeekBar) {
-        onTrackingChanged(true)
-    }
-
-    override fun onStopTrackingTouch(seekBar: SeekBar) {
-        onTrackingChanged(false)
-        sink?.let { plugin.sendVolume(it.name, seekBar.progress) }
-    }
-
-    override fun onCheckedChanged(buttonView: CompoundButton, isChecked: Boolean) {
-        if (isChecked) {
-            sink?.let { plugin.sendEnable(it.name) }
-        }
-    }
-
-    override fun onLongClick(v: View): Boolean {
-        sink?.let { Toast.makeText(v.context, it.name, Toast.LENGTH_SHORT).show() }
-        return true
-    }
-
-    override fun onClick(view: View) {
-        sink?.let { plugin.sendMute(it.name, !it.mute) }
+    private fun getOnLongClickAction(sink: Sink) = View.OnLongClickListener { v ->
+        Toast.makeText(v.context, sink.name, Toast.LENGTH_SHORT).show()
+        true
     }
 
     fun bind(sink: Sink) {
-        this.sink = sink
         viewBinding.apply {
+            //Card
+            sinkCard.setOnLongClickListener(getOnLongClickAction(sink))
+            //Mute
+            systemvolumeMute.setOnClickListener { plugin.sendMute(sink.name, !sink.mute) }
             //Volume seek
+            systemvolumeSeek.setOnSeekBarChangeListener(getOnVolumeSeekChanged(sink))
             systemvolumeSeek.max = sink.maxVolume
             systemvolumeSeek.progress = sink.volume
             //Radio button
+            systemvolumeLabel.setOnLongClickListener(getOnLongClickAction(sink))
+            systemvolumeLabel.setOnCheckedChangeListener { _, isChecked -> if (isChecked) plugin.sendEnable(sink.name) }
             systemvolumeLabel.isChecked = sink.isDefault
             systemvolumeLabel.text = sink.description
             //Icon
