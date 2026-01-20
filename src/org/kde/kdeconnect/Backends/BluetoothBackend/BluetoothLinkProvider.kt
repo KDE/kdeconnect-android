@@ -182,9 +182,14 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
                 ConnectionMultiplexer(socket).use { connection ->
                     val outputStream = connection.defaultOutputStream
                     val inputStream = connection.defaultInputStream
+
                     val myDeviceInfo = DeviceHelper.getDeviceInfo(context)
                     val np = myDeviceInfo.toIdentityPacket()
-                    np["certificate"] = Base64.encodeToString(SslHelper.certificate.encoded, 0)
+                    val myCertificate = Base64.encodeToString(SslHelper.certificate.encoded, 0)
+                    val pemEncodedCertificate = "-----BEGIN CERTIFICATE-----\n" + myCertificate + "\n-----END CERTIFICATE-----\n";
+
+                    np["certificate"] = pemEncodedCertificate
+
                     val message = np.serialize().toByteArray(UTF_8)
                     outputStream.write(message)
                     outputStream.flush()
@@ -393,14 +398,19 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
                 val base64CertificateString = pemEncodedCertificateString
                         .replace("-----BEGIN CERTIFICATE-----\n", "")
                         .replace("-----END CERTIFICATE-----\n", "")
+
                 val pemEncodedCertificateBytes = Base64.decode(base64CertificateString, 0)
                 val certificate = SslHelper.parseCertificate(pemEncodedCertificateBytes)
                 val deviceInfo = fromIdentityPacketAndCert(identityPacket, certificate)
                 val link = BluetoothLink(context, connection, inputStream, outputStream,
                         socket.remoteDevice, deviceInfo, this@BluetoothLinkProvider)
+
                 val myDeviceInfo = DeviceHelper.getDeviceInfo(context)
                 val np2 = myDeviceInfo.toIdentityPacket()
-                np2["certificate"] = Base64.encodeToString(SslHelper.certificate.encoded, 0)
+                val myCertificate = Base64.encodeToString(SslHelper.certificate.encoded, 0)
+                val pemEncodedCertificate = "-----BEGIN CERTIFICATE-----\n" + myCertificate + "\n-----END CERTIFICATE-----\n";
+
+                np2["certificate"] = pemEncodedCertificate
                 Log.i("BTLinkProvider/Client", "about to send packet np2")
                 link.sendPacket(np2, object : Device.SendPacketStatusCallback() {
                     override fun onSuccess() {
