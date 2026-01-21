@@ -11,6 +11,8 @@
   <string name="pref_plugin_battery_desc">Raportoi akun tila säännöllisesti</string>
   <string name="pref_plugin_connectivity_report">Verkkoyhteysraportti</string>
   <string name="pref_plugin_connectivity_report_desc">Ilmoita kentän voimakkuus ja tila</string>
+  <string name="pref_plugin_digitizer">Piirtopöytä</string>
+  <string name="pref_plugin_digitizer_desc">Käytä laitetta paineen tunnistavana piirtopöytänä</string>
   <string name="pref_plugin_sftp">Tiedostojärjestelmän käyttö</string>
   <string name="pref_plugin_sftp_desc">Mahdollistaa tämän laitteen tiedostojärjestelmän etäselaamisen</string>
   <string name="pref_plugin_clipboard">Leikepöydän synkronointi</string>
@@ -52,6 +54,7 @@
   <string name="remotekeyboard_connected">Etänäppäimistöyhteys on käytössä</string>
   <string name="remotekeyboard_multiple_connections">Etänäppäimistöyhteyksiä on useampia: valitse asetettava laite</string>
   <string name="open_mousepad">Kauko-ohjaus</string>
+  <string name="open_mousepad_tv">TV-kaukosäädin</string>
   <string name="mousepad_info">Siirrä hiirikohdistinta liikuttamalla sormea näytöllä. Tee hiirenpainallus napauttamalla, ja käytä kahta tai kolmea sormea oikealle ja keskipainikkeelle. Vieritä kahdella sormella. Pitkällä painalluksella voit vetää ja pudottaa. Gyrohiiritoiminnon voi ottaa käyttää liitännäisen asetuksista</string>
   <string name="mousepad_info_no_gestures">Siirrä hiiriosoitinta liikuttamalla sormea näytöllä, napautus napsauttaa.</string>
   <string name="mousepad_keyboard_input_not_supported">Paritettu laite ei tue näppäimistösyötettä</string>
@@ -65,6 +68,7 @@
   <string name="mousepad_scroll_sensitivity_title">Vieritysherkkyys</string>
   <string name="gyro_mouse_enabled_title">Käytä gyroskooppihiirtä</string>
   <string name="gyro_mouse_sensitivity_title">Gyroskoopin herkkyys</string>
+  <string name="bigscreen_hide_mouse_input">Piilota hiiren ja näppäimistön etäsyötepainike</string>
   <string name="bigscreen_show_home_title">Näytä Koti-painike</string>
   <string name="bigscreen_show_back_title">Näytä Takaisin-painike</string>
   <string-array name="mousepad_tap_entries">
@@ -240,11 +244,18 @@
   <string name="sftp_missing_permission_error">Käyttöoikeuksia puuttuu: tiedostojärjestelmän käyttö</string>
   <string name="no_players_connected">Soittimia ei löytynyt</string>
   <string name="send_files">Lähetä tiedostoja</string>
+  <string name="use_digitizer">Käytä piirtopöytänä</string>
+  <string name="digitizer_draw_button">Piirrä sormella</string>
+  <string name="digitizer_preference_title_hide_draw_button">Piilota piirtämiskuvake</string>
+  <string name="digitizer_preference_summary_hide_draw_button">Piilottaa piirtämiskuvakkeen kokonaan, jolloin sormella ei voi piirtää. Käytä vain, jos laite tukee piirtokynäsyötettä.</string>
+  <string name="digitizer_preference_title_draw_button_side">”Piirrä sormella” -painikkeen kylki</string>
+  <string name="digitizer_preference_title_enable_exit_fullscreen_gesture">Salli koko näytön poistumisele</string>
+  <string name="digitizer_preference_summary_enable_exit_fullscreen_gesture">Jos käytössä, piirtopöydän napautus ja pitäminen sormella poistaa koko näytön tilan käytöstä.</string>
   <string-array name="digitizer_preference_entries_draw_button_side">
-    <item>Top left</item>
-    <item>Top right</item>
-    <item>Bottom left</item>
-    <item>Bottom right</item>
+    <item>Ylävasen</item>
+    <item>Yläoikea</item>
+    <item>Alavasen</item>
+    <item>Alaoikea</item>
   </string-array>
   <string name="block_notification_contents">Estä ilmoitusten sisältö</string>
   <string name="block_notification_images">Estä ilmoitusten kuvat</string>
@@ -358,6 +369,7 @@
   <string name="bigscreen_down">Alemmas</string>
   <string name="bigscreen_back">Takaisin</string>
   <string name="bigscreen_mic">Mikrofoni</string>
+  <string name="pref_plugin_bigscreen">TV-kaukosäädin</string>
   <string name="pref_plugin_bigscreen_desc">Käytä laitetta Plasma Bigscreen -kaukosäätimenä</string>
   <string name="bigscreen_optional_permission_explanation">Jakaaksesi puhelimen mikrofonisyötteen puhelimen äänisyötteeseen on annettava käyttöoikeus</string>
   <string name="bigscreen_speech_extra_prompt">Puhe</string>
@@ -434,6 +446,7 @@
   <string name="enable_bluetooth">Käytä Bluetoothia (beeta)</string>
   <string name="receive_notifications_permission_explanation">Ilmoitukset tulee sallia, jotta niitä voi vastaanottaa muilta laitteilta</string>
   <string name="findmyphone_notifications_explanation">Ilmoituskäyttöoikeus vaaditaan, jotta puhelin voisi soida sovelluksen toimiessa taustalla</string>
+  <string name="no_notifications">Ilmoitukset eivät ole käytössä, joten paritusilmoituksia ei vastaanoteta.</string>
   <string name="mpris_keepwatching">Jatka toistoa</string>
   <string name="mpris_keepwatching_settings_title">Jatka toistoa</string>
   <string name="mpris_keepwatching_settings_summary">Näytä hiljainen ilmoitus toiston jatkamisesta laitteella median sulkeuduttua</string>
@@ -443,4 +456,5 @@
   <string name="ping_in_progress">Pingataan…</string>
   <string name="device_host_invalid">Konenimi on virheellinen. Käytä kelvollista konenimeä tai IPv4- tai IPv6-osoitetta.</string>
   <string name="device_host_duplicate">Konenimi löytyy jo luettelosta</string>
+  <string name="enable_fullscreen">Käytä koko näyttöä</string>
 </resources>
