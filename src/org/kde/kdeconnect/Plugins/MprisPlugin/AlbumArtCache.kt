@@ -160,7 +160,7 @@ internal object AlbumArtCache {
         try {
             val item = diskCache[urlToDiskCacheKey(albumUrl)]
             if (item != null) {
-                val result = BitmapFactory.decodeStream(item.getInputStream(0))
+                val result = BitmapFactory.decodeStream(item.getInputStream(0).buffered())
                 item.close()
                 val memItem = MemoryCacheItem()
                 if (result != null) {
