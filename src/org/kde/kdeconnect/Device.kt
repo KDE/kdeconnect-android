@@ -10,7 +10,6 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.util.Log
@@ -433,6 +432,9 @@ class Device : PacketReceiver {
         val targetPlugins = pluginsByIncomingInterface[np.type] // Returns an empty collection if the key doesn't exist
         if (targetPlugins.isEmpty()) {
             Log.w("Device", "Ignoring packet with type ${np.type} because no plugin can handle it")
+
+            // If there is a payload close it to not leak sockets
+            np.payload?.close()
             return
         }
         targetPlugins
