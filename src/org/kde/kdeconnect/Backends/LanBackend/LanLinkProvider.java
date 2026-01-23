@@ -172,6 +172,8 @@ public class LanLinkProvider extends BaseLinkProvider {
 
     /**
      * Read a single line from a socket without consuming anything else from the input.
+     * We don't use a BufferedReader on purpose, since BufferedReader reads ahead and would require
+     * us to keep a single BufferedReader instance and pass it around to make sure we don't lose data.
      */
     private String readSingleLine(Socket socket) throws IOException {
         InputStream stream = socket.getInputStream();
