@@ -313,19 +313,19 @@ public class LanLinkProvider extends BaseLinkProvider {
                         secureIdentityPacket = NetworkPacket.unserialize(line);
                         if (!DeviceInfo.isValidIdentityPacket(secureIdentityPacket)) {
                             Log.e("KDE/LanLinkProvider", "Identity packet isn't valid");
-                            socket.close();
+                            sslSocket.close();
                             return;
                         }
                         int newProtocolVersion = secureIdentityPacket.getInt("protocolVersion");
                         if (newProtocolVersion != protocolVersion) {
                             Log.e("KDE/LanLinkProvider", "Protocol version changed half-way through the handshake: " + protocolVersion + " -> " + newProtocolVersion);
-                            socket.close();
+                            sslSocket.close();
                             return;
                         }
                         String newDeviceId = secureIdentityPacket.getString("deviceId");
                         if (!newDeviceId.equals(deviceId)) {
                             Log.e("KDE/LanLinkProvider", "Device ID changed half-way through the handshake: " + deviceId + " -> " + newDeviceId);
-                            socket.close();
+                            sslSocket.close();
                             return;
                         }
                     } else {
@@ -337,8 +337,10 @@ public class LanLinkProvider extends BaseLinkProvider {
                     addOrUpdateLink(sslSocket, deviceInfo);
                 } catch (JSONException e) {
                     Log.e("KDE/LanLinkProvider", "Remote device doesn't correctly implement protocol version 8", e);
+                    try { sslSocket.close(); } catch (IOException ignored) { }
                 } catch (IOException e) {
                     Log.e("KDE/LanLinkProvider", "Handshake as " + mode + " failed with " + deviceId, e);
+                    try { sslSocket.close(); } catch (IOException ignored) { }
                 }
             });
         });
