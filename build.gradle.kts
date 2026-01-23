@@ -49,7 +49,7 @@ android {
         targetSdk = 35
         versionCode = 13404
         versionName = "1.34.4"
-        proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
+        proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
     }
     buildFeatures {
         viewBinding = true
