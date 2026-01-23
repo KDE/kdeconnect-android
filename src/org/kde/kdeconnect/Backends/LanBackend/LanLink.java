@@ -40,6 +40,8 @@ import kotlin.text.Charsets;
 
 public class LanLink extends BaseLink {
 
+    final static int MAX_PACKET_SIZE = 32 * 1024 * 1024;
+
     public enum ConnectionStarted {
         Locally, Remotely
     }
@@ -77,12 +79,9 @@ public class LanLink extends BaseLink {
                 while (true) {
                     String packet;
                     try {
-                        packet = reader.readLine();
+                        packet = readSingleLine(reader);
                     } catch (SocketTimeoutException e) {
                         continue;
-                    }
-                    if (packet == null) {
-                        throw new IOException("End of stream");
                     }
                     if (packet.isEmpty()) {
                         continue;
@@ -102,6 +101,22 @@ public class LanLink extends BaseLink {
         });
 
         return oldSocket;
+    }
+
+    private String readSingleLine(BufferedReader reader) throws IOException {
+        StringBuilder line = new StringBuilder(MAX_PACKET_SIZE);
+        int ch;
+        while ((ch = reader.read()) != -1) {
+            line.append((char) ch);
+            if (ch == '\n') {
+                return line.toString();
+            }
+            if (line.length() >= MAX_PACKET_SIZE) {
+                Log.w("LanLink", "Discarding packet that's too large");
+                return "";
+            }
+        }
+        throw new IOException("Couldn't read a line from the socket");
     }
 
     @WorkerThread
