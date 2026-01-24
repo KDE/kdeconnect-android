@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:keep="@xml/presenterplugin_preferences">
+    <SwitchPreference
+        android:id="@+id/pref_presenter_enable_volume_keys"
+        android:defaultValue="true"
+        android:key="@string/pref_presenter_enable_volume_keys"
+        android:summary="@string/pref_presenter_enable_volume_keys_summary"
+        android:title="@string/pref_presenter_enable_volume_keys_title" />
+    <SeekBarPreference
+        android:id="@+id/presenter_sensitivity_pointer"
+        android:defaultValue="50"
+        android:key="@string/pref_presenter_sensitivity"
+        android:title="@string/pref_presenter_sensitivity_title"
+        android:layout_width="wrap_content" />
+
+</androidx.preference.PreferenceScreen>

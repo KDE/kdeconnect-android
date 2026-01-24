@@ -6,6 +6,8 @@
 
 package org.kde.kdeconnect.Plugins.PresenterPlugin
 
+import android.content.SharedPreferences
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
@@ -13,8 +15,11 @@ import android.hardware.SensorManager
 import android.os.Build
 import android.os.Bundle
 import android.os.PowerManager
+import android.os.SystemClock
 import android.support.v4.media.session.MediaSessionCompat
 import android.support.v4.media.session.PlaybackStateCompat
+import android.util.Log
+import android.view.KeyEvent
 import android.view.MotionEvent
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
@@ -48,27 +53,29 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.media.VolumeProviderCompat
+import androidx.preference.PreferenceManager
 import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect.UserInterface.compose.KdeButton
 import org.kde.kdeconnect.UserInterface.compose.KdeTheme
 import org.kde.kdeconnect.UserInterface.compose.KdeTopAppBar
 import org.kde.kdeconnect.extensions.safeDrawPadding
 import org.kde.kdeconnect_tp.R
+import kotlin.math.pow
 
 private const val VOLUME_UP = 1
 private const val VOLUME_DOWN = -1
 
-class PresenterActivity : AppCompatActivity(), SensorEventListener {
+class PresenterActivity : AppCompatActivity(), SensorEventListener, OnSharedPreferenceChangeListener {
 
-    private val offScreenControlsSupported = Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU
+    private val offScreenControlsSupported = Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU || Build.VERSION.SDK_INT >= Build.VERSION_CODES.BAKLAVA
     private val mediaSession by lazy {
         if (offScreenControlsSupported) MediaSessionCompat(this, "kdeconnect") else null
     }
-    private val powerManager by lazy { getSystemService(POWER_SERVICE) as PowerManager }
     private lateinit var plugin : PresenterPlugin
-
-    //TODO: make configurable
-    private val sensitivity = 0.03f
+    private var prefsApplied = false
+    private var volumeKeys = false
+    private var prefs: SharedPreferences? = null
+    private var sensitivity = 0.03f
 
     override fun onSensorChanged(event: SensorEvent?) {
         if (event?.sensor?.type == Sensor.TYPE_GYROSCOPE) {
@@ -85,6 +92,11 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        prefs = PreferenceManager.getDefaultSharedPreferences(this)
+        prefs!!.registerOnSharedPreferenceChangeListener(this)
+        applyPrefs()
+
         plugin = KdeConnect.getInstance().getDevicePlugin(intent.getStringExtra("deviceId"), PresenterPlugin::class.java)
             ?: run {
                 finish()
@@ -94,31 +106,41 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener {
         createMediaSession()
     }
 
-    override fun onResume() {
-        super.onResume()
-        mediaSession?.setActive(false)
-    }
-
-    override fun onPause() {
-        super.onPause()
-        //fixme watch for isInteractive in background
-        mediaSession?.setActive(!powerManager.isInteractive)
-    }
-
     override fun onDestroy() {
         mediaSession?.release()
         super.onDestroy()
     }
 
-    private fun createMediaSession() {
-        mediaSession?.setPlaybackState(
-            PlaybackStateCompat.Builder().setState(PlaybackStateCompat.STATE_PLAYING, 0, 0f).build()
-        )
-        mediaSession?.setPlaybackToRemote(volumeProvider)
+    override fun dispatchKeyEvent(event: KeyEvent): Boolean {
+        //Only override dispatchKeyEvent if offScreenControls is not supported
+        if (offScreenControlsSupported){
+            return super.dispatchKeyEvent(event)
+        }
 
+        val keyCode = event.keyCode
+        val action = event.action
+        if (volumeKeys) {
+            if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN && action == KeyEvent.ACTION_UP) {
+                plugin.sendPrevious()
+            } else if (keyCode == KeyEvent.KEYCODE_VOLUME_UP && action == KeyEvent.ACTION_UP) {
+                plugin.sendNext()
+            }
+            return true
+        }
+        return super.dispatchKeyEvent(event)
     }
 
-    private val volumeProvider = object : VolumeProviderCompat(VOLUME_CONTROL_RELATIVE, 1, 0) {
+    private fun createMediaSession() {
+        if (volumeKeys){
+            mediaSession?.setPlaybackState(
+                PlaybackStateCompat.Builder().setState(PlaybackStateCompat.STATE_PLAYING, 0, 0f).build()
+            )
+            mediaSession?.setPlaybackToRemote(volumeProvider)
+            mediaSession?.setActive(true)
+        }
+    }
+
+    private val volumeProvider = object : VolumeProviderCompat(VOLUME_CONTROL_RELATIVE, 0, 0) {
         override fun onAdjustVolume(direction: Int) {
             if (direction == VOLUME_UP) {
                 plugin.sendNext()
@@ -126,6 +148,26 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener {
                 plugin.sendPrevious()
             }
         }
+    }
+
+    override fun onSharedPreferenceChanged(
+        sharedPreferences: SharedPreferences?,
+        key: String?
+    ) {
+        if (prefsApplied) prefsApplied = false
+    }
+
+    private fun applyPrefs() {
+        if (prefsApplied) return
+
+        var scrollSensitivity = prefs!!.getInt(getString(R.string.pref_presenter_sensitivity), 50)
+        scrollSensitivity += 10 // Do not allow near-zero sensitivity
+        sensitivity = ((scrollSensitivity / 100f)/10f)*(6f/10f)
+
+        volumeKeys =
+            prefs!!.getBoolean(getString(R.string.pref_presenter_enable_volume_keys), true)
+
+        prefsApplied = true
     }
 
     @OptIn(ExperimentalComposeUiApi::class)
@@ -141,54 +183,67 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener {
                 topBar = { PresenterAppBar() }
             ) {
                 Column(
-                    modifier = Modifier.fillMaxSize().padding(it).padding(16.dp),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(it)
+                        .padding(16.dp),
                     verticalArrangement = Arrangement.spacedBy(20.dp),
                 ) {
-                    if (offScreenControlsSupported) Text(
-                        text = stringResource(R.string.presenter_lock_tip),
-                        modifier = Modifier.padding(bottom = 8.dp).padding(horizontal = 16.dp),
+                    if (volumeKeys) Text(
+                        text = stringResource(if (offScreenControlsSupported) R.string.presenter_volume_keys_tip else R.string.presenter_volume_keys_foreground_tip),
+                        modifier = Modifier
+                            .padding(bottom = 8.dp)
+                            .padding(horizontal = 16.dp),
                         style = MaterialTheme.typography.bodyLarge,
                     )
                     @Suppress("DEPRECATION") // we explicitly want the non-mirrored version of the icons
                     Row(
-                        modifier = Modifier.fillMaxSize().weight(3f),
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .weight(3f),
                         horizontalArrangement = Arrangement.spacedBy(20.dp),
                     ) {
                         KdeButton(
                             onClick = { plugin.sendPrevious() },
-                            modifier = Modifier.fillMaxSize().weight(1f),
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .weight(1f),
                             contentDescription = getString(R.string.mpris_previous),
                             icon = Icons.Default.ArrowBack,
                         )
                         KdeButton(
                             onClick = { plugin.sendNext() },
                             contentDescription = getString(R.string.mpris_next),
-                            modifier = Modifier.fillMaxSize().weight(1f),
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .weight(1f),
                             icon = Icons.Default.ArrowForward,
                         )
                     }
                     if (sensorManager != null) KdeButton(
                         onClick = {},
                         colors = ButtonDefaults.filledTonalButtonColors(),
-                        modifier = Modifier.fillMaxSize().weight(1f).pointerInteropFilter { event ->
-                            when (event.action) {
-                                MotionEvent.ACTION_DOWN -> {
-                                    sensorManager.registerListener(
-                                        this@PresenterActivity,
-                                        sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE),
-                                        SensorManager.SENSOR_DELAY_GAME
-                                    )
-                                }
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .weight(1f)
+                            .pointerInteropFilter { event ->
+                                when (event.action) {
+                                    MotionEvent.ACTION_DOWN -> {
+                                        sensorManager.registerListener(
+                                            this@PresenterActivity,
+                                            sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE),
+                                            SensorManager.SENSOR_DELAY_GAME
+                                        )
+                                    }
 
-                                MotionEvent.ACTION_UP -> {
-                                    sensorManager.unregisterListener(this@PresenterActivity)
-                                    plugin.stopPointer()
-                                    false
+                                    MotionEvent.ACTION_UP -> {
+                                        sensorManager.unregisterListener(this@PresenterActivity)
+                                        plugin.stopPointer()
+                                        false
+                                    }
+                                    else -> false
                                 }
-
-                                else -> false
-                            }
-                        },
+                            },
                         text = stringResource(R.string.presenter_pointer),
                     )
                 }

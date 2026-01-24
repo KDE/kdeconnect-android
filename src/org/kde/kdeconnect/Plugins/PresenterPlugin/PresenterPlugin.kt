@@ -13,6 +13,8 @@ import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.Plugins.MousePadPlugin.KeyListenerView
 import org.kde.kdeconnect.Plugins.Plugin
 import org.kde.kdeconnect.Plugins.PluginFactory.LoadablePlugin
+import org.kde.kdeconnect.UserInterface.PluginSettingsFragment
+import org.kde.kdeconnect.UserInterface.PluginSettingsFragment.Companion.newInstance
 import org.kde.kdeconnect_tp.R
 
 
@@ -28,7 +30,11 @@ class PresenterPlugin : Plugin() {
     override val description: String
         get() = context.getString(R.string.pref_plugin_presenter_desc)
 
-    override fun hasSettings(): Boolean = false
+    override fun hasSettings(): Boolean = true
+
+    override fun getSettingsFragment(activity: Activity): PluginSettingsFragment {
+        return newInstance(pluginKey, R.xml.presenterplugin_preferences)
+    }
 
     override fun getUiButtons(): List<PluginUiButton> = listOf(
         PluginUiButton(
