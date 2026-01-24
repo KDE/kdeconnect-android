@@ -22,7 +22,6 @@ import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.session.MediaSessionCompat
 import android.support.v4.media.session.PlaybackStateCompat
 import android.util.Log
-import android.util.Pair
 import androidx.core.app.NotificationCompat
 import androidx.core.app.TaskStackBuilder
 import androidx.core.content.ContextCompat
@@ -150,11 +149,11 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
      * player and device, while possible.
      */
     private fun updateCurrentPlayer(): MprisPlayer? {
-        val player = findPlayer() ?: return null
+        val (device, mprisPlayer) = findPlayer() ?: return null
 
         // Update the last-displayed device and player
-        notificationDeviceId = if (player.first == null) null else player.first.deviceId
-        notificationPlayer = player.second
+        notificationDeviceId = device.deviceId
+        notificationPlayer = mprisPlayer
         return notificationPlayer
     }
 
