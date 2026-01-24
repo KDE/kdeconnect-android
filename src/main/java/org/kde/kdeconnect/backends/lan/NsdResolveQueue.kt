@@ -59,7 +59,7 @@ class NsdResolveQueue {
 
     private fun resolveNextRequest() {
         if (resolveRequests.isNotEmpty()) {
-            val request = resolveRequests.first
+            val request = resolveRequests.first()
             nsdManager.resolveService(request.serviceInfo, request.listener)
         }
     }
