@@ -187,7 +187,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
         <receiver android:name="org.kde.kdeconnect.plugins.findmyphone.FindMyPhoneReceiver"
             android:exported="true">
             <intent-filter>
-                <action android:name="org.kde.kdeconnect.Plugins.FindMyPhonePlugin.foundIt" />
+                <action android:name="org.kde.kdeconnect.plugins.findmyphone.foundIt" />
             </intent-filter>
         </receiver>
 
@@ -346,13 +346,13 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
 
             <meta-data
                 android:name="android.service.chooser.chooser_target_service"
-                android:value="org.kde.kdeconnect.Plugins.SharePlugin.ShareChooserTargetService" />
+                android:value="org.kde.kdeconnect.plugins.share.ShareChooserTargetService" />
         </activity>
 
         <receiver android:name="org.kde.kdeconnect.plugins.share.ShareBroadcastReceiver"
             android:exported="true">
             <intent-filter>
-                <action android:name="org.kde.kdeconnect.Plugins.SharePlugin.CancelShare" />
+                <action android:name="org.kde.kdeconnect.plugins.share.CancelShare" />
             </intent-filter>
         </receiver>
 
