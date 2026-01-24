@@ -12,7 +12,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     android:layout_height="match_parent"
     tools:keep="@xml/runcommand_preferences">
 
-    <org.kde.kdeconnect.Helpers.LongSummaryPreferenceCategory
+    <org.kde.kdeconnect.helpers.LongSummaryPreferenceCategory
         android:title="@string/runcommand_category_device_controls_title"
         android:key="@string/runcommand_category_device_controls"
         android:summary="@string/runcommand_device_controls_summary"
@@ -27,6 +27,6 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
             android:title="@string/runcommand_name_as_title_title"
             />
 
-    </org.kde.kdeconnect.Helpers.LongSummaryPreferenceCategory>
+    </org.kde.kdeconnect.helpers.LongSummaryPreferenceCategory>
 
 </PreferenceScreen>

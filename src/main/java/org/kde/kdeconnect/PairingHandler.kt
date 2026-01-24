@@ -14,7 +14,7 @@ import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.bouncycastle.util.Arrays
-import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper
+import org.kde.kdeconnect.helpers.security.SslHelper
 import org.kde.kdeconnect_tp.R
 import java.security.MessageDigest
 import java.security.cert.Certificate

@@ -1,6 +1,6 @@
 package org.kde.kdeconnect
 
-import org.kde.kdeconnect.Helpers.ThreadHelper
+import org.kde.kdeconnect.helpers.ThreadHelper
 import java.net.InetAddress
 
 class DeviceHost private constructor(private val host: String) {

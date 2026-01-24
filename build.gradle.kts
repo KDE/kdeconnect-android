@@ -211,7 +211,7 @@ abstract class FixCollectionsClassVisitorFactory :
                         descriptor: String?,
                         isInterface: Boolean
                     ) {
-                        val backportClass = "org/kde/kdeconnect/Helpers/CollectionsBackport"
+                        val backportClass = "org/kde/kdeconnect/helpers/CollectionsBackport"
 
                         if (opcode == INVOKESTATIC && type == "java/util/Collections") {
                             val replaceRules = mapOf(
@@ -241,7 +241,7 @@ abstract class FixCollectionsClassVisitorFactory :
 }
 
 ksp {
-    arg("com.albertvaka.classindexksp.annotations", "org.kde.kdeconnect.Plugins.PluginFactory.LoadablePlugin")
+    arg("com.albertvaka.classindexksp.annotations", "org.kde.kdeconnect.plugins.PluginFactory.LoadablePlugin")
 }
 
 androidComponents {

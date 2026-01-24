@@ -11,7 +11,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="org.kde.kdeconnect.Plugins.DigitizerPlugin.DigitizerActivity">
+    tools:context="org.kde.kdeconnect.plugins.digitizer.DigitizerActivity">
 
     <include
         android:id="@+id/toolbar_layout"
@@ -22,7 +22,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <org.kde.kdeconnect.Plugins.DigitizerPlugin.DrawingPadView
+        <org.kde.kdeconnect.plugins.digitizer.DrawingPadView
             android:id="@+id/drawing_pad"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

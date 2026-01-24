@@ -29,16 +29,16 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import org.kde.kdeconnect.Backends.BaseLinkProvider
-import org.kde.kdeconnect.Backends.BaseLinkProvider.ConnectionReceiver
-import org.kde.kdeconnect.Backends.BluetoothBackend.BluetoothLinkProvider
-import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider
-import org.kde.kdeconnect.Helpers.NotificationHelper
-import org.kde.kdeconnect.Plugins.ClipboardPlugin.ClipboardFloatingActivity
-import org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandActivity
-import org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandPlugin
-import org.kde.kdeconnect.Plugins.SharePlugin.SendFileActivity
-import org.kde.kdeconnect.UserInterface.MainActivity
+import org.kde.kdeconnect.backends.BaseLinkProvider
+import org.kde.kdeconnect.backends.BaseLinkProvider.ConnectionReceiver
+import org.kde.kdeconnect.backends.bluetooth.BluetoothLinkProvider
+import org.kde.kdeconnect.backends.lan.LanLinkProvider
+import org.kde.kdeconnect.helpers.NotificationHelper
+import org.kde.kdeconnect.plugins.clipboard.ClipboardFloatingActivity
+import org.kde.kdeconnect.plugins.runcommand.RunCommandActivity
+import org.kde.kdeconnect.plugins.runcommand.RunCommandPlugin
+import org.kde.kdeconnect.plugins.share.SendFileActivity
+import org.kde.kdeconnect.ui.MainActivity
 import org.kde.kdeconnect_tp.R
 
 /**

@@ -12,7 +12,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="org.kde.kdeconnect.Plugins.MprisPlugin.MprisActivity">
+    tools:context="org.kde.kdeconnect.plugins.mpris.MprisActivity">
 
     <!-- Keep in sync with toolbar.xml, copied here because it needs the nested TabLayout -->
     <com.google.android.material.appbar.AppBarLayout

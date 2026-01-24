@@ -77,7 +77,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <org.kde.kdeconnect.UserInterface.About.AutoGridLayout
+        <org.kde.kdeconnect.ui.about.AutoGridLayout
             android:id="@+id/info_buttons_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -145,7 +145,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
                     app:drawableTopCompat="@drawable/ic_baseline_web_24"
                     style="@style/AboutButton.TextView" />
             </FrameLayout>
-        </org.kde.kdeconnect.UserInterface.About.AutoGridLayout>
+        </org.kde.kdeconnect.ui.about.AutoGridLayout>
 
         <com.google.android.material.card.MaterialCardView
             xmlns:card_view="https://schemas.android.com/apk/res-auto"
@@ -168,7 +168,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
                     android:text="@string/authors"
                     android:textAppearance="?attr/textAppearanceHeadline6" />
 
-                <org.kde.kdeconnect.UserInterface.About.AdapterLinearLayout
+                <org.kde.kdeconnect.ui.about.AdapterLinearLayout
                     android:id="@+id/authors_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

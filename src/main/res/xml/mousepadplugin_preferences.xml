@@ -100,7 +100,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
         />
 
 
-    <org.kde.kdeconnect.Helpers.LongSummaryPreferenceCategory
+    <org.kde.kdeconnect.helpers.LongSummaryPreferenceCategory
         android:key="@string/sendkeystrokes_pref_category"
         android:summary="@string/sendkeystrokes_pref_category_summary"
         android:title="@string/sendkeystrokes_pref_category_title">
@@ -121,7 +121,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
             android:summary="@string/sendkeystrokes_safe_text_enabled_summary"
             />
 
-    </org.kde.kdeconnect.Helpers.LongSummaryPreferenceCategory>
+    </org.kde.kdeconnect.helpers.LongSummaryPreferenceCategory>
 
     <SwitchPreference
         android:id="@+id/pref_mousepad_show_keyboard"

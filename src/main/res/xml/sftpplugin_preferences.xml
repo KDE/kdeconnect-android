@@ -15,7 +15,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
         android:persistent="false">
     </PreferenceCategory>
 
-    <org.kde.kdeconnect.Plugins.SftpPlugin.StoragePreference
+    <org.kde.kdeconnect.plugins.sftp.StoragePreference
         android:key="key_sftp_add_storage"
         android:icon="@drawable/ic_add"
         android:title="@string/sftp_preference_add_storage_location_title"

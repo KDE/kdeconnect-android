@@ -7,13 +7,11 @@
 package org.kde.kdeconnect
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.util.Base64
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
-import org.kde.kdeconnect.Helpers.DeviceHelper
-import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper
-import org.kde.kdeconnect.Helpers.TrustedDevices
+import org.kde.kdeconnect.helpers.DeviceHelper
+import org.kde.kdeconnect.helpers.TrustedDevices
 import org.kde.kdeconnect_tp.R
 import java.security.cert.Certificate
 import java.security.cert.CertificateEncodingException
