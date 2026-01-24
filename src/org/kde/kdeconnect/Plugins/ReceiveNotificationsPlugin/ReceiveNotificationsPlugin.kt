@@ -88,8 +88,9 @@ class ReceiveNotificationsPlugin : Plugin() {
                 .setStyle(NotificationCompat.BigTextStyle().bigText(np.getString("ticker")))
                 .build()
 
-        val id = np.getInt("id", 0)
-        notificationManager.notify("kdeconnectId:${id}", id, noti)
+        val id = np.getString("id")
+        val intId = try { id.toInt() } catch (e: NumberFormatException) { 0 }
+        notificationManager.notify("kdeconnectId:${id}", intId, noti)
 
         return true
     }
