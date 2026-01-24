@@ -311,17 +311,17 @@ licenseReport {
 }
 
 tasks.named("generateLicenseReport") {
+    val outputFile = file("$licenseResDir/raw/license")
+    val inputFiles = files(
+        layout.projectDirectory.file("COPYING"),
+        layout.buildDirectory.file("reports/dependency-license/THIRD-PARTY-NOTICES.txt")
+    )
+    outputs.file(outputFile)
     doLast {
-        val target = File("$licenseResDir/raw/license")
-        target.parentFile.mkdirs()
-        target.writeText(
-            files(
-                layout.projectDirectory.file("COPYING"),
-                layout.buildDirectory.file("reports/dependency-license/THIRD-PARTY-NOTICES.txt")
-            ).joinToString(separator = "\n") {
-                it.readText()
-            }
-        )
+        outputFile.apply {
+            parentFile.mkdirs()
+            writeText(inputFiles.joinToString(separator = "\n") { it.readText() })
+        }
     }
 }
 
