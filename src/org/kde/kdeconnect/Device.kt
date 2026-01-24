@@ -507,6 +507,11 @@ class Device : PacketReceiver {
         callback: SendPacketStatusCallback,
         sendPayloadFromSameThread: Boolean
     ): Boolean {
+        if (!supportsPacketType(np.type)) {
+            Log.e("KDE/sendPacket", "Tried to send an unsupported packet type ${np.type} to: ${deviceInfo.name}")
+            return false
+        }
+
         val success = links.any { link ->
             try {
                 link.sendPacket(np, callback, sendPayloadFromSameThread)
