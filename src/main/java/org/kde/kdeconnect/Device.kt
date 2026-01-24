@@ -129,7 +129,7 @@ class Device : PacketReceiver {
     }
 
     fun supportsPacketType(type: String): Boolean =
-        deviceInfo.incomingCapabilities?.contains(type) ?: true
+        NetworkPacket.PROTOCOL_PACKET_TYPES.contains(type) || deviceInfo.incomingCapabilities?.contains(type) ?: true
 
     fun interface PluginsChangedListener {
         fun onPluginsChanged(device: Device)

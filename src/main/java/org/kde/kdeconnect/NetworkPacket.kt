@@ -285,6 +285,11 @@ class NetworkPacket private constructor(
         const val PACKET_TYPE_IDENTITY: String = "kdeconnect.identity"
         const val PACKET_TYPE_PAIR: String = "kdeconnect.pair"
 
+        val PROTOCOL_PACKET_TYPES: List<String> = listOf(
+            PACKET_TYPE_IDENTITY,
+            PACKET_TYPE_PAIR
+        )
+
         @JvmStatic
         @Throws(JSONException::class)
         fun unserialize(s: String): NetworkPacket {
