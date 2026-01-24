@@ -4,7 +4,7 @@ Writing a plugin for KDE Connect
 For Android (this project):
 -----------------------------------------
 
-1. Change directory to src/org/kde/kdeconnect/Plugins.
+1. Change directory to src/main/java/org/kde/kdeconnect/plugins.
 2. Copy "PingPlugin" under a different name ("FindMyPhonePlugin" in this example).
 1. Enter the new "FindMyPhonePlugin" directory.
 4. Rename "PingPlugin.java" to "FindMyPhonePlugin.java"
@@ -12,10 +12,10 @@ For Android (this project):
    and "plugin_ping" with "plugin_findmyphone".
 6. Open res/values/strings.xml. Find and copy the lines "pref_plugin_ping_desc" and "pref_plugin_ping" replacing "ping"
    with "findmyphone" and edit the plugin name and description between <string> </string>).
-7. Open src/org/kde/kdeconnect/Plugins/PluginFactory.java.
+7. Open src/main/java/org/kde/kdeconnect/plugins/PluginFactory.java.
   A. Copy "import … PingPlugin" line with replacing "PingPlugin" with "FindMyPhonePlugin".
   B. Copy "PluginFactory.registerPlugin(PingPlugin.class);" line with replacing "PingPlugin" with "FindMyPhonePlugin".
-8. Open src/org/kde/kdeconnect/NetworkPacket.java. Copy a "public final static String PACKET_TYPE_PING = …" line
+8. Open src/main/java/org/kde/kdeconnect/NetworkPacket.java. Copy a "public final static String PACKET_TYPE_PING = …" line
    replacing "PING" with the packet type you will be using (should match the desktop client).
 9. Now you have an empty skeleton to implement your new plugin logic.
 
