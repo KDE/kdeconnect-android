@@ -326,16 +326,6 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
                 android:value="org.kde.kdeconnect.ui.MainActivity" />
         </activity>
         <activity
-            android:name="org.kde.kdeconnect.plugins.presenter.SettingsActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:exported="false"
-            android:parentActivityName="org.kde.kdeconnect.plugins.presenter.PresenterActivity"
-            android:windowSoftInputMode="stateHidden|adjustResize">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.kde.kdeconnect.plugins.presenter.PresenterActivity" />
-        </activity>
-        <activity
             android:name="org.kde.kdeconnect.plugins.share.ShareActivity"
             android:exported="true"
             android:label="@string/manifest_label_share">
