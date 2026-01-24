@@ -28,11 +28,6 @@ plugins {
 
 val licenseResDir = "$projectDir/build/dependency-license-res"
 
-val hashProvider = project.providers.exec {
-    workingDir = rootDir
-    commandLine("git", "rev-parse", "--short", "HEAD")
-}.standardOutput.asText.map { it.trim() }
-
 kotlin {
     compilerOptions {
         jvmTarget = JvmTarget.JVM_11
@@ -101,28 +96,6 @@ android {
     lint {
         abortOnError = false
         checkReleaseBuilds = false
-    }
-
-    applicationVariants.all {
-        val variant = this
-        logger.quiet("Found a variant called ${variant.name}")
-
-        if (variant.buildType.isDebuggable) {
-            variant.outputs.all {
-                val output = this as com.android.build.gradle.internal.api.BaseVariantOutputImpl
-                if (output.outputFile.name.endsWith(".apk")) {
-                    // Default output filename is "${project.name}-${v.name}.apk". We want
-                    // the Git commit short-hash to be added onto that default filename.
-                    try {
-                        val newName = "${project.name}-${variant.name}-${hashProvider.get()}.apk"
-                        logger.quiet("    Found an output file ${output.outputFile.name}, renaming to $newName")
-                        output.outputFileName = newName
-                    } catch (ignored: Exception) {
-                        logger.warn("Could not make use of the 'git' command-line tool. Output filenames will not be customized.")
-                    }
-                }
-            }
-        }
     }
 }
 
