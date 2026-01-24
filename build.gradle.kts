@@ -21,13 +21,12 @@ buildscript {
 
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
     alias(libs.plugins.dependencyLicenseReport)
     alias(libs.plugins.compose.compiler)
 }
 
-val licenseResDir = File("$projectDir/build/dependency-license-res")
+val licenseResDir = "$projectDir/build/dependency-license-res"
 
 val hashProvider = project.providers.exec {
     workingDir = rootDir
@@ -57,6 +56,10 @@ android {
         buildConfig = true
     }
 
+    sourceSets.getByName("main") {
+        res.directories += licenseResDir
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -67,20 +70,6 @@ android {
 
     androidResources {
         generateLocaleConfig = true
-    }
-
-    sourceSets {
-        getByName("main") {
-            setRoot(".") // By default AGP expects all directories under src/main/...
-            java.srcDir("src") // by default is "java"
-            res.setSrcDirs(listOf(licenseResDir, "res")) // add licenseResDir
-        }
-        getByName("debug") {
-            res.srcDir("dbg-res")
-        }
-        getByName("test") {
-            java.srcDir("tests")
-        }
     }
 
     packaging {
@@ -298,6 +287,7 @@ dependencies {
     implementation(libs.androidx.gridlayout)
     implementation(libs.google.android.material)
     implementation(libs.disklrucache) //For caching album art bitmaps. FIXME: Not updated in 10+ years. Replace with Kache.
+    implementation(libs.slf4j.api)
     implementation(libs.slf4j.handroid)
 
     implementation(libs.apache.sshd.core)
@@ -349,7 +339,7 @@ licenseReport {
 
 tasks.named("generateLicenseReport") {
     doLast {
-        val target = File(licenseResDir, "raw/license")
+        val target = File("$licenseResDir/raw/license")
         target.parentFile.mkdirs()
         target.writeText(
             files(
