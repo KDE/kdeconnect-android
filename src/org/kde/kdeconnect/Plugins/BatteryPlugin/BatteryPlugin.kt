@@ -41,31 +41,33 @@ class BatteryPlugin : Plugin() {
 
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     internal val receiver: BroadcastReceiver = object : BroadcastReceiver() {
-        var wasLowBattery: Boolean = false // will trigger a low battery notification when the device is connected
+        var isLowBattery = false
+        var thresholdEvent = THRESHOLD_EVENT_NONE
 
         override fun onReceive(context: Context, batteryIntent: Intent) {
-            val level = batteryIntent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1)
-            val scale = batteryIntent.getIntExtra(BatteryManager.EXTRA_SCALE, 1)
-            val plugged = batteryIntent.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1)
-
-            val currentCharge = if (level == -1) batteryInfo.getInt("currentCharge") else level * 100 / scale
-            val isCharging = if (plugged == -1) batteryInfo.getBoolean("isCharging") else 0 != plugged
-
-            val thresholdEvent = when (batteryIntent.action) {
-                Intent.ACTION_BATTERY_OKAY -> THRESHOLD_EVENT_NONE
-                Intent.ACTION_BATTERY_LOW -> if (!wasLowBattery && !isCharging) {
-                    THRESHOLD_EVENT_BATTERY_LOW
-                } else {
-                    THRESHOLD_EVENT_NONE
+            if (batteryIntent.action != Intent.ACTION_BATTERY_CHANGED) {
+                thresholdEvent = when (batteryIntent.action) {
+                    Intent.ACTION_BATTERY_LOW if !isLowBattery -> THRESHOLD_EVENT_BATTERY_LOW
+                    else -> THRESHOLD_EVENT_NONE
                 }
-                else -> THRESHOLD_EVENT_NONE
+
+                isLowBattery = when (batteryIntent.action) {
+                    Intent.ACTION_BATTERY_OKAY -> false
+                    Intent.ACTION_BATTERY_LOW -> true
+                    else -> isLowBattery
+                }
+
+                // Intents with action ACTION_BATTERY_OKAY and ACTION_BATTERY_LOW do not have extras
+                // Wait for next ACTION_BATTERY_CHANGED (which should come after) to send the threshold event.
+                return
             }
 
-            wasLowBattery = when (batteryIntent.action) {
-                Intent.ACTION_BATTERY_OKAY -> false
-                Intent.ACTION_BATTERY_LOW -> true
-                else -> wasLowBattery
-            }
+            val level = batteryIntent.getIntExtra(BatteryManager.EXTRA_LEVEL, 100)
+            val scale = batteryIntent.getIntExtra(BatteryManager.EXTRA_SCALE, 100)
+            val plugged = batteryIntent.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0)
+
+            val currentCharge = level * 100 / scale
+            val isCharging = 0 != plugged
 
             if (isCharging != batteryInfo.getBoolean("isCharging") || currentCharge != batteryInfo.getInt("currentCharge") || thresholdEvent != batteryInfo.getInt(
                     "thresholdEvent"
@@ -75,6 +77,9 @@ class BatteryPlugin : Plugin() {
                 batteryInfo["isCharging"] = isCharging
                 batteryInfo["thresholdEvent"] = thresholdEvent
                 device.sendPacket(batteryInfo)
+
+                // We just send a possible threshold event so reset it so we not create notifications on each change
+                thresholdEvent = THRESHOLD_EVENT_NONE
             }
         }
     }

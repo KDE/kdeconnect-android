@@ -50,34 +50,59 @@ class BatteryPluginTest {
 
     @Test
     fun testSendBatteryLow() {
-        val intent = Intent().apply {
+        val batLowIntent = Intent().apply {
             action = Intent.ACTION_BATTERY_LOW
-            putExtra(BatteryManager.EXTRA_LEVEL, 15)
+        }
+
+        batteryPlugin.receiver.onReceive(context, batLowIntent)
+
+        Assert.assertNull(packet)
+
+        // Now send a battery changed event
+        val batChangedIntent = Intent().apply {
+            action = Intent.ACTION_BATTERY_CHANGED
+            putExtra(BatteryManager.EXTRA_LEVEL, 20)
             putExtra(BatteryManager.EXTRA_SCALE, 100)
             putExtra(BatteryManager.EXTRA_PLUGGED, 0) // Not charging
         }
-        batteryPlugin.receiver.onReceive(context, intent)
+
+        batteryPlugin.receiver.onReceive(context, batChangedIntent)
 
         // Check battery info updated accordingly
-        val packet = this.packet
-        checkNotNull(packet)
-        Assert.assertEquals(15, packet.getInt("currentCharge"))
-        Assert.assertEquals(false, packet.getBoolean("isCharging"))
-        Assert.assertEquals(1, packet.getInt("thresholdEvent"))
+        val p1 = checkNotNull(packet)
+
+        Assert.assertEquals(20, p1.getInt("currentCharge"))
+        Assert.assertEquals(false, p1.getBoolean("isCharging"))
+        Assert.assertEquals(1, p1.getInt("thresholdEvent"))
     }
 
     @Test
     fun testSendBatteryOkAfterLow() {
         // First simulate battery low
-        val lowIntent = Intent().apply {
+        val batLowIntent = Intent().apply {
             action = Intent.ACTION_BATTERY_LOW
-            putExtra(BatteryManager.EXTRA_LEVEL, 15)
+        }
+        batteryPlugin.receiver.onReceive(context, batLowIntent)
+
+        Assert.assertNull(packet)
+
+        val batChangedIntent = Intent().apply {
+            action = Intent.ACTION_BATTERY_CHANGED
+            putExtra(BatteryManager.EXTRA_LEVEL, 20)
             putExtra(BatteryManager.EXTRA_SCALE, 100)
             putExtra(BatteryManager.EXTRA_PLUGGED, 0) // Not charging
         }
-        batteryPlugin.receiver.onReceive(context, lowIntent)
 
-        checkNotNull(this.packet)
+        batteryPlugin.receiver.onReceive(context, batChangedIntent)
+
+        val p1 = checkNotNull(packet)
+
+        Assert.assertEquals(20, p1.getInt("currentCharge"))
+        Assert.assertEquals(false, p1.getBoolean("isCharging"))
+        Assert.assertEquals(1, p1.getInt("thresholdEvent"))
+
+
+        packet = null
 
         // Now simulate battery is okay
         val okIntent = Intent().apply {
@@ -85,30 +110,41 @@ class BatteryPluginTest {
         }
         batteryPlugin.receiver.onReceive(context, okIntent)
 
+        Assert.assertNull(packet)
+
+        val batChangedIntent2 = Intent().apply {
+            action = Intent.ACTION_BATTERY_CHANGED
+            putExtra(BatteryManager.EXTRA_LEVEL, 25)
+            putExtra(BatteryManager.EXTRA_SCALE, 100)
+            putExtra(BatteryManager.EXTRA_PLUGGED, 0) // Not charging
+        }
+
+        batteryPlugin.receiver.onReceive(context, batChangedIntent2)
+
         // Check if the isLowBattery flag is reset
-        val packet = this.packet
-        checkNotNull(packet)
-        Assert.assertEquals(15, packet.getInt("currentCharge"))
-        Assert.assertEquals(false, packet.getBoolean("isCharging"))
-        Assert.assertEquals(0, packet.getInt("thresholdEvent"))
+        val p2 = checkNotNull(packet)
+
+        Assert.assertEquals(25, p2.getInt("currentCharge"))
+        Assert.assertEquals(false, p2.getBoolean("isCharging"))
+        Assert.assertEquals(0, p2.getInt("thresholdEvent"))
     }
 
     @Test
     fun testBatteryCharging() {
-        val intent = Intent().apply {
+        val batChangedintent = Intent().apply {
             action = Intent.ACTION_BATTERY_CHANGED
             putExtra(BatteryManager.EXTRA_LEVEL, 50)
             putExtra(BatteryManager.EXTRA_SCALE, 100)
             putExtra(BatteryManager.EXTRA_PLUGGED, BatteryManager.BATTERY_PLUGGED_AC)
         }
-        batteryPlugin.receiver.onReceive(context, intent)
+        batteryPlugin.receiver.onReceive(context, batChangedintent)
 
         // Check battery info updated accordingly
-        val packet = this.packet
-        checkNotNull(packet)
-        Assert.assertEquals(50, packet.getInt("currentCharge"))
-        Assert.assertEquals(true, packet.getBoolean("isCharging"))
-        Assert.assertEquals(0, packet.getInt("thresholdEvent"))
+        val p1 = checkNotNull(packet)
+
+        Assert.assertEquals(50, p1.getInt("currentCharge"))
+        Assert.assertEquals(true, p1.getBoolean("isCharging"))
+        Assert.assertEquals(0, p1.getInt("thresholdEvent"))
     }
 
     @Test
@@ -122,26 +158,37 @@ class BatteryPluginTest {
         batteryPlugin.receiver.onReceive(context, chargingIntent)
 
         // Initial state should reflect charging
-        val firstPacket = this.packet
-        checkNotNull(firstPacket)
-        Assert.assertEquals(25, firstPacket.getInt("currentCharge"))
-        Assert.assertEquals(true, firstPacket.getBoolean("isCharging"))
+        val p1 = checkNotNull(packet)
+
+        Assert.assertEquals(25, p1.getInt("currentCharge"))
+        Assert.assertEquals(true, p1.getBoolean("isCharging"))
+        Assert.assertEquals(0, p1.getInt("thresholdEvent"))
+
+        packet = null
 
         // Now simulate battery low condition
-        val lowIntent = Intent().apply {
+        val batLowIntent = Intent().apply {
             action = Intent.ACTION_BATTERY_LOW
-            putExtra(BatteryManager.EXTRA_LEVEL, 15)
+        }
+
+        batteryPlugin.receiver.onReceive(context, batLowIntent)
+
+        Assert.assertNull(packet)
+
+        val chargingIntent2 = Intent().apply {
+            action = Intent.ACTION_BATTERY_CHANGED
+            putExtra(BatteryManager.EXTRA_LEVEL, 20)
             putExtra(BatteryManager.EXTRA_SCALE, 100)
             putExtra(BatteryManager.EXTRA_PLUGGED, 0)
         }
-        batteryPlugin.receiver.onReceive(context, lowIntent)
+        batteryPlugin.receiver.onReceive(context, chargingIntent2)
 
         // Check battery info updated accordingly
-        val lastPacket = this.packet
-        checkNotNull(lastPacket)
-        Assert.assertEquals(15, lastPacket.getInt("currentCharge"))
-        Assert.assertEquals(false, lastPacket.getBoolean("isCharging"))
-        Assert.assertEquals(1, lastPacket.getInt("thresholdEvent"))
+        val p2 = checkNotNull(packet)
+
+        Assert.assertEquals(20, p2.getInt("currentCharge"))
+        Assert.assertEquals(false, p2.getBoolean("isCharging"))
+        Assert.assertEquals(1, p2.getInt("thresholdEvent"))
     }
 
     @Test
@@ -155,10 +202,10 @@ class BatteryPluginTest {
         batteryPlugin.receiver.onReceive(context, chargingIntent)
 
         // Initial state should reflect charging
-        val firstPacket = this.packet
-        checkNotNull(firstPacket)
-        Assert.assertEquals(60, firstPacket.getInt("currentCharge"))
-        Assert.assertEquals(true, firstPacket.getBoolean("isCharging"))
+        val p1 = checkNotNull(packet)
+
+        Assert.assertEquals(60, p1.getInt("currentCharge"))
+        Assert.assertEquals(true, p1.getBoolean("isCharging"))
 
         // Now, simulate battery status change to not charging
         val notChargingIntent = Intent().apply {
@@ -170,11 +217,11 @@ class BatteryPluginTest {
         batteryPlugin.receiver.onReceive(context, notChargingIntent)
 
         // Check battery info updated accordingly
-        val lastPacket = this.packet
-        checkNotNull(lastPacket)
-        Assert.assertEquals(60, lastPacket.getInt("currentCharge"))
-        Assert.assertEquals(false, lastPacket.getBoolean("isCharging"))
-        Assert.assertEquals(0, lastPacket.getInt("thresholdEvent"))
+        val p2 = checkNotNull(packet)
+
+        Assert.assertEquals(60, p2.getInt("currentCharge"))
+        Assert.assertEquals(false, p2.getBoolean("isCharging"))
+        Assert.assertEquals(0, p2.getInt("thresholdEvent"))
     }
 
     // REMOTE -> LOCAL
