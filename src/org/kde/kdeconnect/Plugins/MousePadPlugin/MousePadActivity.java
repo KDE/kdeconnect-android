@@ -400,7 +400,7 @@ public class MousePadActivity
             }
             plugin.sendSingleHold();
             dragging = true;
-        }   
+        }
     }
 
     @Override
@@ -538,6 +538,12 @@ public class MousePadActivity
         imm.hideSoftInputFromWindow(keyListenerView.getWindowToken(), 0);
     }
 
+    private void showKeyboard() {
+        InputMethodManager imm = ContextCompat.getSystemService(this, InputMethodManager.class);
+        keyListenerView.requestFocus();
+        imm.showSoftInput(keyListenerView.getRootView(),0);
+    }
+
 
     private void showCompose() {
         Intent intent = new Intent(this, ComposeSendActivity.class);
@@ -599,6 +605,12 @@ public class MousePadActivity
                 mCurrentSensitivity = 1.0f;
                 return;
         }
+        if (prefs.getBoolean("pref_mousepad_show_keyboard", true)) {
+            showKeyboard();
+        } else {
+            hideKeyboard();
+        }
+
 
         if (prefs.getBoolean(getString(R.string.mousepad_mouse_buttons_enabled_pref), true)) {
             getBinding().mouseButtons.setVisibility(View.VISIBLE);

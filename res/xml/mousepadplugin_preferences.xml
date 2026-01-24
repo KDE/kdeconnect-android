@@ -122,4 +122,11 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
             />
 
     </org.kde.kdeconnect.Helpers.LongSummaryPreferenceCategory>
+
+    <SwitchPreference
+        android:id="@+id/pref_mousepad_show_keyboard"
+        android:defaultValue="false"
+        android:key="@string/pref_mousepad_show_keyboard"
+        android:title="@string/mousepad_show_keyboard"
+        />
 </PreferenceScreen>

@@ -143,6 +143,8 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
         <item>strong</item>
         <item>stronger</item>
     </string-array>
+    <string name="mousepad_show_keyboard" translatable="false">Show keyboard initially</string>
+    <string name="pref_mousepad_show_keyboard" translatable="false">pref_mousepad_show_keyboard</string>
 
     <string name="sendkeystrokes_send_to">Send keystrokes to</string>
     <string name="sendkeystrokes_textbox_hint">Send keystrokes to host</string>
