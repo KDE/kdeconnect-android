@@ -17,8 +17,8 @@ import android.provider.Settings
 import androidx.core.net.toUri
 import org.json.JSONException
 import org.json.JSONObject
-import org.kde.kdeconnect.helpers.NetworkHelper.localIpAddress
 import org.kde.kdeconnect.NetworkPacket
+import org.kde.kdeconnect.helpers.getLocalIpAddress
 import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.plugins.PluginFactory.LoadablePlugin
 import org.kde.kdeconnect.ui.AlertDialogFragment
@@ -124,7 +124,7 @@ class SftpPlugin : Plugin(), OnSharedPreferenceChangeListener {
         }
 
         device.sendPacket(NetworkPacket(PACKET_TYPE_SFTP).apply {
-            this["ip"] = localIpAddress!!.hostAddress
+            this["ip"] = getLocalIpAddress()!!.hostAddress
             this["port"] = server.port
             this["user"] = SimpleSftpServer.USER
             this["password"] = server.regeneratePassword()
