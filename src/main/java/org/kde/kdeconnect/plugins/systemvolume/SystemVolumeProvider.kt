@@ -153,16 +153,16 @@ class SystemVolumeProvider :
         return sink != null
     }
 
-    fun startListeningForSinks() {
-        val systemVolumePlugin = systemVolumePlugin ?: return
-        systemVolumePlugin.addSinkListener(this)
-        systemVolumePlugin.requestSinkList()
-    }
-
     fun release() {
         stopListeningForSinks()
         stateListeners.clear()
         currentProvider = null
+    }
+
+    private fun startListeningForSinks() {
+        val systemVolumePlugin = systemVolumePlugin ?: return
+        systemVolumePlugin.addSinkListener(this)
+        sinksChanged()
     }
 
     private fun stopListeningForSinks() {

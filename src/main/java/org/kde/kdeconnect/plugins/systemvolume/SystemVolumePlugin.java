@@ -112,12 +112,6 @@ public class SystemVolumePlugin extends Plugin {
         getDevice().sendPacket(np);
     }
 
-    void requestSinkList() {
-        NetworkPacket np = new NetworkPacket(PACKET_TYPE_SYSTEMVOLUME_REQUEST);
-        np.set("requestSinks", true);
-        getDevice().sendPacket(np);
-    }
-
     @Override
     public @NonNull String[] getSupportedPacketTypes() {
         return new String[]{PACKET_TYPE_SYSTEMVOLUME};

@@ -82,7 +82,7 @@ class SystemVolumeFragment : BaseFragment<SystemVolumeFragmentBinding>(),
         }
         this.plugin = plugin
         plugin.addSinkListener(this@SystemVolumeFragment)
-        plugin.requestSinkList()
+        sinksChanged()
     }
 
     private fun disconnectFromPlugin(deviceId: String?) {
