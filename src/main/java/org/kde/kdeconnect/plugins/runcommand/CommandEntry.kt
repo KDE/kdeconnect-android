@@ -9,15 +9,10 @@ import org.json.JSONException
 import org.json.JSONObject
 import org.kde.kdeconnect.ui.list.EntryItem
 
-open class CommandEntry : EntryItem {
-    val key: String
+open class CommandEntry(name: String, cmd: String, val key: String) : EntryItem(name, cmd)  {
 
     @Throws(JSONException::class)
     constructor(o: JSONObject) : this(o.getString("name"), o.getString("command"), o.getString("key"))
-
-    constructor(name: String, cmd: String, key: String) : super(name, cmd) {
-        this.key = key
-    }
 
     val name: String
         get() = title
