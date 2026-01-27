@@ -90,7 +90,7 @@ public class ClipboardPlugin extends Plugin {
 
     private final ClipboardListener.ClipboardObserver observer = this::propagateClipboard;
 
-    void propagateClipboard(String content) {
+    public void propagateClipboard(String content) {
         NetworkPacket np = new NetworkPacket(ClipboardPlugin.PACKET_TYPE_CLIPBOARD);
         np.set("content", content);
         getDevice().sendPacket(np);
