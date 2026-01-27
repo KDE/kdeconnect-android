@@ -21,15 +21,14 @@ import androidx.annotation.StringRes
 import androidx.annotation.UiThread
 import androidx.appcompat.app.ActionBar
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -45,7 +44,6 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.core.view.MenuProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.kde.kdeconnect.BackgroundService
@@ -391,58 +389,41 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
     fun PreviewCompose() {
         val plugins = listOf(MprisPlugin(), RunCommandPlugin(), PresenterPlugin())
         plugins.forEach { it.setContext(LocalContext.current, null) }
-        PluginButtons(plugins.flatMap { it.getUiButtons() }, 2)
+        PluginActionsList(plugins.flatMap { it.getUiButtons() })
     }
 
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
-    fun PluginButton(button : Plugin.PluginUiButton, modifier: Modifier) {
-        Card(
-            shape = MaterialTheme.shapes.medium,
-            modifier = modifier.semantics { role = Role.Button },
-            onClick = { button.onClick(mActivity!!) }
-        ) {
-            Column(
-                verticalArrangement = Arrangement.spacedBy(10.dp),
-                modifier = Modifier.padding(horizontal=16.dp, vertical=10.dp)
-            ) {
+    fun PluginAction(button: Plugin.PluginUiButton) {
+        ListItem(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable { button.onClick(mActivity!!) }
+                .semantics { role = Role.Button },
+            leadingContent = {
                 Icon(
                     painter = painterResource(button.iconRes),
-                    modifier = Modifier.padding(top = 12.dp),
-                    contentDescription = null
+                    contentDescription = null,
                 )
+            },
+            headlineContent = {
                 Text(
                     text = button.name,
-                    maxLines = 2,
-                    minLines = 2,
-                    fontSize = 18.sp,
-                    overflow = TextOverflow.Ellipsis
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
                 )
-            }
-        }
+            },
+        )
     }
 
     @Composable
-    fun PluginButtons(buttons: List<Plugin.PluginUiButton>, numColumns: Int) {
-        Column(modifier = Modifier.padding(horizontal = 16.dp)) {
-            val buttonIter = buttons.iterator()
-            while (buttonIter.hasNext()) {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(bottom = 8.dp),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    repeat(numColumns) {
-                        if (buttonIter.hasNext()) {
-                            PluginButton(
-                                button = buttonIter.next(),
-                                modifier = Modifier.weight(1f)
-                            )
-                        } else {
-                            Spacer(modifier = Modifier.weight(1f))
-                        }
-                    }
+    fun PluginActionsList(buttons: List<Plugin.PluginUiButton>) {
+        if (buttons.isEmpty()) return
+        Column(modifier = Modifier.padding(horizontal = 0.dp)) {
+            buttons.forEachIndexed { index, button ->
+                PluginAction(button)
+                if (index != buttons.lastIndex) {
+                    HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
                 }
             }
         }
@@ -453,17 +434,22 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
         Text(
             text = title,
             modifier = Modifier
-                .padding(horizontal = 16.dp, vertical = 6.dp)
+                .padding(horizontal = 16.dp, vertical = 12.dp)
                 .semantics { heading() }
         )
         plugins.forEach { plugin ->
-            Text(
-                text = plugin.displayName,
+            ListItem(
                 modifier = Modifier
                     .fillMaxWidth()
                     .clickable { action(plugin) }
-                    .padding(start = 28.dp, end = 16.dp, top = 12.dp, bottom = 12.dp)
-                    .semantics { role = Role.Button }
+                    .semantics { role = Role.Button },
+                headlineContent = {
+                    Text(
+                        text = plugin.displayName,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                    )
+                },
             )
         }
     }
@@ -475,12 +461,13 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
         pluginsNeedOptionalPermissions: List<Plugin>
     ) {
         Surface {
-            Column(modifier = Modifier.padding(top = 16.dp)) {
+            Column(modifier = Modifier.padding(top = 8.dp)) {
 
-                val numColumns = resources.getInteger(R.integer.plugins_columns)
-                PluginButtons(pluginsWithButtons, numColumns)
+                Column(modifier = Modifier.padding(horizontal = 16.dp)) {
+                    PluginActionsList(pluginsWithButtons)
+                }
 
-                Spacer(modifier = Modifier.padding(vertical=6.dp))
+                Spacer(modifier = Modifier.padding(vertical = 8.dp))
 
                 if (pluginsNeedPermissions.isNotEmpty()) {
                     PluginsWithoutPermissions(
@@ -488,7 +475,7 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
                         plugins = pluginsNeedPermissions,
                         action = { it.permissionExplanationDialog.show(childFragmentManager,null) }
                     )
-                    Spacer(modifier = Modifier.padding(vertical=2.dp))
+                    Spacer(modifier = Modifier.padding(vertical = 2.dp))
                 }
 
                 if (pluginsNeedOptionalPermissions.isNotEmpty()) {

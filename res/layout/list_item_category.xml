@@ -16,11 +16,12 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
         android:id="@+id/list_item_category_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:drawablePadding="4dp"
-        android:paddingLeft="16dip"
-        android:paddingRight="16dip"
-        android:textSize="16sp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:paddingStart="@dimen/view_default_padding"
+        android:paddingEnd="@dimen/view_default_padding"
+        android:textAppearance="?attr/textAppearanceTitleSmall"
+        android:textColor="?attr/colorOnSurfaceVariant"
         tools:text="Header" />
 
     <TextView

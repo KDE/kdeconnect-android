@@ -29,7 +29,10 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:layout_gravity="center"
-        android:padding="16dp"
+        android:paddingStart="16dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="12dp"
         android:minHeight="?android:attr/listPreferredItemHeight"
         >
         <TextView
@@ -39,7 +42,7 @@
             android:ellipsize="marquee"
             android:fadingEdge="horizontal"
             android:singleLine="true"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?attr/textAppearanceTitleMedium"
             tools:text="Plugin title"
             />
         <TextView
@@ -49,8 +52,8 @@
             android:layout_alignStart="@android:id/title"
             android:layout_below="@android:id/title"
             android:maxLines="3"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="?android:attr/textColorSecondary"
+            android:textAppearance="?attr/textAppearanceBodySmall"
+            android:textColor="?attr/colorOnSurfaceVariant"
             tools:text="Plugin description"
             />
     </RelativeLayout>
@@ -65,7 +68,7 @@
         android:layout_width="1dp"
         android:layout_height="32dp"
         android:layout_gravity="center"
-        android:background="?colorPrimary"
+        android:background="?attr/colorOutlineVariant"
         />
     <!-- Preference will place its actual preference widget here. -->
     <LinearLayout
@@ -74,7 +77,10 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:gravity="center"
-        android:padding="16dp"
+        android:paddingStart="12dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="12dp"
         android:orientation="vertical"
         />
 </LinearLayout>

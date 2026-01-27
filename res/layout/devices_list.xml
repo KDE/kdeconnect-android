@@ -22,7 +22,6 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
         android:divider="@null"
         android:padding="@dimen/activity_horizontal_margin"
         android:descendantFocusability="afterDescendants"
-        android:dividerHeight="12dp"
         android:orientation="vertical"
         android:clipToPadding="false"
         tools:listitem="@layout/list_item_device_entry"
