@@ -182,7 +182,7 @@ public class LanLinkProvider extends BaseLinkProvider {
      */
     private String readSingleLine(Socket socket) throws IOException {
         InputStream stream = socket.getInputStream();
-        StringBuilder line = new StringBuilder(MAX_IDENTITY_PACKET_SIZE);
+        StringBuilder line = new StringBuilder();
         int ch;
         while ((ch = stream.read()) != -1) {
             line.append((char) ch);
