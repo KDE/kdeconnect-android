@@ -104,7 +104,7 @@ public class LanLink extends BaseLink {
     }
 
     private String readSingleLine(BufferedReader reader) throws IOException {
-        StringBuilder line = new StringBuilder(MAX_PACKET_SIZE);
+        StringBuilder line = new StringBuilder();
         int ch;
         while ((ch = reader.read()) != -1) {
             line.append((char) ch);
