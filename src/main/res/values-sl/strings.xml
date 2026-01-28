@@ -474,4 +474,9 @@
   <string name="device_host_invalid">Gostitelj ni veljaven. Uporabite veljavno ime gostitelja, IPv4 ali IPv6</string>
   <string name="device_host_duplicate">Gostitelj že obstaja na seznamu</string>
   <string name="enable_fullscreen">Omogoči celotni zaslon</string>
+  <string name="pref_presenter_enable_volume_keys_title">Tipke za glasnost zamenjujejo slike</string>
+  <string name="pref_presenter_sensitivity_title">Občutljivost kazalca</string>
+  <string name="pref_presenter_enable_volume_keys_summary">V stanju pripravljenosti ni podprto v različicah Androida med 13 in 15</string>
+  <string name="presenter_volume_keys_foreground_tip">Zaslon lahko pustite vklopljen, če želite s tipkama za glasnost preskočiti na prejšnjo/naslednjo sliko.</string>
+  <string name="presenter_volume_keys_tip">Zaslon lahko pustite vklopljen ali zaklenete napravo, da se s tipkama za glasnost premaknete na prejšnjo/naslednjo sliko.</string>
 </resources>

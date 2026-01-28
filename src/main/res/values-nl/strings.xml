@@ -458,4 +458,9 @@
   <string name="device_host_invalid">Host is ongeldig. Gebruik een geldige hostnaam, IPv4 of IPv6</string>
   <string name="device_host_duplicate">Host bestaat al in de lijst</string>
   <string name="enable_fullscreen">Volledig scherm inschakelen</string>
+  <string name="pref_presenter_enable_volume_keys_title">Volumetoetsen wijzigen schuifregelaars</string>
+  <string name="pref_presenter_sensitivity_title">Gevoeligheid van aanwijzer</string>
+  <string name="pref_presenter_enable_volume_keys_summary">Bij standby niet ondersteund op Android versie tussen 13 en 15</string>
+  <string name="presenter_volume_keys_foreground_tip">U kunt het scherm aan laten om de volumetoetsen te gebruiken om naar de vorige/volgende dia te gaan</string>
+  <string name="presenter_volume_keys_tip">U kunt het scherm aan laten of uw apparaat vergrendelen om de volumetoetsen te gebruiken om naar de vorige/volgende dia te gaan</string>
 </resources>

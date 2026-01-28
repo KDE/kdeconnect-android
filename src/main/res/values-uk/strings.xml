@@ -474,4 +474,9 @@
   <string name="device_host_invalid">Вузол є некоректним. Скористайтеся коректною назвою вузла, IPv4 або IPv6</string>
   <string name="device_host_duplicate">Запис вузла вже є у списку</string>
   <string name="enable_fullscreen">Увімкнути повноекранний режим</string>
+  <string name="pref_presenter_enable_volume_keys_title">Кнопки гучності змінюють слайди</string>
+  <string name="pref_presenter_sensitivity_title">Чутливість вказівника</string>
+  <string name="pref_presenter_enable_volume_keys_summary">Підтримки «При присиплянні» не передбачено у версіях Android від 13 до 15</string>
+  <string name="presenter_volume_keys_foreground_tip">Ви можете не вимикати екран і користуватися кнопками зміни гучності для переходу до попереднього або наступного слайда</string>
+  <string name="presenter_volume_keys_tip">Ви можете не вимикати екран або заблокувати ваш пристрій і користуватися кнопками зміни гучності для переходу до попереднього або наступного слайда</string>
 </resources>

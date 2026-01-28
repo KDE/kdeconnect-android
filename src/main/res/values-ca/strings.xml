@@ -458,4 +458,9 @@
   <string name="device_host_invalid">L\'ordinador no és vàlid. Useu un nom d\'ordinador, IPv4 o IPv6 vàlids</string>
   <string name="device_host_duplicate">L\'ordinador ja existeix a la llista</string>
   <string name="enable_fullscreen">Activa la pantalla completa</string>
+  <string name="pref_presenter_enable_volume_keys_title">Les tecles de volum canvien les dispositives</string>
+  <string name="pref_presenter_sensitivity_title">Sensibilitat del punter</string>
+  <string name="pref_presenter_enable_volume_keys_summary">En repòs no està implementat entre les versions 13 i 15 de l\'Android</string>
+  <string name="presenter_volume_keys_foreground_tip">Podeu deixar la pantalla activada i utilitzar les tecles de volum per anar a la diapositiva anterior/següent</string>
+  <string name="presenter_volume_keys_tip">Podeu deixar la pantalla activada o bloquejar el dispositiu i utilitzar les tecles de volum per anar a la diapositiva anterior/següent</string>
 </resources>

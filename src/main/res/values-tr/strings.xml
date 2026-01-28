@@ -458,4 +458,9 @@
   <string name="device_host_invalid">Makine geçersiz. Geçerli bir makine adı kullanın; IPv4 veya IPv6 gibi</string>
   <string name="device_host_duplicate">Makine listede halihazırda var</string>
   <string name="enable_fullscreen">Tam ekranı etkinleştir</string>
+  <string name="pref_presenter_enable_volume_keys_title">Ses düzeyi düğmeleri slaydı değiştirir</string>
+  <string name="pref_presenter_sensitivity_title">İşaretçi duyarlılığı</string>
+  <string name="pref_presenter_enable_volume_keys_summary">Android’in 13. ve 15. sürümleri arasında bekleme durumunda desteklenmez.</string>
+  <string name="presenter_volume_keys_foreground_tip">Bir önceki/bir sonraki slayta geçmek için ekranı açık bırakabilir ve ses düzeyi düğmelerini kullanabilirsiniz.</string>
+  <string name="presenter_volume_keys_tip">Bir önceki/bir sonraki slayta geçmek için ekranı açık bırakabilir/kilitleyebilir ve ses düzeyi düğmelerini kullanabilirsiniz.</string>
 </resources>

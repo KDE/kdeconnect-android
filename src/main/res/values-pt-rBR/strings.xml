@@ -458,4 +458,9 @@
   <string name="device_host_invalid">O host é inválido. Use um nome de host válido, IPv4 ou IPv6.</string>
   <string name="device_host_duplicate">O host já existe na lista</string>
   <string name="enable_fullscreen">Ativar tela cheia</string>
+  <string name="pref_presenter_enable_volume_keys_title">As teclas de volume alteram os slides</string>
+  <string name="pref_presenter_sensitivity_title">Sensibilidade do ponteiro</string>
+  <string name="pref_presenter_enable_volume_keys_summary">O modo de espera não é compatível com versões do Android entre 13 e 15</string>
+  <string name="presenter_volume_keys_foreground_tip">Você pode deixar a tela ligada para usar as teclas de volume para ir para o slide anterior/seguinte</string>
+  <string name="presenter_volume_keys_tip">Você pode deixar a tela ligada ou bloquear o dispositivo para usar as teclas de volume para ir para o slide anterior/seguinte</string>
 </resources>
