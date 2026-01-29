@@ -474,4 +474,9 @@
   <string name="device_host_invalid">המארח שגוי. נא להשתמש בשם מארח, IPv4 או IPv6 תקניים.</string>
   <string name="device_host_duplicate">המארח כבר קיים ברשימה</string>
   <string name="enable_fullscreen">הפעלת מסך מלא</string>
+  <string name="pref_presenter_enable_volume_keys_title">מקשי שינוי עוצמת שמע מעבירים שקופיות</string>
+  <string name="pref_presenter_sensitivity_title">רגישות סמן</string>
+  <string name="pref_presenter_enable_volume_keys_summary">במצב המתנה לא זמין ב־Android בגרסאות בין 13 ל־15</string>
+  <string name="presenter_volume_keys_foreground_tip">אפשר להשאיר את המסך פעיל כדי להשתמש במקשי עוצמת השמע כדי לעבור לשקופית הקודמת/הבאה</string>
+  <string name="presenter_volume_keys_tip">אפשר להשאיר את המסך פעיל או לנעול את המכשיר שלך ולהשתמש במקשי עוצמת השמע כדי לעבור לשקופית הקודמת/הבאה</string>
 </resources>
