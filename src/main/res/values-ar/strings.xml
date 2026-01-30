@@ -490,4 +490,9 @@
   <string name="device_host_invalid">المضيف غير صالح. استخدم اسم مضيف أو IPv4 أو IPv6 صالحاً</string>
   <string name="device_host_duplicate">المضيف موجود مسبقًا في القائمة</string>
   <string name="enable_fullscreen">مكّن ملء الشّاشة</string>
+  <string name="pref_presenter_enable_volume_keys_title">مفاتيح الصوت تغيير الشرائح</string>
+  <string name="pref_presenter_sensitivity_title">حساسية المؤشر</string>
+  <string name="pref_presenter_enable_volume_keys_summary">الوضع الاحتياطي غير متوفر في إصدارات أندرويد 13 إلى 15</string>
+  <string name="presenter_volume_keys_foreground_tip">يمكنك ترك الشاشة تعمل لاستخدام مفاتيح الصوت للانتقال إلى الشريحة السابقة/التالية</string>
+  <string name="presenter_volume_keys_tip">يمكنك ترك الشاشة تعمل أو قفل جهازك لاستخدام مفاتيح الصوت للانتقال إلى الشريحة السابقة/التالية.</string>
 </resources>

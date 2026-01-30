@@ -458,4 +458,9 @@
   <string name="device_host_invalid">L\'hôte est non valable. Veuillez utiliser un nom d\'hôte valable, IPv4 ou IPv6</string>
   <string name="device_host_duplicate">L\'hôte existe déjà dans la liste.</string>
   <string name="enable_fullscreen">Activer le mode en plein écran</string>
+  <string name="pref_presenter_enable_volume_keys_title">Les touches de volume font défiler les diapositives</string>
+  <string name="pref_presenter_sensitivity_title">Sensibilité du pointeur</string>
+  <string name="pref_presenter_enable_volume_keys_summary">La mise en veille n’est pas prise en charge sur les versions Android entre 13 et 15.</string>
+  <string name="presenter_volume_keys_foreground_tip">Vous pouvez laisser l\'écran ouvert et utiliser les touches de volume pour passer d\'une diapositive à une autre</string>
+  <string name="presenter_volume_keys_tip">Vous pouvez laisser l\'écran ouvert ou verrouiller votre périphérique pour utiliser les touches de volume pour passer d\'une diapositive à une autre</string>
 </resources>
