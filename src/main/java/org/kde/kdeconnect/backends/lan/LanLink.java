@@ -6,6 +6,8 @@
 
 package org.kde.kdeconnect.backends.lan;
 
+import static main.java.org.kde.kdeconnect.helpers.BoundedLineReaderKt.readLineBounded;
+
 import android.content.Context;
 import android.util.Log;
 
@@ -22,6 +24,7 @@ import org.kde.kdeconnect.helpers.security.SslHelper;
 import org.kde.kdeconnect.helpers.ThreadHelper;
 import org.kde.kdeconnect.NetworkPacket;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,6 +40,7 @@ import javax.net.ssl.SSLHandshakeException;
 import javax.net.ssl.SSLSocket;
 
 import kotlin.text.Charsets;
+import main.java.org.kde.kdeconnect.helpers.LineTooLongException;
 
 public class LanLink extends BaseLink {
 
@@ -75,12 +79,12 @@ public class LanLink extends BaseLink {
         //Create a thread to take care of incoming data for the new socket
         ThreadHelper.execute(() -> {
             try {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(newSocket.getInputStream(), Charsets.UTF_8));
+                BufferedInputStream stream = new BufferedInputStream(newSocket.getInputStream());
                 while (true) {
                     String packet;
                     try {
-                        packet = readSingleLine(reader);
-                    } catch (SocketTimeoutException e) {
+                        packet = readLineBounded(stream, MAX_PACKET_SIZE);
+                    } catch (LineTooLongException | SocketTimeoutException e) {
                         continue;
                     }
                     if (packet.isEmpty()) {
@@ -101,22 +105,6 @@ public class LanLink extends BaseLink {
         });
 
         return oldSocket;
-    }
-
-    private String readSingleLine(BufferedReader reader) throws IOException {
-        StringBuilder line = new StringBuilder();
-        int ch;
-        while ((ch = reader.read()) != -1) {
-            line.append((char) ch);
-            if (ch == '\n') {
-                return line.toString();
-            }
-            if (line.length() >= MAX_PACKET_SIZE) {
-                Log.w("LanLink", "Discarding packet that's too large");
-                return "";
-            }
-        }
-        throw new IOException("Couldn't read a line from the socket");
     }
 
     @WorkerThread
