@@ -450,4 +450,9 @@
   <string name="device_host_invalid">主机无效。请使用有效的主机名、IPv4 或 IPv6 地址</string>
   <string name="device_host_duplicate">主机已在列表中</string>
   <string name="enable_fullscreen">启用全屏</string>
+  <string name="pref_presenter_enable_volume_keys_title">音量键切换幻灯片</string>
+  <string name="pref_presenter_sensitivity_title">指针灵敏度</string>
+  <string name="pref_presenter_enable_volume_keys_summary">待机控制在安卓 13 到 15 版之间不支持</string>
+  <string name="presenter_volume_keys_foreground_tip">您可以保持屏幕亮起以用音量键作为上一张/下一张幻灯片按钮</string>
+  <string name="presenter_volume_keys_tip">您可以保持屏幕亮起或锁定设备以用音量键作为上一张/下一张幻灯片按钮</string>
 </resources>
