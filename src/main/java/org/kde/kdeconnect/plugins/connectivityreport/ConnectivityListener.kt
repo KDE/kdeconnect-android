@@ -57,8 +57,11 @@ class ConnectivityListener(context: Context) {
     private val activeIDs = mutableSetOf<Int>()
 
     private fun statesChanged() {
-        externalListeners.forEach {
-            it.statesChanged(states)
+        val listenersCopy = synchronized(externalListeners) {
+            externalListeners.toList() // copy to prevent ConcurrentModificationException
+        }
+        for (listener in listenersCopy) {
+            listener.statesChanged(states)
         }
     }
 
