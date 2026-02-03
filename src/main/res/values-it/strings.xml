@@ -458,4 +458,9 @@
   <string name="device_host_invalid">L\'host non è valido. Utilizza un nome host valido, IPv4 o IPv6</string>
   <string name="device_host_duplicate">L\'host esiste già nell\'elenco</string>
   <string name="enable_fullscreen">Abilita schermo intero</string>
+  <string name="pref_presenter_enable_volume_keys_title">I tasti del volume cambiano le diapositive</string>
+  <string name="pref_presenter_sensitivity_title">Sensibilità del puntatore</string>
+  <string name="pref_presenter_enable_volume_keys_summary">Non supportato durante la sospensione sulle versioni Android comprese tra 13 e 15</string>
+  <string name="presenter_volume_keys_foreground_tip">Puoi lasciare lo schermo acceso per usare i tasti del volume per passare alla diapositiva precedente/successiva</string>
+  <string name="presenter_volume_keys_tip">Puoi lasciare lo schermo acceso o bloccare il dispositivo per utilizzare i tasti del volume per passare alla diapositiva precedente/successiva</string>
 </resources>
