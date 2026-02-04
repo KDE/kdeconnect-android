@@ -24,3 +24,7 @@
 -keep class org.apache.sshd.** {*;}
 -dontwarn org.apache.sshd.**
 
+# The android-smsmms library uses class casting and reflection internally.
+# R8 optimization breaks PduPersister, causing SMSPlugin.onCreate() to crash.
+-keep class com.google.android.mms.** {*;}
+
