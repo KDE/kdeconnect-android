@@ -11,6 +11,8 @@
   <string name="pref_plugin_battery_desc">주기적으로 배터리 상태 보고</string>
   <string name="pref_plugin_connectivity_report">연결 상태 보고</string>
   <string name="pref_plugin_connectivity_report_desc">네트워크 신호 세기 및 상태 보고</string>
+  <string name="pref_plugin_digitizer">그래픽 태블릿</string>
+  <string name="pref_plugin_digitizer_desc">내 장치를 압력 감지를 지원하는 그래픽 태블릿으로 사용</string>
   <string name="pref_plugin_sftp">파일 시스템 접근</string>
   <string name="pref_plugin_sftp_desc">원격으로 이 장치의 파일 시스템 보기</string>
   <string name="pref_plugin_clipboard">클립보드 동기화</string>
@@ -52,6 +54,7 @@
   <string name="remotekeyboard_connected">원격 키보드 연결이 활성화됨</string>
   <string name="remotekeyboard_multiple_connections">원격 키보드 연결이 여러 개 있습니다. 설정할 장치를 선택하십시오</string>
   <string name="open_mousepad">원격 입력</string>
+  <string name="open_mousepad_tv">TV 리모콘</string>
   <string name="mousepad_info">화면에서 손가락을 움직이면 마우스 커서를 움직입니다. 화면을 누르면 왼쪽 단추를 누르고, 두 손가락과 세 손가락으로 누르면 오른쪽/가운데 단추를 누릅니다. 두 손가락을 사용하여 스크롤할 수 있습니다. 드래그 앤 드롭을 사용하려면 길게 누르십시오. 플러그인 설정에서 자이로 마우스를 활성화할 수 있습니다</string>
   <string name="mousepad_info_no_gestures">화면에서 손가락을 움직이면 마우스 커서를 움직이며, 탭하면 클릭합니다.</string>
   <string name="mousepad_keyboard_input_not_supported">페어링된 장치에서 키보드 입력을 지원하지 않음</string>
@@ -65,6 +68,7 @@
   <string name="mousepad_scroll_sensitivity_title">스크롤 감도</string>
   <string name="gyro_mouse_enabled_title">자이로스코프 마우스 활성화</string>
   <string name="gyro_mouse_sensitivity_title">자이로스코프 감도</string>
+  <string name="bigscreen_hide_mouse_input">마우스와 키보드 원격 입력 단추 숨기기</string>
   <string name="bigscreen_show_home_title">홈 단추 표시</string>
   <string name="bigscreen_show_back_title">뒤로 이동 단추 표시</string>
   <string-array name="mousepad_tap_entries">
@@ -191,6 +195,7 @@
   <string name="share_to">다음으로 공유…</string>
   <string name="unreachable_device_dynamic_shortcut">%s(✕)</string>
   <string name="unreachable_device_url_share_text">접근할 수 없는 장치와 공유한 URL은 장치에 다시 접근할 수 있게 될 때 전달됩니다.\n\n</string>
+  <string name="unreachable_share_toast">다음에 장치를 연결할 때 URL을 공유합니다.</string>
   <string name="protocol_version">프로토콜 버전:</string>
   <string name="protocol_version_newer">이 장치의 프로토콜 버전이 더 새롭습니다</string>
   <string name="plugin_settings_with_name">%s 설정</string>
@@ -200,6 +205,7 @@
   <string name="custom_devices_settings_summary">장치 %d개를 수동으로 추가함</string>
   <string name="custom_device_list">IP로 장치 추가</string>
   <string name="custom_device_deleted">사용자 정의 장치 삭제됨</string>
+  <string name="custom_device_list_help">장치가 자동으로 감지되지 않았다면 아래 단추를 클릭해서 IP 주소나 호스트 이름으로 장치를 수동으로 추가할 수 있습니다</string>
   <string name="custom_device_fab_hint">장치 추가</string>
   <string name="undo">실행 취소</string>
   <string name="share_notification_preference">시끄러운 알림</string>
@@ -223,7 +229,7 @@
   <string name="sftp_storage_preference_click_to_select">클릭해서 선택</string>
   <string name="sftp_storage_preference_display_name">표시 이름</string>
   <string name="sftp_storage_preference_display_name_already_used">이 표시 이름이 이미 사용 중임</string>
-  <string name="sftp_storage_preference_display_name_cannot_be_empty">표시 이름을 비워둘 수 없음</string>
+  <string name="sftp_storage_preference_display_name_cannot_be_empty">표시 이름을 비워 둘 수 없음</string>
   <string name="sftp_action_mode_menu_delete">삭제</string>
   <string name="sftp_no_storage_locations_configured">저장소 위치가 설정되지 않았음</string>
   <string name="sftp_saf_permission_explanation">원격으로 파일에 접근하려면 저장소 위치를 설정해야 함</string>
@@ -231,11 +237,18 @@
   <string name="sftp_missing_permission_error">권한 없음: 파일 시스템 접근</string>
   <string name="no_players_connected">재생기를 찾을 수 없음</string>
   <string name="send_files">파일 보내기</string>
+  <string name="use_digitizer">그래픽 태블릿으로 사용</string>
+  <string name="digitizer_draw_button">손가락으로 그리기</string>
+  <string name="digitizer_preference_title_hide_draw_button">그리기 단추 숨기기</string>
+  <string name="digitizer_preference_summary_hide_draw_button">그리기 단추를 완전히 숨겨서 손가락으로 그릴 수 없게 됩니다. 장치에서 스타일러스 입력을 지원할 때에만 활성화하십시오.</string>
+  <string name="digitizer_preference_title_draw_button_side">\"손가락으로 그리기\" 단추를 표시할 방향</string>
+  <string name="digitizer_preference_title_enable_exit_fullscreen_gesture">전체 화면 끝내기 제스처 활성화</string>
+  <string name="digitizer_preference_summary_enable_exit_fullscreen_gesture">이 옵션을 사용하면 손가락으로 그리기 패드를 탭하고 누르고 있으면 전체 화면 모드를 종료합니다.</string>
   <string-array name="digitizer_preference_entries_draw_button_side">
-    <item>Top left</item>
-    <item>Top right</item>
-    <item>Bottom left</item>
-    <item>Bottom right</item>
+    <item>왼쪽 위</item>
+    <item>오른쪽 위</item>
+    <item>왼쪽 아래</item>
+    <item>오른쪽 아래</item>
   </string-array>
   <string name="block_notification_contents">알림 내용 숨기기</string>
   <string name="block_notification_images">알림 이미지 숨기기</string>
@@ -289,6 +302,7 @@
   <string name="notification_channel_persistent">항상 표시된 표시기</string>
   <string name="notification_channel_media_control">미디어 제어</string>
   <string name="notification_channel_filetransfer">받는 파일 전송 요청</string>
+  <string name="notification_channel_filetransfer_complete">받는 파일 전송 완료됨</string>
   <string name="notification_channel_filetransfer_upload">보내는 파일 전송</string>
   <string name="notification_channel_filetransfer_error">파일 전송 오류</string>
   <string name="notification_channel_high_priority">높은 우선 순위</string>
@@ -348,6 +362,7 @@
   <string name="bigscreen_down">아래</string>
   <string name="bigscreen_back">뒤로</string>
   <string name="bigscreen_mic">마이크</string>
+  <string name="pref_plugin_bigscreen">TV 리모콘</string>
   <string name="pref_plugin_bigscreen_desc">내 장치를 Plasma 큰 화면의 리모콘으로 사용</string>
   <string name="bigscreen_optional_permission_explanation">휴대폰 마이크 입력을 공유하려면 오디오 입력 접근 권한이 필요합니다</string>
   <string name="bigscreen_speech_extra_prompt">말하기</string>
@@ -424,6 +439,7 @@
   <string name="enable_bluetooth">블루투스 활성화(베타)</string>
   <string name="receive_notifications_permission_explanation">다른 장치에서 알림을 받으려면 알림을 허용해야 합니다</string>
   <string name="findmyphone_notifications_explanation">앱이 백그라운드에서 실행 중일 때 장치를 울리게 하려면 알림 권한이 필요합니다</string>
+  <string name="no_notifications">알림이 비활성화되어 있습니다. 들어오는 페어링 요청 알림을 받을 수 없습니다</string>
   <string name="mpris_keepwatching">계속 재생</string>
   <string name="mpris_keepwatching_settings_title">계속 재생</string>
   <string name="mpris_keepwatching_settings_summary">미디어를 닫은 후 이 장치에서 계속 재생할 수 있는 조용한 알림 표시</string>
@@ -433,4 +449,10 @@
   <string name="ping_in_progress">핑 진행 중…</string>
   <string name="device_host_invalid">호스트가 잘못되었습니다. 올바른 호스트 이름, IPv4, IPv6 주소를 지정하십시오</string>
   <string name="device_host_duplicate">호스트가 목록에 이미 있음</string>
+  <string name="enable_fullscreen">전체 화면 활성화</string>
+  <string name="pref_presenter_enable_volume_keys_title">음량 키로 슬라이드 변경</string>
+  <string name="pref_presenter_sensitivity_title">포인터 감도</string>
+  <string name="pref_presenter_enable_volume_keys_summary">안드로이드 13 이상 15 이하에서는 대기 모드에서 지원하지 않습니다</string>
+  <string name="presenter_volume_keys_foreground_tip">음량 키를 이전/다음 슬라이드 단추로 사용하려면 화면을 켜 두십시오</string>
+  <string name="presenter_volume_keys_tip">음량 키를 이전/다음 슬라이드 단추로 사용하려면 화면을 켜 두거나 장치를 잠그십시오</string>
 </resources>
