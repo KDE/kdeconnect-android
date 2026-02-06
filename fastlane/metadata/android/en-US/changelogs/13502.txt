@@ -1,0 +1,9 @@
+1.35.2:
+- Fixed SMS integration broken in 1.35
+
+1.35:
+- Add Digitizer plugin that allows using your device as a pressure-sensitive drawing tablet
+- Add setting for always showing the keyboard in Remote Input
+- Split TV Input and Remote Input
+- Change slides with volume keys in Presenter plugin
+- Bugfixes
