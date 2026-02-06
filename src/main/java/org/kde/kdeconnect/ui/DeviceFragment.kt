@@ -264,7 +264,9 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
 
     @UiThread
     private fun refreshUI() {
+        if (!hasBinding) return // in case onDestroyView has already been called
         val device = device ?: return
+
         //Once in-app, there is no point in keep displaying the notification if any
         device.hidePairingNotification()
 

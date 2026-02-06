@@ -19,6 +19,8 @@ abstract class BaseFragment<VB: ViewBinding> : Fragment() {
 
     protected val binding get() = _binding!!
 
+    val hasBinding : Boolean get() = _binding != null
+
     protected val mActivity
         get() = activity as? AppCompatActivity?
 
