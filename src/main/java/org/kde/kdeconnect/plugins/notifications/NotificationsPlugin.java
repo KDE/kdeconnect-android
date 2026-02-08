@@ -75,6 +75,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     private AppDatabase appDatabase;
 
     private Set<String> currentNotifications;
+    private Map<String, String> notificationsIcons; // Here we will map every notification to it's icon(hash)
     private Map<String, RepliableNotification> pendingIntents;
     private MultiValuedMap<String, Notification.Action> actions;
     private boolean serviceReady;
@@ -120,6 +121,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
         pendingIntents = new HashMap<>();
         currentNotifications = new HashSet<>();
+        notificationsIcons = new HashMap<>();
         actions = new ArrayListValuedHashMap<>();
 
         sharedPreferences = context.getSharedPreferences(getSharedPreferencesName(),Context.MODE_PRIVATE);
@@ -169,6 +171,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         np.set("isCancel", true);
         getDevice().sendPacket(np);
         currentNotifications.remove(id);
+        notificationsIcons.remove(id);
     }
 
     @Override
@@ -225,20 +228,29 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             return;
         }
 
+        boolean isUpdate = currentNotifications.contains(key);
+
+        if (!isUpdate) {
+            currentNotifications.add(key);
+        }
+
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_NOTIFICATION);
 
-        boolean isUpdate = currentNotifications.contains(key);
-        //If it's an update, the other end should have the icon already: no need to extract it and create the payload again
-        if (!isUpdate) {
+        Bitmap appIcon = extractIcon(statusBarNotification, notification);
 
-            currentNotifications.add(key);
+        if (appIcon != null && !appDatabase.getPrivacy(packageName, AppDatabase.PrivacyOptions.BLOCK_IMAGES)) {
+            byte[] iconBytes = getIconBytes(appIcon);
+            String iconHash = getIconHash(iconBytes);
 
-            Bitmap appIcon = extractIcon(statusBarNotification, notification);
-
-            if (appIcon != null && !appDatabase.getPrivacy(packageName, AppDatabase.PrivacyOptions.BLOCK_IMAGES)) {
-                attachIcon(np, appIcon);
+            //If it's the same icon, the other end should have it already, so there's no need to send it again.
+            if (!iconHash.equals(notificationsIcons.get(key))) {
+                attachIcon(np, iconBytes);
+                notificationsIcons.put(key, iconHash);
             }
+            //We should always send the icon's hash so the other end can know which icon to use.
+            np.set("payloadHash", iconHash);
         }
+
 
         np.set("actions", extractActions(notification, key));
 
@@ -296,13 +308,18 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         return Objects.requireNonNull(NotificationCompat.getExtras(notification));
     }
 
-    private void attachIcon(NetworkPacket np, Bitmap appIcon) {
+    private byte[] getIconBytes(Bitmap appIcon) {
         ByteArrayOutputStream outStream = new ByteArrayOutputStream();
         appIcon.compress(Bitmap.CompressFormat.PNG, 90, outStream);
-        byte[] bitmapData = outStream.toByteArray();
+        return outStream.toByteArray();
+    }
 
-        np.setPayload(new NetworkPacket.Payload(bitmapData));
-        np.set("payloadHash", getChecksum(bitmapData));
+    private String getIconHash(byte[] iconBytes) {
+        return getChecksum(iconBytes);
+    }
+
+    private void attachIcon(NetworkPacket np, byte[] iconBytes) {
+        np.setPayload(new NetworkPacket.Payload(iconBytes));
     }
 
     @Nullable
