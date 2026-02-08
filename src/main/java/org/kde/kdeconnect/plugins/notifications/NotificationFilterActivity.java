@@ -6,17 +6,20 @@
 
 package org.kde.kdeconnect.plugins.notifications;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.LauncherActivityInfo;
 import android.content.pm.LauncherApps;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Process;
 import android.os.UserHandle;
@@ -145,6 +148,9 @@ public class NotificationFilterActivity extends BaseActivity<ActivityNotificatio
             final List<AppListInfo> allApps = new ArrayList<>(count);
             for (int i = 0; i < count; i++) {
                 final ApplicationInfo appInfo = appList.get(i);
+                if (!canPostNotifications(packageManager, appInfo)) {
+                    continue;
+                }
                 AppListInfo appListInfo = new AppListInfo();
                 appListInfo.pkg = appInfo.packageName;
                 appListInfo.name = appInfo.loadLabel(packageManager).toString();
@@ -174,6 +180,9 @@ public class NotificationFilterActivity extends BaseActivity<ActivityNotificatio
                         }
 
                         final ApplicationInfo appInfo = app.getApplicationInfo();
+                        if (!canPostNotifications(packageManager, appInfo)) {
+                            continue;
+                        }
                         AppListInfo appListInfo = new AppListInfo();
                         appListInfo.pkg = appInfo.packageName;
                         appListInfo.name = appInfo.loadLabel(packageManager).toString();
@@ -195,6 +204,26 @@ public class NotificationFilterActivity extends BaseActivity<ActivityNotificatio
             runOnUiThread(this::displayAppList);
         });
 
+    }
+
+    private boolean canPostNotifications(PackageManager packageManager, ApplicationInfo appInfo) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU || appInfo.targetSdkVersion < Build.VERSION_CODES.TIRAMISU) {
+            return true;
+        }
+        try {
+            PackageInfo packageInfo = packageManager.getPackageInfo(appInfo.packageName, PackageManager.GET_PERMISSIONS);
+            if (packageInfo.requestedPermissions != null) {
+                for (String requestedPermission : packageInfo.requestedPermissions) {
+                    if (Manifest.permission.POST_NOTIFICATIONS.equals(requestedPermission)) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.e("NotificationFilterActiv", "Package not found for " + appInfo.packageName, e);
+            return true;
+        }
     }
 
     private void configureSwitch(SharedPreferences sharedPreferences) {
