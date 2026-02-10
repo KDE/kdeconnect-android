@@ -18,13 +18,13 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.PowerManager;
-import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
+import androidx.preference.PreferenceManager;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.kde.kdeconnect.helpers.DeviceHelper;
@@ -48,6 +48,7 @@ public class FindMyPhonePlugin extends Plugin {
     private MediaPlayer mediaPlayer;
     private int previousVolume = -1;
     private PowerManager powerManager;
+    private FlashlightManager flashlightManager;
 
     @Override
     public @NonNull String getDisplayName() {
@@ -73,6 +74,7 @@ public class FindMyPhonePlugin extends Plugin {
         notificationId = (int) System.currentTimeMillis();
         audioManager = ContextCompat.getSystemService(context, AudioManager.class);
         powerManager = ContextCompat.getSystemService(context, PowerManager.class);
+        flashlightManager = new FlashlightManager(context);
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         Uri ringtone;
@@ -111,6 +113,8 @@ public class FindMyPhonePlugin extends Plugin {
         audioManager = null;
         mediaPlayer.release();
         mediaPlayer = null;
+
+        flashlightManager = null;
     }
 
     @Override
@@ -121,11 +125,9 @@ public class FindMyPhonePlugin extends Plugin {
             intent.putExtra(FindMyPhoneActivity.EXTRA_DEVICE_ID, getDevice().getDeviceId());
             context.startActivity(intent);
         } else {
-            if (!checkOptionalPermissions()) {
-                return false;
-            }
             if (powerManager.isInteractive()) {
                 startPlaying();
+                startFlashing();
                 showBroadcastNotification();
             } else {
                 showActivityNotification();
@@ -178,6 +180,12 @@ public class FindMyPhonePlugin extends Plugin {
         }
     }
 
+    void startFlashing() {
+        if (isFlashlightEnabledInSettings() && isPermissionGranted(Manifest.permission.CAMERA)) {
+            flashlightManager.startFlashing();
+        }
+    }
+
     void hideNotification() {
         notificationManager.cancel(notificationId);
     }
@@ -197,6 +205,10 @@ public class FindMyPhonePlugin extends Plugin {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    void stopFlashing() {
+        flashlightManager.stopFlashing();
     }
 
     boolean isPlaying() {
@@ -236,5 +248,10 @@ public class FindMyPhonePlugin extends Plugin {
     @Override
     protected int getPermissionExplanation() {
         return R.string.findmyphone_notifications_explanation;
+    }
+
+    private boolean isFlashlightEnabledInSettings() {
+       SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+       return prefs.getBoolean(context.getString(R.string.findmyphone_preference_key_flashlight), false);
     }
 }

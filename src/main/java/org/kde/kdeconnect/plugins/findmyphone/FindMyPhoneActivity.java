@@ -67,6 +67,7 @@ public class FindMyPhoneActivity extends BaseActivity<ActivityFindMyPhoneBinding
             return;
         }
         plugin.startPlaying();
+        plugin.startFlashing();
         plugin.hideNotification();
     }
 
@@ -78,5 +79,6 @@ public class FindMyPhoneActivity extends BaseActivity<ActivityFindMyPhoneBinding
             return;
         }
         plugin.stopPlaying();
+        plugin.stopFlashing();
     }
 }

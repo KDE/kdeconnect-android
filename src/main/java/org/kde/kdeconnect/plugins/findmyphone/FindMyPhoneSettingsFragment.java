@@ -6,6 +6,7 @@
 
 package org.kde.kdeconnect.plugins.findmyphone;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,11 +14,16 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.IntentCompat;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceManager;
+import androidx.preference.SwitchPreference;
 
 import org.kde.kdeconnect.ui.PluginSettingsFragment;
 import org.kde.kdeconnect_tp.R;
@@ -26,8 +32,27 @@ public class FindMyPhoneSettingsFragment extends PluginSettingsFragment {
     private static final int REQUEST_CODE_SELECT_RINGTONE = 1000;
 
     private String preferenceKeyRingtone;
+    private String preferenceKeyFlashlight;
     private SharedPreferences sharedPreferences;
     private Preference ringtonePreference;
+    private SwitchPreference flashlightPreference;
+
+    private final ActivityResultLauncher<String> requestCameraPermission = registerForActivityResult(
+            new ActivityResultContracts.RequestPermission(),
+            isGranted -> {
+                if (isGranted) {
+                    setFlashlightEnabled(true);
+                    return;
+                }
+                if (!shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)) {
+                    Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                    intent.setData(Uri.fromParts("package", requireContext().getPackageName(), null));
+                    Toast.makeText(requireContext(), R.string.findmyphone_open_settings_for_camera, Toast.LENGTH_LONG).show();
+                    startActivity(intent);
+                    return;
+                }
+                Toast.makeText(requireContext(), R.string.findmyphone_camera_explanation, Toast.LENGTH_SHORT).show();
+            });
 
     public static FindMyPhoneSettingsFragment newInstance(@NonNull String pluginKey, int layout) {
         FindMyPhoneSettingsFragment fragment = new FindMyPhoneSettingsFragment();
@@ -41,11 +66,48 @@ public class FindMyPhoneSettingsFragment extends PluginSettingsFragment {
         super.onCreatePreferences(savedInstanceState, rootKey);
 
         preferenceKeyRingtone = getString(R.string.findmyphone_preference_key_ringtone);
+        preferenceKeyFlashlight = getString(R.string.findmyphone_preference_key_flashlight);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext());
 
         ringtonePreference = getPreferenceScreen().findPreference(preferenceKeyRingtone);
+        flashlightPreference = getPreferenceScreen().findPreference(preferenceKeyFlashlight);
 
         setRingtoneSummary();
+
+        if (flashlightPreference != null) {
+            flashlightPreference.setOnPreferenceChangeListener((pref, newValue) -> {
+                if (Boolean.TRUE.equals(newValue)) {
+                    if (hasCameraPermission()) {
+                        return true;
+                    }
+                    requestCameraPermission.launch(Manifest.permission.CAMERA);
+                    return false;
+                }
+                return true;
+            });
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        syncFlashlightPreferenceWithPermission();
+    }
+
+    private void syncFlashlightPreferenceWithPermission() {
+        boolean preferenceOn = sharedPreferences.getBoolean(preferenceKeyFlashlight, false);
+        if (!hasCameraPermission() && preferenceOn) {
+            setFlashlightEnabled(false);
+        }
+    }
+
+    private boolean hasCameraPermission() {
+        return ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) == android.content.pm.PackageManager.PERMISSION_GRANTED;
+    }
+
+    private void setFlashlightEnabled(boolean enabled) {
+        sharedPreferences.edit().putBoolean(preferenceKeyFlashlight, enabled).apply();
+        flashlightPreference.setChecked(enabled);
     }
 
     private void setRingtoneSummary() {

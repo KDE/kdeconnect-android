@@ -461,6 +461,8 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="notification_channel_receivenotification">Notifications from other devices</string>
 
     <string name="findmyphone_preference_key_ringtone" translatable="false">findmyphone_ringtone</string>
+    <string name="findmyphone_preference_key_flashlight" translatable="false">findmyphone_flashlight</string>
+    <string name="findmyphone_preference_title_flashlight">Flash flashlight</string>
 
     <string name="no_app_for_opening">No suitable app found to open this file</string>
     <string name="remote_keyboard_service">KDE Connect Remote Keyboard</string>
@@ -622,6 +624,8 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
 
     <string name="receive_notifications_permission_explanation">Notifications need to be allowed to receive them from other devices</string>
     <string name="findmyphone_notifications_explanation">The notifications permission is needed so the phone can ring when the app is in the background</string>
+    <string name="findmyphone_camera_explanation">Camera permission allows the flashlight to flash when finding your phone</string>
+    <string name="findmyphone_open_settings_for_camera">Grant camera permission in app settings to use the flashlight</string>
     <string name="no_notifications">Notifications are disabled, you won\'t receive incoming pairing request notifications.</string>
 
 
