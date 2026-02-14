@@ -6,6 +6,7 @@
 
 package org.kde.kdeconnect.backends.lan;
 
+import static org.kde.kdeconnect.helpers.NetworkHelperKt.isPrivateAddress;
 import static main.java.org.kde.kdeconnect.helpers.BoundedLineReaderKt.readLineBounded;
 
 import android.content.Context;
@@ -134,7 +135,7 @@ public class LanLinkProvider extends BaseLinkProvider {
 
         InetAddress address = socket.getInetAddress();
 
-        if (!address.isSiteLocalAddress() && !address.isLinkLocalAddress()) {
+        if (!isPrivateAddress(address)) {
             Log.i("LanLinkProvider", "Discarding UDP packet from a non-local IP");
             return;
         }
@@ -211,7 +212,7 @@ public class LanLinkProvider extends BaseLinkProvider {
 
         final InetAddress address = packet.getAddress();
 
-        if (!address.isSiteLocalAddress() && !address.isLinkLocalAddress()) {
+        if (!isPrivateAddress(address)) {
             Log.i("LanLinkProvider", "Discarding UDP packet from a non-local IP");
             return;
         }

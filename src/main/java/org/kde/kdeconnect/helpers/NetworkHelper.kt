@@ -6,6 +6,7 @@
 package org.kde.kdeconnect.helpers
 
 import java.net.Inet4Address
+import java.net.Inet6Address
 import java.net.InetAddress
 import java.net.NetworkInterface
 import java.net.SocketException
@@ -32,4 +33,45 @@ fun getLocalIpAddress(): InetAddress? {
         }
     } catch (_: SocketException) { }
     return ip6
+}
+
+
+/**
+ * Returns true if the given address is in the Carrier-Grade NAT address space (100.64.0.0/10).
+ */
+val InetAddress.isCGNAT: Boolean
+    get() {
+        if (this !is Inet4Address) {
+            return false
+        }
+
+        val bytes = this.address
+        val firstOctet = bytes[0].toInt() and 0xFF
+        val secondOctet = bytes[1].toInt() and 0xFF
+
+        // First octet must be 100, and the top two bits of second octet must be 01 (01xx xxxx)
+        return firstOctet == 100 && (secondOctet and 0xC0) == 0x40
+    }
+
+
+/**
+ * Returns true if the given address is in the IPv6 Unique Local Address space (fc00::/7)
+ */
+val InetAddress.isUniqueLocal: Boolean
+    get() {
+        if (this !is Inet6Address) {
+            return false
+        }
+
+        val bytes = this.address
+        // First 7 bits must be 1111 110x
+        val firstOctet = bytes[0].toInt() and 0xFF
+        return (firstOctet and 0xfe) == 0xfc
+    }
+
+/**
+ * Returns true if the address is not a public internet address, so it can be used to send and receive KDE Connect packets
+ */
+fun isPrivateAddress(address: InetAddress): Boolean {
+    return address.isSiteLocalAddress || address.isLinkLocalAddress || address.isCGNAT || address.isUniqueLocal
 }
