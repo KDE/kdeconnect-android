@@ -59,7 +59,7 @@ internal class RunCommandWidgetDataProvider(private val context: Context, val in
             return remoteView
         }
 
-        val listItem = plugin.commandItems[i]
+        val listItem = plugin.commandItems.getOrNull(i) ?: return remoteView
 
         remoteView.setTextViewText(R.id.list_item_entry_title, listItem.name)
         remoteView.setTextViewText(R.id.list_item_entry_summary, listItem.command)
