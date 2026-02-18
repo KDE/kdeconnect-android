@@ -552,15 +552,16 @@ public class LanLinkProvider extends BaseLinkProvider {
     public void onStart() {
         //Log.i("KDE/LanLinkProvider", "onStart");
         if (!listening) {
-
             listening = true;
 
             setupUdpListener();
             setupTcpListener();
 
-            mdnsDiscovery.startDiscovering();
-            if (TrustedNetworkHelper.isTrustedNetwork(context)) {
-                mdnsDiscovery.startAnnouncing();
+            synchronized (mdnsDiscovery) {
+                mdnsDiscovery.startDiscovering();
+                if (TrustedNetworkHelper.isTrustedNetwork(context)) {
+                    mdnsDiscovery.startAnnouncing();
+                }
             }
 
             broadcastUdpIdentityPacket(null);
@@ -576,16 +577,20 @@ public class LanLinkProvider extends BaseLinkProvider {
         lastBroadcast = System.currentTimeMillis();
 
         broadcastUdpIdentityPacket(network);
-        mdnsDiscovery.stopDiscovering();
-        mdnsDiscovery.startDiscovering();
+        synchronized (mdnsDiscovery) {
+            mdnsDiscovery.stopDiscovering();
+            mdnsDiscovery.startDiscovering();
+        }
     }
 
     @Override
     public void onStop() {
         //Log.i("KDE/LanLinkProvider", "onStop");
         listening = false;
-        mdnsDiscovery.stopAnnouncing();
-        mdnsDiscovery.stopDiscovering();
+        synchronized (mdnsDiscovery) {
+            mdnsDiscovery.stopAnnouncing();
+            mdnsDiscovery.stopDiscovering();
+        }
         try {
             tcpServer.close();
         } catch (Exception e) {
