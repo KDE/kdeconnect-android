@@ -15,6 +15,7 @@ import android.os.Build;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.VisibleForTesting;
 import androidx.core.content.ContextCompat;
 
 import org.jetbrains.annotations.NotNull;
@@ -90,6 +91,7 @@ public class ClipboardPlugin extends Plugin {
 
     private final ClipboardListener.ClipboardObserver observer = this::propagateClipboard;
 
+    @VisibleForTesting
     public void propagateClipboard(String content) {
         NetworkPacket np = new NetworkPacket(ClipboardPlugin.PACKET_TYPE_CLIPBOARD);
         np.set("content", content);

@@ -9,6 +9,7 @@ package org.kde.kdeconnect.plugins.systemvolume;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.VisibleForTesting;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -91,6 +92,7 @@ public class SystemVolumePlugin extends Plugin {
         return true;
     }
 
+    @VisibleForTesting
     public void sendVolume(String name, int volume) {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_SYSTEMVOLUME_REQUEST);
         np.set("volume", volume);
@@ -98,6 +100,7 @@ public class SystemVolumePlugin extends Plugin {
         getDevice().sendPacket(np);
     }
 
+    @VisibleForTesting
     public void sendMute(String name, boolean mute) {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_SYSTEMVOLUME_REQUEST);
         np.set("muted", mute);
@@ -105,6 +108,7 @@ public class SystemVolumePlugin extends Plugin {
         getDevice().sendPacket(np);
     }
 
+    @VisibleForTesting
     public void sendEnable(String name) {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_SYSTEMVOLUME_REQUEST);
         np.set("enabled", true);
@@ -122,10 +126,12 @@ public class SystemVolumePlugin extends Plugin {
         return new String[]{PACKET_TYPE_SYSTEMVOLUME_REQUEST};
     }
 
+    @VisibleForTesting
     public Collection<Sink> getSinks() {
         return sinks.values();
     }
 
+    @VisibleForTesting
     public void addSinkListener(SinkListener listener) {
         synchronized(listeners) {
             listeners.add(listener);
