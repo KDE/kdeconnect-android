@@ -91,21 +91,21 @@ public class SystemVolumePlugin extends Plugin {
         return true;
     }
 
-    void sendVolume(String name, int volume) {
+    public void sendVolume(String name, int volume) {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_SYSTEMVOLUME_REQUEST);
         np.set("volume", volume);
         np.set("name", name);
         getDevice().sendPacket(np);
     }
 
-    void sendMute(String name, boolean mute) {
+    public void sendMute(String name, boolean mute) {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_SYSTEMVOLUME_REQUEST);
         np.set("muted", mute);
         np.set("name", name);
         getDevice().sendPacket(np);
     }
 
-    void sendEnable(String name) {
+    public void sendEnable(String name) {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_SYSTEMVOLUME_REQUEST);
         np.set("enabled", true);
         np.set("name", name);
@@ -122,11 +122,11 @@ public class SystemVolumePlugin extends Plugin {
         return new String[]{PACKET_TYPE_SYSTEMVOLUME_REQUEST};
     }
 
-    Collection<Sink> getSinks() {
+    public Collection<Sink> getSinks() {
         return sinks.values();
     }
 
-    void addSinkListener(SinkListener listener) {
+    public void addSinkListener(SinkListener listener) {
         synchronized(listeners) {
             listeners.add(listener);
         }
