@@ -11,11 +11,17 @@
   <string name="pref_plugin_battery_desc">Raportează periodic starea acumulatorului</string>
   <string name="pref_plugin_connectivity_report">Raport de conectivitate</string>
   <string name="pref_plugin_connectivity_report_desc">Raportează puterea și starea semnalului rețelei</string>
+  <string name="pref_plugin_digitizer">Planșetă grafică</string>
+  <string name="pref_plugin_digitizer_desc">Folosiți dispozitivul ca planșetă grafică sensibilă la presiune</string>
+  <string name="pref_plugin_sftp">Acces la sistemul de fișiere</string>
   <string name="pref_plugin_sftp_desc">Permite răsfoirea de la distanță a sistemul de fișiere al acestui dispozitiv</string>
   <string name="pref_plugin_clipboard">Sincronizare clipboard</string>
   <string name="pref_plugin_clipboard_desc">Partajează conținutul clipboard-ului</string>
   <string name="pref_plugin_clipboard_sent">Clipboard trimis</string>
   <string name="pref_plugin_mousepad">Introducere de la distanță</string>
+  <string name="pref_plugin_mousepad_desc_nontv">Folosiți telefonul sau tableta ca zonă tactilă și tastatură</string>
+  <string name="pref_plugin_mousepad_desc_tv">Folosiți telefonul sau tableta ca telecomandă TV</string>
+  <string name="pref_plugin_presenter">Telecomandă pentru prezentări</string>
   <string name="pref_plugin_presenter_desc">Folosiți dispozitivul pentru a schimba diapozitivele dintr-o prezentare</string>
   <string name="pref_plugin_remotekeyboard">Primește apăsări de taste de la distanță</string>
   <string name="pref_plugin_remotekeyboard_desc">Primește evenimente de apăsare a tastelor de la dispozitive distante</string>
@@ -48,7 +54,9 @@
   <string name="remotekeyboard_connected">Conexiunea de tastatură la distanță e activă</string>
   <string name="remotekeyboard_multiple_connections">Sunt mai multe conexiuni de tastatură la distanță, alegeți dispozitivul de configurat</string>
   <string name="open_mousepad">Introducere de la distanță</string>
+  <string name="open_mousepad_tv">Telecomandă TV</string>
   <string name="mousepad_info">Mișcați un deget pe ecran pentru a muta cursorul mausului. Atingeți pentru clic, folosiți două/trei degete pentru butoanele drept și mijlociu. Folosiți două degete pentru a derula. Apăsați lung pentru tragere-și-lăsare. Funcționalitatea de maus giroscopic poate fi activată în preferințele extensiei.</string>
+  <string name="mousepad_info_no_gestures">Mișcați un deget pe ecran pentru a mișca cursorul, atingeți scurt pentru clic.</string>
   <string name="mousepad_keyboard_input_not_supported">Apăsarea de taste nu e susținută de către dispozitivul asociat</string>
   <string name="mousepad_single_tap_settings_title">Stabilește acțiunea de atingere cu un deget</string>
   <string name="mousepad_double_tap_settings_title">Stabilește acțiunea de atingere cu două degete</string>
@@ -60,6 +68,9 @@
   <string name="mousepad_scroll_sensitivity_title">Sensibilitatea derulării</string>
   <string name="gyro_mouse_enabled_title">Activează mausul giroscopic</string>
   <string name="gyro_mouse_sensitivity_title">Sensibilitate giroscop</string>
+  <string name="bigscreen_hide_mouse_input">Ascunde butonul de introducere cu telecomanda pentru tastatură și maus</string>
+  <string name="bigscreen_show_home_title">Arată butonul Acasă</string>
+  <string name="bigscreen_show_back_title">Arată butonul Înapoi</string>
   <string-array name="mousepad_tap_entries">
     <item>Clic stâng</item>
     <item>Clic drept</item>
@@ -111,12 +122,15 @@
   <string name="error_not_reachable">Dispozitivul nu e accesibil</string>
   <string name="error_already_paired">Dispozitiv asociat deja</string>
   <string name="error_timed_out">A expirat</string>
+  <string name="error_clocks_not_match">Ceasurile dispozitivelor nu se potrivesc</string>
   <string name="error_canceled_by_user">Anulat de către utilizator</string>
   <string name="error_canceled_by_other_peer">Anulat de către partener</string>
   <string name="encryption_info_title">Informații despre criptare</string>
   <string name="my_device_fingerprint">Amprenta SHA256 a certificatului acestui dispozitiv e:</string>
   <string name="remote_device_fingerprint">Amprenta SHA256 a certificatului dispozitivului distant e:</string>
   <string name="pair_requested">Asociere cerută</string>
+  <string name="pair_succeeded">Asociere reușită</string>
+  <string name="pairing_request_from">Cerere de asociere de la „%1s”</string>
   <plurals name="incoming_file_title">
     <item quantity="one">Se primește %1$d fișier de la %2$s</item>
     <item quantity="few">Se primesc %1$d fișiere de la %2$s</item>
@@ -161,13 +175,17 @@
   <string name="received_file_text">Atingeți pentru a deschide „%1s”</string>
   <string name="cannot_create_file">Nu se poate crea fișierul %s</string>
   <string name="tap_to_answer">Atingeți pentru a răspunde</string>
+  <string name="left_click">Trimite clic stâng</string>
   <string name="right_click">Trimite clic drept</string>
   <string name="middle_click">Trimite clic mijlociu</string>
   <string name="show_keyboard">Arată tastatura</string>
+  <string name="show_mouse_and_keyboard">Arată mausul și tastatura</string>
   <string name="device_not_paired">Dispozitiv neasociat</string>
+  <string name="pairing_duplicate_names">Atenție: Există mai multe dispozitive cu aceeași denumire.</string>
   <string name="request_pairing">Cere asocierea</string>
   <string name="pairing_accept">Acceptă</string>
   <string name="pairing_reject">Respinge</string>
+  <string name="pairing_explanation">Asocierea a două dispozitive le va face reciproc accesibile. Asociați doar dispozitive proprii.</string>
   <string name="settings">Configurări</string>
   <string name="mpris_play">Redă</string>
   <string name="mpris_pause">Întrerupe</string>
@@ -190,13 +208,20 @@
   <string name="mpris_notifications_explanation">Permisiunea pentru notificări e necesară pentru a arăta piesele distante în sertarul cu notificări</string>
   <string name="mpris_notification_settings_title">Arată notificare cu control multimedia</string>
   <string name="mpris_notification_settings_summary">Permite controlul lectorilor multimedia fără a deschide KDE Connect</string>
+  <string name="share_to">Partajează cu…</string>
+  <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
+  <string name="unreachable_device_url_share_text">URL-urile partajate cu un dispozitiv inaccesibil vor fi livrate acestuia când devine accesibil.\n\n</string>
+  <string name="unreachable_share_toast">URL-ul va fi partajat la următoarea conectare a dispozitivului.</string>
+  <string name="protocol_version">Versiune protocol:</string>
   <string name="protocol_version_newer">Acest dispozitiv folosește o versiune mai nouă a protocolului</string>
   <string name="plugin_settings_with_name">Configurări „%s”</string>
   <string name="invalid_device_name">Denumire nevalidă a dispozitivului</string>
   <string name="shareplugin_text_saved">S-a primit text, salvat în clipboard</string>
   <string name="custom_devices_settings">Listă de dispozitive personalizate</string>
+  <string name="custom_devices_settings_summary">Dispozitive %d adăugate manual</string>
   <string name="custom_device_list">Adaugă dispozitive după IP</string>
   <string name="custom_device_deleted">S-a șters dispozitiv personalizat</string>
+  <string name="custom_device_list_help">Dacă dispozitivul nu e detectat automat, îi puteți adăuga adresa IP sau numele de gazdă apăsând butonul de mai jos</string>
   <string name="custom_device_fab_hint">Adaugă dispozitiv</string>
   <string name="undo">Desfă</string>
   <string name="share_notification_preference">Notificări zgomotoase</string>
@@ -225,13 +250,21 @@
   <string name="sftp_no_storage_locations_configured">Niciun loc de stocare configurat</string>
   <string name="sftp_saf_permission_explanation">Pentru a accesa fișiere de la distanță, trebuie să configurați locuri de stocare</string>
   <string name="sftp_manage_storage_permission_explanation">Pentru a permite accesul de la distanță la fișierele de pe acest dispozitiv, trebuie să permiteți KDE Connect să gestioneze stocarea.</string>
+  <string name="sftp_missing_permission_error">Permisiuni lipsă: acces la sistemul de fișiere</string>
   <string name="no_players_connected">Niciun program de redare găsit</string>
   <string name="send_files">Trimite fișiere</string>
+  <string name="use_digitizer">Folosește ca planșetă grafică</string>
+  <string name="digitizer_draw_button">Desenează cu degetul</string>
+  <string name="digitizer_preference_title_hide_draw_button">Ascunde butonul de desen</string>
+  <string name="digitizer_preference_summary_hide_draw_button">Ascunde complet butonul de desen, făcând imposibilă desenarea cu degetul. Activați doar dacă dispozitivul susține introducerea cu stiloul.</string>
+  <string name="digitizer_preference_title_draw_button_side">Dimensiunea butonului „Desenează cu degetul”</string>
+  <string name="digitizer_preference_title_enable_exit_fullscreen_gesture">Activează gestul de părăsire a ecranului complet</string>
+  <string name="digitizer_preference_summary_enable_exit_fullscreen_gesture">Dacă e activă, taparea și ținerea cu degetul pe zona de desen va dezactiva regimul de ecran complet.</string>
   <string-array name="digitizer_preference_entries_draw_button_side">
-    <item>Top left</item>
-    <item>Top right</item>
-    <item>Bottom left</item>
-    <item>Bottom right</item>
+    <item>Stânga sus</item>
+    <item>Dreapta sus</item>
+    <item>Stânga jos</item>
+    <item>Dreapta jos</item>
   </string-array>
   <string name="block_notification_contents">Blochează conținutul notificărilor</string>
   <string name="block_notification_images">Blochează imaginile notificărilor</string>
@@ -285,6 +318,7 @@
   <string name="notification_channel_persistent">Indicator persistent</string>
   <string name="notification_channel_media_control">Control multimedia</string>
   <string name="notification_channel_filetransfer">Transfer de fișiere de intrare</string>
+  <string name="notification_channel_filetransfer_complete">Transfer de fișiere de intrare încheiat</string>
   <string name="notification_channel_filetransfer_upload">Transfer de fișiere de ieșire</string>
   <string name="notification_channel_filetransfer_error">Eroare la transferul fișierului</string>
   <string name="notification_channel_high_priority">Prioritate ridicată</string>
@@ -309,6 +343,8 @@
   <string name="devices">Dispozitive</string>
   <string name="settings_rename">Denumire dispozitiv</string>
   <string name="settings_dark_mode">Tematică întunecată</string>
+  <string name="settings_export_logs">Exportă jurnale KDE Connect</string>
+  <string name="settings_export_logs_text">Generează un fișier cu informații despre execuție ce pot ajuta la depanarea defectelor.</string>
   <string name="settings_more_settings_title">Mai multe configurări</string>
   <string name="settings_more_settings_text">Configurările fiecărui dispozitiv le puteți găsi în „Configurare extensii” dintr-un dispozitiv.</string>
   <string name="setting_persistent_notification">Arată notificare persistentă</string>
@@ -329,6 +365,7 @@
   <string name="empty_trusted_networks_list_text">Încă nu ați adăugat nicio rețea de încredere</string>
   <string name="allow_all_networks_text">Permite toate</string>
   <string name="location_permission_needed_title">Permisiune cerută</string>
+  <string name="bluetooth_permission_needed_desc">KDE Connect necesită permisiunea de a se conecta la dispozitive din apropiere pentru a face dispozitivele asociate prin Bluetooth disponibile în KDE Connect.</string>
   <string name="location_permission_needed_desc">KDE Connect necesită permisiunea de localizare în fundal pentru a ști rețeaua WiFi la care v-ați conectat chiar și atunci când aplicația e în fundal. Aceasta se datorează faptului că denumirile rețelelor din jur ar putea fi folosite pentru a vă localiza, chiar dacă aceasta nu e ceva ce face KDE Connect.</string>
   <string name="clipboard_android_x_incompat">Android 10 a eliminat accesul la clipboard pentru toate aplicațiile. Această extensie va fi dezactivată.</string>
   <string name="mpris_open_url">Continuă redarea aici</string>
@@ -339,7 +376,9 @@
   <string name="bigscreen_select">Alege</string>
   <string name="bigscreen_right">Dreapta</string>
   <string name="bigscreen_down">Jos</string>
+  <string name="bigscreen_back">Înapoi</string>
   <string name="bigscreen_mic">Mic</string>
+  <string name="pref_plugin_bigscreen">Telecomandă TV</string>
   <string name="pref_plugin_bigscreen_desc">Folosiți dispozitivul ca telecomandă pentru Plasma Bigscreen</string>
   <string name="bigscreen_optional_permission_explanation">Pentru a partaja microfonul de la telefon, trebuie să permiteți accesul laintrarea de sunet a telefonului dumneavoastră.</string>
   <string name="bigscreen_speech_extra_prompt">Vorbire</string>
@@ -391,6 +430,8 @@
   <string name="send_compose">Expediază</string>
   <string name="compose_send_title">Compune și expediază</string>
   <string name="open_compose_send">Compune textul</string>
+  <string name="double_tap_to_drag">Atingeți dublu pentru a trage</string>
+  <string name="hold_to_drag">Țineți pentru a trage</string>
   <string name="about_kde_about">&lt;h1&gt;Despre&lt;/h1&gt; &lt;p&gt;KDE este o comunitate mondială de programatori, artiști, scriitori, traducători și creatori dedicați dezvoltării &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;programelor libere&lt;/a&gt;. KDE produce mediul de birou Plasma, sute de aplicații și multe biblioteci software ce le susțin. KDE este o întreprindere bazată pe cooperare: nicio entitate nu-i controlează direcția sau produsele. Dimpotrivă, colaborăm pentru a atinge scopul comun de a construi cele mai bune programe libere din lume. Toți sunt bineveniți să &lt;a href=https://community.kde.org/Get_Involved&gt;se alăture și să contribuie&lt;/a&gt; la KDE, inclusiv dumneavoastră. Vizitați &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; pentru informații suplimentare despre comunitatea KDE și programele pe care le producem.</string>
   <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Raportați defecte sau dorințe&lt;/h1&gt; &lt;p&gt;Programele pot fi îmbunătățite întotdeauna și echipa KDE este gata să o facă. Pentru aceasta, dumneavoastră, utilizatorul, trebuie să ne comunicați când ceva nu merge cum trebuie sau poate fi făcut mai bine.&lt;/p&gt; &lt;p&gt;KDE are un sistem de urmărire a defectelor. Vizitați &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; sau folosiți dialogul „Raportează defect” din meniul „Ajutor” pentru a comunica defecte.&lt;/p&gt; Dacă aveți sugestii pentru îmbunătățiri, sunteți invitat să utilizați sistemul de urmărire a defectelor și să vă înregistrați dorința. Asigurați-vă că folosiți prioritatea numită „Dorință”.</string>
   <string name="about_kde_join_kde">&lt;h1&gt;Alăturați-vă KDE&lt;/h1&gt; &lt;p&gt;Nu trebuie să fiți neapărat un programator ca să fiți un membru al echipei KDE. Vă puteți alătura echipei care traduce interfețele programelor. Puteți să faceți imagini, tematici, sunete, și să îmbunătățiți documentația. Dumneavoastră decideți!&lt;/p&gt; &lt;p&gt;Vizitați &lt;a href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/Get_Involved&lt;/a&gt; pentru informații despre proiectele la care puteți participa.&lt;/p&gt; Dacă aveți nevoie de mai multe informații sau documentație, atunci o vizită la &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/&lt;/a&gt; vă va oferi tot ceea de ce aveți nevoie.</string>
@@ -405,11 +446,29 @@
   <string name="maxim_leshchenko_task">Îmbunătățiri ale interfeței și această pagină Despre</string>
   <string name="holger_kaelberer_task">Extensie pentru tastatura distantă și corecții de defecte</string>
   <string name="saikrishna_arcot_task">Suport pentru folosirea tastaturii în extensia de introducere de la distanță, corecții de defecte și îmbunătățiri generale</string>
+  <string name="shellwen_chen_task">Îmbunătățiri de securitate pentru SFTP, îmbunătățirea structurii proiectului, corecții de defecte și îmbunătățiri generale</string>
   <string name="everyone_else">Toți cei care au contribuit la KDE Connect de-a lungul anilor</string>
   <string name="send_clipboard">Trimite clipboard</string>
   <string name="tap_to_execute">Atingeți pentru a executa</string>
   <string name="plugin_stats">Statistici pentru extensii</string>
   <string name="enable_udp_broadcast">Activează descoperirea UDP</string>
+  <string name="enable_bluetooth">Activează Bluetooth (beta)</string>
   <string name="receive_notifications_permission_explanation">Notificările trebuiesc permise pentru a le primi de pe alte dispozitive</string>
   <string name="findmyphone_notifications_explanation">Permisiunea pentru notificări e necesară pentru ca telefonul să poată suna când aplicația e în fundal</string>
+  <string name="no_notifications">Notificările sunt dezactivate, nu veți primi notificări pentru cererile de asociere.</string>
+  <string name="mpris_keepwatching">Continuă redarea</string>
+  <string name="mpris_keepwatching_settings_title">Continuă redarea</string>
+  <string name="mpris_keepwatching_settings_summary">Arată o notificare silențioasă pentru a continua redarea pe acest dispozitiv după închiderea piesei</string>
+  <string name="notification_channel_keepwatching">Continuă redarea</string>
+  <string name="ping_result">A răspuns în %1$d milisecunde</string>
+  <string name="ping_failed">Dispozitivul nu a răspuns</string>
+  <string name="ping_in_progress">Se interoghează…</string>
+  <string name="device_host_invalid">Gazda nu e validă. Folosiți un nume de gazdă, IPv4 sau IPv6 valid</string>
+  <string name="device_host_duplicate">Gazda e în listă deja</string>
+  <string name="enable_fullscreen">Activează ecranul complet</string>
+  <string name="pref_presenter_enable_volume_keys_title">Butoanele de volum schimbă diapozitivul</string>
+  <string name="pref_presenter_sensitivity_title">Sensibilitatea indicatorului</string>
+  <string name="pref_presenter_enable_volume_keys_summary">În așteptare nu e susținut pe versiuni de Android între 13 și 15.</string>
+  <string name="presenter_volume_keys_foreground_tip">Puteți lăsa ecranul pornit pentru a folosi butoanele de volum pentru a merge la diapozitivul precedent/următor</string>
+  <string name="presenter_volume_keys_tip">Puteți lăsa ecranul pornit sau puteți bloca dispozitivul pentru a folosi butoanele de volum pentru a merge la diapozitivul precedent/următor</string>
 </resources>
