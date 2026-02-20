@@ -1,0 +1,12 @@
+1.35.5:
+- Fixed notifications integration, broken in 1.35. Allowing access again is needed, unfortunately.
+- Added an option to turn on your flashlight when using "find my phone".
+
+1.35.3:
+- Fixed connectivity in IP ranges used by VPNs, broken in 1.35
+
+1.35:
+- Add Digitizer plugin that allows using your device as a pressure-sensitive drawing tablet
+- Add setting for always showing the keyboard in Remote Input
+- Split TV Input and Remote Input
+- Change slides with volume keys in Presenter plugin
