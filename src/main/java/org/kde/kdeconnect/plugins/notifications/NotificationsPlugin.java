@@ -22,7 +22,6 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.provider.Settings;
 import android.service.notification.StatusBarNotification;
 import android.text.SpannableString;
@@ -33,14 +32,16 @@ import android.util.Pair;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
-import androidx.core.os.BundleCompat;
 import androidx.fragment.app.DialogFragment;
+import androidx.core.app.Person;
 
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.ArrayListValuedHashMap;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.kde.kdeconnect.helpers.AppsHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.plugins.Plugin;
@@ -59,6 +60,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.List;
 
 @PluginFactory.LoadablePlugin
 public class NotificationsPlugin extends Plugin implements NotificationReceiver.NotificationListener {
@@ -245,6 +247,10 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             np.set("payloadHash", iconHash);
         }
 
+        NotificationCompat.MessagingStyle messagingStyle = NotificationCompat.MessagingStyle.extractMessagingStyleFromNotification(notification);
+
+        boolean isConversation = messagingStyle != null;
+        boolean isGroupConversation = isConversation && messagingStyle.isGroupConversation();
 
         np.set("actions", extractActions(notification, key));
 
@@ -260,32 +266,50 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                 np.set("requestReplyId", rn.id);
                 pendingIntents.put(rn.id, rn);
             }
+
             np.set("ticker", getTickerText(notification));
 
-            Pair<String, String> conversation = extractConversation(notification);
+            JSONArray conversation = new JSONArray();
+            int conversationLength = 0;
 
-            String title = conversation.first;
-            if (title == null) {
-                title = extractStringFromExtra(getExtras(notification), NotificationCompat.EXTRA_TITLE);
-            }
-            if (title != null) {
-                np.set("title", title);
+            if (isConversation) {
+                conversation = extractConversation(messagingStyle);
+                conversationLength = conversation.length();
+                if (conversationLength != 0) {
+                    np.set("conversation", conversation);
+                }
             }
 
-            String text = extractText(notification, conversation);
-            if (text != null) {
-                np.set("text", text);
+            // even if it's a conversation, we set `title` and `text` for compatibility.
+            if (isGroupConversation) {
+                String groupName = messagingStyle.getConversationTitle().toString();
+
+                // FIXME: When there're more than one message in group conversation and the user didn't reply, the number of messages appears between "()" next to the name of the group
+                // We don't want to show them because Android doesn't show them.
+                np.set("groupName", groupName);
+
+                // HACK: To differentiate between groups messages and DMs, we set `title` to be the group name and `text` to be `<sender>: <message>`.
+                np.set("title", groupName);
+
+                Pair<String, String> lastMessage = getMessageAt(messagingStyle,conversationLength - 1);
+
+                np.set("text", lastMessage.first + ": " + lastMessage.second);
+
+            } else {
+                String title = extractStringFromExtra(getExtras(notification), NotificationCompat.EXTRA_TITLE);
+                if (title != null) {
+                    np.set("title", title);
+                }
+                String text = extractText(notification);
+                if (text != null) {
+                    np.set("text", text);
+                }
             }
         }
-
         getDevice().sendPacket(np);
     }
 
-    private String extractText(Notification notification, Pair<String, String> conversation) {
-
-        if (conversation.second != null) {
-            return conversation.second;
-        }
+    private String extractText(Notification notification) {
 
         Bundle extras = getExtras(notification);
 
@@ -310,6 +334,13 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     private String getIconHash(byte[] iconBytes) {
         return getChecksum(iconBytes);
+    }
+
+    private Pair<String, String> getMessageAt(NotificationCompat.MessagingStyle messagingStyle, int index) {
+
+        NotificationCompat.MessagingStyle.Message message = messagingStyle.getMessages().get(index);
+
+        return new Pair<String, String>(message.getPerson().getName().toString(), message.getText().toString());
     }
 
     private void attachIcon(NetworkPacket np, byte[] iconBytes) {
@@ -363,37 +394,29 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         return jsonArray;
     }
 
-    private Pair<String, String> extractConversation(Notification notification) {
+    private JSONArray extractConversation(NotificationCompat.MessagingStyle messagingStyle) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N)
-            return new Pair<>(null, null);
+            return new JSONArray();
 
-        if (!notification.extras.containsKey(Notification.EXTRA_MESSAGES))
-            return new Pair<>(null, null);
+        List<NotificationCompat.MessagingStyle.Message> messages = messagingStyle.getMessages();
 
-        Parcelable[] ms = BundleCompat.getParcelableArray(notification.extras, Notification.EXTRA_MESSAGES, Parcelable.class);
+        JSONArray conversation = new JSONArray();
 
-        if (ms == null)
-            return new Pair<>(null, null);
+        for (NotificationCompat.MessagingStyle.Message message : messages) {
 
-        String title = notification.extras.getString(Notification.EXTRA_CONVERSATION_TITLE);
+            Person sender = message.getPerson();
 
-        boolean isGroupConversation = notification.extras.getBoolean(NotificationCompat.EXTRA_IS_GROUP_CONVERSATION);
+            JSONObject m = new JSONObject();
 
-        StringBuilder messagesBuilder = new StringBuilder();
-
-        for (Parcelable p : ms) {
-            Bundle m = (Bundle) p;
-
-            if (isGroupConversation && m.containsKey("sender")) {
-                messagesBuilder.append(m.get("sender"));
-                messagesBuilder.append(": ");
+            try {
+                m.put("sender", sender.getName().toString());
+                m.put("content", message.getText().toString());
+            } catch (JSONException e) {
+                return new JSONArray();
             }
-
-            messagesBuilder.append(extractStringFromExtra(m, "text"));
-            messagesBuilder.append("\n");
+            conversation.put(m);
         }
-
-        return new Pair<>(title, messagesBuilder.toString());
+        return conversation;
     }
 
     private Bitmap drawableToBitmap(Drawable drawable) {
