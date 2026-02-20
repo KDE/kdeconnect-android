@@ -7,8 +7,10 @@
 package org.kde.kdeconnect.plugins.notifications;
 
 import android.app.Service;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.provider.Settings;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
 
@@ -17,6 +19,18 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class NotificationReceiver extends NotificationListenerService {
+
+
+    // Reading notifications uses a different kind of permission, because it was added before the runtime permissions model
+    public static boolean hasReadNotificationsPermission(Context context) {
+        String notificationListenerList = Settings.Secure.getString(context.getContentResolver(), "enabled_notification_listeners");
+        if (notificationListenerList == null) {
+            return false;
+        }
+        String thisComponentName = new ComponentName(context, NotificationReceiver.class).flattenToString();
+        return notificationListenerList.contains(thisComponentName);
+    }
+
 
     private boolean connected;
 

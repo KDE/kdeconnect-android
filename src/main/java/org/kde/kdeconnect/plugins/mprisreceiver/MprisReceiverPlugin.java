@@ -56,9 +56,9 @@ public class MprisReceiverPlugin extends Plugin {
 
     @Override
     public boolean onCreate() {
-
-        if (!hasPermission())
+        if (!NotificationReceiver.hasReadNotificationsPermission(context)) {
             return false;
+        }
         players = new HashMap<>();
         playerCbs = new HashMap<>();
         try {
@@ -291,8 +291,7 @@ public class MprisReceiverPlugin extends Plugin {
 
     @Override
     public boolean checkRequiredPermissions() {
-        //Notifications use a different kind of permission, because it was added before the current runtime permissions model
-        return hasPermission();
+        return NotificationReceiver.hasReadNotificationsPermission(context);
     }
 
     @Override
@@ -307,10 +306,4 @@ public class MprisReceiverPlugin extends Plugin {
                 .setRequestCode(MainActivity.RESULT_NEEDS_RELOAD)
                 .create();
     }
-
-    private boolean hasPermission() {
-        String notificationListenerList = Settings.Secure.getString(context.getContentResolver(), "enabled_notification_listeners");
-        return notificationListenerList != null && notificationListenerList.contains(context.getPackageName());
-    }
-
 }

@@ -107,13 +107,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     @Override
     public boolean checkRequiredPermissions() {
-        return hasNotificationsPermission();
-    }
-
-    private boolean hasNotificationsPermission() {
-        //Notifications use a different kind of permission, because it was added before the current runtime permissions model
-        String notificationListenerList = Settings.Secure.getString(context.getContentResolver(), "enabled_notification_listeners");
-        return notificationListenerList != null && notificationListenerList.contains(context.getPackageName());
+        return NotificationReceiver.hasReadNotificationsPermission(context);
     }
 
     @Override
@@ -525,7 +519,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     }
 
     private void sendCurrentNotifications(NotificationReceiver service) {
-        if (!hasNotificationsPermission()) {
+        if (!NotificationReceiver.hasReadNotificationsPermission(context)) {
             return;
         }
         StatusBarNotification[] notifications;
