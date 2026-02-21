@@ -364,6 +364,7 @@
   <string name="block_contents">Blokiraj vsebine obvestil</string>
   <string name="block_images">Blokiraj slike v obvestilih</string>
   <string name="notification_channel_receivenotification">Obvestila ostalih naprav</string>
+  <string name="findmyphone_preference_title_flashlight">Prižgi svetilko</string>
   <string name="no_app_for_opening">Ni primerne aplikacije za odpiranje te datoteke</string>
   <string name="remote_keyboard_service">Oddaljena tipkovnica KDE Connect</string>
   <string name="presenter_pointer">Kazalec</string>
@@ -463,6 +464,8 @@
   <string name="enable_bluetooth">Omogoči bluetooth (beta)</string>
   <string name="receive_notifications_permission_explanation">Morate imeti dovoljenje za obvestila, če jih želite sprejemati iz drugih naprav</string>
   <string name="findmyphone_notifications_explanation">Potrebno je dovoljenje za obvestila, da lahko telefon zazvoni, ko je aplikacija v ozadju</string>
+  <string name="findmyphone_camera_explanation">Dovoljenje za kamero omogoča, da svetilka utripa, ko iščete telefon.</string>
+  <string name="findmyphone_open_settings_for_camera">V nastavitvah aplikacije dovoli kameri uporabo svetilke</string>
   <string name="no_notifications">Obvestila so onemogočena, ne boste prejemali obvestil o dohodnih zahtevah za uparjanje.</string>
   <string name="mpris_keepwatching">Nadaljuj s predvajanjem</string>
   <string name="mpris_keepwatching_settings_title">Nadaljuj s predvajanjem</string>
@@ -477,6 +480,6 @@
   <string name="pref_presenter_enable_volume_keys_title">Tipke za glasnost zamenjujejo slike</string>
   <string name="pref_presenter_sensitivity_title">Občutljivost kazalca</string>
   <string name="pref_presenter_enable_volume_keys_summary">V stanju pripravljenosti ni podprto v različicah Androida med 13 in 15</string>
-  <string name="presenter_volume_keys_foreground_tip">Zaslon lahko pustite vklopljen, če želite s tipkama za glasnost preskočiti na prejšnjo/naslednjo sliko.</string>
-  <string name="presenter_volume_keys_tip">Zaslon lahko pustite vklopljen ali zaklenete napravo, da se s tipkama za glasnost premaknete na prejšnjo/naslednjo sliko.</string>
+  <string name="presenter_volume_keys_foreground_tip">Zaslon lahko pustite vklopljen, če želite s tipkama za glasnost preskočiti na prejšnjo/naslednjo sliko</string>
+  <string name="presenter_volume_keys_tip">Zaslon lahko pustite vklopljen ali zaklenete napravo, da se s tipkama za glasnost premaknete na prejšnjo/naslednjo sliko</string>
 </resources>

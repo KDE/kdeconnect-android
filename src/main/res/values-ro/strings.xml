@@ -356,6 +356,7 @@
   <string name="block_contents">Blochează conținutul notificărilor</string>
   <string name="block_images">Blochează imaginile din notificări</string>
   <string name="notification_channel_receivenotification">Notificări de pe alte dispozitive</string>
+  <string name="findmyphone_preference_title_flashlight">Clipește lanterna</string>
   <string name="no_app_for_opening">Nu a fost găsită nicio aplicație care să deschidă acest fișier</string>
   <string name="remote_keyboard_service">Tastatura de la distanță KDE Connect</string>
   <string name="presenter_pointer">Indicator</string>
@@ -455,6 +456,8 @@
   <string name="enable_bluetooth">Activează Bluetooth (beta)</string>
   <string name="receive_notifications_permission_explanation">Notificările trebuiesc permise pentru a le primi de pe alte dispozitive</string>
   <string name="findmyphone_notifications_explanation">Permisiunea pentru notificări e necesară pentru ca telefonul să poată suna când aplicația e în fundal</string>
+  <string name="findmyphone_camera_explanation">Permisiunea pentru cameră permite clipirea lanternei când căutați telefonul</string>
+  <string name="findmyphone_open_settings_for_camera">Acordați permisiunea pentru cameră în configurările aplicației pentru a putea folosi lanterna</string>
   <string name="no_notifications">Notificările sunt dezactivate, nu veți primi notificări pentru cererile de asociere.</string>
   <string name="mpris_keepwatching">Continuă redarea</string>
   <string name="mpris_keepwatching_settings_title">Continuă redarea</string>

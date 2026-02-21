@@ -348,6 +348,7 @@
   <string name="block_contents">Bloquear o conteúdo das notificações</string>
   <string name="block_images">Bloquear as imagens das notificações</string>
   <string name="notification_channel_receivenotification">Notificações dos outros dispositivos</string>
+  <string name="findmyphone_preference_title_flashlight">Piscar lanterna</string>
   <string name="no_app_for_opening">Não foi encontrado nenhum aplicativo adequado para abrir este arquivo</string>
   <string name="remote_keyboard_service">Teclado Remoto do KDE Connect</string>
   <string name="presenter_pointer">Ponteiro</string>
@@ -447,6 +448,8 @@
   <string name="enable_bluetooth">Habilitar o bluetooth (beta)</string>
   <string name="receive_notifications_permission_explanation">Notificações devem ser permitidas para receber notificações dos outros dispositivos</string>
   <string name="findmyphone_notifications_explanation">A permissão de notificação é necessária para que o telefone possa tocar quando o app estiver em segudo plano</string>
+  <string name="findmyphone_camera_explanation">A permissão para usar a câmera permite que a lanterna seja acionada ao localizar o seu telefone.</string>
+  <string name="findmyphone_open_settings_for_camera">Conceder permissão à câmera nas configurações do aplicativo para usar a lanterna</string>
   <string name="no_notifications">As notificações estão desabilitadas, você não receberá notificações de solicitação de pareamento.</string>
   <string name="mpris_keepwatching">Continuar a execução</string>
   <string name="mpris_keepwatching_settings_title">Continuar a execução</string>

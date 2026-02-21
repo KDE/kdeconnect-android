@@ -348,6 +348,7 @@
   <string name="block_contents">Bildirimlerin içeriğini engelle</string>
   <string name="block_images">Bildirimlerde görüntüleri engelle</string>
   <string name="notification_channel_receivenotification">Diğer aygıtlardan gelen bildirimler</string>
+  <string name="findmyphone_preference_title_flashlight">Flaşı yak</string>
   <string name="no_app_for_opening">Bu dosyayı açmak için uygun bir uygulama bulunamadı</string>
   <string name="remote_keyboard_service">KDE Bağlan Uzaktan Klavye</string>
   <string name="presenter_pointer">İşaretçi</string>
@@ -447,6 +448,8 @@
   <string name="enable_bluetooth">Bluetooth’u Etkinleştir (Beta)</string>
   <string name="receive_notifications_permission_explanation">Başka aygıtlardan gelen bildirimleri alabilmek için bildirimlere izin verilmesi gereklidir</string>
   <string name="findmyphone_notifications_explanation">Uygulama arka plandayken telefonun çalabilmesi için bildirim izni gereklidir</string>
+  <string name="findmyphone_camera_explanation">Kamera izni, telefonunuzu bulmak için flaşı yakmanıza olanak tanır</string>
+  <string name="findmyphone_open_settings_for_camera">Flaşı kullanmak için uygulama ayarlarından kamera izni verin</string>
   <string name="no_notifications">Bildirimler devre dışı; herhangi bir gelen eşleşme bildirimini almayacaksınız.</string>
   <string name="mpris_keepwatching">Oynamayı Sürdür</string>
   <string name="mpris_keepwatching_settings_title">Oynamayı Sürdür</string>
