@@ -348,6 +348,7 @@
   <string name="block_contents">Bloquer les contenus des notifications</string>
   <string name="block_images">Bloquer les images des notifications</string>
   <string name="notification_channel_receivenotification">Notifications provenant d\'autres périphériques</string>
+  <string name="findmyphone_preference_title_flashlight">Faire clignoter le flash</string>
   <string name="no_app_for_opening">Aucune application adaptée trouvée pour ouvrir ce fichier.</string>
   <string name="remote_keyboard_service">Clavier à distance KDEConnect</string>
   <string name="presenter_pointer">Pointeur</string>
@@ -447,6 +448,8 @@
   <string name="enable_bluetooth">Activer l\'interface Bluetooth (Bêta)</string>
   <string name="receive_notifications_permission_explanation">Les notifications doivent être autorisées pour en recevoir d\'autres périphériques</string>
   <string name="findmyphone_notifications_explanation">Les permissions pour les notifications sont nécessaires pour que le téléphone puisse sonner lorsque l\'application s\'exécute en tâche de fond</string>
+  <string name="findmyphone_camera_explanation">La permission pour l’appareil photo permet à la lampe de poche de clignoter lorsque vous trouvez votre téléphone</string>
+  <string name="findmyphone_open_settings_for_camera">Accorder l’autorisation à l\'appareil photo dans la confirmation de l’application pour utiliser la lampe de poche</string>
   <string name="no_notifications">Les notifications sont désactivées. Vous ne recevrez aucune notification pour les demandes d\'associations entrantes.</string>
   <string name="mpris_keepwatching">Continuer la lecture</string>
   <string name="mpris_keepwatching_settings_title">Continuer la lecture</string>

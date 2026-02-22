@@ -364,6 +364,7 @@
   <string name="block_contents">חסימת תוכן של התראות</string>
   <string name="block_images">חסימת תמונות בהתראות</string>
   <string name="notification_channel_receivenotification">התראות ממכשירים אחרים</string>
+  <string name="findmyphone_preference_title_flashlight">הבהוב במבזק</string>
   <string name="no_app_for_opening">לא נמצא יישומון מתאים לפתיחת הקובץ הזה</string>
   <string name="remote_keyboard_service">מקלדת מרוחקת של KDE Connect</string>
   <string name="presenter_pointer">מצביע</string>
@@ -463,6 +464,8 @@
   <string name="enable_bluetooth">הפעלת בלוטות׳ (בטא)</string>
   <string name="receive_notifications_permission_explanation">יש לאשר התראות כדי לקבל אותן במכשירים אחרים</string>
   <string name="findmyphone_notifications_explanation">הרשאת ההתראות נחוצה כדי שהטלפון יצלצל גם אם היישומון ברקע</string>
+  <string name="findmyphone_camera_explanation">הרשאות מצלמה מאפשרות להבהב בפנס בעת ניסיון לאתר את הטלפון שלך</string>
+  <string name="findmyphone_open_settings_for_camera">יש להעניק הרשאות מצלמה בהגדרות היישום כדי להשתמש בפנס</string>
   <string name="no_notifications">התראות מושבתות, לא תתקבלנה התראות על בקשות צימוד נכנסות.</string>
   <string name="mpris_keepwatching">להמשיך לנגן</string>
   <string name="mpris_keepwatching_settings_title">להמשיך לנגן</string>
