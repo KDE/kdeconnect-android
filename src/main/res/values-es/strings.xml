@@ -282,6 +282,7 @@
   <string name="close">Cerrar</string>
   <string name="plugins_need_permission">Algunos complementos necesitan permisos para funcionar (pulse para más información):</string>
   <string name="permission_explanation">Este complemento necesita permisos para funcionar</string>
+  <string name="all_permissions_granted">Se concedieron todos los permisos 🎉</string>
   <string name="optional_permission_explanation">Debe otorgar permisos extra para activar todas las funciones</string>
   <string name="plugins_need_optional_permission">Algunos complementos tienen funcionalidades desactivadas por falta de permisos (pulse para más información):</string>
   <string name="share_optional_permission_explanation">Para recibir archivos necesita permitir el acceso a almacenamiento</string>
@@ -347,6 +348,7 @@
   <string name="block_contents">No mostrar el contenido de las notificaciones</string>
   <string name="block_images">No mostrar las imágenes en las notificaciones</string>
   <string name="notification_channel_receivenotification">Notificaciones desde otros dispositivos</string>
+  <string name="findmyphone_preference_title_flashlight">Encender linterna</string>
   <string name="no_app_for_opening">No se encontró ninguna aplicación adecuada para abrir este archivo</string>
   <string name="remote_keyboard_service">Teclado remoto de KDE Connect</string>
   <string name="presenter_pointer">Puntero</string>
@@ -446,6 +448,8 @@
   <string name="enable_bluetooth">Activar Bluetooth (beta)</string>
   <string name="receive_notifications_permission_explanation">Debe activar el permiso para leer las notificaciones para recibirlas desde otros dispositivos</string>
   <string name="findmyphone_notifications_explanation">Se necesita el permiso de notificaciones para que el teléfono pueda sonar cuando la aplicación está en segundo plano</string>
+  <string name="findmyphone_camera_explanation">Los permisos de cámara permiten encender la linterna para encontrar su teléfono</string>
+  <string name="findmyphone_open_settings_for_camera">Conceder permisos de cámara en las preferencias de la aplicación para usar la linterna</string>
   <string name="no_notifications">Las notificaciones están desactivadas. Las solicitudes de vinculación entrantes no se mostrarán en las notificaciones.</string>
   <string name="mpris_keepwatching">Seguir reproduciendo</string>
   <string name="mpris_keepwatching_settings_title">Seguir reproduciendo</string>
