@@ -348,6 +348,7 @@
   <string name="block_contents">Blocca i contenuti delle notifiche</string>
   <string name="block_images">Blocca le immagini nelle notifiche</string>
   <string name="notification_channel_receivenotification">Notifiche da altri dispositivi</string>
+  <string name="findmyphone_preference_title_flashlight">Fai lampeggiare la torcia</string>
   <string name="no_app_for_opening">Nessuna applicazione appropriata trovata per aprire questo file</string>
   <string name="remote_keyboard_service">Tastiera remota di KDE Connect</string>
   <string name="presenter_pointer">Puntatore</string>
@@ -447,6 +448,8 @@
   <string name="enable_bluetooth">Abilita bluetooth (beta)</string>
   <string name="receive_notifications_permission_explanation">Le notifiche devono essere consentite per riceverle da altri dispositivi</string>
   <string name="findmyphone_notifications_explanation">L\'autorizzazione alle notifiche è necessaria affinché il telefono possa squillare quando l\'applicazione è sullo sfondo</string>
+  <string name="findmyphone_camera_explanation">L\'autorizzazione della fotocamera consente alla torcia di lampeggiare quando trova il telefono</string>
+  <string name="findmyphone_open_settings_for_camera">Concedi l\'autorizzazione alla fotocamera nelle impostazioni dell\'applicazione per utilizzare la torcia</string>
   <string name="no_notifications">Le notifiche sono disabilitate, non riceverai notifiche di richieste di associazione in arrivo.</string>
   <string name="mpris_keepwatching">Continua la riproduzione</string>
   <string name="mpris_keepwatching_settings_title">Continua la riproduzione</string>
