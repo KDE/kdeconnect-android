@@ -59,6 +59,8 @@ public class MouseReceiverPlugin extends Plugin {
 
         double dx = np.getDouble("dx", 0);
         double dy = np.getDouble("dy", 0);
+        double x = np.getDouble("x", 0);
+        double y = np.getDouble("y", 0);
 
         boolean isSingleClick = np.getBoolean("singleclick", false);
         boolean isDoubleClick = np.getBoolean("doubleclick", false);
@@ -111,6 +113,11 @@ public class MouseReceiverPlugin extends Plugin {
             if (dx != 0 || dy != 0) {
                 // Log.i("MouseReceiverPlugin", "move Mouse dx: " + dx + " dy: " + dy);
                 return MouseReceiverService.move(dx, dy);
+            } else if (x != 0 || y != 0) {
+                return MouseReceiverService.setPos(x, y);
+            } else {
+                // To hide the cursor once it crosses the barrier.
+                MouseReceiverService.instance.hide(0);
             }
         }
 
