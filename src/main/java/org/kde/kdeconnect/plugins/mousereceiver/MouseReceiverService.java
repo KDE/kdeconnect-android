@@ -27,6 +27,7 @@ import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 
 import org.kde.kdeconnect_tp.R;
+import org.kde.kdeconnect.plugins.inputdevicesreceiver.InputDevicesReceiverPlugin.Cursor;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -92,8 +93,12 @@ public class MouseReceiverService extends AccessibilityService {
     }
 
     private void hideAfter5Seconds() {
+        instance.hide(5000);
+    }
+
+    public void hide(int delayMillis) {
         runHandler.removeCallbacks(hideRunnable);
-        runHandler.postDelayed(hideRunnable, 5000);
+        runHandler.postDelayed(hideRunnable, delayMillis);
     }
 
     public float getX() {
@@ -117,6 +122,9 @@ public class MouseReceiverService extends AccessibilityService {
             cursorLayout.y = displayMetrics.heightPixels - cursorView.getHeight() / 2;
         if (getX() < 0) cursorLayout.x = -cursorView.getWidth() / 2;
         if (getY() < 0) cursorLayout.y = -cursorView.getHeight() / 2;
+
+        Cursor.INSTANCE.setX(getX());
+        Cursor.INSTANCE.setY(getY());
 
         new Handler(instance.getMainLooper()).post(() -> {
             // Log.i("MouseReceiverService", "performing move");
@@ -144,6 +152,12 @@ public class MouseReceiverService extends AccessibilityService {
         }
 
         return true;
+    }
+
+    public static boolean setPos(double x, double y) {
+        if (instance == null) return false;
+
+        return move(x - instance.getX(), y - instance.getY());
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
