@@ -121,11 +121,11 @@ class MousePadPlugin : Plugin() {
         sendPacket(np)
     }
 
-    fun sendScroll(dx: Float, dy: Float) {
+    fun sendScroll(dx: Double, dy: Double) {
         val np = NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST)
         np["scroll"] = true
-        np["dx"] = dx.toDouble()
-        np["dy"] = dy.toDouble()
+        np["dx"] = dx
+        np["dy"] = dy
         sendPacket(np)
     }
 

@@ -64,7 +64,7 @@ public class MousePadActivity
     private boolean doubleTapDragEnabled = false;
     private int gyroscopeSensitivity = 100;
     private boolean isScrolling = false;
-    private float accumulatedDistanceY = 0;
+    private double accumulatedDistanceY = 0;
 
     private GestureDetector mDetector;
     private SensorManager mSensorManager;
@@ -517,7 +517,7 @@ public class MousePadActivity
         plugin.sendRightClick();
     }
 
-    private void sendScroll(final float y) {
+    private void sendScroll(final double y) {
         MousePadPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, MousePadPlugin.class);
         if (plugin == null) {
             finish();
