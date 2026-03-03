@@ -22,7 +22,7 @@ class InputDevicesReceiverPlugin : Plugin() {
         get() = context.resources.getString(R.string.pref_plugin_inputdevicesreceiver_desc)
 
     object Cursor {
-        var enterEdge = 0.toDouble()
+        var enterEdge = 0
 
         // Trying to track cursor position here leads to unexpected behavior that makes our values don't match the actual position,
         // so as a workaround, we let `MouseReceiverPlugin` set them for us.
@@ -64,7 +64,7 @@ class InputDevicesReceiverPlugin : Plugin() {
         np["releaseDeltay"] = dy
 
         device.sendPacket(np)
-        Cursor.enterEdge = 0.toDouble()
+        Cursor.enterEdge = 0
     }
 
     override fun onPacketReceived(np: NetworkPacket): Boolean {
@@ -81,7 +81,7 @@ class InputDevicesReceiverPlugin : Plugin() {
         }
 
         if (np.type == PACKET_TYPE_SHAREINPUTDEVICES_REQUEST) {
-            Cursor.enterEdge = np.getDouble("startEdge")
+            Cursor.enterEdge = np.getInt("startEdge")
             val dx = np.getDouble("deltax")
             val dy = np.getDouble("deltay")
 
@@ -106,7 +106,7 @@ class InputDevicesReceiverPlugin : Plugin() {
                 }
             }
             mouseReceiverPlugin.onPacketReceived(packet)
-        } else if (np.type == PACKET_TYPE_MOUSEPAD_REQUEST && np.has("dx") && Cursor.enterEdge != 0.toDouble()) {
+        } else if (np.type == PACKET_TYPE_MOUSEPAD_REQUEST && np.has("dx") && Cursor.enterEdge != 0) {
             when (Cursor.enterEdge) {
                 TOP_EDGE -> if (Cursor.y == 0.toDouble()) release(Cursor.x, 0.toDouble())
                 LEFT_EDGE -> if (Cursor.x == 0.toDouble()) release(0.toDouble(), Cursor.y)
@@ -122,10 +122,10 @@ class InputDevicesReceiverPlugin : Plugin() {
 
     companion object {
         // Those are Qt edges but inverted, so TOP_EDGE is actually Qt::BottomEdge.
-        private const val TOP_EDGE = 0x00008.toDouble()
-        private const val LEFT_EDGE = 0x00004.toDouble()
-        private const val RIGHT_EDGE = 0x00002.toDouble()
-        private const val BOTTOM_EDGE = 0x00001.toDouble()
+        private const val TOP_EDGE = 0x00008
+        private const val LEFT_EDGE = 0x00004
+        private const val RIGHT_EDGE = 0x00002
+        private const val BOTTOM_EDGE = 0x00001
 
         private const val PACKET_TYPE_MOUSEPAD_REQUEST = "kdeconnect.mousepad.request"
         private const val PACKET_TYPE_SHAREINPUTDEVICES = "kdeconnect.shareinputdevices"
