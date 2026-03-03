@@ -26,8 +26,8 @@ class InputDevicesReceiverPlugin : Plugin() {
 
         // Trying to track cursor position here leads to unexpected behavior that makes our values don't match the actual position,
         // so as a workaround, we let `MouseReceiverPlugin` set them for us.
-        var x = 0.toDouble()
-        var y = 0.toDouble()
+        var x = 0
+        var y = 0
     }
 
     private val metrics = DisplayMetrics()
@@ -57,7 +57,7 @@ class InputDevicesReceiverPlugin : Plugin() {
             .getRealMetrics(metrics)
     }
 
-    private fun release(dx: Double, dy: Double) {
+    private fun release(dx: Int, dy: Int) {
         val np = NetworkPacket(PACKET_TYPE_SHAREINPUTDEVICES)
 
         np["releaseDeltax"] = dx
@@ -73,8 +73,8 @@ class InputDevicesReceiverPlugin : Plugin() {
         // If we do not have the permission or the MouseReceiverPlugin is disabled (either from the beginning or the user disabled it while the cursor was in our possession),
         // we must hand over control to the other end.
         if (mouseReceiverPlugin == null) {
-            Cursor.x = np.getDouble("deltax", Cursor.x)
-            Cursor.y = np.getDouble("deltay", Cursor.y)
+            Cursor.x = np.getInt("deltax", Cursor.x)
+            Cursor.y = np.getInt("deltay", Cursor.y)
 
             release(Cursor.x, Cursor.y)
             return false
@@ -82,8 +82,8 @@ class InputDevicesReceiverPlugin : Plugin() {
 
         if (np.type == PACKET_TYPE_SHAREINPUTDEVICES_REQUEST) {
             Cursor.enterEdge = np.getInt("startEdge")
-            val dx = np.getDouble("deltax")
-            val dy = np.getDouble("deltay")
+            val dx = np.getInt("deltax")
+            val dy = np.getInt("deltay")
 
             val packet = NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST)
 
@@ -108,10 +108,10 @@ class InputDevicesReceiverPlugin : Plugin() {
             mouseReceiverPlugin.onPacketReceived(packet)
         } else if (np.type == PACKET_TYPE_MOUSEPAD_REQUEST && np.has("dx") && Cursor.enterEdge != 0) {
             when (Cursor.enterEdge) {
-                TOP_EDGE -> if (Cursor.y == 0.toDouble()) release(Cursor.x, 0.toDouble())
-                LEFT_EDGE -> if (Cursor.x == 0.toDouble()) release(0.toDouble(), Cursor.y)
-                RIGHT_EDGE -> if (Cursor.x == metrics.widthPixels.toDouble()) release(0.toDouble(), Cursor.y)
-                BOTTOM_EDGE -> if (Cursor.y == metrics.heightPixels.toDouble()) release(Cursor.x, 0.toDouble())
+                TOP_EDGE -> if (Cursor.y == 0) release(Cursor.x, 0)
+                LEFT_EDGE -> if (Cursor.x == 0) release(0, Cursor.y)
+                RIGHT_EDGE -> if (Cursor.x == metrics.widthPixels) release(0, Cursor.y)
+                BOTTOM_EDGE -> if (Cursor.y == metrics.heightPixels) release(Cursor.x, 0)
             }
         }
         return true

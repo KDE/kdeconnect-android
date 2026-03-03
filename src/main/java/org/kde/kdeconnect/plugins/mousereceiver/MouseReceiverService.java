@@ -101,15 +101,15 @@ public class MouseReceiverService extends AccessibilityService {
         runHandler.postDelayed(hideRunnable, delayMillis);
     }
 
-    public float getX() {
+    public int getX() {
         return cursorLayout.x + cursorView.getWidth() / 2;
     }
 
-    public float getY() {
+    public int getY() {
         return cursorLayout.y + cursorView.getHeight() / 2;
     }
 
-    public void moveView(double dx, double dy) {
+    public void moveView(int dx, int dy) {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         instance.windowManager.getDefaultDisplay().getRealMetrics(displayMetrics);
 
@@ -137,11 +137,11 @@ public class MouseReceiverService extends AccessibilityService {
         });
     }
 
-    public static boolean move(double dx, double dy) {
+    public static boolean move(int dx, int dy) {
         if (instance == null) return false;
 
-        float fromX = instance.getX();
-        float fromY = instance.getY();
+        int fromX = instance.getX();
+        int fromY = instance.getY();
 
         instance.moveView(dx, dy);
 
@@ -154,14 +154,14 @@ public class MouseReceiverService extends AccessibilityService {
         return true;
     }
 
-    public static boolean setPos(double x, double y) {
+    public static boolean setPos(int x, int y) {
         if (instance == null) return false;
 
         return move(x - instance.getX(), y - instance.getY());
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    private static GestureDescription createClick(float x, float y, int duration) {
+    private static GestureDescription createClick(int x, int y, int duration) {
         Path clickPath = new Path();
         clickPath.moveTo(x, y);
         GestureDescription.StrokeDescription clickStroke =
@@ -184,7 +184,7 @@ public class MouseReceiverService extends AccessibilityService {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public static boolean click(float x, float y) {
+    public static boolean click(int x, int y) {
         if (instance == null) return false;
         return instance.dispatchGesture(createClick(x, y, 1 /*ms*/), null, null);
     }
@@ -224,7 +224,7 @@ public class MouseReceiverService extends AccessibilityService {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private boolean continueSwipe(float fromX, float fromY) {
+    private boolean continueSwipe(int fromX, int fromY) {
         Path path = new Path();
         path.moveTo(fromX, fromY);
         path.lineTo(getX(), getY());
@@ -250,7 +250,7 @@ public class MouseReceiverService extends AccessibilityService {
     }
 
 
-    public static boolean scroll(double dx, double dy) {
+    public static boolean scroll(int dx, int dy) {
         if (instance == null) return false;
 
         instance.scrollSum += dy;
