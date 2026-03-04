@@ -372,7 +372,7 @@
   <string name="bigscreen_back">Geri</string>
   <string name="bigscreen_mic">Mikrofon</string>
   <string name="pref_plugin_bigscreen">TV kumandası</string>
-  <string name="pref_plugin_bigscreen_desc">Aygıtınızı Plasma Büyük Ekran için uzaktan kumanda olarak kullanın</string>
+  <string name="pref_plugin_bigscreen_desc">Aygıtınızı Plasma BüyükEkran için uzaktan kumanda olarak kullanın</string>
   <string name="bigscreen_optional_permission_explanation">Telefonunuzdan mikrofon girişini paylaşmak için telefonun ses girişine erişim izni vermeniz gerekir</string>
   <string name="bigscreen_speech_extra_prompt">Konuşma</string>
   <string name="message_reply_label">YANITLA</string>
