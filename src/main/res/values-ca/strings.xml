@@ -39,6 +39,8 @@
   <string name="pref_plugin_receive_notifications_desc">Rep notificacions des d\'altres dispositius i mostrar-les a l\'Android</string>
   <string name="pref_plugin_sharereceiver">Comparteix i rep</string>
   <string name="pref_plugin_sharereceiver_desc">Comparteix els fitxers i URL entre els dispositius</string>
+  <string name="pref_plugin_inputdevicesreceiver">Comparteix els dispositius d\'entrada</string>
+  <string name="pref_plugin_inputdevicesreceiver_desc">Comparteix el ratolí i el teclat amb el dispositiu remot</string>
   <string name="device_list_empty">No hi ha cap dispositiu</string>
   <string name="ok">D\'acord</string>
   <string name="sad_ok">D\'acord :(</string>

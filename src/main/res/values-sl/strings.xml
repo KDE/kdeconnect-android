@@ -39,6 +39,8 @@
   <string name="pref_plugin_receive_notifications_desc">Prejemaj obvestila iz drugih naprav in jih prikazuj na Androidu</string>
   <string name="pref_plugin_sharereceiver">Deli in prejemaj</string>
   <string name="pref_plugin_sharereceiver_desc">Deli si datoteke in spletne naslove med napravami</string>
+  <string name="pref_plugin_inputdevicesreceiver">Deli vbhodne naprave</string>
+  <string name="pref_plugin_inputdevicesreceiver_desc">Deli miško in tipkovnico z oddaljeno napravo</string>
   <string name="device_list_empty">Ni naprav</string>
   <string name="ok">V redu</string>
   <string name="sad_ok">V redu :(</string>

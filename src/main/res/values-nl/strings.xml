@@ -39,6 +39,8 @@
   <string name="pref_plugin_receive_notifications_desc">Meldingen van het andere apparaat ontvangen en tonen op Android</string>
   <string name="pref_plugin_sharereceiver">Delen en Ontvangen</string>
   <string name="pref_plugin_sharereceiver_desc">Bestanden en URL\'s delen tussen apparaten</string>
+  <string name="pref_plugin_inputdevicesreceiver">Invoerapparaten delen</string>
+  <string name="pref_plugin_inputdevicesreceiver_desc">Muis en toetsenbord delen met het apparaat op afstand</string>
   <string name="device_list_empty">Geen apparaten</string>
   <string name="ok">OK</string>
   <string name="sad_ok">OK :(</string>

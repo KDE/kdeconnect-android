@@ -39,6 +39,8 @@
   <string name="pref_plugin_receive_notifications_desc">Отримання сповіщень з іншого пристрою і показ їх у Android</string>
   <string name="pref_plugin_sharereceiver">Надання і отримання</string>
   <string name="pref_plugin_sharereceiver_desc">Спільне використання файлів і адрес між пристроями</string>
+  <string name="pref_plugin_inputdevicesreceiver">Спільне використання пристроїв введення</string>
+  <string name="pref_plugin_inputdevicesreceiver_desc">Спільне використання миші і клавіатури з віддаленим пристроєм</string>
   <string name="device_list_empty">Немає пристроїв</string>
   <string name="ok">Гаразд</string>
   <string name="sad_ok">Гаразд :(</string>
