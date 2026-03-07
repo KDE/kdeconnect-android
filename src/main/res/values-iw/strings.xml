@@ -39,6 +39,8 @@
   <string name="pref_plugin_receive_notifications_desc">קבלת התראות ממכשיר אחר ולהציג אותן במכשיר שלך</string>
   <string name="pref_plugin_sharereceiver">שיתוף וקבלה</string>
   <string name="pref_plugin_sharereceiver_desc">שיתוף קבצים וכתובות בין מכשירים</string>
+  <string name="pref_plugin_inputdevicesreceiver">שיתוף התקני קלט</string>
+  <string name="pref_plugin_inputdevicesreceiver_desc">שיתוף עכבר ומקלדת עם מכשירים מרוחקים</string>
   <string name="device_list_empty">אין התקנים</string>
   <string name="ok">אישור</string>
   <string name="sad_ok">בסדר :(</string>

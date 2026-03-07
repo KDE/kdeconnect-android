@@ -39,6 +39,8 @@
   <string name="pref_plugin_receive_notifications_desc">استقبل الإشعارات من الجهاز الآخر واعرضها على أندرويد</string>
   <string name="pref_plugin_sharereceiver">شارك واستقبل</string>
   <string name="pref_plugin_sharereceiver_desc">شارك الملفّات والعناوين بين الجهازين</string>
+  <string name="pref_plugin_inputdevicesreceiver">شارك أجهزة الدّخل</string>
+  <string name="pref_plugin_inputdevicesreceiver_desc">شارك الفأرة ولوحة المفاتيح مع الجهاز البعيد</string>
   <string name="device_list_empty">لا توجد أجهزة</string>
   <string name="ok">حسنًا</string>
   <string name="sad_ok">حسنًا ):</string>
