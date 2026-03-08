@@ -5,7 +5,9 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import io.mockk.every
 import io.mockk.mockk
+import io.mockk.mockkObject
 import io.mockk.mockkStatic
+import io.mockk.spyk
 import io.mockk.verify
 import org.junit.After
 import org.junit.Assert
@@ -29,9 +31,10 @@ class ClipboardPluginTest {
     fun setup() {
         context = ApplicationProvider.getApplicationContext()
 
-        // Mock the ClipboardListener
-        clipboardListener = mockk(relaxed = true)
-        mockkStatic(ClipboardListener::class) // Mock static methods
+        val realListener = ClipboardListener.instance(context)
+        clipboardListener = spyk(realListener)
+
+        mockkObject(ClipboardListener.Companion)
         every { ClipboardListener.instance(context) } returns clipboardListener
 
         device = mockk {
