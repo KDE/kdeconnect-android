@@ -39,6 +39,8 @@
   <string name="pref_plugin_receive_notifications_desc">Recevoir les notifications du périphérique et les afficher dans Android</string>
   <string name="pref_plugin_sharereceiver">Partager et recevoir</string>
   <string name="pref_plugin_sharereceiver_desc">Partagez des URLs et des fichiers entre périphériques</string>
+  <string name="pref_plugin_inputdevicesreceiver">Partager les périphériques de saisie</string>
+  <string name="pref_plugin_inputdevicesreceiver_desc">Partager la souris et le clavier avec le périphérique distant</string>
   <string name="device_list_empty">Pas de périphériques</string>
   <string name="ok">Ok</string>
   <string name="sad_ok">Ok :(</string>

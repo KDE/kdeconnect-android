@@ -39,6 +39,8 @@
   <string name="pref_plugin_receive_notifications_desc">Recibir notificaciones desde el otro dispositivo y mostrarlas en Android</string>
   <string name="pref_plugin_sharereceiver">Enviar y recibir</string>
   <string name="pref_plugin_sharereceiver_desc">Enviar archivos y URL entre ambos dispositivos</string>
+  <string name="pref_plugin_inputdevicesreceiver">Compartir dispositivos de entrada</string>
+  <string name="pref_plugin_inputdevicesreceiver_desc">Compartir ratón y teclado con el dispositivo remoto</string>
   <string name="device_list_empty">Ningún dispositivo</string>
   <string name="ok">Aceptar</string>
   <string name="sad_ok">OK :(</string>
