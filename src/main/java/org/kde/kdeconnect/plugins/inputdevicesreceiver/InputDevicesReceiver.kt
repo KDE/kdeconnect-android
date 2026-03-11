@@ -81,7 +81,7 @@ class InputDevicesReceiverPlugin : Plugin() {
         }
 
         if (np.type == PACKET_TYPE_SHAREINPUTDEVICES_REQUEST) {
-            Cursor.enterEdge = np.getInt("startEdge")
+            Cursor.enterEdge = np.getInt("exitEdge")
             val dx = np.getInt("deltax")
             val dy = np.getInt("deltay")
 
