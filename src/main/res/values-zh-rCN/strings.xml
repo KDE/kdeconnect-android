@@ -39,6 +39,8 @@
   <string name="pref_plugin_receive_notifications_desc">从其他设备接收通知并显示在 Android 上</string>
   <string name="pref_plugin_sharereceiver">发送和接收</string>
   <string name="pref_plugin_sharereceiver_desc">在设备间共享文件和链接</string>
+  <string name="pref_plugin_inputdevicesreceiver">共享输入设备</string>
+  <string name="pref_plugin_inputdevicesreceiver_desc">与远程设备共享鼠标和键盘</string>
   <string name="device_list_empty">无设备</string>
   <string name="ok">确定</string>
   <string name="sad_ok">确定 :(</string>
@@ -340,6 +342,7 @@
   <string name="block_contents">阻止通知内容</string>
   <string name="block_images">阻止通知图像</string>
   <string name="notification_channel_receivenotification">来自其他设备的通知</string>
+  <string name="findmyphone_preference_title_flashlight">闪烁手电筒</string>
   <string name="no_app_for_opening">没有找到合适的应用程序打开此文件</string>
   <string name="remote_keyboard_service">KDE Connect 远程键盘</string>
   <string name="presenter_pointer">指针</string>
@@ -439,6 +442,8 @@
   <string name="enable_bluetooth">启用蓝牙 (测试)</string>
   <string name="receive_notifications_permission_explanation">需要允许通知才能从其他设备接收通知</string>
   <string name="findmyphone_notifications_explanation">需要通知权限，这样当应用程序处于后台时手机可以发出铃声</string>
+  <string name="findmyphone_camera_explanation">相机权限允许在查找手机时闪烁手电筒</string>
+  <string name="findmyphone_open_settings_for_camera">在应用程序设置中允许使用摄像头以使用手电筒</string>
   <string name="no_notifications">通知已禁用，您将不会收到传入的配对通知。</string>
   <string name="mpris_keepwatching">继续播放</string>
   <string name="mpris_keepwatching_settings_title">继续播放</string>
