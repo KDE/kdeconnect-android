@@ -39,6 +39,8 @@
   <string name="pref_plugin_receive_notifications_desc">Benachrichtigungen des anderen Geräts empfangen und in Android anzeigen</string>
   <string name="pref_plugin_sharereceiver">Teilen und Empfangen</string>
   <string name="pref_plugin_sharereceiver_desc">Dateien und Webadressen zwischen Geräten teilen</string>
+  <string name="pref_plugin_inputdevicesreceiver">Eingabegeräte teilen</string>
+  <string name="pref_plugin_inputdevicesreceiver_desc">Maus und Tastatur mit dem fernen Gerät teilen</string>
   <string name="device_list_empty">Keine Geräte</string>
   <string name="ok">OK</string>
   <string name="sad_ok">OK :(</string>
@@ -347,6 +349,7 @@
   <string name="block_contents">Inhalt von Benachrichtigungen blockieren</string>
   <string name="block_images">Bilder in Benachrichtigungen blockieren</string>
   <string name="notification_channel_receivenotification">Benachrichtigungen von anderen Geräten</string>
+  <string name="findmyphone_preference_title_flashlight">Blitz blinken lassen</string>
   <string name="no_app_for_opening">Es wurde keine passende App zum Öffnen dieser Datei gefunden</string>
   <string name="remote_keyboard_service">Entfernte Tastatur für KDE Connect</string>
   <string name="presenter_pointer">Laserpointer</string>
@@ -443,6 +446,8 @@
   <string name="enable_bluetooth">Bluetooth aktivieren (Beta)</string>
   <string name="receive_notifications_permission_explanation">Benachrichtigungen müssen erlaubt sein, um sie von anderen Geräten empfangen zu können</string>
   <string name="findmyphone_notifications_explanation">Die Berechtigung für Benachrichtigungen wird benötigt, damit das Telefon klingeln kann, wenn die App im Hintergrund ist</string>
+  <string name="findmyphone_camera_explanation">Die Kamera-Berechtigung ermöglicht es, den Blitz blinken zu lassen, wenn Sie Ihr Telefon suchen</string>
+  <string name="findmyphone_open_settings_for_camera">Erteilen Sie die Kamera-Berechtigung in den App-Einstellungen, um den Blitz verwenden zu können</string>
   <string name="no_notifications">Benachrichtigungen sind deaktiviert, Sie erhalten keine Benachrichtigungen bei Kopplungsanfragen.</string>
   <string name="mpris_keepwatching">Wiedergabe fortsetzen</string>
   <string name="mpris_keepwatching_settings_title">Wiedergabe fortsetzen</string>
