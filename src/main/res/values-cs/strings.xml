@@ -39,6 +39,8 @@
   <string name="pref_plugin_receive_notifications_desc">Přijímat oznámení z jiného zařízení a zobrazovat je v Androidu</string>
   <string name="pref_plugin_sharereceiver">Sdílet a přijmout</string>
   <string name="pref_plugin_sharereceiver_desc">Sdílet soubory a odkazy mezi zařízeními</string>
+  <string name="pref_plugin_inputdevicesreceiver">Sdílet vstupní zařízení</string>
+  <string name="pref_plugin_inputdevicesreceiver_desc">Sdílet myš a klávesnici se vzdáleným zařízením</string>
   <string name="device_list_empty">Žádná zařízení</string>
   <string name="ok">OK</string>
   <string name="sad_ok">OK :(</string>
@@ -219,6 +221,7 @@
   <string name="share_to">Sdílet s...</string>
   <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">URL sdílená s nedostupným zařízením budou zaslána jakmile se stane dostupným.\n\n</string>
+  <string name="unreachable_share_toast">URL bude sdílena při příštím připojení zařízení</string>
   <string name="protocol_version">Verze protokolu:</string>
   <string name="protocol_version_newer">Toto zařízení používá novější verzi protokolu</string>
   <string name="plugin_settings_with_name">Nastavení %s</string>
@@ -363,6 +366,7 @@
   <string name="block_contents">Blokovat obsah oznámení</string>
   <string name="block_images">Blokovat obrázky v oznámení</string>
   <string name="notification_channel_receivenotification">Oznámení z ostatních zařízení</string>
+  <string name="findmyphone_preference_title_flashlight">Broblesknout svítilnu</string>
   <string name="no_app_for_opening">Pro otevření tohoto souboru nebyla nalezena vhodná aplikace</string>
   <string name="remote_keyboard_service">Vzdálená klávesnice pro KDE Connect</string>
   <string name="presenter_pointer">Ukazatel</string>
@@ -462,6 +466,7 @@
   <string name="enable_bluetooth">Povolit Bluetooth (beta)</string>
   <string name="receive_notifications_permission_explanation">Je potřeba povolit oznámení aby e šlo přijímat z ostatních zařízení</string>
   <string name="findmyphone_notifications_explanation">Oprávnění k upozorněním je potřeba aby telefon mohl zvonit když je aplikace na pozadí</string>
+  <string name="no_notifications">Upozornění jsou zakázána. Neuvidíte upozornění na žádost o párování.</string>
   <string name="mpris_keepwatching">Pokračovat v přehrávání</string>
   <string name="mpris_keepwatching_settings_title">Pokračovat v přehrávání</string>
   <string name="mpris_keepwatching_settings_summary">Zobrazit tiché upozornění pro pokračování přehrávání na tomto zařízení po zavření médií</string>
@@ -472,4 +477,8 @@
   <string name="device_host_invalid">Hostitel je neplatný. Použijte platný název hosta, IPv4 nebo IPv6</string>
   <string name="device_host_duplicate">Hostitel je již na seznamu</string>
   <string name="enable_fullscreen">Povolit celou obrazovku</string>
+  <string name="pref_presenter_enable_volume_keys_title">Tlačítka změny hlasitosti mění snímky</string>
+  <string name="pref_presenter_sensitivity_title">Citlivost ukazatele</string>
+  <string name="presenter_volume_keys_foreground_tip">Můžete nechat obrazovku zapnutou a použít klávesy pro ovládání hlasitosti pro posun na předchozí/další snímek</string>
+  <string name="presenter_volume_keys_tip">Můžete nechat obrazovku zapnutou nebo zamknout zařízení a použít klávesy pro ovládání hlasitosti pro posun na předchozí/další snímek</string>
 </resources>
