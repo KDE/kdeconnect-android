@@ -17,6 +17,8 @@ import org.kde.kdeconnect.plugins.remotekeyboard.RemoteKeyboardPlugin
 import org.kde.kdeconnect.ui.MainActivity
 import org.kde.kdeconnect.ui.StartActivityAlertDialogFragment
 import org.kde.kdeconnect_tp.R
+import kotlin.math.ceil
+import kotlin.math.floor
 
 @LoadablePlugin
 @RequiresApi(api = Build.VERSION_CODES.N)
@@ -46,8 +48,8 @@ class MouseReceiverPlugin : Plugin() {
             return false // This packet will be handled by the remotekeyboard instead, silently ignore
         }
 
-        val dx = np.getInt("dx", 0)
-        val dy = np.getInt("dy", 0)
+        val dx = np.getDouble("dx", 0.toDouble()).let { if (it < 0) floor(it) else ceil(it) }.toInt()
+        val dy = np.getDouble("dy", 0.toDouble()).let { if (it < 0) floor(it) else ceil(it) }.toInt()
         val x = np.getInt("x", 0)
         val y = np.getInt("y", 0)
 
