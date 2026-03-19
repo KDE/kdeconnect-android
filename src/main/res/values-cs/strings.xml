@@ -466,6 +466,8 @@
   <string name="enable_bluetooth">Povolit Bluetooth (beta)</string>
   <string name="receive_notifications_permission_explanation">Je potřeba povolit oznámení aby e šlo přijímat z ostatních zařízení</string>
   <string name="findmyphone_notifications_explanation">Oprávnění k upozorněním je potřeba aby telefon mohl zvonit když je aplikace na pozadí</string>
+  <string name="findmyphone_camera_explanation">Oprávnění k fotoaparátu vám umožní probliknout svítilnu při hledání vašeho telefonu</string>
+  <string name="findmyphone_open_settings_for_camera">Udělte oprávnění v nastavení aplikace pro použití svítilny</string>
   <string name="no_notifications">Upozornění jsou zakázána. Neuvidíte upozornění na žádost o párování.</string>
   <string name="mpris_keepwatching">Pokračovat v přehrávání</string>
   <string name="mpris_keepwatching_settings_title">Pokračovat v přehrávání</string>
@@ -479,6 +481,7 @@
   <string name="enable_fullscreen">Povolit celou obrazovku</string>
   <string name="pref_presenter_enable_volume_keys_title">Tlačítka změny hlasitosti mění snímky</string>
   <string name="pref_presenter_sensitivity_title">Citlivost ukazatele</string>
+  <string name="pref_presenter_enable_volume_keys_summary">Ve standby není podporováno mezi verzemi Androidu 13 a 15</string>
   <string name="presenter_volume_keys_foreground_tip">Můžete nechat obrazovku zapnutou a použít klávesy pro ovládání hlasitosti pro posun na předchozí/další snímek</string>
   <string name="presenter_volume_keys_tip">Můžete nechat obrazovku zapnutou nebo zamknout zařízení a použít klávesy pro ovládání hlasitosti pro posun na předchozí/další snímek</string>
 </resources>
