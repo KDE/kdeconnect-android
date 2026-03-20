@@ -10,6 +10,9 @@
   <string name="pref_plugin_battery">Reporto de batteria</string>
   <string name="pref_plugin_battery_desc">Periodicamente reporta stato de batteria</string>
   <string name="pref_plugin_connectivity_report">Reporto de connectivitate</string>
+  <string name="pref_plugin_digitizer">Tabletta de Designar</string>
+  <string name="pref_plugin_digitizer_desc">Usa tu dispositivo como un tabletta de designar sensibile al pression</string>
+  <string name="pref_plugin_sftp">Accesso de systema de file</string>
   <string name="pref_plugin_sftp_desc">Permitte navigar in le systema de file de iste dispositivo remotemente</string>
   <string name="pref_plugin_clipboard">Sync de area de transferentia</string>
   <string name="pref_plugin_clipboard_desc">Comparti le contento de area de transferentia</string>
@@ -23,6 +26,8 @@
   <string name="pref_plugin_ping_desc">Invia e recipe pings</string>
   <string name="pref_plugin_receive_notifications">Recipe notificationes</string>
   <string name="pref_plugin_sharereceiver">Comparti e recipe</string>
+  <string name="pref_plugin_inputdevicesreceiver">"Comparti  dispositivos de entrata"</string>
+  <string name="pref_plugin_inputdevicesreceiver_desc">Comparti mus e claviero con le dispositivo remote</string>
   <string name="ok">OK</string>
   <string name="sad_ok">OK :(</string>
   <string name="cancel">Cancella</string>
@@ -30,6 +35,7 @@
   <string name="send_ping">Invia Ping</string>
   <string name="open_mpris_controls">Controlo mutimedia</string>
   <string name="open_mousepad">Entrata remote</string>
+  <string name="bigscreen_show_home_title">"Monstra  button de domo"</string>
   <string-array name="mousepad_tap_entries">
     <item>Click sinistre</item>
     <item>Click dextere</item>
@@ -60,6 +66,7 @@
   <string name="unknown_device">Dispositivo incognite</string>
   <string name="error_not_reachable">Dispositivo non attingibile</string>
   <string name="error_timed_out">Expirate</string>
+  <string name="error_clocks_not_match">Horologios de dispositivo es foras de synchronisation</string>
   <string name="error_canceled_by_other_peer">Cancellate per altere pare</string>
   <string name="pair_requested">Coppiar requirite</string>
   <string name="pair_succeeded">"Coppiar  succedite"</string>
@@ -74,6 +81,7 @@
   <string name="tap_to_open">Tocca per aperir</string>
   <string name="left_click">Invia Click sinistre</string>
   <string name="show_keyboard">Monstra Claviero</string>
+  <string name="show_mouse_and_keyboard">Monstra Mus e Claviero</string>
   <string name="pairing_accept">Accepta</string>
   <string name="pairing_reject">Rejecta</string>
   <string name="settings">Preferentias</string>
@@ -94,6 +102,8 @@
     <item>2 minutas</item>
   </string-array>
   <string name="share_to">Comparti a…</string>
+  <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
+  <string name="protocol_version">Version de protocollo :</string>
   <string name="custom_device_fab_hint">Adde un dispositivo</string>
   <string name="undo">Annulla</string>
   <string name="share">Comparti</string>
@@ -103,12 +113,13 @@
   <string name="sftp_storage_preference_click_to_select">pulsa pro seliger</string>
   <string name="sftp_storage_preference_display_name">Nomine de monstrar</string>
   <string name="sftp_action_mode_menu_delete">Dele</string>
+  <string name="no_players_connected">Necun Jocatores trovate</string>
   <string name="send_files">Invia files</string>
   <string-array name="digitizer_preference_entries_draw_button_side">
-    <item>Top left</item>
-    <item>Top right</item>
-    <item>Bottom left</item>
-    <item>Bottom right</item>
+    <item>In alto a sinistra</item>
+    <item>In alto a dextera</item>
+    <item>In basso a sinistra</item>
+    <item>In basso a dextera</item>
   </string-array>
   <string name="block_notification_contents">Bloca contentos de notification</string>
   <string name="block_notification_images">Bloca imagines de notification</string>
@@ -122,6 +133,7 @@
   <string name="presenter_fullscreen">Schermo plen</string>
   <string name="notification_channel_media_control">Controlo de multimedia</string>
   <string name="notification_channel_filetransfer">Transferimento de file in arrivata</string>
+  <string name="notification_channel_filetransfer_complete">Transferimento de file in arrivata complete</string>
   <string name="notification_channel_filetransfer_upload">Transferimento de file in partita</string>
   <string name="notification_channel_high_priority">Prioritate alte</string>
   <string name="copy_url_to_clipboard">Copia URL a area de transferentia</string>
@@ -133,6 +145,7 @@
   <string name="devices">Dispositivos</string>
   <string name="settings_rename">Nomine de dispositivo</string>
   <string name="settings_dark_mode">Thema obscur</string>
+  <string name="settings_export_logs">Exporta registros (log) de KDE Connect</string>
   <string name="settings_more_settings_title">Altere preferentias</string>
   <string name="extra_options">Optiones extra</string>
   <string name="privacy_options">Optiones de confidentialitate</string>
@@ -149,6 +162,7 @@
   <string name="bigscreen_select">Selige</string>
   <string name="bigscreen_right">Dextera</string>
   <string name="bigscreen_down">A basso</string>
+  <string name="bigscreen_back">Retro</string>
   <string name="bigscreen_mic">Mic</string>
   <string name="bigscreen_speech_extra_prompt">Voce</string>
   <string name="message_reply_label">RESPONSA</string>
@@ -205,7 +219,9 @@
   <string name="plugin_stats">"Statisticas de plugin "</string>
   <string name="receive_notifications_permission_explanation">Notificationes necessita esser permettite a reciper los ex altere dispositivos</string>
   <string name="findmyphone_notifications_explanation">Le permission de notificationes es necessari assi que le telephono pote sonar quando le app es in le fundo</string>
+  <string name="no_notifications">Notificationes es dishabilitate, tu non recipera requesta de notificationes de association in arrivata.</string>
   <string name="mpris_keepwatching">"Continua a executar "</string>
   <string name="mpris_keepwatching_settings_title">Continua a executar</string>
   <string name="notification_channel_keepwatching">Continua a executar</string>
+  <string name="enable_fullscreen">Habilita Schermo plen</string>
 </resources>
