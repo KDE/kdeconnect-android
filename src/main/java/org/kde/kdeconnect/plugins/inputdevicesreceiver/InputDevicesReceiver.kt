@@ -22,7 +22,7 @@ class InputDevicesReceiverPlugin : Plugin() {
         get() = context.resources.getString(R.string.pref_plugin_inputdevicesreceiver_desc)
 
     object Cursor {
-        var enterEdge = 0
+        var enterEdge = NONE_EDGE
 
         // Trying to track cursor position here leads to unexpected behavior that makes our values don't match the actual position,
         // so as a workaround, we let `MouseReceiverPlugin` set them for us.
@@ -64,7 +64,7 @@ class InputDevicesReceiverPlugin : Plugin() {
         np["releaseDeltay"] = dy
 
         device.sendPacket(np)
-        Cursor.enterEdge = 0
+        Cursor.enterEdge = NONE_EDGE
     }
 
     override fun onPacketReceived(np: NetworkPacket): Boolean {
@@ -106,7 +106,7 @@ class InputDevicesReceiverPlugin : Plugin() {
                 }
             }
             mouseReceiverPlugin.onPacketReceived(packet)
-        } else if (np.type == PACKET_TYPE_MOUSEPAD_REQUEST && np.has("dx") && Cursor.enterEdge != 0) {
+        } else if (np.type == PACKET_TYPE_MOUSEPAD_REQUEST && np.has("dx") && Cursor.enterEdge != NONE_EDGE) {
             when (Cursor.enterEdge) {
                 TOP_EDGE -> if (Cursor.y == 0) release(Cursor.x, 0)
                 LEFT_EDGE -> if (Cursor.x == 0) release(0, Cursor.y)
@@ -126,6 +126,7 @@ class InputDevicesReceiverPlugin : Plugin() {
         private const val LEFT_EDGE = 0x00004
         private const val RIGHT_EDGE = 0x00002
         private const val BOTTOM_EDGE = 0x00001
+        private const val NONE_EDGE = 0
 
         private const val PACKET_TYPE_MOUSEPAD_REQUEST = "kdeconnect.mousepad.request"
         private const val PACKET_TYPE_SHAREINPUTDEVICES = "kdeconnect.shareinputdevices"
