@@ -24,6 +24,7 @@ import android.os.Bundle;
 import android.os.Process;
 import android.os.UserHandle;
 import android.os.UserManager;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -34,7 +35,9 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CheckedTextView;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -58,7 +61,7 @@ import kotlin.Lazy;
 import kotlin.LazyKt;
 
 //TODO: Turn this into a PluginSettingsFragment
-public class NotificationFilterActivity extends BaseActivity<ActivityNotificationFilterBinding> {
+public class NotificationSyncSettingsActivity extends BaseActivity<ActivityNotificationFilterBinding> {
 
     private AppDatabase appDatabase;
     private String prefKey;
@@ -127,7 +130,7 @@ public class NotificationFilterActivity extends BaseActivity<ActivityNotificatio
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        appDatabase = AppDatabase.getInstance(NotificationFilterActivity.this);
+        appDatabase = AppDatabase.getInstance(NotificationSyncSettingsActivity.this);
         if (getIntent()!= null){
             prefKey = getIntent().getStringExtra(NotificationsPlugin.getPrefKey());
         }
@@ -137,7 +140,7 @@ public class NotificationFilterActivity extends BaseActivity<ActivityNotificatio
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         SharedPreferences preferences = this.getSharedPreferences(prefKey, Context.MODE_PRIVATE);
 
-        configureSwitch(preferences);
+        configureSyncSettings(preferences);
 
         ThreadHelper.execute(() -> {
             PackageManager packageManager = getPackageManager();
@@ -226,7 +229,7 @@ public class NotificationFilterActivity extends BaseActivity<ActivityNotificatio
         }
     }
 
-    private void configureSwitch(SharedPreferences sharedPreferences) {
+    private void configureSyncSettings(SharedPreferences sharedPreferences) {
         MaterialSwitch smScreenOffNotification = findViewById(R.id.smScreenOffNotification);
         smScreenOffNotification.setChecked(
                 sharedPreferences.getBoolean(getString(NotificationsPlugin.PREF_NOTIFICATION_SCREEN_OFF),false)
@@ -234,6 +237,63 @@ public class NotificationFilterActivity extends BaseActivity<ActivityNotificatio
         smScreenOffNotification.setOnCheckedChangeListener((buttonView, isChecked) ->
                 sharedPreferences.edit().putBoolean(getString(NotificationsPlugin.PREF_NOTIFICATION_SCREEN_OFF),isChecked).apply()
         );
+
+        TextView tvNotificationSyncDelayValue = findViewById(R.id.tvNotificationSyncDelayValue);
+        View notificationSyncDelayPreference = findViewById(R.id.llNotificationSyncDelayPreference);
+
+        int delayMs = sharedPreferences.getInt(
+                getString(NotificationsPlugin.PREF_NOTIFICATION_SYNC_DELAY),
+                NotificationsPlugin.DEFAULT_NOTIFICATION_SYNC_DELAY_MS
+        );
+
+        updateNotificationSyncDelayText(tvNotificationSyncDelayValue, delayMs);
+
+        notificationSyncDelayPreference.setOnClickListener(view -> showNotificationSyncDelayDialog(sharedPreferences, tvNotificationSyncDelayValue));
+    }
+
+    private void showNotificationSyncDelayDialog(SharedPreferences sharedPreferences, TextView tvNotificationSyncDelayValue) {
+        final int currentDelayMs = sharedPreferences.getInt(
+                getString(NotificationsPlugin.PREF_NOTIFICATION_SYNC_DELAY),
+                NotificationsPlugin.DEFAULT_NOTIFICATION_SYNC_DELAY_MS
+        );
+
+        final EditText input = new EditText(this);
+        input.setInputType(InputType.TYPE_CLASS_NUMBER);
+        input.setText(String.valueOf(currentDelayMs));
+        input.setSelectAllOnFocus(true);
+
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.notification_sync_delay_title)
+                .setMessage(R.string.notification_sync_delay_dialog_message)
+                .setView(input)
+                .setPositiveButton(R.string.ok, (dialog, which) -> {
+                    int updatedDelay = parseDelay(input.getText().toString(), currentDelayMs);
+                    sharedPreferences.edit().putInt(getString(NotificationsPlugin.PREF_NOTIFICATION_SYNC_DELAY), updatedDelay).apply();
+                    updateNotificationSyncDelayText(tvNotificationSyncDelayValue, updatedDelay);
+                })
+                .setNegativeButton(R.string.cancel, null)
+                .show();
+    }
+
+    private int parseDelay(String rawValue, int fallbackValue) {
+        try {
+            int parsed = Integer.parseInt(rawValue.trim());
+            return clampDelay(parsed);
+        } catch (NumberFormatException e) {
+            return fallbackValue;
+        }
+    }
+
+    private int clampDelay(int value) {
+        return Math.max(0, Math.min(NotificationsPlugin.MAX_NOTIFICATION_SYNC_DELAY_MS, value));
+    }
+
+    private void updateNotificationSyncDelayText(TextView textView, int delayMs) {
+        if (delayMs == 0) {
+            textView.setText(R.string.notification_sync_delay_disabled);
+        } else {
+            textView.setText(getString(R.string.notification_sync_delay_value, delayMs));
+        }
     }
 
     private void displayAppList() {

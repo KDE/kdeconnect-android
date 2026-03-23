@@ -136,7 +136,7 @@ public class PluginSettingsActivity
 
         PluginSettingsFragment fragment = plugin.getSettingsFragment(this);
 
-        //TODO: Remove when NotificationFilterActivity has been turned into a PluginSettingsFragment
+        //TODO: Remove when NotificationSyncSettingsActivity has been turned into a PluginSettingsFragment
         if (fragment == null) {
             return;
         }

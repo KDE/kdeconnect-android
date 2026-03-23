@@ -22,6 +22,9 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Parcelable;
 import android.provider.Settings;
 import android.service.notification.StatusBarNotification;
 import android.text.SpannableString;
@@ -71,6 +74,9 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     private final static String PACKET_TYPE_NOTIFICATION_ACTION = "kdeconnect.notification.action";
     private final static String PREF_KEY = "prefKey";
     protected static final int PREF_NOTIFICATION_SCREEN_OFF = R.string.screen_off_notification_state;
+    protected static final int PREF_NOTIFICATION_SYNC_DELAY = R.string.notification_sync_delay_state;
+    static final int DEFAULT_NOTIFICATION_SYNC_DELAY_MS = 0;
+    static final int MAX_NOTIFICATION_SYNC_DELAY_MS = 3_600_000; // 1 hour
 
     private final static String TAG = "KDE/NotificationsPlugin";
 
@@ -78,11 +84,15 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     private Set<String> currentNotifications;
     private Map<String, String> notificationsIcons; // Here we will map every notification to it's icon(hash)
+    private Set<String> postedNotifications;
     private Map<String, RepliableNotification> pendingIntents;
+    private Map<String, Runnable> delayedNotifications;
     private MultiValuedMap<String, Notification.Action> actions;
     private boolean serviceReady;
     private SharedPreferences sharedPreferences;
     private KeyguardManager keyguardManager;
+    private Handler mainHandler;
+    private final Object delayedNotificationsLock = new Object();
 
     @Override
     public @NonNull String getDisplayName() {
@@ -101,7 +111,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     @Override
     public PluginSettingsFragment getSettingsFragment(Activity activity) {
-        Intent intent = new Intent(activity, NotificationFilterActivity.class);
+        Intent intent = new Intent(activity, NotificationSyncSettingsActivity.class);
         intent.putExtra(PREF_KEY, this.getSharedPreferencesName());
         activity.startActivity(intent);
         return null;
@@ -118,7 +128,10 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         pendingIntents = new HashMap<>();
         currentNotifications = new HashSet<>();
         notificationsIcons = new HashMap<>();
+        postedNotifications = new HashSet<>();
+        delayedNotifications = new HashMap<>();
         actions = new ArrayListValuedHashMap<>();
+        mainHandler = new Handler(Looper.getMainLooper());
 
         sharedPreferences = context.getSharedPreferences(getSharedPreferencesName(),Context.MODE_PRIVATE);
 
@@ -139,6 +152,14 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     @Override
     public void onDestroy() {
 
+        synchronized (delayedNotificationsLock) {
+            for (Runnable delayedTask : delayedNotifications.values()) {
+                mainHandler.removeCallbacks(delayedTask);
+            }
+            delayedNotifications.clear();
+            postedNotifications.clear();
+        }
+
         NotificationReceiver.RunCommand(context, service -> service.removeListener(NotificationsPlugin.this));
     }
 
@@ -154,6 +175,11 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             return;
         }
         String id = getNotificationKeyCompat(statusBarNotification);
+
+        synchronized (delayedNotificationsLock) {
+            postedNotifications.remove(id);
+        }
+        cancelPendingNotification(id);
 
         actions.remove(id);
 
@@ -172,13 +198,71 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     @Override
     public void onNotificationPosted(StatusBarNotification statusBarNotification) {
+        String key = getNotificationKeyCompat(statusBarNotification);
+        synchronized (delayedNotificationsLock) {
+            postedNotifications.add(key);
+        }
+
         if (sharedPreferences != null && sharedPreferences.getBoolean(context.getString(PREF_NOTIFICATION_SCREEN_OFF),false)){
             if (keyguardManager != null && keyguardManager.inKeyguardRestrictedInputMode()){
-                sendNotification(statusBarNotification, false);
+                sendNotificationWithDelay(statusBarNotification, false);
             }
-        }else {
-            sendNotification(statusBarNotification, false);
+        } else {
+            sendNotificationWithDelay(statusBarNotification, false);
         }
+    }
+
+    private void sendNotificationWithDelay(StatusBarNotification statusBarNotification, boolean isPreexisting) {
+        if (isPreexisting) {
+            // Preexisting notifications call sendNotification directly, so isPreexisting is always false here.
+            sendNotification(statusBarNotification, true);
+            return;
+        }
+
+        final int delayMs = getNotificationSyncDelayMs();
+        if (delayMs <= 0) {
+            sendNotification(statusBarNotification, false);
+            return;
+        }
+
+        String key = getNotificationKeyCompat(statusBarNotification);
+        synchronized (delayedNotificationsLock) {
+            Runnable existingTask = delayedNotifications.remove(key);
+            if (existingTask != null) {
+                mainHandler.removeCallbacks(existingTask);
+            }
+
+            Runnable delayedTask = () -> {
+                synchronized (delayedNotificationsLock) {
+                    delayedNotifications.remove(key);
+                    if (!postedNotifications.contains(key)) {
+                        return;
+                    }
+                }
+
+                sendNotification(statusBarNotification, false);
+            };
+
+            delayedNotifications.put(key, delayedTask);
+            mainHandler.postDelayed(delayedTask, delayMs);
+        }
+    }
+
+    private void cancelPendingNotification(String key) {
+        synchronized (delayedNotificationsLock) {
+            Runnable delayedTask = delayedNotifications.remove(key);
+            if (delayedTask != null) {
+                mainHandler.removeCallbacks(delayedTask);
+            }
+        }
+    }
+
+    private int getNotificationSyncDelayMs() {
+        if (sharedPreferences == null) {
+            return DEFAULT_NOTIFICATION_SYNC_DELAY_MS;
+        }
+
+        return sharedPreferences.getInt(context.getString(PREF_NOTIFICATION_SYNC_DELAY), DEFAULT_NOTIFICATION_SYNC_DELAY_MS);
     }
 
     // isPreexisting is true for notifications that we are sending in response to a request command
