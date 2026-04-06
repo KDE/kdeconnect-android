@@ -39,6 +39,8 @@
   <string name="pref_plugin_receive_notifications_desc">Odbiera powiadomienia z innych urządzeń</string>
   <string name="pref_plugin_sharereceiver">Udostępnianie i pobieranie</string>
   <string name="pref_plugin_sharereceiver_desc">Udostępnia pliki i adresy URL pomiędzy urządzeniami</string>
+  <string name="pref_plugin_inputdevicesreceiver">Współdzielenie urządzeń obsługi</string>
+  <string name="pref_plugin_inputdevicesreceiver_desc">Współdzielenie myszy i klawiatury z urządzeniem zdalnym</string>
   <string name="device_list_empty">Brak urządzeń</string>
   <string name="ok">OK</string>
   <string name="sad_ok">OK :(</string>
@@ -364,6 +366,7 @@
   <string name="block_contents">Blokuj treści w powiadomieniach</string>
   <string name="block_images">Blokuj obrazy w powiadomieniach</string>
   <string name="notification_channel_receivenotification">Powiadomienia z innych urządzeń</string>
+  <string name="findmyphone_preference_title_flashlight">Błyśnij latarką</string>
   <string name="no_app_for_opening">Nie znaleziono aplikacji do otwarcia tego pliku</string>
   <string name="remote_keyboard_service">Zdalna klawiatura KDE Connect</string>
   <string name="presenter_pointer">Wskaźnik</string>
@@ -463,6 +466,8 @@
   <string name="enable_bluetooth">Włącz Bluetooth (beta)</string>
   <string name="receive_notifications_permission_explanation">Należy zezwolić na powiadomienia, aby móc je otrzymywać z innych urządzeń</string>
   <string name="findmyphone_notifications_explanation">Uprawnienia powiadomień są potrzebne, aby telefon mógł dzwonić, gdy aplikacja działa w tle</string>
+  <string name="findmyphone_camera_explanation">Uprawnienia do aparatu umożliwiają latarce dawanie błysków podczas szukania twojego telefonu</string>
+  <string name="findmyphone_open_settings_for_camera">Udziel uprawnień do aparatu w ustawieniach aplikacji, aby móc używać latarki</string>
   <string name="no_notifications">Powiadomienia są wyłączone, więc nie otrzymasz żadnych próśb o sparowanie.</string>
   <string name="mpris_keepwatching">Kontynuuj odtwarzanie</string>
   <string name="mpris_keepwatching_settings_title">Kontynuuj odtwarzanie</string>
@@ -474,4 +479,9 @@
   <string name="device_host_invalid">Nazwa gospodarza jest nieprawidłowa. Użyj prawidłowej nazwy, adresu IPv4 lub IPv6</string>
   <string name="device_host_duplicate">Nazwa gospodarza już znajduje się na liście</string>
   <string name="enable_fullscreen">Pokaż na całym ekranie</string>
+  <string name="pref_presenter_enable_volume_keys_title">Przyciski głośności zmieniają strony</string>
+  <string name="pref_presenter_sensitivity_title">Czułość wskaźnika</string>
+  <string name="pref_presenter_enable_volume_keys_summary">W stanie czuwania nieobsługiwane na Androidzie w wersji od 13 do 15</string>
+  <string name="presenter_volume_keys_foreground_tip">Możesz pozostawić ekran włączonym, aby używać przycisków głośności, aby przejść do kolejnej/poprzedniej strony</string>
+  <string name="presenter_volume_keys_tip">Możesz pozostawić ekran włączonym lub zablokować swoje urządzenie, aby używać przycisków głośności, aby przejść do kolejnej/poprzedniej strony</string>
 </resources>
