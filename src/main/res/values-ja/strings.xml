@@ -11,11 +11,16 @@
   <string name="pref_plugin_battery_desc">定期的にバッテリ状態を報告</string>
   <string name="pref_plugin_connectivity_report">接続性レポート</string>
   <string name="pref_plugin_connectivity_report_desc">信号強度とネットワークの状態を報告</string>
+  <string name="pref_plugin_digitizer">ペンタブレット</string>
+  <string name="pref_plugin_digitizer_desc">このデバイスを感圧式ペンタブレットとして使用</string>
+  <string name="pref_plugin_sftp">ファイルシステムへのアクセス</string>
   <string name="pref_plugin_sftp_desc">リモートからこのデバイスのファイルシステムを閲覧</string>
   <string name="pref_plugin_clipboard">クリップボードの同期</string>
   <string name="pref_plugin_clipboard_desc">クリップボードの内容を共有</string>
   <string name="pref_plugin_clipboard_sent">クリップボードが送信されました</string>
   <string name="pref_plugin_mousepad">リモート入力</string>
+  <string name="pref_plugin_mousepad_desc_nontv">スマートフォンやタブレットをタッチパッドやキーボードとして利用</string>
+  <string name="pref_plugin_mousepad_desc_tv">スマートフォンやタブレットをテレビリモコンとして利用</string>
   <string name="pref_plugin_presenter">プレゼンテーションリモート</string>
   <string name="pref_plugin_presenter_desc">デバイスを使ってプレゼンテーションのスライドを操作</string>
   <string name="pref_plugin_remotekeyboard">リモートからキー入力を受信</string>
@@ -41,7 +46,7 @@
   <string name="open_settings">設定を開く</string>
   <string name="no_permissions">通知にアクセスするには権限を付与する必要があります</string>
   <string name="no_permission_mprisreceiver">メディアプレーヤーを操作するには、通知へのアクセスを許可する必要があります</string>
-  <string name="no_permissions_remotekeyboard">キー入力を受信するには KDE Connect リモートキーボードをアクティブ化する必要があります</string>
+  <string name="no_permissions_remotekeyboard">キー入力を受信するには KDE Connect リモートキーボードを有効化する必要があります</string>
   <string name="send_ping">Ping を送信</string>
   <string name="open_mpris_controls">マルチメディアの操作</string>
   <string name="remotekeyboard_editing_only_title">編集中にのみリモートキーを取り扱う</string>
@@ -49,7 +54,8 @@
   <string name="remotekeyboard_connected">リモートキーボード接続はアクティブです</string>
   <string name="remotekeyboard_multiple_connections">複数のリモートキーボード接続があります。設定するデバイスを選択してください</string>
   <string name="open_mousepad">リモート入力</string>
-  <string name="mousepad_info">スクリーン上で指を動かすとマウスカーソルが移動します。タップは左クリックになり、2本指タップは右クリック、3本指タップは中クリックになります。2本指でスクロール、長押しでドラッグ&amp;ドロップできます。プラグイン設定から空中マウス機能を有効化できます。</string>
+  <string name="open_mousepad_tv">テレビリモコン</string>
+  <string name="mousepad_info">スクリーン上で指を動かすとマウスカーソルが移動します。タップは左クリックになり、2本指タップは右クリック、3本指タップは中クリックになります。2本指でスクロール、長押しでドラッグ&amp;ドロップできます。プラグイン設定からジャイロマウス機能を有効化できます。</string>
   <string name="mousepad_info_no_gestures">スクリーン上で指を動かすとマウスカーソルが移動します。タップするとクリックできます。</string>
   <string name="mousepad_keyboard_input_not_supported">ペアリングされたデバイスはキーボード入力をサポートしていません</string>
   <string name="mousepad_single_tap_settings_title">1本指タップのアクションを設定</string>
@@ -60,7 +66,7 @@
   <string name="mousepad_acceleration_profile_settings_title">ポインタの速度を設定</string>
   <string name="mousepad_scroll_direction_title">スクロールの方向を反転</string>
   <string name="mousepad_scroll_sensitivity_title">スクロールの感度</string>
-  <string name="gyro_mouse_enabled_title">空中マウスを有効化</string>
+  <string name="gyro_mouse_enabled_title">ジャイロマウスを有効化</string>
   <string name="gyro_mouse_sensitivity_title">ジャイロスコープの感度</string>
   <string-array name="mousepad_tap_entries">
     <item>左クリック</item>
@@ -69,7 +75,7 @@
     <item>なし</item>
   </string-array>
   <string-array name="mousepad_sensitivity_entries">
-    <item>最も遅く</item>
+    <item>とても遅め</item>
     <item>遅め</item>
     <item>デフォルト</item>
     <item>デフォルト以上</item>
@@ -113,8 +119,9 @@
   <string name="error_not_reachable">デバイスに到達できません</string>
   <string name="error_already_paired">デバイスは既にペアリング済みです</string>
   <string name="error_timed_out">タイムアウト</string>
+  <string name="error_clocks_not_match">デバイスの時計が同期されていません。</string>
   <string name="error_canceled_by_user">ユーザにキャンセルされました</string>
-  <string name="error_canceled_by_other_peer">他のピアにキャンセルされました</string>
+  <string name="error_canceled_by_other_peer">接続先がキャンセルしました</string>
   <string name="encryption_info_title">暗号化情報</string>
   <string name="my_device_fingerprint">このデバイスの証明書の SHA256 フィンガープリント:</string>
   <string name="remote_device_fingerprint">リモートデバイスの証明書の SHA256 フィンガープリント:</string>
@@ -154,9 +161,11 @@
   <string name="middle_click">中クリックを送信</string>
   <string name="show_keyboard">キーボードを表示</string>
   <string name="device_not_paired">デバイスはペアリングされていません</string>
+  <string name="pairing_duplicate_names">警告: 同じ名前の複数のデバイスがあります。</string>
   <string name="request_pairing">ペアリングを要求</string>
   <string name="pairing_accept">許可</string>
   <string name="pairing_reject">拒否</string>
+  <string name="pairing_explanation">ペアリングすると、デバイス同士がお互いにアクセスできるようになります。かならず自分が持っているデバイスのみペアリングしてください。</string>
   <string name="settings">設定</string>
   <string name="mpris_play">再生</string>
   <string name="mpris_pause">一時停止</string>
@@ -181,21 +190,25 @@
   <string name="mpris_notification_settings_summary">KDE Connect を開かずにメディアプレーヤーをコントロール可能にします</string>
   <string name="share_to">共有先...</string>
   <string name="unreachable_device_url_share_text">到達できないデバイスと共有された URL はデバイスが到達可能になったときに送信されます。\n\n</string>
+  <string name="unreachable_share_toast">URL は次回デバイスに接続された際に共有されます。</string>
+  <string name="protocol_version">プロトコルバージョン:</string>
   <string name="protocol_version_newer">このデバイスはより新しいプロトコルバージョンを使用しています</string>
   <string name="plugin_settings_with_name">%s 設定</string>
   <string name="invalid_device_name">不正なデバイス名</string>
   <string name="shareplugin_text_saved">テキストを受信し、クリップボードに保存しました</string>
   <string name="custom_devices_settings">カスタムデバイスリスト</string>
+  <string name="custom_devices_settings_summary">%d 個のデバイスを手動で追加済み</string>
   <string name="custom_device_list">IP アドレスでデバイスを追加</string>
   <string name="custom_device_deleted">カスタムデバイスが削除されました</string>
+  <string name="custom_device_list_help">デバイスが自動的に検出されない場合、下のボタンから手動で IP アドレスやホスト名を追加できます</string>
   <string name="custom_device_fab_hint">デバイスを追加</string>
   <string name="undo">元に戻す</string>
   <string name="share_notification_preference">音声付きの通知</string>
   <string name="share_notification_preference_summary">ファイル受信時に振動し、音声を再生します</string>
-  <string name="share_destination_customize">行き先ディレクトリをカスタマイズ</string>
+  <string name="share_destination_customize">受信先ディレクトリをカスタマイズ</string>
   <string name="share_destination_customize_summary_disabled">受信したファイルは Downloads に保存されます</string>
   <string name="share_destination_customize_summary_enabled">ファイルは以下のディレクトリに保存されます</string>
-  <string name="share_destination_folder_preference">行き先ディレクトリ</string>
+  <string name="share_destination_folder_preference">受信先ディレクトリ</string>
   <string name="share">共有</string>
   <string name="share_received_file">\"%s\" を共有</string>
   <string name="title_activity_notification_filter">通知フィルタ</string>
@@ -216,13 +229,18 @@
   <string name="sftp_no_storage_locations_configured">ストレージの場所が設定されていません</string>
   <string name="sftp_saf_permission_explanation">リモートからファイルにアクセスするには、ストレージの場所を設定する必要があります</string>
   <string name="sftp_manage_storage_permission_explanation">このデバイスのファイルにリモートからアクセスするには、KDE Connect にストレージ管理を許可する必要があります。</string>
+  <string name="sftp_missing_permission_error">パーミッション不足: ファイルシステムへのアクセス</string>
   <string name="no_players_connected">プレーヤーが見つかりませんでした</string>
   <string name="send_files">ファイルを送信</string>
+  <string name="use_digitizer">ペンタブレットとして使用</string>
+  <string name="digitizer_preference_title_hide_draw_button">描画ボタンを非表示</string>
+  <string name="digitizer_preference_summary_hide_draw_button">描画ボタンを完全に非表示にします。これにより指描きはできなくなります。スタイラスペンに対応している場合のみ有効にしてください。</string>
+  <string name="digitizer_preference_title_draw_button_side">指描きボタンの位置</string>
   <string-array name="digitizer_preference_entries_draw_button_side">
-    <item>Top left</item>
-    <item>Top right</item>
-    <item>Bottom left</item>
-    <item>Bottom right</item>
+    <item>左上</item>
+    <item>右上</item>
+    <item>左下</item>
+    <item>右下</item>
   </string-array>
   <string name="block_notification_contents">通知の内容をブロック</string>
   <string name="block_notification_images">通知の画像をブロック</string>
@@ -232,8 +250,8 @@
   <string name="device_rename_confirm">名前変更</string>
   <string name="refresh">更新</string>
   <string name="unreachable_description">このペアリング済みデバイスに到達できません。同一のネットワーク内に接続されているか確認してください。</string>
-  <string name="no_wifi">Wi-Fi ネットワークに接続されていないため、デバイスが一つも表示されない可能性があります。ここをクリックして Wi-Fi を有効化</string>
-  <string name="on_non_trusted_message">信頼されたネットワークに接続されていません: 自動検出が無効化されました。</string>
+  <string name="no_wifi">Wi-Fi ネットワークに接続されていないため、デバイスは表示されません。ここをタップすると Wi-Fi を有効化できます。</string>
+  <string name="on_non_trusted_message">信頼済みネットワークに接続されていないため、自動検出は無効化されています。</string>
   <string name="no_file_browser">ファイルブラウザがインストールされていません。</string>
   <string name="pref_plugin_telepathy">SMS を送信</string>
   <string name="pref_plugin_telepathy_desc">デスクトップからテキストメッセージを送信</string>
@@ -246,21 +264,21 @@
   <string name="findmyphone_found">発見しました</string>
   <string name="open">開く</string>
   <string name="close">閉じる</string>
-  <string name="plugins_need_permission">いくつかのプラグインを機能させるには権限が必要です (タップして詳細情報を表示):</string>
+  <string name="plugins_need_permission">以下のプラグインの動作には権限が必要です。(タップして詳細情報を表示):</string>
   <string name="permission_explanation">このプラグインを機能させるには権限が必要です</string>
   <string name="all_permissions_granted">すべての権限が付与されました 🎉</string>
   <string name="optional_permission_explanation">すべての機能を有効にするには、追加の権限を付与する必要があります</string>
-  <string name="plugins_need_optional_permission">権限が不足しているため、いくつかのプラグインの機能は無効化されています (タップして詳細情報を表示):</string>
+  <string name="plugins_need_optional_permission">以下のプラグインは権限が不足しているため、一部の機能が無効化されています。(タップして詳細情報を表示):</string>
   <string name="share_optional_permission_explanation">ファイルを受信するにはストレージへのアクセスを許可する必要があります</string>
   <string name="share_notifications_explanation">ファイル送受信の進捗情報を確認するには、通知を許可する必要があります。</string>
-  <string name="telepathy_permission_explanation">デスクトップから SMS を送受信するには SMS の権限を付与する必要があります</string>
+  <string name="telepathy_permission_explanation">デスクトップから SMS を送受信するには SMS の権限が必要です</string>
   <string name="telephony_permission_explanation">デスクトップで通話を表示するために、電話の状態と通話履歴の権限を付与する必要があります</string>
   <string name="telephony_optional_permission_explanation">電話番号の代わりに連絡先名を見るには、端末の連絡先へのアクセスを許可する必要があります</string>
   <string name="contacts_permission_explanation">連絡先をデスクトップと共有するには、連絡先の権限を付与する必要があります</string>
   <string name="contacts_per_device_confirmation">携帯電話に保存されている連絡先はこのデバイスにコピーされ、KDE Connect SMS App などのアプリで使用できるようになります。</string>
   <string name="select_ringtone">着信音を選択</string>
   <string name="telephony_pref_blocked_title">ブロックされた番号</string>
-  <string name="telephony_pref_blocked_dialog_desc">これらの番号からの通話と SMS を表示しません。一行に1つの電話番号を指定してください</string>
+  <string name="telephony_pref_blocked_dialog_desc">ここで設定された番号からの通話と SMS は非表示になります。一行にひとつずつ電話番号を入力してください</string>
   <string name="mpris_coverart_description">現在のメディアのカバーアート</string>
   <string name="settings_icon_description">設定アイコン</string>
   <string name="presenter_fullscreen">フルスクリーン</string>
@@ -273,9 +291,10 @@
   <string name="pref_plugin_mprisreceiver">メディアプレーヤーの操作</string>
   <string name="pref_plugin_mprisreceiver_desc">他のデバイスからスマートフォンのメディアプレーヤーを操作</string>
   <string name="notification_channel_default">他の通知</string>
-  <string name="notification_channel_persistent">永続的なインジケータ</string>
+  <string name="notification_channel_persistent">常駐インジケーター</string>
   <string name="notification_channel_media_control">メディアの操作</string>
   <string name="notification_channel_filetransfer">ファイル受信</string>
+  <string name="notification_channel_filetransfer_complete">ファイル受信完了</string>
   <string name="notification_channel_filetransfer_upload">ファイル送信</string>
   <string name="notification_channel_filetransfer_error">ファイル転送エラー</string>
   <string name="notification_channel_high_priority">高い優先度</string>
@@ -300,10 +319,11 @@
   <string name="devices">デバイス</string>
   <string name="settings_rename">デバイス名</string>
   <string name="settings_dark_mode">ダークテーマ</string>
+  <string name="settings_export_logs">KDE Connect のログをエクスポート</string>
+  <string name="settings_export_logs_text">問題のトラブルシューティングに役立つアプリの実行情報ファイルを生成します。</string>
   <string name="settings_more_settings_title">その他の設定</string>
   <string name="settings_more_settings_text">デバイスごとの設定はデバイス内の「プラグイン設定」にあります</string>
-  <string name="setting_persistent_notification">永続的な通知を表示</string>
-  <string name="setting_persistent_notification_oreo">永続的な通知</string>
+  <string name="setting_persistent_notification_oreo">常駐の通知</string>
   <string name="setting_persistent_notification_description">タップして通知設定内で有効化/無効化</string>
   <string name="extra_options">追加オプション</string>
   <string name="privacy_options">プライバシーオプション</string>
@@ -311,16 +331,18 @@
   <string name="block_contents">通知の内容をブロック</string>
   <string name="block_images">通知の画像をブロック</string>
   <string name="notification_channel_receivenotification">他のデバイスからの通知</string>
+  <string name="findmyphone_preference_title_flashlight">フラッシュライトを点滅</string>
   <string name="no_app_for_opening">このファイルを開くための適切なアプリが見つかりません</string>
   <string name="remote_keyboard_service">KDE Connect リモートキーボード</string>
   <string name="presenter_pointer">ポインタ</string>
-  <string name="trusted_networks">信頼されたネットワーク</string>
+  <string name="trusted_networks">信頼済みネットワーク</string>
   <string name="trusted_networks_desc">自動検出を既知のネットワークでのみに制限する</string>
   <string name="add_trusted_network">%1s を追加</string>
-  <string name="empty_trusted_networks_list_text">追加済みの信頼されたネットワークはありません</string>
+  <string name="empty_trusted_networks_list_text">設定した信頼済みネットワークがありません</string>
   <string name="allow_all_networks_text">すべて許可</string>
   <string name="location_permission_needed_title">許可が必要です</string>
-  <string name="location_permission_needed_desc">KDE Connect は、接続されている WiFi ネットワークを知るために、バックグラウンドにおいても位置情報へのアクセスの許可を必要とします。これは、周辺の WiFi ネットワークの名前があなたの位置を把握するために使用される可能性があるためです。(KDE Connect が WiFi ネットワークの名前を使用して位置情報を察知することはありません)</string>
+  <string name="bluetooth_permission_needed_desc">Bluetooth でデバイスをペアリングするには、付近のデバイスの接続の権限が必要です。</string>
+  <string name="location_permission_needed_desc">KDE Connect がバックグラウンドの間でも接続している WiFi ネットワークを識別できるよう、バックグラウンドでの位置情報へのアクセスの許可が必要です。WiFi ネットワーク名は位置情報としても使われることがあるため、この権限が必要です。(KDE Connect が位置情報を収集することはありません)</string>
   <string name="clipboard_android_x_incompat">Android 10 はすべてのアプリからクリップボードへのアクセスを削除しました。このプラグインは無効化されます。</string>
   <string name="mpris_open_url">このデバイスで再生を続ける</string>
   <string name="cant_open_url">再生を続けるための URL を開けません</string>
@@ -384,6 +406,10 @@
   <string name="open_compose_send">テキストを作成する</string>
   <string name="double_tap_to_drag">タブルタップしてドラッグ</string>
   <string name="hold_to_drag">長押ししてドラッグ</string>
+  <string name="about_kde_about">&lt;hi&gt;KDE について&lt;/h1&gt; &lt;p&gt;KDE は、&lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;フリーソフトウェア&lt;/a&gt;の開発に取り組む、世界中のソフトウェアエンジニア、アーティスト、ライター、翻訳者、クリエイターによるコミュニティです。KDE は、Plasma デスクトップ環境や数百のアプリケーション、そしてそれを支える多数のソフトウェアライブラリを開発しています。&lt;/p&gt; &lt;p&gt;KDE は協力的な組織であり、その方向性や成果物をコントロールする中核となる組織は存在しません。KDE は共通の目標、すなわち世界最高のフリーソフトウェアの構築に向けて、共に取り組んでいます。あなたを含め、誰でも KDE に&lt;a href=https://community.kde.org/Get_Involved&gt;参加・貢献&lt;/a&gt;することを歓迎しています。&lt;/p&gt;KDE コミュニティと、KDE が開発しているソフトウェアについて、詳しくは &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; をご覧ください。</string>
+  <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;バグ報告や要望&lt;/h1&gt; &lt;p&gt;ソフトウェアはどこまでも改善することができ、そして KDE チームはその準備ができています。ただし、何かが期待どおりに動作しない場合や改善できる点がある場合は、ユーザーであるあなたが KDE に教えてください。&lt;/p&gt; &lt;p&gt;KDE にはバグ追跡システムがあります。バグを報告するには、&lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; にアクセスするか、「情報」画面の「バグを報告」ボタンをご利用ください。&lt;/p&gt; 改善の提案がある場合は、バグ追跡システムを使って要望を登録することもできます。その際は重要度として \"Wishlist\" を選択してください。</string>
+  <string name="about_kde_join_kde">&lt;h1&gt;KDE に参加する&lt;/h1&gt; &lt;p&gt;KDE チームのメンバーになるためにソフトウェア開発者である必要はありません。プログラムのインターフェースを翻訳する言語チームに参加することもできます。グラフィック、テーマ、サウンド、ドキュメントの改善などで貢献することも可能です。何をするかはあなた次第です！&lt;/p&gt; &lt;p&gt;参加できるプロジェクトについては、&lt;a href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/Get_Involved&lt;/a&gt; をご覧ください。&lt;/p&gt; さらに詳しい情報やドキュメントが必要な場合は、&lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/&lt;/a&gt; をご覧ください。</string>
+  <string name="about_kde_support_kde">&lt;h1&gt;KDE を支援する&lt;/h1&gt; &lt;p&gt;KDE のソフトウェアは現在も、そしてこれからも無償で提供されます。しかし、開発にはコストがかかります。&lt;/p&gt; &lt;p&gt;開発を支援するため、KDE コミュニティはドイツで法的に非営利組織である KDE e.V. を設立しました。KDE e.V. は法的・財務的な事項において KDE コミュニティを代表しています。KDE e.V. については &lt;a href=https://ev.kde.org/&gt;https://ev.kde.org/&lt;/a&gt; をご覧ください。&lt;/p&gt; &lt;p&gt;KDE は財政的支援をはじめ、さまざまな形での貢献から恩恵を受けています。集まった資金は、貢献者が活動時に負担する費用の払い戻しや、法的サポート、カンファレンスやミーティングの開催などに活用されます。&lt;/p&gt; &lt;p&gt;&lt;a href=https://www.kde.org/community/donations/&gt;https://www.kde.org/community/donations/&lt;/a&gt; に掲載されているなんらかの方法で、財政的なご寄付によって KDE の活動を支援していただければ幸いです。&lt;/p&gt; ご支援を、どうぞよろしくお願いします。</string>
   <string name="maintainer_and_developer">メンテナ、開発者</string>
   <string name="developer">開発者</string>
   <string name="apple_support">macOS サポート。iOS サポート (作業中)</string>
@@ -400,10 +426,23 @@
   <string name="tap_to_execute">タップして実行</string>
   <string name="plugin_stats">プラグイン統計</string>
   <string name="enable_udp_broadcast">UDP デバイス検知を有効化</string>
+  <string name="enable_bluetooth">Bluetooth を有効化 (ベータ)</string>
   <string name="receive_notifications_permission_explanation">他のデバイスからの通知を受け取るためには、通知を許可する必要があります。</string>
   <string name="findmyphone_notifications_explanation">アプリがバックグラウンドで動作しているときに携帯電話を鳴動させるには、通知の許可が必要です。</string>
+  <string name="findmyphone_camera_explanation">カメラ権限があれば、スマートフォンを見つけるときにフラッシュライトを点滅させることができます</string>
+  <string name="findmyphone_open_settings_for_camera">フラッシュライトを使用するにはアプリ設定でカメラ権限を付与してください</string>
   <string name="mpris_keepwatching">再生を続ける</string>
   <string name="mpris_keepwatching_settings_title">再生を続ける</string>
   <string name="mpris_keepwatching_settings_summary">メディアを閉じた後、このデバイスで続けて再生するためのサイレント通知を表示する</string>
   <string name="notification_channel_keepwatching">再生を続ける</string>
+  <string name="ping_result">Ping 完了: %1$d ミリ秒</string>
+  <string name="ping_failed">デバイスと通信できませんでした</string>
+  <string name="ping_in_progress">Ping 中…</string>
+  <string name="device_host_invalid">無効なホストです。正しいホスト名や IPv4 または IPv6 を指定してください</string>
+  <string name="device_host_duplicate">このホストはすでにリストに追加されています</string>
+  <string name="pref_presenter_enable_volume_keys_title">音量キーでスライドを移動</string>
+  <string name="pref_presenter_sensitivity_title">ポインタ感度</string>
+  <string name="pref_presenter_enable_volume_keys_summary">Android 13 ~ 15 では画面ロック中の操作に対応していません。</string>
+  <string name="presenter_volume_keys_foreground_tip">この画面を閉じている間も、音量キーでスライドの戻る/進む操作を行うことができます。</string>
+  <string name="presenter_volume_keys_tip">この画面を閉じたりデバイスをロックしている間も、音量キーでスライドの戻る/進む操作を行うことができます。</string>
 </resources>
