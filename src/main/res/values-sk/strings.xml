@@ -56,16 +56,23 @@
   <string name="remotekeyboard_connected">Pripojenie k vzdialenej klávesnici je aktívne</string>
   <string name="remotekeyboard_multiple_connections">Je dostupných viac pripojení k vzdialeným klávesniciam, vyberte zariadenie na nastavenie</string>
   <string name="open_mousepad">Vzdialený vstup</string>
+  <string name="open_mousepad_tv">TV diaľkový ovládač</string>
   <string name="mousepad_info">Posúvajte prst na obrazovke pre pohyb kurzorom. Ťuknutím kliknete a použitím dvoch/troch prstov stlačíte pravé a stredné tlačidlo. Použitím dvoch prstov rolujete. Použite dlhého stlačenia vykonáte ťahanie a spustenie.</string>
+  <string name="mousepad_info_no_gestures">Pohybujte prstom po obrazovke na presun kurzora myši, ťuknite na kliknutie.</string>
   <string name="mousepad_keyboard_input_not_supported">Tento plugin nie je podporovaný zariadením</string>
   <string name="mousepad_single_tap_settings_title">Nastaviť akciu po ťuknutí dvoma prstami</string>
   <string name="mousepad_double_tap_settings_title">Nastaviť akciu po ťuknutí dvoma prstami</string>
   <string name="mousepad_triple_tap_settings_title">Nastaviť akciu po ťuknutí troma prstami</string>
   <string name="mousepad_sensitivity_settings_title">Nastaviť citlivosť touchpadu</string>
+  <string name="mousepad_mouse_buttons_title">Zobraziť tlačidlá myši</string>
   <string name="mousepad_acceleration_profile_settings_title">Nastaviť zrýchlenie ukazovateľa</string>
   <string name="mousepad_scroll_direction_title">Obrátiť smer rolovania</string>
   <string name="mousepad_scroll_sensitivity_title">Nastaviť citlivosť touchpadu</string>
+  <string name="gyro_mouse_enabled_title">Povoliť gyroskopickú myš</string>
   <string name="gyro_mouse_sensitivity_title">Nastaviť citlivosť touchpadu</string>
+  <string name="bigscreen_hide_mouse_input">Skryť tlačidlo vzdialeného vstupu myši a klávesnice</string>
+  <string name="bigscreen_show_home_title">Zobraziť tlačidlo Domov</string>
+  <string name="bigscreen_show_back_title">Zobraziť tlačidlo Späť</string>
   <string-array name="mousepad_tap_entries">
     <item>Ľavý klik</item>
     <item>Pravý klik</item>
@@ -89,11 +96,19 @@
   </string-array>
   <string name="sendkeystrokes_send_to">Odoslať stlačenia klávesov do</string>
   <string name="sendkeystrokes_textbox_hint">Odoslať stlačenia klávesov hostiteľovi</string>
+  <string name="sendkeystrokes_disabled_toast">Odosielanie klávesových úderov je zakázané - povoľte ho v nastaveniach</string>
+  <string name="sendkeystrokes_wrong_data">Neplatný typ MIME - musí byť \'text/x-keystrokes\'</string>
   <string name="sendkeystrokes_sent_text">Odoslané %1$s do zariadenia %2$s</string>
+  <string name="sendkeystrokes_pref_category_summary">Tento modul umožňuje iným aplikáciám zdieľať textové segmenty ako klávesové údery, ktoré budú odoslané na pripojený hostiteľ</string>
   <string name="sendkeystrokes_pref_category_title">Odoslať stlačenia klávesov</string>
   <string name="sendkeystrokes_pref_enabled">Povoliť odosielanie stlačení klávesov</string>
+  <string name="sendkeystrokes_pref_enabled_summary">Počúvať dáta s typom MIME \'text/x-keystrokes\'</string>
+  <string name="sendkeystrokes_safe_text_enabled">Odoslať bezpečný text okamžite</string>
+  <string name="sendkeystrokes_safe_text_enabled_summary">Odoslať krátke čisto číselné reťazce bez potvrdenia</string>
+  <string name="pref_plugin_mousepad_send_keystrokes">Odoslať ako klávesové údery</string>
   <string name="mouse_receiver_plugin_description">Prijímanie pohybu vzdialenej myši</string>
   <string name="mouse_receiver_plugin_name">Prijímač myši</string>
+  <string name="mouse_receiver_no_permissions">Na prijímanie dotykových vstupov na diaľku musíte udeliť oprávnenia Prístupnosti na úplné ovládanie vášho zariadenia</string>
   <string name="view_status_title">Stav</string>
   <string name="battery_status_format">Batéria: %d%%</string>
   <string name="battery_status_low_format">Batéria: %d%% Nízka úroveň batérie</string>
@@ -176,9 +191,11 @@
   <string name="show_keyboard">Zobraziť klávesnicu</string>
   <string name="show_mouse_and_keyboard">Zobraziť klávesnicu</string>
   <string name="device_not_paired">Zariadenie nie je spárované</string>
+  <string name="pairing_duplicate_names">Pozor: Existuje viacero zariadení s rovnakým názvom.</string>
   <string name="request_pairing">Požiadať o spárovanie</string>
   <string name="pairing_accept">Prijať</string>
   <string name="pairing_reject">Odmietnuť</string>
+  <string name="pairing_explanation">Párovanie dvoch zariadení im dá vzájomný prístup. Párujte iba svoje vlastné zariadenia.</string>
   <string name="settings">Nastavenia</string>
   <string name="mpris_play">Prehrať</string>
   <string name="mpris_pause">Pozastaviť</string>
@@ -198,14 +215,20 @@
     <item>1 minúta</item>
     <item>2 minúty</item>
   </string-array>
+  <string name="mpris_notifications_explanation">Oprávnenie na oznámenia je potrebné na zobrazenie vzdialených médií v zásuvke oznámení</string>
   <string name="mpris_notification_settings_title">Zobraziť upozornenie ovládania médií</string>
   <string name="mpris_notification_settings_summary">Umožní ovládanie vašich multimediálnych prehrávačov bez otvorenia aplikácie KDE Connect</string>
   <string name="share_to">Zdieľať do…</string>
+  <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
+  <string name="unreachable_device_url_share_text">URL adresy zdieľané s nedostupným zariadením mu budú doručené, akonáhle sa stane dostupným.\n\n</string>
+  <string name="unreachable_share_toast">URL bude zdieľaná pri ďalšom pripojení zariadenia.</string>
+  <string name="protocol_version">Verzia protokolu:</string>
   <string name="protocol_version_newer">Toto zariadenie používa novšiu verziu protokolu</string>
   <string name="plugin_settings_with_name">Nastavenia modulu %s</string>
   <string name="invalid_device_name">Neplatný názov zariadenia</string>
   <string name="shareplugin_text_saved">Prijatý text, uložený do schránky</string>
   <string name="custom_devices_settings">Zoznam vlastných zariadení</string>
+  <string name="custom_devices_settings_summary">%d zariadení pridaných manuálne</string>
   <string name="custom_device_list">Pridať zariadenia podľa adries IP</string>
   <string name="custom_device_deleted">Vlastné zariadenie odstránené</string>
   <string name="custom_device_list_help">Ak vaše zariadenie nie je automaticky zistené, môžete pridať jeho adresu IP alebo názov hostiteľa kliknutím na plávajúce tlačidlo</string>
@@ -236,13 +259,22 @@
   <string name="sftp_action_mode_menu_delete">Odstrániť</string>
   <string name="sftp_no_storage_locations_configured">Nie sú nastavené žiadne umiestnenia úložísk</string>
   <string name="sftp_saf_permission_explanation">Na vzdialený prístup k súborom musíte nastaviť umiestnenia úložísk</string>
+  <string name="sftp_manage_storage_permission_explanation">Na povolenie vzdialeného prístupu k súborom na tomto zariadení musíte povoliť KDE Connect spravovať úložisko.</string>
+  <string name="sftp_missing_permission_error">Chýbajúce oprávnenia: prístup k súborovému systému</string>
   <string name="no_players_connected">Nenašli sa žiadne prehrávače</string>
   <string name="send_files">Odoslať súbory</string>
+  <string name="use_digitizer">Použiť ako grafický tablet</string>
+  <string name="digitizer_draw_button">Kresliť prstom</string>
+  <string name="digitizer_preference_title_hide_draw_button">Skryť tlačidlo kreslenia</string>
+  <string name="digitizer_preference_summary_hide_draw_button">Úplne skryje tlačidlo kreslenia, čím znemožní kreslenie prstom. Povoľte toto iba ak vaše zariadenie podporuje vstup perom.</string>
+  <string name="digitizer_preference_title_draw_button_side">Strana tlačidla „Kresliť prstom“</string>
+  <string name="digitizer_preference_title_enable_exit_fullscreen_gesture">Povoliť gesto na ukončenie celej obrazovky</string>
+  <string name="digitizer_preference_summary_enable_exit_fullscreen_gesture">Ak je povolené, ťuknutie a podržanie prsta na kresliace ploché vypne režim celej obrazovky.</string>
   <string-array name="digitizer_preference_entries_draw_button_side">
-    <item>Top left</item>
-    <item>Top right</item>
-    <item>Bottom left</item>
-    <item>Bottom right</item>
+    <item>Vľavo hore</item>
+    <item>Vpravo hore</item>
+    <item>Vľavo dole</item>
+    <item>Vpravo dole</item>
   </string-array>
   <string name="block_notification_contents">Blokovať obrázky v upozorneniach</string>
   <string name="block_notification_images">Blokovať obrázky v upozorneniach</string>
@@ -268,13 +300,16 @@
   <string name="close">Zavrieť</string>
   <string name="plugins_need_permission">Niektoré zásuvné moduly vyžadujú oprávnenia, aby mohli fungovať (ťuknutím získate viac informácií):</string>
   <string name="permission_explanation">Tento zásuvný modul vyžaduje oprávnenie, aby mohol fungovať</string>
+  <string name="all_permissions_granted">Všetky oprávnenia udelené 🎉</string>
   <string name="optional_permission_explanation">Musíte udeliť oprávnenia navyše, aby boli povolené všetky funkcie</string>
   <string name="plugins_need_optional_permission">Niektoré zásuvné moduly majú zakázané funkcie, pretože im chýbajú oprávnenia (ťuknutím získate viac informácií):</string>
   <string name="share_optional_permission_explanation">Ak chcete prijímať zdieľané súbory, musíte zvoliť cieľový adresár</string>
+  <string name="share_notifications_explanation">Na zobrazenie priebehu pri odosielaní a prijímaní súborov musíte povoliť oznámenia</string>
   <string name="telepathy_permission_explanation">Na čítanie a písanie SMS z vášho počítača, musíte udeliť oprávnenie k správam SMS</string>
   <string name="telephony_permission_explanation">Na prezeranie telefónnych hovorov z vášho počítača, musíte udeliť oprávnenie k záznamom hovorov a stavu telefónu</string>
   <string name="telephony_optional_permission_explanation">Na prezeranie mien kontaktov namiesto telefónnych čísel, musíte udeliť prístup k telefónnym kontaktom</string>
   <string name="contacts_permission_explanation">Na zdieľanie vášho adresára kontaktov s počítačom, musíte udeliť oprávnenie ku kontaktom</string>
+  <string name="contacts_per_device_confirmation">Kontakty z vášho telefónu budú skopírované do tohto zariadenia, aby ich mohla používať aplikácia KDE Connect SMS a iné aplikácie.</string>
   <string name="select_ringtone">Vybrať zvonenie</string>
   <string name="telephony_pref_blocked_title">Blokované čísla</string>
   <string name="telephony_pref_blocked_dialog_desc">Z týchto čísel sa nebudú zobrazovať hovori ani správy SMS. Prosím, určte jedno číslo na riadok</string>
@@ -295,6 +330,7 @@
   <string name="notification_channel_filetransfer">Prichádzajúci prenos súboru</string>
   <string name="notification_channel_filetransfer_complete">Prichádzajúci prenos súboru</string>
   <string name="notification_channel_filetransfer_upload">Prenos súborov</string>
+  <string name="notification_channel_filetransfer_error">Chyba prenosu súboru</string>
   <string name="notification_channel_high_priority">Vysoká priorita</string>
   <string name="mpris_stop">Zastaviť aktuálny prehrávač</string>
   <string name="copy_url_to_clipboard">Kopírovať URL do schránky</string>
@@ -304,6 +340,9 @@
   <string name="runcommand_nosuchdevice">Neexistuje žiadne zariadenie</string>
   <string name="runcommand_noruncommandplugin">Toto zariadenie nemá povolený zásuvný modul spustenia príkazu</string>
   <string name="runcommand_category_device_controls_title">Ikona zariadenia</string>
+  <string name="runcommand_device_controls_summary">Ak vaše zariadenie podporuje ovládanie zariadenia, nakonfigurované príkazy sa tam zobrazia.</string>
+  <string name="set_runcommand_name_as_title">set_runcommand_name_as_title</string>
+  <string name="runcommand_name_as_title_title">Zobraziť názov ako nadpis</string>
   <string name="pref_plugin_findremotedevice">Nájdenie vzdialeného zariadenia</string>
   <string name="pref_plugin_findremotedevice_desc">Zazvoní na vašom vzdialenom zariadení</string>
   <string name="ring">Zazvoniť</string>
@@ -315,6 +354,7 @@
   <string name="settings_rename">Názov zariadenia</string>
   <string name="settings_dark_mode">Tmavý motív</string>
   <string name="settings_export_logs">Nastavenia KDE Connect</string>
+  <string name="settings_export_logs_text">Vygenerovať súbor s informáciami o vykonaní, ktorý môže pomôcť pri riešení problémov.</string>
   <string name="settings_more_settings_title">Viac nastavení</string>
   <string name="settings_more_settings_text">Nastavenia zariadenia môžete nájsť v ponuke \"Nastavenia zás. modulov\" pri každom zariadení.</string>
   <string name="setting_persistent_notification">Zobrazovať trvalé oznámenie</string>
@@ -326,6 +366,7 @@
   <string name="block_contents">Blokovať obsah upozornení</string>
   <string name="block_images">Blokovať obrázky v upozorneniach</string>
   <string name="notification_channel_receivenotification">Upozornenia z iných zariadení</string>
+  <string name="findmyphone_preference_title_flashlight">Blikať baterkou</string>
   <string name="no_app_for_opening">Nenašla sa vhodná aplikácia na otvorenie tohto súboru</string>
   <string name="remote_keyboard_service">KDE Connect Vzdialená Klávesnica</string>
   <string name="presenter_pointer">Ukazovateľ</string>
@@ -335,6 +376,8 @@
   <string name="empty_trusted_networks_list_text">Zatiaľ ste nepridali žiadnu dôveryhodnú sieť</string>
   <string name="allow_all_networks_text">Povoliť všetky</string>
   <string name="location_permission_needed_title">Potrebné oprávnenia</string>
+  <string name="bluetooth_permission_needed_desc">KDE Connect potrebuje oprávnenie na pripojenie k blízkym zariadeniam, aby boli zariadenia spárované cez Bluetooth dostupné v KDE Connect.</string>
+  <string name="location_permission_needed_desc">KDE Connect potrebuje oprávnenie na polohu na pozadí, aby poznal WiFi sieť, ku ktorej ste pripojení, aj keď je aplikácia na pozadí. Je to preto, že názvy WiFi sietí vo vašom okolí by sa mohli použiť na zistenie vašej polohy, aj keď to nie je to, čo KDE Connect robí.</string>
   <string name="clipboard_android_x_incompat">V systéme Android 10 je odstránený prístup k schránke pre všetky aplikácie. Tento zásuvný modul bude zakázaný.</string>
   <string name="mpris_open_url">Pokračovať v prehrávaní tu</string>
   <string name="cant_open_url">Nedá sa otvoriť URL pre pokračovanie v prehrávaní</string>
@@ -344,7 +387,9 @@
   <string name="bigscreen_select">Vybrať</string>
   <string name="bigscreen_right">Doprava</string>
   <string name="bigscreen_down">Dole</string>
+  <string name="bigscreen_back">Späť</string>
   <string name="bigscreen_mic">Mikrofón</string>
+  <string name="pref_plugin_bigscreen">TV diaľkový ovládač</string>
   <string name="pref_plugin_bigscreen_desc">Použije vaše zariadenie ako diaľkové ovládanie obrazovky Plasma Bigscreen</string>
   <string name="bigscreen_optional_permission_explanation">Na zdieľanie mikrofónového vstupu z vášho telefónu musíte dať prístup k zvukovému vstupu telefónu</string>
   <string name="bigscreen_speech_extra_prompt">Reč</string>
@@ -381,6 +426,7 @@
   <string name="about">O aplikácii</string>
   <string name="authors">Tvorcovia</string>
   <string name="thanks_to">Poďakovanie</string>
+  <string name="easter_egg">Veľkonočné vajíčko</string>
   <string name="email_contributor">Odoslať email prispievateľovi\n%s</string>
   <string name="visit_contributors_homepage">Navštíviť domovskú stránku prispievateľa\n%s</string>
   <string name="version">Verzia %s</string>
@@ -388,26 +434,54 @@
   <string name="kde_be_free">KDE - Buďte voľní!</string>
   <string name="kde">KDE</string>
   <string name="konqi">Konqi</string>
+  <string name="rise_up">Povstať</string>
   <string name="rise_down">Dole</string>
   <string name="click_here_to_type">Ťuknutím otvoríte</string>
   <string name="clear_compose">Vyčistiť</string>
   <string name="send_compose">Poslať</string>
   <string name="compose_send_title">Vybrať tému</string>
   <string name="open_compose_send">Vybrať tému</string>
+  <string name="double_tap_to_drag">Dvojité ťuknutie na ťahanie</string>
+  <string name="hold_to_drag">Podržať na ťahanie</string>
+  <string name="about_kde_about">&lt;h1&gt;O KDE&lt;/h1&gt; &lt;p&gt;KDE je celosvetová komunita softvérových inžinierov, umelcov, spisovateľov, prekladateľov a tvorcov, ktorí sa venujú vývoju &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;slobodného softvéru&lt;/a&gt;. KDE vytvára pracovné prostredie Plasma, stovky aplikácií a mnohé softvérové knižnice, ktoré ich podporujú.&lt;/p&gt; &lt;p&gt;KDE je kooperatívny podnik: žiadna jediná entita neovláda jeho smerovanie ani produkty. Namiesto toho spolupracujeme na dosiahnutí spoločného cieľa vytvoriť najlepší slobodný softvér na svete. Každý je vítaný &lt;a href=https://community.kde.org/Get_Involved&gt;pripojiť sa a prispieť&lt;/a&gt; do KDE, vrátane vás.&lt;/p&gt; Navštívte &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; pre viac informácií o komunite KDE a softvéri, ktorý vytvárame.</string>
+  <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Nahlásenie chýb alebo prianí&lt;/h1&gt; &lt;p&gt;Softvér sa dá vždy vylepšiť a tím KDE je pripravený tak urobiť. Avšak vy - používateľ - nám musíte povedať, keď niečo nefunguje podľa očakávaní alebo by sa to dalo urobiť lepšie.&lt;/p&gt; &lt;p&gt;KDE má systém sledovania chýb. Navštívte &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; alebo použite tlačidlo \"Nahlásiť chybu\" z obrazovky O aplikácii na nahlásenie chýb.&lt;/p&gt; Ak máte návrh na vylepšenie, ste vítaní použiť systém sledovania chýb na zaregistrovanie vášho priania. Uistite sa, že použijete závažnosť s názvom \"Wishlist\".</string>
+  <string name="about_kde_join_kde">&lt;h1&gt;Pridajte sa ku KDE&lt;/h1&gt; &lt;p&gt;Nemusíte byť softvérový vývojár, aby ste boli členom tímu KDE. Môžete sa pripojiť k jazykovým tímom, ktoré prekladajú rozhrania programov. Môžete poskytnúť grafiku, témy, zvuky a vylepšenú dokumentáciu. Rozhodnite sa!&lt;/p&gt; &lt;p&gt;Navštívte &lt;a href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/Get_Involved&lt;/a&gt; pre informácie o niektorých projektoch, na ktorých sa môžete zúčastniť.&lt;/p&gt; Ak potrebujete viac informácií alebo dokumentáciu, navštívte &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/&lt;/a&gt;, kde nájdete, čo potrebujete.</string>
+  <string name="about_kde_support_kde">&lt;h1&gt;Podporte KDE&lt;/h1&gt; &lt;p&gt;Softvér KDE je a vždy bude dostupný bezplatne, avšak jeho tvorba nie je zadarmo.&lt;/p&gt; &lt;p&gt;Na podporu vývoja komunita KDE vytvorila KDE e.V., neziskovú organizáciu právne založenú v Nemecku. KDE e.V. zastupuje komunitu KDE v právnych a finančných záležitostiach. Pozrite &lt;a href=https://ev.kde.org/&gt;https://ev.kde.org/&lt;/a&gt; pre informácie o KDE e.V.&lt;/p&gt; &lt;p&gt;KDE profituje z mnohých druhov príspevkov, vrátane finančných. Finančné prostriedky používame na preplatenie výdavkov členom a iným prispievateľom. Ďalšie prostriedky sa používajú na právnu podporu a organizovanie konferencií a stretnutí.&lt;/p&gt; &lt;p&gt;Radi by sme vás povzbudili, aby ste podporili naše úsilie finančným darom, jedným zo spôsobov popísaných na &lt;a href=https://www.kde.org/community/donations/&gt;https://www.kde.org/community/donations/&lt;/a&gt;.&lt;/p&gt; Vopred vám veľmi ďakujeme za vašu podporu.</string>
   <string name="maintainer_and_developer">Správca a vývojár</string>
   <string name="developer">Vývojár</string>
+  <string name="apple_support">Podpora macOS. Práca na podpore iOS</string>
   <string name="bug_fixes_and_general_improvements">Opravy chýb a všeobecné vylepšenia</string>
+  <string name="samoilenko_yuri_task">Implementácia SFTP, opravy chýb a všeobecné vylepšenia</string>
+  <string name="aniket_kumar_task">Vylepšenia zásuvného modulu SMS</string>
+  <string name="alex_fiestas_task">Vylepšenia zásuvného modulu kontaktov</string>
+  <string name="maxim_leshchenko_task">Vylepšenia rozhrania a táto stránka O aplikácii</string>
   <string name="holger_kaelberer_task">Zásuvný modul vzdialenej klávesnice a opravy chýb</string>
+  <string name="saikrishna_arcot_task">Podpora používania klávesnice v zásuvnom module vzdialeného vstupu, opravy chýb a všeobecné vylepšenia</string>
+  <string name="shellwen_chen_task">Vylepšenie bezpečnosti SFTP, vylepšenie udržiavateľnosti tohto projektu, opravy chýb a všeobecné vylepšenia</string>
+  <string name="everyone_else">Všetci ostatní, ktorí v priebehu rokov prispeli do KDE Connect</string>
   <string name="send_clipboard">Odoslať schránku</string>
   <string name="tap_to_execute">Ťuknutím otvoríte</string>
   <string name="plugin_stats">Nastavenia zás. modulu</string>
+  <string name="enable_udp_broadcast">Povoliť vyhľadávanie zariadení cez UDP</string>
+  <string name="enable_bluetooth">Povoliť Bluetooth (beta)</string>
   <string name="receive_notifications_permission_explanation">Upozornenia z iných zariadení</string>
+  <string name="findmyphone_notifications_explanation">Oprávnenie na oznámenia je potrebné, aby telefón mohol zvoniť, keď je aplikácia na pozadí</string>
+  <string name="findmyphone_camera_explanation">Oprávnenie kamery umožňuje blikanie baterkou pri hľadaní vášho telefónu</string>
+  <string name="findmyphone_open_settings_for_camera">Udeľte oprávnenie kamery v nastaveniach aplikácie na použitie baterky</string>
+  <string name="no_notifications">Oznámenia sú zakázané, nebudete dostávať oznámenia o prichádzajúcich žiadostiach o párovanie.</string>
   <string name="mpris_keepwatching">Pokračovať v prehrávaní tu</string>
   <string name="mpris_keepwatching_settings_title">Pokračovať v prehrávaní tu</string>
+  <string name="mpris_keepwatching_settings_summary">Zobraziť tiché oznámenie na pokračovanie prehrávania na tomto zariadení po zatvorení médií</string>
   <string name="notification_channel_keepwatching">Pokračovať v prehrávaní tu</string>
+  <string name="ping_result">Ping za %1$d milisekúnd</string>
   <string name="ping_failed">Nepodarilo sa odoslať balík</string>
+  <string name="ping_in_progress">Pinguje sa…</string>
+  <string name="device_host_invalid">Hostiteľ je neplatný. Použite platný názov hostiteľa, IPv4 alebo IPv6</string>
+  <string name="device_host_duplicate">Hostiteľ už existuje v zozname</string>
   <string name="enable_fullscreen">Na celú obrazovku</string>
+  <string name="pref_presenter_enable_volume_keys_title">Klávesy hlasitosti menia snímky</string>
   <string name="pref_presenter_sensitivity_title">Nastaviť citlivosť touchpadu</string>
+  <string name="pref_presenter_enable_volume_keys_summary">V pohotovostnom režime nie je podporované na verziách Android medzi 13 a 15</string>
   <string name="presenter_volume_keys_foreground_tip">Môžete uzamknúť vaše zariadenie a použiť klávesy hlasitosti na prechod na predchádzajúci a nasledujúci snímok</string>
   <string name="presenter_volume_keys_tip">Môžete uzamknúť vaše zariadenie a použiť klávesy hlasitosti na prechod na predchádzajúci a nasledujúci snímok</string>
 </resources>
