@@ -394,12 +394,12 @@
   <string name="theme_dialog_title">Choisir un thème</string>
   <string-array name="theme_list">
     <item>Défini par l\'économiseur de batterie</item>
-    <item>Léger</item>
+    <item>Clair</item>
     <item>Sombre</item>
   </string-array>
   <string-array name="theme_list_v28">
     <item>Valeur par défaut du système</item>
-    <item>Léger</item>
+    <item>Clair</item>
     <item>Sombre</item>
   </string-array>
   <string name="report_bug">Signaler un bogue</string>
