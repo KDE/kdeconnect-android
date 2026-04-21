@@ -39,6 +39,8 @@
   <string name="pref_plugin_receive_notifications_desc">接收來自其他裝置的通知並將其顯示在 Android 上</string>
   <string name="pref_plugin_sharereceiver">分享和接收</string>
   <string name="pref_plugin_sharereceiver_desc">在裝置之間分享檔案和網址 (URL)</string>
+  <string name="pref_plugin_inputdevicesreceiver">分享輸入裝置</string>
+  <string name="pref_plugin_inputdevicesreceiver_desc">與遠端裝置分享滑鼠與鍵盤</string>
   <string name="device_list_empty">沒有裝置</string>
   <string name="ok">確認</string>
   <string name="sad_ok">好吧 :(</string>
@@ -195,6 +197,7 @@
   <string name="share_to">分享給…</string>
   <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">若分享網址 (URL) 到無法存取的裝置，將在該裝置變得可存取後再傳送過去。\n\n</string>
+  <string name="unreachable_share_toast">網址會在下次裝置連線時分享。</string>
   <string name="protocol_version">協定版本：</string>
   <string name="protocol_version_newer">此裝置使用較新的通訊協定版本</string>
   <string name="plugin_settings_with_name">%s的設定</string>
@@ -339,6 +342,7 @@
   <string name="block_contents">阻擋通知內容</string>
   <string name="block_images">阻擋通知中的圖片</string>
   <string name="notification_channel_receivenotification">其他裝置上的通知</string>
+  <string name="findmyphone_preference_title_flashlight">讓閃光燈閃爍</string>
   <string name="no_app_for_opening">找不到適合用來開啟此檔案的應用程式</string>
   <string name="remote_keyboard_service">KDE Connect 遠端鍵盤</string>
   <string name="presenter_pointer">滑鼠游標</string>
@@ -438,6 +442,8 @@
   <string name="enable_bluetooth">啟用藍牙 (beta)</string>
   <string name="receive_notifications_permission_explanation">需要被允許從其他裝置收到通知</string>
   <string name="findmyphone_notifications_explanation">需要通知權限，以便當應用程式在背景時手機可以響鈴</string>
+  <string name="findmyphone_camera_explanation">有相機權限時，可以在您需要尋找手機時讓閃光燈閃爍</string>
+  <string name="findmyphone_open_settings_for_camera">在應用程式設定給予相機權限來使用閃光燈</string>
   <string name="no_notifications">通知已停用，您不會收到傳入的配對請求通知。</string>
   <string name="mpris_keepwatching">繼續播放</string>
   <string name="mpris_keepwatching_settings_title">繼續播放</string>
@@ -449,4 +455,9 @@
   <string name="device_host_invalid">主機是無效的。請使用有效的主機名稱、IPv4 位址或 IPv6 位址</string>
   <string name="device_host_duplicate">主機已在清單中</string>
   <string name="enable_fullscreen">啟用全螢幕</string>
+  <string name="pref_presenter_enable_volume_keys_title">用音量鍵變更投影片</string>
+  <string name="pref_presenter_sensitivity_title">游標靈敏度</string>
+  <string name="pref_presenter_enable_volume_keys_summary">Android 13 ~ 15 不支援畫面鎖定時的操作</string>
+  <string name="presenter_volume_keys_foreground_tip">可以在維持螢幕開啟時使用音量鍵前往上一張或下一張投影片</string>
+  <string name="presenter_volume_keys_tip">無論螢幕開啟還是裝置已鎖定都可以使用音量鍵前往上一張或下一張投影片</string>
 </resources>
