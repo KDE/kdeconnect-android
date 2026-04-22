@@ -136,7 +136,7 @@ public class LanLinkProvider extends BaseLinkProvider {
         InetAddress address = socket.getInetAddress();
 
         if (!isPrivateAddress(address)) {
-            Log.i("LanLinkProvider", "Discarding UDP packet from a non-local IP");
+            Log.i("LanLinkProvider", "Discarding TCP packet from a non-local IP");
             return;
         }
 
