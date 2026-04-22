@@ -74,9 +74,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     private final static String PACKET_TYPE_NOTIFICATION_ACTION = "kdeconnect.notification.action";
     private final static String PREF_KEY = "prefKey";
     protected static final int PREF_NOTIFICATION_SCREEN_OFF = R.string.screen_off_notification_state;
-    protected static final int PREF_NOTIFICATION_SYNC_DELAY = R.string.notification_sync_delay_state;
-    static final int DEFAULT_NOTIFICATION_SYNC_DELAY_MS = 0;
-    static final int MAX_NOTIFICATION_SYNC_DELAY_MS = 3_600_000; // 1 hour
+    private static final int NOTIFICATION_SYNC_DELAY_MS = 50;
 
     private final static String TAG = "KDE/NotificationsPlugin";
 
@@ -219,11 +217,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             return;
         }
 
-        final int delayMs = getNotificationSyncDelayMs();
-        if (delayMs <= 0) {
-            sendNotification(statusBarNotification, false);
-            return;
-        }
+        final int delayMs = NOTIFICATION_SYNC_DELAY_MS;
 
         String key = getNotificationKeyCompat(statusBarNotification);
         synchronized (delayedNotificationsLock) {
@@ -255,14 +249,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                 mainHandler.removeCallbacks(delayedTask);
             }
         }
-    }
-
-    private int getNotificationSyncDelayMs() {
-        if (sharedPreferences == null) {
-            return DEFAULT_NOTIFICATION_SYNC_DELAY_MS;
-        }
-
-        return sharedPreferences.getInt(context.getString(PREF_NOTIFICATION_SYNC_DELAY), DEFAULT_NOTIFICATION_SYNC_DELAY_MS);
     }
 
     // isPreexisting is true for notifications that we are sending in response to a request command

@@ -309,11 +309,6 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="filter_apps_info">Notifications will be synchronized for the selected apps.</string>
     <string name="show_notification_if_screen_off">Send notifications only if the screen is off</string>
     <string name="screen_off_notification_state" translatable="false">pref_notification_screen_off</string>
-    <string name="notification_sync_delay_title">Notification sync delay</string>
-    <string name="notification_sync_delay_dialog_message">Delay before syncing notifications to allow filters to process. Enter delay in milliseconds. Set 0 to disable.</string>
-    <string name="notification_sync_delay_value">%1$d ms</string>
-    <string name="notification_sync_delay_disabled">Disabled</string>
-    <string name="notification_sync_delay_state" translatable="false">pref_notification_sync_delay_ms</string>
     <string name="add_device_dialog_title">Add device</string>
     <string name="add_device_hint">Hostname or IP address</string>
     <string name="sftp_preference_configured_storage_locations">Configured storage locations</string>
