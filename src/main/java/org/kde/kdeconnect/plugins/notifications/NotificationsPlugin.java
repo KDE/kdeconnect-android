@@ -24,7 +24,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.Parcelable;
 import android.provider.Settings;
 import android.service.notification.StatusBarNotification;
 import android.text.SpannableString;
@@ -109,7 +108,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     @Override
     public PluginSettingsFragment getSettingsFragment(Activity activity) {
-        Intent intent = new Intent(activity, NotificationSyncSettingsActivity.class);
+        Intent intent = new Intent(activity, NotificationFilterActivity.class);
         intent.putExtra(PREF_KEY, this.getSharedPreferencesName());
         activity.startActivity(intent);
         return null;
@@ -176,8 +175,11 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
         synchronized (delayedNotificationsLock) {
             postedNotifications.remove(id);
+            Runnable delayedTask = delayedNotifications.remove(id);
+            if (delayedTask != null) {
+                mainHandler.removeCallbacks(delayedTask);
+            }
         }
-        cancelPendingNotification(id);
 
         actions.remove(id);
 
@@ -203,20 +205,14 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
         if (sharedPreferences != null && sharedPreferences.getBoolean(context.getString(PREF_NOTIFICATION_SCREEN_OFF),false)){
             if (keyguardManager != null && keyguardManager.inKeyguardRestrictedInputMode()){
-                sendNotificationWithDelay(statusBarNotification, false);
+                sendNotificationWithDelay(statusBarNotification);
             }
         } else {
-            sendNotificationWithDelay(statusBarNotification, false);
+            sendNotificationWithDelay(statusBarNotification);
         }
     }
 
-    private void sendNotificationWithDelay(StatusBarNotification statusBarNotification, boolean isPreexisting) {
-        if (isPreexisting) {
-            // Preexisting notifications call sendNotification directly, so isPreexisting is always false here.
-            sendNotification(statusBarNotification, true);
-            return;
-        }
-
+    private void sendNotificationWithDelay(StatusBarNotification statusBarNotification) {
         final int delayMs = NOTIFICATION_SYNC_DELAY_MS;
 
         String key = getNotificationKeyCompat(statusBarNotification);
@@ -239,15 +235,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
             delayedNotifications.put(key, delayedTask);
             mainHandler.postDelayed(delayedTask, delayMs);
-        }
-    }
-
-    private void cancelPendingNotification(String key) {
-        synchronized (delayedNotificationsLock) {
-            Runnable delayedTask = delayedNotifications.remove(key);
-            if (delayedTask != null) {
-                mainHandler.removeCallbacks(delayedTask);
-            }
         }
     }
 

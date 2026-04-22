@@ -58,7 +58,7 @@ import kotlin.Lazy;
 import kotlin.LazyKt;
 
 //TODO: Turn this into a PluginSettingsFragment
-public class NotificationSyncSettingsActivity extends BaseActivity<ActivityNotificationFilterBinding> {
+public class NotificationFilterActivity extends BaseActivity<ActivityNotificationFilterBinding> {
 
     private AppDatabase appDatabase;
     private String prefKey;
@@ -127,7 +127,7 @@ public class NotificationSyncSettingsActivity extends BaseActivity<ActivityNotif
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        appDatabase = AppDatabase.getInstance(NotificationSyncSettingsActivity.this);
+        appDatabase = AppDatabase.getInstance(NotificationFilterActivity.this);
         if (getIntent()!= null){
             prefKey = getIntent().getStringExtra(NotificationsPlugin.getPrefKey());
         }
@@ -137,7 +137,7 @@ public class NotificationSyncSettingsActivity extends BaseActivity<ActivityNotif
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         SharedPreferences preferences = this.getSharedPreferences(prefKey, Context.MODE_PRIVATE);
 
-        configureSyncSettings(preferences);
+        configureSwitch(preferences);
 
         ThreadHelper.execute(() -> {
             PackageManager packageManager = getPackageManager();
@@ -226,7 +226,7 @@ public class NotificationSyncSettingsActivity extends BaseActivity<ActivityNotif
         }
     }
 
-    private void configureSyncSettings(SharedPreferences sharedPreferences) {
+    private void configureSwitch(SharedPreferences sharedPreferences) {
         MaterialSwitch smScreenOffNotification = findViewById(R.id.smScreenOffNotification);
         smScreenOffNotification.setChecked(
                 sharedPreferences.getBoolean(getString(NotificationsPlugin.PREF_NOTIFICATION_SCREEN_OFF),false)
