@@ -110,9 +110,9 @@
   <string name="mouse_receiver_plugin_name">鼠标接收器</string>
   <string name="mouse_receiver_no_permissions">要远程接受触摸输入，您必须授予完全控制此设备的访问权限</string>
   <string name="view_status_title">状态</string>
-  <string name="battery_status_format">电池：%d%%</string>
-  <string name="battery_status_low_format">电池：%d%% 电量低</string>
-  <string name="battery_status_charging_format">电池：%d%% 正在充电</string>
+  <string name="battery_status_format">电量：%d%%</string>
+  <string name="battery_status_low_format">电量：%d%% 电量低</string>
+  <string name="battery_status_charging_format">电量：%d%% 正在充电</string>
   <string name="category_connected_devices">已连接的设备</string>
   <string name="category_not_paired_devices">可用的设备</string>
   <string name="category_remembered_devices">记住的设备</string>
