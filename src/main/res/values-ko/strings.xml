@@ -39,6 +39,8 @@
   <string name="pref_plugin_receive_notifications_desc">다른 장치의 알림을 받아서 안드로이드 알림에 표시</string>
   <string name="pref_plugin_sharereceiver">공유하고 받기</string>
   <string name="pref_plugin_sharereceiver_desc">장치끼리 파일과 URL 공유</string>
+  <string name="pref_plugin_inputdevicesreceiver">입력 장치 공유</string>
+  <string name="pref_plugin_inputdevicesreceiver_desc">원격 장치와 마우스와 키보드 공유</string>
   <string name="device_list_empty">장치 없음</string>
   <string name="ok">확인</string>
   <string name="sad_ok">확인 :(</string>
@@ -340,6 +342,7 @@
   <string name="block_contents">알림 내용 숨기기</string>
   <string name="block_images">알림 이미지 숨기기</string>
   <string name="notification_channel_receivenotification">다른 장치의 알림</string>
+  <string name="findmyphone_preference_title_flashlight">플래시 반짝이기</string>
   <string name="no_app_for_opening">이 파일을 열 수 있는 앱을 찾을 수 없음</string>
   <string name="remote_keyboard_service">KDE Connect 원격 키보드</string>
   <string name="presenter_pointer">포인터</string>
@@ -439,6 +442,8 @@
   <string name="enable_bluetooth">블루투스 활성화(베타)</string>
   <string name="receive_notifications_permission_explanation">다른 장치에서 알림을 받으려면 알림을 허용해야 합니다</string>
   <string name="findmyphone_notifications_explanation">앱이 백그라운드에서 실행 중일 때 장치를 울리게 하려면 알림 권한이 필요합니다</string>
+  <string name="findmyphone_camera_explanation">휴대폰을 찾을 때 플래시를 반짝이려면 카메라 권한이 필요합니다</string>
+  <string name="findmyphone_open_settings_for_camera">플래시를 사용하려면 앱 설정에서 카메라 접근 권한을 허용해야 합니다</string>
   <string name="no_notifications">알림이 비활성화되어 있습니다. 들어오는 페어링 요청 알림을 받을 수 없습니다</string>
   <string name="mpris_keepwatching">계속 재생</string>
   <string name="mpris_keepwatching_settings_title">계속 재생</string>
