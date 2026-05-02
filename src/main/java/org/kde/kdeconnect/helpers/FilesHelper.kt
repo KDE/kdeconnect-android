@@ -30,13 +30,22 @@ object FilesHelper {
 
     @JvmStatic
     fun findValidNonExistingFileNameForFile(path: String, filename: String): String {
+        var filename = filename.trimEnd('.')
+        if (filename.isEmpty()) {
+            filename = "bad_name_file"
+        }
         var validFilename : String
         val baseName = File(filename).nameWithoutExtension
         val ext = File(filename).extension
         var num = 0
 
         do {
-            validFilename = buildValidFatFilename("$baseName%s.$ext".format(if (num == 0) "" else " ($num)"))
+            val suffix = if (num == 0) "" else " ($num)"
+            validFilename = if (ext.isEmpty()) {
+                buildValidFatFilename("$baseName$suffix")
+            } else {
+                buildValidFatFilename("$baseName$suffix.$ext")
+            }
             num++;
         } while (File(path, validFilename).exists())
 
