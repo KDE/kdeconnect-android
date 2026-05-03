@@ -121,7 +121,7 @@ class ClipboardPlugin : Plugin() {
     }
 
     private fun canAccessLogs(): Boolean {
-        return ContextCompat.checkSelfPermission(context, Manifest.permission.READ_LOGS) == PackageManager.PERMISSION_DENIED
+        return ContextCompat.checkSelfPermission(context, Manifest.permission.READ_LOGS) == PackageManager.PERMISSION_GRANTED
     }
 
     companion object {
