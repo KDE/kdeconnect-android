@@ -461,7 +461,7 @@
   <string name="ping_failed">Aygıt pinglenemedi</string>
   <string name="ping_in_progress">Pingleniyor…</string>
   <string name="device_host_invalid">Makine geçersiz. Geçerli bir makine adı kullanın; IPv4 veya IPv6 gibi</string>
-  <string name="device_host_duplicate">Makine listede halihazırda var</string>
+  <string name="device_host_duplicate">Makine listede hâlihazırda var</string>
   <string name="enable_fullscreen">Tam ekranı etkinleştir</string>
   <string name="pref_presenter_enable_volume_keys_title">Ses düzeyi düğmeleri slaydı değiştirir</string>
   <string name="pref_presenter_sensitivity_title">İşaretçi duyarlılığı</string>
