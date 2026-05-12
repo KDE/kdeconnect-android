@@ -219,7 +219,9 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
         }
         device?.apply {
             mActivity?.supportActionBar?.title = name
+            removePairingCallback(pairingCallback)
             addPairingCallback(pairingCallback)
+            removePluginsChangedListener(pluginsChangedListener)
             addPluginsChangedListener(pluginsChangedListener)
         } ?: run { // device is null
             Log.e(TAG, "Trying to display a device fragment but the device is not present")
