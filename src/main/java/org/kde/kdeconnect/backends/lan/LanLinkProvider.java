@@ -135,8 +135,13 @@ public class LanLinkProvider extends BaseLinkProvider {
 
         InetAddress address = socket.getInetAddress();
 
+        boolean privateAddress = isPrivateAddress(address);
         boolean explicitPeer = isConfiguredCustomDevice(address);
-        if (!isPrivateAddress(address) && !explicitPeer) {
+        boolean loopbackProxyPeer = isLoopbackCustomDeviceProxy(address);
+        if (loopbackProxyPeer) {
+            Log.i("LanLinkProvider", "Accepting loopback TCP packet as a custom-device proxy path");
+        }
+        if (!privateAddress && !explicitPeer && !loopbackProxyPeer) {
             Log.i("LanLinkProvider", "Discarding TCP packet from a non-local IP " + address);
             return;
         }
@@ -158,7 +163,7 @@ public class LanLinkProvider extends BaseLinkProvider {
             return;
         }
 
-        final Pair<NetworkPacket, Boolean> pair = unserializeReceivedIdentityPacket(message, explicitPeer);
+        final Pair<NetworkPacket, Boolean> pair = unserializeReceivedIdentityPacket(message, explicitPeer || loopbackProxyPeer);
         if (pair == null) {
             return;
         }
@@ -261,6 +266,10 @@ public class LanLinkProvider extends BaseLinkProvider {
         return CustomDevicesActivity.getCustomDeviceList(context).stream()
                 .map(DeviceHost::toString)
                 .anyMatch(host -> resolvesToAddress(host, address));
+    }
+
+    private boolean isLoopbackCustomDeviceProxy(InetAddress address) {
+        return address.isLoopbackAddress() && !CustomDevicesActivity.getCustomDeviceList(context).isEmpty();
     }
 
     private boolean resolvesToAddress(String host, InetAddress expectedAddress) {
