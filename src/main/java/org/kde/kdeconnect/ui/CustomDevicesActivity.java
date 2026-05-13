@@ -26,6 +26,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
+import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.DeviceHost;
 import org.kde.kdeconnect.helpers.WindowHelper;
 import org.kde.kdeconnect.base.BaseActivity;
@@ -184,6 +185,7 @@ public class CustomDevicesActivity extends BaseActivity<ActivityCustomDevicesBin
         customDeviceList.remove(lastDeletedCustomDevice.position);
         customDevicesAdapter.notifyItemRemoved(lastDeletedCustomDevice.position);
         saveList();
+        BackgroundService.ForceRefreshConnections(this);
         showEmptyListMessageIfRequired();
 
         Snackbar.make(recyclerView, R.string.custom_device_deleted, Snackbar.LENGTH_LONG)
@@ -192,6 +194,7 @@ public class CustomDevicesActivity extends BaseActivity<ActivityCustomDevicesBin
                     customDevicesAdapter.notifyItemInserted(lastDeletedCustomDevice.position);
                     lastDeletedCustomDevice = null;
                     saveList();
+                    BackgroundService.ForceRefreshConnections(CustomDevicesActivity.this);
                     showEmptyListMessageIfRequired();
                 })
                 .addCallback(new BaseTransientBottomBar.BaseCallback<>() {
@@ -247,6 +250,7 @@ public class CustomDevicesActivity extends BaseActivity<ActivityCustomDevicesBin
                         }
 
                         saveList();
+                        BackgroundService.ForceRefreshConnections(CustomDevicesActivity.this);
                         showEmptyListMessageIfRequired();
                     }
                     else {
