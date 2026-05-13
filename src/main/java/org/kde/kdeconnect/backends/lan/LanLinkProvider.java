@@ -115,14 +115,14 @@ public class LanLinkProvider extends BaseLinkProvider {
             return null;
         }
 
-        if (rateLimitByDeviceId(deviceId)) {
-            Log.i("LanLinkProvider", "Discarding second packet from the same device " + deviceId + " received too quickly");
-            return null;
-        }
-
         boolean deviceTrusted = TrustedDevices.isTrustedDevice(context, deviceId);
         if (!deviceTrusted && !TrustedNetworkHelper.isTrustedNetwork(context) && !explicitPeer) {
             Log.i("KDE/LanLinkProvider", "Ignoring identity packet because the device is not trusted, I'm not on a trusted network, and it is not an explicit peer.");
+            return null;
+        }
+
+        if (rateLimitByDeviceId(deviceId)) {
+            Log.i("LanLinkProvider", "Discarding second accepted packet from the same device " + deviceId + " received too quickly");
             return null;
         }
 
