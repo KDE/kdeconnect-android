@@ -94,7 +94,7 @@ public class LanLinkProvider extends BaseLinkProvider {
         super.onConnectionLost(link);
     }
 
-    Pair<NetworkPacket, Boolean> unserializeReceivedIdentityPacket(String message) {
+    Pair<NetworkPacket, Boolean> unserializeReceivedIdentityPacket(String message, boolean explicitPeer) {
         NetworkPacket identityPacket;
         try {
             identityPacket = NetworkPacket.unserialize(message);
@@ -121,8 +121,8 @@ public class LanLinkProvider extends BaseLinkProvider {
         }
 
         boolean deviceTrusted = TrustedDevices.isTrustedDevice(context, deviceId);
-        if (!deviceTrusted && !TrustedNetworkHelper.isTrustedNetwork(context)) {
-            Log.i("KDE/LanLinkProvider", "Ignoring identity packet because the device is not trusted and I'm not on a trusted network.");
+        if (!deviceTrusted && !TrustedNetworkHelper.isTrustedNetwork(context) && !explicitPeer) {
+            Log.i("KDE/LanLinkProvider", "Ignoring identity packet because the device is not trusted, I'm not on a trusted network, and it is not an explicit peer.");
             return null;
         }
 
@@ -135,8 +135,9 @@ public class LanLinkProvider extends BaseLinkProvider {
 
         InetAddress address = socket.getInetAddress();
 
-        if (!isPrivateAddress(address)) {
-            Log.i("LanLinkProvider", "Discarding TCP packet from a non-local IP");
+        boolean explicitPeer = isConfiguredCustomDevice(address);
+        if (!isPrivateAddress(address) && !explicitPeer) {
+            Log.i("LanLinkProvider", "Discarding TCP packet from a non-local IP " + address);
             return;
         }
 
@@ -157,7 +158,7 @@ public class LanLinkProvider extends BaseLinkProvider {
             return;
         }
 
-        final Pair<NetworkPacket, Boolean> pair = unserializeReceivedIdentityPacket(message);
+        final Pair<NetworkPacket, Boolean> pair = unserializeReceivedIdentityPacket(message, explicitPeer);
         if (pair == null) {
             return;
         }
@@ -212,8 +213,9 @@ public class LanLinkProvider extends BaseLinkProvider {
 
         final InetAddress address = packet.getAddress();
 
-        if (!isPrivateAddress(address)) {
-            Log.i("LanLinkProvider", "Discarding UDP packet from a non-local IP");
+        boolean explicitPeer = isConfiguredCustomDevice(address);
+        if (!isPrivateAddress(address) && !explicitPeer) {
+            Log.i("LanLinkProvider", "Discarding UDP packet from a non-local IP " + address);
             return;
         }
 
@@ -222,9 +224,9 @@ public class LanLinkProvider extends BaseLinkProvider {
             return;
         }
 
-        String message = new String(packet.getData(), Charsets.UTF_8);
+        String message = new String(packet.getData(), packet.getOffset(), packet.getLength(), Charsets.UTF_8);
 
-        final Pair<NetworkPacket, Boolean> pair = unserializeReceivedIdentityPacket(message);
+        final Pair<NetworkPacket, Boolean> pair = unserializeReceivedIdentityPacket(message, explicitPeer);
         if (pair == null) {
             return;
         }
@@ -252,6 +254,26 @@ public class LanLinkProvider extends BaseLinkProvider {
         out.flush();
 
         identityPacketReceived(identityPacket, socket, LanLink.ConnectionStarted.Remotely, deviceTrusted);
+    }
+
+
+    private boolean isConfiguredCustomDevice(InetAddress address) {
+        return CustomDevicesActivity.getCustomDeviceList(context).stream()
+                .map(DeviceHost::toString)
+                .anyMatch(host -> resolvesToAddress(host, address));
+    }
+
+    private boolean resolvesToAddress(String host, InetAddress expectedAddress) {
+        try {
+            for (InetAddress address : InetAddress.getAllByName(host)) {
+                if (address.equals(expectedAddress)) {
+                    return true;
+                }
+            }
+        } catch (UnknownHostException e) {
+            Log.w("LanLinkProvider", "Failed to resolve custom device " + host, e);
+        }
+        return false;
     }
 
     private void configureSocket(Socket socket) {
