@@ -73,5 +73,9 @@ val InetAddress.isUniqueLocal: Boolean
  * Returns true if the address is not a public internet address, so it can be used to send and receive KDE Connect packets
  */
 fun isPrivateAddress(address: InetAddress): Boolean {
-    return address.isSiteLocalAddress || address.isLinkLocalAddress || address.isCGNAT || address.isUniqueLocal
+    return address.isLoopbackAddress
+            || address.isSiteLocalAddress
+            || address.isLinkLocalAddress
+            || address.isCGNAT
+            || address.isUniqueLocal
 }
