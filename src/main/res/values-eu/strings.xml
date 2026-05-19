@@ -39,6 +39,8 @@
   <string name="pref_plugin_receive_notifications_desc">Jaso jakinarazpenak beste gailutik eta bistaratu Androiden</string>
   <string name="pref_plugin_sharereceiver">Partekatu eta jaso</string>
   <string name="pref_plugin_sharereceiver_desc">Partekatu fitxategiak eta URLak gailuen artean</string>
+  <string name="pref_plugin_inputdevicesreceiver">Partekatu sarrerako gailuak</string>
+  <string name="pref_plugin_inputdevicesreceiver_desc">Partekatu sagua eta teklatua urrutiko gailuekin</string>
   <string name="device_list_empty">Gailurik ez</string>
   <string name="ok">Ados</string>
   <string name="sad_ok">Ados :(</string>
@@ -348,6 +350,7 @@
   <string name="block_contents">Oztopatu jakinarazpenen edukiak</string>
   <string name="block_images">Oztopatu jakinarazpenen irudiak</string>
   <string name="notification_channel_receivenotification">Beste gailu batzuen jakinarazpenak</string>
+  <string name="findmyphone_preference_title_flashlight">Esku-argia keinuka piztu</string>
   <string name="no_app_for_opening">Ez da fitxategi hau irekitzeko aplikazio egokirik aurkitu</string>
   <string name="remote_keyboard_service">KDE Connect urruneko teklatua</string>
   <string name="presenter_pointer">Erakuslea</string>
@@ -447,6 +450,8 @@
   <string name="enable_bluetooth">Gaitu bluetooth (beta)</string>
   <string name="receive_notifications_permission_explanation">Jakinarazpenak baimendu behar dira beste gailuetatik haiek jasotzeko</string>
   <string name="findmyphone_notifications_explanation">Aplikazioa atzeko planoan dagoenean telefonoak jo dezan jakinarazpen-baimena behar da</string>
+  <string name="findmyphone_camera_explanation">Kameraren baimenak telefonoa bilatzean esku-argia keinuka pizteko aukera ematen du</string>
+  <string name="findmyphone_open_settings_for_camera">Eman esku-argia erabiltzeko kameraren baimena aplikazioaren ezarpenetan</string>
   <string name="no_notifications">Jakinarazpenak ezgaituta daude, ez duzu parekatzeko sarrerako eskaera-jakinarazpenik jasoko.</string>
   <string name="mpris_keepwatching">Jarraitu jotzen</string>
   <string name="mpris_keepwatching_settings_title">Jarraitu jotzen</string>
@@ -458,4 +463,9 @@
   <string name="device_host_invalid">Ostalaria baliogabea da. Erabili balio duen ostalari-izen bat, IPv4, edo IPv6</string>
   <string name="device_host_duplicate">Ostalaria jada zerrendan dago</string>
   <string name="enable_fullscreen">Gaitu pantaila osoa</string>
+  <string name="pref_presenter_enable_volume_keys_title">Bolumen-botoiek diapositibak aldatzen dituzte</string>
+  <string name="pref_presenter_sensitivity_title">Erakuslearen sentikortasuna</string>
+  <string name="pref_presenter_enable_volume_keys_summary">Egonean egotea ez da onartzen Android 13 eta 15 bertsioen artean</string>
+  <string name="presenter_volume_keys_foreground_tip">Pantaila piztuta utz dezakezu, bolumen-botoiekin aurreko/hurrengo diapositibara joateko</string>
+  <string name="presenter_volume_keys_tip">Pantaila piztuta edo gailua giltzatuta utzi dezakezu, bolumen-botoiekin aurreko/hurrengo diapositibara joateko</string>
 </resources>
