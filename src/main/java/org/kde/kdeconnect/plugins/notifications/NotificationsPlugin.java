@@ -24,6 +24,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
 import android.provider.Settings;
 import android.service.notification.StatusBarNotification;
 import android.text.SpannableString;
@@ -83,13 +84,12 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     private Map<String, String> notificationsIcons; // Here we will map every notification to it's icon(hash)
     private Set<String> postedNotifications;
     private Map<String, RepliableNotification> pendingIntents;
-    private Map<String, Runnable> delayedNotifications;
     private MultiValuedMap<String, Notification.Action> actions;
     private boolean serviceReady;
     private SharedPreferences sharedPreferences;
     private KeyguardManager keyguardManager;
     private Handler mainHandler;
-    private final Object delayedNotificationsLock = new Object();
+    private final Object postedNotificationsLock = new Object();
 
     @Override
     public @NonNull String getDisplayName() {
@@ -126,7 +126,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         currentNotifications = new HashSet<>();
         notificationsIcons = new HashMap<>();
         postedNotifications = new HashSet<>();
-        delayedNotifications = new HashMap<>();
         actions = new ArrayListValuedHashMap<>();
         mainHandler = new Handler(Looper.getMainLooper());
 
@@ -149,11 +148,8 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     @Override
     public void onDestroy() {
 
-        synchronized (delayedNotificationsLock) {
-            for (Runnable delayedTask : delayedNotifications.values()) {
-                mainHandler.removeCallbacks(delayedTask);
-            }
-            delayedNotifications.clear();
+        synchronized (postedNotificationsLock) {
+            mainHandler.removeCallbacksAndMessages(null);
             postedNotifications.clear();
         }
 
@@ -173,12 +169,9 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         }
         String id = getNotificationKeyCompat(statusBarNotification);
 
-        synchronized (delayedNotificationsLock) {
+        synchronized (postedNotificationsLock) {
             postedNotifications.remove(id);
-            Runnable delayedTask = delayedNotifications.remove(id);
-            if (delayedTask != null) {
-                mainHandler.removeCallbacks(delayedTask);
-            }
+            cancelDelayedNotification(id);
         }
 
         actions.remove(id);
@@ -199,7 +192,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     @Override
     public void onNotificationPosted(StatusBarNotification statusBarNotification) {
         String key = getNotificationKeyCompat(statusBarNotification);
-        synchronized (delayedNotificationsLock) {
+        synchronized (postedNotificationsLock) {
             postedNotifications.add(key);
         }
 
@@ -214,28 +207,42 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     private void sendNotificationWithDelay(StatusBarNotification statusBarNotification) {
         final int delayMs = NOTIFICATION_SYNC_DELAY_MS;
+        final String key = getNotificationKeyCompat(statusBarNotification);
+        final boolean sendImmediately;
 
-        String key = getNotificationKeyCompat(statusBarNotification);
-        synchronized (delayedNotificationsLock) {
-            Runnable existingTask = delayedNotifications.remove(key);
-            if (existingTask != null) {
-                mainHandler.removeCallbacks(existingTask);
+        synchronized (postedNotificationsLock) {
+            cancelDelayedNotification(key);
+
+            if (!postedNotifications.contains(key)) {
+                return;
             }
 
-            Runnable delayedTask = () -> {
-                synchronized (delayedNotificationsLock) {
-                    delayedNotifications.remove(key);
-                    if (!postedNotifications.contains(key)) {
-                        return;
+            if (delayMs <= 0) {
+                sendImmediately = true;
+            } else {
+                sendImmediately = false;
+                Message delayedNotification = Message.obtain(mainHandler, () -> {
+                    synchronized (postedNotificationsLock) {
+                        if (!postedNotifications.contains(key)) {
+                            return;
+                        }
                     }
-                }
 
-                sendNotification(statusBarNotification, false);
-            };
+                    sendNotification(statusBarNotification, false);
+                });
+                delayedNotification.obj = key;
 
-            delayedNotifications.put(key, delayedTask);
-            mainHandler.postDelayed(delayedTask, delayMs);
+                mainHandler.sendMessageDelayed(delayedNotification, delayMs);
+            }
         }
+
+        if (sendImmediately) {
+            sendNotification(statusBarNotification, false);
+        }
+    }
+
+    private void cancelDelayedNotification(String key) {
+        mainHandler.removeCallbacksAndMessages(key);
     }
 
     // isPreexisting is true for notifications that we are sending in response to a request command
