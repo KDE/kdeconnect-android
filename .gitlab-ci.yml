@@ -45,24 +45,14 @@ default:
     - chmod +x ./gradlew
 
 stages:
-  - build
-  - test
+  - buildLintAndTest
 
-lintDebug:
-  stage: build
-  script:
-    - ./gradlew generateLicenseReport
-    - ./gradlew -Pci --console=plain lintDebug -PbuildDir=lint
-
-assembleDebug:
-  stage: build
+buildLintAndTest:
+  stage: buildLintAndTest
   script:
     - ./gradlew assembleDebug
+    - ./gradlew -Pci --console=plain lintDebug -PbuildDir=lint
+    - ./gradlew -Pci --console=plain testDebug
   artifacts:
     paths:
     - build/outputs/
-
-debugTests:
-  stage: test
-  script:
-    - ./gradlew -Pci --console=plain testDebug
