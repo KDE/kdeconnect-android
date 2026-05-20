@@ -24,7 +24,7 @@ class PingPluginTest {
         }
         val context = mockk<Context> {
             every { getSharedPreferences(any(), any()) } returns mockk<SharedPreferences>()
-            every { getSystemService(any()) } returns notificationManager
+            every { getSystemService(NotificationManager::class.java) } returns notificationManager
             every { getString(any()) } returns "STRING"
         }
         val device = mockk<Device> {
