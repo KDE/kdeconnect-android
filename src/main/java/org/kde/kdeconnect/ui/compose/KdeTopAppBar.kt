@@ -6,12 +6,14 @@
 
 package org.kde.kdeconnect.ui.compose
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
@@ -23,6 +25,7 @@ import org.kde.kdeconnect_tp.R
 @Composable
 fun KdeTopAppBar(
     title: String = stringResource(R.string.kde_connect),
+    subTitle: String? = null,
     navIcon: ImageVector = Icons.AutoMirrored.Filled.ArrowBack,
     navIconDescription: String = "",
     navIconOnClick: () -> Unit, // = { onBackPressedDispatcher.onBackPressed() }
@@ -32,12 +35,22 @@ fun KdeTopAppBar(
         navigationIcon = {
             IconButton(onClick = navIconOnClick, content = { Icon(navIcon, navIconDescription) })
         },
-        title = { Text(title,
-            // Commented for now because the MDC and androidx toolbars don't set this either
-            // https://github.com/material-components/material-components-android/issues/4073
-            // https://github.com/androidx/androidx/blob/androidx-main/appcompat/appcompat/src/main/res/layout/abc_action_bar_title_item.xml
-            // modifier = Modifier.semantics { heading() }
-        ) },
+        title = {
+            if (subTitle == null) {
+                Text(
+                    title,
+                    // Commented for now because the MDC and androidx toolbars don't set this either
+                    // https://github.com/material-components/material-components-android/issues/4073
+                    // https://github.com/androidx/androidx/blob/androidx-main/appcompat/appcompat/src/main/res/layout/abc_action_bar_title_item.xml
+                    // modifier = Modifier.semantics { heading() }
+                )
+            } else {
+                Column {
+                    Text(title)
+                    Text(subTitle, style = MaterialTheme.typography.titleMedium)
+                }
+            }
+        },
         actions = actions
     )
 }
