@@ -150,6 +150,11 @@ public class CompositeReceiveFileJob extends BackgroundJob<Device, Void> {
 
                     currentNetworkPacket.getPayload().close();
 
+                    try {
+                        outputStream.close();
+                    } catch (IOException ignored) {}
+                    outputStream = null;
+
                     if ( received != currentNetworkPacket.getPayloadSize()) {
                         fileDocument.delete();
 
