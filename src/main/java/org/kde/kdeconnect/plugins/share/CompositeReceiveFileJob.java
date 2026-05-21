@@ -257,27 +257,17 @@ public class CompositeReceiveFileJob extends BackgroundJob<Device, Void> {
     private DocumentFile getDocumentFileFor(final String filename, final boolean open) throws RuntimeException {
         final DocumentFile destinationFolderDocument;
 
-        String filenameToUse = filename;
-
-        //We need to check for already existing files only when storing in the default path.
-        //User-defined paths use the new Storage Access Framework that already handles this.
-        //If the file should be opened immediately store it in the standard location to avoid the FileProvider trouble (See ReceiveNotification::setURI)
+        // If the file should be opened immediately store it in the standard location to avoid the FileProvider trouble (See ReceiveNotification::setURI)
         if (open || !ShareSettingsFragment.isCustomDestinationEnabled(getDevice().getContext())) {
             final String defaultPath = ShareSettingsFragment.getDefaultDestinationDirectory().getAbsolutePath();
-            filenameToUse = FilesHelper.findValidNonExistingFileNameForFile(defaultPath, filenameToUse);
             destinationFolderDocument = DocumentFile.fromFile(new File(defaultPath));
         } else {
             destinationFolderDocument = ShareSettingsFragment.getDestinationDirectory(getDevice().getContext());
         }
 
-        String displayName = FilenameUtils.getBaseName(filenameToUse);
-        String mimeType = FilesHelper.getMimeTypeFromFile(filenameToUse);
+        String filenameToUse = FilesHelper.findValidNonExistingFileName(destinationFolderDocument, filename);
 
-        if ("*/*".equals(mimeType)) {
-            displayName = filenameToUse;
-        }
-
-        DocumentFile fileDocument = destinationFolderDocument.createFile(mimeType, displayName);
+        DocumentFile fileDocument = destinationFolderDocument.createFile("*/*", filenameToUse);
 
         if (fileDocument == null) {
             throw new RuntimeException(getDevice().getContext().getString(R.string.cannot_create_file, filenameToUse));

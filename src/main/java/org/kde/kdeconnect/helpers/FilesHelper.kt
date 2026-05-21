@@ -14,6 +14,7 @@ import android.provider.OpenableColumns
 import android.util.Log
 import android.webkit.MimeTypeMap
 import androidx.annotation.WorkerThread
+import androidx.documentfile.provider.DocumentFile
 import org.apache.commons.io.FilenameUtils
 import org.kde.kdeconnect.NetworkPacket
 import java.io.File
@@ -29,12 +30,13 @@ object FilesHelper {
     }
 
     @JvmStatic
-    fun findValidNonExistingFileNameForFile(path: String, filename: String): String {
+    fun findValidNonExistingFileName(folder: DocumentFile, filename: String): String {
         var filename = filename.trimEnd('.')
         if (filename.isEmpty()) {
             filename = "bad_name_file"
         }
-        var validFilename : String
+        val existingNames = folder.listFiles().mapNotNull { it.name }.toHashSet()
+        var validFilename: String
         val baseName = File(filename).nameWithoutExtension
         val ext = File(filename).extension
         var num = 0
@@ -46,8 +48,8 @@ object FilesHelper {
             } else {
                 buildValidFatFilename("$baseName$suffix.$ext")
             }
-            num++;
-        } while (File(path, validFilename).exists())
+            num++
+        } while (validFilename in existingNames)
 
         return validFilename
     }
