@@ -227,6 +227,30 @@ androidComponents {
             FixCollectionsClassVisitorFactory::class.java,
             InstrumentationScope.ALL
         ) { }
+
+        // When the "Generate Signed APK/Bundle" wizard is used, copy the source map to the output directory
+        val variantName = variant.name
+        val capitalized = variantName.replaceFirstChar { it.uppercase() }
+        // The 'android.injected.apk.location' property is only set when using the wizard
+        val apkLocation = providers.gradleProperty("android.injected.apk.location")
+        // Plain task with doLast (no declared outputs) so we don't clash with AGP tasks that also write into the
+        // destination folder (e.g. createReleaseApkListingFileRedirect writing output-metadata.json).
+        val mappingFile = layout.buildDirectory.file("outputs/mapping/$variantName/mapping.txt")
+        val nativeSymbolsFile = layout.buildDirectory.file("outputs/native-debug-symbols/$variantName/native-debug-symbols.zip")
+        val destDir = apkLocation.map { File(it, variantName) }
+        val copyExtras = tasks.register("copySigningExtraOutputs$capitalized") {
+            description = "Copies R8 mapping.txt and native-debug-symbols.zip next to the signed $variantName APK/bundle."
+            onlyIf { apkLocation.isPresent }
+            doLast {
+                val dest = destDir.get().apply { mkdirs() }
+                val mapping = mappingFile.get().asFile
+                if (mapping.exists()) mapping.copyTo(File(dest, "mapping.txt"), overwrite = true)
+                val symbols = nativeSymbolsFile.get().asFile
+                if (symbols.exists()) symbols.copyTo(File(dest, "native-debug-symbols.zip"), overwrite = true)
+            }
+        }
+        tasks.matching { it.name == "assemble$capitalized" || it.name == "bundle$capitalized" }
+            .configureEach { finalizedBy(copyExtras) }
     }
 }
 
