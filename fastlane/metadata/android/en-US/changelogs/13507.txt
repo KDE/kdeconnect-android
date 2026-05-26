@@ -1,0 +1,10 @@
+1.35.7:
+- Fixed crashes
+
+1.35.6:
+- Better support conversation notifications
+- Support sharing the mouse across systems by moving it past the border of the screen
+- Fix logic to decide when to show "Send Clipboard"
+- Fix receiving files with names ending in dot
+- Allow connections from localhost
+- Wait 50ms before syncing notifications so filter apps have time to filter them
