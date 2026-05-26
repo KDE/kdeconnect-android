@@ -459,23 +459,20 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     }
 
     private JSONArray extractConversation(NotificationCompat.MessagingStyle messagingStyle) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N)
+        if (messagingStyle == null || Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
             return new JSONArray();
+        }
 
         List<NotificationCompat.MessagingStyle.Message> messages = messagingStyle.getMessages();
 
         JSONArray conversation = new JSONArray();
-
         for (NotificationCompat.MessagingStyle.Message message : messages) {
-
             Person sender = message.getPerson();
-
             JSONObject m = new JSONObject();
-
             try {
                 m.put("sender", sender.getName().toString());
                 m.put("content", message.getText().toString());
-            } catch (JSONException e) {
+            } catch (JSONException | NullPointerException e) {
                 return new JSONArray();
             }
             conversation.put(m);
