@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <share-target android:targetClass="org.kde.kdeconnect.plugins.share.ShareActivity">
+        <data android:mimeType="*/*" />
+        <category android:name="org.kde.kdeconnect.category.SHARE_TARGET" />
+    </share-target>
+    <shortcut
+        android:shortcutId="quit"
+        android:enabled="true"
+        android:icon="@drawable/ic_quit_shortcut"
+        android:shortcutShortLabel="@string/quit_app_shortcut">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="org.kde.kdeconnect_tp.debug"
+            android:targetClass="org.kde.kdeconnect.QuitActivity" />
+    </shortcut>
+</shortcuts>

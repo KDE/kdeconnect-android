@@ -2,4 +2,5 @@
 
 <resources>
     <string name="kde_connect">Debug KDE Connect</string>
+    <string name="quit_app_shortcut">Quit</string>
 </resources>
