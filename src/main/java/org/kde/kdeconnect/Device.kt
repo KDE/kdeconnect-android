@@ -14,6 +14,7 @@ import android.graphics.drawable.Drawable
 import android.os.Build
 import android.util.Log
 import androidx.annotation.AnyThread
+import androidx.annotation.DrawableRes
 import androidx.annotation.VisibleForTesting
 import androidx.annotation.WorkerThread
 import androidx.core.app.NotificationCompat
@@ -143,6 +144,10 @@ class Device : PacketReceiver {
 
     val icon: Drawable
         get() = deviceInfo.type.getIcon(context)
+
+    val iconDrawable: Int
+        @DrawableRes
+        get() = deviceInfo.type.toDrawableId()
 
     val deviceType: DeviceType
         get() = deviceInfo.type

@@ -15,16 +15,18 @@ import android.view.MenuItem
 import android.webkit.URLUtil
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.preference.PreferenceManager
 import org.kde.kdeconnect.BackgroundService
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect.base.BaseActivity
-import org.kde.kdeconnect.helpers.WindowHelper
-import org.kde.kdeconnect.ui.list.DeviceItem
-import org.kde.kdeconnect.ui.list.ListAdapter
-import org.kde.kdeconnect.ui.list.SectionItem
-import org.kde.kdeconnect.ui.list.UnreachableDeviceItem
+import org.kde.kdeconnect.ui.compose.KdeTheme
+import org.kde.kdeconnect.ui.compose.extensions.device.toUiModel
+import org.kde.kdeconnect.ui.compose.model.device.DeviceUiModel
+import org.kde.kdeconnect.ui.compose.screen.share.ShareScreen
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.ActivityShareBinding
 
@@ -35,6 +37,10 @@ class ShareActivity : BaseActivity<ActivityShareBinding>() {
     override val binding: ActivityShareBinding by lazy { ActivityShareBinding.inflate(layoutInflater) }
 
     override val isScrollable: Boolean = true
+
+    private var isRefreshing by mutableStateOf(value = false)
+    private var uiDevices by mutableStateOf<List<DeviceUiModel>>(value = emptyList())
+    private var intentHasUrl by mutableStateOf(value = false)
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater = menuInflater
@@ -52,74 +58,27 @@ class ShareActivity : BaseActivity<ActivityShareBinding>() {
     }
 
     private fun refreshDevicesAction() {
+        isRefreshing = true
+
         BackgroundService.ForceRefreshConnections(context = this)
 
-        binding.devicesListLayout.refreshListLayout.isRefreshing = true
-        binding.devicesListLayout.refreshListLayout.postDelayed({
-            binding.devicesListLayout.refreshListLayout.isRefreshing = false
+        binding.devicesListLayout.composeView.postDelayed({
+            isRefreshing = false
         }, 1500)
     }
 
     private fun updateDeviceList() {
         val intent = intent
-
         val action = intent.action
         if (Intent.ACTION_SEND != action && Intent.ACTION_SEND_MULTIPLE != action) {
             finish()
             return
         }
-
         val devices = KdeConnect.getInstance().devices.values
-        val devicesList = mutableListOf<Device>()
-        val items = mutableListOf<ListAdapter.Item>()
-
-        val intentHasUrl = doesIntentContainUrl(intent)
-
-        var sectionString = getString(R.string.share_to)
-        if (intentHasUrl) {
-            sectionString =
-                getString(R.string.unreachable_device_url_share_text) + getString(R.string.share_to)
-        }
-        val section = SectionItem(title = sectionString)
-        items.add(section)
-
-        for (device in devices) {
-            // Show the paired devices only if they are unreachable and the shared intent has a URL
-            if (device.isPaired && (intentHasUrl || device.isReachable)) {
-                devicesList.add(device)
-                if (!device.isReachable) {
-                    items.add(
-                        UnreachableDeviceItem(device = device) {
-                            deviceClicked(
-                                device = device,
-                                intentHasUrl = intentHasUrl,
-                                intent = intent
-                            )
-                        }
-                    )
-                } else {
-                    items.add(
-                        DeviceItem(device = device) {
-                            deviceClicked(
-                                device = device,
-                                intentHasUrl = intentHasUrl,
-                                intent = intent
-                            )
-                        }
-                    )
-                }
-                section.isEmpty = false
-            }
-        }
-
-        binding.devicesListLayout.devicesList.adapter = ListAdapter(
-            context = this,
-            items
-        )
-
-        // Configure focus order for Accessibility, for touchpads, and for TV remotes
-        // (allow focus of items in the device list)
-        binding.devicesListLayout.devicesList.itemsCanFocus = true
+        this.intentHasUrl = doesIntentContainUrl(intent)
+        this.uiDevices = devices
+            .filter { device -> device.isPaired && (intentHasUrl || device.isReachable) }
+            .map { it.toUiModel() }
     }
 
     private fun deviceClicked(
@@ -182,9 +141,25 @@ class ShareActivity : BaseActivity<ActivityShareBinding>() {
                 ActionBar.DISPLAY_SHOW_HOME or ActionBar.DISPLAY_SHOW_TITLE or ActionBar.DISPLAY_SHOW_CUSTOM
         }
 
-        binding.devicesListLayout.refreshListLayout.setOnRefreshListener { refreshDevicesAction() }
-
-        WindowHelper.setupBottomPadding(binding.devicesListLayout.devicesList)
+        binding.devicesListLayout.composeView.setContent {
+            KdeTheme(this) {
+                ShareScreen(
+                    devices = uiDevices,
+                    intentHasUrl = intentHasUrl,
+                    isRefreshing = isRefreshing,
+                    onDeviceClick = { deviceId ->
+                        val device = KdeConnect.getInstance().getDevice(id = deviceId)
+                            ?: return@ShareScreen
+                        deviceClicked(
+                            device = device,
+                            intentHasUrl = intentHasUrl,
+                            intent = intent
+                        )
+                    },
+                    onRefresh = { refreshDevicesAction() }
+                )
+            }
+        }
     }
 
     override fun onStart() {

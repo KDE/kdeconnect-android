@@ -20,8 +20,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -33,18 +35,22 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import org.kde.kdeconnect.ui.compose.components.KdeCard
+import org.kde.kdeconnect.extensions.safeDrawingBottomPadding
 import org.kde.kdeconnect.ui.compose.KdeTheme
+import org.kde.kdeconnect.ui.compose.components.KdeCard
 import org.kde.kdeconnect.ui.compose.components.KdeThemePreviews
-import org.kde.kdeconnect.ui.compose.model.device.DeviceUiModel
 import org.kde.kdeconnect.ui.compose.components.SectionHeader
+import org.kde.kdeconnect.ui.compose.model.device.DeviceUiModel
 import org.kde.kdeconnect_tp.R
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ShareScreen(
     devices: List<DeviceUiModel>,
     intentHasUrl: Boolean,
-    onDeviceClick: (String) -> Unit
+    isRefreshing: Boolean,
+    onDeviceClick: (String) -> Unit,
+    onRefresh: () -> Unit
 ) {
     val state = rememberLazyListState()
     val sectionTitle = if (intentHasUrl) {
@@ -55,43 +61,53 @@ fun ShareScreen(
 
     ShareScreenContent(
         state = state,
+        isRefreshing = isRefreshing,
         sectionTitle = sectionTitle,
         devices = devices,
-        onDeviceClick = onDeviceClick
+        onDeviceClick = onDeviceClick,
+        onRefresh = onRefresh
     )
 }
 
 @Composable
 private fun ShareScreenContent(
     state: LazyListState,
+    isRefreshing: Boolean,
     sectionTitle: String,
     devices: List<DeviceUiModel>,
-    onDeviceClick: (String) -> Unit
+    onDeviceClick: (String) -> Unit,
+    onRefresh: () -> Unit
 ) {
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(
-                top = 4.dp,
-                start = 8.dp,
-                end = 8.dp
-            ),
-        state = state
+    PullToRefreshBox(
+        isRefreshing = isRefreshing,
+        onRefresh = onRefresh,
     ) {
-        item {
-            SectionHeader(title = sectionTitle)
-        }
-        items(
-            items = devices,
-            key = { device -> device.id }
-        ) { device ->
-            KdeCard(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 8.dp),
-                content = { ShareScreenCardContent(device = device) },
-                onClick = { onDeviceClick(device.id) }
-            )
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(
+                    top = 4.dp,
+                    start = 8.dp,
+                    end = 8.dp
+                ),
+            contentPadding = safeDrawingBottomPadding(),
+            state = state
+        ) {
+            item {
+                SectionHeader(title = sectionTitle)
+            }
+            items(
+                items = devices,
+                key = { device -> device.id }
+            ) { device ->
+                KdeCard(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 8.dp),
+                    content = { ShareScreenCardContent(device = device) },
+                    onClick = { onDeviceClick(device.id) }
+                )
+            }
         }
     }
 }
@@ -145,6 +161,7 @@ private fun ShareScreenPreview() {
     KdeTheme(context = LocalContext.current) {
         ShareScreenContent(
             state = rememberLazyListState(),
+            isRefreshing = false,
             sectionTitle = stringResource(id = R.string.share_to),
             devices = listOf(
                 DeviceUiModel(
@@ -164,7 +181,8 @@ private fun ShareScreenPreview() {
                     isPaired = true,
                 )
             ),
-            onDeviceClick = { /* Do nothing */ }
+            onDeviceClick = { /* Do nothing */ },
+            onRefresh = { /* Do nothing */ }
         )
     }
 }
