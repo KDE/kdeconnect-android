@@ -63,7 +63,7 @@ open class PluginSettingsFragment : PreferenceFragmentCompat() {
     }
 
     val deviceId: String?
-        get() = (requireActivity() as PluginSettingsActivity).getSettingsDeviceId()
+        get() = PluginSettingsActivity.settingsDeviceId
 
     companion object {
         private const val ARG_PLUGIN_KEY = "plugin_key"
