@@ -11,6 +11,7 @@ import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.wifi.WifiManager
 import android.util.Log
+import androidx.preference.PreferenceManager
 
 class KdeConnectBroadcastReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
@@ -26,6 +27,15 @@ class KdeConnectBroadcastReceiver : BroadcastReceiver() {
 
             Intent.ACTION_BOOT_COMPLETED -> {
                 Log.i("KdeConnect", "KdeConnectBroadcastReceiver")
+
+                val prefs = PreferenceManager.getDefaultSharedPreferences(context)
+                val autoStart = prefs.getBoolean("auto_start_on_boot", true)
+
+                if (!autoStart) {
+                    Log.i("KdeConnect", "Auto start on boot disabled.")
+                    return
+                }
+
                 try {
                     BackgroundService.Start(context)
                 } catch (e: IllegalStateException) { // To catch ForegroundServiceStartNotAllowedException
