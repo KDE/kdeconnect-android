@@ -21,7 +21,7 @@ import androidx.core.content.edit
 /**
  * DeviceInfo contains all the properties needed to instantiate a Device.
  */
-class DeviceInfo(
+data class DeviceInfo(
     @JvmField val id: String,
     @JvmField val certificate: Certificate,
     @JvmField var name: String,
