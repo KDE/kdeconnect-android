@@ -68,8 +68,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
             devicesByIpPref(context),
             bluetoothSupportPref(context),
             exportLogsPref(context),
-            moreSettingsPref(context),
             autoStartOnBootPref(context),
+            moreSettingsPref(context),
         ).forEach(screen::addPreference)
 
         preferenceScreen = screen
