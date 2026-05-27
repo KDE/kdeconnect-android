@@ -206,10 +206,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     }
 
     private void sendNotificationWithDelay(StatusBarNotification statusBarNotification) {
-        final int delayMs = NOTIFICATION_SYNC_DELAY_MS;
         final String key = getNotificationKeyCompat(statusBarNotification);
-        final boolean sendImmediately;
-
         synchronized (postedNotificationsLock) {
             cancelDelayedNotification(key);
 
@@ -217,27 +214,18 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                 return;
             }
 
-            if (delayMs <= 0) {
-                sendImmediately = true;
-            } else {
-                sendImmediately = false;
-                Message delayedNotification = Message.obtain(mainHandler, () -> {
-                    synchronized (postedNotificationsLock) {
-                        if (!postedNotifications.contains(key)) {
-                            return;
-                        }
+            Message delayedNotification = Message.obtain(mainHandler, () -> {
+                synchronized (postedNotificationsLock) {
+                    if (!postedNotifications.contains(key)) {
+                        return;
                     }
+                }
 
-                    sendNotification(statusBarNotification, false);
-                });
-                delayedNotification.obj = key;
+                sendNotification(statusBarNotification, false);
+            });
+            delayedNotification.obj = key;
 
-                mainHandler.sendMessageDelayed(delayedNotification, delayMs);
-            }
-        }
-
-        if (sendImmediately) {
-            sendNotification(statusBarNotification, false);
+            mainHandler.sendMessageDelayed(delayedNotification, NOTIFICATION_SYNC_DELAY_MS);
         }
     }
 
