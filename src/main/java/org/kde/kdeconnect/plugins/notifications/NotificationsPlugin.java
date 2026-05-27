@@ -314,7 +314,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         NotificationCompat.MessagingStyle messagingStyle = NotificationCompat.MessagingStyle.extractMessagingStyleFromNotification(notification);
 
         boolean isConversation = messagingStyle != null;
-        boolean isGroupConversation = isConversation && messagingStyle.isGroupConversation();
+        boolean isGroupConversation = isConversation && messagingStyle.isGroupConversation() && messagingStyle.getConversationTitle() != null;
 
         np.set("actions", extractActions(notification, key));
 
