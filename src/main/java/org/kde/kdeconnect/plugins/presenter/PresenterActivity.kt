@@ -25,6 +25,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowForward
@@ -55,7 +56,6 @@ import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect.ui.compose.KdeButton
 import org.kde.kdeconnect.ui.compose.KdeTheme
 import org.kde.kdeconnect.ui.compose.KdeTopAppBar
-import org.kde.kdeconnect.extensions.safeDrawPadding
 import org.kde.kdeconnect_tp.R
 
 private const val VOLUME_UP = 1
@@ -175,7 +175,7 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener, OnSharedPref
 
         KdeTheme(this) {
             Scaffold(
-                modifier = Modifier.safeDrawPadding(),
+                modifier = Modifier.safeDrawingPadding(),
                 topBar = { PresenterAppBar() }
             ) {
                 Column(

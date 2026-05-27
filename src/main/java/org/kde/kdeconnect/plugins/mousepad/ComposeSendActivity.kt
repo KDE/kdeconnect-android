@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Send
 import androidx.compose.material3.Scaffold
@@ -28,7 +29,6 @@ import org.kde.kdeconnect.ui.compose.KdeTextButton
 import org.kde.kdeconnect.ui.compose.KdeTextField
 import org.kde.kdeconnect.ui.compose.KdeTheme
 import org.kde.kdeconnect.ui.compose.KdeTopAppBar
-import org.kde.kdeconnect.extensions.safeDrawPadding
 import org.kde.kdeconnect_tp.R
 import androidx.core.content.edit
 
@@ -76,7 +76,7 @@ class ComposeSendActivity : AppCompatActivity() {
     private fun ComposeSendScreen() {
         KdeTheme(this) {
             Scaffold(
-                modifier = Modifier.safeDrawPadding(),
+                modifier = Modifier.safeDrawingPadding(),
                 topBar = {
                     KdeTopAppBar(
                         title = stringResource(R.string.compose_send_title),

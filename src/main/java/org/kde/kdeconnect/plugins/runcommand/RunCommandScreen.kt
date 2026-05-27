@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.AlertDialog
@@ -49,7 +50,6 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.kde.kdeconnect.Device
-import org.kde.kdeconnect.extensions.safeDrawPadding
 import org.kde.kdeconnect.ui.compose.KdeTheme
 import org.kde.kdeconnect.ui.compose.KdeTopAppBar
 import org.kde.kdeconnect_tp.R
@@ -83,7 +83,7 @@ fun RunCommandScreen(
 
     KdeTheme(context) {
         Scaffold(
-            modifier = Modifier.safeDrawPadding(),
+            modifier = Modifier.safeDrawingPadding(),
             topBar = { RunCommandAppBar(device.name, onBackPressedDispatcher) },
             floatingActionButton = {
                 if (plugin.canAddCommand()) {
