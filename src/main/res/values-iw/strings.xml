@@ -121,6 +121,7 @@
   <string name="pair_new_device">צימוד מכשיר חדש</string>
   <string name="cancel_pairing">ביטול צימוד</string>
   <string name="unknown_device">מכשיר לא ידוע</string>
+  <string name="unknown_sender">מוען לא ידוע</string>
   <string name="error_not_reachable">המכשיר לא זמין</string>
   <string name="error_already_paired">המכשיר כבר מצומד</string>
   <string name="error_timed_out">נגמר הזמן</string>

@@ -121,6 +121,7 @@
   <string name="pair_new_device">Yeni bir aygıt eşleştir</string>
   <string name="cancel_pairing">Eşleşmeyi İptal Et</string>
   <string name="unknown_device">Bİlinmeyen aygıt</string>
+  <string name="unknown_sender">Bİlinmeyen gönderici</string>
   <string name="error_not_reachable">Aygıt ulaşılabilir değil</string>
   <string name="error_already_paired">Aygıt zaten eşleşmiş</string>
   <string name="error_timed_out">Zaman aşımı</string>
