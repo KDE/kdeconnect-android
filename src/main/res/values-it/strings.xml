@@ -121,6 +121,7 @@
   <string name="pair_new_device">Associa nuovo dispositivo</string>
   <string name="cancel_pairing">Annulla l\'associazione</string>
   <string name="unknown_device">Dispositivo sconosciuto</string>
+  <string name="unknown_sender">Mittente sconosciuto</string>
   <string name="error_not_reachable">Dispositivo fuori portata</string>
   <string name="error_already_paired">Dispositivo già associato</string>
   <string name="error_timed_out">Richiesta scaduta</string>

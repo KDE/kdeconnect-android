@@ -121,6 +121,7 @@
   <string name="pair_new_device">配对新设备</string>
   <string name="cancel_pairing">取消配对</string>
   <string name="unknown_device">未知设备</string>
+  <string name="unknown_sender">未知发送者</string>
   <string name="error_not_reachable">设备不可及</string>
   <string name="error_already_paired">设备已配对</string>
   <string name="error_timed_out">超时</string>
