@@ -121,6 +121,7 @@
   <string name="pair_new_device">Associer un nouveau périphérique</string>
   <string name="cancel_pairing">Annuler la demande d\'association</string>
   <string name="unknown_device">Périphérique inconnu</string>
+  <string name="unknown_sender">Émetteur inconnu</string>
   <string name="error_not_reachable">Périphérique inaccessible</string>
   <string name="error_already_paired">Périphérique déjà associé</string>
   <string name="error_timed_out">Délai expiré</string>
