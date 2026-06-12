@@ -276,7 +276,8 @@ private fun PairingScreenCardContent(device: DeviceUiModel) {
         modifier = Modifier
             .wrapContentSize()
             .defaultMinSize(minHeight = 48.dp)
-            .padding(all = 32.dp)
+            .padding(all = 32.dp),
+        verticalAlignment = Alignment.CenterVertically
     ) {
         if (device.icon > 0) {
             Image(
