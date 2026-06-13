@@ -146,7 +146,9 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
             postedNotifications.add(key)
         }
 
-        if (sharedPreferences.getBoolean(PREF_NOTIFICATION_SCREEN_OFF, false) || !keyguardManager.isKeyguardLocked) {
+        val sendOnlyIfLocked = sharedPreferences.getBoolean(PREF_NOTIFICATION_SCREEN_OFF, false)
+        val isLocked = keyguardManager.isKeyguardLocked
+        if (!sendOnlyIfLocked || isLocked) {
             sendNotificationWithDelay(statusBarNotification)
         }
     }
