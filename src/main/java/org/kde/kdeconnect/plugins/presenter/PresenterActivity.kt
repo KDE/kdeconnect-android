@@ -9,6 +9,7 @@ package org.kde.kdeconnect.plugins.presenter
 import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import android.hardware.Sensor
+import android.view.WindowManager
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
@@ -88,6 +89,7 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener, OnSharedPref
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
         prefs = PreferenceManager.getDefaultSharedPreferences(this)
         prefs!!.registerOnSharedPreferenceChangeListener(this)
