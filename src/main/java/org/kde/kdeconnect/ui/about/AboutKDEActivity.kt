@@ -7,51 +7,61 @@
 package org.kde.kdeconnect.ui.about
 
 import android.os.Bundle
-import android.text.Html
-import android.text.Spanned
-import android.text.method.LinkMovementMethod
-import org.kde.kdeconnect.base.BaseActivity
-import org.kde.kdeconnect.extensions.setupBottomPadding
-import org.kde.kdeconnect.extensions.viewBinding
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import org.kde.kdeconnect.ui.compose.KdeTheme
+import org.kde.kdeconnect.ui.compose.screen.aboutkde.AboutKDEScreen
 import org.kde.kdeconnect_tp.R
-import org.kde.kdeconnect_tp.databinding.ActivityAboutKdeBinding
 
-class AboutKDEActivity : BaseActivity<ActivityAboutKdeBinding>() {
-
-    override val binding: ActivityAboutKdeBinding by viewBinding(ActivityAboutKdeBinding::inflate)
-
-    override val isScrollable: Boolean = true
+class AboutKDEActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setSupportActionBar(binding.toolbarLayout.toolbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        supportActionBar!!.setDisplayShowHomeEnabled(true)
+        enableEdgeToEdge()
 
-        binding.aboutTextView.text = fromHtml(resources.getString(R.string.about_kde_about))
-        binding.reportBugsOrWishesTextView.text = fromHtml(resources.getString(R.string.about_kde_report_bugs_or_wishes))
-        binding.joinKdeTextView.text = fromHtml(resources.getString(R.string.about_kde_join_kde))
-        binding.supportKdeTextView.text = fromHtml(resources.getString(R.string.about_kde_support_kde))
-
-        binding.aboutTextView.movementMethod = LinkMovementMethod.getInstance()
-        binding.reportBugsOrWishesTextView.movementMethod = LinkMovementMethod.getInstance()
-        binding.joinKdeTextView.movementMethod = LinkMovementMethod.getInstance()
-        binding.supportKdeTextView.movementMethod = LinkMovementMethod.getInstance()
-
-        binding.scrollView.setupBottomPadding()
-    }
-
-    private fun fromHtml(html: String): Spanned {
-        return if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY)
-        } else {
-            @Suppress("DEPRECATION") Html.fromHtml(html)
+        setContent {
+            KdeTheme(this) {
+                Scaffold(
+                    topBar = {
+                        AboutKDETopBar(
+                            onNavigateBack = { onBackPressedDispatcher.onBackPressed() }
+                        )
+                    }
+                ) { padding ->
+                    AboutKDEScreen(
+                        contentPadding = padding
+                    )
+                }
+            }
         }
     }
+}
 
-    override fun onSupportNavigateUp(): Boolean {
-        super.onBackPressed()
-        return true
-    }
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun AboutKDETopBar(
+    onNavigateBack: () -> Unit
+) {
+    TopAppBar(
+        title = { Text(stringResource(R.string.about_kde)) },
+        navigationIcon = {
+            IconButton(onClick = onNavigateBack) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_arrow_back_black_24dp),
+                    contentDescription = "Back"
+                )
+            }
+        }
+    )
 }
