@@ -246,7 +246,7 @@
   <string name="sftp_saf_permission_explanation">Dosyalara uzaktan erişmek için depolama konumlarını yapılandırmanız gerekir</string>
   <string name="sftp_manage_storage_permission_explanation">Bu aygıttaki dosyalara uzak erişime izin vermek için KDE Bağlan’a depolamayı yönetmesi için izin vermeniz gerekiyor.</string>
   <string name="sftp_missing_permission_error">Eksik izinler: Dosya sistemi erişimi</string>
-  <string name="no_players_connected">Onatıcı bulunamadı</string>
+  <string name="no_players_connected">Bulunan oynatıcı yok</string>
   <string name="send_files">Dosyaları gönder</string>
   <string name="use_digitizer">Çizim tableti olarak kullan</string>
   <string name="digitizer_draw_button">Parmakla çizim yap</string>
