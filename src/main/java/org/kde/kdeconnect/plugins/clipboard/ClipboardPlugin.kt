@@ -88,7 +88,7 @@ class ClipboardPlugin : Plugin() {
     override val outgoingPacketTypes: Array<String> = arrayOf(PACKET_TYPE_CLIPBOARD, PACKET_TYPE_CLIPBOARD_CONNECT)
 
     override fun getUiButtons(): List<PluginUiButton> {
-        return if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P && canAccessLogs()) {
+        return if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
             listOf(PluginUiButton(context.getString(R.string.send_clipboard), R.drawable.ic_baseline_content_paste_24) { _: Activity? ->
                 userInitiatedSendClipboard()
             })
