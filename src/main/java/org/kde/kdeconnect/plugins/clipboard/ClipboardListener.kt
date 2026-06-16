@@ -43,7 +43,7 @@ class ClipboardListener {
             cm = ContextCompat.getSystemService<ClipboardManager>(context, ClipboardManager::class.java)!!
             cm.addPrimaryClipChangedListener { this.onClipboardChanged() }
         }
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P && ContextCompat.checkSelfPermission(context, Manifest.permission.READ_LOGS) == PackageManager.PERMISSION_GRANTED) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && ClipboardPlugin.canSyncAutomatically(context)) {
             execute {
                 try {
                     val timeStamp = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.US).format(Date())
