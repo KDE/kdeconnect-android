@@ -391,15 +391,15 @@ public class LanLinkProvider extends BaseLinkProvider {
             udpServer = new DatagramSocket(null);
             udpServer.setReuseAddress(true);
             udpServer.setBroadcast(true);
-        } catch (SocketException e) {
-            Log.e("LanLinkProvider", "Error creating udp server", e);
-            throw new RuntimeException(e);
-        }
-        try {
             udpServer.bind(new InetSocketAddress(UDP_PORT));
         } catch (SocketException e) {
             // We ignore this exception and continue without being able to receive broadcasts instead of crashing the app.
             Log.e("LanLinkProvider", "Error binding udp server. We can send udp broadcasts but not receive them", e);
+            if (udpServer != null) {
+                try { udpServer.close(); } catch (Exception ignored) {}
+                udpServer = null;
+            }
+            return;
         }
         ThreadHelper.execute(() -> {
             Log.i("UdpListener", "Starting UDP listener");
@@ -575,6 +575,10 @@ public class LanLinkProvider extends BaseLinkProvider {
             return;
         }
         lastBroadcast = System.currentTimeMillis();
+
+        if (udpServer == null) {
+            setupUdpListener();
+        }
 
         broadcastUdpIdentityPacket(network);
         synchronized (mdnsDiscovery) {
