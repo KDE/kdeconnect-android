@@ -15,10 +15,10 @@ import org.kde.kdeconnect.plugins.PluginFactory
 import org.kde.kdeconnect_tp.R
 
 open class PluginSettingsFragment : PreferenceFragmentCompat() {
-    private var pluginKey: String? = null
-    private var layouts: IntArray? = null
+    private lateinit var pluginKey: String
+    private lateinit var layouts: IntArray
 
-    protected var device: Device? = null
+    protected lateinit var device: Device
 
     @JvmField
     protected var plugin: Plugin? = null
@@ -36,21 +36,28 @@ open class PluginSettingsFragment : PreferenceFragmentCompat() {
         if (!arguments.containsKey(ARG_PLUGIN_KEY)) {
             throw RuntimeException("You must provide a pluginKey by calling setArguments(@NonNull String pluginKey)")
         }
-        this.pluginKey = arguments.getString(ARG_PLUGIN_KEY)
-        this.layouts = arguments.getIntArray(ARG_LAYOUT)
-        this.device = getInstance().getDevice(this.deviceId)
-        this.plugin = device!!.getPluginIncludingWithoutPermissions(pluginKey!!)
+        val pluginKey = arguments.getString(ARG_PLUGIN_KEY)!!
+        this.pluginKey = pluginKey
+        this.layouts = arguments.getIntArray(ARG_LAYOUT)!!
+        val device = getInstance().getDevice(this.deviceId)
+        if (device == null) {
+            requireActivity().finish()
+            return
+        }
+        this.device = device
+        this.plugin = device.getPluginIncludingWithoutPermissions(pluginKey)
         super.onCreate(savedInstanceState)
     }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        if (this.plugin != null && this.plugin!!.supportsDeviceSpecificSettings()) {
-            val prefsManager = getPreferenceManager()
-            prefsManager.setSharedPreferencesName(this.plugin!!.sharedPreferencesName)
+        val plugin = plugin
+        if (plugin != null && plugin.supportsDeviceSpecificSettings()) {
+            val prefsManager = preferenceManager
+            prefsManager.setSharedPreferencesName(plugin.sharedPreferencesName)
             prefsManager.setSharedPreferencesMode(Context.MODE_PRIVATE)
         }
 
-        for (layout in this.layouts!!) {
+        for (layout in layouts) {
             addPreferencesFromResource(layout)
         }
     }
@@ -58,7 +65,7 @@ open class PluginSettingsFragment : PreferenceFragmentCompat() {
     override fun onResume() {
         super.onResume()
 
-        val info = PluginFactory.getPluginInfo(pluginKey!!)
+        val info = PluginFactory.getPluginInfo(pluginKey)
         requireActivity().title = getString(R.string.plugin_settings_with_name, info.displayName)
     }
 
