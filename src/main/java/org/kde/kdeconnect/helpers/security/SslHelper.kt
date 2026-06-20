@@ -187,9 +187,10 @@ object SslHelper {
     }
 
     @JvmStatic
+    @Throws(java.security.cert.CertificateException::class)
     fun convertToSslSocket(context: Context, socket: Socket, deviceId: String, isDeviceTrusted: Boolean, clientMode: Boolean): SSLSocket {
         val sslSocketFactory = getSslContextForDevice(context, deviceId, isDeviceTrusted).socketFactory
-        val sslSocket = sslSocketFactory.createSocket(socket, socket.getInetAddress().hostAddress, socket.getPort(), true) as SSLSocket
+        val sslSocket = sslSocketFactory.createSocket(socket, socket.inetAddress.hostAddress, socket.port, true) as SSLSocket
         configureSslSocket(sslSocket, isDeviceTrusted, clientMode)
         return sslSocket
     }
