@@ -25,16 +25,15 @@ import org.kde.kdeconnect.helpers.ThreadHelper;
 import org.kde.kdeconnect.NetworkPacket;
 
 import java.io.BufferedInputStream;
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.nio.channels.NotYetConnectedException;
+import java.security.cert.CertificateException;
 
 import javax.net.ssl.SSLHandshakeException;
 import javax.net.ssl.SSLSocket;
@@ -231,7 +230,7 @@ public class LanLink extends BaseLink {
             }
         } catch(SocketTimeoutException e) {
             Log.e("LanLink", "Socket for payload in packet " + np.getType() + " timed out. The other end didn't fetch the payload.");
-        } catch(SSLHandshakeException e) {
+        } catch(CertificateException | SSLHandshakeException e) {
             // The exception can be due to several causes. "Connection closed by peer" seems to be a common one.
             // If we could distinguish different cases we could react differently for some of them, but I haven't found how.
             Log.e("sendPacket","Payload SSLSocket failed");

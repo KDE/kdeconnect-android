@@ -121,6 +121,7 @@
   <string name="pair_new_device">Upari novo napravo</string>
   <string name="cancel_pairing">Prekliči uparjanje</string>
   <string name="unknown_device">Neznana naprava</string>
+  <string name="unknown_sender">Neznani pošiljatelj</string>
   <string name="error_not_reachable">Naprava ni dosegljiva</string>
   <string name="error_already_paired">Naprava je že uparjena</string>
   <string name="error_timed_out">Čas je potekel</string>
@@ -466,7 +467,7 @@
   <string name="enable_bluetooth">Omogoči bluetooth (beta)</string>
   <string name="receive_notifications_permission_explanation">Morate imeti dovoljenje za obvestila, če jih želite sprejemati iz drugih naprav</string>
   <string name="findmyphone_notifications_explanation">Potrebno je dovoljenje za obvestila, da lahko telefon zazvoni, ko je aplikacija v ozadju</string>
-  <string name="findmyphone_camera_explanation">Dovoljenje za kamero omogoča, da svetilka utripa, ko iščete telefon.</string>
+  <string name="findmyphone_camera_explanation">Dovoljenje za kamero omogoča, da svetilka utripa, ko iščete telefon</string>
   <string name="findmyphone_open_settings_for_camera">V nastavitvah aplikacije dovoli kameri uporabo svetilke</string>
   <string name="no_notifications">Obvestila so onemogočena, ne boste prejemali obvestil o dohodnih zahtevah za uparjanje.</string>
   <string name="mpris_keepwatching">Nadaljuj s predvajanjem</string>

@@ -95,7 +95,7 @@ class PluginPreference : SwitchPreference {
     }
 
     interface PluginPreferenceCallback {
-        fun onStartPluginSettingsFragment(plugin: Plugin?)
+        fun onStartPluginSettingsFragment(plugin: Plugin)
         fun onFinish()
     }
 }

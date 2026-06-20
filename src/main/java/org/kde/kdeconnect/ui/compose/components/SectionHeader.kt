@@ -26,7 +26,6 @@ fun SectionHeader(title: String) {
             start = 16.dp,
             end = 16.dp
         ),
-        onClick = { /* Do nothing */ }
     )
 }
 

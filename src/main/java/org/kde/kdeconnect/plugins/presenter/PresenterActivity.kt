@@ -9,6 +9,7 @@ package org.kde.kdeconnect.plugins.presenter
 import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import android.hardware.Sensor
+import android.view.WindowManager
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
@@ -25,6 +26,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowForward
@@ -55,7 +57,6 @@ import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect.ui.compose.KdeButton
 import org.kde.kdeconnect.ui.compose.KdeTheme
 import org.kde.kdeconnect.ui.compose.KdeTopAppBar
-import org.kde.kdeconnect.extensions.safeDrawPadding
 import org.kde.kdeconnect_tp.R
 
 private const val VOLUME_UP = 1
@@ -88,6 +89,7 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener, OnSharedPref
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
         prefs = PreferenceManager.getDefaultSharedPreferences(this)
         prefs!!.registerOnSharedPreferenceChangeListener(this)
@@ -175,7 +177,7 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener, OnSharedPref
 
         KdeTheme(this) {
             Scaffold(
-                modifier = Modifier.safeDrawPadding(),
+                modifier = Modifier.safeDrawingPadding(),
                 topBar = { PresenterAppBar() }
             ) {
                 Column(

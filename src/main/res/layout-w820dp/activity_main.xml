@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    >
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_drawer"
@@ -16,8 +16,7 @@
         android:id="@+id/coordinatorLayout"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        tools:context="org.kde.kdeconnect.ui.MainActivity"
-        android:fitsSystemWindows="true">
+        tools:context="org.kde.kdeconnect.ui.MainActivity">
 
         <include layout="@layout/toolbar" android:id="@+id/toolbar_layout" />
 

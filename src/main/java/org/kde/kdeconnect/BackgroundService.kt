@@ -35,6 +35,7 @@ import org.kde.kdeconnect.backends.bluetooth.BluetoothLinkProvider
 import org.kde.kdeconnect.backends.lan.LanLinkProvider
 import org.kde.kdeconnect.helpers.NotificationHelper
 import org.kde.kdeconnect.plugins.clipboard.ClipboardFloatingActivity
+import org.kde.kdeconnect.plugins.clipboard.ClipboardPlugin
 import org.kde.kdeconnect.plugins.runcommand.RunCommandActivity
 import org.kde.kdeconnect.plugins.runcommand.RunCommandPlugin
 import org.kde.kdeconnect.plugins.share.SendFileActivity
@@ -192,7 +193,7 @@ class BackgroundService : Service() {
             notification.setContentText(getString(R.string.foreground_notification_devices, connectedDevices.joinToString(", ")))
 
             // Adding an action button to send clipboard manually in Android 10 and later.
-            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P && ContextCompat.checkSelfPermission(this, Manifest.permission.READ_LOGS) == PackageManager.PERMISSION_DENIED) {
+            if (!ClipboardPlugin.canSyncAutomatically(this)) {
                 val sendClipboard = ClipboardFloatingActivity.getIntent(this, true)
                 val sendPendingClipboard = PendingIntent.getActivity(this, 3, sendClipboard, UPDATE_IMMUTABLE_FLAGS)
                 notification.addAction(0, getString(R.string.foreground_notification_send_clipboard), sendPendingClipboard)

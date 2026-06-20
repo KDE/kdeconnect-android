@@ -121,6 +121,7 @@
   <string name="pair_new_device">Nieuw apparaat paren</string>
   <string name="cancel_pairing">Paren annuleren</string>
   <string name="unknown_device">Onbekend apparaat</string>
+  <string name="unknown_sender">Onbekende verzender</string>
   <string name="error_not_reachable">Apparaat niet bereikbaar</string>
   <string name="error_already_paired">Apparaat is al gepaard</string>
   <string name="error_timed_out">Tijdslimiet overschreden</string>

@@ -20,14 +20,17 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.edit
 import androidx.core.view.GravityCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.get
 import androidx.core.view.size
+import androidx.core.view.updatePadding
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
@@ -40,6 +43,7 @@ import org.kde.kdeconnect.BackgroundService
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.helpers.DeviceHelper
 import org.kde.kdeconnect.KdeConnect
+import org.kde.kdeconnect.extensions.setOnApplyWindowInsetsListenerCompat
 import org.kde.kdeconnect.plugins.share.ShareSettingsFragment
 import org.kde.kdeconnect.ui.about.AboutFragment
 import org.kde.kdeconnect.ui.about.getApplicationAboutData
@@ -87,12 +91,23 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         DeviceHelper.initializeDeviceId(this)
 
         val root = binding.root
         setContentView(root)
         mDrawerLayout = root as? DrawerLayout
+
+        // Pad the drawer header directly: DrawerLayout's default child dispatch stops at
+        // AppBarLayout (which consumes the insets via its own fitsSystemWindows), so neither
+        // NavigationView nor its header ever receive a dispatch.
+        root.setOnApplyWindowInsetsListenerCompat { _, insets ->
+            mNavigationView.getHeaderView(0)?.updatePadding(
+                top = insets.getInsets(WindowInsetsCompat.Type.statusBars()).top
+            )
+            insets
+        }
 
         val mDrawerHeader = mNavigationView.getHeaderView(0)
         mNavViewDeviceName = mDrawerHeader.findViewById(R.id.device_name)

@@ -128,8 +128,8 @@ public class NotificationFilterActivity extends BaseActivity<ActivityNotificatio
         super.onCreate(savedInstanceState);
 
         appDatabase = AppDatabase.getInstance(NotificationFilterActivity.this);
-        if (getIntent()!= null){
-            prefKey = getIntent().getStringExtra(NotificationsPlugin.getPrefKey());
+        if (getIntent() != null){
+            prefKey = getIntent().getStringExtra(NotificationsPlugin.PREFERENCE_KEY);
         }
 
         setSupportActionBar(getBinding().toolbarLayout.toolbar);
@@ -229,10 +229,10 @@ public class NotificationFilterActivity extends BaseActivity<ActivityNotificatio
     private void configureSwitch(SharedPreferences sharedPreferences) {
         MaterialSwitch smScreenOffNotification = findViewById(R.id.smScreenOffNotification);
         smScreenOffNotification.setChecked(
-                sharedPreferences.getBoolean(getString(NotificationsPlugin.PREF_NOTIFICATION_SCREEN_OFF),false)
+                sharedPreferences.getBoolean(NotificationsPlugin.PREF_NOTIFICATION_SCREEN_OFF, false)
         );
         smScreenOffNotification.setOnCheckedChangeListener((buttonView, isChecked) ->
-                sharedPreferences.edit().putBoolean(getString(NotificationsPlugin.PREF_NOTIFICATION_SCREEN_OFF),isChecked).apply()
+                sharedPreferences.edit().putBoolean(NotificationsPlugin.PREF_NOTIFICATION_SCREEN_OFF, isChecked).apply()
         );
     }
 

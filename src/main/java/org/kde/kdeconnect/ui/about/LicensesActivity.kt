@@ -7,67 +7,98 @@
 package org.kde.kdeconnect.ui.about
 
 import android.os.Bundle
-import android.util.DisplayMetrics
-import android.view.Menu
-import android.view.MenuItem
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.LinearSmoothScroller
-import org.apache.commons.io.IOUtils
-import org.kde.kdeconnect.base.BaseActivity
-import org.kde.kdeconnect.extensions.setupBottomPadding
-import org.kde.kdeconnect.extensions.viewBinding
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.launch
+import org.kde.kdeconnect.ui.compose.KdeTheme
+import org.kde.kdeconnect.ui.compose.screen.licenses.LicensesEvent
+import org.kde.kdeconnect.ui.compose.screen.licenses.LicensesScreen
 import org.kde.kdeconnect_tp.R
-import org.kde.kdeconnect_tp.databinding.ActivityLicensesBinding
-import java.nio.charset.Charset
 
-class LicensesActivity : BaseActivity<ActivityLicensesBinding>() {
+class LicensesActivity : AppCompatActivity() {
 
-    override val binding: ActivityLicensesBinding by viewBinding(ActivityLicensesBinding::inflate)
-
-    override val isScrollable: Boolean = true
+    private val scrollEvents = MutableSharedFlow<LicensesEvent>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding.licensesText.setupBottomPadding()
-        setSupportActionBar(binding.toolbarLayout.toolbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        supportActionBar!!.setDisplayShowHomeEnabled(true)
+        enableEdgeToEdge()
 
-        binding.licensesText.layoutManager = LinearLayoutManager(this)
-        binding.licensesText.adapter = StringListAdapter(getLicenses().split("\n\n"))
-    }
-
-    private fun getLicenses(): String = resources.openRawResource(R.raw.license).use { inputStream -> IOUtils.toString(inputStream, Charset.defaultCharset()) }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_licenses, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    private fun smoothScrollToPosition(position: Int) {
-        val linearSmoothScroller: LinearSmoothScroller = object : LinearSmoothScroller(this) {
-            override fun calculateSpeedPerPixel(displayMetrics: DisplayMetrics): Float = 2.5F / displayMetrics.densityDpi
+        setContent {
+            KdeTheme(this) {
+                Scaffold(
+                    topBar = {
+                        LicensesTopBar(
+                            onNavigateBack = { onBackPressedDispatcher.onBackPressed() },
+                            onScrollToTop = {
+                                lifecycleScope.launch {
+                                    scrollEvents.emit(
+                                        LicensesEvent.ScrollToTop
+                                    )
+                                }
+                            },
+                            onScrollToBottom = {
+                                lifecycleScope.launch {
+                                    scrollEvents.emit(
+                                        LicensesEvent.ScrollToBottom
+                                    )
+                                }
+                            }
+                        )
+                    }
+                ) { padding ->
+                    LicensesScreen(
+                        eventFlow = scrollEvents,
+                        contentPadding = padding
+                    )
+                }
+            }
         }
-
-        linearSmoothScroller.targetPosition = position
-        binding.licensesText.layoutManager?.startSmoothScroll(linearSmoothScroller)
     }
+}
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
-        R.id.menu_rise_up -> {
-            smoothScrollToPosition(0)
-            true
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun LicensesTopBar(
+    onNavigateBack: () -> Unit,
+    onScrollToTop: () -> Unit,
+    onScrollToBottom: () -> Unit
+) {
+    TopAppBar(
+        title = { Text(stringResource(R.string.licenses)) },
+        navigationIcon = {
+            IconButton(onClick = onNavigateBack) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_arrow_back_black_24dp),
+                    contentDescription = "Back"
+                )
+            }
+        },
+        actions = {
+            IconButton(onClick = onScrollToTop) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_arrow_upward_black_24dp),
+                    contentDescription = "Scroll to top"
+                )
+            }
+            IconButton(onClick = onScrollToBottom) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_arrow_downward_black_24dp),
+                    contentDescription = "Scroll to bottom"
+                )
+            }
         }
-        R.id.menu_rise_down -> {
-            smoothScrollToPosition(binding.licensesText.adapter!!.itemCount - 1)
-            true
-        }
-        else -> super.onOptionsItemSelected(item)
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        super.onBackPressed()
-        return true
-    }
+    )
 }

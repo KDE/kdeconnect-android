@@ -121,6 +121,7 @@
   <string name="pair_new_device">اقرن جهازًا جديدًا</string>
   <string name="cancel_pairing">ألغ الاقتران</string>
   <string name="unknown_device">جهاز مجهول</string>
+  <string name="unknown_sender">مُرسل مجهول</string>
   <string name="error_not_reachable">الجهاز غير قابل الوصول</string>
   <string name="error_already_paired">الجهاز مقترن فعلًا</string>
   <string name="error_timed_out">انتهت المهلة</string>

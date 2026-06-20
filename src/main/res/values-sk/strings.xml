@@ -121,6 +121,7 @@
   <string name="pair_new_device">Spárovať nové zariadenie</string>
   <string name="cancel_pairing">Požiadať o spárovanie</string>
   <string name="unknown_device">Neznáme zariadenie</string>
+  <string name="unknown_sender">Neznámy odosielateľ</string>
   <string name="error_not_reachable">Zariadenie nie je dosiahnuteľné</string>
   <string name="error_already_paired">Zariadenie je už spárované</string>
   <string name="error_timed_out">Čas vypršal</string>

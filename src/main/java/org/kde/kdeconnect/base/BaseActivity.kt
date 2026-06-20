@@ -5,10 +5,10 @@
  */
 package org.kde.kdeconnect.base
 
-import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup.MarginLayoutParams
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updateLayoutParams
@@ -23,13 +23,12 @@ abstract class BaseActivity<VB: ViewBinding> : AppCompatActivity() {
     open val isScrollable = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
-            binding.root.setOnApplyWindowInsetsListenerCompat { view, insets ->
-                onWindowInsetsChanged(view, insets)
-                insets
-            }
+        binding.root.setOnApplyWindowInsetsListenerCompat { view, insets ->
+            onWindowInsetsChanged(view, insets)
+            insets
         }
     }
 

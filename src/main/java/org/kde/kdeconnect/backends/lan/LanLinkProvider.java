@@ -41,6 +41,7 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.security.cert.Certificate;
+import java.security.cert.CertificateException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -131,7 +132,7 @@ public class LanLinkProvider extends BaseLinkProvider {
 
     //They received my UDP broadcast and are connecting to me. The first thing they send should be their identity packet.
     @WorkerThread
-    private void tcpPacketReceived(Socket socket) throws IOException {
+    private void tcpPacketReceived(Socket socket) throws IOException, CertificateException {
 
         InetAddress address = socket.getInetAddress();
 
@@ -208,7 +209,7 @@ public class LanLinkProvider extends BaseLinkProvider {
 
     //I've received their broadcast and should connect to their TCP socket and send my identity.
     @WorkerThread
-    private void udpPacketReceived(DatagramPacket packet) throws JSONException, IOException {
+    private void udpPacketReceived(DatagramPacket packet) {
 
         final InetAddress address = packet.getAddress();
 
@@ -239,19 +240,27 @@ public class LanLinkProvider extends BaseLinkProvider {
             return;
         }
 
-        SocketFactory socketFactory = SocketFactory.getDefault();
-        Socket socket = socketFactory.createSocket(address, tcpPort);
-        configureSocket(socket);
+        Socket socket = null;
+        try {
+            socket = SocketFactory.getDefault().createSocket(address, tcpPort);
+            configureSocket(socket);
 
-        DeviceInfo myDeviceInfo = DeviceHelper.getDeviceInfo(context);
-        NetworkPacket myIdentity = myDeviceInfo.toIdentityPacket();
-        myIdentity.set("targetDeviceId", identityPacket.getString("deviceId"));
-        myIdentity.set("targetProtocolVersion", identityPacket.getString("protocolVersion"));
-        OutputStream out = socket.getOutputStream();
-        out.write(myIdentity.serialize().getBytes());
-        out.flush();
+            DeviceInfo myDeviceInfo = DeviceHelper.getDeviceInfo(context);
+            NetworkPacket myIdentity = myDeviceInfo.toIdentityPacket();
+            myIdentity.set("targetDeviceId", identityPacket.getString("deviceId"));
+            myIdentity.set("targetProtocolVersion", identityPacket.getString("protocolVersion"));
 
-        identityPacketReceived(identityPacket, socket, LanLink.ConnectionStarted.Remotely, deviceTrusted);
+            OutputStream out = socket.getOutputStream();
+            out.write(myIdentity.serialize().getBytes());
+            out.flush();
+
+            identityPacketReceived(identityPacket, socket, LanLink.ConnectionStarted.Remotely, deviceTrusted);
+        } catch (IOException | CertificateException | JSONException e) {
+            Log.e("LanLinkProvider", "Exception receiving incoming UDP connection", e);
+            if (socket != null) {
+                try { socket.close(); } catch (IOException ignored) { }
+            }
+        }
     }
 
     private void configureSocket(Socket socket) {
@@ -273,7 +282,7 @@ public class LanLinkProvider extends BaseLinkProvider {
      * @param deviceTrusted     whether the packet comes from a trusted device
      */
     @WorkerThread
-    private void identityPacketReceived(final NetworkPacket identityPacket, final Socket socket, final LanLink.ConnectionStarted connectionStarted, final boolean deviceTrusted) throws IOException {
+    private void identityPacketReceived(final NetworkPacket identityPacket, final Socket socket, final LanLink.ConnectionStarted connectionStarted, final boolean deviceTrusted) throws IOException, CertificateException {
         final String deviceId = identityPacket.getString("deviceId");
         final int protocolVersion = identityPacket.getInt("protocolVersion");
 
@@ -391,15 +400,15 @@ public class LanLinkProvider extends BaseLinkProvider {
             udpServer = new DatagramSocket(null);
             udpServer.setReuseAddress(true);
             udpServer.setBroadcast(true);
-        } catch (SocketException e) {
-            Log.e("LanLinkProvider", "Error creating udp server", e);
-            throw new RuntimeException(e);
-        }
-        try {
             udpServer.bind(new InetSocketAddress(UDP_PORT));
         } catch (SocketException e) {
             // We ignore this exception and continue without being able to receive broadcasts instead of crashing the app.
             Log.e("LanLinkProvider", "Error binding udp server. We can send udp broadcasts but not receive them", e);
+            if (udpServer != null) {
+                try { udpServer.close(); } catch (Exception ignored) {}
+                udpServer = null;
+            }
+            return;
         }
         ThreadHelper.execute(() -> {
             Log.i("UdpListener", "Starting UDP listener");
@@ -410,8 +419,8 @@ public class LanLinkProvider extends BaseLinkProvider {
                     ThreadHelper.execute(() -> {
                         try {
                             udpPacketReceived(packet);
-                        } catch (JSONException | IOException e) {
-                            Log.e("LanLinkProvider", "Exception receiving incoming UDP connection", e);
+                        } catch (Exception e) {
+                            Log.e("LanLinkProvider", "Unhandled exception receiving incoming UDP connection", e);
                         }
                     });
                 } catch (IOException e) {
@@ -438,7 +447,8 @@ public class LanLinkProvider extends BaseLinkProvider {
                     ThreadHelper.execute(() -> {
                         try {
                             tcpPacketReceived(socket);
-                        } catch (IOException e) {
+                        } catch (IOException | CertificateException e) {
+                            try { socket.close(); } catch (IOException ignored) { }
                             Log.e("LanLinkProvider", "Exception receiving incoming TCP connection", e);
                         }
                     });
@@ -575,6 +585,10 @@ public class LanLinkProvider extends BaseLinkProvider {
             return;
         }
         lastBroadcast = System.currentTimeMillis();
+
+        if (udpServer == null) {
+            setupUdpListener();
+        }
 
         broadcastUdpIdentityPacket(network);
         synchronized (mdnsDiscovery) {

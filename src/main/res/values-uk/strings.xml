@@ -121,6 +121,7 @@
   <string name="pair_new_device">Пов’язати новий пристрій</string>
   <string name="cancel_pairing">Скасувати пов\'язування</string>
   <string name="unknown_device">Невідомий пристрій</string>
+  <string name="unknown_sender">Невідомий відправник</string>
   <string name="error_not_reachable">Немає доступу до пристрою</string>
   <string name="error_already_paired">Пристрій вже пов’язано</string>
   <string name="error_timed_out">Час очікування вичерпано</string>

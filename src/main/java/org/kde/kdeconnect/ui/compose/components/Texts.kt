@@ -32,7 +32,7 @@ private fun KdeText(
     color: Color = MaterialTheme.colorScheme.onSurfaceVariant,
     fontSize: TextUnit = TextUnit.Unspecified,
     maxLines: Int = Int.MAX_VALUE,
-    onClick: () -> Unit
+    onClick: (() -> Unit)? = null,
 ) {
     Text(
         text = text,
@@ -41,9 +41,13 @@ private fun KdeText(
         fontSize = fontSize,
         textAlign = textAlign,
         maxLines = maxLines,
-        modifier = modifier
-            .fillMaxWidth()
-            .clickable(onClick = onClick),
+        modifier = if (onClick != null) {
+            modifier
+                .fillMaxWidth()
+                .clickable(onClick = onClick)
+        } else {
+            modifier.fillMaxWidth()
+        }
     )
 }
 
@@ -55,7 +59,7 @@ fun KdeBodySmallText(
     color: Color = MaterialTheme.colorScheme.onSurfaceVariant,
     fontSize: TextUnit = TextUnit.Unspecified,
     maxLines: Int = Int.MAX_VALUE,
-    onClick: () -> Unit
+    onClick: (() -> Unit)? = null,
 ) = KdeText(
     text = text,
     style = MaterialTheme.typography.bodySmall,
@@ -75,7 +79,7 @@ fun KdeBodyMediumText(
     color: Color = MaterialTheme.colorScheme.onSurfaceVariant,
     fontSize: TextUnit = TextUnit.Unspecified,
     maxLines: Int = Int.MAX_VALUE,
-    onClick: () -> Unit
+    onClick: (() -> Unit)? = null,
 ) =
     KdeText(
         text = text,
@@ -96,7 +100,7 @@ fun KdeBodyLargeText(
     color: Color = MaterialTheme.colorScheme.onSurfaceVariant,
     fontSize: TextUnit = TextUnit.Unspecified,
     maxLines: Int = Int.MAX_VALUE,
-    onClick: () -> Unit,
+    onClick: (() -> Unit)? = null,
 ) =
     KdeText(
         text = text,
@@ -117,7 +121,7 @@ fun KdeTitleMediumText(
     color: Color = MaterialTheme.colorScheme.onSurfaceVariant,
     fontSize: TextUnit = TextUnit.Unspecified,
     maxLines: Int = Int.MAX_VALUE,
-    onClick: () -> Unit,
+    onClick: (() -> Unit)? = null,
 ) =
     KdeText(
         text = text,
@@ -141,22 +145,18 @@ private fun KdeTextsPreview() {
                 fontSize = 14.sp,
                 maxLines = 1,
                 modifier = Modifier.padding(all = 16.dp),
-                onClick = { /* Do nothing */ },
             )
             KdeBodyMediumText(
                 text = "KdeBodyMediumText",
                 modifier = Modifier.padding(all = 16.dp),
-                onClick = { /* Do nothing */ }
             )
             KdeBodyLargeText(
                 text = "KdeBodyLargeText",
                 modifier = Modifier.padding(all = 16.dp),
-                onClick = { /* Do nothing */ },
             )
             KdeTitleMediumText(
                 text = "KdeTitleMediumText",
                 modifier = Modifier.padding(all = 16.dp),
-                onClick = { /* Do nothing */ },
             )
         }
     }

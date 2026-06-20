@@ -121,6 +121,7 @@
   <string name="pair_new_device">Parekatu gailu berria</string>
   <string name="cancel_pairing">Ezeztatu parekatzea</string>
   <string name="unknown_device">Gailu ezezaguna</string>
+  <string name="unknown_sender">Igorle ezezaguna</string>
   <string name="error_not_reachable">Gailua ez dago eskuragarri</string>
   <string name="error_already_paired">Gailua dagoeneko parekatuta</string>
   <string name="error_timed_out">Denbora-muga agortu da</string>

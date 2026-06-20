@@ -121,6 +121,7 @@
   <string name="pair_new_device">Emparelhar novo dispositivo</string>
   <string name="cancel_pairing">Cancelar emparelhamento</string>
   <string name="unknown_device">Dispositivo desconhecido</string>
+  <string name="unknown_sender">Remetente desconhecido</string>
   <string name="error_not_reachable">Dispositivo inacessível</string>
   <string name="error_already_paired">Dispositivo já emparelhado</string>
   <string name="error_timed_out">Tempo limite expirou</string>
