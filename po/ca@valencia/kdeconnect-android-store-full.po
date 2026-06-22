@@ -1,23 +1,23 @@
 # Translation of kdeconnect-android-store-full.po to Catalan (Valencian)
-# Copyright (C) 2023-2024 This_file_is_part_of_KDE
+# Copyright (C) 2023-2026 This_file_is_part_of_KDE
 # This file is distributed under the license LGPL version 2.1 or
 # version 3 or later versions approved by the membership of KDE e.V.
 #
-# SPDX-FileCopyrightText: 2023, 2024 Josep M. Ferrer <txemaq@gmail.com>
+# SPDX-FileCopyrightText: 2023, 2024, 2026 Josep M. Ferrer <txemaq@gmail.com>
 #. extracted from ./metadata/android/en-US/full_description.txt
 msgid ""
 msgstr ""
 "Project-Id-Version: kdeconnect-android\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-17 09:00+0000\n"
-"PO-Revision-Date: 2024-01-28 19:39+0100\n"
+"PO-Revision-Date: 2026-06-21 10:24+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 25.04.0\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 # skip-rule: common-hihan
@@ -65,8 +65,8 @@ msgstr ""
 "tàctil de l'ordinador.\n"
 "- Sincronitzeu les notificacions: accediu a les notificacions del telèfon "
 "des de l'ordinador i contesteu els missatges.\n"
-"- Control remot multimèdia: utilitzeu el telèfon com a control remot dels "
-"reproductors multimèdia Linux.\n"
+"- Comandament a distància multimèdia: utilitzeu el telèfon com a comandament "
+"a distància dels reproductors multimèdia Linux.\n"
 "- Connexió Wi-Fi: no cal connexió USB ni Bluetooth.\n"
 "- Encriptació TLS d'extrem a extrem: la informació és segura.\n"
 "\n"
