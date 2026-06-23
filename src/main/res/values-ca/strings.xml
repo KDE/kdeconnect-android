@@ -20,7 +20,7 @@
   <string name="pref_plugin_clipboard_sent">S\'ha enviat al porta-retalls</string>
   <string name="pref_plugin_mousepad">Entrada remota</string>
   <string name="pref_plugin_mousepad_desc_nontv">Useu el vostre telèfon o tauleta com un ratolí tàctil i un teclat</string>
-  <string name="pref_plugin_mousepad_desc_tv">Useu el vostre telèfon o tauleta com un control remot de TV</string>
+  <string name="pref_plugin_mousepad_desc_tv">Useu el vostre telèfon o tauleta com un comandament a distància de TV</string>
   <string name="pref_plugin_presenter">Presentació remota</string>
   <string name="pref_plugin_presenter_desc">Usa el dispositiu per a canviar les diapositives d\'una presentació</string>
   <string name="pref_plugin_remotekeyboard">Rep les pulsacions remotes de tecles</string>
@@ -56,7 +56,7 @@
   <string name="remotekeyboard_connected">La connexió amb el teclat remot està activa</string>
   <string name="remotekeyboard_multiple_connections">Hi ha més d\'una connexió amb un teclat remot, seleccioneu el dispositiu per a configurar-lo</string>
   <string name="open_mousepad">Entrada remota</string>
-  <string name="open_mousepad_tv">Control remot de TV</string>
+  <string name="open_mousepad_tv">Comandament a distància de TV</string>
   <string name="mousepad_info">Moveu un dit per la pantalla per a moure el cursor del ratolí. Toqueu per a un clic, i empreu dos/tres dits per als botons dret i mig. Useu 2 dits per a desplaçar. Empreu un toc llarg per a arrossegar i deixar anar. La funcionalitat giroscòpica dels ratolins es pot activar des de les preferències del connector</string>
   <string name="mousepad_info_no_gestures">Moveu un dit a la pantalla per a moure el cursor del ratolí, toqueu per a fer un clic.</string>
   <string name="mousepad_keyboard_input_not_supported">El dispositiu aparellat no permet l\'entrada de teclat</string>
@@ -374,7 +374,7 @@
   <string name="bigscreen_down">Avall</string>
   <string name="bigscreen_back">Enrere</string>
   <string name="bigscreen_mic">Micròfon</string>
-  <string name="pref_plugin_bigscreen">Control remot de TV</string>
+  <string name="pref_plugin_bigscreen">Comandament a distància de TV</string>
   <string name="pref_plugin_bigscreen_desc">Useu el dispositiu com a remot per a la Bigscreen del Plasma</string>
   <string name="bigscreen_optional_permission_explanation">Per a compartir l\'entrada del micròfon del telèfon cal donar accés a l\'entrada d\'àudio del telèfon</string>
   <string name="bigscreen_speech_extra_prompt">Veu</string>

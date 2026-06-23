@@ -6,7 +6,7 @@ El KDE Connect proporciona un conjunt de característiques per a integrar el flu
 - Obteniu les notificacions de trucades entrants i missatges a l'ordinador.
 - Ratolí tàctil virtual: utilitzeu la pantalla del telèfon com a ratolí tàctil de l'ordinador.
 - Sincronització de notificacions: accediu a les notificacions del telèfon des de l'ordinador i contesteu els missatges.
-- Control remot multimèdia: utilitzeu el telèfon com a control remot dels reproductors multimèdia Linux.
+- Comandament a distància multimèdia: utilitzeu el telèfon com a comandament a distància dels reproductors multimèdia Linux.
 - Connexió Wi-Fi: no cal connexió USB ni Bluetooth.
 - Encriptatge TLS d'extrem a extrem: la informació és segura.
 
