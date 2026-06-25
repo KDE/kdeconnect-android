@@ -11,11 +11,16 @@
   <string name="pref_plugin_battery_desc">Meld regelmessig frå om batteristatusen</string>
   <string name="pref_plugin_connectivity_report">Sambandsrapport</string>
   <string name="pref_plugin_connectivity_report_desc">Rapporter signalstyrke og status for nettverket</string>
+  <string name="pref_plugin_digitizer">Teikneplate</string>
+  <string name="pref_plugin_digitizer_desc">Bruk eininga som ei trykkfølsam teikneplate</string>
+  <string name="pref_plugin_sftp">Filsystem-tilgang</string>
   <string name="pref_plugin_sftp_desc">Tillat lesing av filsystemet frå datamaskina</string>
   <string name="pref_plugin_clipboard">Synkroniser utklippstavle</string>
   <string name="pref_plugin_clipboard_desc">Del innhaldet på utklippstavla</string>
   <string name="pref_plugin_clipboard_sent">Utklippstavle send</string>
   <string name="pref_plugin_mousepad">Fjernstyring</string>
+  <string name="pref_plugin_mousepad_desc_nontv">Bruk telefonen eller nettbrettet som styreplate og tastatur</string>
+  <string name="pref_plugin_mousepad_desc_tv">Bruk telefonen eller nettbrettet som TV-fjernkontroll</string>
   <string name="pref_plugin_presenter">Fjernkontroll av presentasjon</string>
   <string name="pref_plugin_presenter_desc">Bruk eininga til å byta lysbilete i presentasjonar</string>
   <string name="pref_plugin_remotekeyboard">Ta imot eksterne tastetrykk</string>
@@ -34,6 +39,8 @@
   <string name="pref_plugin_receive_notifications_desc">Ta imot varslingar frå den andre eininga og vis dei i Android</string>
   <string name="pref_plugin_sharereceiver">Del og ta imot</string>
   <string name="pref_plugin_sharereceiver_desc">Del filer og nettadresser mellom einingar</string>
+  <string name="pref_plugin_inputdevicesreceiver">Del inneiningar</string>
+  <string name="pref_plugin_inputdevicesreceiver_desc">Del mus og tastatur med ekstern eining</string>
   <string name="device_list_empty">Ingen einingar</string>
   <string name="ok">OK</string>
   <string name="sad_ok">OK :(</string>
@@ -49,6 +56,7 @@
   <string name="remotekeyboard_connected">Eksternt tastatursamband er verksamt</string>
   <string name="remotekeyboard_multiple_connections">Det finst meir enn eitt eksternt tastatursamband (vel eining å setja opp)</string>
   <string name="open_mousepad">Fjernstyring</string>
+  <string name="open_mousepad_tv">TV-fjernkontroll</string>
   <string name="mousepad_info">Dra ein finger over skjermen for å flytta peikaren på datamaskina. Trykk for å klikka, og bruk to eller tre fingrar for høvesvis høgre- og midtknappen. Bruk to fingrar for å rulla. Trykk lenge for å dra og sleppa. Funksjonalitet for gyromus kan du slå på i programtillegg-innstillingane.</string>
   <string name="mousepad_info_no_gestures">Flytt fingeren over skjermen for å flytta musepeikaren, og trykk for å klikka med musa.</string>
   <string name="mousepad_keyboard_input_not_supported">Tekst frå tastaturet er ikkje støtta av den para eininga</string>
@@ -62,6 +70,8 @@
   <string name="mousepad_scroll_sensitivity_title">Rullefølsemd</string>
   <string name="gyro_mouse_enabled_title">Slå på gyromus</string>
   <string name="gyro_mouse_sensitivity_title">Gyroskop-følsemd</string>
+  <string name="bigscreen_show_home_title">Vis heim-knapp</string>
+  <string name="bigscreen_show_back_title">Vis tilbake-knapp</string>
   <string-array name="mousepad_tap_entries">
     <item>Venstreklikk</item>
     <item>Høgreklikk</item>
@@ -110,6 +120,7 @@
   <string name="pair_new_device">Par ny eining</string>
   <string name="cancel_pairing">Avbryt paring</string>
   <string name="unknown_device">Ukjend eining</string>
+  <string name="unknown_sender">Ukjend avsendar</string>
   <string name="error_not_reachable">Får ikkje kontakt med eininga</string>
   <string name="error_already_paired">Eininga er alt para</string>
   <string name="error_timed_out">Tidsavbrot</string>
@@ -162,6 +173,7 @@
   <string name="right_click">Send høgreklikk</string>
   <string name="middle_click">Send midtklikk</string>
   <string name="show_keyboard">Vis tastatur</string>
+  <string name="show_mouse_and_keyboard">Vis mus og tastatur</string>
   <string name="device_not_paired">Eininga er ikkje para</string>
   <string name="pairing_duplicate_names">Åtvaring: Det finst fleire einingar med same namn.</string>
   <string name="request_pairing">Be om paring</string>
@@ -230,13 +242,17 @@
   <string name="sftp_no_storage_locations_configured">Ingen lagringsområde er sette opp</string>
   <string name="sftp_saf_permission_explanation">For å få tilgang til filer over nettet må du setja opp lagringsområde.</string>
   <string name="sftp_manage_storage_permission_explanation">For fjerntilgang til filer på denne eininga må du gje KDE Connect tilgangsløyve til lagringsområdet.</string>
+  <string name="sftp_missing_permission_error">Manglar løyve: filsystem-tilgang</string>
   <string name="no_players_connected">Fann ingen spelarar</string>
   <string name="send_files">Send filer</string>
+  <string name="use_digitizer">Bruk som teikneplate</string>
+  <string name="digitizer_draw_button">Teikn med fingeren</string>
+  <string name="digitizer_preference_title_hide_draw_button">Gøym teikneknapp</string>
   <string-array name="digitizer_preference_entries_draw_button_side">
-    <item>Top left</item>
-    <item>Top right</item>
-    <item>Bottom left</item>
-    <item>Bottom right</item>
+    <item>Oppe til venstre</item>
+    <item>Oppe til høgre</item>
+    <item>Nede til venstre</item>
+    <item>Nede til høgre</item>
   </string-array>
   <string name="block_notification_contents">Blokker varslingsinnhald</string>
   <string name="block_notification_images">Blokker varslingsbilete</string>
@@ -290,6 +306,7 @@
   <string name="notification_channel_persistent">Evigvarande varsling</string>
   <string name="notification_channel_media_control">Mediestyring</string>
   <string name="notification_channel_filetransfer">Innkommande filoverføring</string>
+  <string name="notification_channel_filetransfer_complete">Innkommande filoverføring fullført</string>
   <string name="notification_channel_filetransfer_upload">Utgåande filoverføring</string>
   <string name="notification_channel_filetransfer_error">Feil ved filoverføring</string>
   <string name="notification_channel_high_priority">Høg prioritet</string>
@@ -345,7 +362,9 @@
   <string name="bigscreen_select">Vel</string>
   <string name="bigscreen_right">Høgre</string>
   <string name="bigscreen_down">Ned</string>
+  <string name="bigscreen_back">Tilbake</string>
   <string name="bigscreen_mic">Mikrofon</string>
+  <string name="pref_plugin_bigscreen">TV-fjernkontroll</string>
   <string name="pref_plugin_bigscreen_desc">Bruk eininga som fjernkontroll for Plasma Bigscreen</string>
   <string name="bigscreen_optional_permission_explanation">For å kunna dela mikrofon­lyd frå telefonen må du gje appen mikrofontilgang</string>
   <string name="bigscreen_speech_extra_prompt">Tale</string>
