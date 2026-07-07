@@ -406,7 +406,7 @@ public class MousePadActivity
 
     @Override
     public void onLongPress(MotionEvent e) {
-        if (!doubleTapDragEnabled) {
+        if (!doubleTapDragEnabled && !dragging) {
             getWindow().getDecorView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
             MousePadPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, MousePadPlugin.class);
             if (plugin == null) {
@@ -447,11 +447,13 @@ public class MousePadActivity
             finish();
             return true;
         }
-        if (doubleTapDragEnabled) {
-            plugin.sendSingleHold();
-            dragging = true;
-        } else {
-            plugin.sendDoubleClick();
+        if (!dragging) {
+            if (doubleTapDragEnabled) {
+                plugin.sendSingleHold();
+                dragging = true;
+            } else {
+                plugin.sendDoubleClick();
+            }
         }
         return true;
     }
