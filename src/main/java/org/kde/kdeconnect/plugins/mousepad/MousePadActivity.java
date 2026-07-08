@@ -55,10 +55,14 @@ public class MousePadActivity
     private final static float MinDistanceToSendScroll = 2.5f; // touch gesture scroll
     private final static float MinDistanceToSendGenericScroll = 0.1f; // real mouse scroll wheel event
     private final static float StandardDpi = 240.0f; // = hdpi
+    private final static float MinDraggingDistance2 = 25.0f; // distance squared to move after
+                                                             // a double tap to start dragging
 
     private float mPrevX;
     private float mPrevY;
     boolean dragging = false;
+    boolean maybeDragging = false;
+    private float accumulatedDragDistance2 = 0.0f;
     private float mCurrentSensitivity;
     private float displayDpiMultiplier;
     private int scrollDirection = 1;
@@ -322,6 +326,12 @@ public class MousePadActivity
             }
         }
 
+        MousePadPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, MousePadPlugin.class);
+        if (plugin == null) {
+            finish();
+            return true;
+        }
+
         switch (actionType) {
             case MotionEvent.ACTION_DOWN:
                 mPrevX = event.getX();
@@ -331,24 +341,35 @@ public class MousePadActivity
                 float mCurrentX = event.getX();
                 float mCurrentY = event.getY();
 
-                MousePadPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, MousePadPlugin.class);
-                if (plugin == null) {
-                    finish();
-                    return true;
-                }
-
                 float deltaX = (mCurrentX - mPrevX) * displayDpiMultiplier * mCurrentSensitivity;
                 float deltaY = (mCurrentY - mPrevY) * displayDpiMultiplier * mCurrentSensitivity;
 
-                // Run the mouse delta through the pointer acceleration profile
-                mPointerAccelerationProfile.touchMoved(deltaX, deltaY, event.getEventTime());
-                mouseDelta = mPointerAccelerationProfile.commitAcceleratedMouseDelta(mouseDelta);
+                if (maybeDragging) {
+                    accumulatedDragDistance2 += deltaX*deltaX + deltaY*deltaY;
+                    if (accumulatedDragDistance2 >= MinDraggingDistance2) {
+                        maybeDragging = false;
+                        dragging = true;
+                        accumulatedDragDistance2 = 0.0f;
+                        plugin.sendSingleHold();
+                    }
+                } else {
+                    // Run the mouse delta through the pointer acceleration profile
+                    mPointerAccelerationProfile.touchMoved(deltaX, deltaY, event.getEventTime());
+                    mouseDelta = mPointerAccelerationProfile.commitAcceleratedMouseDelta(mouseDelta);
 
-                plugin.sendMouseDelta(mouseDelta.x, mouseDelta.y);
+                    plugin.sendMouseDelta(mouseDelta.x, mouseDelta.y);
+                }
 
                 mPrevX = mCurrentX;
                 mPrevY = mCurrentY;
 
+                break;
+            case MotionEvent.ACTION_UP:
+                if (doubleTapDragEnabled && maybeDragging) {
+                    maybeDragging = false;
+                    accumulatedDragDistance2 = 0.0f;
+                    plugin.sendDoubleClick();
+                }
                 break;
         }
         return true;
@@ -449,8 +470,7 @@ public class MousePadActivity
         }
         if (!dragging) {
             if (doubleTapDragEnabled) {
-                plugin.sendSingleHold();
-                dragging = true;
+                maybeDragging = true;
             } else {
                 plugin.sendDoubleClick();
             }
@@ -460,6 +480,11 @@ public class MousePadActivity
 
     @Override
     public boolean onDoubleTapEvent(MotionEvent e) {
+        if (e.getAction() == MotionEvent.ACTION_UP && maybeDragging) {
+            // Make sure we pass the event on to the general motion event handler which takes
+            // care of ending an eventual drag.
+            return false;
+        }
         return true;
     }
 
