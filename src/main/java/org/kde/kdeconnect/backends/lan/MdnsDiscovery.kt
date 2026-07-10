@@ -5,14 +5,19 @@
  */
 package org.kde.kdeconnect.backends.lan
 
+import android.Manifest
 import android.content.Context
+import android.content.pm.PackageManager
+import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.net.nsd.NsdManager
 import android.net.nsd.NsdManager.DiscoveryListener
 import android.net.nsd.NsdManager.RegistrationListener
 import android.net.nsd.NsdServiceInfo
 import android.net.wifi.WifiManager
 import android.net.wifi.WifiManager.MulticastLock
+import android.os.Build
 import android.util.Log
+import androidx.core.content.ContextCompat
 import org.kde.kdeconnect.helpers.DeviceHelper
 import org.kde.kdeconnect.helpers.DeviceHelper.deviceType
 import org.kde.kdeconnect.helpers.DeviceHelper.getDeviceId
@@ -38,6 +43,10 @@ class MdnsDiscovery {
     }
 
     fun startDiscovering() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CINNAMON_BUN && ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_LOCAL_NETWORK) != PERMISSION_GRANTED) {
+            Log.w("MdnsDiscover", "Will not MDNS discover, missing ACCESS_LOCAL_NETWORK permission")
+            return
+        }
         if (discoveryListener == null) {
             multicastLock.acquire()
             discoveryListener = createDiscoveryListener()
@@ -58,6 +67,10 @@ class MdnsDiscovery {
     }
 
     fun startAnnouncing() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CINNAMON_BUN && ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_LOCAL_NETWORK) != PERMISSION_GRANTED) {
+            Log.w("MdnsDiscover", "Will not MDNS announce, missing ACCESS_LOCAL_NETWORK permission")
+            return
+        }
         if (registrationListener == null) {
             val serviceInfo: NsdServiceInfo?
             try {

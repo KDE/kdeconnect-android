@@ -11,6 +11,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import android.content.pm.PackageManager
+import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -218,16 +219,21 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
 
         val missingPermissions = mutableListOf<String>()
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            val permissionResult = ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
-            if (permissionResult != PackageManager.PERMISSION_GRANTED) {
-                if (!ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.POST_NOTIFICATIONS)) {
-                    missingPermissions.add(Manifest.permission.POST_NOTIFICATIONS)
-                }
-            }
+        // Upfront requests for permissions without explanation
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CINNAMON_BUN
+            && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_LOCAL_NETWORK) != PERMISSION_GRANTED
+            && !ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_LOCAL_NETWORK))
+        {
+            missingPermissions.add(Manifest.permission.ACCESS_LOCAL_NETWORK)
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
+            && ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PERMISSION_GRANTED
+            && !ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.POST_NOTIFICATIONS))
+        {
+            missingPermissions.add(Manifest.permission.POST_NOTIFICATIONS)
         }
 
-        if(missingPermissions.isNotEmpty()){
+        if (missingPermissions.isNotEmpty()) {
             ActivityCompat.requestPermissions(this, missingPermissions.toTypedArray(), RESULT_NOTIFICATIONS_ENABLED)
         }
     }
@@ -392,7 +398,10 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
                 setContentFragment(SettingsFragment())
             }
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isPermissionGranted(permissions, grantResults, Manifest.permission.POST_NOTIFICATIONS)) {
+            if (
+                (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isPermissionGranted(permissions, grantResults, Manifest.permission.POST_NOTIFICATIONS))
+                || (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CINNAMON_BUN && isPermissionGranted(permissions, grantResults, Manifest.permission.ACCESS_LOCAL_NETWORK))
+            ) {
                 // If PairingFragment is active, reload it
                 if (mCurrentDevice == null) {
                     setContentFragment(PairingFragment())

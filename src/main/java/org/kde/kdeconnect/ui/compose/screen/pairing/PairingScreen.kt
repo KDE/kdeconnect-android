@@ -58,6 +58,7 @@ fun PairingScreen(
     onClick: (String) -> Unit,
     onWifiSettingsClick: () -> Unit = {},
     onNotificationSettingsClick: () -> Unit = {},
+    onLocalNetworkPermissionClick: () -> Unit = {},
     onRefresh: () -> Unit = {}
 ) {
     val lazyListState = rememberLazyListState()
@@ -70,6 +71,7 @@ fun PairingScreen(
         onClick = onClick,
         onWifiSettingsClick = onWifiSettingsClick,
         onNotificationSettingsClick = onNotificationSettingsClick,
+        onLocalNetworkPermissionClick = onLocalNetworkPermissionClick,
         onRefresh = onRefresh
     )
 }
@@ -82,6 +84,7 @@ private fun PairingScreenContent(
     onClick: (String) -> Unit,
     onWifiSettingsClick: () -> Unit,
     onNotificationSettingsClick: () -> Unit,
+    onLocalNetworkPermissionClick: () -> Unit,
     onRefresh: () -> Unit = {}
 ) {
     PullToRefreshBox(
@@ -102,6 +105,7 @@ private fun PairingScreenContent(
                     uiState = uiState,
                     onWifiSettingsClick = onWifiSettingsClick,
                     onNotificationSettingsClick = onNotificationSettingsClick,
+                    onLocalNetworkPermissionClick = onLocalNetworkPermissionClick
                 )
             }
 
@@ -171,8 +175,29 @@ private fun PairingExplanations(
     uiState: PairingUiState,
     onWifiSettingsClick: () -> Unit,
     onNotificationSettingsClick: () -> Unit,
+    onLocalNetworkPermissionClick: () -> Unit
 ) {
     Column {
+        if (!uiState.hasLocalNetworkPermission) {
+            PairingExplanationRow(
+                text = stringResource(id = R.string.pairing_missing_local_network_permission),
+                icon = R.drawable.ic_warning,
+                onClick = onLocalNetworkPermissionClick
+            )
+        }
+
+        if (!uiState.hasNotificationsPermission) {
+            PairingExplanationRow(
+                text = stringResource(R.string.no_notifications),
+                icon = R.drawable.ic_warning,
+                onClick = onNotificationSettingsClick
+            )
+        }
+
+        if (!uiState.hasLocalNetworkPermission || !uiState.hasNotificationsPermission) {
+            return
+        }
+
         if (uiState.hasDuplicateNames) {
             DuplicateNamesWarning()
         }
@@ -180,13 +205,7 @@ private fun PairingExplanations(
         val someDevicesReachable = uiState.available.isNotEmpty() || uiState.connected.isNotEmpty()
 
         if (someDevicesReachable || uiState.isWifiAvailable) {
-            if (!uiState.hasNotificationsPermission) {
-                PairingExplanationRow(
-                    text = stringResource(R.string.no_notifications),
-                    icon = R.drawable.ic_warning,
-                    onClick = onNotificationSettingsClick
-                )
-            } else if (uiState.isTrustedNetwork) {
+            if (uiState.isTrustedNetwork) {
                 PairingExplanationRow(text = stringResource(R.string.pairing_description))
             } else {
                 PairingExplanationRow(
@@ -315,6 +334,7 @@ private fun PreviewCompose() {
             uiState = PairingUiState(
                 isWifiAvailable = true,
                 hasNotificationsPermission = true,
+                hasLocalNetworkPermission = true,
                 isTrustedNetwork = true,
                 hasDuplicateNames = true,
                 connected = emptyList(),
@@ -341,6 +361,7 @@ private fun PreviewCompose() {
             onClick = { /* Do nothing */ },
             onWifiSettingsClick = { /* Do nothing */ },
             onNotificationSettingsClick = { /* Do nothing */ },
+            onLocalNetworkPermissionClick = { /* Do nothing */ },
             onRefresh = { /* Do nothing */ }
         )
     }

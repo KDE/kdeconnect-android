@@ -40,7 +40,7 @@ android {
     defaultConfig {
         applicationId = "org.kde.kdeconnect_tp"
         minSdk = 23
-        targetSdk = 35
+        targetSdk = 37
         versionCode = 13509
         versionName = "1.35.9"
         proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")

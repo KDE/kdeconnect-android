@@ -6,16 +6,20 @@
 
 package org.kde.kdeconnect.backends.lan;
 
+import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 import static org.kde.kdeconnect.helpers.NetworkHelperKt.isPrivateAddress;
 import static main.java.org.kde.kdeconnect.helpers.BoundedLineReaderKt.readLineBounded;
 
+import android.Manifest;
 import android.content.Context;
 import android.net.Network;
+import android.os.Build;
 import android.util.Log;
 import android.util.Pair;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
+import androidx.core.content.ContextCompat;
 
 import org.json.JSONException;
 import org.kde.kdeconnect.backends.BaseLink;
@@ -486,6 +490,10 @@ public class LanLinkProvider extends BaseLinkProvider {
     }
 
     private void broadcastUdpIdentityPacket(@Nullable Network network) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CINNAMON_BUN && ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_LOCAL_NETWORK) != PERMISSION_GRANTED) {
+            Log.w("LanLinkProvider", "Will not UDP broadcast, missing ACCESS_LOCAL_NETWORK permission");
+            return;
+        }
         ThreadHelper.execute(() -> {
             List<DeviceHost> hostList = CustomDevicesActivity
                     .getCustomDeviceList(context);

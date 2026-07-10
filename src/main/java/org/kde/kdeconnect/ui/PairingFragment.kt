@@ -21,6 +21,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.getValue
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -94,18 +95,18 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
         createComposeView()
     }
 
-    fun hasRequestedNotificationPermission(): Boolean {
+    fun hasRequestedPermission(permission: String): Boolean {
         return context
             ?.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-            ?.getBoolean(KEY_REQUESTED_NOTIFICATIONS, false)
+            ?.getBoolean(permission, false)
             ?: false
     }
 
-    fun markNotificationPermissionRequested() {
+    fun markPermissionRequested(permission: String) {
         context
             ?.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
             ?.edit {
-                putBoolean(KEY_REQUESTED_NOTIFICATIONS, true)
+                putBoolean(permission, true)
             }
     }
 
@@ -127,12 +128,12 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
                         },
                         onNotificationSettingsClick = {
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                                val hasRequestedBefore = hasRequestedNotificationPermission()
-                                val shouldShowRationale = ActivityCompat.shouldShowRequestPermissionRationale(mActivity!!, Manifest.permission.POST_NOTIFICATIONS)
+                                val hasRequestedBefore = hasRequestedPermission(Manifest.permission.POST_NOTIFICATIONS)
+                                val shouldShowRationale = ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.POST_NOTIFICATIONS)
                                 if (hasRequestedBefore && !shouldShowRationale) {
                                     openAppDetailsSettings()
                                 } else {
-                                    markNotificationPermissionRequested()
+                                    markPermissionRequested(Manifest.permission.POST_NOTIFICATIONS)
                                     ActivityCompat.requestPermissions(
                                         requireActivity(),
                                         arrayOf(Manifest.permission.POST_NOTIFICATIONS),
@@ -141,6 +142,20 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
                                 }
                             } else {
                                 openAppDetailsSettings()
+                            }
+                        },
+                        onLocalNetworkPermissionClick = @RequiresApi(Build.VERSION_CODES.CINNAMON_BUN) {
+                            val hasRequestedBefore = hasRequestedPermission(Manifest.permission.ACCESS_LOCAL_NETWORK)
+                            val shouldShowRationale = ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.ACCESS_LOCAL_NETWORK)
+                            if (hasRequestedBefore && !shouldShowRationale) {
+                                openAppDetailsSettings()
+                            } else {
+                                markPermissionRequested(Manifest.permission.ACCESS_LOCAL_NETWORK)
+                                ActivityCompat.requestPermissions(
+                                    requireActivity(),
+                                    arrayOf(Manifest.permission.ACCESS_LOCAL_NETWORK),
+                                    MainActivity.RESULT_NOTIFICATIONS_ENABLED
+                                )
                             }
                         },
                         onRefresh = { viewModel.onRefresh() }
@@ -215,8 +230,12 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
         val hasNotificationsPermission = Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU
                 || ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.POST_NOTIFICATIONS) == PERMISSION_GRANTED
 
+        val hasLocalNetworkPermission = Build.VERSION.SDK_INT < Build.VERSION_CODES.CINNAMON_BUN
+                || ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_LOCAL_NETWORK) == PERMISSION_GRANTED
+
         viewModel.updatePermissions(
             hasNotificationsPermission = hasNotificationsPermission,
+            hasLocalNetworkPermission = hasLocalNetworkPermission,
         )
     }
 
@@ -256,6 +275,5 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
         private const val RESULT_PAIRING_SUCCESFUL = Activity.RESULT_FIRST_USER
 
         private const val PREFS_NAME = "permission_prefs"
-        private const val KEY_REQUESTED_NOTIFICATIONS = "requested_notifications_permission"
     }
 }

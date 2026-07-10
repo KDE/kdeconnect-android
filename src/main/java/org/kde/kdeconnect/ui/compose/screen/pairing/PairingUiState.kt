@@ -11,6 +11,7 @@ import org.kde.kdeconnect.ui.compose.model.device.DeviceUiModel
 data class PairingUiState(
     val isWifiAvailable: Boolean,
     val hasNotificationsPermission: Boolean,
+    val hasLocalNetworkPermission: Boolean,
     val isTrustedNetwork: Boolean,
     val hasDuplicateNames: Boolean,
     val connected: List<DeviceUiModel>,

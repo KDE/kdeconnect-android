@@ -27,6 +27,7 @@ class PairingViewModel(application: Application) : AndroidViewModel(application)
         value = PairingUiState(
             isWifiAvailable = false,
             hasNotificationsPermission = false,
+            hasLocalNetworkPermission = false,
             isTrustedNetwork = false,
             hasDuplicateNames = false,
             connected = emptyList(),
@@ -55,10 +56,12 @@ class PairingViewModel(application: Application) : AndroidViewModel(application)
 
     fun updatePermissions(
         hasNotificationsPermission: Boolean,
+        hasLocalNetworkPermission: Boolean,
     ) {
         _pairingUiState.update {
             it.copy(
                 hasNotificationsPermission = hasNotificationsPermission,
+                hasLocalNetworkPermission = hasLocalNetworkPermission,
             )
         }
     }
