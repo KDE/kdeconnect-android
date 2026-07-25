@@ -203,12 +203,6 @@ private fun PluginsScreenPreview() {
         val pluginsWithoutPermissions = listOf(clipboardPlugin, presenterPlugin)
         val pluginsWithoutOptionalPermissions = listOf(mprisPlugin, presenterPlugin)
 
-        pluginsWithButtons.forEach { plugin ->
-            plugin.setContext(
-                context = LocalContext.current,
-                device = null
-            )
-        }
         PluginsScreenContent(
             pluginsWithButtons = pluginsWithButtons.flatMap { plugin -> plugin.getUiButtons() },
             pluginsNeedPermissions = pluginsWithoutPermissions,
