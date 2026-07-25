@@ -33,7 +33,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.kde.kdeconnect.plugins.Plugin
+import org.kde.kdeconnect.plugins.clipboard.ClipboardPlugin
 import org.kde.kdeconnect.plugins.mpris.MprisPlugin
+import org.kde.kdeconnect.plugins.ping.PingPlugin
 import org.kde.kdeconnect.plugins.presenter.PresenterPlugin
 import org.kde.kdeconnect.plugins.runcommand.RunCommandPlugin
 import org.kde.kdeconnect.ui.compose.KdeTheme
@@ -191,11 +193,15 @@ private fun PluginsWithoutPermissions(
 @Composable
 private fun PluginsScreenPreview() {
     KdeTheme(context = LocalContext.current) {
-        val pluginsWithButtons = listOf(
-            MprisPlugin(),
-            RunCommandPlugin(),
-            PresenterPlugin()
-        )
+        val mprisPlugin = MprisPlugin().also { it.setContext(LocalContext.current, null) }
+        val runCommandPlugin = RunCommandPlugin().also { it.setContext(LocalContext.current, null) }
+        val presenterPlugin = PresenterPlugin().also { it.setContext(LocalContext.current, null) }
+        val pingPlugin = PingPlugin().also { it.setContext(LocalContext.current, null) }
+        val clipboardPlugin = ClipboardPlugin().also { it.setContext(LocalContext.current, null) }
+
+        val pluginsWithButtons = listOf(pingPlugin, mprisPlugin, presenterPlugin, runCommandPlugin)
+        val pluginsWithoutPermissions = listOf(clipboardPlugin, presenterPlugin)
+        val pluginsWithoutOptionalPermissions = listOf(mprisPlugin, presenterPlugin)
 
         pluginsWithButtons.forEach { plugin ->
             plugin.setContext(
@@ -205,8 +211,8 @@ private fun PluginsScreenPreview() {
         }
         PluginsScreenContent(
             pluginsWithButtons = pluginsWithButtons.flatMap { plugin -> plugin.getUiButtons() },
-            pluginsNeedPermissions = emptyList(),
-            pluginsNeedOptionalPermissions = emptyList(),
+            pluginsNeedPermissions = pluginsWithoutPermissions,
+            pluginsNeedOptionalPermissions = pluginsWithoutOptionalPermissions,
             onButtonClick = { /* Do nothing */ },
             actionNeedPermissions = { /* Do nothing */ },
             actionNeedOptionalPermissions = { /* Do nothing */ },
