@@ -46,14 +46,16 @@ fun PluginsScreen(
     pluginsNeedPermissions: List<Plugin>,
     pluginsNeedOptionalPermissions: List<Plugin>,
     onButtonClick: (Plugin.PluginUiButton) -> Unit,
-    action: (plugin: Plugin) -> Unit
+    actionNeedPermissions: (plugin: Plugin) -> Unit,
+    actionNeedOptionalPermissions: (plugin: Plugin) -> Unit,
 ) {
     PluginsScreenContent(
         pluginsWithButtons = pluginsWithButtons,
         pluginsNeedPermissions = pluginsNeedPermissions,
         pluginsNeedOptionalPermissions = pluginsNeedOptionalPermissions,
         onButtonClick = onButtonClick,
-        action = action
+        actionNeedPermissions = actionNeedPermissions,
+        actionNeedOptionalPermissions = actionNeedOptionalPermissions,
     )
 }
 
@@ -63,7 +65,8 @@ private fun PluginsScreenContent(
     pluginsNeedPermissions: List<Plugin>,
     pluginsNeedOptionalPermissions: List<Plugin>,
     onButtonClick: (Plugin.PluginUiButton) -> Unit,
-    action: (plugin: Plugin) -> Unit
+    actionNeedPermissions: (plugin: Plugin) -> Unit,
+    actionNeedOptionalPermissions: (plugin: Plugin) -> Unit,
 ) {
     Surface {
         Column(modifier = Modifier.padding(top = 16.dp)) {
@@ -79,7 +82,7 @@ private fun PluginsScreenContent(
                 PluginsWithoutPermissions(
                     title = stringResource(id = R.string.plugins_need_permission),
                     plugins = pluginsNeedPermissions,
-                    action = action
+                    action = actionNeedPermissions,
                 )
                 Spacer(modifier = Modifier.padding(vertical = 2.dp))
             }
@@ -87,7 +90,7 @@ private fun PluginsScreenContent(
                 PluginsWithoutPermissions(
                     title = stringResource(id = R.string.plugins_need_optional_permission),
                     plugins = pluginsNeedOptionalPermissions,
-                    action = action
+                    action = actionNeedOptionalPermissions
                 )
             }
         }
@@ -205,7 +208,8 @@ private fun PluginsScreenPreview() {
             pluginsNeedPermissions = emptyList(),
             pluginsNeedOptionalPermissions = emptyList(),
             onButtonClick = { /* Do nothing */ },
-            action = { /* Do nothing */ }
+            actionNeedPermissions = { /* Do nothing */ },
+            actionNeedOptionalPermissions = { /* Do nothing */ },
         )
     }
 }

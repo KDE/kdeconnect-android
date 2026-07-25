@@ -302,7 +302,13 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
                                     pluginsNeedPermissions = pluginsNeedPermissions,
                                     pluginsNeedOptionalPermissions = pluginsNeedOptionalPermissions,
                                     onButtonClick = { button -> button.onClick(mActivity!!) },
-                                    action = { plugin ->
+                                    actionNeedPermissions = { plugin ->
+                                        plugin.permissionExplanationDialog.show(
+                                            childFragmentManager,
+                                            null
+                                        )
+                                    },
+                                    actionNeedOptionalPermissions = { plugin ->
                                         plugin.optionalPermissionExplanationDialog.show(
                                             childFragmentManager,
                                             null
