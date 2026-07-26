@@ -38,6 +38,7 @@ import org.jetbrains.annotations.NotNull;
 import org.kde.kdeconnect.helpers.FilesHelper;
 import org.kde.kdeconnect.helpers.IntentHelper;
 import org.kde.kdeconnect.NetworkPacket;
+import org.kde.kdeconnect.helpers.ThreadHelper;
 import org.kde.kdeconnect.plugins.Plugin;
 import org.kde.kdeconnect.plugins.PluginFactory;
 import org.kde.kdeconnect.ui.MainActivity;
@@ -311,7 +312,7 @@ public class SharePlugin extends Plugin {
         Bundle extras = intent.getExtras();
         ArrayList<Uri> streams = streamsFromIntent(intent, extras);
         if (streams != null && !streams.isEmpty()) {
-            sendUriList(streams);
+            ThreadHelper.execute(() -> sendUriList(streams));
             return;
         }
         if (extras != null) {
