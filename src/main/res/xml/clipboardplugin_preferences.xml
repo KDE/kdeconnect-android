@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+SPDX-FileCopyrightText: 2026 KDE Connect contributors
+
+SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
+-->
+
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:keep="@xml/clipboardplugin_preferences">
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="@string/clipboard_preference_key_skip_sensitive"
+        android:summary="@string/clipboard_preference_summary_skip_sensitive"
+        android:title="@string/clipboard_preference_title_skip_sensitive" />
+
+</androidx.preference.PreferenceScreen>

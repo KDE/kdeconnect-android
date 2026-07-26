@@ -7,6 +7,8 @@
 package org.kde.kdeconnect.plugins.clipboard
 
 import android.Manifest
+import android.content.ClipData
+import android.content.ClipDescription
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.pm.PackageManager
@@ -23,14 +25,21 @@ import java.util.Date
 import java.util.Locale
 
 class ClipboardListener {
+    enum class ClipboardContentType {
+        Text,
+        Password,
+    }
+
     interface ClipboardObserver {
-        fun clipboardChanged(content: String)
+        fun clipboardChanged(content: String, contentType: ClipboardContentType)
     }
 
     private val observers: HashSet<ClipboardObserver> = HashSet()
 
     private val context: Context
     var currentContent: String? = null
+        private set
+    var currentContentType: ClipboardContentType = ClipboardContentType.Text
         private set
     var updateTimestamp: Long = 0
         private set
@@ -71,17 +80,20 @@ class ClipboardListener {
 
     fun onClipboardChanged() {
         try {
-            val item = cm.primaryClip!!.getItemAt(0)
+            val clip = cm.primaryClip!!
+            val item = clip.getItemAt(0)
             val content = item.coerceToText(context).toString()
+            val contentType = detectContentType(clip)
 
-            if (content == currentContent) {
+            if (content == currentContent && contentType == currentContentType) {
                 return
             }
             updateTimestamp = System.currentTimeMillis()
             currentContent = content
+            currentContentType = contentType
 
             for (observer in observers) {
-                observer.clipboardChanged(content)
+                observer.clipboardChanged(content, contentType)
             }
         } catch (_: Exception) {
             //Probably clipboard was not text
@@ -93,6 +105,7 @@ class ClipboardListener {
         if (this::cm.isInitialized) {
             updateTimestamp = System.currentTimeMillis()
             currentContent = text
+            currentContentType = ClipboardContentType.Text
             cm.text = text
         }
     }
@@ -104,6 +117,16 @@ class ClipboardListener {
         fun instance(context: Context): ClipboardListener {
             // FIXME: The _instance we return won't be completely initialized yet since initialization happens on a new thread (why?)
             return _instance ?: ClipboardListener(context).also { _instance = it }
+        }
+
+        @JvmStatic
+        fun detectContentType(clip: ClipData?): ClipboardContentType {
+            if (clip?.description?.extras
+                    ?.getBoolean(ClipDescription.EXTRA_IS_SENSITIVE, false) == true
+            ) {
+                return ClipboardContentType.Password
+            }
+            return ClipboardContentType.Text
         }
     }
 }

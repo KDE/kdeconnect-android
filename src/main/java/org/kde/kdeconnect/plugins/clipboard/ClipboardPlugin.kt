@@ -19,6 +19,7 @@ import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.plugins.PluginFactory.LoadablePlugin
 import org.kde.kdeconnect.plugins.clipboard.ClipboardListener.ClipboardObserver
+import org.kde.kdeconnect.ui.PluginSettingsFragment
 import org.kde.kdeconnect_tp.R
 
 @LoadablePlugin
@@ -28,6 +29,13 @@ class ClipboardPlugin : Plugin() {
 
     override val description: String
         get() = context.resources.getString(R.string.pref_plugin_clipboard_desc)
+
+    override fun hasSettings(): Boolean = true
+
+    override fun supportsDeviceSpecificSettings(): Boolean = true
+
+    override fun getSettingsFragment(activity: Activity): PluginSettingsFragment =
+        PluginSettingsFragment.newInstance(pluginKey, R.xml.clipboardplugin_preferences)
 
     override fun onPacketReceived(np: NetworkPacket): Boolean {
         val content = np.getString("content")
@@ -52,8 +60,16 @@ class ClipboardPlugin : Plugin() {
     }
 
     private val observer: ClipboardObserver = object : ClipboardObserver {
-        override fun clipboardChanged(content: String) {
-            return this@ClipboardPlugin.propagateClipboard(content)
+        override fun clipboardChanged(content: String, contentType: ClipboardListener.ClipboardContentType) {
+            if (contentType == ClipboardListener.ClipboardContentType.Password &&
+                preferences!!.getBoolean(
+                    context.getString(R.string.clipboard_preference_key_skip_sensitive),
+                    false,
+                )
+            ) {
+                return
+            }
+            propagateClipboard(content)
         }
     }
 
@@ -66,6 +82,14 @@ class ClipboardPlugin : Plugin() {
 
     private fun sendConnectPacket() {
         val content = ClipboardListener.instance(context).currentContent ?: return // Send clipboard only if it had been initialized
+        if (ClipboardListener.instance(context).currentContentType == ClipboardListener.ClipboardContentType.Password &&
+            preferences!!.getBoolean(
+                context.getString(R.string.clipboard_preference_key_skip_sensitive),
+                false,
+            )
+        ) {
+            return
+        }
         val np = NetworkPacket(PACKET_TYPE_CLIPBOARD_CONNECT)
         val timestamp = ClipboardListener.instance(context).updateTimestamp
         np["timestamp"] = timestamp
@@ -116,6 +140,7 @@ class ClipboardPlugin : Plugin() {
             if (clipboardManager!!.hasPrimaryClip()) {
                 item = clipboardManager.primaryClip!!.getItemAt(0)
                 val content = item.coerceToText(this.context).toString()
+                // Don't check if the content is sensitive, just send it
                 this.propagateClipboard(content)
                 Toast.makeText(this.context, R.string.pref_plugin_clipboard_sent, Toast.LENGTH_SHORT).show()
             }
