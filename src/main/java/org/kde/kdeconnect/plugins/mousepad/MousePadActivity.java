@@ -65,6 +65,7 @@ public class MousePadActivity
     private int gyroscopeSensitivity = 100;
     private boolean isScrolling = false;
     private double accumulatedDistanceY = 0;
+    private boolean pendingShowKeyboard = false;
 
     private GestureDetector mDetector;
     private SensorManager mSensorManager;
@@ -199,6 +200,15 @@ public class MousePadActivity
         invalidateMenu();
 
         super.onResume();
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus && pendingShowKeyboard) {
+            showKeyboard();
+            pendingShowKeyboard = false;
+        }
     }
 
     @Override
@@ -605,7 +615,12 @@ public class MousePadActivity
                 return;
         }
         if (prefs.getBoolean("pref_mousepad_show_keyboard", true)) {
-            showKeyboard();
+            if (hasWindowFocus()) {
+                showKeyboard();
+            } else {
+                // Defer until the window gains focus, see pendingShowKeyboard.
+                pendingShowKeyboard = true;
+            }
         } else {
             hideKeyboard();
         }
