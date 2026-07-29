@@ -18,6 +18,8 @@
   <string name="pref_plugin_clipboard">Synchronizace schránky</string>
   <string name="pref_plugin_clipboard_desc">Sdílet obsah schránky</string>
   <string name="pref_plugin_clipboard_sent">Schránka poslána</string>
+  <string name="clipboard_preference_title_skip_sensitive">Přeskočit citlivé položky při synchronizaci schránky</string>
+  <string name="clipboard_preference_summary_skip_sensitive">Nesynchronizovat automaticky hesla ani jiný obsah označený jako citlivý</string>
   <string name="pref_plugin_mousepad">Vzdálený vstup</string>
   <string name="pref_plugin_mousepad_desc_nontv">Používejte svůj telefon nebo tablet jako touchpad a klávesnici</string>
   <string name="pref_plugin_mousepad_desc_tv">Používejte svůj telefon nebo tablet jako ovladač TV</string>

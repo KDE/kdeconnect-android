@@ -18,6 +18,8 @@
   <string name="pref_plugin_clipboard">Synkronisera klippbord</string>
   <string name="pref_plugin_clipboard_desc">Dela klippbordets innehåll</string>
   <string name="pref_plugin_clipboard_sent">Klippbordet skickat</string>
+  <string name="clipboard_preference_title_skip_sensitive">Hoppa över känslig klippbordssynkronisering</string>
+  <string name="clipboard_preference_summary_skip_sensitive">Synkronisera inte automatiskt lösenord eller annat innehåll markerat som känsligt</string>
   <string name="pref_plugin_mousepad">Extern inmatning</string>
   <string name="pref_plugin_mousepad_desc_nontv">Använd telefonen eller surfplattan som mus och tangentbord</string>
   <string name="pref_plugin_mousepad_desc_tv">Använd telefonen eller surfplattan som en tv-fjärrkontroll</string>

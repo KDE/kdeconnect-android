@@ -18,6 +18,8 @@
   <string name="pref_plugin_clipboard">Pano eşzamanlama</string>
   <string name="pref_plugin_clipboard_desc">Pano içeriğini paylaş</string>
   <string name="pref_plugin_clipboard_sent">Pano Gönderildi</string>
+  <string name="clipboard_preference_title_skip_sensitive">Hassas pano içeriğini eşzamanlamayı atla</string>
+  <string name="clipboard_preference_summary_skip_sensitive">Parolaları veya hassas olarak imlenmiş diğer içerikleri kendiliğinden eşzamanlamayın</string>
   <string name="pref_plugin_mousepad">Uzaktan giriş</string>
   <string name="pref_plugin_mousepad_desc_nontv">Telefonunuzu veya tabletinizi, dokunmatik yüzey veya klavye olarak kullanın</string>
   <string name="pref_plugin_mousepad_desc_tv">Telefonunuzu veya tabletinizi, televizyon kumandası olarak kullanın</string>

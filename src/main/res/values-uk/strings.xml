@@ -18,6 +18,8 @@
   <string name="pref_plugin_clipboard">Синхронізація буфера</string>
   <string name="pref_plugin_clipboard_desc">Спільне використання буфера обміну даними</string>
   <string name="pref_plugin_clipboard_sent">Вміст буфера надіслано</string>
+  <string name="clipboard_preference_title_skip_sensitive">Пропустити конфіденційну синхронізацію буфера</string>
+  <string name="clipboard_preference_summary_skip_sensitive">Не виконувати автоматично синхронізацію для паролів та інших даних, які позначено як конфіденційні</string>
   <string name="pref_plugin_mousepad">Дистанційне введення</string>
   <string name="pref_plugin_mousepad_desc_nontv">Скористайтеся телефоном або планшетом як замінником сенсорної панелі і клавіатури</string>
   <string name="pref_plugin_mousepad_desc_tv">Скористайтеся телефоном або планшетом як пультом керування телевізором</string>

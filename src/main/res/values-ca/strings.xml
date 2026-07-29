@@ -18,6 +18,8 @@
   <string name="pref_plugin_clipboard">Sincronitza el porta-retalls</string>
   <string name="pref_plugin_clipboard_desc">Comparteix el contingut del porta-retalls</string>
   <string name="pref_plugin_clipboard_sent">S\'ha enviat al porta-retalls</string>
+  <string name="clipboard_preference_title_skip_sensitive">Omet la sincronització confidencial del porta-retalls</string>
+  <string name="clipboard_preference_summary_skip_sensitive">No sincronitza automàticament les contrasenyes o altre contingut marcat com a confidencial</string>
   <string name="pref_plugin_mousepad">Entrada remota</string>
   <string name="pref_plugin_mousepad_desc_nontv">Useu el vostre telèfon o tauleta com un ratolí tàctil i un teclat</string>
   <string name="pref_plugin_mousepad_desc_tv">Useu el vostre telèfon o tauleta com un comandament a distància de TV</string>

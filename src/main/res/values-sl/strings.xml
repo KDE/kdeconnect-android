@@ -18,6 +18,8 @@
   <string name="pref_plugin_clipboard">Uskladi odložišči</string>
   <string name="pref_plugin_clipboard_desc">Deli skupno vsebino odložišča</string>
   <string name="pref_plugin_clipboard_sent">Odložišče je poslano</string>
+  <string name="clipboard_preference_title_skip_sensitive">Preskoči občutljivo sinhronizacijo odložišča</string>
+  <string name="clipboard_preference_summary_skip_sensitive">Samodejno ne sinhroniziraj gesel ali druge vsebine označene kot občutljive</string>
   <string name="pref_plugin_mousepad">Oddaljeni vhod</string>
   <string name="pref_plugin_mousepad_desc_nontv">Uporabi telefon ali tablični računalnik kot sledilno ploščico in tipkovnico</string>
   <string name="pref_plugin_mousepad_desc_tv">Uporabi telefon ali tablični računalnik kot oddaljeni TV</string>
