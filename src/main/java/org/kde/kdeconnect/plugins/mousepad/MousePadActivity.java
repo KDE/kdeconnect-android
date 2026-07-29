@@ -167,8 +167,6 @@ public class MousePadActivity
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         prefs.registerOnSharedPreferenceChangeListener(this);
 
-        applyPrefs();
-
         //Technically xdpi and ydpi should be handled separately,
         //but since ydpi is usually almost equal to xdpi, only xdpi is used for the multiplier.
         displayDpiMultiplier = StandardDpi / getResources().getDisplayMetrics().xdpi;
@@ -186,6 +184,8 @@ public class MousePadActivity
                 getWindow().getDecorView().setSystemUiVisibility(fullscreenType);
             }
         });
+
+        applyPrefs();
     }
 
     @Override
@@ -548,9 +548,11 @@ public class MousePadActivity
     }
 
     private void showKeyboard() {
-        InputMethodManager imm = ContextCompat.getSystemService(this, InputMethodManager.class);
-        keyListenerView.requestFocus();
-        imm.showSoftInput(keyListenerView.getRootView(),0);
+        keyListenerView.post(() -> {
+            InputMethodManager imm = ContextCompat.getSystemService(this, InputMethodManager.class);
+            keyListenerView.requestFocus();
+            imm.showSoftInput(keyListenerView, 0);
+        });
     }
 
 
