@@ -162,13 +162,20 @@ class MousePadPlugin : Plugin() {
     fun sendHome() {
         val np = NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST)
         np["alt"] = true
-        np["specialKey"] = KeyListenerView.SpecialKeysMap.get(KeyEvent.KEYCODE_F4)
+        np["specialKey"] = KeyListenerView.SpecialKeysMap.get(KeyEvent.KEYCODE_MOVE_HOME)
         device.sendPacket(np)
     }
 
     fun sendBack() {
         val np = NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST)
         np["specialKey"] = KeyListenerView.SpecialKeysMap.get(KeyEvent.KEYCODE_ESCAPE)
+        device.sendPacket(np)
+    }
+
+    fun sendClose() {
+        val np = NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST)
+        np["alt"] = true
+        np["specialKey"] = KeyListenerView.SpecialKeysMap.get(KeyEvent.KEYCODE_F4)
         device.sendPacket(np)
     }
 

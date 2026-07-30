@@ -54,6 +54,7 @@ class BigscreenActivity : BaseActivity<ActivityBigscreenBinding>() {
         binding.selectButton.setOnClickListener { v: View? -> plugin.sendSelect() }
         binding.homeButton.setOnClickListener { v: View? -> plugin.sendHome() }
         binding.backButton.setOnClickListener { v: View? -> plugin.sendBack() }
+        binding.closeButton.setOnClickListener { v: View? -> plugin.sendClose() }
         binding.micButton.setOnClickListener { v: View? ->
             if (plugin.hasMicPermission()) {
                 activateSTT()
@@ -77,6 +78,11 @@ class BigscreenActivity : BaseActivity<ActivityBigscreenBinding>() {
             binding.homeButton.visibility = View.VISIBLE
         } else {
             binding.homeButton.visibility = View.INVISIBLE
+        }
+        if (prefs.getBoolean(getString(R.string.pref_bigscreen_show_close), true)) {
+            binding.closeButton.visibility = View.VISIBLE
+        } else {
+            binding.closeButton.visibility = View.INVISIBLE
         }
     }
 
