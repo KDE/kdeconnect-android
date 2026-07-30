@@ -260,7 +260,12 @@ private fun OutputCard(
                                 .fillMaxWidth(),
                             text = text.string,
                             style = MaterialTheme.typography.bodyLarge,
-                            fontWeight = if (text.isCommand) FontWeight.ExtraBold else FontWeight.Normal
+                            fontWeight = if (text.isCommand) FontWeight.ExtraBold else FontWeight.Normal,
+                            color = when (text.commandStatus) {
+                                RunCommandStatus.COMMAND_SUCCESSFUL -> Color(0xFF2E7D32)
+                                RunCommandStatus.COMMAND_FAILED -> MaterialTheme.colorScheme.error
+                                else -> Color.Unspecified
+                            }
                         )
                     }
                 }

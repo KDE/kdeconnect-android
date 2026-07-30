@@ -35,12 +35,13 @@ import org.kde.kdeconnect_tp.R;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.Set;
 
 import kotlin.Unit;
-import kotlin.jvm.functions.Function1;
 
 @PluginFactory.LoadablePlugin
 public class RunCommandPlugin extends Plugin {
@@ -54,6 +55,13 @@ public class RunCommandPlugin extends Plugin {
     private final ArrayList<CommandsChangedCallback> callbacks = new ArrayList<>();
     private final ArrayList<CommandEntry> commandItems = new ArrayList<>();
     private final SnapshotStateList<RunCommandOutput> output = new SnapshotStateList<>();
+
+    // Ids of the commands that are currently running on the remote device. Currently only
+    // used to show/hide the stop button (when this is empty).
+    private final Set<Integer> runningProcesses = new LinkedHashSet<>();
+    // Position in `output` of the "$ command" line for each running/finished command id, so
+    // we can go back and update its color once we know whether it succeeded or failed.
+    private final Map<Integer, Integer> commandLineIndexById = new HashMap<>();
 
     private SharedPreferences sharedPreferences;
     private boolean canAddCommand;
@@ -70,31 +78,8 @@ public class RunCommandPlugin extends Plugin {
         void update();
     }
 
-    public MutableState<Boolean> commandRunning = new MutableState<>() {
-        private boolean value = false;
-
-        @Override
-        public Boolean getValue() {
-            return value;
-        }
-
-        @Override
-        public void setValue(Boolean aBoolean) {
-            value = aBoolean;
-        }
-
-        // You need to override these, but they are not being used
-        @Override
-        public Boolean component1() {
-            return null;
-        }
-
-        @NonNull
-        @Override
-        public Function1<Boolean, Unit> component2() {
-            return null;
-        }
-    };
+    // Replace with mutableStateOf when we migrate this class to Kotlin.
+    public final MutableState<Boolean> commandRunning = RunCommandActivityKt.mutableBooleanStateFor(false);
 
     public SnapshotStateList<RunCommandOutput> getOutput() {
         return output;
@@ -197,32 +182,56 @@ public class RunCommandPlugin extends Plugin {
             canAddCommand = np.getBoolean("canAddCommand", false);
 
             return true;
-        } else if (np.has("stdout")) {
+        } else if (np.has("commandStarted")) {
+            int id = np.getInt("id");
+            String command = np.getString("command");
+
+            Log.i("RunCommandPlugin", "commandStarted " + id);
+
+            runningProcesses.add(id);
+            commandRunning.setValue(true);
+
+            output.add(new RunCommandOutput(RunCommandStatus.COMMAND_RUNNING, "$ " + command, id));
+            commandLineIndexById.put(id, output.size() - 1);
+
+            return true;
+        } else if (np.has("commandOutput")) {
             List<String> stdOut = np.getStringList("stdout");
             List<String> stdErr = np.getStringList("stderr");
+            int id = np.getInt("id");
             assert stdOut != null;
             assert stdErr != null;
             for (String line : stdOut) {
                 Log.d("STDOUT", "Line:" + line);
-                output.add(new RunCommandOutput(line, false));
+                output.add(new RunCommandOutput(RunCommandStatus.STDOUT, line, id));
             }
             for (String line : stdErr) {
                 Log.d("STDERR", "Line:" + line);
-                output.add(new RunCommandOutput(line, false));
+                output.add(new RunCommandOutput(RunCommandStatus.STDERR, line, id));
             }
 
             return true;
         } else if (np.has("commandFinished")) {
-            commandRunning.setValue(false);
+            int id = np.getInt("id");
+            boolean success = np.getBoolean("success", true);
 
-            RunCommandOutput newCommand = new RunCommandOutput(">", true);
-            if (Objects.equals(output.get(output.size() - 1), newCommand)) {
-                return true;
+            Log.i("RunCommandPlugin", "commandFinished " + id);
+            runningProcesses.remove(id);
+            commandRunning.setValue(!runningProcesses.isEmpty());
+
+            Integer index = commandLineIndexById.remove(id);
+            if (index != null && index < output.size()) {
+                RunCommandOutput commandLine = output.get(index);
+                // Build a brand-new instance instead of mutating commandLine in place: SnapshotStateList
+                // doesn't notify Compose when calling output.set() with the same (mutated) reference.
+                // When we migrate this class to Kotlin this can be simplified to commandLine.copy() where
+                // we only change its commandStatus.
+                output.set(index, new RunCommandOutput(
+                        success ? RunCommandStatus.COMMAND_SUCCESSFUL : RunCommandStatus.COMMAND_FAILED,
+                        commandLine.getString(),
+                        id
+                ));
             }
-
-            output.removeAll(output.stream().filter(output -> output.getString().equals(">")).collect(Collectors.toList()));
-
-            output.add(newCommand);
 
             return true;
         }
@@ -244,7 +253,6 @@ public class RunCommandPlugin extends Plugin {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_RUNCOMMAND_REQUEST);
         np.set("key", cmdKey);
         getDevice().sendPacket(np);
-        commandRunning.setValue(true);
     }
 
     private void requestCommandList() {

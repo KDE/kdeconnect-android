@@ -13,7 +13,9 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.platform.Clipboard
 import androidx.compose.ui.platform.LocalClipboard
 import androidx.compose.ui.platform.toClipEntry
@@ -118,7 +120,25 @@ class RunCommandActivity : AppCompatActivity() {
     }
 }
 
+/**
+ * Kotlin's `mutableStateOf` isn't directly callable from Java (its default arguments aren't
+ * exposed as Java overloads), so this is a small wrapper to be called from Java.
+ */
+fun mutableBooleanStateFor(initial: Boolean): MutableState<Boolean> = mutableStateOf(initial)
+
+enum class RunCommandStatus {
+    STDERR,
+    STDOUT,
+    COMMAND_RUNNING,
+    COMMAND_SUCCESSFUL,
+    COMMAND_FAILED,
+}
+
 data class RunCommandOutput(
-    var string: String,
+    val commandStatus: RunCommandStatus,
+    val string: String,
+    val id: Int,
+) {
     val isCommand: Boolean
-)
+        get() = commandStatus == RunCommandStatus.COMMAND_RUNNING || commandStatus == RunCommandStatus.COMMAND_SUCCESSFUL || commandStatus == RunCommandStatus.COMMAND_FAILED
+}
