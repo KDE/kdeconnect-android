@@ -18,6 +18,8 @@
   <string name="pref_plugin_clipboard">סנכרון לוח הגזירים</string>
   <string name="pref_plugin_clipboard_desc">שיתוף תוכן לוח הגזירים</string>
   <string name="pref_plugin_clipboard_sent">לוח הגזירים נשלח</string>
+  <string name="clipboard_preference_title_skip_sensitive">דילוג סנכרון רגיש מול לוח הגזירים</string>
+  <string name="clipboard_preference_summary_skip_sensitive">לא לסנכרן אוטומטית סיסמאות או תוכן אחר שסומן כרגיש</string>
   <string name="pref_plugin_mousepad">שליטה מרחוק</string>
   <string name="pref_plugin_mousepad_desc_nontv">להשתמש בטלפון או במחשב הלוח כמשטח מגע ומקלדת</string>
   <string name="pref_plugin_mousepad_desc_tv">להשתמש בטלפון או במחשב הלוח כשלט לטלוויזיה</string>
