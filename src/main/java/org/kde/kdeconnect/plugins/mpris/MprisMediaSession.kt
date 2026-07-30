@@ -510,8 +510,10 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
 
     override fun onProviderStateChanged(systemVolumeProvider: SystemVolumeProvider, isActive: Boolean) {
         val mediaSession = mediaSession ?: return
+        val prefs = PreferenceManager.getDefaultSharedPreferences(context)
+        val allowVolumeKeys = prefs.getBoolean(context!!.getString(R.string.pref_mpris_volume_control_key), true)
 
-        if (isActive) {
+        if (isActive && allowVolumeKeys) {
             mediaSession.setPlaybackToRemote(systemVolumeProvider)
         } else {
             mediaSession.setPlaybackToLocal(AudioManager.STREAM_MUSIC)

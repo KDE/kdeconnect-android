@@ -661,4 +661,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="runcommand_output_no_output">No commands executed</string>
     <string name="runcommand_stop">Stop the current command</string>
 
+    <string name="pref_mpris_volume_control_key" translatable="false">mpris_volume_control_enabled</string>
+    <string name="pref_mpris_volume_control_title">Hardware volume keys</string>
+    <string name="pref_mpris_volume_control_summary">Control the connected device\'s media volume using this phone\'s hardware buttons</string>
 </resources>
