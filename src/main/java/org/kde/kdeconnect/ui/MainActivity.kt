@@ -408,6 +408,10 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
                 }
             }
 
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CINNAMON_BUN && isPermissionGranted(permissions, grantResults, Manifest.permission.ACCESS_LOCAL_NETWORK)) {
+                BackgroundService.ForceRefreshConnections(this)
+            }
+
             //New permission granted, reload plugins
             CoroutineScope(Dispatchers.IO).launch {
                 KdeConnect.getInstance().devices.values.forEach(Device::reloadPluginsFromSettings)
