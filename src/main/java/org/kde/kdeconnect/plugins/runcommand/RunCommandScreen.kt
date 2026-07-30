@@ -11,16 +11,21 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Card
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -28,6 +33,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -44,6 +50,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
@@ -67,6 +75,7 @@ fun RunCommandScreen(
     val context = LocalContext.current
     var showDialog by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
+    val outputList = remember { plugin.output }
 
     DisposableEffect(plugin) {
         val callback = RunCommandPlugin.CommandsChangedCallback {
@@ -132,6 +141,11 @@ fun RunCommandScreen(
                         .padding(it)
                         .fillMaxSize()
                 ) {
+                    if (device.canSendPacketType(RunCommandPlugin.PACKET_TYPE_RUNCOMMAND_OUTPUT)) {
+                        item {
+                            OutputCard(outputList, plugin)
+                        }
+                    }
                     items(commandList) { command ->
                         var menuExpanded by remember { mutableStateOf(false) }
                         var pressOffset by remember { mutableStateOf(IntOffset.Zero) }
@@ -212,6 +226,87 @@ fun RunCommandScreen(
                     }
                     Text(text)
                 }
+            }
+        }
+    }
+}
+
+@Composable
+private fun OutputCard(
+    outputList: SnapshotStateList<RunCommandOutput>,
+    plugin: RunCommandPlugin
+) {
+    val state = rememberLazyListState()
+    val coroutineScope = rememberCoroutineScope()
+    val showStopButton by remember { plugin.commandRunning }
+
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(300.dp)
+            .padding(horizontal = 20.dp, vertical = 10.dp)
+    ) {
+        if (outputList.isNotEmpty()) {
+            Box {
+                LazyColumn(
+                    modifier = Modifier
+                        .padding(horizontal = 15.dp, vertical = 5.dp)
+                        .fillMaxWidth(),
+                    state = state
+                ) {
+                    items(outputList) { text ->
+                        Text(
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            text = text.string,
+                            style = MaterialTheme.typography.bodyLarge,
+                            fontWeight = if (text.isCommand) FontWeight.ExtraBold else FontWeight.Normal
+                        )
+                    }
+                }
+                if (showStopButton) {
+                    Column(
+                        modifier = Modifier.padding(5.dp).fillMaxSize(),
+                        horizontalAlignment = Alignment.End,
+                        verticalArrangement = Arrangement.Bottom
+                    ) {
+                        IconButton(onClick = { plugin.sendStop() }) {
+                            CircularProgressIndicator()
+                            Icon(
+                                painterResource(R.drawable.ic_stop),
+                                stringResource(R.string.runcommand_stop)
+                            )
+                        }
+                    }
+                }
+            }
+        } else {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(20.dp),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                Text(
+                    text = stringResource(R.string.runcommand_output_no_output),
+                    textAlign = TextAlign.Center,
+                    fontWeight = FontWeight.ExtraBold,
+                    style = MaterialTheme.typography.bodyLarge
+                )
+                Text(
+                    text = stringResource(R.string.runcommand_output_no_output_desc),
+                    textAlign = TextAlign.Center,
+                    style = MaterialTheme.typography.bodyLarge
+                )
+            }
+        }
+    }
+
+    LaunchedEffect(outputList.size) {
+        if (outputList.isNotEmpty()) {
+            coroutineScope.launch {
+                state.animateScrollToItem(outputList.size - 1)
             }
         }
     }

@@ -51,7 +51,7 @@ class RunCommandActivity : AppCompatActivity() {
                 Log.e("RunCommand", "Error parsing JSON", e)
             }
         }
-        commandList.sortBy { it.name }
+        commandList.sortBy { it.name.lowercase() }
         val device = getInstance().getDevice(deviceId) ?: return
 
         setContent {
@@ -92,7 +92,6 @@ class RunCommandActivity : AppCompatActivity() {
         toast.show()
     }
 
-
     private fun updateList() {
         commandList.removeAll(commandList)
         val plugin =
@@ -105,7 +104,7 @@ class RunCommandActivity : AppCompatActivity() {
                 Log.e("RunCommand", "Error parsing JSON", e)
             }
         }
-        commandList.sortBy { it.name }
+        commandList.sortBy { it.name.lowercase() }
     }
 
     override fun onResume() {
@@ -118,3 +117,8 @@ class RunCommandActivity : AppCompatActivity() {
         }
     }
 }
+
+data class RunCommandOutput(
+    var string: String,
+    val isCommand: Boolean
+)

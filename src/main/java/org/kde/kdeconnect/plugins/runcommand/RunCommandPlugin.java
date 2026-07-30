@@ -3,7 +3,7 @@
  * SPDX-FileCopyrightText: 2015 Albert Vaca Cintora <albertvaka@gmail.com>
  *
  * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
-*/
+ */
 
 package org.kde.kdeconnect.plugins.runcommand;
 
@@ -17,6 +17,8 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.compose.runtime.MutableState;
+import androidx.compose.runtime.snapshots.SnapshotStateList;
 import androidx.preference.PreferenceManager;
 
 import org.apache.commons.collections4.iterators.IteratorIterable;
@@ -34,22 +36,26 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
 
 @PluginFactory.LoadablePlugin
 public class RunCommandPlugin extends Plugin {
 
     private final static String PACKET_TYPE_RUNCOMMAND = "kdeconnect.runcommand";
+    public final static String PACKET_TYPE_RUNCOMMAND_OUTPUT = "kdeconnect.runcommand.output";
     private final static String PACKET_TYPE_RUNCOMMAND_REQUEST = "kdeconnect.runcommand.request";
     public final static String KEY_COMMANDS_PREFERENCE = "commands_preference_";
 
     private final ArrayList<JSONObject> commandList = new ArrayList<>();
     private final ArrayList<CommandsChangedCallback> callbacks = new ArrayList<>();
     private final ArrayList<CommandEntry> commandItems = new ArrayList<>();
+    private final SnapshotStateList<RunCommandOutput> output = new SnapshotStateList<>();
 
     private SharedPreferences sharedPreferences;
-
     private boolean canAddCommand;
 
     public void addCommandsUpdatedCallback(CommandsChangedCallback newCallback) {
@@ -62,6 +68,36 @@ public class RunCommandPlugin extends Plugin {
 
     interface CommandsChangedCallback {
         void update();
+    }
+
+    public MutableState<Boolean> commandRunning = new MutableState<>() {
+        private boolean value = false;
+
+        @Override
+        public Boolean getValue() {
+            return value;
+        }
+
+        @Override
+        public void setValue(Boolean aBoolean) {
+            value = aBoolean;
+        }
+
+        // You need to override these, but they are not being used
+        @Override
+        public Boolean component1() {
+            return null;
+        }
+
+        @NonNull
+        @Override
+        public Function1<Boolean, Unit> component2() {
+            return null;
+        }
+    };
+
+    public SnapshotStateList<RunCommandOutput> getOutput() {
+        return output;
     }
 
     public ArrayList<JSONObject> getCommandList() {
@@ -112,7 +148,6 @@ public class RunCommandPlugin extends Plugin {
 
     @Override
     public boolean onPacketReceived(@NonNull NetworkPacket np) {
-
         if (np.has("commandList")) {
             commandList.clear();
             try {
@@ -162,13 +197,41 @@ public class RunCommandPlugin extends Plugin {
             canAddCommand = np.getBoolean("canAddCommand", false);
 
             return true;
+        } else if (np.has("stdout")) {
+            List<String> stdOut = np.getStringList("stdout");
+            List<String> stdErr = np.getStringList("stderr");
+            assert stdOut != null;
+            assert stdErr != null;
+            for (String line : stdOut) {
+                Log.d("STDOUT", "Line:" + line);
+                output.add(new RunCommandOutput(line, false));
+            }
+            for (String line : stdErr) {
+                Log.d("STDERR", "Line:" + line);
+                output.add(new RunCommandOutput(line, false));
+            }
+
+            return true;
+        } else if (np.has("commandFinished")) {
+            commandRunning.setValue(false);
+
+            RunCommandOutput newCommand = new RunCommandOutput(">", true);
+            if (Objects.equals(output.get(output.size() - 1), newCommand)) {
+                return true;
+            }
+
+            output.removeAll(output.stream().filter(output -> output.getString().equals(">")).collect(Collectors.toList()));
+
+            output.add(newCommand);
+
+            return true;
         }
         return false;
     }
 
     @Override
     public @NonNull String[] getSupportedPacketTypes() {
-        return new String[]{PACKET_TYPE_RUNCOMMAND};
+        return new String[]{PACKET_TYPE_RUNCOMMAND, PACKET_TYPE_RUNCOMMAND_OUTPUT};
     }
 
     @Override
@@ -177,9 +240,11 @@ public class RunCommandPlugin extends Plugin {
     }
 
     public void runCommand(String cmdKey) {
+        Log.d("RunCommand", "Sending " + cmdKey);
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_RUNCOMMAND_REQUEST);
         np.set("key", cmdKey);
         getDevice().sendPacket(np);
+        commandRunning.setValue(true);
     }
 
     private void requestCommandList() {
@@ -198,4 +263,9 @@ public class RunCommandPlugin extends Plugin {
         getDevice().sendPacket(np);
     }
 
+    void sendStop() {
+        NetworkPacket np = new NetworkPacket(PACKET_TYPE_RUNCOMMAND_REQUEST);
+        np.set("stop", true);
+        getDevice().sendPacket(np);
+    }
 }
