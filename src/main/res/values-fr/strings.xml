@@ -18,6 +18,8 @@
   <string name="pref_plugin_clipboard">Synchronisation avec le presse-papiers</string>
   <string name="pref_plugin_clipboard_desc">Partage le contenu du presse-papiers</string>
   <string name="pref_plugin_clipboard_sent">Presse-papiers envoyé</string>
+  <string name="clipboard_preference_title_skip_sensitive">Ignorer la synchronisation d\'informations sensibles avec le presse-papier</string>
+  <string name="clipboard_preference_summary_skip_sensitive">Ne pas synchroniser automatiquement les mots de passe ou tout autre contenu marqué comme informations sensibles</string>
   <string name="pref_plugin_mousepad">Contrôle distant</string>
   <string name="pref_plugin_mousepad_desc_nontv">Utilisez votre téléphone ou votre tablette comme un pavé tactile et clavier</string>
   <string name="pref_plugin_mousepad_desc_tv">Utilisez votre téléphone ou votre tablette comme une télécommande de télévision</string>
