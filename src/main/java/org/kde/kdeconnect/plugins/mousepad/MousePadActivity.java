@@ -8,6 +8,7 @@ package org.kde.kdeconnect.plugins.mousepad;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Insets;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -21,6 +22,8 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.view.WindowInsets;
+import android.view.WindowInsets.Type;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -45,7 +48,8 @@ public class MousePadActivity
         GestureDetector.OnDoubleTapListener,
         MousePadGestureDetector.OnGestureListener,
         SensorEventListener,
-        SharedPreferences.OnSharedPreferenceChangeListener {
+        SharedPreferences.OnSharedPreferenceChangeListener,
+        View.OnApplyWindowInsetsListener {
     private String deviceId;
 
     private final static float MinDistanceToSendScroll = 2.5f; // touch gesture scroll
@@ -66,6 +70,7 @@ public class MousePadActivity
     private boolean isScrolling = false;
     private double accumulatedDistanceY = 0;
     private boolean pendingShowKeyboard = false;
+    private boolean keyboardShown = false;
 
     private GestureDetector mDetector;
     private SensorManager mSensorManager;
@@ -163,6 +168,7 @@ public class MousePadActivity
 
         keyListenerView = getBinding().keyListener;
         keyListenerView.setDeviceId(deviceId);
+        keyListenerView.setOnApplyWindowInsetsListener(this);
 
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         prefs.registerOnSharedPreferenceChangeListener(this);
@@ -494,6 +500,13 @@ public class MousePadActivity
         if (prefsApplied) prefsApplied = false;
     }
 
+    @Override
+    public WindowInsets onApplyWindowInsets(View v, WindowInsets insets) {
+        Insets imeInsets = insets.getInsets(Type.ime());
+        keyboardShown = imeInsets.bottom != 0 || imeInsets.top != 0 
+            || imeInsets.left != 0 || imeInsets.right != 0;
+        return v.onApplyWindowInsets(insets);
+    }
 
     private void sendLeftClick() {
         MousePadPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, MousePadPlugin.class);
@@ -537,9 +550,11 @@ public class MousePadActivity
     }
 
     private void toggleKeyboard() {
-        InputMethodManager imm = ContextCompat.getSystemService(this, InputMethodManager.class);
-        keyListenerView.requestFocus();
-        imm.toggleSoftInputFromWindow(keyListenerView.getWindowToken(), 0, 0);
+        if (keyboardShown) {
+            hideKeyboard();
+        } else {
+            showKeyboard();
+        }
     }
 
     private void hideKeyboard() {
