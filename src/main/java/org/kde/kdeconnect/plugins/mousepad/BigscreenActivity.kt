@@ -73,7 +73,7 @@ class BigscreenActivity : BaseActivity<ActivityBigscreenBinding>() {
         } else {
             binding.backButton.visibility = View.INVISIBLE
         }
-        if (prefs.getBoolean(getString(R.string.pref_bigscreen_show_home), false)) {
+        if (prefs.getBoolean(getString(R.string.pref_bigscreen_show_home), true)) {
             binding.homeButton.visibility = View.VISIBLE
         } else {
             binding.homeButton.visibility = View.INVISIBLE
