@@ -115,7 +115,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
             android:id="@+id/close_button"
             style="@style/KdeConnectButton.IconButton"
             android:contentDescription="@string/bigscreen_close"
-            app:icon="@android:drawable/ic_menu_close_clear_cancel"
+            app:icon="@drawable/ic_close"
             app:iconSize="32dp"
             app:layout_column="2"
             app:layout_columnWeight="1"
