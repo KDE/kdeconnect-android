@@ -161,8 +161,8 @@ class MousePadPlugin : Plugin() {
 
     fun sendHome() {
         val np = NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST)
-        np["alt"] = true
-        np["specialKey"] = KeyListenerView.SpecialKeysMap.get(KeyEvent.KEYCODE_MOVE_HOME)
+        np["super"] = true // HACK to make it work on devices that don't support super as a special key
+        np["specialKey"] = KeyListenerView.SpecialKeysMap.get(KeyEvent.KEYCODE_META_LEFT)
         device.sendPacket(np)
     }
 

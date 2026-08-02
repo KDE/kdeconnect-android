@@ -42,10 +42,10 @@ public class KeyListenerView extends View {
         SpecialKeysMap.put(KeyEvent.KEYCODE_ESCAPE, ++i);       // 14
         SpecialKeysMap.put(KeyEvent.KEYCODE_SYSRQ, ++i);        // 15
         SpecialKeysMap.put(KeyEvent.KEYCODE_SCROLL_LOCK, ++i);  // 16
-        ++i;           // 17
-        ++i;           // 18
-        ++i;           // 19
-        ++i;           // 20
+        SpecialKeysMap.put(KeyEvent.KEYCODE_CTRL_LEFT, ++i);    // 17
+        SpecialKeysMap.put(KeyEvent.KEYCODE_ALT_LEFT, ++i);     // 18
+        SpecialKeysMap.put(KeyEvent.KEYCODE_SHIFT_LEFT, ++i);   // 19
+        SpecialKeysMap.put(KeyEvent.KEYCODE_META_LEFT, ++i);    // 20
         SpecialKeysMap.put(KeyEvent.KEYCODE_F1, ++i);           // 21
         SpecialKeysMap.put(KeyEvent.KEYCODE_F2, ++i);           // 22
         SpecialKeysMap.put(KeyEvent.KEYCODE_F3, ++i);           // 23
