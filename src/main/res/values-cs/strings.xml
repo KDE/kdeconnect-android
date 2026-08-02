@@ -194,6 +194,7 @@
   <string name="show_keyboard">Zobrazit klávesnici</string>
   <string name="show_mouse_and_keyboard">Zobrazit myš a klávesnici</string>
   <string name="device_not_paired">Zařízení není spárováno</string>
+  <string name="pairing_missing_local_network_permission">Bez oprávnění k přístupu k okolním zařízením nebude aplikace fungovat.</string>
   <string name="pairing_duplicate_names">"Upozorněné:  Nalezeno více zařízení se stejným názvem."</string>
   <string name="request_pairing">Vyžádat párování</string>
   <string name="pairing_accept">Přijmout</string>
@@ -487,4 +488,9 @@
   <string name="pref_presenter_enable_volume_keys_summary">Ve standby není podporováno mezi verzemi Androidu 13 a 15</string>
   <string name="presenter_volume_keys_foreground_tip">Můžete nechat obrazovku zapnutou a použít klávesy pro ovládání hlasitosti pro posun na předchozí/další snímek</string>
   <string name="presenter_volume_keys_tip">Můžete nechat obrazovku zapnutou nebo zamknout zařízení a použít klávesy pro ovládání hlasitosti pro posun na předchozí/další snímek</string>
+  <string name="runcommand_output_no_output_desc">Zde se zobrazí výstup z příkazů.</string>
+  <string name="runcommand_output_no_output">Nebyly spuštěny žádné příkazy</string>
+  <string name="runcommand_stop">Zastavit aktuální příkaz</string>
+  <string name="pref_mpris_volume_control_title">Hardwarová tlačítka hlasitosti</string>
+  <string name="pref_mpris_volume_control_summary">Pomocí hardwarových tlačítek tohoto telefonu můžete ovládat hlasitost přehrávání médií na připojeném zařízení</string>
 </resources>

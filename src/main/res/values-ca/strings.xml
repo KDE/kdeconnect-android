@@ -178,6 +178,7 @@
   <string name="show_keyboard">Mostra el teclat</string>
   <string name="show_mouse_and_keyboard">Mostra el ratolí i el teclat</string>
   <string name="device_not_paired">El dispositiu no està aparellat</string>
+  <string name="pairing_missing_local_network_permission">Manca el permís d\'accés als dispositius propers, l\'aplicació no funcionarà.</string>
   <string name="pairing_duplicate_names">Precaució: hi ha diversos dispositius amb el mateix nom.</string>
   <string name="request_pairing">Demana aparellar</string>
   <string name="pairing_accept">Accepta</string>
@@ -471,4 +472,9 @@
   <string name="pref_presenter_enable_volume_keys_summary">En repòs no està implementat entre les versions 13 i 15 de l\'Android</string>
   <string name="presenter_volume_keys_foreground_tip">Podeu deixar la pantalla activada i utilitzar les tecles de volum per anar a la diapositiva anterior/següent</string>
   <string name="presenter_volume_keys_tip">Podeu deixar la pantalla activada o bloquejar el dispositiu i utilitzar les tecles de volum per anar a la diapositiva anterior/següent</string>
+  <string name="runcommand_output_no_output_desc">La sortida de les ordres apareixerà aquí.</string>
+  <string name="runcommand_output_no_output">No s\'ha executat cap ordre</string>
+  <string name="runcommand_stop">Atura l\'ordre actual</string>
+  <string name="pref_mpris_volume_control_title">Tecles de volum de maquinari</string>
+  <string name="pref_mpris_volume_control_summary">Controla el volum multimèdia del dispositiu connectat utilitzant els botons de maquinari d\'aquest telèfon</string>
 </resources>

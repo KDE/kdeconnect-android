@@ -178,6 +178,7 @@
   <string name="show_keyboard">Visa tangentbord</string>
   <string name="show_mouse_and_keyboard">Visa mus och tangentbord</string>
   <string name="device_not_paired">Apparat inte parkopplad</string>
+  <string name="pairing_missing_local_network_permission">Saknar rättigheter att komma åt närliggande apparater, programmet kommer inte att fungera.</string>
   <string name="pairing_duplicate_names">Varning: Det finns flera enheter med samma namn.</string>
   <string name="request_pairing">Begär parkoppling</string>
   <string name="pairing_accept">Acceptera</string>
@@ -471,4 +472,9 @@
   <string name="pref_presenter_enable_volume_keys_summary">Viloläge stöds inte på Android-versioner mellan 13 och 15</string>
   <string name="presenter_volume_keys_foreground_tip">Skärmen kan lämnas på så volymtangenterna kan användas för att gå till föregående eller nästa bild</string>
   <string name="presenter_volume_keys_tip">Skärmen kan lämnas på eller apparaten kan låsas så volymtangenterna kan användas för att gå till föregående eller nästa bild</string>
+  <string name="runcommand_output_no_output_desc">Resultaten från kommandona kommer att visas här.</string>
+  <string name="runcommand_output_no_output">Inga kommandon utförda</string>
+  <string name="runcommand_stop">Stoppa pågående kommando</string>
+  <string name="pref_mpris_volume_control_title">Maskinvaruvolymknappar</string>
+  <string name="pref_mpris_volume_control_summary">Styr den anslutna enhetens medievolym med telefonens maskinvaruknappar</string>
 </resources>

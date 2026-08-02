@@ -178,6 +178,7 @@
   <string name="show_keyboard">Mostrar teclado</string>
   <string name="show_mouse_and_keyboard">Mostrar mouse e teclado</string>
   <string name="device_not_paired">Dispositivo não emparelhado</string>
+  <string name="pairing_missing_local_network_permission">Sem permissão para acessar dispositivos próximos, o aplicativo não funcionará.</string>
   <string name="pairing_duplicate_names">Cuidado: Há vários dispositivos com o mesmo nome.</string>
   <string name="request_pairing">Solicitar emparelhamento</string>
   <string name="pairing_accept">Aceitar</string>
@@ -471,4 +472,9 @@
   <string name="pref_presenter_enable_volume_keys_summary">O modo de espera não é compatível com versões do Android entre 13 e 15</string>
   <string name="presenter_volume_keys_foreground_tip">Você pode deixar a tela ligada para usar as teclas de volume para ir para o slide anterior/seguinte</string>
   <string name="presenter_volume_keys_tip">Você pode deixar a tela ligada ou bloquear o dispositivo para usar as teclas de volume para ir para o slide anterior/seguinte</string>
+  <string name="runcommand_output_no_output_desc">A saída dos comandos aparecerá aqui.</string>
+  <string name="runcommand_output_no_output">Nenhum comando executado</string>
+  <string name="runcommand_stop">Parar o comando atual</string>
+  <string name="pref_mpris_volume_control_title">Teclas de volume do hardware</string>
+  <string name="pref_mpris_volume_control_summary">Controlar o volume de mídia do dispositivo conectado usando os botões físicos deste telefone</string>
 </resources>

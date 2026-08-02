@@ -143,10 +143,10 @@
     <item quantity="other">Prejemanje %1$d datotek od %2$s</item>
   </plurals>
   <plurals name="incoming_files_text">
-    <item quantity="one">(Datoteke %2$d od %3$d) : %1$s</item>
+    <item quantity="one">(Datoteka %2$d od %3$d) : %1$s</item>
     <item quantity="two">(Datoteka %2$d od %3$d) : %1$s</item>
-    <item quantity="few">(Datoteki %2$d od %3$d) : %1$s</item>
-    <item quantity="other">(Datoteke %2$d od %3$d) : %1$s</item>
+    <item quantity="few">(Datoteka %2$d od %3$d) : %1$s</item>
+    <item quantity="other">(Datoteka %2$d od %3$d) : %1$s</item>
   </plurals>
   <plurals name="outgoing_file_title">
     <item quantity="one">Pošiljanje %1$d datotek na %2$s</item>
@@ -194,6 +194,7 @@
   <string name="show_keyboard">Pokaži tipkovnico</string>
   <string name="show_mouse_and_keyboard">Pokaži muško in tipkovnico</string>
   <string name="device_not_paired">Naprava ni uparjena</string>
+  <string name="pairing_missing_local_network_permission">Manjkajoče dovoljenje za dostop do bližnjih naprav, aplikacija ne bo delovala.</string>
   <string name="pairing_duplicate_names">POZOR: Obstaja več naprav z istim imenom.</string>
   <string name="request_pairing">Zahtevaj uparjanje</string>
   <string name="pairing_accept">Sprejmi</string>
@@ -487,4 +488,9 @@
   <string name="pref_presenter_enable_volume_keys_summary">V stanju pripravljenosti ni podprto v različicah Androida med 13 in 15</string>
   <string name="presenter_volume_keys_foreground_tip">Zaslon lahko pustite vklopljen, če želite s tipkama za glasnost preskočiti na prejšnjo/naslednjo sliko</string>
   <string name="presenter_volume_keys_tip">Zaslon lahko pustite vklopljen ali zaklenete napravo, da se s tipkama za glasnost premaknete na prejšnjo/naslednjo sliko</string>
+  <string name="runcommand_output_no_output_desc">Izhod ukazov se bo prikazal tukaj.</string>
+  <string name="runcommand_output_no_output">Ni izvedenih ukazov</string>
+  <string name="runcommand_stop">Ustavi trenutni ukaz</string>
+  <string name="pref_mpris_volume_control_title">Fizične tipke za glasnost</string>
+  <string name="pref_mpris_volume_control_summary">Glasnost medijev v povezani napravi lahko upravljate s fizičnimi gumbi tega telefona.</string>
 </resources>

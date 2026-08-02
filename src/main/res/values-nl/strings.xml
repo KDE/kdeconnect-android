@@ -178,6 +178,7 @@
   <string name="show_keyboard">Toetsenbord tonen</string>
   <string name="show_mouse_and_keyboard">Muis en toetsenbord tonen</string>
   <string name="device_not_paired">Apparaat is niet gepaard</string>
+  <string name="pairing_missing_local_network_permission">Ontbrekende rechten voor toegang tot dicht nabij zijnde apparaten, de toepassing zal niet werken.</string>
   <string name="pairing_duplicate_names">Voorzichtig: er zijn meerdere apparaten met dezelfde naam.</string>
   <string name="request_pairing">Verzoek voor maken van paar</string>
   <string name="pairing_accept">Accepteren</string>
@@ -471,4 +472,9 @@
   <string name="pref_presenter_enable_volume_keys_summary">Bij standby niet ondersteund op Android versie tussen 13 en 15</string>
   <string name="presenter_volume_keys_foreground_tip">U kunt het scherm aan laten om de volumetoetsen te gebruiken om naar de vorige/volgende dia te gaan</string>
   <string name="presenter_volume_keys_tip">U kunt het scherm aan laten of uw apparaat vergrendelen om de volumetoetsen te gebruiken om naar de vorige/volgende dia te gaan</string>
+  <string name="runcommand_output_no_output_desc">De uitvoer van de opdrachten zal hier verschijnen.</string>
+  <string name="runcommand_output_no_output">Geen opdrachten uitgevoerd</string>
+  <string name="runcommand_stop">De huidige opdracht stoppen</string>
+  <string name="pref_mpris_volume_control_title">Sleutels van hardwarevolumes</string>
+  <string name="pref_mpris_volume_control_summary">Regel het mediavolume van het verbonden apparaat met de fysieke knoppen van deze telefoon.</string>
 </resources>

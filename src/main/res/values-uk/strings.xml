@@ -194,6 +194,7 @@
   <string name="show_keyboard">Показати клавіатуру</string>
   <string name="show_mouse_and_keyboard">Показати мишу і клавіатуру</string>
   <string name="device_not_paired">Пристрій не пов’язано</string>
+  <string name="pairing_missing_local_network_permission">Не вистачає прав доступу до сусідніх пристроїв — програма не працюватиме.</string>
   <string name="pairing_duplicate_names">Попередження: маємо декілька пристроїв із однією назвою.</string>
   <string name="request_pairing">Надіслати запит щодо пов’язування</string>
   <string name="pairing_accept">Прийняти</string>
@@ -487,4 +488,9 @@
   <string name="pref_presenter_enable_volume_keys_summary">Підтримки «При присиплянні» не передбачено у версіях Android від 13 до 15</string>
   <string name="presenter_volume_keys_foreground_tip">Ви можете не вимикати екран і користуватися кнопками зміни гучності для переходу до попереднього або наступного слайда</string>
   <string name="presenter_volume_keys_tip">Ви можете не вимикати екран або заблокувати ваш пристрій і користуватися кнопками зміни гучності для переходу до попереднього або наступного слайда</string>
+  <string name="runcommand_output_no_output_desc">Тут буде показано виведені командами повідомлення.</string>
+  <string name="runcommand_output_no_output">Не виконано жодної команди</string>
+  <string name="runcommand_stop">Зупинити виконання поточної команди</string>
+  <string name="pref_mpris_volume_control_title">Апаратні клавіші гучності</string>
+  <string name="pref_mpris_volume_control_summary">Керування гучністю відтворення даних на з\'єднаному пристрої за допомогою апаратних кнопок телефону</string>
 </resources>

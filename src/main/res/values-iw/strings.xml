@@ -194,6 +194,7 @@
   <string name="show_keyboard">הצגת מקלדת</string>
   <string name="show_mouse_and_keyboard">הצגת עכבר ומקלדת</string>
   <string name="device_not_paired">המכשיר לא מצומד</string>
+  <string name="pairing_missing_local_network_permission">חסרה הרשאה לגשת למכשירים קרובים, היישומון לא יעבוד.</string>
   <string name="pairing_duplicate_names">אזהרה: יש כמה מכשירים שונים באותו השם.</string>
   <string name="request_pairing">בקשת צימוד</string>
   <string name="pairing_accept">אישור</string>
@@ -487,4 +488,9 @@
   <string name="pref_presenter_enable_volume_keys_summary">במצב המתנה לא זמין ב־Android בגרסאות בין 13 ל־15</string>
   <string name="presenter_volume_keys_foreground_tip">אפשר להשאיר את המסך פעיל כדי להשתמש במקשי עוצמת השמע כדי לעבור לשקופית הקודמת/הבאה</string>
   <string name="presenter_volume_keys_tip">אפשר להשאיר את המסך פעיל או לנעול את המכשיר שלך ולהשתמש במקשי עוצמת השמע כדי לעבור לשקופית הקודמת/הבאה</string>
+  <string name="runcommand_output_no_output_desc">הפלט מהפקודות יופיע כאן.</string>
+  <string name="runcommand_output_no_output">לא רצו פקודות</string>
+  <string name="runcommand_stop">עצירת הפקודה הנוכחית</string>
+  <string name="pref_mpris_volume_control_title">מקשי עוצמת שמע חומרתיים</string>
+  <string name="pref_mpris_volume_control_summary">אפשר לשלוט בעוצמת השמע של המכשיר המחובר באמצעות כפתורי החומרה של הטלפון הזה.</string>
 </resources>
