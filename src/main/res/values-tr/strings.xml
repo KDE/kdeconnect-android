@@ -178,6 +178,7 @@
   <string name="show_keyboard">Klavyeyi Göster</string>
   <string name="show_mouse_and_keyboard">Fareyi ve Klavyeyi Göster</string>
   <string name="device_not_paired">Aygıt eşleşmemiş</string>
+  <string name="pairing_missing_local_network_permission">Yakındaki aygıtlara erişmek için gerekli izinler eksik; uygulama çalışmayacaktır.</string>
   <string name="pairing_duplicate_names">Dikkat: Aynı adlı birden çok aygıt var.</string>
   <string name="request_pairing">Eşleşme isteği</string>
   <string name="pairing_accept">Onayla</string>
@@ -471,4 +472,9 @@
   <string name="pref_presenter_enable_volume_keys_summary">Android’in 13. ve 15. sürümleri arasında bekleme durumunda desteklenmez.</string>
   <string name="presenter_volume_keys_foreground_tip">Bir önceki/bir sonraki slayta geçmek için ekranı açık bırakabilir ve ses düzeyi düğmelerini kullanabilirsiniz.</string>
   <string name="presenter_volume_keys_tip">Bir önceki/bir sonraki slayta geçmek için ekranı açık bırakabilir/kilitleyebilir ve ses düzeyi düğmelerini kullanabilirsiniz.</string>
+  <string name="runcommand_output_no_output_desc">Komutlardan alınan çıktılar burada görünür.</string>
+  <string name="runcommand_output_no_output">Yürütülen komut yok</string>
+  <string name="runcommand_stop">Geçerli komutu durdur</string>
+  <string name="pref_mpris_volume_control_title">Donanım ses düğmeleri</string>
+  <string name="pref_mpris_volume_control_summary">Bağlı aygıtın ortam ses düzeyini bu telefonun düğmelerini kullanarak denetleyin</string>
 </resources>
