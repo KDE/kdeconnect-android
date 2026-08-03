@@ -1,5 +1,6 @@
 # Translation of kdeconnect-android-store-full to Norwegian Nynorsk
 #
+# Karl Ove Hufthammer <karl@huftis.org>, 2024.
 #. extracted from ./metadata/android/en-US/full_description.txt
 msgid ""
 msgstr ""
