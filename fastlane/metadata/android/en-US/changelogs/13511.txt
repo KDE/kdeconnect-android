@@ -1,0 +1,7 @@
+1.35.11:
+- Remote input: Fixes for using your phone as a touchpad.
+
+1.35.10:
+- Clipboard: Add option to skip syncing sensitive clipboard content
+- Media Control: Add option to toggle remote volume control using volume keys
+- Request "local network" permission on Android 17
