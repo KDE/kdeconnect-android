@@ -18,6 +18,8 @@
   <string name="pref_plugin_clipboard">Synkroniser utklippstavle</string>
   <string name="pref_plugin_clipboard_desc">Del innhaldet på utklippstavla</string>
   <string name="pref_plugin_clipboard_sent">Utklippstavle send</string>
+  <string name="clipboard_preference_title_skip_sensitive">Ikkje synkroniser sensitivt innhald</string>
+  <string name="clipboard_preference_summary_skip_sensitive">Ikkje synkroniser passord og anna innhald merkt som sensitivt</string>
   <string name="pref_plugin_mousepad">Fjernstyring</string>
   <string name="pref_plugin_mousepad_desc_nontv">Bruk telefonen eller nettbrettet som styreplate og tastatur</string>
   <string name="pref_plugin_mousepad_desc_tv">Bruk telefonen eller nettbrettet som TV-fjernkontroll</string>
@@ -176,6 +178,7 @@
   <string name="show_keyboard">Vis tastatur</string>
   <string name="show_mouse_and_keyboard">Vis mus og tastatur</string>
   <string name="device_not_paired">Eininga er ikkje para</string>
+  <string name="pairing_missing_local_network_permission">Manglar løyve for tilgang til einingar i nærleiken. Appen vil ikkje verka.</string>
   <string name="pairing_duplicate_names">Åtvaring: Det finst fleire einingar med same namn.</string>
   <string name="request_pairing">Be om paring</string>
   <string name="pairing_accept">Godta</string>
@@ -469,4 +472,9 @@
   <string name="pref_presenter_enable_volume_keys_summary">Bruk i standby-modus er ikkje støtta på Android versjon 13–15</string>
   <string name="presenter_volume_keys_foreground_tip">Du kan la skjermen stå på for å bruka lydstyrke-knappane som førre/neste-knappar</string>
   <string name="presenter_volume_keys_tip">Du kan la skjermen stå på eller låsa eininga og bruka lydstyrke-knappane som førre/neste-knappar</string>
+  <string name="runcommand_output_no_output_desc">Utdata frå kommandoane vert viste her.</string>
+  <string name="runcommand_output_no_output">Ingen kommandoar vart køyrde</string>
+  <string name="runcommand_stop">Stopp gjeldande kommando</string>
+  <string name="pref_mpris_volume_control_title">Fysiske lydstyrke-knappar</string>
+  <string name="pref_mpris_volume_control_summary">Styr lydstyrken til den tilkopla eininga via dei fysiske lydstyrke-knappane på telefonen</string>
 </resources>

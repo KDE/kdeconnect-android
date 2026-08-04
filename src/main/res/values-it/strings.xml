@@ -18,6 +18,8 @@
   <string name="pref_plugin_clipboard">Sincronizzazione appunti</string>
   <string name="pref_plugin_clipboard_desc">Condividi il contenuto degli appunti</string>
   <string name="pref_plugin_clipboard_sent">Appunti inviati</string>
+  <string name="clipboard_preference_title_skip_sensitive">Salta la sincronizzazione degli appunti sensibili</string>
+  <string name="clipboard_preference_summary_skip_sensitive">Non sincronizzare automaticamente le password o altri contenuti contrassegnati come sensibili</string>
   <string name="pref_plugin_mousepad">Impulso remoto</string>
   <string name="pref_plugin_mousepad_desc_nontv">Usa il tuo telefono o tablet come touchpad e tastiera</string>
   <string name="pref_plugin_mousepad_desc_tv">Usa il tuo telefono o tablet come telecomando della TV</string>
@@ -176,6 +178,7 @@
   <string name="show_keyboard">Mostra tastiera</string>
   <string name="show_mouse_and_keyboard">Mostra mouse e tastiera</string>
   <string name="device_not_paired">Dispositivo non associato</string>
+  <string name="pairing_missing_local_network_permission">Se non si dispone dell\'autorizzazione per accedere ai dispositivi nelle vicinanze, l\'applicazione non funzionerà.</string>
   <string name="pairing_duplicate_names">Attenzione: ci sono più dispositivi con lo stesso nome.</string>
   <string name="request_pairing">Richiedi associazione</string>
   <string name="pairing_accept">Accetta</string>
@@ -469,4 +472,9 @@
   <string name="pref_presenter_enable_volume_keys_summary">Non supportato durante la sospensione sulle versioni Android comprese tra 13 e 15</string>
   <string name="presenter_volume_keys_foreground_tip">Puoi lasciare lo schermo acceso per usare i tasti del volume per passare alla diapositiva precedente/successiva</string>
   <string name="presenter_volume_keys_tip">Puoi lasciare lo schermo acceso o bloccare il dispositivo per utilizzare i tasti del volume per passare alla diapositiva precedente/successiva</string>
+  <string name="runcommand_output_no_output_desc">Il risultato dei comandi sarà visualizzato qui.</string>
+  <string name="runcommand_output_no_output">Nessun comando eseguito</string>
+  <string name="runcommand_stop">Ferma il comando attuale</string>
+  <string name="pref_mpris_volume_control_title">Tasti hardware del volume</string>
+  <string name="pref_mpris_volume_control_summary">Controlla il volume multimediale del dispositivo connesso utilizzando i pulsanti hardware di questo telefono.</string>
 </resources>
