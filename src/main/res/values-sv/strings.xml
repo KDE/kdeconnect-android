@@ -75,6 +75,7 @@
   <string name="bigscreen_hide_mouse_input">Dölj musens och tangentbordets fjärrinmatningsknapp</string>
   <string name="bigscreen_show_home_title">Visa hemknapp</string>
   <string name="bigscreen_show_back_title">Visa bakåtknapp</string>
+  <string name="bigscreen_show_close_title">Visa stängningsknapp</string>
   <string-array name="mousepad_tap_entries">
     <item>Vänsterklick</item>
     <item>Högerklick</item>
@@ -370,6 +371,7 @@
   <string name="mpris_open_url">Fortsätt spela här</string>
   <string name="cant_open_url">Kan inte öppna webbadress för att sluta spela</string>
   <string name="bigscreen_home">Hem</string>
+  <string name="bigscreen_close">Stäng</string>
   <string name="bigscreen_up">Uppåt</string>
   <string name="bigscreen_left">Vänster</string>
   <string name="bigscreen_select">Markera</string>

@@ -75,6 +75,7 @@
   <string name="bigscreen_hide_mouse_input">Skrýt tlačítko vzdáleného vstupu myši a klávesnice</string>
   <string name="bigscreen_show_home_title">Zobrazit tlačítko Domů</string>
   <string name="bigscreen_show_back_title">Zobrazit tlačítko Zpět</string>
+  <string name="bigscreen_show_close_title">Zobrazit uzavírací tlačítko</string>
   <string-array name="mousepad_tap_entries">
     <item>Kliknutí levým tlačítkem myši</item>
     <item>Kliknutí pravým tlačítkem myši</item>
@@ -386,6 +387,7 @@
   <string name="mpris_open_url">Pokračovat v přehrávání zde</string>
   <string name="cant_open_url">Nelze otevřít URL pro pokračování v přehrávání</string>
   <string name="bigscreen_home">Domů</string>
+  <string name="bigscreen_close">Zavřít</string>
   <string name="bigscreen_up">Nahoru</string>
   <string name="bigscreen_left">Vlevo</string>
   <string name="bigscreen_select">Vybrat</string>

@@ -75,6 +75,7 @@
   <string name="bigscreen_hide_mouse_input">Skrij gumb za vnos z miško in tipkovnico na daljinskem upravljalniku</string>
   <string name="bigscreen_show_home_title">Prikaži gumb Domov</string>
   <string name="bigscreen_show_back_title">Prikaži gumb Nazaj</string>
+  <string name="bigscreen_show_close_title">Prikaži gumb Zapri</string>
   <string-array name="mousepad_tap_entries">
     <item>Levi klik</item>
     <item>Desni klik</item>
@@ -386,6 +387,7 @@
   <string name="mpris_open_url">Nadaljuj s predvajanjem tukaj</string>
   <string name="cant_open_url">Ne morem odpreti spletnega naslova za nadaljevanje predvajanja</string>
   <string name="bigscreen_home">Domov</string>
+  <string name="bigscreen_close">Zapri</string>
   <string name="bigscreen_up">Gor</string>
   <string name="bigscreen_left">Levo</string>
   <string name="bigscreen_select">Izberi</string>
@@ -492,5 +494,5 @@
   <string name="runcommand_output_no_output">Ni izvedenih ukazov</string>
   <string name="runcommand_stop">Ustavi trenutni ukaz</string>
   <string name="pref_mpris_volume_control_title">Fizične tipke za glasnost</string>
-  <string name="pref_mpris_volume_control_summary">Glasnost medijev v povezani napravi lahko upravljate s fizičnimi gumbi tega telefona.</string>
+  <string name="pref_mpris_volume_control_summary">Glasnost medijev v povezani napravi lahko upravljate s fizičnimi gumbi tega telefona</string>
 </resources>

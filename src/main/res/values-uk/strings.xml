@@ -75,6 +75,7 @@
   <string name="bigscreen_hide_mouse_input">Кнопка приховування миші і клавіатури пульту дистанційного керування</string>
   <string name="bigscreen_show_home_title">Показувати кнопку «Домівка»</string>
   <string name="bigscreen_show_back_title">Показувати кнопку «Назад»</string>
+  <string name="bigscreen_show_close_title">Показувати кнопку «Закрити»</string>
   <string-array name="mousepad_tap_entries">
     <item>Клацання лівою</item>
     <item>Клацання правою</item>
@@ -386,6 +387,7 @@
   <string name="mpris_open_url">Продовжити відтворення тут</string>
   <string name="cant_open_url">Не вдалося відкрити адресу для продовження відтворення</string>
   <string name="bigscreen_home">Домівка</string>
+  <string name="bigscreen_close">Закрити</string>
   <string name="bigscreen_up">Вгору</string>
   <string name="bigscreen_left">Ліворуч</string>
   <string name="bigscreen_select">Вибрати</string>

@@ -18,6 +18,8 @@
   <string name="pref_plugin_clipboard">剪貼簿同步</string>
   <string name="pref_plugin_clipboard_desc">共享剪貼簿的內容</string>
   <string name="pref_plugin_clipboard_sent">已傳送剪貼簿內容</string>
+  <string name="clipboard_preference_title_skip_sensitive">不同步敏感資料</string>
+  <string name="clipboard_preference_summary_skip_sensitive">不自動同步密碼或是其他標記為敏感的內容</string>
   <string name="pref_plugin_mousepad">遠端輸入</string>
   <string name="pref_plugin_mousepad_desc_nontv">使用手機或平板電腦作為觸控板和鍵盤</string>
   <string name="pref_plugin_mousepad_desc_tv">使用手機或平板電腦作為電視遙控器</string>
@@ -73,6 +75,7 @@
   <string name="bigscreen_hide_mouse_input">隱藏滑鼠與鍵盤遠端輸入按鈕</string>
   <string name="bigscreen_show_home_title">顯示首頁按鈕</string>
   <string name="bigscreen_show_back_title">顯示返回按鈕</string>
+  <string name="bigscreen_show_close_title">顯示關閉按鈕</string>
   <string-array name="mousepad_tap_entries">
     <item>左鍵點擊</item>
     <item>右鍵點擊</item>
@@ -121,6 +124,7 @@
   <string name="pair_new_device">配對新裝置</string>
   <string name="cancel_pairing">取消配對</string>
   <string name="unknown_device">不明的裝置</string>
+  <string name="unknown_sender">不明的傳送者</string>
   <string name="error_not_reachable">裝置無法存取</string>
   <string name="error_already_paired">裝置已經配對</string>
   <string name="error_timed_out">逾時</string>
@@ -167,6 +171,7 @@
   <string name="show_keyboard">顯示鍵盤</string>
   <string name="show_mouse_and_keyboard">顯示鍵盤與滑鼠</string>
   <string name="device_not_paired">裝置未配對</string>
+  <string name="pairing_missing_local_network_permission">缺乏存取附近裝置的權限。這個狀態下此應用程式無法正常運作。</string>
   <string name="pairing_duplicate_names">請小心：有多台裝置有相同的名稱。</string>
   <string name="request_pairing">請求配對</string>
   <string name="pairing_accept">接受</string>
@@ -358,6 +363,7 @@
   <string name="mpris_open_url">繼續在此播放</string>
   <string name="cant_open_url">無法開啟 URL 以繼續播放</string>
   <string name="bigscreen_home">首頁</string>
+  <string name="bigscreen_close">關閉</string>
   <string name="bigscreen_up">上</string>
   <string name="bigscreen_left">左</string>
   <string name="bigscreen_select">選擇</string>
@@ -460,4 +466,9 @@
   <string name="pref_presenter_enable_volume_keys_summary">Android 13 ~ 15 不支援畫面鎖定時的操作</string>
   <string name="presenter_volume_keys_foreground_tip">可以在維持螢幕開啟時使用音量鍵前往上一張或下一張投影片</string>
   <string name="presenter_volume_keys_tip">無論螢幕開啟還是裝置已鎖定都可以使用音量鍵前往上一張或下一張投影片</string>
+  <string name="runcommand_output_no_output_desc">指令的輸出會顯示於此。</string>
+  <string name="runcommand_output_no_output">沒有執行指令</string>
+  <string name="runcommand_stop">停止目前指令</string>
+  <string name="pref_mpris_volume_control_title">硬體音量鍵</string>
+  <string name="pref_mpris_volume_control_summary">用這台手機的硬體按鍵控制連線裝置的媒體音量</string>
 </resources>

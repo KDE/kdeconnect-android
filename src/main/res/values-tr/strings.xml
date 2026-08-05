@@ -75,6 +75,7 @@
   <string name="bigscreen_hide_mouse_input">Fare ve klavye uzaktan giriş düğmesini gizle</string>
   <string name="bigscreen_show_home_title">Ana Ekran düğmesini göster</string>
   <string name="bigscreen_show_back_title">Geri düğmesini göster</string>
+  <string name="bigscreen_show_close_title">Kapat düğmesini göster</string>
   <string-array name="mousepad_tap_entries">
     <item>Sol tık</item>
     <item>Sağ tık</item>
@@ -370,6 +371,7 @@
   <string name="mpris_open_url">Oynamayı burada sürdürün</string>
   <string name="cant_open_url">Oynamayı sürdürmek için URL açılamıyor</string>
   <string name="bigscreen_home">Başlangıç</string>
+  <string name="bigscreen_close">Kapat</string>
   <string name="bigscreen_up">Yukarı</string>
   <string name="bigscreen_left">Sol</string>
   <string name="bigscreen_select">Seç</string>
