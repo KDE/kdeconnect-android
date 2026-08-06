@@ -9,37 +9,12 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:descendantFocusability="afterDescendants"
-    android:focusable="false"
     android:layout_height="match_parent"
     tools:context="org.kde.kdeconnect.ui.DeviceFragment">
 
-    <!-- Shown when device is reachable but not yet paired -->
-    <include
-        android:id="@+id/pair_request"
-        layout="@layout/view_pair_request"
-        tools:visibility="gone"/>
-
-    <!-- Shown when the device is paired but not reachable -->
-    <include
-        android:id="@+id/pair_error"
-        layout="@layout/view_pair_error"
-        tools:visibility="gone"/>
-
-    <androidx.core.widget.NestedScrollView
+    <androidx.compose.ui.platform.ComposeView
         android:id="@+id/device_view"
-        android:descendantFocusability="afterDescendants"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false">
+        android:layout_height="match_parent" />
 
-         <!-- Shown when the device is paired and reachable -->
-        <androidx.compose.ui.platform.ComposeView
-            android:id="@+id/device_view_compose"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </androidx.core.widget.NestedScrollView>
 </FrameLayout>
-
-
