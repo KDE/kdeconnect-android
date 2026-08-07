@@ -121,6 +121,9 @@ class ClipboardListener {
 
         @JvmStatic
         fun detectContentType(clip: ClipData?): ClipboardContentType {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+                return ClipboardContentType.Text
+            }
             if (clip?.description?.extras
                     ?.getBoolean(ClipDescription.EXTRA_IS_SENSITIVE, false) == true
             ) {
