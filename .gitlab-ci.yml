@@ -34,10 +34,7 @@ stages:
 buildLintAndTest:
   stage: buildLintAndTest
   script:
-    - ./gradlew --no-daemon -Pci --console=plain \
-    -        assembleDebug \
-    -        lintDebug \
-    -        testDebugUnitTest
+    - ./gradlew --no-daemon -Pci --console=plain assembleDebug lintDebug testDebugUnitTest
   artifacts:
     paths:
     - build/outputs/
