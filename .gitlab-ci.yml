@@ -8,7 +8,8 @@
 # - Run `gitlab-runner exec docker --docker-privileged buildLintAndTest`
 
 variables:
-  ANDROID_SDK_TOOLS:   "15859902" // Version from https://developer.android.com/studio#command-line-tools-only
+  # Version from https://developer.android.com/studio#command-line-tools-only
+  ANDROID_SDK_TOOLS:   "15859902"
 
 default:
   tags:
