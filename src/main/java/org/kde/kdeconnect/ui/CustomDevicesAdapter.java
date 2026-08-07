@@ -46,7 +46,11 @@ public class CustomDevicesAdapter extends RecyclerView.Adapter<CustomDevicesAdap
         super.onAttachedToRecyclerView(recyclerView);
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
-                new ItemTouchHelperCallback(adapterPos -> callback.onCustomDeviceDismissed(customDevices.get(adapterPos))));
+                new ItemTouchHelperCallback(adapterPos -> {
+                    if (adapterPos != RecyclerView.NO_POSITION) {
+                        callback.onCustomDeviceDismissed(customDevices.get(adapterPos));
+                    }
+                }));
         itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 
@@ -77,7 +81,12 @@ public class CustomDevicesAdapter extends RecyclerView.Adapter<CustomDevicesAdap
         ViewHolder(@NonNull CustomDeviceItemBinding itemBinding, Context context) {
             super(itemBinding.getRoot());
             this.itemBinding = itemBinding;
-            itemBinding.deviceNameOrIP.setOnClickListener(v -> callback.onCustomDeviceClicked(customDevices.get(getAbsoluteAdapterPosition())));
+            itemBinding.deviceNameOrIP.setOnClickListener(v -> {
+                int position = getAbsoluteAdapterPosition();
+                if (position != RecyclerView.NO_POSITION) {
+                    callback.onCustomDeviceClicked(customDevices.get(position));
+                }
+            });
             this.context = context;
         }
 
