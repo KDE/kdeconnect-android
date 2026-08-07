@@ -8,7 +8,6 @@ package org.kde.kdeconnect.plugins.mousepad;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Insets;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -22,12 +21,14 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.view.WindowInsets;
-import android.view.WindowInsets.Type;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.Insets;
+import androidx.core.view.OnApplyWindowInsetsListener;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.preference.PreferenceManager;
 
 import org.kde.kdeconnect.KdeConnect;
@@ -49,7 +50,7 @@ public class MousePadActivity
         MousePadGestureDetector.OnGestureListener,
         SensorEventListener,
         SharedPreferences.OnSharedPreferenceChangeListener,
-        View.OnApplyWindowInsetsListener {
+        OnApplyWindowInsetsListener {
     private String deviceId;
 
     private final static float MinDistanceToSendScroll = 2.5f; // touch gesture scroll
@@ -172,7 +173,7 @@ public class MousePadActivity
 
         keyListenerView = getBinding().keyListener;
         keyListenerView.setDeviceId(deviceId);
-        keyListenerView.setOnApplyWindowInsetsListener(this);
+        ViewCompat.setOnApplyWindowInsetsListener(keyListenerView, this);
 
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         prefs.registerOnSharedPreferenceChangeListener(this);
@@ -527,12 +528,13 @@ public class MousePadActivity
         if (prefsApplied) prefsApplied = false;
     }
 
+    @NonNull
     @Override
-    public WindowInsets onApplyWindowInsets(View v, WindowInsets insets) {
-        Insets imeInsets = insets.getInsets(Type.ime());
-        keyboardShown = imeInsets.bottom != 0 || imeInsets.top != 0 
+    public WindowInsetsCompat onApplyWindowInsets(@NonNull View v, @NonNull WindowInsetsCompat insets) {
+        Insets imeInsets = insets.getInsets(WindowInsetsCompat.Type.ime());
+        keyboardShown = imeInsets.bottom != 0 || imeInsets.top != 0
             || imeInsets.left != 0 || imeInsets.right != 0;
-        return v.onApplyWindowInsets(insets);
+        return ViewCompat.onApplyWindowInsets(v, insets);
     }
 
     private void sendLeftClick() {
