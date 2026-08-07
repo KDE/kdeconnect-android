@@ -68,18 +68,26 @@ public class SendFileActivity extends AppCompatActivity {
 
                     if (uris.isEmpty()) {
                         Log.w("SendFileActivity", "No files to send?");
+                        finish();
                     } else {
                         ThreadHelper.execute(() -> {
-                            SharePlugin plugin = KdeConnect.getInstance().getDevicePlugin(mDeviceId, SharePlugin.class);
-                            if (plugin == null) {
-                                finish();
-                                return;
+                            try {
+                                SharePlugin plugin = KdeConnect.getInstance().getDevicePlugin(mDeviceId, SharePlugin.class);
+                                if (plugin != null) {
+                                    plugin.sendUriList(uris);
+                                }
+                            } finally {
+                                // The read permissions ACTION_GET_CONTENT grants for these URIs are tied to
+                                // this activity's lifetime, so we can't finish() until sendUriList() has opened
+                                // all of them -- otherwise any URI not yet opened throws a SecurityException
+                                // ("... requires that you obtain access using ACTION_OPEN_DOCUMENT").
+                                runOnUiThread(this::finish);
                             }
-                            plugin.sendUriList(uris);
                         });
                     }
+                } else {
+                    finish();
                 }
-                finish();
                 break;
             default:
                 super.onActivityResult(requestCode, resultCode, data);
