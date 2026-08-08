@@ -23,7 +23,7 @@ object IntentHelper {
      * @param title a title which is shown in the notification on Android 10+
      */
     @JvmStatic
-    fun startActivityFromBackgroundOrCreateNotification(context: Context, intent: Intent?, title: String?) {
+    fun startActivityFromBackgroundOrCreateNotification(context: Context, intent: Intent, title: String) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && !isInForeground) {
             val flags = PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
             val pendingIntent = PendingIntent.getActivity(context, 0, intent, flags)

@@ -29,10 +29,9 @@ import org.kde.kdeconnect.ui.compose.model.device.DeviceUiModel
 import org.kde.kdeconnect.ui.compose.screen.share.ShareScreen
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.ActivityShareBinding
+import androidx.core.content.edit
 
 class ShareActivity : BaseActivity<ActivityShareBinding>() {
-
-    private lateinit var mSharedPrefs: SharedPreferences
 
     override val binding: ActivityShareBinding by lazy { ActivityShareBinding.inflate(layoutInflater) }
 
@@ -115,6 +114,8 @@ class ShareActivity : BaseActivity<ActivityShareBinding>() {
         device: Device,
         url: String?
     ) {
+        val mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(this)
+
         val key = KEY_UNREACHABLE_URL_LIST + device.deviceId
         val oldUrlSet = mSharedPrefs.getStringSet(key, null)
         // According to the API docs, we should not directly modify the set returned above
@@ -124,14 +125,12 @@ class ShareActivity : BaseActivity<ActivityShareBinding>() {
             newUrlSet.addAll(oldUrlSet)
         }
 
-        mSharedPrefs.edit().putStringSet(key, newUrlSet).apply()
+        mSharedPrefs.edit { putStringSet(key, newUrlSet) }
         Toast.makeText(this, getString(R.string.unreachable_share_toast), Toast.LENGTH_LONG).show()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(this)
 
         setSupportActionBar(binding.toolbarLayout.toolbar)
         supportActionBar?.apply {
