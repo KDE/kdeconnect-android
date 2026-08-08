@@ -1,5 +1,6 @@
 /*
  * SPDX-FileCopyrightText: 2020 Vincent Blücher <vincent.bluecher@gmail.com>
+ * SPDX-FileCopyrightText: 2026 Albert Vaca Cintora <albertvaka@gmail.com>
  *
  * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
  */
@@ -9,10 +10,13 @@ import android.app.PendingIntent
 import android.content.ClipDescription
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.webkit.URLUtil
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.IntentCompat
+import androidx.core.os.BundleCompat
 import org.kde.kdeconnect.helpers.LifecycleHelper.isInForeground
 import org.kde.kdeconnect_tp.R
 import kotlin.text.endsWith
@@ -45,7 +49,22 @@ object IntentHelper {
         }
     }
 
-    fun parseSharedUrls(intent: Intent): List<String> {
+    fun streamsFromIntent(intent: Intent): List<Uri> {
+        val extras = intent.extras
+        if (extras == null || !extras.containsKey(Intent.EXTRA_STREAM)) {
+            return emptyList()
+        }
+        val uriList = if (Intent.ACTION_SEND_MULTIPLE == intent.action) {
+            IntentCompat.getParcelableArrayListExtra(intent, Intent.EXTRA_STREAM, Uri::class.java)
+                ?.filterNotNull()
+                ?: emptyList()
+        } else {
+            listOfNotNull(BundleCompat.getParcelable(extras, Intent.EXTRA_STREAM, Uri::class.java))
+        }
+        return uriList
+    }
+
+    fun parseIntentUrls(intent: Intent): List<String> {
         val extras = intent.extras
         val text = extras?.getString(Intent.EXTRA_TEXT)?.trim()
             ?: return emptyList()

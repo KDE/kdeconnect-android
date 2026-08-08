@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2014 Albert Vaca Cintora <albertvaka@gmail.com>
+ * SPDX-FileCopyrightText: 2026 Albert Vaca Cintora <albertvaka@gmail.com>
  *
  * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
  */
@@ -73,7 +73,7 @@ class ShareActivity : BaseActivity<ActivityShareBinding>() {
             return
         }
         val devices = KdeConnect.getInstance().devices.values
-        this.intentHasUrl = IntentHelper.parseSharedUrls(intent).isNotEmpty()
+        this.intentHasUrl = IntentHelper.parseIntentUrls(intent).isNotEmpty()
         this.uiDevices = devices
             .filter { device -> device.isPaired && (intentHasUrl || device.isReachable) }
             .map { it.toUiModel() }
@@ -88,7 +88,7 @@ class ShareActivity : BaseActivity<ActivityShareBinding>() {
             Toast.makeText(this, getString(R.string.unknown_device), Toast.LENGTH_LONG ).show()
         } else if (!device.isReachable) {
             // Store the URL to be delivered once device becomes online
-            val urls = IntentHelper.parseSharedUrls(intent)
+            val urls = IntentHelper.parseIntentUrls(intent)
             if (urls.isNotEmpty()) {
                 storeUrlForFutureDelivery(device, urls.toSet())
             } else {

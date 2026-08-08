@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2014 Albert Vaca Cintora <albertvaka@gmail.com>
+ * SPDX-FileCopyrightText: 2026 Albert Vaca Cintora <albertvaka@gmail.com>
  *
  * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
  */
@@ -12,19 +12,16 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
-import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.widget.Toast
 import androidx.annotation.WorkerThread
 import androidx.core.content.ContextCompat
-import androidx.core.content.IntentCompat
 import androidx.core.content.LocusIdCompat
 import androidx.core.content.pm.ShortcutInfoCompat
 import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.core.graphics.drawable.IconCompat
-import androidx.core.os.BundleCompat
 import androidx.preference.PreferenceManager
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.async.BackgroundJob
@@ -262,44 +259,25 @@ class SharePlugin : Plugin() {
     }
 
     fun share(intent: Intent) {
-        val extras = intent.extras
-        val streams = streamsFromIntent(intent, extras)
+        val streams = IntentHelper.streamsFromIntent(intent)
         if (streams.isNotEmpty()) {
             Log.i(TAG, "Intent contains files to share")
             ThreadHelper.execute { sendFiles(streams) }
             return
         }
-        val urls = IntentHelper.parseSharedUrls(intent)
+        val urls = IntentHelper.parseIntentUrls(intent)
         if (urls.isNotEmpty()) {
             Log.i(TAG, "Intent contains URLs to share")
             sendUrls(urls)
             return
         }
-        val text = extras?.getString(Intent.EXTRA_TEXT)
+        val text = intent.extras?.getString(Intent.EXTRA_TEXT)
         if (!text.isNullOrEmpty()) {
             Log.i(TAG, "Intent contains text to share")
             sendText(text)
             return
         }
         Log.e(TAG, "There's nothing we know how to share")
-    }
-
-    private fun streamsFromIntent(intent: Intent, extras: Bundle?): List<Uri> {
-        if (extras == null || !extras.containsKey(Intent.EXTRA_STREAM)) {
-            return emptyList()
-        }
-        Log.i(TAG, "Intent contains streams to share")
-        val uriList = if (Intent.ACTION_SEND_MULTIPLE == intent.action) {
-            IntentCompat.getParcelableArrayListExtra(intent, Intent.EXTRA_STREAM, Uri::class.java)
-                ?.filterNotNull()
-                ?: emptyList()
-        } else {
-            listOfNotNull(BundleCompat.getParcelable(extras, Intent.EXTRA_STREAM, Uri::class.java))
-        }
-        if (uriList.isEmpty()) {
-            Log.w(TAG, "All streams were null")
-        }
-        return uriList
     }
 
     override fun getSettingsFragment(activity: Activity): PluginSettingsFragment =
