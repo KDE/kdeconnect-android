@@ -74,11 +74,11 @@ public class SendFileActivity extends AppCompatActivity {
                             try {
                                 SharePlugin plugin = KdeConnect.getInstance().getDevicePlugin(mDeviceId, SharePlugin.class);
                                 if (plugin != null) {
-                                    plugin.sendUriList(uris);
+                                    plugin.sendFiles(uris);
                                 }
                             } finally {
                                 // The read permissions ACTION_GET_CONTENT grants for these URIs are tied to
-                                // this activity's lifetime, so we can't finish() until sendUriList() has opened
+                                // this activity's lifetime, so we can't finish() until sendFiles() has opened
                                 // all of them -- otherwise any URI not yet opened throws a SecurityException
                                 // ("... requires that you obtain access using ACTION_OPEN_DOCUMENT").
                                 runOnUiThread(this::finish);

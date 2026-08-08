@@ -37,11 +37,9 @@ import org.kde.kdeconnect.plugins.PluginFactory.LoadablePlugin
 import org.kde.kdeconnect.ui.MainActivity
 import org.kde.kdeconnect.ui.PluginSettingsFragment
 import org.kde.kdeconnect_tp.R
-import java.net.MalformedURLException
-import java.net.URISyntaxException
-import java.net.URL
 import androidx.core.content.edit
 import androidx.core.net.toUri
+import org.kde.kdeconnect.helpers.IntentHelper
 import org.kde.kdeconnect.helpers.ThreadHelper
 
 /**
@@ -130,17 +128,7 @@ class SharePlugin : Plugin() {
 
         val currentUrlSet = mSharedPrefs.getStringSet(KEY_UNREACHABLE_URL_LIST + device.deviceId, null)
         if (currentUrlSet != null) {
-            for (url in currentUrlSet) {
-                val intent: Intent
-                try {
-                    intent = Intent.parseUri(url, 0)
-                    intent.putExtra(Intent.EXTRA_TEXT, url)
-                } catch (_: URISyntaxException) {
-                    Log.e(TAG, "Malformed URI: $url")
-                    continue
-                }
-                share(intent)
-            }
+            sendUrls(currentUrlSet.toList())
             mSharedPrefs.edit {
                 putStringSet(KEY_UNREACHABLE_URL_LIST + device.deviceId, null)
             }
@@ -240,12 +228,23 @@ class SharePlugin : Plugin() {
         }
     }
 
-    override fun getSettingsFragment(activity: Activity): PluginSettingsFragment =
-        ShareSettingsFragment.newInstance(pluginKey, R.xml.shareplugin_preferences)
+    fun sendUrls(urls: List<String>) {
+        for (url in urls) {
+            val np = NetworkPacket(PACKET_TYPE_SHARE_REQUEST)
+            np["url"] = url
+            device.sendPacket(np)
+        }
+    }
 
-    fun sendUriList(uriList: List<Uri>) {
+    fun sendText(text: String) {
+        val np = NetworkPacket(PACKET_TYPE_SHARE_REQUEST)
+        np["text"] = text
+        device.sendPacket(np)
+    }
+
+    fun sendFiles(uriList: List<Uri>) {
         val job = uploadFileJob ?:
-            CompositeUploadFileJob(device, this.receiveFileJobCallback)
+        CompositeUploadFileJob(device, this.receiveFileJobCallback)
 
         //Read all the data early, as we only have permissions to do it while the activity is alive
         for (uri in uriList) {
@@ -266,46 +265,24 @@ class SharePlugin : Plugin() {
         val extras = intent.extras
         val streams = streamsFromIntent(intent, extras)
         if (streams.isNotEmpty()) {
-            ThreadHelper.execute { sendUriList(streams) }
+            Log.i(TAG, "Intent contains files to share")
+            ThreadHelper.execute { sendFiles(streams) }
             return
         }
-        if (extras != null) {
-            var text = extras.getString(Intent.EXTRA_TEXT)
-            if (!text.isNullOrEmpty()) {
-                Log.i(TAG, "Intent contains text to share")
-
-                //Hack: Detect shared youtube videos, so we can open them in the browser instead of as text
-                val subject = extras.getString(Intent.EXTRA_SUBJECT)
-                if (subject != null && subject.endsWith("YouTube")) {
-                    val index = text.indexOf(": http://youtu.be/")
-                    if (index > 0) {
-                        text = text.substring(index + 2) //Skip ": "
-                    }
-                }
-
-                val isUrl = isUrl(text)
-                if (isUrl) {
-                    val np = NetworkPacket(PACKET_TYPE_SHARE_REQUEST)
-                    np["url"] = text
-                    device.sendPacket(np)
-                } else {
-                    val np = NetworkPacket(PACKET_TYPE_SHARE_REQUEST)
-                    np["text"] = text
-                    device.sendPacket(np)
-                }
-                return
-            }
+        val urls = IntentHelper.parseSharedUrls(intent)
+        if (urls.isNotEmpty()) {
+            Log.i(TAG, "Intent contains URLs to share")
+            sendUrls(urls)
+            return
+        }
+        val text = extras?.getString(Intent.EXTRA_TEXT)
+        if (!text.isNullOrEmpty()) {
+            Log.i(TAG, "Intent contains text to share")
+            sendText(text)
+            return
         }
         Log.e(TAG, "There's nothing we know how to share")
     }
-
-    private fun isUrl(text: String): Boolean =
-        try {
-            URL(text)
-            true
-        } catch (_: MalformedURLException) {
-            false
-        }
 
     private fun streamsFromIntent(intent: Intent, extras: Bundle?): List<Uri> {
         if (extras == null || !extras.containsKey(Intent.EXTRA_STREAM)) {
@@ -324,6 +301,9 @@ class SharePlugin : Plugin() {
         }
         return uriList
     }
+
+    override fun getSettingsFragment(activity: Activity): PluginSettingsFragment =
+        ShareSettingsFragment.newInstance(pluginKey, R.xml.shareplugin_preferences)
 
     override val supportedPacketTypes= arrayOf(
         PACKET_TYPE_SHARE_REQUEST,
