@@ -58,6 +58,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.ui.compose.KdeTheme
@@ -250,7 +251,17 @@ private fun OutputCard(
 ) {
     val state = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
-    val showStopButton by remember { plugin.commandRunning }
+    val commandRunning by plugin.commandRunning
+    var showStopButton by remember { mutableStateOf(false) }
+
+    LaunchedEffect(commandRunning) {
+        if (commandRunning) {
+            delay(1000)
+            showStopButton = true
+        } else {
+            showStopButton = false
+        }
+    }
 
     Card(
         modifier = Modifier
