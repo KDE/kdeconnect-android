@@ -18,6 +18,8 @@ import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
@@ -90,10 +92,20 @@ fun RunCommandScreen(
         }
     }
 
+    val showOutputCard = commandList.isNotEmpty() &&
+        device.canSendPacketType(RunCommandPlugin.PACKET_TYPE_RUNCOMMAND_OUTPUT)
+
     KdeTheme(context) {
         Scaffold(
             modifier = Modifier.safeDrawingPadding(),
-            topBar = { RunCommandAppBar(device.name, onBackPressedDispatcher) },
+            topBar = {
+                RunCommandAppBar(
+                    name = device.name,
+                    onBackPressedDispatcher = onBackPressedDispatcher,
+                    showClearOutput = showOutputCard,
+                    onClearOutput = { plugin.clearOutput() },
+                )
+            },
             floatingActionButton = {
                 if (plugin.canAddCommand()) {
                     FloatingActionButton(onClick = {
@@ -141,7 +153,7 @@ fun RunCommandScreen(
                         .padding(it)
                         .fillMaxSize()
                 ) {
-                    if (device.canSendPacketType(RunCommandPlugin.PACKET_TYPE_RUNCOMMAND_OUTPUT)) {
+                    if (showOutputCard) {
                         item {
                             OutputCard(outputList, plugin)
                         }
@@ -318,11 +330,36 @@ private fun OutputCard(
 }
 
 @Composable
-fun RunCommandAppBar(name: String, onBackPressedDispatcher: OnBackPressedDispatcher) {
+fun RunCommandAppBar(
+    name: String,
+    onBackPressedDispatcher: OnBackPressedDispatcher,
+    showClearOutput: Boolean,
+    onClearOutput: () -> Unit,
+) {
     KdeTopAppBar(
         title = stringResource(R.string.pref_plugin_runcommand),
         subTitle = name,
         navIconOnClick = { onBackPressedDispatcher.onBackPressed() },
         navIconDescription = stringResource(androidx.appcompat.R.string.abc_action_bar_up_description),
+        actions = {
+            if (showClearOutput) {
+                var menuExpanded by remember { mutableStateOf(false) }
+                IconButton(onClick = { menuExpanded = true }) {
+                    Icon(Icons.Default.MoreVert, stringResource(R.string.extra_options))
+                }
+                DropdownMenu(
+                    expanded = menuExpanded,
+                    onDismissRequest = { menuExpanded = false },
+                ) {
+                    DropdownMenuItem(
+                        text = { Text(stringResource(R.string.runcommand_clear_output)) },
+                        onClick = {
+                            menuExpanded = false
+                            onClearOutput()
+                        },
+                    )
+                }
+            }
+        },
     )
 }

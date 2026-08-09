@@ -85,6 +85,11 @@ public class RunCommandPlugin extends Plugin {
         return output;
     }
 
+    public void clearOutput() {
+        output.clear();
+        commandLineIndexById.clear();
+    }
+
     public ArrayList<JSONObject> getCommandList() {
         return commandList;
     }
