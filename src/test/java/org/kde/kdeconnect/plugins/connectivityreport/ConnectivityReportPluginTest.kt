@@ -1,4 +1,4 @@
-package org.kde.kdeconnect.plugins
+package org.kde.kdeconnect.plugins.connectivityreport
 
 import android.app.Application
 import android.content.Context

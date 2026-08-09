@@ -1,4 +1,4 @@
-package org.kde.kdeconnect.plugins
+package org.kde.kdeconnect.plugins.clipboard
 
 import android.app.Application
 import android.content.Context
@@ -17,8 +17,6 @@ import org.junit.runner.RunWith
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.MockSharedPreference
 import org.kde.kdeconnect.NetworkPacket
-import org.kde.kdeconnect.plugins.clipboard.ClipboardListener
-import org.kde.kdeconnect.plugins.clipboard.ClipboardPlugin
 import org.kde.kdeconnect_tp.R
 
 @RunWith(AndroidJUnit4::class)

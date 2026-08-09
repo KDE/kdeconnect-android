@@ -1,4 +1,4 @@
-package org.kde.kdeconnect.plugins
+package org.kde.kdeconnect.plugins.remotekeyboard
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -21,8 +21,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.NetworkPacket
-import org.kde.kdeconnect.plugins.remotekeyboard.RemoteKeyboardPlugin
-import org.kde.kdeconnect.plugins.remotekeyboard.RemoteKeyboardService
 
 @RunWith(AndroidJUnit4::class)
 class RemoteKeyboardPluginTest {

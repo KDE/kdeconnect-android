@@ -1,4 +1,4 @@
-package org.kde.kdeconnect.plugins
+package org.kde.kdeconnect.plugins.systemvolume
 
 import android.app.Application
 import android.content.Context
@@ -17,7 +17,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.NetworkPacket
-import org.kde.kdeconnect.plugins.systemvolume.SystemVolumePlugin
 
 @RunWith(AndroidJUnit4::class)
 class SystemVolumePluginTest {

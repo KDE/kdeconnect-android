@@ -1,4 +1,4 @@
-package org.kde.kdeconnect.plugins
+package org.kde.kdeconnect.plugins.ping
 
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -13,7 +13,6 @@ import io.mockk.verify
 import org.junit.Test
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.NetworkPacket
-import org.kde.kdeconnect.plugins.ping.PingPlugin
 
 class PingPluginTest {
     // Mocks the necessary components to test the PingPlugin
