@@ -10,14 +10,14 @@ import android.os.Parcelable
 import androidx.core.content.IntentCompat
 
 
-inline fun <reified T> Intent.getParcelableCompat(key: String): T? {
+inline fun <reified T> Intent.getParcelableExtraCompat(key: String): T? {
     return IntentCompat.getParcelableExtra(this, key, T::class.java)
 }
 
-inline fun <reified T> Intent.getParcelableArrayListCompat(key: String): ArrayList<T>? {
+inline fun <reified T> Intent.getParcelableArrayListExtraCompat(key: String): ArrayList<T>? {
     return IntentCompat.getParcelableArrayListExtra(this, key, T::class.java)
 }
 
-inline fun <reified T: Parcelable> Intent.getParcelableArrayCompat(key: String): Array<Parcelable>? {
+inline fun <reified T: Parcelable> Intent.getParcelableArrayExtraCompat(key: String): Array<Parcelable>? {
     return IntentCompat.getParcelableArrayExtra(this, key, T::class.java)
 }

@@ -880,7 +880,7 @@ object SMSHelper {
         internal constructor(uri: Uri, cause: Throwable?) : super("Error getting messages from $uri", cause)
 
         internal constructor(availableColumns: Array<String?>, uri: Uri, cause: Throwable?) :
-            super("Error getting messages from $uri. Available columns were: $availableColumns", cause)
+            super("Error getting messages from $uri. Available columns were: ${availableColumns.contentToString()}", cause)
     }
 
     /**

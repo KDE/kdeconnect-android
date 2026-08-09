@@ -134,7 +134,7 @@ public class SendKeystrokesToHostActivity extends BaseActivity<ActivitySendkeyst
 
     private void sendKeys(Device deviceId) {
         String toSend;
-        if (getBinding().textToSend.getText() != null && (toSend = getBinding().textToSend.getText().toString().trim()).length() > 0) {
+        if (getBinding().textToSend.getText() != null && !(toSend = getBinding().textToSend.getText().toString().trim()).isEmpty()) {
             MousePadPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId.getDeviceId(), MousePadPlugin.class);
             if (plugin == null) {
                 finish();

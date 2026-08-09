@@ -31,8 +31,8 @@ import org.kde.kdeconnect.helpers.security.SslHelper
 import org.kde.kdeconnect.helpers.ThreadHelper.execute
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.ui.SettingsFragment
-import org.kde.kdeconnect.extensions.getParcelableArrayCompat
-import org.kde.kdeconnect.extensions.getParcelableCompat
+import org.kde.kdeconnect.extensions.getParcelableArrayExtraCompat
+import org.kde.kdeconnect.extensions.getParcelableExtraCompat
 import java.io.IOException
 import java.io.InputStreamReader
 import java.io.Reader
@@ -186,7 +186,7 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
                     val myDeviceInfo = DeviceHelper.getDeviceInfo(context)
                     val np = myDeviceInfo.toIdentityPacket()
                     val myCertificate = Base64.encodeToString(SslHelper.certificate.encoded, 0)
-                    val pemEncodedCertificate = "-----BEGIN CERTIFICATE-----\n" + myCertificate + "\n-----END CERTIFICATE-----\n";
+                    val pemEncodedCertificate = "-----BEGIN CERTIFICATE-----\n$myCertificate\n-----END CERTIFICATE-----\n"
 
                     np["certificate"] = pemEncodedCertificate
 
@@ -305,8 +305,8 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
             val action = intent.action
             if (BluetoothDevice.ACTION_UUID == action) {
                 Log.i("BluetoothLinkProvider", "Action matches")
-                val device = intent.getParcelableCompat<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE)
-                val activeUuids = intent.getParcelableArrayCompat<Parcelable>(BluetoothDevice.EXTRA_UUID)
+                val device = intent.getParcelableExtraCompat<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE)
+                val activeUuids = intent.getParcelableArrayExtraCompat<Parcelable>(BluetoothDevice.EXTRA_UUID)
                 if (sockets.containsKey(device)) {
                     Log.i("BluetoothLinkProvider", "sockets contains device")
                     return
@@ -408,7 +408,7 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
                 val myDeviceInfo = DeviceHelper.getDeviceInfo(context)
                 val np2 = myDeviceInfo.toIdentityPacket()
                 val myCertificate = Base64.encodeToString(SslHelper.certificate.encoded, 0)
-                val pemEncodedCertificate = "-----BEGIN CERTIFICATE-----\n" + myCertificate + "\n-----END CERTIFICATE-----\n";
+                val pemEncodedCertificate = "-----BEGIN CERTIFICATE-----\n$myCertificate\n-----END CERTIFICATE-----\n"
 
                 np2["certificate"] = pemEncodedCertificate
                 Log.i("BTLinkProvider/Client", "about to send packet np2")

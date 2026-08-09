@@ -220,9 +220,7 @@ public class ContactsHelper {
             Log.w(LOG_TAG, "Received an improper number of return values from the database in getContactTimestamp: " + databaseValue.size());
         }
 
-        Long timestamp = Long.parseLong(databaseValue.get(contactID).get(ContactsContract.Contacts.CONTACT_LAST_UPDATED_TIMESTAMP));
-
-        return timestamp;
+        return Long.parseLong(databaseValue.get(contactID).get(ContactsContract.Contacts.CONTACT_LAST_UPDATED_TIMESTAMP));
     }
 
     /**

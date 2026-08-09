@@ -20,7 +20,7 @@ import java.util.concurrent.locks.Condition
 import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.withLock
 
-class ConnectionMultiplexer(socket: BluetoothSocket) : Closeable {
+class ConnectionMultiplexer(private val socket: BluetoothSocket) : Closeable {
     private class ChannelInputStream(val channel: Channel) : InputStream(), Closeable {
         override fun available(): Int {
             return channel.available()
@@ -178,14 +178,12 @@ class ConnectionMultiplexer(socket: BluetoothSocket) : Closeable {
         }
     }
 
-    private val socket: BluetoothSocket
     private val channels: MutableMap<UUID, Channel> = HashMap()
     private val channelsLock = ReentrantLock()
     private var open = true
     private var receivedProtocolVersion = false
 
     init {
-        this.socket = socket
         channels[DEFAULT_CHANNEL] = Channel(this, DEFAULT_CHANNEL)
         sendProtocolVersion()
         execute(ListenRunnable(socket))
@@ -409,7 +407,7 @@ class ConnectionMultiplexer(socket: BluetoothSocket) : Closeable {
             if (!receivedProtocolVersion && type != MESSAGE_PROTOCOL_VERSION) {
                 Log.w("ConnectionMultiplexer", "Received invalid message '$message'")
                 Log.w("ConnectionMultiplexer", "'data_buffer:(" + byteArrayToHexString(data) + ") ")
-                Log.w("ConnectionMultiplexer", "as string: '$data' ")
+                Log.w("ConnectionMultiplexer", "as string: '${data.contentToString()}' ")
 
                 throw IOException("Did not receive protocol version message!")
             }

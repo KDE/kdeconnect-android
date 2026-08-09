@@ -10,7 +10,6 @@ import android.Manifest
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
-import android.content.pm.PackageManager
 import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.os.Build
 import android.os.Bundle
@@ -360,13 +359,13 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
 
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        when {
-            requestCode == RESULT_NEEDS_RELOAD -> {
+        when (requestCode) {
+            RESULT_NEEDS_RELOAD -> {
                 CoroutineScope(Dispatchers.IO).launch {
                     KdeConnect.getInstance().devices.values.forEach(Device::reloadPluginsFromSettings)
                 }
             }
-            requestCode == STORAGE_LOCATION_CONFIGURED && resultCode == RESULT_OK && data != null -> {
+            STORAGE_LOCATION_CONFIGURED if resultCode == RESULT_OK && data != null -> {
                 val uri = data.data
                 ShareSettingsFragment.saveStorageLocationPreference(this, uri)
             }
@@ -376,12 +375,12 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
 
     fun isPermissionGranted(permissions: Array<String>, grantResults: IntArray, permission : String) : Boolean {
         val index = ArrayUtils.indexOf(permissions, permission)
-        return index != ArrayUtils.INDEX_NOT_FOUND && grantResults[index] == PackageManager.PERMISSION_GRANTED
+        return index != ArrayUtils.INDEX_NOT_FOUND && grantResults[index] == PERMISSION_GRANTED
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        val permissionsGranted = ArrayUtils.contains(grantResults, PackageManager.PERMISSION_GRANTED)
+        val permissionsGranted = ArrayUtils.contains(grantResults, PERMISSION_GRANTED)
         if (permissionsGranted) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && isPermissionGranted(permissions, grantResults, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                 // To get a writeable path manually on Android 10 and later for Share and Receive Plugin.

@@ -11,7 +11,6 @@ import android.media.session.MediaController;
 import android.media.session.MediaSessionManager;
 import android.os.Handler;
 import android.os.Looper;
-import android.provider.Settings;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -49,10 +48,6 @@ public class MprisReceiverPlugin extends Plugin {
     private HashMap<String, MprisReceiverCallback> playerCbs;
 
     private MediaSessionChangeListener mediaSessionChangeListener;
-
-    public @NonNull String getDeviceId() {
-        return device.getDeviceId();
-    }
 
     @Override
     public boolean onCreate() {

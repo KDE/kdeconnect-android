@@ -23,7 +23,10 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="KdeConnectTheme.NoActionBar" parent="KdeConnectThemeBase.NoActionBar" />
+    <style name="KdeConnectTheme.NoActionBar" parent="KdeConnectThemeBase.NoActionBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">?attr/isLightTheme</item>
+    </style>
 
     <style name="KdeConnectTheme.Toolbar" parent="Widget.AppCompat.Toolbar">
     </style>

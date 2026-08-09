@@ -19,12 +19,12 @@ class FindMyPhoneReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
         when (intent.action) {
-            ACTION_FOUND_IT -> foundIt(context, intent)
+            ACTION_FOUND_IT -> foundIt(intent)
             else -> Log.d("ShareBroadcastReceiver", "Unhandled Action received: ${intent.action}")
         }
     }
 
-    private fun foundIt(context: Context, intent: Intent) {
+    private fun foundIt(intent: Intent) {
         if (!intent.hasExtra(EXTRA_DEVICE_ID)) {
             Log.e("FindMyPhoneReceiver", "foundIt() - deviceId extra is not present, ignoring")
             return

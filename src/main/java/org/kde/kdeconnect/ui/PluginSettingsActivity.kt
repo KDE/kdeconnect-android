@@ -5,7 +5,6 @@
  */
 package org.kde.kdeconnect.ui
 
-import android.content.DialogInterface
 import android.os.Build
 import android.os.Bundle
 import android.view.Menu
@@ -13,8 +12,6 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.ActionBar
-import androidx.appcompat.widget.Toolbar
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.kde.kdeconnect.DeviceStats
 import org.kde.kdeconnect.KdeConnect.Companion.getInstance
@@ -23,7 +20,6 @@ import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.ui.PluginPreference.PluginPreferenceCallback
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.ActivityPluginSettingsBinding
-import java.util.Objects
 
 class PluginSettingsActivity : BaseActivity<ActivityPluginSettingsBinding>(), PluginPreferenceCallback {
 

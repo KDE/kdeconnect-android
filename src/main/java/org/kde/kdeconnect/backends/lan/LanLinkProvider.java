@@ -8,7 +8,7 @@ package org.kde.kdeconnect.backends.lan;
 
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 import static org.kde.kdeconnect.helpers.NetworkHelperKt.isPrivateAddress;
-import static main.java.org.kde.kdeconnect.helpers.BoundedLineReaderKt.readLineBounded;
+import static org.kde.kdeconnect.helpers.BoundedLineReaderKt.readLineBounded;
 
 import android.Manifest;
 import android.content.Context;

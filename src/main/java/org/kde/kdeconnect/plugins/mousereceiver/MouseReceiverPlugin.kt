@@ -92,10 +92,10 @@ class MouseReceiverPlugin : Plugin() {
                 isSingleHold -> {
                     // For drag'n drop
                     // Log.i("MouseReceiverPlugin", "singleHold")
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        return MouseReceiverService.longClickSwipe()
+                    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        MouseReceiverService.longClickSwipe()
                     } else {
-                        return MouseReceiverService.longClick()
+                        MouseReceiverService.longClick()
                     }
                 }
                 isSingleRelease -> {

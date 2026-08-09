@@ -251,10 +251,7 @@ public class MousePadActivity
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_mousepad, menu);
 
-        boolean mouseButtonsEnabled = prefs
-                .getBoolean(getString(R.string.mousepad_mouse_buttons_enabled_pref), true);
-        boolean digitizerEnabled =
-                KdeConnect.getInstance().getDevicePlugin(deviceId, DigitizerPlugin.class) != null;
+        boolean mouseButtonsEnabled = prefs.getBoolean(getString(R.string.mousepad_mouse_buttons_enabled_pref), true);
 
         menu.findItem(R.id.menu_right_click).setVisible(!mouseButtonsEnabled);
         menu.findItem(R.id.menu_middle_click).setVisible(!mouseButtonsEnabled);

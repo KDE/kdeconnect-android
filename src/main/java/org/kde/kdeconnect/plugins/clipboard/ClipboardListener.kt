@@ -6,12 +6,10 @@
 */
 package org.kde.kdeconnect.plugins.clipboard
 
-import android.Manifest
 import android.content.ClipData
 import android.content.ClipDescription
 import android.content.ClipboardManager
 import android.content.Context
-import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
@@ -49,7 +47,7 @@ class ClipboardListener {
     private constructor(ctx: Context) {
         context = ctx.applicationContext
         Handler(Looper.getMainLooper()).post {
-            cm = ContextCompat.getSystemService<ClipboardManager>(context, ClipboardManager::class.java)!!
+            cm = ContextCompat.getSystemService(context, ClipboardManager::class.java)!!
             cm.addPrimaryClipChangedListener { this.onClipboardChanged() }
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && ClipboardPlugin.canSyncAutomatically(context)) {

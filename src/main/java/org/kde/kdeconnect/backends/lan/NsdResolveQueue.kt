@@ -11,7 +11,9 @@ import android.util.Log
 import java.util.LinkedList
 
 class NsdResolveQueue {
-    val LOG_TAG: String = "NsdResolveQueue"
+    companion object {
+        const val LOG_TAG: String = "NsdResolveQueue"
+    }
 
     private val nsdManager: NsdManager
     private val lock: Any

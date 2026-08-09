@@ -7,7 +7,6 @@ package org.kde.kdeconnect.backends.lan
 
 import android.Manifest
 import android.content.Context
-import android.content.pm.PackageManager
 import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.net.nsd.NsdManager
 import android.net.nsd.NsdManager.DiscoveryListener

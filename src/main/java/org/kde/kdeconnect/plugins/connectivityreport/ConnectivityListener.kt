@@ -144,8 +144,8 @@ class ConnectivityListener(context: Context) {
                 }
             } else {
                 // Fallback to single SIM
-                connectivityListeners.put(0, createListenerForSubscription(0))
-                states.put(0, SubscriptionState())
+                connectivityListeners[0] = createListenerForSubscription(0)
+                states[0] = SubscriptionState()
             }
         }
     }

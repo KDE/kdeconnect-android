@@ -64,6 +64,7 @@ import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.ui.compose.KdeTheme
 import org.kde.kdeconnect.ui.compose.KdeTopAppBar
 import org.kde.kdeconnect_tp.R
+import kotlin.time.Duration.Companion.seconds
 
 @Composable
 fun RunCommandScreen(
@@ -256,7 +257,7 @@ private fun OutputCard(
 
     LaunchedEffect(commandRunning) {
         if (commandRunning) {
-            delay(1000)
+            delay(1.seconds)
             showStopButton = true
         } else {
             showStopButton = false

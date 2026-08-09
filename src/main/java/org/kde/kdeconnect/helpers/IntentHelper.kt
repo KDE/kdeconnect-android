@@ -15,8 +15,8 @@ import android.os.Build
 import android.webkit.URLUtil
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.core.content.IntentCompat
-import androidx.core.os.BundleCompat
+import org.kde.kdeconnect.extensions.getParcelableArrayListCompat
+import org.kde.kdeconnect.extensions.getParcelableCompat
 import org.kde.kdeconnect.helpers.LifecycleHelper.isInForeground
 import org.kde.kdeconnect_tp.R
 import kotlin.text.endsWith
@@ -55,11 +55,11 @@ object IntentHelper {
             return emptyList()
         }
         val uriList = if (Intent.ACTION_SEND_MULTIPLE == intent.action) {
-            IntentCompat.getParcelableArrayListExtra(intent, Intent.EXTRA_STREAM, Uri::class.java)
+            extras.getParcelableArrayListCompat<Uri?>(Intent.EXTRA_STREAM)
                 ?.filterNotNull()
                 ?: emptyList()
         } else {
-            listOfNotNull(BundleCompat.getParcelable(extras, Intent.EXTRA_STREAM, Uri::class.java))
+            listOfNotNull(extras.getParcelableCompat<Uri?>(Intent.EXTRA_STREAM))
         }
         return uriList
     }

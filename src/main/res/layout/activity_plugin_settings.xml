@@ -17,7 +17,6 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <include layout="@layout/toolbar" android:id="@+id/toolbar_layout" />
 
     <FrameLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/fragmentPlaceHolder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -180,8 +180,6 @@ class DigitizerActivity : BaseActivity<ActivityDigitizerBinding>(), DrawingPadVi
     }
 
     companion object {
-        private const val TAG = "DigitizerActivity"
-
         private const val INCHES_TO_MM = 0.0393701
     }
 }

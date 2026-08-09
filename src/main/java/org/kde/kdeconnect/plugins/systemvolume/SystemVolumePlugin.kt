@@ -6,7 +6,6 @@
 package org.kde.kdeconnect.plugins.systemvolume
 
 import android.util.Log
-import androidx.annotation.VisibleForTesting
 import org.json.JSONException
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.plugins.Plugin

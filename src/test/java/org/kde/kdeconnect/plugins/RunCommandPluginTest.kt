@@ -1,4 +1,4 @@
-package org.kde.kdeconnect.plugins.runcommand
+package org.kde.kdeconnect.plugins
 
 import android.app.Application
 import android.content.Context

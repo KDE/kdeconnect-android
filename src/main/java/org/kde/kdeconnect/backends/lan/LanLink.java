@@ -6,7 +6,7 @@
 
 package org.kde.kdeconnect.backends.lan;
 
-import static main.java.org.kde.kdeconnect.helpers.BoundedLineReaderKt.readLineBounded;
+import static org.kde.kdeconnect.helpers.BoundedLineReaderKt.readLineBounded;
 
 import android.content.Context;
 import android.util.Log;
@@ -39,7 +39,7 @@ import javax.net.ssl.SSLHandshakeException;
 import javax.net.ssl.SSLSocket;
 
 import kotlin.text.Charsets;
-import main.java.org.kde.kdeconnect.helpers.LineTooLongException;
+import org.kde.kdeconnect.helpers.LineTooLongException;
 
 public class LanLink extends BaseLink {
 

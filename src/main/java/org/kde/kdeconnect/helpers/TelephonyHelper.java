@@ -330,9 +330,7 @@ public class TelephonyHelper {
                 return false;
             }
 
-            boolean matchingPhoneNumber = longerNumber.endsWith(shorterNumber);
-
-            return matchingPhoneNumber;
+            return longerNumber.endsWith(shorterNumber);
         }
     }
 }

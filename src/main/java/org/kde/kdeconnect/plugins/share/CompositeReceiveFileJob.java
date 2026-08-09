@@ -18,7 +18,6 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.documentfile.provider.DocumentFile;
 
-import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.helpers.FilesHelper;

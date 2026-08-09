@@ -25,7 +25,7 @@ object TrustedDevices {
     fun removeTrustedDevice(context: Context, deviceId: String) {
         val preferences = context.getSharedPreferences("trusted_devices", MODE_PRIVATE)
         preferences.edit { remove(deviceId) }
-        val deviceSettings = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE)
+        val deviceSettings = context.getSharedPreferences(deviceId, MODE_PRIVATE)
         deviceSettings.edit { clear() }
 
     }

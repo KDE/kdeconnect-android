@@ -358,7 +358,7 @@ class SMSPlugin : Plugin() {
 
     override fun hasSettings(): Boolean = true
 
-    override fun getSettingsFragment(activity: Activity): PluginSettingsFragment? = PluginSettingsFragment.newInstance(pluginKey, R.xml.smsplugin_preferences)
+    override fun getSettingsFragment(activity: Activity): PluginSettingsFragment = PluginSettingsFragment.newInstance(pluginKey, R.xml.smsplugin_preferences)
 
     override val supportedPacketTypes: Array<String> = arrayOf(
             PACKET_TYPE_SMS_REQUEST,

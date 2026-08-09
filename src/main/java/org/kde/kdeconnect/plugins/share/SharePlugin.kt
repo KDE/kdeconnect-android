@@ -147,7 +147,7 @@ class SharePlugin : Plugin() {
         get() = context.resources
             .getString(R.string.pref_plugin_sharereceiver_desc)
 
-    override fun getUiButtons(): kotlin.collections.List<PluginUiButton> {
+    override fun getUiButtons(): List<PluginUiButton> {
         return listOf(
             PluginUiButton(
                 context.getString(R.string.send_files),

@@ -1,11 +1,8 @@
-package main.java.org.kde.kdeconnect.helpers
+package org.kde.kdeconnect.helpers
 
-import java.io.BufferedReader
 import java.io.ByteArrayOutputStream
 import java.io.IOException
 import java.io.InputStream
-import java.io.Reader
-import java.net.Socket
 
 class LineTooLongException : IOException("Line too long")
 

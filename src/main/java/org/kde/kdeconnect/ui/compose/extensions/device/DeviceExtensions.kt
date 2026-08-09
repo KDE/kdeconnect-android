@@ -7,10 +7,6 @@
 package org.kde.kdeconnect.ui.compose.extensions.device
 
 import org.kde.kdeconnect.Device
-import org.kde.kdeconnect.DeviceType.LAPTOP
-import org.kde.kdeconnect.DeviceType.PHONE
-import org.kde.kdeconnect.DeviceType.TABLET
-import org.kde.kdeconnect.DeviceType.TV
 import org.kde.kdeconnect.ui.compose.model.device.DeviceUiModel
 import org.kde.kdeconnect_tp.R
 

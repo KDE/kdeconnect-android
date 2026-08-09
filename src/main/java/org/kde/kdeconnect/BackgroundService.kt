@@ -5,7 +5,6 @@
 */
 package org.kde.kdeconnect
 
-import android.Manifest
 import android.app.Notification
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -13,7 +12,6 @@ import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.content.pm.PackageManager
 import android.content.pm.ServiceInfo
 import android.net.ConnectivityManager
 import android.net.ConnectivityManager.NetworkCallback

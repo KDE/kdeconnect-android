@@ -10,7 +10,7 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import org.kde.kdeconnect.KdeConnect
-import org.kde.kdeconnect.extensions.getParcelableCompat
+import org.kde.kdeconnect.extensions.getParcelableExtraCompat
 
 /**
  * Called when the mpris media notification's buttons are pressed
@@ -21,7 +21,7 @@ class MprisMediaNotificationReceiver : BroadcastReceiver() {
         if (Intent.ACTION_MEDIA_BUTTON == intent.action) {
             // Route these buttons to the media session, which will handle them
             val mediaSession = MprisMediaSession.getMediaSession() ?: return
-            mediaSession.controller.dispatchMediaButtonEvent(intent.getParcelableCompat(Intent.EXTRA_KEY_EVENT))
+            mediaSession.controller.dispatchMediaButtonEvent(intent.getParcelableExtraCompat(Intent.EXTRA_KEY_EVENT))
         } else {
             // Second case: buttons on the notification, which we created ourselves
             // Get the correct device, the mpris plugin and the mpris player
@@ -36,11 +36,8 @@ class MprisMediaNotificationReceiver : BroadcastReceiver() {
                 ACTION_PAUSE -> player.sendPause()
                 ACTION_PREVIOUS -> player.sendPrevious()
                 ACTION_NEXT -> player.sendNext()
-                ACTION_CLOSE_NOTIFICATION ->                     //The user dismissed the notification: actually handle its removal correctly
-                    MprisMediaSession.instance.closeMediaNotification()
-                else -> {
-                    Log.w(TAG, "Unknown action: ${intent.action}, ignore.")
-                }
+                ACTION_CLOSE_NOTIFICATION -> MprisMediaSession.instance.closeMediaNotification() // User dismissed the notification
+                else -> Log.w(TAG, "Unknown action: ${intent.action}, ignore.")
             }
         }
     }
