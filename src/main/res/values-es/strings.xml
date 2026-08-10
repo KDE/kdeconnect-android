@@ -18,6 +18,8 @@
   <string name="pref_plugin_clipboard">Sincronizar el portapapeles</string>
   <string name="pref_plugin_clipboard_desc">Compartir el contenido del portapapeles</string>
   <string name="pref_plugin_clipboard_sent">Enviado al portapapeles</string>
+  <string name="clipboard_preference_title_skip_sensitive">Evitar la sincronización sensitiva del portapapeles</string>
+  <string name="clipboard_preference_summary_skip_sensitive">No sincronizar automáticamente contraseñas u otro contenido marcado como sensitivo</string>
   <string name="pref_plugin_mousepad">Entrada remota</string>
   <string name="pref_plugin_mousepad_desc_nontv">Usar su teléfono o tableta como teclado y teclado táctil</string>
   <string name="pref_plugin_mousepad_desc_tv">Usar su teléfono o tableta como mando de TV</string>
@@ -73,6 +75,7 @@
   <string name="bigscreen_hide_mouse_input">Ocultar el botón de entrada remota de ratón y teclado</string>
   <string name="bigscreen_show_home_title">Mostrar botón de inicio</string>
   <string name="bigscreen_show_back_title">Mostrar botón Atrás</string>
+  <string name="bigscreen_show_close_title">Mostrar botón de cerrar</string>
   <string-array name="mousepad_tap_entries">
     <item>Clic izquierdo</item>
     <item>Clic derecho</item>
@@ -176,6 +179,7 @@
   <string name="show_keyboard">Mostrar teclado</string>
   <string name="show_mouse_and_keyboard">Mostrar ratón y teclado</string>
   <string name="device_not_paired">Dispositivo no vinculado</string>
+  <string name="pairing_missing_local_network_permission">Faltan permisos para acceder a dispositivos cercanos, la aplicación no funcionará.</string>
   <string name="pairing_duplicate_names">Precaución: Hay varios dispositivos con el mismo nombre.</string>
   <string name="request_pairing">Vincular</string>
   <string name="pairing_accept">Aceptar</string>
@@ -367,6 +371,7 @@
   <string name="mpris_open_url">Seguir reproduciendo aquí</string>
   <string name="cant_open_url">No se pudo abrir la URL para seguir reproduciendo</string>
   <string name="bigscreen_home">Inicio</string>
+  <string name="bigscreen_close">Cerrar</string>
   <string name="bigscreen_up">Arriba</string>
   <string name="bigscreen_left">Izquierda</string>
   <string name="bigscreen_select">Seleccionar</string>
@@ -469,4 +474,9 @@
   <string name="pref_presenter_enable_volume_keys_summary">«En espera» no está implementado en Android entre las versiones 13 y 15</string>
   <string name="presenter_volume_keys_foreground_tip">Puede dejar la pantalla activada y usar las teclas de volumen para ir a la diapositiva previa/siguiente</string>
   <string name="presenter_volume_keys_tip">Puede dejar la pantalla activada o bloquear su dispositivo y usar las teclas de volumen para ir a la diapositiva previa/siguiente</string>
+  <string name="runcommand_output_no_output_desc">La salida de las órdenes aparecerá aquí.</string>
+  <string name="runcommand_output_no_output">No se ejecutó ninguna orden</string>
+  <string name="runcommand_stop">Detener la orden actual</string>
+  <string name="pref_mpris_volume_control_title">Teclas de volumen hardware</string>
+  <string name="pref_mpris_volume_control_summary">Controle el volumen de los dispositivos conectados con los botones hardware de este teléfono</string>
 </resources>
