@@ -18,6 +18,8 @@
   <string name="pref_plugin_clipboard">مزامنة الحافظة</string>
   <string name="pref_plugin_clipboard_desc">شارك محتوى الحافظة</string>
   <string name="pref_plugin_clipboard_sent">أرسل للحافظة</string>
+  <string name="clipboard_preference_title_skip_sensitive">تخطَ مزامنة محتويات الحافظة الحساسة</string>
+  <string name="clipboard_preference_summary_skip_sensitive">لا تزامن كلمات السر أو أي محتوى آخر صُنف على أنه حساس آليًا</string>
   <string name="pref_plugin_mousepad">الإدخال البعيد</string>
   <string name="pref_plugin_mousepad_desc_nontv">استخدم الهاتف أو اللوحيّ كفأرة ولوحة مفاتيح</string>
   <string name="pref_plugin_mousepad_desc_tv">استخدم الهاتف أو اللوحيّ كمتحكم بالتلفاز</string>
@@ -73,6 +75,7 @@
   <string name="bigscreen_hide_mouse_input">أخفِ زر الإدخال عن بُعد للفأرة ولوحة المفاتيح</string>
   <string name="bigscreen_show_home_title">اعرض زر المنزل</string>
   <string name="bigscreen_show_back_title">أظهر زر العودة</string>
+  <string name="bigscreen_show_close_title">اعرض زر الغلق</string>
   <string-array name="mousepad_tap_entries">
     <item>النّقر باليسار</item>
     <item>النقر باليمين</item>
@@ -108,7 +111,7 @@
   <string name="pref_plugin_mousepad_send_keystrokes">أرسل كضغطات مفاتيح</string>
   <string name="mouse_receiver_plugin_description">استقبل حركة الفأرة البعيدة</string>
   <string name="mouse_receiver_plugin_name">مستقبل الفأرة</string>
-  <string name="mouse_receiver_no_permissions">لتلقي المدخلات التي تعمل باللمس عن بُعد، تحتاج إلى منح أذونات إمكانية الوصول للتحكم الكامل في جهازك</string>
+  <string name="mouse_receiver_no_permissions">لتلقي المدخلات التي تعمل باللمس عن بُعد، تحتاج إلى منح أذون إمكانية الوصول للتحكم الكامل في جهازك</string>
   <string name="view_status_title">الحالة</string>
   <string name="battery_status_format">البطارية: %d%%</string>
   <string name="battery_status_low_format">البطارية: %d%% منخفضة</string>
@@ -208,6 +211,7 @@
   <string name="show_keyboard">أظهر لوحة المفاتيح</string>
   <string name="show_mouse_and_keyboard">أظهر لوحة المفاتيح والفأرة</string>
   <string name="device_not_paired">الجهاز غير مقترن</string>
+  <string name="pairing_missing_local_network_permission">في حالة عدم توفر الإذن بالوصول إلى الأجهزة القريبة، لن يعمل التطبيق.</string>
   <string name="pairing_duplicate_names">تنبيه: هناك عدة أجهزة تحمل نفس الاسم.</string>
   <string name="request_pairing">اطلب الاقتران</string>
   <string name="pairing_accept">اقبل</string>
@@ -277,7 +281,7 @@
   <string name="sftp_no_storage_locations_configured">لا توجد مواقع تخزين مضبوطة</string>
   <string name="sftp_saf_permission_explanation">للوصول إلى الملفات عن بُعد عليك ضبط مواقع التخزين</string>
   <string name="sftp_manage_storage_permission_explanation">للسماح بالوصول عن بُعد إلى الملفات الموجودة على هذا الجهاز، يجب أن تسمح لـ جسر كِيدِي بإدارة التخزين.</string>
-  <string name="sftp_missing_permission_error">أذونات مفقودة: الوصول إلى نظام الملفات</string>
+  <string name="sftp_missing_permission_error">أذون مفقودة: الوصول إلى نظام الملفات</string>
   <string name="no_players_connected">لم يُعثر على مشغّلات</string>
   <string name="send_files">أرسل ملفّات</string>
   <string name="use_digitizer">استعمله كلوح رسم</string>
@@ -315,10 +319,10 @@
   <string name="findmyphone_found">عثرت عليه</string>
   <string name="open">افتح</string>
   <string name="close">أغلق</string>
-  <string name="plugins_need_permission">تحتاج بعض المُلحَقَات إلى أذونات للعمل (انقر للحصول على مزيد من المعلومات):</string>
-  <string name="permission_explanation">تحتاج هذه الملحقة إلى أذونات للعمل</string>
-  <string name="all_permissions_granted">جميع الأذونات ممنوحة 🎉</string>
-  <string name="optional_permission_explanation">تحتاج إلى منح أذونات إضافية لتمكين جميع الوظائف</string>
+  <string name="plugins_need_permission">تحتاج بعض المُلحَقَات إلى أذون للعمل (انقر للحصول على مزيد من المعلومات):</string>
+  <string name="permission_explanation">تحتاج هذه الملحقة إلى أذون للعمل</string>
+  <string name="all_permissions_granted">جميع الأذون ممنوحة 🎉</string>
+  <string name="optional_permission_explanation">تحتاج إلى منح أذون إضافية لتمكين جميع الوظائف</string>
   <string name="plugins_need_optional_permission">تحتوي بعض المُلحقات على ميزات معطلة بسبب عدم وجود إذن (انقر للحصول على مزيد من المعلومات):</string>
   <string name="share_optional_permission_explanation">لتلقي الملفات تحتاج إلى السماح بالوصول إلى التخزين</string>
   <string name="share_notifications_explanation">لرؤية التقدم المحرز عند إرسال واستقبال الملفات تحتاج إلى السماح بالإشعارات</string>
@@ -399,6 +403,7 @@
   <string name="mpris_open_url">استمر في التشغيل هنا</string>
   <string name="cant_open_url">تعذر فتح العنوان للاستمرار في التشغيل</string>
   <string name="bigscreen_home">المنزل</string>
+  <string name="bigscreen_close">أغلق</string>
   <string name="bigscreen_up">أعلى</string>
   <string name="bigscreen_left">يسار</string>
   <string name="bigscreen_select">اختر</string>
@@ -501,4 +506,10 @@
   <string name="pref_presenter_enable_volume_keys_summary">الوضع الاحتياطي غير متوفر في إصدارات أندرويد 13 إلى 15</string>
   <string name="presenter_volume_keys_foreground_tip">يمكنك ترك الشاشة تعمل لاستخدام مفاتيح الصوت للانتقال إلى الشريحة السابقة/التالية</string>
   <string name="presenter_volume_keys_tip">يمكنك ترك الشاشة تعمل أو قفل جهازك لاستخدام مفاتيح الصوت للانتقال إلى الشريحة السابقة/التالية.</string>
+  <string name="runcommand_output_no_output_desc">ستظهر نتائج الأوامر هنا.</string>
+  <string name="runcommand_output_no_output">لم ينفذ أي أمر</string>
+  <string name="runcommand_stop">أوقف الأمر الحالي</string>
+  <string name="runcommand_clear_output">امحُ الخرج</string>
+  <string name="pref_mpris_volume_control_title">مفاتيح الصوت الحقيقية</string>
+  <string name="pref_mpris_volume_control_summary">يمكنك التحكم في مستوى صوت الوسائط في الجهاز المتصل باستخدام أزرار الجهاز في هذا الهاتف</string>
 </resources>

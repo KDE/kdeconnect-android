@@ -477,6 +477,7 @@
   <string name="runcommand_output_no_output_desc">Resultaten från kommandona kommer att visas här.</string>
   <string name="runcommand_output_no_output">Inga kommandon utförda</string>
   <string name="runcommand_stop">Stoppa pågående kommando</string>
+  <string name="runcommand_clear_output">Rensa utmatning</string>
   <string name="pref_mpris_volume_control_title">Maskinvaruvolymknappar</string>
   <string name="pref_mpris_volume_control_summary">Styr den anslutna enhetens medievolym med telefonens maskinvaruknappar</string>
 </resources>

@@ -493,6 +493,7 @@
   <string name="runcommand_output_no_output_desc">Тут буде показано виведені командами повідомлення.</string>
   <string name="runcommand_output_no_output">Не виконано жодної команди</string>
   <string name="runcommand_stop">Зупинити виконання поточної команди</string>
+  <string name="runcommand_clear_output">Витерти виведене</string>
   <string name="pref_mpris_volume_control_title">Апаратні клавіші гучності</string>
   <string name="pref_mpris_volume_control_summary">Керування гучністю відтворення даних на з\'єднаному пристрої за допомогою апаратних кнопок телефону</string>
 </resources>

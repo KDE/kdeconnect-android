@@ -493,6 +493,7 @@
   <string name="runcommand_output_no_output_desc">Zde se zobrazí výstup z příkazů.</string>
   <string name="runcommand_output_no_output">Nebyly spuštěny žádné příkazy</string>
   <string name="runcommand_stop">Zastavit aktuální příkaz</string>
+  <string name="runcommand_clear_output">Vyprázdnit výstup</string>
   <string name="pref_mpris_volume_control_title">Hardwarová tlačítka hlasitosti</string>
   <string name="pref_mpris_volume_control_summary">Pomocí hardwarových tlačítek tohoto telefonu můžete ovládat hlasitost přehrávání médií na připojeném zařízení</string>
 </resources>

@@ -493,6 +493,7 @@
   <string name="runcommand_output_no_output_desc">Izhod ukazov se bo prikazal tukaj.</string>
   <string name="runcommand_output_no_output">Ni izvedenih ukazov</string>
   <string name="runcommand_stop">Ustavi trenutni ukaz</string>
+  <string name="runcommand_clear_output">Počisti izhod</string>
   <string name="pref_mpris_volume_control_title">Fizične tipke za glasnost</string>
   <string name="pref_mpris_volume_control_summary">Glasnost medijev v povezani napravi lahko upravljate s fizičnimi gumbi tega telefona</string>
 </resources>

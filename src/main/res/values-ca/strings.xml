@@ -477,6 +477,7 @@
   <string name="runcommand_output_no_output_desc">La sortida de les ordres apareixerà aquí.</string>
   <string name="runcommand_output_no_output">No s\'ha executat cap ordre</string>
   <string name="runcommand_stop">Atura l\'ordre actual</string>
+  <string name="runcommand_clear_output">Neteja la sortida</string>
   <string name="pref_mpris_volume_control_title">Tecles de volum de maquinari</string>
   <string name="pref_mpris_volume_control_summary">Controla el volum multimèdia del dispositiu connectat utilitzant els botons de maquinari d\'aquest telèfon</string>
 </resources>

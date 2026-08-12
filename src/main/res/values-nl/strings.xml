@@ -477,6 +477,7 @@
   <string name="runcommand_output_no_output_desc">De uitvoer van de opdrachten zal hier verschijnen.</string>
   <string name="runcommand_output_no_output">Geen opdrachten uitgevoerd</string>
   <string name="runcommand_stop">De huidige opdracht stoppen</string>
+  <string name="runcommand_clear_output">Uitvoer wissen</string>
   <string name="pref_mpris_volume_control_title">Sleutels van hardwarevolumes</string>
   <string name="pref_mpris_volume_control_summary">Regel het mediavolume van het verbonden apparaat met de fysieke knoppen van deze telefoon.</string>
 </resources>
