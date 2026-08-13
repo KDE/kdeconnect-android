@@ -477,6 +477,7 @@
   <string name="runcommand_output_no_output_desc">Le résultat des commandes apparaîtra ici.</string>
   <string name="runcommand_output_no_output">Aucune commande n\'a été exécutée.</string>
   <string name="runcommand_stop">Interrompre la commande courante</string>
+  <string name="runcommand_clear_output">Effacer la sortie</string>
   <string name="pref_mpris_volume_control_title">Touches matérielles de volume</string>
   <string name="pref_mpris_volume_control_summary">Contrôler le volume multimédia du périphérique connecté à l\'aide des boutons matériels de ce téléphone</string>
 </resources>

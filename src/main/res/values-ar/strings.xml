@@ -328,7 +328,7 @@
   <string name="share_notifications_explanation">لرؤية التقدم المحرز عند إرسال واستقبال الملفات تحتاج إلى السماح بالإشعارات</string>
   <string name="telepathy_permission_explanation">لقراءة الرسائل النصية القصيرة وكتابتها من سطح المكتب، تحتاج إلى منح الإذن للرسائل النصية القصيرة</string>
   <string name="telephony_permission_explanation">للاطلاع على المكالمات الهاتفية على سطح المكتب، تحتاج إلى منح الإذن لسجلات المكالمات الهاتفية وحالة الهاتف</string>
-  <string name="telephony_optional_permission_explanation">للاطلاع على اسم المتراسل بدلاً من رقم الهاتف، تحتاج إلى منح حق الوصول إلى المتراسلين على الهاتف</string>
+  <string name="telephony_optional_permission_explanation">للاطلاع على اسم المتراسل بدلًا من رقم الهاتف، تحتاج إلى منح حق الوصول إلى المتراسلين على الهاتف</string>
   <string name="contacts_permission_explanation">لمشاركة دفتر متراسليك مع سطح المكتب، تحتاج إلى منح إذن الوصول إلى المتراسلين</string>
   <string name="contacts_per_device_confirmation">ستُنسخ جهات اتصال هاتفك إلى هذا الجهاز، بحيث يمكن استخدامها من قبل تطبيق جسر كِيدِي للرسائل النصية القصيرة والتطبيقات الأخرى.</string>
   <string name="select_ringtone">اختر النغمة</string>
