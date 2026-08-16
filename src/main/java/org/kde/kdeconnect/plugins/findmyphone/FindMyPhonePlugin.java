@@ -91,7 +91,6 @@ public class FindMyPhonePlugin extends Plugin {
         AudioAttributes audioAttributes = new AudioAttributes.Builder()
             .setUsage(AudioAttributes.USAGE_ALARM)
             .setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
-            .setFlags(AudioAttributes.FLAG_AUDIBILITY_ENFORCED)
             .build();
         mediaPlayer.setWakeMode(context, PowerManager.SCREEN_DIM_WAKE_LOCK); // Prevent screen turning off, requires WAKE_LOCK permission
         mediaPlayer.setAudioAttributes(audioAttributes);
