@@ -383,6 +383,7 @@
   <string name="mpris_open_url">Pokračovať v prehrávaní tu</string>
   <string name="cant_open_url">Nedá sa otvoriť URL pre pokračovanie v prehrávaní</string>
   <string name="bigscreen_home">Domov</string>
+  <string name="bigscreen_close">Zavrieť</string>
   <string name="bigscreen_up">Hore</string>
   <string name="bigscreen_left">Doľava</string>
   <string name="bigscreen_select">Vybrať</string>
