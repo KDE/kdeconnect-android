@@ -70,25 +70,23 @@ class TelephonyPlugin : Plugin() {
 
         val permissionCheck = ContextCompat.checkSelfPermission(context, Manifest.permission.READ_CONTACTS)
 
-        if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
-            val contactInfo = ContactsHelper.phoneNumberLookup(context, phoneNumber)
+        if (permissionCheck == PackageManager.PERMISSION_GRANTED && phoneNumber != null) {
+            val result = ContactsHelper.phoneNumberLookup(context, phoneNumber)
 
-            val name = contactInfo["name"]
+            val name = result.name
             if (name != null) {
                 np["contactName"] = name
             }
 
-            if (contactInfo.containsKey("photoID")) {
-                val photoUri = contactInfo["photoID"]
-                if (photoUri != null) {
-                    try {
-                        val base64photo = ContactsHelper.photoId64Encoded(context, photoUri)
-                        if (!base64photo.isNullOrEmpty()) {
-                            np["phoneThumbnail"] = base64photo
-                        }
-                    } catch (e: Exception) {
-                        Log.e("TelephonyPlugin", "Failed to get contact photo")
+            val photoUri = result.photoId
+            if (photoUri != null) {
+                try {
+                    val base64photo = ContactsHelper.photoId64Encoded(context, photoUri)
+                    if (!base64photo.isNullOrEmpty()) {
+                        np["phoneThumbnail"] = base64photo
                     }
+                } catch (e: Exception) {
+                    Log.e("TelephonyPlugin", "Failed to get contact photo")
                 }
             }
         } else if (phoneNumber != null) {

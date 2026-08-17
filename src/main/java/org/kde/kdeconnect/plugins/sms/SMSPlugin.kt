@@ -201,15 +201,15 @@ class SMSPlugin : Plugin() {
 
         val permissionCheck: Int = ContextCompat.checkSelfPermission(context, Manifest.permission.READ_CONTACTS)
 
-        if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
-            val contactInfo: Map<String, String> = ContactsHelper.phoneNumberLookup(context, phoneNumber)
+        if (permissionCheck == PackageManager.PERMISSION_GRANTED && phoneNumber != null) {
+            val result = ContactsHelper.phoneNumberLookup(context, phoneNumber)
 
-            val name = contactInfo["name"]
+            val name = result.name
             if (name != null) {
                 np["contactName"] = name
             }
 
-            val photoID = contactInfo["photoID"]
+            val photoID = result.photoId
             if (photoID != null) {
                 np["phoneThumbnail"] = ContactsHelper.photoId64Encoded(context, photoID)
             }
