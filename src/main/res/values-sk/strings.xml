@@ -18,6 +18,8 @@
   <string name="pref_plugin_clipboard">Synchronizácia schránky</string>
   <string name="pref_plugin_clipboard_desc">Zdieľa obsah schránky</string>
   <string name="pref_plugin_clipboard_sent">Schránka odoslaná</string>
+  <string name="clipboard_preference_title_skip_sensitive">Preskočiť synchronizáciu citlivého obsahu schránky</string>
+  <string name="clipboard_preference_summary_skip_sensitive">Automaticky nesynchronizovať heslá ani iný obsah označený ako citlivý</string>
   <string name="pref_plugin_mousepad">Vzdialený vstup</string>
   <string name="pref_plugin_mousepad_desc_nontv">Použije váš telefón alebo tablet ako touchpad a klávesnicu</string>
   <string name="pref_plugin_mousepad_desc_tv">Použije váš telefón alebo tablet ako touchpad a klávesnicu</string>
@@ -73,6 +75,7 @@
   <string name="bigscreen_hide_mouse_input">Skryť tlačidlo vzdialeného vstupu myši a klávesnice</string>
   <string name="bigscreen_show_home_title">Zobraziť tlačidlo Domov</string>
   <string name="bigscreen_show_back_title">Zobraziť tlačidlo Späť</string>
+  <string name="bigscreen_show_close_title">Zobraziť tlačidlo Zavrieť</string>
   <string-array name="mousepad_tap_entries">
     <item>Ľavý klik</item>
     <item>Pravý klik</item>
@@ -192,6 +195,7 @@
   <string name="show_keyboard">Zobraziť klávesnicu</string>
   <string name="show_mouse_and_keyboard">Zobraziť klávesnicu</string>
   <string name="device_not_paired">Zariadenie nie je spárované</string>
+  <string name="pairing_missing_local_network_permission">Chýba oprávnenie na prístup k zariadeniam v okolí, aplikácia nebude fungovať.</string>
   <string name="pairing_duplicate_names">Pozor: Existuje viacero zariadení s rovnakým názvom.</string>
   <string name="request_pairing">Požiadať o spárovanie</string>
   <string name="pairing_accept">Prijať</string>
@@ -486,4 +490,10 @@
   <string name="pref_presenter_enable_volume_keys_summary">V pohotovostnom režime nie je podporované na verziách Android medzi 13 a 15</string>
   <string name="presenter_volume_keys_foreground_tip">Môžete uzamknúť vaše zariadenie a použiť klávesy hlasitosti na prechod na predchádzajúci a nasledujúci snímok</string>
   <string name="presenter_volume_keys_tip">Môžete uzamknúť vaše zariadenie a použiť klávesy hlasitosti na prechod na predchádzajúci a nasledujúci snímok</string>
+  <string name="runcommand_output_no_output_desc">Tu sa objaví výstup príkazov.</string>
+  <string name="runcommand_output_no_output">Nevykonali sa žiadne príkazy</string>
+  <string name="runcommand_stop">Zastaviť aktuálny príkaz</string>
+  <string name="runcommand_clear_output">Vyčistiť výstup</string>
+  <string name="pref_mpris_volume_control_title">Hardvérové klávesy hlasitosti</string>
+  <string name="pref_mpris_volume_control_summary">Ovládať hlasitosť médií pripojeného zariadenia hardvérovými tlačidlami tohto telefónu</string>
 </resources>

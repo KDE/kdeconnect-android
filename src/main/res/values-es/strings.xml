@@ -477,6 +477,7 @@
   <string name="runcommand_output_no_output_desc">La salida de las órdenes aparecerá aquí.</string>
   <string name="runcommand_output_no_output">No se ejecutó ninguna orden</string>
   <string name="runcommand_stop">Detener la orden actual</string>
+  <string name="runcommand_clear_output">Limpiar salida</string>
   <string name="pref_mpris_volume_control_title">Teclas de volumen hardware</string>
   <string name="pref_mpris_volume_control_summary">Controle el volumen de los dispositivos conectados con los botones hardware de este teléfono</string>
 </resources>
