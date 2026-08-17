@@ -29,7 +29,7 @@ function import_po_dirs # First parameter will be a path that will be a director
         fi
     done
     for lang in $(ls $podir); do
-        if [ -f $podir/$lang/kdeconnect-android-store-short.po ] && [ $podir/$lang/kdeconnect-android-store-full.po ]; then
+        if [ -f $podir/$lang/kdeconnect-android-store-short.po ] && [ -f $podir/$lang/kdeconnect-android-store-full.po ]; then
             mkdir -p ./metadata/android/$lang/
             cp ./metadata/android/en-US/title.txt ./metadata/android/$lang/title.txt # we do not translate the app name
             po2txt --fuzzy --progress=names -i $podir/$lang/kdeconnect-android-store-short.po -o ./metadata/android/$lang/short_description.txt
