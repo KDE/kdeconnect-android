@@ -477,6 +477,7 @@
   <string name="runcommand_output_no_output_desc">Il risultato dei comandi sarà visualizzato qui.</string>
   <string name="runcommand_output_no_output">Nessun comando eseguito</string>
   <string name="runcommand_stop">Ferma il comando attuale</string>
+  <string name="runcommand_clear_output">Pulisci il risultato</string>
   <string name="pref_mpris_volume_control_title">Tasti hardware del volume</string>
   <string name="pref_mpris_volume_control_summary">Controlla il volume multimediale del dispositivo connesso utilizzando i pulsanti hardware di questo telefono.</string>
 </resources>
