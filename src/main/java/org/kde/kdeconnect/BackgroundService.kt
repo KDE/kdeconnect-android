@@ -52,10 +52,9 @@ class BackgroundService : Service() {
 
     private val linkProviders = mutableListOf<BaseLinkProvider>()
 
-    private val connectedToNonCellularNetwork = MutableLiveData<Boolean>()
     /** Indicates whether device is connected over wifi / usb / bluetooth / (anything other than cellular) */
     val isConnectedToNonCellularNetwork: LiveData<Boolean>
-        get() = connectedToNonCellularNetwork
+        field = MutableLiveData<Boolean>()
 
     fun updateForegroundNotification() {
         if (NotificationHelper.isPersistentNotificationEnabled(this)) {
@@ -117,17 +116,17 @@ class BackgroundService : Service() {
         val connectivityManager = this.getSystemService<ConnectivityManager>()
         connectivityManager?.registerNetworkCallback(networkRequestBuilder.build(), object : NetworkCallback() {
 
-            // All callbacks runs on a dedicated thread that isn't the main thread
+            // All callbacks run on a dedicated thread that isn't the main thread
 
             override fun onAvailable(network: Network) {
                 Log.i("BackgroundService", "Valid network available")
-                connectedToNonCellularNetwork.postValue(true)
+                isConnectedToNonCellularNetwork.postValue(true)
                 onNetworkChange(network)
             }
 
             override fun onLost(network: Network) {
                 Log.i("BackgroundService", "Valid network lost")
-                connectedToNonCellularNetwork.postValue(false)
+                isConnectedToNonCellularNetwork.postValue(false)
                 onNetworkChange(network)
             }
         })
