@@ -128,6 +128,7 @@ class BackgroundService : Service() {
             override fun onLost(network: Network) {
                 Log.i("BackgroundService", "Valid network lost")
                 connectedToNonCellularNetwork.postValue(false)
+                onNetworkChange(network)
             }
         })
 
@@ -269,6 +270,9 @@ class BackgroundService : Service() {
 
         private fun createNonCellularNetworkRequestBuilder(): NetworkRequest.Builder {
             return NetworkRequest.Builder().apply {
+                // NetworkRequest.Builder requires NET_CAPABILITY_NOT_VPN by default.
+                // Remove it so this request can match VPN networks as well.
+                removeCapability(NetworkCapabilities.NET_CAPABILITY_NOT_VPN)
                 addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
                 addTransportType(NetworkCapabilities.TRANSPORT_VPN)
                 addTransportType(NetworkCapabilities.TRANSPORT_ETHERNET)
