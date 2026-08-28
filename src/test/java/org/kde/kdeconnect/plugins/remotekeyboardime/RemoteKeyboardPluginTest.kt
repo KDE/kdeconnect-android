@@ -1,4 +1,4 @@
-package org.kde.kdeconnect.plugins.remotekeyboard
+package org.kde.kdeconnect.plugins.remotekeyboardime
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -24,7 +24,7 @@ import org.kde.kdeconnect.NetworkPacket
 
 @RunWith(AndroidJUnit4::class)
 class RemoteKeyboardPluginTest {
-    private lateinit var remoteKeyboardPlugin: RemoteKeyboardPlugin
+    private lateinit var remoteKeyboardPlugin: RemoteKeyboardIMEPlugin
     private lateinit var context: Context
     private lateinit var device: Device
     private var packet: NetworkPacket? = null
@@ -56,7 +56,7 @@ class RemoteKeyboardPluginTest {
         every { context.getSharedPreferences(any(), any()) } returns sharedPreferences
         every { context.packageName } returns "org.kde.kdeconnect_tp"
 
-        remoteKeyboardPlugin = RemoteKeyboardPlugin().apply {
+        remoteKeyboardPlugin = RemoteKeyboardIMEPlugin().apply {
             setContext(context, device)
         }
     }
@@ -108,21 +108,21 @@ class RemoteKeyboardPluginTest {
         val keyboardPacket = NetworkPacket("kdeconnect.mousepad.request")
         keyboardPacket["key"] = "a"
         Assert.assertEquals(
-            RemoteKeyboardPlugin.MousePadPacketType.Keyboard,
-            RemoteKeyboardPlugin.getMousePadPacketType(keyboardPacket)
+            RemoteKeyboardIMEPlugin.MousePadPacketType.Keyboard,
+            RemoteKeyboardIMEPlugin.getMousePadPacketType(keyboardPacket)
         )
 
         val specialKeyPacket = NetworkPacket("kdeconnect.mousepad.request")
         specialKeyPacket["specialKey"] = 1
         Assert.assertEquals(
-            RemoteKeyboardPlugin.MousePadPacketType.Keyboard,
-            RemoteKeyboardPlugin.getMousePadPacketType(specialKeyPacket)
+            RemoteKeyboardIMEPlugin.MousePadPacketType.Keyboard,
+            RemoteKeyboardIMEPlugin.getMousePadPacketType(specialKeyPacket)
         )
 
         val mousePacket = NetworkPacket("kdeconnect.mousepad.request")
         Assert.assertEquals(
-            RemoteKeyboardPlugin.MousePadPacketType.Mouse,
-            RemoteKeyboardPlugin.getMousePadPacketType(mousePacket)
+            RemoteKeyboardIMEPlugin.MousePadPacketType.Mouse,
+            RemoteKeyboardIMEPlugin.getMousePadPacketType(mousePacket)
         )
     }
 
