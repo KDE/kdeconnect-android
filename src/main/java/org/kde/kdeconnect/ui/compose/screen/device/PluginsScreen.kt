@@ -7,10 +7,13 @@
 package org.kde.kdeconnect.ui.compose.screen.device
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
@@ -70,8 +73,13 @@ private fun PluginsScreenContent(
     actionNeedPermissions: (plugin: Plugin) -> Unit,
     actionNeedOptionalPermissions: (plugin: Plugin) -> Unit,
 ) {
-    Surface {
-        Column(modifier = Modifier.padding(top = 16.dp)) {
+    Surface(modifier = Modifier.fillMaxSize()) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(state = rememberScrollState())
+                .padding(top = 16.dp)
+        ) {
             val numColumns = LocalResources.current.getInteger(R.integer.plugins_columns)
 
             PluginButtons(
