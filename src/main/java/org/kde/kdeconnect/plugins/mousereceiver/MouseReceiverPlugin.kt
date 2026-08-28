@@ -13,12 +13,12 @@ import androidx.fragment.app.DialogFragment
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.plugins.PluginFactory.LoadablePlugin
-import org.kde.kdeconnect.plugins.remotekeyboard.RemoteKeyboardPlugin
 import org.kde.kdeconnect.ui.MainActivity
 import org.kde.kdeconnect.ui.StartActivityAlertDialogFragment
 import org.kde.kdeconnect_tp.R
 import kotlin.math.ceil
 import kotlin.math.floor
+
 
 @LoadablePlugin
 @RequiresApi(api = Build.VERSION_CODES.N)
@@ -31,7 +31,7 @@ class MouseReceiverPlugin : Plugin() {
         get() = StartActivityAlertDialogFragment.Builder()
             .setTitle(R.string.mouse_receiver_plugin_description)
             .setMessage(R.string.mouse_receiver_no_permissions)
-            .setPositiveButton(R.string.open_settings)
+            .setPositiveButton(R.string.open_accessibility_settings)
             .setNegativeButton(R.string.cancel)
             .setIntentAction(Settings.ACTION_ACCESSIBILITY_SETTINGS)
             .setStartForResult(true)
@@ -44,7 +44,7 @@ class MouseReceiverPlugin : Plugin() {
             return false
         }
 
-        if (RemoteKeyboardPlugin.getMousePadPacketType(np) != RemoteKeyboardPlugin.MousePadPacketType.Mouse) {
+        if (getMousePadPacketType(np) != MousePadPacketType.Mouse) {
             return false // This packet will be handled by the remotekeyboard instead, silently ignore
         }
 
@@ -122,6 +122,19 @@ class MouseReceiverPlugin : Plugin() {
         }
 
         return super.onPacketReceived(np)
+    }
+
+    enum class MousePadPacketType {
+        Keyboard,
+        Mouse,
+    }
+
+    fun getMousePadPacketType(np: NetworkPacket): MousePadPacketType {
+        return if (np.has("key") || np.has("specialKey")) {
+            MousePadPacketType.Keyboard
+        } else {
+            MousePadPacketType.Mouse
+        }
     }
 
     override val minSdk: Int

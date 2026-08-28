@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
  */
 
-package org.kde.kdeconnect.plugins.remotekeyboard;
+package org.kde.kdeconnect.plugins.remotekeyboardime;
 
 import android.content.Intent;
 import android.inputmethodservice.InputMethodService;
@@ -52,7 +52,7 @@ public class RemoteKeyboardService
             return;
         Keyboard currentKeyboard = inputView.getKeyboard();
         List<Keyboard.Key> keys = currentKeyboard.getKeys();
-        boolean connected = RemoteKeyboardPlugin.isConnected();
+        boolean connected = RemoteKeyboardIMEPlugin.isConnected();
 //        Log.d("RemoteKeyboardService", "Updating keyboard connection icon, connected=" + connected);
         int disconnectedIcon = R.drawable.ic_phonelink_off_36dp;
         int connectedIcon = R.drawable.ic_phonelink_36dp;
@@ -73,6 +73,7 @@ public class RemoteKeyboardService
     @Override
     public void onDestroy() {
         super.onDestroy();
+        visible = false;
         instance = null;
         Log.d("RemoteKeyboardService", "Destroyed");
     }
@@ -93,12 +94,12 @@ public class RemoteKeyboardService
 //        Log.d("RemoteKeyboardService", "onStartInputView");
         super.onStartInputView(attribute, restarting);
         visible = true;
-        ArrayList<RemoteKeyboardPlugin> instances = RemoteKeyboardPlugin.acquireInstances();
+        ArrayList<RemoteKeyboardIMEPlugin> instances = RemoteKeyboardIMEPlugin.acquireInstances();
         try {
-            for (RemoteKeyboardPlugin i : instances)
+            for (RemoteKeyboardIMEPlugin i : instances)
                 i.notifyKeyboardState(true);
         } finally {
-            RemoteKeyboardPlugin.releaseInstances();
+            RemoteKeyboardIMEPlugin.releaseInstances();
         }
 
         getWindow().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -109,12 +110,12 @@ public class RemoteKeyboardService
 //        Log.d("RemoteKeyboardService", "onFinishInputView");
         super.onFinishInputView(finishingInput);
         visible = false;
-        ArrayList<RemoteKeyboardPlugin> instances = RemoteKeyboardPlugin.acquireInstances();
+        ArrayList<RemoteKeyboardIMEPlugin> instances = RemoteKeyboardIMEPlugin.acquireInstances();
         try {
-            for (RemoteKeyboardPlugin i : instances)
+            for (RemoteKeyboardIMEPlugin i : instances)
                 i.notifyKeyboardState(false);
         } finally {
-            RemoteKeyboardPlugin.releaseInstances();
+            RemoteKeyboardIMEPlugin.releaseInstances();
         }
 
         getWindow().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -128,10 +129,10 @@ public class RemoteKeyboardService
                 break;
             }
             case 1: { // "settings"
-                ArrayList<RemoteKeyboardPlugin> instances = RemoteKeyboardPlugin.acquireInstances();
+                ArrayList<RemoteKeyboardIMEPlugin> instances = RemoteKeyboardIMEPlugin.acquireInstances();
                 try {
                     if (instances.size() == 1) {  // single instance of RemoteKeyboardPlugin -> access its settings
-                        RemoteKeyboardPlugin plugin = instances.get(0);
+                        RemoteKeyboardIMEPlugin plugin = instances.get(0);
                         if (plugin != null) {
                             Intent intent = new Intent(this, PluginSettingsActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -150,7 +151,7 @@ public class RemoteKeyboardService
                             Toast.makeText(this, R.string.remotekeyboard_multiple_connections, Toast.LENGTH_SHORT).show();
                     }
                 } finally {
-                    RemoteKeyboardPlugin.releaseInstances();
+                    RemoteKeyboardIMEPlugin.releaseInstances();
                 }
                 break;
             }
@@ -160,7 +161,7 @@ public class RemoteKeyboardService
                 break;
             }
             case 3: { // "connected"?
-                if (RemoteKeyboardPlugin.isConnected())
+                if (RemoteKeyboardIMEPlugin.isConnected())
                     Toast.makeText(this, R.string.remotekeyboard_connected, Toast.LENGTH_SHORT).show();
                 else
                     Toast.makeText(this, R.string.remotekeyboard_not_connected, Toast.LENGTH_SHORT).show();

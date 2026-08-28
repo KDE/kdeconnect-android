@@ -39,7 +39,8 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="pref_plugin_mousepad_desc_tv">Use your phone or tablet as a TV remote</string>
     <string name="pref_plugin_presenter">Presentation remote</string>
     <string name="pref_plugin_presenter_desc">Use your device to change slides in a presentation</string>
-    <string name="pref_plugin_remotekeyboard">Receive remote keypresses</string>
+    <string name="pref_plugin_remotekeyboard_ime">Keyboard receiver (via Android keyboard)</string>
+    <string name="pref_plugin_remotekeyboard_accessibility">Keyboard receiver (via accessibility)</string>
     <string name="pref_plugin_remotekeyboard_desc">Receive keypress events from remote devices</string>
     <string name="pref_plugin_mpris">Multimedia controls</string>
     <string name="pref_plugin_mpris_desc">Provides a remote control for your media player</string>
@@ -62,9 +63,12 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="sad_ok">OK :(</string>
     <string name="cancel">Cancel</string>
     <string name="open_settings">Open settings</string>
+    <string name="open_accessibility_settings">Open accessibility settings</string>
+    <string name="open_input_settings">Open keyboard settings</string>
     <string name="no_permissions">You need to grant permission to access notifications</string>
     <string name="no_permission_mprisreceiver">To be able to control your media players you need to grant access to the notifications</string>
-    <string name="no_permissions_remotekeyboard">To receive keypresses you need to activate the KDE Connect Remote Keyboard</string>
+    <string name="no_permissions_remotekeyboard_ime">To receive keypresses you need to activate the KDE Connect Remote Keyboard as an Android input method</string>
+    <string name="no_permissions_remotekeyboard_accessibility">To receive keypresses you need to grant Accessibility permissions</string>
     <string name="send_ping">Send ping</string>
     <string name="open_mpris_controls">Multimedia control</string>
     <string name="remotekeyboard_editing_only" translatable="false">remotekeyboard_editing_only</string>
@@ -178,7 +182,9 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
 
     <string name="mouse_receiver_plugin_description">Receive remote mouse movement</string>
     <string name="mouse_receiver_plugin_name">Mouse receiver</string>
-    <string name="mouse_receiver_no_permissions">To receive touch inputs remotely you need to grant Accessibility permissions to fully control your device</string>
+    <string name="mouse_receiver_no_permissions">To receive touch inputs remotely you need to grant Accessibility permissions</string>
+
+    <string name="mouse_keyboard_receiver_service_description">Receive remote mouse movement and Keyboard input</string>
 
     <string name="view_status_title">Status</string>
     <string name="battery_status_format">Battery: %d%%</string>

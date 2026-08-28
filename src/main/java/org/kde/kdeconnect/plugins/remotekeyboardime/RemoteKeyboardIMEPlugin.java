@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
  */
 
-package org.kde.kdeconnect.plugins.remotekeyboard;
+package org.kde.kdeconnect.plugins.remotekeyboardime;
 
 import android.app.Activity;
 import android.content.Context;
@@ -39,7 +39,9 @@ import java.util.List;
 import java.util.concurrent.locks.ReentrantLock;
 
 @PluginFactory.LoadablePlugin
-public class RemoteKeyboardPlugin extends Plugin implements SharedPreferences.OnSharedPreferenceChangeListener {
+public class RemoteKeyboardIMEPlugin extends Plugin implements SharedPreferences.OnSharedPreferenceChangeListener {
+
+    private final static String LOG_TAG = "RemoteKeyboardIMEPlugin";
 
     private final static String PACKET_TYPE_MOUSEPAD_REQUEST = "kdeconnect.mousepad.request";
     private final static String PACKET_TYPE_MOUSEPAD_ECHO = "kdeconnect.mousepad.echo";
@@ -48,19 +50,19 @@ public class RemoteKeyboardPlugin extends Plugin implements SharedPreferences.On
     /**
      * Track and expose plugin instances to allow for a 'connected'-indicator in the IME:
      */
-    private static final ArrayList<RemoteKeyboardPlugin> instances = new ArrayList<>();
+    private static final ArrayList<RemoteKeyboardIMEPlugin> instances = new ArrayList<>();
     private static final ReentrantLock instancesLock = new ReentrantLock(true);
 
-    private static ArrayList<RemoteKeyboardPlugin> getInstances() {
+    private static ArrayList<RemoteKeyboardIMEPlugin> getInstances() {
         return instances;
     }
 
-    public static ArrayList<RemoteKeyboardPlugin> acquireInstances() {
+    public static ArrayList<RemoteKeyboardIMEPlugin> acquireInstances() {
         instancesLock.lock();
         return getInstances();
     }
 
-    public static ArrayList<RemoteKeyboardPlugin> releaseInstances() {
+    public static ArrayList<RemoteKeyboardIMEPlugin> releaseInstances() {
         instancesLock.unlock();
         return getInstances();
     }
@@ -68,6 +70,7 @@ public class RemoteKeyboardPlugin extends Plugin implements SharedPreferences.On
     public static boolean isConnected() {
         return !instances.isEmpty();
     }
+
 
     private static final SparseIntArray specialKeyMap = new SparseIntArray();
 
@@ -109,7 +112,7 @@ public class RemoteKeyboardPlugin extends Plugin implements SharedPreferences.On
 
     @Override
     public boolean onCreate() {
-        Log.d("RemoteKeyboardPlugin", "Creating for device " + getDevice().getName());
+        Log.d(LOG_TAG, "Creating for device " + getDevice().getName());
         acquireInstances();
         try {
             instances.add(this);
@@ -141,12 +144,12 @@ public class RemoteKeyboardPlugin extends Plugin implements SharedPreferences.On
             releaseInstances();
         }
 
-        Log.d("RemoteKeyboardPlugin", "Destroying for device " + getDevice().getName());
+        Log.d(LOG_TAG, "Destroying for device " + getDevice().getName());
     }
 
     @Override
     public @NonNull String getDisplayName() {
-        return context.getString(R.string.pref_plugin_remotekeyboard);
+        return context.getString(R.string.pref_plugin_remotekeyboard_ime);
     }
 
     @Override
@@ -213,7 +216,7 @@ public class RemoteKeyboardPlugin extends Plugin implements SharedPreferences.On
         if (keyEvent == 0)
             return false;
         InputConnection inputConn = RemoteKeyboardService.instance.getCurrentInputConnection();
-//        Log.d("RemoteKeyboardPlugin", "Handling special key " + key + " translated to " + keyEvent + " shift=" + shift + " ctrl=" + ctrl + " alt=" + alt);
+//        Log.d(LOG_TAG, "Handling special key " + key + " translated to " + keyEvent + " shift=" + shift + " ctrl=" + ctrl + " alt=" + alt);
 
         // special sequences:
         if (ctrl && (keyEvent == KeyEvent.KEYCODE_DPAD_RIGHT)) {
@@ -229,7 +232,7 @@ public class RemoteKeyboardPlugin extends Plugin implements SharedPreferences.On
             if (shift) { // Shift -> select word (otherwise jump)
                 Pair<Integer, Integer> sel = currentSelection(extractedText);
                 int cursor = currentCursorPos(extractedText);
-//                Log.d("RemoteKeyboardPlugin", "Selection (to right): " + sel.first + " / " + sel.second + " cursor: " + cursor);
+//                Log.d(LOG_TAG, "Selection (to right): " + sel.first + " / " + sel.second + " cursor: " + cursor);
                 startPos = cursor;
                 if (sel.first < cursor ||   // active selection from left to right -> grow
                         sel.first > sel.second) // active selection from right to left -> shrink
@@ -249,7 +252,7 @@ public class RemoteKeyboardPlugin extends Plugin implements SharedPreferences.On
             if (shift) {
                 Pair<Integer, Integer> sel = currentSelection(extractedText);
                 int cursor = currentCursorPos(extractedText);
-//                Log.d("RemoteKeyboardPlugin", "Selection (to left): " + sel.first + " / " + sel.second + " cursor: " + cursor);
+//                Log.d(LOG_TAG, "Selection (to left): " + sel.first + " / " + sel.second + " cursor: " + cursor);
                 startPos = cursor;
                 if (cursor < sel.first ||    // active selection from right to left -> grow
                         sel.first < sel.second)  // active selection from right to left -> shrink
@@ -273,7 +276,7 @@ public class RemoteKeyboardPlugin extends Plugin implements SharedPreferences.On
                 || keyEvent == KeyEvent.KEYCODE_ENTER) {
             // Enter key
             EditorInfo editorInfo = RemoteKeyboardService.instance.getCurrentInputEditorInfo();
-//            Log.d("RemoteKeyboardPlugin", "Enter: " + editorInfo.imeOptions);
+//            Log.d(LOG_TAG, "Enter: " + editorInfo.imeOptions);
             if (editorInfo != null
                     && (((editorInfo.imeOptions & EditorInfo.IME_FLAG_NO_ENTER_ACTION) == 0)
                     || ctrl)) {  // Ctrl+Return overrides IME_FLAG_NO_ENTER_ACTION (FIXME: make configurable?)
@@ -283,14 +286,14 @@ public class RemoteKeyboardPlugin extends Plugin implements SharedPreferences.On
                         EditorInfo.IME_ACTION_DONE};  // note: DONE should be last or we might hide the ime instead of "go"
                 for (int action : actions) {
                     if ((editorInfo.imeOptions & action) == action) {
-//                        Log.d("RemoteKeyboardPlugin", "Enter-action: " + actions[i]);
+//                        Log.d(LOG_TAG, "Enter-action: " + actions[i]);
                         inputConn.performEditorAction(action);
                         return true;
                     }
                 }
             } else {
                 // else: fall back to regular Enter-event:
-//                Log.d("RemoteKeyboardPlugin", "Enter: normal keypress");
+//                Log.d(LOG_TAG, "Enter: normal keypress");
                 inputConn.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, keyEvent));
                 inputConn.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, keyEvent));
             }
@@ -304,7 +307,7 @@ public class RemoteKeyboardPlugin extends Plugin implements SharedPreferences.On
     }
 
     private boolean handleVisibleKey(String key, boolean shift, boolean ctrl, boolean alt) {
-//        Log.d("RemoteKeyboardPlugin", "Handling visible key " + key + " shift=" + shift + " ctrl=" + ctrl + " alt=" + alt + " " + key.equalsIgnoreCase("c") + " " + key.length());
+//        Log.d(LOG_TAG, "Handling visible key " + key + " shift=" + shift + " ctrl=" + ctrl + " alt=" + alt + " " + key.equalsIgnoreCase("c") + " " + key.length());
 
         if (key.isEmpty())
             return false;
@@ -323,7 +326,7 @@ public class RemoteKeyboardPlugin extends Plugin implements SharedPreferences.On
         else if (key.equalsIgnoreCase("a") && ctrl)
             return inputConn.performContextMenuAction(android.R.id.selectAll);
 
-//        Log.d("RemoteKeyboardPlugin", "Committing visible key '" + key + "'");
+//        Log.d(LOG_TAG, "Committing visible key '" + key + "'");
         inputConn.commitText(key, key.length());
         return true;
     }
@@ -356,7 +359,7 @@ public class RemoteKeyboardPlugin extends Plugin implements SharedPreferences.On
     public boolean onPacketReceived(@NonNull NetworkPacket np) {
 
         if (!np.getType().equals(PACKET_TYPE_MOUSEPAD_REQUEST)) {
-            Log.e("RemoteKeyboardPlugin", "Invalid packet type for RemoteKeyboardPlugin: "+np.getType());
+            Log.e(LOG_TAG, "Invalid packet type for RemoteKeyboardIMEPlugin: " + np.getType());
             return false;
         }
 
@@ -365,18 +368,16 @@ public class RemoteKeyboardPlugin extends Plugin implements SharedPreferences.On
         }
 
         if (RemoteKeyboardService.instance == null) {
-            Log.i("RemoteKeyboardPlugin", "Remote keyboard is not the currently selected input method, dropping key");
-            return false;
+            return false; // This packet will be handled by the RemoteKeyboardPlugin instead, silently ignore
         }
 
-        if (!RemoteKeyboardService.instance.visible &&
-                PreferenceManager.getDefaultSharedPreferences(context).getBoolean(context.getString(R.string.remotekeyboard_editing_only), true)) {
-            Log.i("RemoteKeyboardPlugin", "Remote keyboard is currently not visible, dropping key");
+        if (!RemoteKeyboardService.instance.visible && PreferenceManager.getDefaultSharedPreferences(context).getBoolean(context.getString(R.string.remotekeyboard_editing_only), true)) {
+            Log.i(LOG_TAG, "Remote keyboard is currently not visible, dropping key");
             return false;
         }
 
         if (!handleEvent(np)) {
-            Log.i("RemoteKeyboardPlugin", "Could not handle event!");
+            Log.i(LOG_TAG, "Could not handle event!");
             return false;
         }
 
@@ -399,7 +400,7 @@ public class RemoteKeyboardPlugin extends Plugin implements SharedPreferences.On
     }
 
     public void notifyKeyboardState(boolean state) {
-        Log.d("RemoteKeyboardPlugin", "Keyboardstate changed to " + state);
+        Log.d(LOG_TAG, "Keyboardstate changed to " + state);
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_MOUSEPAD_KEYBOARDSTATE);
         np.set("state", state);
         getDevice().sendPacket(np);
@@ -420,9 +421,9 @@ public class RemoteKeyboardPlugin extends Plugin implements SharedPreferences.On
     @Override
     public @NonNull DialogFragment getPermissionExplanationDialog() {
         return new StartActivityAlertDialogFragment.Builder()
-                .setTitle(R.string.pref_plugin_remotekeyboard)
-                .setMessage(R.string.no_permissions_remotekeyboard)
-                .setPositiveButton(R.string.open_settings)
+                .setTitle(R.string.pref_plugin_remotekeyboard_desc)
+                .setMessage(R.string.no_permissions_remotekeyboard_ime)
+                .setPositiveButton(R.string.open_input_settings)
                 .setNegativeButton(R.string.cancel)
                 .setIntentAction(Settings.ACTION_INPUT_METHOD_SETTINGS)
                 .setStartForResult(true)

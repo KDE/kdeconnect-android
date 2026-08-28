@@ -26,8 +26,9 @@ import android.widget.ImageView;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 
-import org.kde.kdeconnect_tp.R;
 import org.kde.kdeconnect.plugins.inputdevicesreceiver.InputDevicesReceiverPlugin.Cursor;
+import org.kde.kdeconnect.plugins.remotekeyboard.RemoteKeyboardAccessibilityService;
+import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -318,7 +319,12 @@ public class MouseReceiverService extends AccessibilityService {
 
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
-
+        // Check if we can get the screen content, this is for example not possible on the lockscreen
+        AccessibilityNodeInfo root = getRootInActiveWindow();
+        if (root != null) {
+            RemoteKeyboardAccessibilityService keyboardService = new RemoteKeyboardAccessibilityService();
+            keyboardService.onAccessibilityEvent(root);
+        }
     }
 
     @Override
