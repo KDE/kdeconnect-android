@@ -18,9 +18,13 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Send
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.preference.PreferenceManager
@@ -74,6 +78,12 @@ class ComposeSendActivity : AppCompatActivity() {
 
     @Composable
     private fun ComposeSendScreen() {
+        val focusRequester = remember { FocusRequester() }
+
+        LaunchedEffect(Unit) {
+            focusRequester.requestFocus()
+        }
+
         KdeTheme(this) {
             Scaffold(
                 modifier = Modifier.safeDrawingPadding(),
@@ -95,6 +105,7 @@ class ComposeSendActivity : AppCompatActivity() {
                 Box(modifier = Modifier.padding(scaffoldPadding).fillMaxSize()) {
                     KdeTextField(
                         modifier = Modifier
+                            .focusRequester(focusRequester)
                             .padding(horizontal = 16.dp)
                             .padding(bottom = 80.dp)
                             .align(Alignment.BottomStart)
