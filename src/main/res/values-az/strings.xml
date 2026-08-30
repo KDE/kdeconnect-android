@@ -17,7 +17,6 @@
   <string name="pref_plugin_clipboard_sent">Mübadilə buferini göndərmək</string>
   <string name="pref_plugin_mousepad">Məsafədən giriş</string>
   <string name="pref_plugin_presenter_desc">Cihazınızı təqdimatda slaydları dəyişmək üçün istifadə edin</string>
-  <string name="pref_plugin_remotekeyboard">Məsafədən düyməyə basmanı almaq</string>
   <string name="pref_plugin_remotekeyboard_desc">Düyməyə basmanı məsafədəki qurğudan almaq</string>
   <string name="pref_plugin_mpris">Multimedia idarəsi</string>
   <string name="pref_plugin_mpris_desc">Media oynadıcınızı idarə etməyə imkan verir</string>
@@ -40,7 +39,6 @@
   <string name="open_settings">Ayarları açmaq</string>
   <string name="no_permissions">Bildirişlər almağa icazə verməniz lazımdır</string>
   <string name="no_permission_mprisreceiver">Media oynadıcını idarə etmək üçün bildirişlərə girişə icazə verməniz lazımdır</string>
-  <string name="no_permissions_remotekeyboard">Düymə basılmalarını almaq üçün KDE Connect Klaviaturasını aktiv etməlisiniz</string>
   <string name="send_ping">Dümsükləmək</string>
   <string name="open_mpris_controls">Multimedia idarə edilməsi</string>
   <string name="remotekeyboard_editing_only_title">Məsafədəki düymələri yalnız redaktə edərkən idarə edin</string>
@@ -94,7 +92,6 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Düymə vuruşu kimi göndərmək</string>
   <string name="mouse_receiver_plugin_description">Uzaqdakı siçanın hərəkətini qəbul etmək</string>
   <string name="mouse_receiver_plugin_name">Siçanı qəbul edən</string>
-  <string name="mouse_receiver_no_permissions">Cihazı tam idarə edə bilməklə toxunuşları məsafədən ala bilmək üçün \"Xüsusi imkanlar\" funksiyasına icazələri qəbul etməlisiniz</string>
   <string name="view_status_title">Vəziyyət</string>
   <string name="battery_status_format">Batareya: %d%%</string>
   <string name="battery_status_low_format">Batareya: %d%% Zəif batareya</string>

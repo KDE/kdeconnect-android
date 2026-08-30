@@ -23,7 +23,6 @@
   <string name="pref_plugin_mousepad_desc_tv">Używa telefonu lub tabletu jako pilota do TV</string>
   <string name="pref_plugin_presenter">Pilot do prezentacji</string>
   <string name="pref_plugin_presenter_desc">Przełącza strony przy użyciu telefonu</string>
-  <string name="pref_plugin_remotekeyboard">Odbieranie klawiszy</string>
   <string name="pref_plugin_remotekeyboard_desc">Odbiera naciśnięcia klawiszy z innego urządzenia do sterowania tym urządzeniem</string>
   <string name="pref_plugin_mpris">Sterowanie odtwarzaczem</string>
   <string name="pref_plugin_mpris_desc">Steruje odtwarzaczami tego urządzenia z innego urządzenia</string>
@@ -48,7 +47,6 @@
   <string name="open_settings">Otwórz ustawienia</string>
   <string name="no_permissions">Aby uzyskać dostęp do powiadomień, należy przydzielić uprawnienia</string>
   <string name="no_permission_mprisreceiver">Aby móc sterować odtwarzaczami na tym urządzeniu, należy udzielić dostępu do powiadomień</string>
-  <string name="no_permissions_remotekeyboard">Aby otrzymywać naciśnięcia klawiszy, należy włączyć zdalną klawiaturę KDE Connect</string>
   <string name="send_ping">Wyślij ping</string>
   <string name="open_mpris_controls">Sterowanie odtwarzaczem</string>
   <string name="remotekeyboard_editing_only_title">Obsługuj zdalne naciśnięcia klawiszy tylko podczas edycji</string>
@@ -108,7 +106,6 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Wysyłaj jako naciśnięcia klawiszy</string>
   <string name="mouse_receiver_plugin_description">Odbiera ruchy myszy z innego urządzenia do sterowania tym urządzeniem</string>
   <string name="mouse_receiver_plugin_name">Odbieranie myszy</string>
-  <string name="mouse_receiver_no_permissions">Aby móc otrzymywać dotyk zdalnie musisz udzielić uprawnień Dostępności tak, aby mogły one w pełni sterować twoim urządzeniem</string>
   <string name="view_status_title">Stan</string>
   <string name="battery_status_format">Bateria: %d%%</string>
   <string name="battery_status_low_format">Bateria: %d%% niski poziom</string>

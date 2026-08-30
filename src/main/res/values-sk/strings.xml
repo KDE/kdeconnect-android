@@ -25,7 +25,6 @@
   <string name="pref_plugin_mousepad_desc_tv">Použije váš telefón alebo tablet ako touchpad a klávesnicu</string>
   <string name="pref_plugin_presenter">Diaľkové ovládanie obrazovky Bigscreen</string>
   <string name="pref_plugin_presenter_desc">Použije vaše zariadenie na zmenu snímok prezentácie</string>
-  <string name="pref_plugin_remotekeyboard">Prijímanie vzdialených stlačení klávesov</string>
   <string name="pref_plugin_remotekeyboard_desc">Prijme udalosti stlačenia klávesov z diaľkových zariadení</string>
   <string name="pref_plugin_mpris">Multimediálne ovládače</string>
   <string name="pref_plugin_mpris_desc">Poskytuje diaľkové ovládanie pre váš prehrávač médií</string>
@@ -50,7 +49,6 @@
   <string name="open_settings">Otvoriť nastavenia</string>
   <string name="no_permissions">Musíte udeliť oprávnenia na prístup k upozorneniam</string>
   <string name="no_permission_mprisreceiver">Aby ste mohli ovládať multimediálne prehrávače, musíte udeliť prístup k upozorneniam</string>
-  <string name="no_permissions_remotekeyboard">Na prijímanie stlačenia klávesov, musíte aktivovať vzdialenú klávesnicu aplikácie KDE Connect</string>
   <string name="send_ping">Odoslať ping</string>
   <string name="open_mpris_controls">Multimediálny ovládač</string>
   <string name="remotekeyboard_editing_only_title">Spracovať vzdialené klávesy iba počas upravovania</string>
@@ -111,7 +109,6 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Odoslať ako klávesové údery</string>
   <string name="mouse_receiver_plugin_description">Prijímanie pohybu vzdialenej myši</string>
   <string name="mouse_receiver_plugin_name">Prijímač myši</string>
-  <string name="mouse_receiver_no_permissions">Na prijímanie dotykových vstupov na diaľku musíte udeliť oprávnenia Prístupnosti na úplné ovládanie vášho zariadenia</string>
   <string name="view_status_title">Stav</string>
   <string name="battery_status_format">Batéria: %d%%</string>
   <string name="battery_status_low_format">Batéria: %d%% Nízka úroveň batérie</string>

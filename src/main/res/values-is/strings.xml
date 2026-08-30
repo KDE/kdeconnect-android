@@ -21,7 +21,6 @@
   <string name="pref_plugin_mousepad_desc_tv">Notaðu símann þinn eða spjaldtölvu sem sjónvarpsfjarstýringu</string>
   <string name="pref_plugin_presenter">Kynningar-fjarstýring</string>
   <string name="pref_plugin_presenter_desc">Notaðu tækið þitt til að skipta á milli skyggna í kynningum</string>
-  <string name="pref_plugin_remotekeyboard">"Tekur á móti  fjartengdum innslætti"</string>
   <string name="pref_plugin_remotekeyboard_desc">Taktu á móti lyklainnslætti frá fjartengdum tækjum</string>
   <string name="pref_plugin_mpris">Margmiðlunarstýringar</string>
   <string name="pref_plugin_mpris_desc">Er með fjarstýringu fyrir margmiðlunarspilara</string>
@@ -44,7 +43,6 @@
   <string name="open_settings">Opna stillingar</string>
   <string name="no_permissions">Þú verður að gefa heimild til að fá aðgang að tilkynningum</string>
   <string name="no_permission_mprisreceiver">Til að geta stýrt margmiðlunarspilurunum þínum þarftu að gefa heimild fyrir aðgang að tilkynningum</string>
-  <string name="no_permissions_remotekeyboard">Til að taka við lyklaáslætti þarftu að virkja fjartengt lyklaborð KDE-tenginga</string>
   <string name="send_ping">"Senda ping-beiðni "</string>
   <string name="open_mpris_controls">Margmiðlunarstýring</string>
   <string name="remotekeyboard_editing_only_title">Aðeins meðhöndla fjartengda lykla við breytingar/ritun</string>

@@ -16,7 +16,6 @@
   <string name="pref_plugin_clipboard_sent">Το πρόχειρο εστάλη</string>
   <string name="pref_plugin_mousepad">Απομακρυσμένη είσοδος στοιχείων</string>
   <string name="pref_plugin_presenter_desc">Χρησιμοποιήστε τη συσκευή σας για να αλλάξετε διαφάνειες σε μία παρουσίαση</string>
-  <string name="pref_plugin_remotekeyboard">Λήψη απομακρυσμένων πληκτρολογήσεων</string>
   <string name="pref_plugin_remotekeyboard_desc">Λήψη συμβάντων πληκτρολόγησης από απομακρυσμένες συσκευές</string>
   <string name="pref_plugin_mpris">Κονσόλα πολυμέσων</string>
   <string name="pref_plugin_mpris_desc">Παρέχει ένα τηλεχειριστήριο για την αναπαραγωγή πολυμέσων</string>
@@ -39,7 +38,6 @@
   <string name="open_settings">Ρυθμίσεις ανοίγματος</string>
   <string name="no_permissions">Απαιτείται παραχώρηση δικαιωμάτων για την πρόσβαση σε ειδοποιήσεις</string>
   <string name="no_permission_mprisreceiver">Για να ελέγξετε τους αναπαραγωγείς πολυμέσων απαιτείται να παραχωρήσετε πρόσβαση στις ειδοποιήσεις</string>
-  <string name="no_permissions_remotekeyboard">Για να λαμβάνετε πατήματα πλήκτρων απαιτείται να ενεργοποιήσετε το πληκτρολόγιο απομακρυσμένης σύνδεσης του KDE</string>
   <string name="send_ping">Αποστολή ping</string>
   <string name="open_mpris_controls">Έλεγχος πολυμέσων</string>
   <string name="remotekeyboard_editing_only_title">Χειρισμός απομακρυσμένων πλήκτρων μόνο στην επεξεργασία</string>

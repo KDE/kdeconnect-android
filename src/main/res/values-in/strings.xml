@@ -17,7 +17,6 @@
   <string name="pref_plugin_clipboard_sent">Papan Klip Terkirim</string>
   <string name="pref_plugin_mousepad">Masukan jarak jauh</string>
   <string name="pref_plugin_presenter_desc">Gunakan peranti Anda untuk mengubah slide dalam sebuah presentasi</string>
-  <string name="pref_plugin_remotekeyboard">Terima penekanan tombol jarak jauh</string>
   <string name="pref_plugin_remotekeyboard_desc">Terima peristiwa penekanan tombol dari peranti jarak jauh</string>
   <string name="pref_plugin_mpris">Kendalikan multimedia</string>
   <string name="pref_plugin_mpris_desc">Menyediakan sebuah kendali jarak jauh untuk pemutar media Anda</string>
@@ -40,7 +39,6 @@
   <string name="open_settings">Buka pengaturan</string>
   <string name="no_permissions">Anda perlu memberikan izin untuk mengakses notifikasi</string>
   <string name="no_permission_mprisreceiver">Untuk dapat mengendalikan pemutar media, Anda perlu memberikan akses ke notifikasi</string>
-  <string name="no_permissions_remotekeyboard">Untuk menerima penekanan tombol, Anda perlu mengaktifkan KDE Connect Remote Keyboard</string>
   <string name="send_ping">Kirim ping</string>
   <string name="open_mpris_controls">Kendali multimedia</string>
   <string name="remotekeyboard_editing_only_title">Menangani tombol jarak jauh hanya ketika mengedit</string>
@@ -93,7 +91,6 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Kirim sebagai penekanan tombol</string>
   <string name="mouse_receiver_plugin_description">Terima penggerakan mouse jarak jauh</string>
   <string name="mouse_receiver_plugin_name">Penerima mouse</string>
-  <string name="mouse_receiver_no_permissions">Untuk menerima masukan sentuh secara jarak jauh, Anda perlu memberi izin Aksesibilitas untuk dapat mengendalikan perangkat Anda</string>
   <string name="view_status_title">Status</string>
   <string name="battery_status_format">Baterai: %d%%</string>
   <string name="battery_status_low_format">Baterai: %d%% Baterai Lemah</string>

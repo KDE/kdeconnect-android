@@ -23,7 +23,6 @@
   <string name="pref_plugin_mousepad_desc_tv">Erabili zure telefonoa edo tableta TBren urruneko aginte gisa</string>
   <string name="pref_plugin_presenter">Aurkezpenetarako urruneko agintea</string>
   <string name="pref_plugin_presenter_desc">Erabili zure gailua aurkezpen bateko diapositibak aldatzeko</string>
-  <string name="pref_plugin_remotekeyboard">Jaso urruneko tekla-sakatzeak</string>
   <string name="pref_plugin_remotekeyboard_desc">Jaso tekla-sakatze gertaerak urruneko gailuetatik</string>
   <string name="pref_plugin_mpris">Multimedia kontrolak</string>
   <string name="pref_plugin_mpris_desc">Zure euskarri-jotzailearen urruneko kontrola ematen dizu</string>
@@ -48,7 +47,6 @@
   <string name="open_settings">Ireki ezarpenak</string>
   <string name="no_permissions">Jakinarazpenak atzitzeko baimena eman behar duzu</string>
   <string name="no_permission_mprisreceiver">Zure euskarri-jotzaileak kontrolatu ahal izateko jakinarazpenetara atzipena eman behar diozu</string>
-  <string name="no_permissions_remotekeyboard">Sakatzeak jasotzeko KDE Connecten urruneko teklatua aktibatu behar duzu</string>
   <string name="send_ping">Bidali ping</string>
   <string name="open_mpris_controls">Multimedia kontrola</string>
   <string name="remotekeyboard_editing_only_title">Erabili urruneko teklak editatzean besterik ez</string>
@@ -108,7 +106,6 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Bidali tekla-joaldi gisa</string>
   <string name="mouse_receiver_plugin_description">Jaso urrutiko saguaren mugimenduak</string>
   <string name="mouse_receiver_plugin_name">Sagu jasotzailea</string>
-  <string name="mouse_receiver_no_permissions">Urrutiko ukipen sarrerak jasotzeko, zure gailua erabat agintzeko Irisgarritasun baimenak eman behar dituzu</string>
   <string name="view_status_title">Egoera</string>
   <string name="battery_status_format">Bateria: %%%d</string>
   <string name="battery_status_low_format">Bateria: %%%d bateria baxu</string>

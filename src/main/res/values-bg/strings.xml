@@ -20,7 +20,6 @@
   <string name="pref_plugin_mousepad_desc_tv">Използване на телефона като таблет и дистанционно за TV</string>
   <string name="pref_plugin_presenter">Отдалечена презентация</string>
   <string name="pref_plugin_presenter_desc">Използвайте устройството си за прелистване на слайдовете на презентация</string>
-  <string name="pref_plugin_remotekeyboard">Отдалечени клавишни набирания</string>
   <string name="pref_plugin_remotekeyboard_desc">Получаване на клавишни набирания от отдалечено устройство</string>
   <string name="pref_plugin_mpris">Мултимедиен контрол</string>
   <string name="pref_plugin_mpris_desc">Осигурява отдалечен контрол за вашия медиен плеър</string>
@@ -43,7 +42,6 @@
   <string name="open_settings">Отваряне на настройките</string>
   <string name="no_permissions">Трябва да осигурите права за достъп до уведомленията</string>
   <string name="no_permission_mprisreceiver">За да можете да контролирате вашия медиен плеър. трябва да осигурите права за достъп до известията</string>
-  <string name="no_permissions_remotekeyboard">За получавате клавишни набирания, трябва да активирате Отдалечена клавиатура на KDE Connect</string>
   <string name="send_ping">Изпращане на пинг</string>
   <string name="open_mpris_controls">Мултимедиен контрол</string>
   <string name="remotekeyboard_editing_only_title">Работете с отдалечените клавиши само при редактиране</string>
@@ -99,7 +97,6 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Изпращане като клавишни комбинации</string>
   <string name="mouse_receiver_plugin_description">Получаване на дистанционно движение на мишката</string>
   <string name="mouse_receiver_plugin_name">Приемане на движение на мишката</string>
-  <string name="mouse_receiver_no_permissions">"За отдалечено  управление с  тъчскрийн, трябва да предоставите разрешения за достъп за пълен контрол на устройството."</string>
   <string name="view_status_title">Състояние</string>
   <string name="battery_status_format">Батерия: %d%%</string>
   <string name="battery_status_low_format">Батерия: %d%% Ниско ниво на батерията</string>

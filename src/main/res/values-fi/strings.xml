@@ -23,7 +23,6 @@
   <string name="pref_plugin_mousepad_desc_tv">Käytä puhelinta tai tablettia TV-kaukosäätimenä</string>
   <string name="pref_plugin_presenter">Esityskaukosäädin</string>
   <string name="pref_plugin_presenter_desc">Käytä laitettasi esitysdiojen vaihtamiseen</string>
-  <string name="pref_plugin_remotekeyboard">Vastaanota etänäppäinpainallukset</string>
   <string name="pref_plugin_remotekeyboard_desc">Vastaanottaa etälaitteiden näppäinpainallustapahtumat</string>
   <string name="pref_plugin_mpris">Multimedian ohjaus</string>
   <string name="pref_plugin_mpris_desc">Mahdollistaa mediasoittimen etäohjauksen</string>
@@ -46,7 +45,6 @@
   <string name="open_settings">Avaa asetukset</string>
   <string name="no_permissions">Ilmoitusten näkemiseksi sinun on annettava käyttöoikeus ilmoituksiin</string>
   <string name="no_permission_mprisreceiver">Hallitaksesi mediasoittimiasi sinun on annettava käyttöoikeudet ilmoituksiin</string>
-  <string name="no_permissions_remotekeyboard">Näppäinpainallusten vastaanottamiseksi KDE Connectin etänäppäimistö on aktivoitava</string>
   <string name="send_ping">Lähetä tiedustelupaketti</string>
   <string name="open_mpris_controls">Multimedian ohjaus</string>
   <string name="remotekeyboard_editing_only_title">Käsittele etänäppäimet vain muokattaessa</string>
@@ -106,7 +104,6 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Lähetä näppäinpainalluksina</string>
   <string name="mouse_receiver_plugin_description">Vastaanota etähiiren liike</string>
   <string name="mouse_receiver_plugin_name">Hiirivastaanotin</string>
-  <string name="mouse_receiver_no_permissions">Etäkosketussyötteen vastaanottaminen vaatii saavutettavuuskäyttöoikeudet, jotta laitetta voi hallita</string>
   <string name="view_status_title">Tila</string>
   <string name="battery_status_format">Varaus: %d %%</string>
   <string name="battery_status_low_format">Varaus: %d %%, vähissä</string>

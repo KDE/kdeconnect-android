@@ -23,7 +23,6 @@
   <string name="pref_plugin_mousepad_desc_tv">내 휴대폰이나 태블릿을 TV 리모콘으로 사용하기</string>
   <string name="pref_plugin_presenter">프레젠테이션 리모콘</string>
   <string name="pref_plugin_presenter_desc">내 장치로 프레젠테이션 슬라이드 전환하기</string>
-  <string name="pref_plugin_remotekeyboard">원격 키 입력 받기</string>
   <string name="pref_plugin_remotekeyboard_desc">원격 장치의 키 입력 이벤트 받기</string>
   <string name="pref_plugin_mpris">멀티미디어 제어</string>
   <string name="pref_plugin_mpris_desc">내 미디어 재생기 원격 제어</string>
@@ -48,7 +47,6 @@
   <string name="open_settings">설정 열기</string>
   <string name="no_permissions">알림 접근 권한이 필요합니다</string>
   <string name="no_permission_mprisreceiver">미디어 재생기를 제어하려면 알림 접근 권한이 필요합니다</string>
-  <string name="no_permissions_remotekeyboard">키 입력을 받으려면 KDE Connect 원격 키보드를 활성화해야 합니다</string>
   <string name="send_ping">핑 보내기</string>
   <string name="open_mpris_controls">멀티미디어 제어</string>
   <string name="remotekeyboard_editing_only_title">편집할 때에만 원격 키 처리하기</string>
@@ -108,7 +106,6 @@
   <string name="pref_plugin_mousepad_send_keystrokes">키 입력으로 보내기</string>
   <string name="mouse_receiver_plugin_description">원격 마우스 움직임 받기</string>
   <string name="mouse_receiver_plugin_name">마우스 수신기</string>
-  <string name="mouse_receiver_no_permissions">원격으로 터치 입력을 받으려면 장치 제어를 위해서 접근성 권한을 허용해야 합니다</string>
   <string name="view_status_title">상태</string>
   <string name="battery_status_format">배터리: %d%%</string>
   <string name="battery_status_low_format">배터리: %d%% 배터리 부족</string>

@@ -17,7 +17,6 @@
   <string name="pref_plugin_clipboard_sent">Iškarpinė išsiųsta</string>
   <string name="pref_plugin_mousepad">Nuotolinis įvedimas</string>
   <string name="pref_plugin_presenter_desc">Naudoti savo įrenginį pateikties skaidrių keitimui</string>
-  <string name="pref_plugin_remotekeyboard">Gauti nuotolinius klavišų paspaudimus</string>
   <string name="pref_plugin_remotekeyboard_desc">Gauti klavišų paspaudimo įvykius iš nuotolinių įrenginių</string>
   <string name="pref_plugin_mpris">Įvairialypės terpės valdikliai</string>
   <string name="pref_plugin_mpris_desc">Pateikia jūsų medijos leistuvės nuotolinį valdymą</string>
@@ -40,7 +39,6 @@
   <string name="open_settings">Atverti nuostatas</string>
   <string name="no_permissions">Norėdami gauti prieigą prie pranešimų, turite suteikti leidimą</string>
   <string name="no_permission_mprisreceiver">Norėdami valdyti savo medijos leistuves, turite suteikti prieigą prie pranešimų</string>
-  <string name="no_permissions_remotekeyboard">Norėdami gauti klavišų paspaudimus, turite aktyvuoti KDE Connect nuotolinę klaviatūrą</string>
   <string name="send_ping">Tikrinti ryšį</string>
   <string name="open_mpris_controls">Įvairialypės terpės valdymas</string>
   <string name="remotekeyboard_editing_only_title">Apdoroti nuotolinius klavišus tik redaguojant</string>

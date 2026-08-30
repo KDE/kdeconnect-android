@@ -14,7 +14,6 @@
   <string name="pref_plugin_clipboard_sent">Lõikepuhvrist saadud</string>
   <string name="pref_plugin_mousepad">Kaugsisestus</string>
   <string name="pref_plugin_presenter_desc">Seadme kasutamine esitluse slaidide vahetamiseks</string>
-  <string name="pref_plugin_remotekeyboard">Kaugklahvivajutuste vastuvõtmine</string>
   <string name="pref_plugin_remotekeyboard_desc">Kaugseadmete klahvivajutuste vastuvõtmine</string>
   <string name="pref_plugin_mpris">Multimeedia juhtimine</string>
   <string name="pref_plugin_mpris_desc">Meediamängija kaugjuhtimise võimaldamine</string>
@@ -37,7 +36,6 @@
   <string name="open_settings">Ava seadistused</string>
   <string name="no_permissions">Märguannete nägemiseks tuleb anda vastavad õigused</string>
   <string name="no_permission_mprisreceiver">Meediamängija juhtimiseks tuleb lubada juurdepääs märguannetele</string>
-  <string name="no_permissions_remotekeyboard">Klahvivajutuste vastuvõtmiseks tuleb aktiveerida KDE Connecti kaugklaviatuur</string>
   <string name="send_ping">Saada ping</string>
   <string name="open_mpris_controls">Multimeedia juhtimine</string>
   <string name="remotekeyboard_editing_only_title">Kaugklahvide käitlemine ainult redigeerimisel</string>

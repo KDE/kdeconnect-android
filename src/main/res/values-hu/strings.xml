@@ -17,7 +17,6 @@
   <string name="pref_plugin_clipboard_sent">Vágólap elküldve</string>
   <string name="pref_plugin_mousepad">Távirányítás</string>
   <string name="pref_plugin_presenter_desc">Az eszköz használata diák léptetésére prezentációkban</string>
-  <string name="pref_plugin_remotekeyboard">Távoli billentyűlenyomások fogadása</string>
   <string name="pref_plugin_remotekeyboard_desc">Billentyűlenyomás események fogadása távoli eszközökről</string>
   <string name="pref_plugin_mpris">Multimédiavezérlők</string>
   <string name="pref_plugin_mpris_desc">Médialejátszók távirányítása</string>
@@ -40,7 +39,6 @@
   <string name="open_settings">Beállítások megnyitása</string>
   <string name="no_permissions">Engedélyt kell adnia az értesítésekhez való hozzáféréshez</string>
   <string name="no_permission_mprisreceiver">A médialejátszók távirányításához engedélyt kell adnia az értesítésekhez hozzáféréshez</string>
-  <string name="no_permissions_remotekeyboard">A billentyűlenyomások fogadásához aktiválnia kell a KDE Connect távoli billentyűzetet</string>
   <string name="send_ping">Ping küldése</string>
   <string name="open_mpris_controls">Multimédiavezérlés</string>
   <string name="remotekeyboard_editing_only_title">Távoli billentyűk kezelése csak szerkesztéskor</string>

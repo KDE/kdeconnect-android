@@ -23,7 +23,6 @@
   <string name="pref_plugin_mousepad_desc_tv">Verwenden Sie Ihr Telefon oder Tablet als TV-Fernbedienung</string>
   <string name="pref_plugin_presenter">Präsentationsfernbedienung</string>
   <string name="pref_plugin_presenter_desc">Verwenden Sie Ihr Gerät zum Folienwechsel in einer Präsentation</string>
-  <string name="pref_plugin_remotekeyboard">Entfernte Tasteneingaben empfangen</string>
   <string name="pref_plugin_remotekeyboard_desc">Tasteneingaben entfernter Geräte empfangen</string>
   <string name="pref_plugin_mpris">Medienkontrolle</string>
   <string name="pref_plugin_mpris_desc">Die Medienwiedergabe verbundener Geräte steuern</string>
@@ -48,7 +47,6 @@
   <string name="open_settings">Einstellungen öffnen</string>
   <string name="no_permissions">Sie müssen die Berechtigung zum Zugriff auf Benachrichtigungen erteilen</string>
   <string name="no_permission_mprisreceiver">Um die Medienwiedergabe steuern zu können, müssen Sie Zugriff auf die Benachrichtigungen gewähren</string>
-  <string name="no_permissions_remotekeyboard">Um Tasteneingaben empfangen zu können, muss die KDE-Connect-Tastatur aktiviert werden</string>
   <string name="send_ping">Ping senden</string>
   <string name="open_mpris_controls">Medienkontrolle</string>
   <string name="remotekeyboard_editing_only_title">Entfernte Tasteneingaben nur empfangen, wenn ein Textfeld ausgewählt ist</string>
@@ -108,7 +106,6 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Als Tasteneingaben senden</string>
   <string name="mouse_receiver_plugin_description">Entfernte Mausbewegungen empfangen</string>
   <string name="mouse_receiver_plugin_name">Maus-Empfänger</string>
-  <string name="mouse_receiver_no_permissions">Um entfernte Touch-Eingaben zu empfangen, müssen Sie Bedienungshilfen-Berechtigungen gewähren. Diese ermöglichen die vollständige Kontrolle über das Gerät</string>
   <string name="view_status_title">Status</string>
   <string name="battery_status_format">Akku: %d%%</string>
   <string name="battery_status_low_format">Akku: %d%% Niedriger Ladestand</string>

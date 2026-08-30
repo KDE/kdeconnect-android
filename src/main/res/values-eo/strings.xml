@@ -18,7 +18,6 @@
   <string name="pref_plugin_mousepad">Fora enigo</string>
   <string name="pref_plugin_presenter">Prezento fora</string>
   <string name="pref_plugin_presenter_desc">Uzu vian aparaton por ŝanĝi lumbildojn en prezento</string>
-  <string name="pref_plugin_remotekeyboard">Ricevi forajn klavojn</string>
   <string name="pref_plugin_remotekeyboard_desc">Ricevi klavopremajn eventojn de foraj aparatoj</string>
   <string name="pref_plugin_mpris">Plurmedia regiloj</string>
   <string name="pref_plugin_mpris_desc">Provizas teleregilon por via plurmedia ludilo</string>
@@ -41,7 +40,6 @@
   <string name="open_settings">Malfermi agordojn</string>
   <string name="no_permissions">Vi devas doni permeson aliri sciigojn</string>
   <string name="no_permission_mprisreceiver">Por povi regi viajn plurmediajn ludilojn, vi devas doni aliron al la sciigoj</string>
-  <string name="no_permissions_remotekeyboard">Por ricevi klavpremojn vi devas aktivigi la KDE Connect Remote Keyboard</string>
   <string name="send_ping">Sendi ping</string>
   <string name="open_mpris_controls">Mastrumo de Aŭdvidaĵoj</string>
   <string name="remotekeyboard_editing_only_title">Pritrakti forajn klavojn nur dum redaktado</string>
@@ -97,7 +95,6 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Sendi kiel klavopremojn</string>
   <string name="mouse_receiver_plugin_description">Ricevi foran musan movon</string>
   <string name="mouse_receiver_plugin_name">Musa ricevilo</string>
-  <string name="mouse_receiver_no_permissions">Por ricevi tuŝajn enigojn malproksime, vi devas doni permesojn de Alirebleco por plene regi vian aparaton</string>
   <string name="view_status_title">Statuso</string>
   <string name="battery_status_format">Baterio: %d%%</string>
   <string name="battery_status_low_format">Baterio: %d%% Malalta Baterio</string>

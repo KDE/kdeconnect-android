@@ -25,7 +25,6 @@
   <string name="pref_plugin_mousepad_desc_tv">Uporabi telefon ali tablični računalnik kot oddaljeni TV</string>
   <string name="pref_plugin_presenter">Oddaljena predstavitev</string>
   <string name="pref_plugin_presenter_desc">S svojo napravo lahko menjate slike v predstavitvi</string>
-  <string name="pref_plugin_remotekeyboard">Sprejem oddaljenih pritiskov tipk</string>
   <string name="pref_plugin_remotekeyboard_desc">Prejemanje dogodkov tipk od oddaljenih naprav</string>
   <string name="pref_plugin_mpris">Upravljanje večpredstavnosti</string>
   <string name="pref_plugin_mpris_desc">Omogoča daljinski upravljalnik za predvajalnik medijev</string>
@@ -50,7 +49,6 @@
   <string name="open_settings">Odpri nastavitve</string>
   <string name="no_permissions">Za dostop do obvestil morate odobriti dovoljenje</string>
   <string name="no_permission_mprisreceiver">Če želite upravljati svoje predvajalnike medijev, morate odobriti dostop do obvestil</string>
-  <string name="no_permissions_remotekeyboard">Za sprejem pritiskov tipk morate aktivirati oddaljeno tipkovnico KDE Connect</string>
   <string name="send_ping">Pošlji ping</string>
   <string name="open_mpris_controls">Upravljanje večpredstavnosti</string>
   <string name="remotekeyboard_editing_only_title">Oddaljene tipke uporabljajte samo med urejanjem</string>
@@ -111,7 +109,6 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Pošlji kot pritiske tipk</string>
   <string name="mouse_receiver_plugin_description">Sprejemaj gibanje oddaljene miške</string>
   <string name="mouse_receiver_plugin_name">Sprejemnik miške</string>
-  <string name="mouse_receiver_no_permissions">Če želite prejemati vnose dotikov na daljavo, morate podeliti dovoljenja za dostopnost za popoln nadzor vaše naprave</string>
   <string name="view_status_title">Stanje</string>
   <string name="battery_status_format">Baterija: %d%%</string>
   <string name="battery_status_low_format">Baterija: %d%% skoraj prazna</string>

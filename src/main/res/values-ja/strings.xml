@@ -23,7 +23,6 @@
   <string name="pref_plugin_mousepad_desc_tv">スマートフォンやタブレットをテレビリモコンとして利用</string>
   <string name="pref_plugin_presenter">プレゼンテーションリモート</string>
   <string name="pref_plugin_presenter_desc">デバイスを使ってプレゼンテーションのスライドを操作</string>
-  <string name="pref_plugin_remotekeyboard">リモートからキー入力を受信</string>
   <string name="pref_plugin_remotekeyboard_desc">リモートデバイスからキーイベントを受信</string>
   <string name="pref_plugin_mpris">マルチメディアの操作</string>
   <string name="pref_plugin_mpris_desc">メディアプレーヤーをリモート操作</string>
@@ -46,7 +45,6 @@
   <string name="open_settings">設定を開く</string>
   <string name="no_permissions">通知にアクセスするには権限を付与する必要があります</string>
   <string name="no_permission_mprisreceiver">メディアプレーヤーを操作するには、通知へのアクセスを許可する必要があります</string>
-  <string name="no_permissions_remotekeyboard">キー入力を受信するには KDE Connect リモートキーボードを有効化する必要があります</string>
   <string name="send_ping">Ping を送信</string>
   <string name="open_mpris_controls">マルチメディアの操作</string>
   <string name="remotekeyboard_editing_only_title">編集中にのみリモートキーを取り扱う</string>
@@ -103,7 +101,6 @@
   <string name="pref_plugin_mousepad_send_keystrokes">キー入力として送信</string>
   <string name="mouse_receiver_plugin_description">リモートからマウスの動きを受信</string>
   <string name="mouse_receiver_plugin_name">マウスレシーバ</string>
-  <string name="mouse_receiver_no_permissions">タッチ入力を受信するには、デバイスを完全に操作するためにアクセシビリティに関する権限を付与する必要があります</string>
   <string name="view_status_title">状態</string>
   <string name="battery_status_format">バッテリ: %d%%</string>
   <string name="battery_status_low_format">バッテリ: %d%% 残量低下</string>
