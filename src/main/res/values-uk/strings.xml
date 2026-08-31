@@ -25,6 +25,8 @@
   <string name="pref_plugin_mousepad_desc_tv">Скористайтеся телефоном або планшетом як пультом керування телевізором</string>
   <string name="pref_plugin_presenter">Керування презентацією</string>
   <string name="pref_plugin_presenter_desc">Скористайтеся вашим пристроєм для того, щоб змінювати слайди у презентації</string>
+  <string name="pref_plugin_remotekeyboard_ime">Приймач клавіатури (через клавіатуру Android)</string>
+  <string name="pref_plugin_remotekeyboard_accessibility">Приймач клавіатури (через засоби доступності)</string>
   <string name="pref_plugin_remotekeyboard_desc">Отримувати події натискання клавіш з віддаленого пристрою</string>
   <string name="pref_plugin_mpris">Керування відтворенням</string>
   <string name="pref_plugin_mpris_desc">Надає можливість віддаленого керування вашим мультимедійним програвачем</string>
@@ -47,8 +49,12 @@
   <string name="sad_ok">Гаразд :(</string>
   <string name="cancel">Скасувати</string>
   <string name="open_settings">Відкрити вікно параметрів</string>
+  <string name="open_accessibility_settings">Відкрити параметри доступності</string>
+  <string name="open_input_settings">Відкрити параметри клавіатури</string>
   <string name="no_permissions">Вам слід надати доступ до сповіщень</string>
   <string name="no_permission_mprisreceiver">Щоб мати змогу керувати вашими програвачами мультимедійних даних, вам слід надати доступ до сповіщень.</string>
+  <string name="no_permissions_remotekeyboard_ime">Щоб отримувати повідомлення щодо натискання клавіш, вам слід активувати віддалену клавіатуру KDE Connect через спосіб введення Android</string>
+  <string name="no_permissions_remotekeyboard_accessibility">Щоб отримувати натискання клавіш клавіатури, вам слід надати засобам доступності дозвіл</string>
   <string name="send_ping">Надіслати сигнал підтримання зв’язку</string>
   <string name="open_mpris_controls">Керування відтворенням</string>
   <string name="remotekeyboard_editing_only_title">Обробляти віддалені клавіші лише під час редагування</string>
@@ -109,6 +115,8 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Надсилати як натискання клавіш</string>
   <string name="mouse_receiver_plugin_description">Отримувати віддалені рухи мишею</string>
   <string name="mouse_receiver_plugin_name">Отримання даних миші</string>
+  <string name="mouse_receiver_no_permissions">Щоб отримувати сигнали про торкання віддалено, вам слід надати засобам доступності дозвіл</string>
+  <string name="mouse_keyboard_receiver_service_description">Отримувати віддалені рухи мишею та введення з клавіатури</string>
   <string name="view_status_title">Стан</string>
   <string name="battery_status_format">Акумулятор: %d%%</string>
   <string name="battery_status_low_format">Акумулятор: %d%%, низький заряд</string>

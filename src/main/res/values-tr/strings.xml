@@ -25,6 +25,8 @@
   <string name="pref_plugin_mousepad_desc_tv">Telefonunuzu veya tabletinizi, televizyon kumandası olarak kullanın</string>
   <string name="pref_plugin_presenter">Sunum uzaktan kumandası</string>
   <string name="pref_plugin_presenter_desc">Sunumdaki slaytları değiştirmek için aygıtınızı kullanın</string>
+  <string name="pref_plugin_remotekeyboard_ime">Klavye alıcısı (Android klavyesi ile)</string>
+  <string name="pref_plugin_remotekeyboard_accessibility">Klavye alıcısı (Erişilebilirlik sistemi ile)</string>
   <string name="pref_plugin_remotekeyboard_desc">Düğme basım eylemlerini, uzak aygıtlardan getir</string>
   <string name="pref_plugin_mpris">Çoklu ortam denetimleri</string>
   <string name="pref_plugin_mpris_desc">Ortam oynatıcınız için uzaktan denetim sağlar</string>
@@ -47,8 +49,12 @@
   <string name="sad_ok">Tamam :(</string>
   <string name="cancel">İptal</string>
   <string name="open_settings">Ayarları aç</string>
+  <string name="open_accessibility_settings">Erişilebilirlik ayarlarını aç</string>
+  <string name="open_input_settings">Klavye ayarlarını aç</string>
   <string name="no_permissions">Bildirimler erişebilmek için izine gereksiniminiz var</string>
   <string name="no_permission_mprisreceiver">Ortam oynatıcılarınızı denelemek için bildirimlere erişim izni vermeniz gerekir</string>
+  <string name="no_permissions_remotekeyboard_ime">Düğme basımlarını almak için KDE Bağlan Uzak Klavye’yi, bir Android giriş yöntemi olarak etkinleştirmeniz gerekir.</string>
+  <string name="no_permissions_remotekeyboard_accessibility">Düğme basımlarını almak için erişilebilirlik izinlerini sağlamanız gerekir.</string>
   <string name="send_ping">Ping gönder</string>
   <string name="open_mpris_controls">Çoklu ortam denetimi</string>
   <string name="remotekeyboard_editing_only_title">Yalnızca düzenlerken uzaktan düğmeleri işle</string>
@@ -109,6 +115,8 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Düğme basımları olarak gönder</string>
   <string name="mouse_receiver_plugin_description">Uzaktan fare hareketi al</string>
   <string name="mouse_receiver_plugin_name">Fare alıcısı</string>
+  <string name="mouse_receiver_no_permissions">Dokunma girdilerini uzaktan almak için erişilebilirlik izinlerini sağlamanız gerekir.</string>
+  <string name="mouse_keyboard_receiver_service_description">Uzak fare hareketlerini ve klavye girişlerini al</string>
   <string name="view_status_title">Durum</string>
   <string name="battery_status_format">Pil: %%%d</string>
   <string name="battery_status_low_format">Pil: %%%d Düşük pil</string>

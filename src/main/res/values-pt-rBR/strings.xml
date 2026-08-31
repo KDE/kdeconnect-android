@@ -25,6 +25,8 @@
   <string name="pref_plugin_mousepad_desc_tv">Use seu celular ou tablet como controle remoto de TV</string>
   <string name="pref_plugin_presenter">Controle remoto para apresentações</string>
   <string name="pref_plugin_presenter_desc">Use o seu dispositivo para mudar os slides de uma apresentação</string>
+  <string name="pref_plugin_remotekeyboard_ime">Receptor de teclado (via teclado do Android)</string>
+  <string name="pref_plugin_remotekeyboard_accessibility">Receptor de teclado (via acessibilidade)</string>
   <string name="pref_plugin_remotekeyboard_desc">Recebe os eventos de pressionamento de teclas dos dispositivos remotos</string>
   <string name="pref_plugin_mpris">Controle multimídia</string>
   <string name="pref_plugin_mpris_desc">Fornece um controle remoto de seu reprodutor de mídia</string>
@@ -47,8 +49,12 @@
   <string name="sad_ok">OK :(</string>
   <string name="cancel">Cancelar</string>
   <string name="open_settings">Abrir configurações</string>
+  <string name="open_accessibility_settings">Abrir configurações de acessibilidade</string>
+  <string name="open_input_settings">Abrir configurações de teclado</string>
   <string name="no_permissions">Você precisa conceder permissão para acessar as notificações</string>
   <string name="no_permission_mprisreceiver">Para ser possível controlar os seus leitores multimídia é necessário conceder acesso às notificações</string>
+  <string name="no_permissions_remotekeyboard_ime">Para receber eventos de teclado é preciso ativar o Teclado Remoto do KDE Connect como método de entrada do Android</string>
+  <string name="no_permissions_remotekeyboard_accessibility">Para receber as teclas pressionadas, você precisa conceder permissões de acessibilidade</string>
   <string name="send_ping">Enviar ping</string>
   <string name="open_mpris_controls">Controle multimídia</string>
   <string name="remotekeyboard_editing_only_title">Lidar com as teclas remotas apenas na edição</string>
@@ -109,6 +115,8 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Enviar como pressionamento de teclas</string>
   <string name="mouse_receiver_plugin_description">Receber movimento de mouse remoto</string>
   <string name="mouse_receiver_plugin_name">Receptor de mouse</string>
+  <string name="mouse_receiver_no_permissions">Para receber entradas de toque remotamente, você precisa conceder permissões de acessibilidade</string>
+  <string name="mouse_keyboard_receiver_service_description">Receber movimentos do mouse e entradas de teclado remotos</string>
   <string name="view_status_title">Status</string>
   <string name="battery_status_format">Bateria: %d%%</string>
   <string name="battery_status_low_format">Bateria: %d%% bateria baixa</string>

@@ -25,6 +25,8 @@
   <string name="pref_plugin_mousepad_desc_tv">Useu el vostre telèfon o tauleta com un comandament a distància de TV</string>
   <string name="pref_plugin_presenter">Presentació remota</string>
   <string name="pref_plugin_presenter_desc">Usa el dispositiu per a canviar les diapositives d\'una presentació</string>
+  <string name="pref_plugin_remotekeyboard_ime">Receptor de teclat (via teclat de l\'Android)</string>
+  <string name="pref_plugin_remotekeyboard_accessibility">Receptor de teclat (via accessibilitat)</string>
   <string name="pref_plugin_remotekeyboard_desc">Rep els esdeveniments de pulsacions de tecla des de dispositius remots</string>
   <string name="pref_plugin_mpris">Controls multimèdia</string>
   <string name="pref_plugin_mpris_desc">Proporciona un comandament a distància per al reproductor multimèdia</string>
@@ -47,8 +49,12 @@
   <string name="sad_ok">D\'acord :(</string>
   <string name="cancel">Cancel·la</string>
   <string name="open_settings">Obre l\'arranjament</string>
+  <string name="open_accessibility_settings">Obre la configuració d\'accessibilitat</string>
+  <string name="open_input_settings">Obre la configuració del teclat</string>
   <string name="no_permissions">Us caldrà atorgar permís per a accedir a les notificacions</string>
   <string name="no_permission_mprisreceiver">Per a poder controlar els reproductors multimèdia cal atorgar accés a les notificacions</string>
+  <string name="no_permissions_remotekeyboard_ime">Per a rebre les pulsacions de tecles, haureu d\'activar el teclat remot del KDE Connect com un mètode d\'entrada de l\'Android</string>
+  <string name="no_permissions_remotekeyboard_accessibility">Per a rebre les pulsacions de tecles cal atorgar el permís d\'Accessibilitat</string>
   <string name="send_ping">Envia un ping</string>
   <string name="open_mpris_controls">Control multimèdia</string>
   <string name="remotekeyboard_editing_only_title">Fes servir les tecles remotes només en editar</string>
@@ -109,6 +115,8 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Envia com a pulsacions de tecla</string>
   <string name="mouse_receiver_plugin_description">Rep el moviment del ratolí remot</string>
   <string name="mouse_receiver_plugin_name">Receptor del ratolí</string>
+  <string name="mouse_receiver_no_permissions">Per a rebre entrades tàctils remotament cal atorgar el permís d\'Accessibilitat</string>
+  <string name="mouse_keyboard_receiver_service_description">Rep el moviment del ratolí remot i l\'entrada de teclat</string>
   <string name="view_status_title">Estat</string>
   <string name="battery_status_format">Bateria: %d%%</string>
   <string name="battery_status_low_format">Bateria: %d%% bateria baixa</string>

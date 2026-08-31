@@ -25,6 +25,8 @@
   <string name="pref_plugin_mousepad_desc_tv">Uw telefoon of tablet gebruiken als afstandsbediening voor de TV</string>
   <string name="pref_plugin_presenter">Presentatie op afstand</string>
   <string name="pref_plugin_presenter_desc">Uw apparaat gebruiken om dia\'s te wisselen in een presentatie</string>
+  <string name="pref_plugin_remotekeyboard_ime">Toetsenbordontvanger (via Android-toetsenbord)</string>
+  <string name="pref_plugin_remotekeyboard_accessibility">Toetsenbordontvanger (via toegankelijkheid)</string>
   <string name="pref_plugin_remotekeyboard_desc">Toetsaanslaggebeurtenissen ontvangen van externe apparaten</string>
   <string name="pref_plugin_mpris">Bediening van multimedia</string>
   <string name="pref_plugin_mpris_desc">Biedt een afstandsbediening voor uw mediaspeler</string>
@@ -47,8 +49,12 @@
   <string name="sad_ok">OK :(</string>
   <string name="cancel">Annuleren</string>
   <string name="open_settings">Instellingen openen</string>
+  <string name="open_accessibility_settings">Toegankelijkheidsinstellingen openen</string>
+  <string name="open_input_settings">Toetsenbordinstellingen openen</string>
   <string name="no_permissions">U moet toestemming geven voor toegang tot meldingen</string>
   <string name="no_permission_mprisreceiver">Om in staat te zijn uw mediaspelers te besturen moet u toegan geven tot de meldingen</string>
+  <string name="no_permissions_remotekeyboard_ime">Om indrukken van toetsen te ontvangen moet u het KDE Connect Remote Keyboard activeren als een Android-invoermethode</string>
+  <string name="no_permissions_remotekeyboard_accessibility">Om indrukken van toetsen te ontvangen moet u toegangsrechten toekennen</string>
   <string name="send_ping">Ping verzenden</string>
   <string name="open_mpris_controls">Bediening van multimedia</string>
   <string name="remotekeyboard_editing_only_title">Behandel toetsen op afstand alleen bij bewerken</string>
@@ -109,6 +115,8 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Als toetsaanslagen verzenden</string>
   <string name="mouse_receiver_plugin_description">Muisbewegingen van afstand ontvangen</string>
   <string name="mouse_receiver_plugin_name">Muisontvanger</string>
+  <string name="mouse_receiver_no_permissions">Om aanraakinvoer op afstand te ontvangen moet u toegangsrechten toekennen</string>
+  <string name="mouse_keyboard_receiver_service_description">Muisbewegingen en toetsenbordinvoer van afstand ontvangen</string>
   <string name="view_status_title">Status</string>
   <string name="battery_status_format">Batterij: %d%%</string>
   <string name="battery_status_low_format">Batterij: %d%% lage batterij</string>

@@ -25,6 +25,8 @@
   <string name="pref_plugin_mousepad_desc_tv">Usar su teléfono o tableta como mando de TV</string>
   <string name="pref_plugin_presenter">Controles de presentación</string>
   <string name="pref_plugin_presenter_desc">Use su dispositivo para cambiar las diapositivas de una presentación</string>
+  <string name="pref_plugin_remotekeyboard_ime">Receptor de teclado (via teclado de Android)</string>
+  <string name="pref_plugin_remotekeyboard_accessibility">Receptor de teclado (via accesibilidad)</string>
   <string name="pref_plugin_remotekeyboard_desc">Recibe entradas de teclado desde otros dispositivos</string>
   <string name="pref_plugin_mpris">Controles multimedia</string>
   <string name="pref_plugin_mpris_desc">Mostrar un control remoto para su reproductor de medios</string>
@@ -47,8 +49,12 @@
   <string name="sad_ok">OK :(</string>
   <string name="cancel">Cancelar</string>
   <string name="open_settings">Abrir preferencias</string>
+  <string name="open_accessibility_settings">Abrir preferencias de accesibilidad</string>
+  <string name="open_input_settings">Abrir preferencias de teclado</string>
   <string name="no_permissions">Debe permitir el acceso a las notificaciones</string>
   <string name="no_permission_mprisreceiver">Para poder controlar sus reproductores de medios, necesita dar acceso a las notificaciones</string>
+  <string name="no_permissions_remotekeyboard_ime">Para recibir pulsaciones de teclado, debe activar el teclado remoto de KDE Connect como un método de entrada de Android</string>
+  <string name="no_permissions_remotekeyboard_accessibility">Para recibir pulsaciones de teclado debe dar permisos de accesibilidad</string>
   <string name="send_ping">Enviar ping</string>
   <string name="open_mpris_controls">Control multimedia</string>
   <string name="remotekeyboard_editing_only_title">Procesar teclas remotas solo al editar</string>
@@ -109,6 +115,8 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Enviar como teclas</string>
   <string name="mouse_receiver_plugin_description">Permite mover el ratón desde otro dispositivo</string>
   <string name="mouse_receiver_plugin_name">Recibir movimiento del ratón</string>
+  <string name="mouse_receiver_no_permissions">Para recibir entradas táctiles de manera remota necesita conceder permisos de accesibilidad</string>
+  <string name="mouse_keyboard_receiver_service_description">Recibir movimiento de ratón y entrada de teclado remotos</string>
   <string name="view_status_title">Estado</string>
   <string name="battery_status_format">Batería: %d%%</string>
   <string name="battery_status_low_format">Batería: %d%% batería baja</string>

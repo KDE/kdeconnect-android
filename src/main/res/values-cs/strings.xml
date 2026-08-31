@@ -25,6 +25,8 @@
   <string name="pref_plugin_mousepad_desc_tv">Používejte svůj telefon nebo tablet jako ovladač TV</string>
   <string name="pref_plugin_presenter">Ovladač prezentace</string>
   <string name="pref_plugin_presenter_desc">Použijte své zařízení pro přepínání snímků prezentace</string>
+  <string name="pref_plugin_remotekeyboard_ime">Přijímač klávesnice (přes klávesnici systému Android)</string>
+  <string name="pref_plugin_remotekeyboard_accessibility">Přijímač klávesnice (přes funkci usnadnění přístupu)</string>
   <string name="pref_plugin_remotekeyboard_desc">Přijímat události stisku kláves ze vzdálených zařízení</string>
   <string name="pref_plugin_mpris">Ovládání multimédií</string>
   <string name="pref_plugin_mpris_desc">Poskytuje dálkové ovládání přehrávačů médií</string>
@@ -47,8 +49,12 @@
   <string name="sad_ok">OK :(</string>
   <string name="cancel">Zrušit</string>
   <string name="open_settings">Otevřít nastavení</string>
+  <string name="open_accessibility_settings">Otevřít nastavení přístupnosti</string>
+  <string name="open_input_settings">Otevřít nastavení klávesnice</string>
   <string name="no_permissions">Pro zpřístupnění oznámení potřebujete oprávnění</string>
   <string name="no_permission_mprisreceiver">Abyste byli schopni ovládat vaše přehrávače médií, musíte udělit přístup k oznámením</string>
+  <string name="no_permissions_remotekeyboard_ime">Chcete-li přijímat stisky kláves, musíte aktivovat funkci vzdálené klávesnice KDE Connect jako způsob zadávání v systému Android.</string>
+  <string name="no_permissions_remotekeyboard_accessibility">Chcete-li přijímat stisky kláves, musíte udělit oprávnění pro usnadnění přístupu</string>
   <string name="send_ping">Poslat ping</string>
   <string name="open_mpris_controls">Ovládání multimédií</string>
   <string name="remotekeyboard_editing_only_title">Ovládat vzdálené klávesy při editaci</string>
@@ -109,6 +115,8 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Posílat jako úhozy kláves</string>
   <string name="mouse_receiver_plugin_description">Přijímat vzdálený pohyb myši</string>
   <string name="mouse_receiver_plugin_name">Příjemce myši</string>
+  <string name="mouse_receiver_no_permissions">Chcete-li přijímat dotykové vstupy na dálku, musíte udělit oprávnění pro usnadnění přístupu</string>
+  <string name="mouse_keyboard_receiver_service_description">Přijímání pohybů myši a vstupů z klávesnice ze vzdáleného zařízení</string>
   <string name="view_status_title">Stav</string>
   <string name="battery_status_format">Baterie: %d%%</string>
   <string name="battery_status_low_format">Baterie: %d%% Téměř vybitá baterie</string>
