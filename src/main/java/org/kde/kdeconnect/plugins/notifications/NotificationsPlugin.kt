@@ -25,7 +25,6 @@ import android.os.Handler
 import android.os.Looper
 import android.os.Message
 import android.service.notification.StatusBarNotification
-import android.text.SpannableString
 import android.text.TextUtils
 import android.util.Log
 import androidx.core.app.NotificationCompat
@@ -570,16 +569,7 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
         private const val TAG = "KDE/NotificationsPlugin"
 
         private fun extractStringFromExtra(extras: Bundle, key: String): String? {
-            val extra = extras.get(key)
-            return when (extra) {
-                null -> null
-                is String -> extra
-                is SpannableString -> extra.toString()
-                else -> {
-                    Log.e(TAG, "Don't know how to extract text from extra of type: " + extra.javaClass.getCanonicalName())
-                    null
-                }
-            }
+            return extras.getCharSequence(key)?.toString()
         }
 
         private fun getNotificationKeyCompat(statusBarNotification: StatusBarNotification): String {
