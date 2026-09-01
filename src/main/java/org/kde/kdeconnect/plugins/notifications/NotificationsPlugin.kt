@@ -505,7 +505,7 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
             var intent: PendingIntent? = null
 
             for (a in pendingActions.get(key)) {
-                if (a.title == title) {
+                if (a.title.contentEquals(title)) {
                     intent = a.actionIntent
                     break
                 }
