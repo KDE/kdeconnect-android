@@ -25,6 +25,8 @@
   <string name="pref_plugin_mousepad_desc_tv">استخدم الهاتف أو اللوحيّ كمتحكم بالتلفاز</string>
   <string name="pref_plugin_presenter">متحكم العرض التقديمي</string>
   <string name="pref_plugin_presenter_desc">استخدام جهازك لتغيير الشرائح في العرض التقديمي</string>
+  <string name="pref_plugin_remotekeyboard_ime">مُستقبل لوحة المفاتيح (عبر لوحة مفاتيح أندرويد)</string>
+  <string name="pref_plugin_remotekeyboard_accessibility">مُستقبل لوحة المفاتيح (عبر الإتاحة)</string>
   <string name="pref_plugin_remotekeyboard_desc">تلقي أحداث الضغط على المفاتيح من الأجهزة البعيدة</string>
   <string name="pref_plugin_mpris">تحكّمات الوسائط المتعدّدة</string>
   <string name="pref_plugin_mpris_desc">توفّر تحكّمًا بعيدًا لمشغّل الوسائط</string>
@@ -47,8 +49,12 @@
   <string name="sad_ok">حسنًا ):</string>
   <string name="cancel">ألغِ</string>
   <string name="open_settings">افتح الإعدادات</string>
+  <string name="open_accessibility_settings">افتح إعدادات الإتاحة</string>
+  <string name="open_input_settings">افتح إعدادات لوحة المفاتيح</string>
   <string name="no_permissions">عليك إعطاء التّطبيق صلاحيّات للنّفاذ إلى الإشعارات</string>
   <string name="no_permission_mprisreceiver">لتكون قادرًا على التحكم في مشغلات الوسائط الخاصة بك، تحتاج إلى منح حق الوصول إلى الإشعارات</string>
+  <string name="no_permissions_remotekeyboard_ime">لتلقي ضغطات المفاتيح تحتاج إلى تنشيط لوحة المفاتيح البعيدة لجسر كِيدِي لتكون وسيلة إدخال لأندرويد</string>
+  <string name="no_permissions_remotekeyboard_accessibility">لتلقي ضغطات المفاتيح، عليك منح أذونات الإتاحة.</string>
   <string name="send_ping">أرسل وخزة ping</string>
   <string name="open_mpris_controls">متحكّمات الوسائط المتعدّدة</string>
   <string name="remotekeyboard_editing_only_title">التعامل مع المفاتيح البعيدة فقط عند التحرير</string>
@@ -109,6 +115,8 @@
   <string name="pref_plugin_mousepad_send_keystrokes">أرسل كضغطات مفاتيح</string>
   <string name="mouse_receiver_plugin_description">استقبل حركة الفأرة البعيدة</string>
   <string name="mouse_receiver_plugin_name">مستقبل الفأرة</string>
+  <string name="mouse_receiver_no_permissions">لتلقي مدخلات اللمس عن بُعد، عليك منح أذونات الإتاحة.</string>
+  <string name="mouse_keyboard_receiver_service_description">استقبل حركة الفأرة البعيدة ومدخلات لوحة المفاتيح</string>
   <string name="view_status_title">الحالة</string>
   <string name="battery_status_format">البطارية: %d%%</string>
   <string name="battery_status_low_format">البطارية: %d%% منخفضة</string>
