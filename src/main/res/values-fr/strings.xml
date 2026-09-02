@@ -25,6 +25,8 @@
   <string name="pref_plugin_mousepad_desc_tv">Utilisez votre téléphone ou votre tablette comme une télécommande de télévision</string>
   <string name="pref_plugin_presenter">Télécommande de présentation</string>
   <string name="pref_plugin_presenter_desc">Utilisez votre appareil pour changer les diapositives d\'une présentation</string>
+  <string name="pref_plugin_remotekeyboard_ime">Récepteur clavier (Grâce à clavier Android)</string>
+  <string name="pref_plugin_remotekeyboard_accessibility">Récepteur clavier (Grâce à Accessibilité)</string>
   <string name="pref_plugin_remotekeyboard_desc">Recevoir les appuis de touches des périphériques distants</string>
   <string name="pref_plugin_mpris">Contrôles multimédia</string>
   <string name="pref_plugin_mpris_desc">Fournit une télécommande pour votre lecteur multimédia</string>
@@ -47,8 +49,12 @@
   <string name="sad_ok">Ok :(</string>
   <string name="cancel">Annuler</string>
   <string name="open_settings">Accéder aux paramètres</string>
+  <string name="open_accessibility_settings">Ouvrir la configuration pour l\'accessibilité</string>
+  <string name="open_input_settings">Ouvrir la configuration du clavier</string>
   <string name="no_permissions">Vous devez accorder la permission d\'accéder aux notifications</string>
   <string name="no_permission_mprisreceiver">Pour pouvoir contrôler vos lecteurs multimédia, veuillez permettre l\'accès aux notifications</string>
+  <string name="no_permissions_remotekeyboard_ime">Pour recevoir des appuis de touches, vous devez activer le clavier à distance de KDEConnect , comme méthode d\'entrée sous Android</string>
+  <string name="no_permissions_remotekeyboard_accessibility">Pour recevoir des appuis de touches, vous devez accorder des autorisations d\'accessibilité</string>
   <string name="send_ping">Envoyer un « Ping »</string>
   <string name="open_mpris_controls">Contrôles multimédia</string>
   <string name="remotekeyboard_editing_only_title">Gérer les appuis de touches à distance uniquement lors de l\'édition</string>
@@ -109,6 +115,8 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Envoyez comme appuis de touches</string>
   <string name="mouse_receiver_plugin_description">Recevoir les mouvements de la souri distante</string>
   <string name="mouse_receiver_plugin_name">Récepteur de souris</string>
+  <string name="mouse_receiver_no_permissions">Pour recevoir des entrées tactiles à distance, vous devez accorder des autorisations d\'accessibilité</string>
+  <string name="mouse_keyboard_receiver_service_description">Recevoir les mouvements de la souris distante et des entrées de clavier</string>
   <string name="view_status_title">État</string>
   <string name="battery_status_format">Batterie : %d %%</string>
   <string name="battery_status_low_format">Batterie : %d %% Batterie faible</string>
