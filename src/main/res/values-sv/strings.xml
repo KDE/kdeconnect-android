@@ -25,6 +25,8 @@
   <string name="pref_plugin_mousepad_desc_tv">Använd telefonen eller surfplattan som en tv-fjärrkontroll</string>
   <string name="pref_plugin_presenter">Fjärrkontroll för presentation</string>
   <string name="pref_plugin_presenter_desc">Använd apparaten för att byta bilder i en presentation</string>
+  <string name="pref_plugin_remotekeyboard_ime">Tangentbordsmottagare (via Android-tangentbord)</string>
+  <string name="pref_plugin_remotekeyboard_accessibility">Tangentbordsmottagare (via åtkomst)</string>
   <string name="pref_plugin_remotekeyboard_desc">Ta emot tangentnedtryckningar från externa apparater</string>
   <string name="pref_plugin_mpris">Multimediakontroller</string>
   <string name="pref_plugin_mpris_desc">Tillhandahåller en fjärrkontroll för mediaspelaren</string>
@@ -47,8 +49,12 @@
   <string name="sad_ok">Ok</string>
   <string name="cancel">Avbryt</string>
   <string name="open_settings">Öppna inställningarna</string>
+  <string name="open_accessibility_settings">Öppna åtkomstinställningarna</string>
+  <string name="open_input_settings">Öppna tangentbordsinställningarna</string>
   <string name="no_permissions">Du måste ge rättighet att komma åt underrättelser</string>
   <string name="no_permission_mprisreceiver">För att kunna styra mediaspelare måste du ge tillgång till underrättelser</string>
+  <string name="no_permissions_remotekeyboard_ime">KDE-ansluts fjärrtangentbord måste aktiveras för att ta emot tangentnedtryckningar som en Android-inmatningsmetod</string>
+  <string name="no_permissions_remotekeyboard_accessibility">För att ta emot tangentnedtryckningar måste du ge åtkomsträttigheter</string>
   <string name="send_ping">Skicka ping</string>
   <string name="open_mpris_controls">Kontroll av multimedia</string>
   <string name="remotekeyboard_editing_only_title">Hantera bara externa tangenter vid redigering</string>
@@ -109,6 +115,8 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Skicka som tangentnedtryckningar</string>
   <string name="mouse_receiver_plugin_description">Ta emot externa musrörelser</string>
   <string name="mouse_receiver_plugin_name">Musmottagare</string>
+  <string name="mouse_receiver_no_permissions">För att ta emot pekinmatning från en annan apparat måste du ge åtkomsträttigheter</string>
+  <string name="mouse_keyboard_receiver_service_description">Ta emot externa musrörelser och tangentbordsinmatning</string>
   <string name="view_status_title">Status</string>
   <string name="battery_status_format">Batteri: %d %%</string>
   <string name="battery_status_low_format">Batteri: %d %% låg laddning</string>
