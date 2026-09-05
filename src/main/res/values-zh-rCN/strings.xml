@@ -25,6 +25,8 @@
   <string name="pref_plugin_mousepad_desc_tv">将您的手机或平板电脑用作电视遥控器</string>
   <string name="pref_plugin_presenter">演示遥控</string>
   <string name="pref_plugin_presenter_desc">使用移动设备切换幻灯片</string>
+  <string name="pref_plugin_remotekeyboard_ime">键盘接收器 (通过安卓键盘)</string>
+  <string name="pref_plugin_remotekeyboard_accessibility">键盘接收器 (通过无障碍辅助)</string>
   <string name="pref_plugin_remotekeyboard_desc">从远程设备接收按键事件</string>
   <string name="pref_plugin_mpris">多媒体控制</string>
   <string name="pref_plugin_mpris_desc">遥控媒体播放器</string>
@@ -47,8 +49,12 @@
   <string name="sad_ok">确定 :(</string>
   <string name="cancel">取消</string>
   <string name="open_settings">打开设置</string>
+  <string name="open_accessibility_settings">打开无障碍辅助设置</string>
+  <string name="open_input_settings">打开键盘设置</string>
   <string name="no_permissions">您需要授予权限以访问通知</string>
   <string name="no_permission_mprisreceiver">为了控制您的媒体播放器，您需要授予访问通知的权限</string>
+  <string name="no_permissions_remotekeyboard_ime">要接收按键输入，您需要将 KDE Connect 远程键盘激活为 Android 的输入法</string>
+  <string name="no_permissions_remotekeyboard_accessibility">要接收按键输入，您需要授予无障碍辅助权限。</string>
   <string name="send_ping">发送 Ping</string>
   <string name="open_mpris_controls">多媒体控制</string>
   <string name="remotekeyboard_editing_only_title">只有在编辑时才接受远程按键</string>
@@ -109,6 +115,8 @@
   <string name="pref_plugin_mousepad_send_keystrokes">作为按键发送</string>
   <string name="mouse_receiver_plugin_description">接收远程鼠标移动</string>
   <string name="mouse_receiver_plugin_name">鼠标接收器</string>
+  <string name="mouse_receiver_no_permissions">要接收远程触摸输入，您需要授予无障碍辅助权限。</string>
+  <string name="mouse_keyboard_receiver_service_description">接收远程鼠标移动和键盘输入</string>
   <string name="view_status_title">状态</string>
   <string name="battery_status_format">电量：%d%%</string>
   <string name="battery_status_low_format">电量：%d%% 电量低</string>
