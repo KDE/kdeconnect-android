@@ -150,8 +150,10 @@ class TelephonyPlugin : Plugin() {
     }
 
     private fun muteRinger() {
-        if (!isMuted) {
-            val am = ContextCompat.getSystemService(context, AudioManager::class.java) ?: return
+        if (isMuted) return
+
+        val am = ContextCompat.getSystemService(context, AudioManager::class.java) ?: return
+        if (!am.isStreamMute(AudioManager.STREAM_RING)) {
             am.setStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_MUTE, 0)
             isMuted = true
         }
