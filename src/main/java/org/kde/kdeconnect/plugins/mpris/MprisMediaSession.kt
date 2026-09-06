@@ -39,7 +39,6 @@ import org.kde.kdeconnect_tp.R
 /**
  * Controls the mpris media control notification
  *
- *
  * There are two parts to this:
  * - The notification (with buttons etc.)
  * - The media session (via MediaSessionCompat; for lock screen control on
@@ -56,7 +55,7 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
     // Holds the device ids for which we can display a notification
     private val mprisDevices = HashSet<String>()
 
-    private var context: Context? = null
+    private lateinit var context: Context
     private var mediaSession: MediaSessionCompat? = null
 
     // Callback for control via the media session API
@@ -85,14 +84,13 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
     /**
      * Called by the mpris plugin when it wants media control notifications for its device
      *
-     *
      * Can be called multiple times, once for each device
      *
      * @param context The context
      * @param plugin  The mpris plugin
      * @param device  The device id
      */
-    fun onCreate(context: Context?, plugin: MprisPlugin, device: String) {
+    fun addDevice(context: Context, plugin: MprisPlugin, device: String) {
         this.context = context
 
         val wasEmpty = mprisDevices.isEmpty()
@@ -109,24 +107,19 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
             }
         }
 
-        plugin.setPlayerListUpdatedHandler(
-            "media_notification"
-        ) { this.updateMediaNotification() }
-        plugin.setPlayerStatusUpdatedHandler(
-            "media_notification"
-        ) { this.updateMediaNotification() }
+        plugin.setPlayerListUpdatedHandler("media_notification", ::updateMediaNotification)
+        plugin.setPlayerStatusUpdatedHandler("media_notification", ::updateMediaNotification)
     }
 
     /**
      * Called when a device disconnects/does not want notifications anymore
-     *
      *
      * Can be called multiple times, once for each device
      *
      * @param plugin  The mpris plugin
      * @param device The device id
      */
-    fun onDestroy(plugin: MprisPlugin, device: String) {
+    fun removeDevice(plugin: MprisPlugin, device: String) {
         mprisDevices.remove(device)
         plugin.removePlayerStatusUpdatedHandler("media_notification")
         plugin.removePlayerListUpdatedHandler("media_notification")
@@ -148,7 +141,6 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
 
     /**
      * Updates which device+player we're going to use in the notification
-     *
      *
      * Prefers playing devices/mpris players, but tries to keep displaying the same
      * player and device, while possible.
@@ -227,7 +219,7 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
      */
     private fun updateMediaNotification() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            val permissionResult = ContextCompat.checkSelfPermission(context!!, Manifest.permission.POST_NOTIFICATIONS)
+            val permissionResult = ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS)
             if (permissionResult != PackageManager.PERMISSION_GRANTED) {
                 Log.i(TAG, "No permission to post notifications, closed.")
                 closeMediaNotification()
@@ -237,13 +229,17 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
 
         // If the user disabled the media notification, do not show it
         val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-        if (!prefs.getBoolean(context!!.getString(R.string.mpris_notification_key), true)) {
+        if (!prefs.getBoolean(context.getString(R.string.mpris_notification_key), true)) {
             closeMediaNotification()
             return
         }
 
-        // Make sure our information is up-to-date
+        // NOTE: This updates notificationDeviceId and notificationPlayer
         val currentPlayer = updateCurrentPlayer()
+        if (currentPlayer == null) {
+            closeMediaNotification()
+            return
+        }
 
         val device = KdeConnect.getInstance().getDevice(notificationDeviceId)
         if (device == null) {
@@ -252,10 +248,7 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
         }
 
         // If the player disappeared (and no other playing one found), just remove the notification
-        if (currentPlayer == null) {
-            closeMediaNotification()
-            return
-        }
+
 
         updateRemoteDeviceVolumeControl()
 
@@ -300,7 +293,7 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
         val aPlay = NotificationCompat.Action.Builder(
-            R.drawable.ic_play_white, context!!.getString(R.string.mpris_play), piPlay
+            R.drawable.ic_play_white, context.getString(R.string.mpris_play), piPlay
         )
 
         val iPause = Intent(context, MprisMediaNotificationReceiver::class.java).apply {
@@ -315,7 +308,7 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
         val aPause = NotificationCompat.Action.Builder(
-            R.drawable.ic_pause_white, context!!.getString(R.string.mpris_pause), piPause
+            R.drawable.ic_pause_white, context.getString(R.string.mpris_pause), piPause
         )
 
         val iPrevious = Intent(context, MprisMediaNotificationReceiver::class.java).apply {
@@ -330,7 +323,7 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
         val aPrevious = NotificationCompat.Action.Builder(
-            R.drawable.ic_previous_white, context!!.getString(R.string.mpris_previous), piPrevious
+            R.drawable.ic_previous_white, context.getString(R.string.mpris_previous), piPrevious
         )
 
         val iNext = Intent(context, MprisMediaNotificationReceiver::class.java).apply {
@@ -345,7 +338,7 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
         val aNext = NotificationCompat.Action.Builder(
-            R.drawable.ic_next_white, context!!.getString(R.string.mpris_next), piNext
+            R.drawable.ic_next_white, context.getString(R.string.mpris_next), piNext
         )
 
         val iOpenActivity = Intent(context, MprisActivity::class.java).apply {
@@ -353,11 +346,11 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
             putExtra("player", currentPlayer.playerName)
         }
 
-        val piOpenActivity = TaskStackBuilder.create(context!!)
+        val piOpenActivity = TaskStackBuilder.create(context)
             .addNextIntentWithParentStack(iOpenActivity)
             .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 
-        val notification = NotificationCompat.Builder(context!!, NotificationHelper.Channels.MEDIA_CONTROL)
+        val notification = NotificationCompat.Builder(context, NotificationHelper.Channels.MEDIA_CONTROL)
 
         notification
             .setAutoCancel(false)
@@ -445,15 +438,15 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
 
         // Display the notification
         synchronized(instance) {
-            val mediaSession = mediaSession ?: MediaSessionCompat(context!!, MPRIS_MEDIA_SESSION_TAG).apply {
-                setCallback(mediaSessionCallback, Handler(context!!.mainLooper))
+            val mediaSession = mediaSession ?: MediaSessionCompat(context, MPRIS_MEDIA_SESSION_TAG).apply {
+                setCallback(mediaSessionCallback, Handler(context.mainLooper))
             }
             mediaSession.setMetadata(metadata.build())
             mediaSession.setPlaybackState(playbackState.build())
             mediaStyle.setMediaSession(mediaSession.sessionToken)
             notification.setStyle(mediaStyle)
             mediaSession.isActive = true
-            ContextCompat.getSystemService(context!!, NotificationManager::class.java)?.notify(MPRIS_MEDIA_NOTIFICATION_ID, notification.build())
+            ContextCompat.getSystemService(context, NotificationManager::class.java)?.notify(MPRIS_MEDIA_NOTIFICATION_ID, notification.build())
             if (this.mediaSession == null) {
                 this.mediaSession = mediaSession
             }
@@ -462,7 +455,7 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
 
     fun closeMediaNotification() {
         // Remove the notification
-        val nm = ContextCompat.getSystemService(context!!, NotificationManager::class.java)
+        val nm = ContextCompat.getSystemService(context, NotificationManager::class.java)
         nm!!.cancel(MPRIS_MEDIA_NOTIFICATION_ID)
 
         // Clear the current player and media session
@@ -514,7 +507,7 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
     override fun onProviderStateChanged(systemVolumeProvider: SystemVolumeProvider, isActive: Boolean) {
         val mediaSession = mediaSession ?: return
         val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-        val allowVolumeKeys = prefs.getBoolean(context!!.getString(R.string.pref_mpris_volume_control_key), true)
+        val allowVolumeKeys = prefs.getBoolean(context.getString(R.string.pref_mpris_volume_control_key), true)
 
         if (isActive && allowVolumeKeys) {
             mediaSession.setPlaybackToRemote(systemVolumeProvider)

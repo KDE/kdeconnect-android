@@ -212,7 +212,7 @@ class MprisPlugin : Plugin() {
     }
 
     override fun onCreate(): Boolean {
-        MprisMediaSession.instance.onCreate(context.applicationContext, this, device.deviceId)
+        MprisMediaSession.instance.addDevice(context.applicationContext, this, device.deviceId)
 
         // Always request the player list so the data is up-to-date
         requestPlayerList()
@@ -226,7 +226,7 @@ class MprisPlugin : Plugin() {
     override fun onDestroy() {
         players.clear()
         deregisterPlugin(this)
-        MprisMediaSession.instance.onDestroy(this, device.deviceId)
+        MprisMediaSession.instance.removeDevice(this, device.deviceId)
     }
 
     private fun sendCommand(player: String, method: String, value: String) {
