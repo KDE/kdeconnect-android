@@ -10,6 +10,7 @@ import android.app.Service;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.provider.Settings;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
@@ -45,11 +46,42 @@ public class NotificationReceiver extends NotificationListenerService {
     private final ArrayList<NotificationListener> listeners = new ArrayList<>();
 
     public void addListener(NotificationListener listener) {
+        final boolean shouldRebind = listeners.isEmpty() || !connected;
         listeners.add(listener);
+
+        if (shouldRebind) {
+            requestRebindSafe();
+        }
     }
 
     public void removeListener(NotificationListener listener) {
-        listeners.remove(listener);
+        if (listeners.remove(listener) && listeners.isEmpty()) {
+            requestUnbindSafe();
+        }
+    }
+
+    private void requestRebindSafe() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N || !hasReadNotificationsPermission(this)) {
+            return;
+        }
+
+        try {
+            requestRebind(new ComponentName(this, NotificationReceiver.class));
+        } catch (Exception ignored) {
+            // Notification access may have been revoked since the permission check.
+        }
+    }
+
+    private void requestUnbindSafe() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+            return;
+        }
+
+        try {
+            super.requestUnbind();
+        } catch (Exception ignored) {
+            // The system may already have unbound the listener.
+        }
     }
 
     @Override
@@ -80,6 +112,10 @@ public class NotificationReceiver extends NotificationListenerService {
     public void onListenerDisconnected() {
         super.onListenerDisconnected();
         connected = false;
+
+        if (!listeners.isEmpty()) {
+            requestRebindSafe();
+        }
     }
 
     public boolean isConnected() {
