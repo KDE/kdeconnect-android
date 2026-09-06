@@ -96,6 +96,13 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
         if (mprisDevices.isEmpty()) {
             val prefs = PreferenceManager.getDefaultSharedPreferences(context)
             prefs.registerOnSharedPreferenceChangeListener(this)
+
+            NotificationReceiver.RunCommand(context) { service: NotificationReceiver ->
+                service.addListener(this@MprisMediaSession)
+                if (service.isConnected) {
+                    onListenerConnected(service)
+                }
+            }
         }
         this.context = context
         mprisDevices.add(device)
@@ -106,14 +113,6 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
         plugin.setPlayerStatusUpdatedHandler(
             "media_notification"
         ) { this.updateMediaNotification() }
-
-        NotificationReceiver.RunCommand(context) { service: NotificationReceiver ->
-            service.addListener(this@MprisMediaSession)
-            val serviceReady = service.isConnected
-            if (serviceReady) {
-                onListenerConnected(service)
-            }
-        }
     }
 
     /**
@@ -138,6 +137,10 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
         if (mprisDevices.isEmpty()) {
             val prefs = PreferenceManager.getDefaultSharedPreferences(context)
             prefs.unregisterOnSharedPreferenceChangeListener(this)
+
+            NotificationReceiver.RunCommand(context) { service ->
+                service.removeListener(this@MprisMediaSession)
+            }
         }
     }
 
@@ -154,7 +157,7 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
         // Update the last-displayed device and player
         notificationDeviceId = device.deviceId
         notificationPlayer = mprisPlayer
-        return notificationPlayer
+        return mprisPlayer
     }
 
     private fun findPlayer(): Pair<Device, MprisPlayer>? {
@@ -499,10 +502,8 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
 
     override fun onListenerConnected(service: NotificationReceiver) {
         try {
-            service.activeNotifications.find { n -> n.isSpotify() }?.let {
-                spotifyRunning = true
-                updateMediaNotification()
-            }
+            spotifyRunning = service.activeNotifications.any { n -> n.isSpotify() }
+            updateMediaNotification()
         } catch (e: SecurityException) {
             Log.w(TAG, "Failed to get active notifications", e)
         }
