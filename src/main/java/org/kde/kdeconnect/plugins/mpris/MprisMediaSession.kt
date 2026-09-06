@@ -48,9 +48,11 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
     ProviderStateListener {
     private var spotifyRunning = false
 
-    // Holds the device and player displayed in the notification
-    private var notificationDeviceId: String? = null
-    private var notificationPlayer: MprisPlayer? = null
+    // Holds the player displayed in the notification
+    private var currentShowingPlayer: MprisPlayer? = null
+
+    // Keep the device preference when the notification and current player are cleared
+    private var lastShowingDeviceId: String? = null
 
     // Holds the device ids for which we can display a notification
     private val mprisDevices = HashSet<String>()
@@ -61,23 +63,23 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
     // Callback for control via the media session API
     private val mediaSessionCallback: MediaSessionCompat.Callback = object : MediaSessionCompat.Callback() {
         override fun onPlay() {
-            notificationPlayer?.sendPlay()
+            currentShowingPlayer?.sendPlay()
         }
 
         override fun onPause() {
-            notificationPlayer?.sendPause()
+            currentShowingPlayer?.sendPause()
         }
 
         override fun onSkipToNext() {
-            notificationPlayer?.sendNext()
+            currentShowingPlayer?.sendNext()
         }
 
         override fun onSkipToPrevious() {
-            notificationPlayer?.sendPrevious()
+            currentShowingPlayer?.sendPrevious()
         }
 
         override fun onSeekTo(pos: Long) {
-            notificationPlayer?.sendSetPosition(pos.toInt())
+            currentShowingPlayer?.sendSetPosition(pos.toInt())
         }
     }
 
@@ -140,33 +142,23 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
     }
 
     /**
-     * Updates which device+player we're going to use in the notification
+     * Finds which device+player we're going to use in the notification
      *
      * Prefers playing devices/mpris players, but tries to keep displaying the same
      * player and device, while possible.
      */
-    private fun updateCurrentPlayer(): MprisPlayer? {
-        val (device, mprisPlayer) = findPlayer() ?: return null
-
-        // Update the last-displayed device and player
-        notificationDeviceId = device.deviceId
-        notificationPlayer = mprisPlayer
-        return mprisPlayer
-    }
-
-    private fun findPlayer(): Pair<Device, MprisPlayer>? {
-        val currentDevice = if (notificationDeviceId != null && mprisDevices.contains(notificationDeviceId)) {
-            KdeConnect.getInstance().getDevice(notificationDeviceId)
-        } else {
-            null
-        }
+    private fun findPlayer(): MprisPlayer? {
+        val currentPlayer = currentShowingPlayer
+        val currentDevice = currentPlayer?.device ?: lastShowingDeviceId
+            ?.takeIf(mprisDevices::contains)
+            ?.let(KdeConnect.getInstance()::getDevice)
 
         // First try the previously displayed player (if still playing) or the previous displayed device (otherwise)
         if (currentDevice != null) {
-            val playingPlayer = notificationPlayer?.takeIf { it.isPlaying }
+            val playingPlayer = currentPlayer?.takeIf { it.isPlaying }
             val player = getPlayerFromDevice(currentDevice, playingPlayer)
             if (player != null) {
-                return Pair(currentDevice, player)
+                return player
             }
         }
 
@@ -174,7 +166,7 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
         for (otherDevice in KdeConnect.getInstance().devices.values) {
             val player = getPlayerFromDevice(otherDevice, null)
             if (player != null) {
-                return Pair(otherDevice, player)
+                return player
             }
         }
 
@@ -182,9 +174,9 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
         //  This will succeed if it's paused:
         //  that allows pausing and subsequently resuming via the notification
         if (currentDevice != null) {
-            val player = getPlayerFromDevice(currentDevice, notificationPlayer)
+            val player = getPlayerFromDevice(currentDevice, currentPlayer)
             if (player != null) {
-                return Pair(currentDevice, player)
+                return player
             }
         }
 
@@ -206,8 +198,8 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
         return !(player.isSpotify && spotifyRunning)
     }
 
-    private fun updateRemoteDeviceVolumeControl() {
-        val plugin = KdeConnect.getInstance().getDevicePlugin(notificationDeviceId, SystemVolumePlugin::class.java)
+    private fun updateRemoteDeviceVolumeControl(device: Device) {
+        val plugin = device.getPlugin(SystemVolumePlugin::class.java)
             ?: return
         val systemVolumeProvider = SystemVolumeProvider.getInstance()
         systemVolumeProvider.setPlugin(plugin)
@@ -227,64 +219,58 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
             }
         }
 
-        // If the user disabled the media notification, do not show it
         val prefs = PreferenceManager.getDefaultSharedPreferences(context)
         if (!prefs.getBoolean(context.getString(R.string.mpris_notification_key), true)) {
+            // If the user disabled the media notification, do not show it
             closeMediaNotification()
             return
         }
 
-        // NOTE: This updates notificationDeviceId and notificationPlayer
-        val currentPlayer = updateCurrentPlayer()
-        if (currentPlayer == null) {
+        val player = findPlayer()
+        if (player == null) {
+            // If the player disappeared (and no other playing one found), just remove the notification
             closeMediaNotification()
             return
         }
 
-        val device = KdeConnect.getInstance().getDevice(notificationDeviceId)
-        if (device == null) {
-            closeMediaNotification()
-            return
-        }
+        val device = player.device
+        val deviceId = device.deviceId
 
-        // If the player disappeared (and no other playing one found), just remove the notification
-
-
-        updateRemoteDeviceVolumeControl()
+        updateRemoteDeviceVolumeControl(device)
 
         val metadata = MediaMetadataCompat.Builder()
 
-        metadata.putString(MediaMetadataCompat.METADATA_KEY_TITLE, currentPlayer.title)
+        metadata.putString(MediaMetadataCompat.METADATA_KEY_TITLE, player.title)
 
-        if (currentPlayer.artist.isNotEmpty()) {
-            metadata.putString(MediaMetadataCompat.METADATA_KEY_AUTHOR, currentPlayer.artist)
-            metadata.putString(MediaMetadataCompat.METADATA_KEY_ARTIST, currentPlayer.artist)
+        if (player.artist.isNotEmpty()) {
+            metadata.putString(MediaMetadataCompat.METADATA_KEY_AUTHOR, player.artist)
+            metadata.putString(MediaMetadataCompat.METADATA_KEY_ARTIST, player.artist)
         }
-        if (currentPlayer.album.isNotEmpty()) {
-            metadata.putString(MediaMetadataCompat.METADATA_KEY_ALBUM, currentPlayer.album)
+        if (player.album.isNotEmpty()) {
+            metadata.putString(MediaMetadataCompat.METADATA_KEY_ALBUM, player.album)
         }
-        if (currentPlayer.length > 0) {
-            metadata.putLong(MediaMetadataCompat.METADATA_KEY_DURATION, currentPlayer.length)
+        if (player.length > 0) {
+            metadata.putLong(MediaMetadataCompat.METADATA_KEY_DURATION, player.length)
         }
 
-        val albumArt = currentPlayer.getAlbumArt()
+        val albumArt = player.getAlbumArt()
         if (albumArt != null) {
             metadata.putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, albumArt)
         }
 
         val playbackState = PlaybackStateCompat.Builder()
 
-        if (currentPlayer.isPlaying) {
-            playbackState.setState(PlaybackStateCompat.STATE_PLAYING, currentPlayer.position, 1.0f)
+        if (player.isPlaying) {
+            playbackState.setState(PlaybackStateCompat.STATE_PLAYING, player.position, 1.0f)
         } else {
-            playbackState.setState(PlaybackStateCompat.STATE_PAUSED, currentPlayer.position, 0.0f)
+            playbackState.setState(PlaybackStateCompat.STATE_PAUSED, player.position, 0.0f)
         }
 
         // Create all actions (previous/play/pause/next)
         val iPlay = Intent(context, MprisMediaNotificationReceiver::class.java).apply {
             setAction(MprisMediaNotificationReceiver.ACTION_PLAY)
-            putExtra(MprisMediaNotificationReceiver.EXTRA_DEVICE_ID, notificationDeviceId)
-            putExtra(MprisMediaNotificationReceiver.EXTRA_MPRIS_PLAYER, currentPlayer.playerName)
+            putExtra(MprisMediaNotificationReceiver.EXTRA_DEVICE_ID, deviceId)
+            putExtra(MprisMediaNotificationReceiver.EXTRA_MPRIS_PLAYER, player.playerName)
         }
         val piPlay = PendingIntent.getBroadcast(
             context,
@@ -298,8 +284,8 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
 
         val iPause = Intent(context, MprisMediaNotificationReceiver::class.java).apply {
             setAction(MprisMediaNotificationReceiver.ACTION_PAUSE)
-            putExtra(MprisMediaNotificationReceiver.EXTRA_DEVICE_ID, notificationDeviceId)
-            putExtra(MprisMediaNotificationReceiver.EXTRA_MPRIS_PLAYER, currentPlayer.playerName)
+            putExtra(MprisMediaNotificationReceiver.EXTRA_DEVICE_ID, deviceId)
+            putExtra(MprisMediaNotificationReceiver.EXTRA_MPRIS_PLAYER, player.playerName)
         }
         val piPause = PendingIntent.getBroadcast(
             context,
@@ -313,8 +299,8 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
 
         val iPrevious = Intent(context, MprisMediaNotificationReceiver::class.java).apply {
             setAction(MprisMediaNotificationReceiver.ACTION_PREVIOUS)
-            putExtra(MprisMediaNotificationReceiver.EXTRA_DEVICE_ID, notificationDeviceId)
-            putExtra(MprisMediaNotificationReceiver.EXTRA_MPRIS_PLAYER, currentPlayer.playerName)
+            putExtra(MprisMediaNotificationReceiver.EXTRA_DEVICE_ID, deviceId)
+            putExtra(MprisMediaNotificationReceiver.EXTRA_MPRIS_PLAYER, player.playerName)
         }
         val piPrevious = PendingIntent.getBroadcast(
             context,
@@ -328,8 +314,8 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
 
         val iNext = Intent(context, MprisMediaNotificationReceiver::class.java).apply {
             setAction(MprisMediaNotificationReceiver.ACTION_NEXT)
-            putExtra(MprisMediaNotificationReceiver.EXTRA_DEVICE_ID, notificationDeviceId)
-            putExtra(MprisMediaNotificationReceiver.EXTRA_MPRIS_PLAYER, currentPlayer.playerName)
+            putExtra(MprisMediaNotificationReceiver.EXTRA_DEVICE_ID, deviceId)
+            putExtra(MprisMediaNotificationReceiver.EXTRA_MPRIS_PLAYER, player.playerName)
         }
         val piNext = PendingIntent.getBroadcast(
             context,
@@ -342,8 +328,8 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
         )
 
         val iOpenActivity = Intent(context, MprisActivity::class.java).apply {
-            putExtra("deviceId", notificationDeviceId)
-            putExtra("player", currentPlayer.playerName)
+            putExtra("deviceId", deviceId)
+            putExtra("player", player.playerName)
         }
 
         val piOpenActivity = TaskStackBuilder.create(context)
@@ -360,28 +346,28 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             .setSubText(device.name)
 
-        notification.setContentTitle(currentPlayer.title)
+        notification.setContentTitle(player.title)
 
         // Only set the notification body text if we have an author and/or album
-        if (currentPlayer.artist.isNotEmpty() && currentPlayer.album.isNotEmpty()) {
-            notification.setContentText(currentPlayer.artist + " - " + currentPlayer.album + " (" + currentPlayer.playerName + ")")
-        } else if (currentPlayer.artist.isNotEmpty()) {
-            notification.setContentText(currentPlayer.artist + " (" + currentPlayer.playerName + ")")
-        } else if (currentPlayer.album.isNotEmpty()) {
-            notification.setContentText(currentPlayer.album + " (" + currentPlayer.playerName + ")")
+        if (player.artist.isNotEmpty() && player.album.isNotEmpty()) {
+            notification.setContentText(player.artist + " - " + player.album + " (" + player.playerName + ")")
+        } else if (player.artist.isNotEmpty()) {
+            notification.setContentText(player.artist + " (" + player.playerName + ")")
+        } else if (player.album.isNotEmpty()) {
+            notification.setContentText(player.album + " (" + player.playerName + ")")
         } else {
-            notification.setContentText(currentPlayer.playerName)
+            notification.setContentText(player.playerName)
         }
 
         if (albumArt != null) {
             notification.setLargeIcon(albumArt)
         }
 
-        if (!currentPlayer.isPlaying) {
+        if (!player.isPlaying) {
             val iCloseNotification = Intent(context, MprisMediaNotificationReceiver::class.java)
             iCloseNotification.setAction(MprisMediaNotificationReceiver.ACTION_CLOSE_NOTIFICATION)
-            iCloseNotification.putExtra(MprisMediaNotificationReceiver.EXTRA_DEVICE_ID, notificationDeviceId)
-            iCloseNotification.putExtra(MprisMediaNotificationReceiver.EXTRA_MPRIS_PLAYER, currentPlayer.playerName)
+            iCloseNotification.putExtra(MprisMediaNotificationReceiver.EXTRA_DEVICE_ID, deviceId)
+            iCloseNotification.putExtra(MprisMediaNotificationReceiver.EXTRA_MPRIS_PLAYER, player.playerName)
             val piCloseNotification = PendingIntent.getBroadcast(
                 context,
                 0,
@@ -394,36 +380,36 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
         // Add media control actions
         var numActions = 0
         var playbackActions: Long = 0
-        if (currentPlayer.isGoPreviousAllowed) {
+        if (player.isGoPreviousAllowed) {
             notification.addAction(aPrevious.build())
             playbackActions = playbackActions or PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS
             ++numActions
         }
-        if (currentPlayer.isPlaying && currentPlayer.isPauseAllowed) {
+        if (player.isPlaying && player.isPauseAllowed) {
             notification.addAction(aPause.build())
             playbackActions = playbackActions or PlaybackStateCompat.ACTION_PAUSE
             ++numActions
         }
-        if (!currentPlayer.isPlaying && currentPlayer.isPlayAllowed) {
+        if (!player.isPlaying && player.isPlayAllowed) {
             notification.addAction(aPlay.build())
             playbackActions = playbackActions or PlaybackStateCompat.ACTION_PLAY
             ++numActions
         }
-        if (currentPlayer.isGoNextAllowed) {
+        if (player.isGoNextAllowed) {
             notification.addAction(aNext.build())
             playbackActions = playbackActions or PlaybackStateCompat.ACTION_SKIP_TO_NEXT
             ++numActions
         }
         // Documentation says that this was added in Lollipop (21) but it seems to cause crashes on < Pie (28)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            if (currentPlayer.isSeekAllowed) {
+            if (player.isSeekAllowed) {
                 playbackActions = playbackActions or PlaybackStateCompat.ACTION_SEEK_TO
             }
         }
         playbackState.setActions(playbackActions)
 
-        // Only allow deletion if no music is currentPlayer
-        notification.setOngoing(currentPlayer.isPlaying)
+        // Only allow deletion if no music is player
+        notification.setOngoing(player.isPlaying)
 
         // Use the MediaStyle notification, so it feels like other media players. That also allows adding actions
         val mediaStyle = androidx.media.app.NotificationCompat.MediaStyle()
@@ -451,6 +437,9 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
                 this.mediaSession = mediaSession
             }
         }
+
+        currentShowingPlayer = player
+        lastShowingDeviceId = deviceId
     }
 
     fun closeMediaNotification() {
@@ -459,7 +448,7 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
         nm!!.cancel(MPRIS_MEDIA_NOTIFICATION_ID)
 
         // Clear the current player and media session
-        notificationPlayer = null
+        currentShowingPlayer = null
         synchronized(instance) {
             mediaSession?.apply {
                 setPlaybackState(PlaybackStateCompat.Builder().build())
@@ -477,7 +466,7 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
     }
 
     fun playerSelected(player: MprisPlayer?) {
-        notificationPlayer = player
+        currentShowingPlayer = player
         updateMediaNotification()
     }
 

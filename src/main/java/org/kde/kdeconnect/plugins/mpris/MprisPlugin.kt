@@ -19,6 +19,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.content.getSystemService
 import androidx.core.net.toUri
 import androidx.preference.PreferenceManager
+import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.helpers.NotificationHelper
 import org.kde.kdeconnect.helpers.ThreadHelper
 import org.kde.kdeconnect.helpers.VideoUrlsHelper
@@ -182,6 +183,9 @@ class MprisPlugin : Plugin() {
                 sendCommand(playerName, "Seek", offset)
             }
         }
+
+        val device : Device
+            get() = this@MprisPlugin.device
     }
 
     private val players = ConcurrentHashMap<String, MprisPlayer>()
