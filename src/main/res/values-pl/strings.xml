@@ -18,11 +18,15 @@
   <string name="pref_plugin_clipboard">Współdzielenie schowka</string>
   <string name="pref_plugin_clipboard_desc">Współdzieli schowek między urządzeniami</string>
   <string name="pref_plugin_clipboard_sent">Wysłano ze schowka</string>
+  <string name="clipboard_preference_title_skip_sensitive">Nie synchronizuj danych wrażliwych w schowku</string>
+  <string name="clipboard_preference_summary_skip_sensitive">Nie synchronizuj samoczynnie haseł lub innych treści oznaczonych jako wrażliwe</string>
   <string name="pref_plugin_mousepad">Obsługa zdalna</string>
   <string name="pref_plugin_mousepad_desc_nontv">Używa telefonu lub tabletu jako gładzika i klawiatury do sterowania innym urządzeniem</string>
   <string name="pref_plugin_mousepad_desc_tv">Używa telefonu lub tabletu jako pilota do TV</string>
   <string name="pref_plugin_presenter">Pilot do prezentacji</string>
   <string name="pref_plugin_presenter_desc">Przełącza strony przy użyciu telefonu</string>
+  <string name="pref_plugin_remotekeyboard_ime">Odbieranie klawiatury (przez klawiaturę Androida)</string>
+  <string name="pref_plugin_remotekeyboard_accessibility">Odbieranie klawiatury (przez moduł dostępności)</string>
   <string name="pref_plugin_remotekeyboard_desc">Odbiera naciśnięcia klawiszy z innego urządzenia do sterowania tym urządzeniem</string>
   <string name="pref_plugin_mpris">Sterowanie odtwarzaczem</string>
   <string name="pref_plugin_mpris_desc">Steruje odtwarzaczami tego urządzenia z innego urządzenia</string>
@@ -45,8 +49,12 @@
   <string name="sad_ok">OK :(</string>
   <string name="cancel">Anuluj</string>
   <string name="open_settings">Otwórz ustawienia</string>
+  <string name="open_accessibility_settings">Otwórz ustawienia dostępności</string>
+  <string name="open_input_settings">Otwórz ustawienia klawiatury</string>
   <string name="no_permissions">Aby uzyskać dostęp do powiadomień, należy przydzielić uprawnienia</string>
   <string name="no_permission_mprisreceiver">Aby móc sterować odtwarzaczami na tym urządzeniu, należy udzielić dostępu do powiadomień</string>
+  <string name="no_permissions_remotekeyboard_ime">Aby odbierać naciśnięcia klawiszy, musisz ustawić Zdalną Klawiaturę KDE Connect jako sposób wprowadzania w systemie Android</string>
+  <string name="no_permissions_remotekeyboard_accessibility">Aby móc odbierać naciśnięcia klawiszy musisz udzielić uprawnień Dostępności</string>
   <string name="send_ping">Wyślij ping</string>
   <string name="open_mpris_controls">Sterowanie odtwarzaczem</string>
   <string name="remotekeyboard_editing_only_title">Obsługuj zdalne naciśnięcia klawiszy tylko podczas edycji</string>
@@ -71,6 +79,7 @@
   <string name="bigscreen_hide_mouse_input">Ukryj przycisk zdalnej obsługi myszą i klawiaturą</string>
   <string name="bigscreen_show_home_title">Pokaż przycisk domu</string>
   <string name="bigscreen_show_back_title">Pokaż przycisk wstecz</string>
+  <string name="bigscreen_show_close_title">Pokaż przycisk zamykający</string>
   <string-array name="mousepad_tap_entries">
     <item>Kliknięcie lewym</item>
     <item>Kliknięcie prawym</item>
@@ -106,6 +115,8 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Wysyłaj jako naciśnięcia klawiszy</string>
   <string name="mouse_receiver_plugin_description">Odbiera ruchy myszy z innego urządzenia do sterowania tym urządzeniem</string>
   <string name="mouse_receiver_plugin_name">Odbieranie myszy</string>
+  <string name="mouse_receiver_no_permissions">Aby móc odbierać dotknięcia musisz udzielić uprawnień Dostępności</string>
+  <string name="mouse_keyboard_receiver_service_description">Odbiera ruchy myszy i naciśnięcia na klawiaturze z innego urządzenia do sterowania tym urządzeniem</string>
   <string name="view_status_title">Stan</string>
   <string name="battery_status_format">Bateria: %d%%</string>
   <string name="battery_status_low_format">Bateria: %d%% niski poziom</string>
@@ -189,6 +200,7 @@
   <string name="show_keyboard">Pokaż klawiaturę</string>
   <string name="show_mouse_and_keyboard">Pokaż mysz i klawiaturę</string>
   <string name="device_not_paired">Urządzenie niesparowane</string>
+  <string name="pairing_missing_local_network_permission">Brakuje uprawnień do uzyskania dostępu do pobliskich urządzeń, wiec aplikacja nie będzie działać.</string>
   <string name="pairing_duplicate_names">Uwaga: Istnieje wiele urządzeń o tej samej nazwie.</string>
   <string name="request_pairing">Prośba o sparowanie</string>
   <string name="pairing_accept">Przyjmij</string>
@@ -380,6 +392,7 @@
   <string name="mpris_open_url">Kontynuuj odtwarzanie tutaj</string>
   <string name="cant_open_url">Nie można otworzyć adresu URL, aby kontynuować odtwarzanie</string>
   <string name="bigscreen_home">Dom</string>
+  <string name="bigscreen_close">Zamknij</string>
   <string name="bigscreen_up">Góra</string>
   <string name="bigscreen_left">Lewo</string>
   <string name="bigscreen_select">Wybierz</string>
@@ -482,4 +495,10 @@
   <string name="pref_presenter_enable_volume_keys_summary">W stanie czuwania nieobsługiwane na Androidzie w wersji od 13 do 15</string>
   <string name="presenter_volume_keys_foreground_tip">Możesz pozostawić ekran włączonym, aby używać przycisków głośności, aby przejść do kolejnej/poprzedniej strony</string>
   <string name="presenter_volume_keys_tip">Możesz pozostawić ekran włączonym lub zablokować swoje urządzenie, aby używać przycisków głośności, aby przejść do kolejnej/poprzedniej strony</string>
+  <string name="runcommand_output_no_output_desc">Wyniki z poleceń będą pojawiać się tutaj.</string>
+  <string name="runcommand_output_no_output">Nie wykonano żadnych poleceń</string>
+  <string name="runcommand_stop">Zatrzymaj bieżące polecenie</string>
+  <string name="runcommand_clear_output">Wyczyść wynik</string>
+  <string name="pref_mpris_volume_control_title">Sprzętowe przyciski głośności</string>
+  <string name="pref_mpris_volume_control_summary">Steruj głośnością podłączonego urządzenia przy użyciu przycisków sprzętowych tego urządzenia</string>
 </resources>
