@@ -1,0 +1,7 @@
+1.35.14:
+- Remote Keyboard no longer needs the custom keyboard
+- Support sharing multiple URLs
+- Added Clear Output option in Run Command
+- Fix notifications sync sometimes stopping
+- Fix mute call button when phone already mutted
+- Improved reconnection on VPNs
