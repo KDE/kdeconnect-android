@@ -109,6 +109,9 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
 
     override fun onListenerConnected(service: NotificationReceiver?) {
         serviceReady = true
+        NotificationReceiver.RunCommand(context) { service ->
+            this.sendCurrentNotifications(service)
+        }
     }
 
     override fun onNotificationRemoved(statusBarNotification: StatusBarNotification?) {
@@ -485,7 +488,7 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
         if (!NotificationReceiver.hasReadNotificationsPermission(context)) {
             return
         }
-        val notifications= try {
+        val notifications = try {
             service.getActiveNotifications()
         } catch (_: SecurityException) {
             return
