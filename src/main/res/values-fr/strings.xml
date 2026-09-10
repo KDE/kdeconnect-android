@@ -461,8 +461,8 @@
   <string name="enable_bluetooth">Activer l\'interface Bluetooth (Bêta)</string>
   <string name="receive_notifications_permission_explanation">Les notifications doivent être autorisées pour en recevoir d\'autres périphériques</string>
   <string name="findmyphone_notifications_explanation">Les permissions pour les notifications sont nécessaires pour que le téléphone puisse sonner lorsque l\'application s\'exécute en tâche de fond</string>
-  <string name="findmyphone_camera_explanation">La permission pour l’appareil photo permet à la lampe de poche de clignoter lorsque vous trouvez votre téléphone</string>
-  <string name="findmyphone_open_settings_for_camera">Accorder l’autorisation à l\'appareil photo dans la confirmation de l’application pour utiliser la lampe de poche</string>
+  <string name="findmyphone_camera_explanation">La permission pour l\'appareil photo permet à la lampe de poche de clignoter lorsque vous trouvez votre téléphone</string>
+  <string name="findmyphone_open_settings_for_camera">Accorder l\'autorisation à l\'appareil photo dans la confirmation de l\'application pour utiliser la lampe de poche</string>
   <string name="no_notifications">Les notifications sont désactivées. Vous ne recevrez aucune notification pour les demandes d\'associations entrantes.</string>
   <string name="mpris_keepwatching">Continuer la lecture</string>
   <string name="mpris_keepwatching_settings_title">Continuer la lecture</string>
@@ -476,7 +476,7 @@
   <string name="enable_fullscreen">Activer le mode en plein écran</string>
   <string name="pref_presenter_enable_volume_keys_title">Les touches de volume font défiler les diapositives</string>
   <string name="pref_presenter_sensitivity_title">Sensibilité du pointeur</string>
-  <string name="pref_presenter_enable_volume_keys_summary">La mise en veille n’est pas prise en charge sur les versions Android entre 13 et 15.</string>
+  <string name="pref_presenter_enable_volume_keys_summary">La mise en veille n\'est pas prise en charge sur les versions Android entre 13 et 15.</string>
   <string name="presenter_volume_keys_foreground_tip">Vous pouvez laisser l\'écran ouvert et utiliser les touches de volume pour passer d\'une diapositive à une autre</string>
   <string name="presenter_volume_keys_tip">Vous pouvez laisser l\'écran ouvert ou verrouiller votre périphérique pour utiliser les touches de volume pour passer d\'une diapositive à une autre</string>
   <string name="runcommand_output_no_output_desc">Le résultat des commandes apparaîtra ici.</string>
