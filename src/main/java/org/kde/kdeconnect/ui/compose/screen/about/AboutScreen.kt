@@ -30,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import org.kde.kdeconnect.extensions.safeDrawingBottomPadding
 import org.kde.kdeconnect.ui.about.AboutData
 import org.kde.kdeconnect.ui.about.AboutPerson
+import org.kde.kdeconnect.ui.about.applicationAboutData
 import org.kde.kdeconnect.ui.compose.KdeTheme
 import org.kde.kdeconnect.ui.compose.components.KdeThemePreviews
 import org.kde.kdeconnect_tp.R
@@ -133,7 +134,7 @@ private fun AppInfoCard(
                 modifier = Modifier.align(Alignment.CenterVertically)
             ) {
                 Text(
-                    text = aboutData.name,
+                    text = stringResource(aboutData.name),
                     style = MaterialTheme.typography.titleLarge
                 )
                 Text(
@@ -322,20 +323,7 @@ private fun AuthorItemRow(author: AboutPerson) {
 @KdeThemePreviews
 @Composable
 private fun AboutScreenPreview() {
-    val sampleAboutData = AboutData(
-        name = "KDE Connect",
-        icon = R.drawable.icon,
-        versionName = "1.27.0",
-        bugURL = "https://bugs.kde.org",
-        websiteURL = "https://kdeconnect.kde.org",
-        sourceCodeURL = "https://invent.kde.org/network/kdeconnect-android",
-        donateURL = "https://www.kde.org/community/donations",
-        authorsFooterText = R.string.everyone_else
-    ).apply {
-        authors += AboutPerson("Albert Vaca Cintora", R.string.maintainer_and_developer)
-        authors += AboutPerson("Aleix Pol", R.string.developer)
-    }
-
+    val sampleAboutData = applicationAboutData
     KdeTheme(context = LocalContext.current) {
         Surface {
             AboutScreen(

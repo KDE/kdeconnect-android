@@ -46,7 +46,6 @@ import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect.extensions.setOnApplyWindowInsetsListenerCompat
 import org.kde.kdeconnect.plugins.share.ShareSettingsFragment
 import org.kde.kdeconnect.ui.about.AboutFragment
-import org.kde.kdeconnect.ui.about.getApplicationAboutData
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.ActivityMainBinding
 
@@ -146,7 +145,7 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
 
                 MENU_ENTRY_ABOUT -> {
                     preferences.edit { putString(STATE_SELECTED_DEVICE, null) }
-                    setContentFragment(AboutFragment.newInstance(getApplicationAboutData(this)))
+                    setContentFragment(AboutFragment.newInstance())
                 }
 
                 else -> {
@@ -211,7 +210,7 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
         } else {
             when (mCurrentMenuEntry) {
                 MENU_ENTRY_SETTINGS -> setContentFragment(SettingsFragment())
-                MENU_ENTRY_ABOUT -> setContentFragment(AboutFragment.newInstance(getApplicationAboutData(this)))
+                MENU_ENTRY_ABOUT -> setContentFragment(AboutFragment.newInstance())
                 else -> setContentFragment(PairingFragment())
             }
         }

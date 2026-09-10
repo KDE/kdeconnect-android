@@ -16,33 +16,21 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
-import org.kde.kdeconnect.extensions.getParcelableCompat
 import org.kde.kdeconnect.ui.compose.KdeTheme
 import org.kde.kdeconnect.ui.compose.screen.about.AboutScreen
 import org.kde.kdeconnect_tp.R
 
 class AboutFragment : Fragment() {
-
     companion object {
-        private const val KEY_ABOUT_DATA = "about_data"
-
         @JvmStatic
-        fun newInstance(aboutData: AboutData): Fragment {
-            val fragment = AboutFragment()
-
-            val args = Bundle(1)
-            args.putParcelable(KEY_ABOUT_DATA, aboutData)
-            fragment.arguments = args
-
-            return fragment
-        }
+        fun newInstance(): Fragment = AboutFragment()
     }
 
     private lateinit var aboutData: AboutData
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        aboutData = arguments?.getParcelableCompat(KEY_ABOUT_DATA) ?: throw IllegalArgumentException("AboutData is null")
+        aboutData = applicationAboutData
     }
 
     override fun onCreateView(

@@ -553,15 +553,10 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
       <item>dark</item>
     </string-array>
     <string name="report_bug">Report Bug</string>
-    <string name="report_bug_url" translatable="false">https://bugs.kde.org/enter_bug.cgi?product=kdeconnect&amp;component=android-application</string>
     <string name="donate">Donate</string>
-    <string name="donate_url" translatable="false">https://kde.org/community/donations/?app=kdeconnect-android</string>
     <string name="source_code">Source Code</string>
-    <string name="source_code_url" translatable="false">https://invent.kde.org/network/kdeconnect-android/</string>
     <string name="licenses">Licenses</string>
     <string name="website">Website</string>
-    <string name="website_url" translatable="false">https://kdeconnect.kde.org/</string>
-
     <string name="about">About</string>
     <string name="authors">Authors</string>
     <string name="thanks_to">Thanks To</string>
