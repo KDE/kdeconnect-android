@@ -6,6 +6,10 @@
 
 package org.kde.kdeconnect.ui.compose.screen.about
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
+import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
@@ -85,10 +89,15 @@ private fun AppInfoCard(
 ) {
     var tapCount by remember { mutableIntStateOf(0) }
     var firstTapMillis by remember { mutableStateOf<Long?>(null) }
+    val context = LocalContext.current
 
     ElevatedCard(
         modifier = Modifier.fillMaxWidth(),
         onClick = {
+            val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            clipboard.setPrimaryClip(ClipData.newPlainText("Version", aboutData.versionName))
+            Toast.makeText(context, R.string.clipboard_toast, Toast.LENGTH_SHORT).show()
+
             val currentMillis = System.currentTimeMillis()
             if (firstTapMillis == null) {
                 firstTapMillis = currentMillis
