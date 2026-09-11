@@ -10,6 +10,7 @@ import android.provider.Settings
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.DialogFragment
+import org.kde.kdeconnect.KdeConnectAccessibilityService
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.plugins.PluginFactory.LoadablePlugin
@@ -24,7 +25,7 @@ import kotlin.math.floor
 @RequiresApi(api = Build.VERSION_CODES.N)
 class MouseReceiverPlugin : Plugin() {
     override fun checkRequiredPermissions(): Boolean {
-        return MouseReceiverService.instance != null
+        return KdeConnectAccessibilityService.instance != null
     }
 
     override val permissionExplanationDialog: DialogFragment
@@ -69,55 +70,55 @@ class MouseReceiverPlugin : Plugin() {
             when {
                 isSingleClick -> {
                     // Log.i("MouseReceiverPlugin", "singleClick")
-                    return MouseReceiverService.click()
+                    return KdeConnectAccessibilityService.click()
                 }
                 isDoubleClick -> { // left & right
                     // Log.i("MouseReceiverPlugin", "doubleClick")
-                    return MouseReceiverService.recentButton()
+                    return KdeConnectAccessibilityService.recentButton()
                 }
                 isMiddleClick -> {
                     // Log.i("MouseReceiverPlugin", "middleClick")
-                    return MouseReceiverService.homeButton()
+                    return KdeConnectAccessibilityService.homeButton()
                 }
                 isRightClick -> {
                     // TODO right-click menu emulation
-                    return MouseReceiverService.backButton()
+                    return KdeConnectAccessibilityService.backButton()
                 }
                 isForwardClick -> {
-                    return MouseReceiverService.recentButton()
+                    return KdeConnectAccessibilityService.recentButton()
                 }
                 isBackClick -> {
-                    return MouseReceiverService.backButton()
+                    return KdeConnectAccessibilityService.backButton()
                 }
                 isSingleHold -> {
                     // For drag'n drop
                     // Log.i("MouseReceiverPlugin", "singleHold")
                     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        MouseReceiverService.longClickSwipe()
+                        KdeConnectAccessibilityService.longClickSwipe()
                     } else {
-                        MouseReceiverService.longClick()
+                        KdeConnectAccessibilityService.longClick()
                     }
                 }
                 isSingleRelease -> {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        return MouseReceiverService.instance.stopSwipe()
+                        return KdeConnectAccessibilityService.instance.stopSwipe()
                     }
                 }
                 isScroll -> {
                     // Log.i("MouseReceiverPlugin", "scroll dx: $dx dy: $dy")
-                    return MouseReceiverService.scroll(dx, dy) // dx is always 0
+                    return KdeConnectAccessibilityService.scroll(dx, dy) // dx is always 0
                 }
             }
         } else {
             // Mouse Move
             if (dx != 0 || dy != 0) {
                 // Log.i("MouseReceiverPlugin", "move Mouse dx: $dx dy: $dy")
-                return MouseReceiverService.move(dx, dy)
+                return KdeConnectAccessibilityService.move(dx, dy)
             } else if (x != 0 || y != 0) {
-                return MouseReceiverService.setPos(x, y)
+                return KdeConnectAccessibilityService.setPos(x, y)
             } else {
                 // To hide the cursor once it crosses the barrier.
-                MouseReceiverService.instance.hide(0)
+                KdeConnectAccessibilityService.instance.hide(0)
             }
         }
 

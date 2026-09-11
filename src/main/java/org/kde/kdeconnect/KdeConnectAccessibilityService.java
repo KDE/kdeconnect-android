@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
  */
 
-package org.kde.kdeconnect.plugins.mousereceiver;
+package org.kde.kdeconnect;
 
 import android.accessibilityservice.AccessibilityService;
 import android.accessibilityservice.GestureDescription;
@@ -27,14 +27,15 @@ import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 
 import org.kde.kdeconnect.plugins.inputdevicesreceiver.InputDevicesReceiverPlugin.Cursor;
-import org.kde.kdeconnect.plugins.remotekeyboard.RemoteKeyboardInputService;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-public class MouseReceiverService extends AccessibilityService {
-    public static MouseReceiverService instance;
+public class KdeConnectAccessibilityService extends AccessibilityService {
+    public static KdeConnectAccessibilityService instance;
+
+    public AccessibilityNodeInfo window = null;
 
     private View cursorView;
     private LayoutParams cursorLayout;
@@ -46,8 +47,8 @@ public class MouseReceiverService extends AccessibilityService {
 
     @Override
     public void onCreate() {
-        MouseReceiverService.instance = this;
-        Log.i("MouseReceiverService", "created");
+        KdeConnectAccessibilityService.instance = this;
+        Log.i("KdeConnectAccessibilityService", "created");
     }
 
     @Override
@@ -86,7 +87,7 @@ public class MouseReceiverService extends AccessibilityService {
 
         hideRunnable = () -> {
             cursorView.setVisibility(View.GONE);
-            Log.i("MouseReceiverService", "Hiding pointer due to inactivity");
+            Log.i("KdeConnectAccessibilityService", "Hiding pointer due to inactivity");
         };
         runHandler = new Handler();
 
@@ -128,7 +129,7 @@ public class MouseReceiverService extends AccessibilityService {
         Cursor.INSTANCE.setY(getY());
 
         new Handler(instance.getMainLooper()).post(() -> {
-            // Log.i("MouseReceiverService", "performing move");
+            // Log.i("KdeConnectAccessibilityService", "performing move");
             try {
                 instance.windowManager.updateViewLayout(instance.cursorView, instance.cursorLayout);
                 instance.cursorView.setVisibility(View.VISIBLE);
@@ -175,7 +176,7 @@ public class MouseReceiverService extends AccessibilityService {
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static boolean click() {
         if (instance == null) return false;
-        // Log.i("MouseReceiverService", "x: " + instance.getX() + " y:" + instance.getY());
+        // Log.i("KdeConnectAccessibilityService", "x: " + instance.getX() + " y:" + instance.getY());
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && instance.isSwiping()) {
             return instance.stopSwipe();
@@ -250,7 +251,6 @@ public class MouseReceiverService extends AccessibilityService {
         return dispatchGesture(builder.build(), null, null);
     }
 
-
     public static boolean scroll(int dx, int dy) {
         if (instance == null) return false;
 
@@ -304,23 +304,21 @@ public class MouseReceiverService extends AccessibilityService {
 
     public static boolean powerButton() {
         if (instance == null) return false;
-
         return instance.performGlobalAction(GLOBAL_ACTION_LOCK_SCREEN);
     }
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
-
         if (windowManager != null && cursorView != null) {
             windowManager.removeView(cursorView);
         }
+        window = null;
+        super.onDestroy();
     }
 
     @Override
     public void onAccessibilityEvent(AccessibilityEvent ignored) {
-        // Check if we can get the screen content, this is for example not possible on the lockscreen
-        RemoteKeyboardInputService.INSTANCE.setWindow(getRootInActiveWindow());
+        window = getRootInActiveWindow();
     }
 
     @Override

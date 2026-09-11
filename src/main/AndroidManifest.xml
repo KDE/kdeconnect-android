@@ -392,7 +392,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
             </intent-filter>
         </service>
         <service
-            android:name="org.kde.kdeconnect.plugins.mousereceiver.MouseReceiverService"
+            android:name="org.kde.kdeconnect.KdeConnectAccessibilityService"
             android:exported="true"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
             tools:ignore="AccessibilityPolicy">
