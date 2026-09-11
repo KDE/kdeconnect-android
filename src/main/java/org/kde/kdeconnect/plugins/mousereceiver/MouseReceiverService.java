@@ -318,12 +318,11 @@ public class MouseReceiverService extends AccessibilityService {
     }
 
     @Override
-    public void onAccessibilityEvent(AccessibilityEvent event) {
+    public void onAccessibilityEvent(AccessibilityEvent ignored) {
         // Check if we can get the screen content, this is for example not possible on the lockscreen
         AccessibilityNodeInfo root = getRootInActiveWindow();
         if (root != null) {
-            RemoteKeyboardAccessibilityService keyboardService = new RemoteKeyboardAccessibilityService();
-            keyboardService.onAccessibilityEvent(root);
+            RemoteKeyboardAccessibilityService.INSTANCE.onAccessibilityEvent(root);
         }
     }
 

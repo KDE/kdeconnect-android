@@ -10,7 +10,7 @@ import android.os.Build
 import android.view.accessibility.AccessibilityNodeInfo
 import org.kde.kdeconnect.KdeConnect.Companion.getInstance
 
-class RemoteKeyboardAccessibilityService {
+object RemoteKeyboardAccessibilityService {
 
     fun onAccessibilityEvent(rootInActiveWindow: AccessibilityNodeInfo) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
