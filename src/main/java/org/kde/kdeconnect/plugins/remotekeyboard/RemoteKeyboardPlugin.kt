@@ -6,6 +6,7 @@
 
 package org.kde.kdeconnect.plugins.remotekeyboard
 
+import android.accessibilityservice.AccessibilityService
 import android.accessibilityservice.AccessibilityServiceInfo
 import android.content.Context
 import android.os.Build
@@ -241,34 +242,62 @@ class RemoteKeyboardPlugin : Plugin() {
 
             SpecialKeys.MOVE_HOME -> moveCursor(forward = false, Movement.LINE)
 
-            SpecialKeys.DPAD_UP -> moveCursor(forward = false, Movement.LINE)
-
-            SpecialKeys.DPAD_DOWN -> moveCursor(forward = true, Movement.LINE)
-
-            SpecialKeys.DPAD_LEFT -> moveCursor(false)
-
-            SpecialKeys.DPAD_RIGHT -> moveCursor(true)
-
-
-            SpecialKeys.ENTER -> {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && !focus.isMultiLine) {
-                    focus.performAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_IME_ENTER.id)
-                    return
-                }
-                keyInput("\n")
+            SpecialKeys.DPAD_LEFT -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                KdeConnectAccessibilityService.instance.performGlobalAction(AccessibilityService.GLOBAL_ACTION_DPAD_LEFT)
+            } else {
+                moveCursor(false)
             }
 
-            SpecialKeys.ESCAPE, SpecialKeys.TAB -> {
-                focus.performAction(AccessibilityNodeInfo.ACTION_CLEAR_FOCUS)
+            SpecialKeys.DPAD_RIGHT -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                KdeConnectAccessibilityService.instance.performGlobalAction(AccessibilityService.GLOBAL_ACTION_DPAD_RIGHT)
+            } else {
+                moveCursor(true)
+            }
+
+            SpecialKeys.DPAD_UP -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                KdeConnectAccessibilityService.instance.performGlobalAction(AccessibilityService.GLOBAL_ACTION_DPAD_UP)
+            } else {
+                moveCursor(forward = false, Movement.LINE)
+            }
+
+            SpecialKeys.DPAD_DOWN -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                KdeConnectAccessibilityService.instance.performGlobalAction(AccessibilityService.GLOBAL_ACTION_DPAD_DOWN)
+            } else {
+                moveCursor(forward = true, Movement.LINE)
+            }
+
+            SpecialKeys.ENTER -> {
+                val didEnterNewLine = if (focus.isMultiLine) {
+                    keyInput("\n")
+                } else {
+                    false
+                }
+
+                if (!didEnterNewLine) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                        KdeConnectAccessibilityService.instance.performGlobalAction(AccessibilityService.GLOBAL_ACTION_DPAD_CENTER)
+                    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                        focus.performAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_IME_ENTER.id)
+                    }
+                }
+
+            }
+
+            SpecialKeys.ESCAPE -> {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    KdeConnectAccessibilityService.instance.performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK)
+                } else {
+                    focus.performAction(AccessibilityNodeInfo.ACTION_CLEAR_FOCUS)
+                }
             }
 
             else -> {}
         }
     }
 
-    private fun keyInput(key: String) {
+    private fun keyInput(key: String): Boolean {
         val focus = KdeConnectAccessibilityService.instance.window?.findFocus(FOCUS_INPUT)
-            ?: return
+            ?: return false
         val text = getFieldText(focus) ?: ""
         val arguments = Bundle()
         val selectionStart = focus.textSelectionStart
@@ -283,16 +312,19 @@ class RemoteKeyboardPlugin : Plugin() {
             newText
         )
 
-        focus.performAction(
+        val wasPerformed = focus.performAction(
             AccessibilityNodeInfo.ACTION_SET_TEXT,
             arguments
         )
+        if (!wasPerformed) {
+            return false
+        };
 
-        if (text == "") {
-            return
+        if (text != "") {
+            moveCursorToPos(selectionStart + key.length, focus)
         }
 
-        moveCursorToPos(selectionStart + key.length, focus)
+        return true
     }
 
     private fun delete(forward: Boolean, words: Boolean = false) {
