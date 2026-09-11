@@ -167,8 +167,9 @@ class RemoteKeyboardPlugin : Plugin() {
         shift: Boolean,
         ctrl: Boolean
     ) {
-        val specialKey = SpecialKeys.fromInt(sKey)
         val focus = RemoteKeyboardInputService.window?.findFocus(FOCUS_INPUT)
+            ?: return
+        val specialKey = SpecialKeys.fromInt(sKey)
 
         if (shift) {
             val movement = if (ctrl) Movement.WORD else Movement.CHARACTER
@@ -204,10 +205,10 @@ class RemoteKeyboardPlugin : Plugin() {
             }
         } else if (ctrl) {
             when (key) {
-                "c" -> focus?.performAction(AccessibilityNodeInfo.ACTION_COPY)
-                "v" -> focus?.performAction(AccessibilityNodeInfo.ACTION_PASTE)
-                "x" -> focus?.performAction(AccessibilityNodeInfo.ACTION_CUT)
-                "a" -> focus?.setSelection(0, focus.text?.length ?: 0)
+                "c" -> focus.performAction(AccessibilityNodeInfo.ACTION_COPY)
+                "v" -> focus.performAction(AccessibilityNodeInfo.ACTION_PASTE)
+                "x" -> focus.performAction(AccessibilityNodeInfo.ACTION_CUT)
+                "a" -> focus.setSelection(0, focus.text?.length ?: 0)
             }
             when (specialKey) {
                 SpecialKeys.DPAD_LEFT -> moveCursor(forward = false, Movement.WORD)
@@ -216,7 +217,7 @@ class RemoteKeyboardPlugin : Plugin() {
                 SpecialKeys.FORWARD_DEL -> delete(forward = true, words = true)
                 SpecialKeys.ENTER -> {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                        focus?.performAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_IME_ENTER.id)
+                        focus.performAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_IME_ENTER.id)
                     }
                 }
 
@@ -227,6 +228,7 @@ class RemoteKeyboardPlugin : Plugin() {
 
     private fun specialKey(sKey: Int) {
         val focus = RemoteKeyboardInputService.window?.findFocus(FOCUS_INPUT)
+            ?: return
         val specialKey = SpecialKeys.fromInt(sKey)
 
         when (specialKey) {
@@ -248,7 +250,7 @@ class RemoteKeyboardPlugin : Plugin() {
 
 
             SpecialKeys.ENTER -> {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && focus?.isMultiLine == false) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && !focus.isMultiLine) {
                     focus.performAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_IME_ENTER.id)
                     return
                 }
@@ -256,7 +258,7 @@ class RemoteKeyboardPlugin : Plugin() {
             }
 
             SpecialKeys.ESCAPE, SpecialKeys.TAB -> {
-                focus?.performAction(AccessibilityNodeInfo.ACTION_CLEAR_FOCUS)
+                focus.performAction(AccessibilityNodeInfo.ACTION_CLEAR_FOCUS)
             }
 
             else -> {}
@@ -385,6 +387,7 @@ class RemoteKeyboardPlugin : Plugin() {
         makeSelection: Boolean = false
     ) {
         val focus = RemoteKeyboardInputService.window?.findFocus(FOCUS_INPUT)
+            ?: return
         val args = Bundle().apply {
             putInt(
                 AccessibilityNodeInfo.ACTION_ARGUMENT_MOVEMENT_GRANULARITY_INT,
@@ -400,7 +403,7 @@ class RemoteKeyboardPlugin : Plugin() {
             )
         }
 
-        focus?.performAction(
+        focus.performAction(
             if (forward) {
                 AccessibilityNodeInfo.AccessibilityAction.ACTION_NEXT_AT_MOVEMENT_GRANULARITY.id
             } else {
