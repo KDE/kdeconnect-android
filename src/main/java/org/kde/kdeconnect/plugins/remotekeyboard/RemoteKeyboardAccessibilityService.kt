@@ -6,27 +6,7 @@
 
 package org.kde.kdeconnect.plugins.remotekeyboard
 
-import android.os.Build
 import android.view.accessibility.AccessibilityNodeInfo
-import org.kde.kdeconnect.KdeConnect.Companion.getInstance
-
-object RemoteKeyboardAccessibilityService {
-
-    fun onAccessibilityEvent(rootInActiveWindow: AccessibilityNodeInfo) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-            return
-        }
-        RemoteKeyboardInputService.window = rootInActiveWindow
-        val devices = getInstance().devices
-        for (device in devices.values) {
-            if (device.isReachable && device.isPaired) {
-                val plugin = device.getPlugin(RemoteKeyboardPlugin::class.java)
-                plugin?.sendState()
-            }
-        }
-    }
-
-}
 
 object RemoteKeyboardInputService {
     var window: AccessibilityNodeInfo? = null

@@ -73,15 +73,16 @@ class RemoteKeyboardPlugin : Plugin() {
     }
 
     override fun onCreate(): Boolean {
-        sendState()
-        return super.onCreate()
+        val np = NetworkPacket(PACKET_TYPE_MOUSEPAD_KEYBOARDSTATE)
+        np["state"] = true
+        device.sendPacket(np)
+        return true
     }
 
     override fun onDestroy() {
         val np = NetworkPacket(PACKET_TYPE_MOUSEPAD_KEYBOARDSTATE)
-        np.set("state", value = false)
+        np["state"] = false
         device.sendPacket(np)
-        super.onDestroy()
     }
 
     override fun onPacketReceived(np: NetworkPacket): Boolean {
@@ -418,16 +419,6 @@ class RemoteKeyboardPlugin : Plugin() {
         // Fallback: some apps return hint as real text but report selection -1,-1
         if (focus.textSelectionStart == -1 && focus.textSelectionEnd == -1) return null
         return focus.text?.toString()
-    }
-
-    fun sendState() {
-        if (isDeviceInitialized) {
-            val np = NetworkPacket(PACKET_TYPE_MOUSEPAD_KEYBOARDSTATE)
-            np.set("state", value = checkRequiredPermissions())
-            device.sendPacket(np)
-        } else {
-            Log.d(LOG_TAG, "Not initialized")
-        }
     }
 
 }
