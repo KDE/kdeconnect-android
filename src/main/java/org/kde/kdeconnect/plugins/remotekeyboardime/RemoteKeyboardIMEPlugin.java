@@ -122,9 +122,10 @@ public class RemoteKeyboardIMEPlugin extends Plugin implements SharedPreferences
         if (RemoteKeyboardService.instance != null)
             RemoteKeyboardService.instance.handler.post(() -> RemoteKeyboardService.instance.updateInputView());
 
-        PreferenceManager.getDefaultSharedPreferences(context).registerOnSharedPreferenceChangeListener(this);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        prefs.registerOnSharedPreferenceChangeListener(this);
 
-        final boolean editingOnly = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(context.getString(R.string.remotekeyboard_editing_only), true);
+        final boolean editingOnly = prefs.getBoolean(context.getString(R.string.remotekeyboard_editing_only), true);
         final boolean visible = RemoteKeyboardService.instance != null && RemoteKeyboardService.instance.visible;
         notifyKeyboardState(!editingOnly || visible);
 
@@ -133,6 +134,7 @@ public class RemoteKeyboardIMEPlugin extends Plugin implements SharedPreferences
 
     @Override
     public void onDestroy() {
+        notifyKeyboardState(false);
         acquireInstances();
         try {
             if (instances.contains(this)) {
