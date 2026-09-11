@@ -12,6 +12,7 @@ import android.content.pm.PackageManager
 import android.os.Build
 import androidx.annotation.CallSuper
 import androidx.annotation.DrawableRes
+import androidx.annotation.EmptySuper
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
@@ -71,6 +72,7 @@ abstract class Plugin {
      * To receive the network packet from the unpaired device, override
      * listensToUnpairedDevices to return true and this method.
      */
+    @EmptySuper
     open fun onUnpairedDevicePacketReceived(np: NetworkPacket): Boolean {
         return false
     }
@@ -156,6 +158,7 @@ abstract class Plugin {
      *
      * @return true if initialization was successful, false otherwise
      */
+    @EmptySuper
     open fun onCreate(): Boolean {
         return true
     }
@@ -166,6 +169,7 @@ abstract class Plugin {
      * called as well if onCreate threw an exception, so your plugin
      * could be not fully initialized.
      */
+    @EmptySuper
     open fun onDestroy() {}
 
     /**
@@ -173,6 +177,7 @@ abstract class Plugin {
      * By convention, we return true when we have done something in response to the packet or false otherwise,
      * even though that value is unused as of now.
      */
+    @EmptySuper
     open fun onPacketReceived(np: NetworkPacket): Boolean {
         return false
     }
@@ -255,6 +260,7 @@ abstract class Plugin {
 
     open fun loadPluginWhenRequiredPermissionsMissing(): Boolean = false
 
+    @EmptySuper
     open fun onDeviceUnpaired(context: Context, deviceId: String) {}
 
     open val minSdk: Int = Build.VERSION_CODES.BASE
