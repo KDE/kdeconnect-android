@@ -39,7 +39,7 @@ slf4j = "2.0.19"
 slf4j-handroid = "2.0.13"
 sshdCore = "2.19.0"
 swiperefreshlayout = "1.2.0"
-uiToolingPreview = "1.12.0"
+uiToolingPreview = "1.12.1"
 univocityParsers = "2.9.1"
 
 [libraries]
