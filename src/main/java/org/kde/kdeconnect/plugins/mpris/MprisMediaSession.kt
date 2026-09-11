@@ -32,7 +32,6 @@ import org.kde.kdeconnect.plugins.mpris.MprisPlugin.MprisPlayer
 import org.kde.kdeconnect.plugins.notifications.NotificationReceiver
 import org.kde.kdeconnect.plugins.systemvolume.SystemVolumePlugin
 import org.kde.kdeconnect.plugins.systemvolume.SystemVolumeProvider
-import org.kde.kdeconnect.plugins.systemvolume.SystemVolumeProvider.Companion.currentProvider
 import org.kde.kdeconnect.plugins.systemvolume.SystemVolumeProvider.ProviderStateListener
 import org.kde.kdeconnect_tp.R
 
@@ -432,10 +431,11 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
             mediaStyle.setMediaSession(mediaSession.sessionToken)
             notification.setStyle(mediaStyle)
             mediaSession.isActive = true
-            ContextCompat.getSystemService(context, NotificationManager::class.java)?.notify(MPRIS_MEDIA_NOTIFICATION_ID, notification.build())
             if (this.mediaSession == null) {
                 this.mediaSession = mediaSession
             }
+            ContextCompat.getSystemService(context, NotificationManager::class.java)
+                ?.notify(MPRIS_MEDIA_NOTIFICATION_ID, notification.build())
         }
 
         currentShowingPlayer = player
@@ -444,8 +444,8 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
 
     fun closeMediaNotification() {
         // Remove the notification
-        val nm = ContextCompat.getSystemService(context, NotificationManager::class.java)
-        nm!!.cancel(MPRIS_MEDIA_NOTIFICATION_ID)
+        ContextCompat.getSystemService(context, NotificationManager::class.java)
+            ?.cancel(MPRIS_MEDIA_NOTIFICATION_ID)
 
         // Clear the current player and media session
         currentShowingPlayer = null
@@ -457,7 +457,7 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
                 release()
             }
             mediaSession = null
-            currentProvider?.release()
+            SystemVolumeProvider.currentProvider?.release()
         }
     }
 
