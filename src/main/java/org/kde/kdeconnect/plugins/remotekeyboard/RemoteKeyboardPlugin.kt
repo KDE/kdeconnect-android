@@ -22,6 +22,7 @@ import org.kde.kdeconnect.KdeConnectAccessibilityService
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.plugins.PluginFactory.LoadablePlugin
+import org.kde.kdeconnect.plugins.remotekeyboardime.RemoteKeyboardIMEPlugin
 import org.kde.kdeconnect.plugins.remotekeyboardime.RemoteKeyboardService
 import org.kde.kdeconnect.ui.MainActivity
 import org.kde.kdeconnect.ui.StartActivityAlertDialogFragment
@@ -81,6 +82,10 @@ class RemoteKeyboardPlugin : Plugin() {
     }
 
     override fun onDestroy() {
+        if (device.getPlugin(RemoteKeyboardIMEPlugin::class.java)?.isKeyboardAvailable == true) {
+            return
+        }
+
         val np = NetworkPacket(PACKET_TYPE_MOUSEPAD_KEYBOARDSTATE)
         np["state"] = false
         device.sendPacket(np)

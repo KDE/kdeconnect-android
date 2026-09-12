@@ -276,7 +276,7 @@ public class KdeConnectAccessibilityService extends AccessibilityService {
         return null;
     }
 
-    @Override
+        @Override
     public void onDestroy() {
         if (windowManager != null && cursorView != null) {
             windowManager.removeView(cursorView);
