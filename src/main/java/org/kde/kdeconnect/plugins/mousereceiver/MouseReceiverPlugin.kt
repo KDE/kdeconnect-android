@@ -5,6 +5,7 @@
  */
 package org.kde.kdeconnect.plugins.mousereceiver
 
+import android.accessibilityservice.AccessibilityService
 import android.os.Build
 import android.provider.Settings
 import android.util.Log
@@ -69,60 +70,58 @@ class MouseReceiverPlugin : Plugin() {
             // Perform click
             when {
                 isSingleClick -> {
-                    // Log.i("MouseReceiverPlugin", "singleClick")
-                    return KdeConnectAccessibilityService.click()
+                    KdeConnectAccessibilityService.instance?.click()
                 }
                 isDoubleClick -> { // left & right
-                    // Log.i("MouseReceiverPlugin", "doubleClick")
-                    return KdeConnectAccessibilityService.recentButton()
+                    KdeConnectAccessibilityService.instance?.performGlobalAction(AccessibilityService.GLOBAL_ACTION_RECENTS)
                 }
                 isMiddleClick -> {
-                    // Log.i("MouseReceiverPlugin", "middleClick")
-                    return KdeConnectAccessibilityService.homeButton()
+                    KdeConnectAccessibilityService.instance?.performGlobalAction(AccessibilityService.GLOBAL_ACTION_HOME)
                 }
-                isRightClick -> {
-                    // TODO right-click menu emulation
-                    return KdeConnectAccessibilityService.backButton()
+                isRightClick -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.BAKLAVA) {
+                    KdeConnectAccessibilityService.instance?.performGlobalAction(AccessibilityService.GLOBAL_ACTION_MENU)
+                } else {
+                    KdeConnectAccessibilityService.instance?.performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK)
                 }
                 isForwardClick -> {
-                    return KdeConnectAccessibilityService.recentButton()
+                    KdeConnectAccessibilityService.instance?.performGlobalAction(AccessibilityService.GLOBAL_ACTION_RECENTS)
                 }
                 isBackClick -> {
-                    return KdeConnectAccessibilityService.backButton()
+                    KdeConnectAccessibilityService.instance?.performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK)
                 }
                 isSingleHold -> {
                     // For drag'n drop
                     // Log.i("MouseReceiverPlugin", "singleHold")
-                    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        KdeConnectAccessibilityService.longClickSwipe()
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        KdeConnectAccessibilityService.instance?.longClickSwipe()
                     } else {
-                        KdeConnectAccessibilityService.longClick()
+                        KdeConnectAccessibilityService.instance?.longClick()
                     }
                 }
                 isSingleRelease -> {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        return KdeConnectAccessibilityService.instance.stopSwipe()
+                        return KdeConnectAccessibilityService.instance?.stopSwipe() ?: false
                     }
                 }
                 isScroll -> {
                     // Log.i("MouseReceiverPlugin", "scroll dx: $dx dy: $dy")
-                    return KdeConnectAccessibilityService.scroll(dx, dy) // dx is always 0
+                    KdeConnectAccessibilityService.instance?.scroll(dx, dy) // dx is always 0
                 }
             }
         } else {
             // Mouse Move
             if (dx != 0 || dy != 0) {
                 // Log.i("MouseReceiverPlugin", "move Mouse dx: $dx dy: $dy")
-                return KdeConnectAccessibilityService.move(dx, dy)
+                KdeConnectAccessibilityService.instance?.move(dx, dy)
             } else if (x != 0 || y != 0) {
-                return KdeConnectAccessibilityService.setPos(x, y)
+                KdeConnectAccessibilityService.instance?.setPos(x, y)
             } else {
                 // To hide the cursor once it crosses the barrier.
-                KdeConnectAccessibilityService.instance.hide(0)
+                KdeConnectAccessibilityService.instance?.hide(0)
             }
         }
 
-        return super.onPacketReceived(np)
+        return true
     }
 
     enum class MousePadPacketType {

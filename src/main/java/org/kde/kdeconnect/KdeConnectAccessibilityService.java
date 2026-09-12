@@ -97,7 +97,7 @@ public class KdeConnectAccessibilityService extends AccessibilityService {
     }
 
     private void hideAfter5Seconds() {
-        instance.hide(5000);
+        hide(5000);
     }
 
     public void hide(int delayMillis) {
@@ -115,7 +115,7 @@ public class KdeConnectAccessibilityService extends AccessibilityService {
 
     public void moveView(int dx, int dy) {
         DisplayMetrics displayMetrics = new DisplayMetrics();
-        instance.windowManager.getDefaultDisplay().getRealMetrics(displayMetrics);
+        windowManager.getDefaultDisplay().getRealMetrics(displayMetrics);
 
         cursorLayout.x += dx;
         cursorLayout.y += dy;
@@ -130,38 +130,34 @@ public class KdeConnectAccessibilityService extends AccessibilityService {
         Cursor.INSTANCE.setX(getX());
         Cursor.INSTANCE.setY(getY());
 
-        new Handler(instance.getMainLooper()).post(() -> {
+        new Handler(getMainLooper()).post(() -> {
             // Log.i("KdeConnectAccessibilityService", "performing move");
             try {
-                instance.windowManager.updateViewLayout(instance.cursorView, instance.cursorLayout);
-                instance.cursorView.setVisibility(View.VISIBLE);
+                windowManager.updateViewLayout(cursorView, cursorLayout);
+                cursorView.setVisibility(View.VISIBLE);
             } catch (IllegalArgumentException e) {
                 e.printStackTrace();
             }
         });
     }
 
-    public static boolean move(int dx, int dy) {
-        if (instance == null) return false;
+    public boolean move(int dx, int dy) {
+        int fromX = getX();
+        int fromY = getY();
 
-        int fromX = instance.getX();
-        int fromY = instance.getY();
+        moveView(dx, dy);
 
-        instance.moveView(dx, dy);
+        hideAfter5Seconds();
 
-        instance.hideAfter5Seconds();
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && instance.isSwiping()) {
-            return instance.continueSwipe(fromX, fromY);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && isSwiping()) {
+            return continueSwipe(fromX, fromY);
         }
 
         return true;
     }
 
-    public static boolean setPos(int x, int y) {
-        if (instance == null) return false;
-
-        return move(x - instance.getX(), y - instance.getY());
+    public boolean setPos(int x, int y) {
+        return move(x - getX(), y - getY());
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -176,38 +172,31 @@ public class KdeConnectAccessibilityService extends AccessibilityService {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public static boolean click() {
-        if (instance == null) return false;
-        // Log.i("KdeConnectAccessibilityService", "x: " + instance.getX() + " y:" + instance.getY());
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && instance.isSwiping()) {
-            return instance.stopSwipe();
+    public boolean click() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && isSwiping()) {
+            return stopSwipe();
         }
 
-        return click(instance.getX(), instance.getY());
+        return click(getX(), getY());
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public static boolean click(int x, int y) {
-        if (instance == null) return false;
-        return instance.dispatchGesture(createClick(x, y, 1 /*ms*/), null, null);
+    public boolean click(int x, int y) {
+        return dispatchGesture(createClick(x, y, 1 /*ms*/), null, null);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public static boolean longClick() {
-        if (instance == null) return false;
-        return instance.dispatchGesture(createClick(instance.getX(), instance.getY(),
+    public boolean longClick() {
+        return dispatchGesture(createClick(getX(), getY(),
                 ViewConfiguration.getLongPressTimeout()), null, null);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public static boolean longClickSwipe() {
-        if (instance == null) return false;
-
-        if (instance.isSwiping()) {
-            return instance.stopSwipe();
+    public boolean longClickSwipe() {
+        if (isSwiping()) {
+            return stopSwipe();
         } else {
-            return instance.startSwipe();
+            return startSwipe();
         }
     }
 
@@ -253,15 +242,13 @@ public class KdeConnectAccessibilityService extends AccessibilityService {
         return dispatchGesture(builder.build(), null, null);
     }
 
-    public static boolean scroll(int dx, int dy) {
-        if (instance == null) return false;
+    public boolean scroll(int dx, int dy) {
+        scrollSum += dy;
+        if (Math.signum(dy) != Math.signum(scrollSum)) scrollSum = dy;
+        if (Math.abs(scrollSum) < 500) return false;
+        scrollSum = 0;
 
-        instance.scrollSum += dy;
-        if (Math.signum(dy) != Math.signum(instance.scrollSum)) instance.scrollSum = dy;
-        if (Math.abs(instance.scrollSum) < 500) return false;
-        instance.scrollSum = 0;
-
-        AccessibilityNodeInfo scrollable = instance.findNodeByAciton(instance.getRootInActiveWindow(),
+        AccessibilityNodeInfo scrollable = findNodeByAciton(getRootInActiveWindow(),
                 dy > 0 ? AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_FORWARD
                         : AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_BACKWARD);
 
@@ -287,26 +274,6 @@ public class KdeConnectAccessibilityService extends AccessibilityService {
             }
         }
         return null;
-    }
-
-    public static boolean backButton() {
-        if (instance == null) return false;
-        return instance.performGlobalAction(GLOBAL_ACTION_BACK);
-    }
-
-    public static boolean homeButton() {
-        if (instance == null) return false;
-        return instance.performGlobalAction(GLOBAL_ACTION_HOME);
-    }
-
-    public static boolean recentButton() {
-        if (instance == null) return false;
-        return instance.performGlobalAction(GLOBAL_ACTION_RECENTS);
-    }
-
-    public static boolean powerButton() {
-        if (instance == null) return false;
-        return instance.performGlobalAction(GLOBAL_ACTION_LOCK_SCREEN);
     }
 
     @Override
