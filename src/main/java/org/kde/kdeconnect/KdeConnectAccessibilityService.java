@@ -23,6 +23,7 @@ import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.ImageView;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 
@@ -33,6 +34,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 public class KdeConnectAccessibilityService extends AccessibilityService {
+    @Nullable
     public static KdeConnectAccessibilityService instance;
 
     public AccessibilityNodeInfo window = null;
