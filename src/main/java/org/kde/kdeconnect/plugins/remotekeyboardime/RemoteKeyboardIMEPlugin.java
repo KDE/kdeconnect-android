@@ -126,9 +126,7 @@ public class RemoteKeyboardIMEPlugin extends Plugin implements SharedPreferences
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         prefs.registerOnSharedPreferenceChangeListener(this);
 
-        final boolean editingOnly = prefs.getBoolean(context.getString(R.string.remotekeyboard_editing_only), true);
-        final boolean visible = RemoteKeyboardService.instance != null && RemoteKeyboardService.instance.visible;
-        notifyKeyboardState(!editingOnly || visible);
+        notifyKeyboardState(isKeyboardAvailable());
 
         return true;
     }
@@ -416,6 +414,13 @@ public class RemoteKeyboardIMEPlugin extends Plugin implements SharedPreferences
         getDevice().sendPacket(np);
     }
 
+    public boolean isKeyboardAvailable() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        final boolean editingOnly = prefs.getBoolean(context.getString(R.string.remotekeyboard_editing_only), true);
+        final boolean visible = RemoteKeyboardService.instance != null && RemoteKeyboardService.instance.visible;
+        return !editingOnly || visible;
+    }
+
     String getDeviceId() {
         return getDevice().getDeviceId();
     }
@@ -444,9 +449,7 @@ public class RemoteKeyboardIMEPlugin extends Plugin implements SharedPreferences
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (key.equals(context.getString(R.string.remotekeyboard_editing_only))) {
-            final boolean editingOnly = sharedPreferences.getBoolean(context.getString(R.string.remotekeyboard_editing_only), true);
-            final boolean visible = RemoteKeyboardService.instance != null && RemoteKeyboardService.instance.visible;
-            notifyKeyboardState(!editingOnly || visible);
+            notifyKeyboardState(isKeyboardAvailable());
         }
     }
 }
