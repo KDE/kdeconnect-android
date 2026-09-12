@@ -125,6 +125,7 @@ public class LanLink extends BaseLink {
     @WorkerThread
     @Override
     public boolean sendPacket(@NonNull NetworkPacket np, @NonNull final Device.SendPacketStatusCallback callback, boolean sendPayloadFromSameThread) {
+        boolean payloadTransferStarted = false;
         if (socket == null) {
             Log.e("KDE/sendPacket", "Not yet connected");
             callback.onFailure(new NotYetConnectedException());
@@ -162,6 +163,7 @@ public class LanLink extends BaseLink {
             //Send payload
             if (server != null) {
                 if (sendPayloadFromSameThread) {
+                    payloadTransferStarted = true;
                     sendPayload(np, callback, server);
                 } else {
                     ThreadHelper.execute(() -> {
@@ -172,6 +174,7 @@ public class LanLink extends BaseLink {
                             Log.e("LanLink/sendPacket", "Async sendPayload failed for packet of type " + np.getType() + ". The Plugin was NOT notified.");
                         }
                     });
+                    payloadTransferStarted = true;
                 }
             }
 
@@ -183,9 +186,10 @@ public class LanLink extends BaseLink {
             callback.onFailure(e);
             return false;
         } finally  {
-            //Make sure we close the payload stream, if any
-            if (np.hasPayload()) {
-                np.getPayload().close();
+            // Close the payload if we never called sendPayload(). Otherwise it will close it.
+            NetworkPacket.Payload payload = np.getPayload();
+            if (payload != null && !payloadTransferStarted) {
+                payload.close();
             }
         }
     }

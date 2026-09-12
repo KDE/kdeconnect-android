@@ -233,6 +233,7 @@ class NetworkPacket private constructor(
 
     fun hasPayload(): Boolean {
         val payload = payload
+        // FIXME: Should payload.payloadSize != 0L be an assert instead?
         return payload != null && payload.payloadSize != 0L
     }
 
