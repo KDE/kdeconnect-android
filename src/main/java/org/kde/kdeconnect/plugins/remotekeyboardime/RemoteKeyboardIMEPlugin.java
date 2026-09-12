@@ -29,6 +29,7 @@ import androidx.fragment.app.DialogFragment;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.plugins.Plugin;
 import org.kde.kdeconnect.plugins.PluginFactory;
+import org.kde.kdeconnect.plugins.remotekeyboard.RemoteKeyboardPlugin;
 import org.kde.kdeconnect.ui.MainActivity;
 import org.kde.kdeconnect.ui.PluginSettingsFragment;
 import org.kde.kdeconnect.ui.StartActivityAlertDialogFragment;
@@ -402,6 +403,13 @@ public class RemoteKeyboardIMEPlugin extends Plugin implements SharedPreferences
     }
 
     public void notifyKeyboardState(boolean state) {
+        if (!state) {
+            RemoteKeyboardPlugin accessibilityKeyboardPlugin = device.getPlugin(RemoteKeyboardPlugin.class);
+            if (accessibilityKeyboardPlugin != null) {
+                // Do not report false state if accessibility keyboard is active
+                return;
+            }
+        }
         Log.d(LOG_TAG, "Keyboardstate changed to " + state);
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_MOUSEPAD_KEYBOARDSTATE);
         np.set("state", state);
