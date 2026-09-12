@@ -21,9 +21,10 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.NetworkPacket
+import org.kde.kdeconnect.plugins.remotekeyboard.RemoteKeyboardPlugin as AccessibilityRemoteKeyboardPlugin
 
 @RunWith(AndroidJUnit4::class)
-class RemoteKeyboardPluginTest {
+class RemoteKeyboardIMEPluginTest {
     private lateinit var remoteKeyboardPlugin: RemoteKeyboardIMEPlugin
     private lateinit var context: Context
     private lateinit var device: Device
@@ -38,6 +39,8 @@ class RemoteKeyboardPluginTest {
                 packet = packetSlot.captured
             }
             every { onPluginsChanged() } returns Unit
+            every { getPlugin(AccessibilityRemoteKeyboardPlugin::class.java) } returns null
+            every { getPlugin(RemoteKeyboardIMEPlugin::class.java) } returns null
         }
 
         val sharedPreferences = mockk<SharedPreferences>(relaxed = true)
@@ -101,6 +104,47 @@ class RemoteKeyboardPluginTest {
         val sentPacket2 = checkNotNull(packet)
         Assert.assertEquals("kdeconnect.mousepad.keyboardstate", sentPacket2.type)
         Assert.assertFalse(sentPacket2.getBoolean("state"))
+    }
+
+    @Test
+    fun testImeDoesNotReportUnavailableWhenAccessibilityKeyboardIsActive() {
+        every { device.getPlugin(AccessibilityRemoteKeyboardPlugin::class.java) } returns mockk()
+
+        remoteKeyboardPlugin.notifyKeyboardState(false)
+
+        Assert.assertNull(packet)
+    }
+
+    @Test
+    fun testAccessibilityKeyboardDoesNotReportUnavailableWhenImeIsActive() {
+        val imePlugin = mockk<RemoteKeyboardIMEPlugin> {
+            every { isKeyboardAvailable } returns true
+        }
+        every { device.getPlugin(RemoteKeyboardIMEPlugin::class.java) } returns imePlugin
+
+        AccessibilityRemoteKeyboardPlugin().apply {
+            setContext(context, device)
+            onDestroy()
+        }
+
+        Assert.assertNull(packet)
+    }
+
+    @Test
+    fun testAccessibilityKeyboardReportsUnavailableWhenImeIsInactive() {
+        val imePlugin = mockk<RemoteKeyboardIMEPlugin> {
+            every { isKeyboardAvailable } returns false
+        }
+        every { device.getPlugin(RemoteKeyboardIMEPlugin::class.java) } returns imePlugin
+
+        AccessibilityRemoteKeyboardPlugin().apply {
+            setContext(context, device)
+            onDestroy()
+        }
+
+        val sentPacket = checkNotNull(packet)
+        Assert.assertEquals("kdeconnect.mousepad.keyboardstate", sentPacket.type)
+        Assert.assertFalse(sentPacket.getBoolean("state"))
     }
 
     @Test
