@@ -595,6 +595,8 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
         }
         tcpServer?.closeSafe()
         udpServer?.closeSafe()
+        tcpServer = null
+        udpServer = null
     }
 
     override fun getName() = "LanLinkProvider"
