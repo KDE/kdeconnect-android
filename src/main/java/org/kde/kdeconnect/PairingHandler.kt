@@ -45,11 +45,13 @@ class PairingHandler(private val device: Device, private val callback: PairingCa
     private var pairingTimestamp = 0L
 
     fun packetReceived(np: NetworkPacket) {
-        cancelTimer()
         val wantsPair = np.getBoolean("pair")
         if (wantsPair) {
             when (state) {
-                PairState.Requested -> pairingDone()
+                PairState.Requested -> {
+                    cancelTimer()
+                    pairingDone()
+                }
                 PairState.RequestedByPeer -> {
                     Log.w(
                         "PairingHandler",
@@ -95,6 +97,7 @@ class PairingHandler(private val device: Device, private val callback: PairingCa
                 }
             }
         } else {
+            cancelTimer()
             Log.i("PairingHandler", "Unpair request received")
             when (state) {
                 PairState.NotPaired -> Log.i("PairingHandler", "Ignoring unpair request for already unpaired device")
