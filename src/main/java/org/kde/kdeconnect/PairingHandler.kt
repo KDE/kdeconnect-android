@@ -221,6 +221,7 @@ class PairingHandler(private val device: Device, private val callback: PairingCa
     }
 
     fun unpair() {
+        cancelTimer()
         state = PairState.NotPaired
         if (device.isReachable) {
             val np = NetworkPacket(NetworkPacket.PACKET_TYPE_PAIR)
