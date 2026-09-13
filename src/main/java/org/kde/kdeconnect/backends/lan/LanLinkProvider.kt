@@ -23,6 +23,7 @@ import org.kde.kdeconnect.NetworkPacket.Companion.unserialize
 import org.kde.kdeconnect.backends.BaseLink
 import org.kde.kdeconnect.backends.BaseLinkProvider
 import org.kde.kdeconnect.backends.lan.LanLink.ConnectionStarted
+import org.kde.kdeconnect.extensions.closeSafe
 import org.kde.kdeconnect.helpers.DeviceHelper
 import org.kde.kdeconnect.helpers.ThreadHelper
 import org.kde.kdeconnect.helpers.TrustedDevices
@@ -119,13 +120,13 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
 
         if (!isPrivateAddress(address)) {
             Log.i("LanLinkProvider", "Discarding TCP packet from a non-local IP")
-            try { socket.close() } catch (_: IOException) { }
+            socket.closeSafe()
             return
         }
 
         if (rateLimitByIp(address)) {
             Log.i("LanLinkProvider", "Discarding second TCP packet from the same ip $address received too quickly" )
-            try { socket.close() } catch (_: IOException) { }
+            socket.closeSafe()
             return
         }
 
@@ -138,12 +139,12 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
             //Log.e("TcpListener", "Received TCP packet: " + message);
         } catch (e: Exception) {
             Log.e("KDE/LanLinkProvider", "Exception while receiving TCP packet", e)
-            try { socket.close() } catch (_: IOException) { }
+            socket.closeSafe()
             return
         }
 
         val (identityPacket, deviceTrusted)  = unserializeReceivedIdentityPacket(message) ?: run {
-            try { socket.close() } catch (_: IOException) { }
+            socket.closeSafe()
             return
         }
 
@@ -153,12 +154,12 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
         val targetProtocolVersion = identityPacket.getIntOrNull("targetProtocolVersion")
         if (targetDeviceId != null && targetDeviceId != DeviceHelper.getDeviceId(context)) {
             Log.e("KDE/LanLinkProvider", "Received a connection request for a device that isn't me: $targetDeviceId")
-            try { socket.close() } catch (_: IOException) { }
+            socket.closeSafe()
             return
         }
         if (targetProtocolVersion != null && targetProtocolVersion != DeviceHelper.PROTOCOL_VERSION) {
             Log.e("KDE/LanLinkProvider", "Received a connection request for a protocol version that isn't mine: $targetProtocolVersion")
-            try { socket.close() } catch (_: IOException) { }
+            socket.closeSafe()
             return
         }
 
@@ -242,7 +243,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
         } catch (e: JSONException) {
             Log.e("LanLinkProvider", "Exception receiving incoming UDP connection", e)
         } finally {
-            try { socket?.close() } catch (_: IOException) { }
+            socket?.closeSafe()
         }
     }
 
@@ -278,13 +279,13 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
 
         if (deviceTrusted && isProtocolDowngrade(deviceId, protocolVersion)) {
             Log.w("KDE/LanLinkProvider", "Refusing to connect to a device using an older protocol version:$protocolVersion")
-            try { socket.close() } catch (_: IOException) { }
+            socket.closeSafe()
             return
         }
 
         if (deviceTrusted && !TrustedDevices.isCertificateStored(context, deviceId)) {
             Log.e("KDE/LanLinkProvider", "Device trusted but no cert stored. This should not happen.")
-            try { socket.close() } catch (_: IOException) { }
+            socket.closeSafe()
             return
         }
 
@@ -368,7 +369,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
         if (link != null) {
             if (link.deviceInfo.certificate != deviceInfo.certificate) {
                 Log.e("LanLinkProvider", "LanLink was asked to replace a socket but the certificate doesn't match, aborting")
-                try { socket.close() } catch (_: IOException) { }
+                socket.closeSafe()
                 return
             }
             // Update existing link
@@ -451,7 +452,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
                             try { socket.close() } catch (_: IOException) {}
                             Log.e("LanLinkProvider", "Exception receiving incoming TCP connection", e)
                         } catch (e: CertificateException) {
-                            try { socket.close() } catch (_: IOException) { }
+                            socket.closeSafe()
                             Log.e("LanLinkProvider", "Exception receiving incoming TCP connection", e)
                         }
                     }
@@ -591,16 +592,8 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
             mdnsDiscovery.stopAnnouncing()
             mdnsDiscovery.stopDiscovering()
         }
-        try {
-            tcpServer?.close()
-        } catch (e: Exception) {
-            Log.e("LanLink", "Exception", e)
-        }
-        try {
-            udpServer?.close()
-        } catch (e: Exception) {
-            Log.e("LanLink", "Exception", e)
-        }
+        tcpServer?.closeSafe()
+        udpServer?.closeSafe()
     }
 
     override fun getName() = "LanLinkProvider"
