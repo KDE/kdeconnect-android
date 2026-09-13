@@ -372,6 +372,11 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
         }
 
         if (linkCreated) {
+            if (!TrustedDevices.isTrustedDevice(context, deviceInfo.id) && visibleDevices.size > MAX_UNPAIRED_CONNECTIONS) {
+                Log.w("KDE/LanLinkProvider", "Too many devices on the network. Ignoring ${deviceInfo.id}")
+                socket.closeSafe()
+                return
+            }
             Log.d("KDE/LanLinkProvider", "Creating a new link for device " + deviceInfo.id)
             onConnectionReceived(link)
         } else {
@@ -618,6 +623,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
         const val MILLIS_DELAY_BETWEEN_CONNECTIONS_TO_SAME_DEVICE: Long = 1000L
 
         private const val MAX_RATE_LIMIT_ENTRIES: Int = 255
+        private const val MAX_UNPAIRED_CONNECTIONS: Int = 42
         private const val DELAY_BETWEEN_BROADCASTS: Long = 200
 
         @JvmStatic
