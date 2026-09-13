@@ -59,10 +59,13 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
     private val lastConnectionTimeByDeviceId = ConcurrentHashMap<String, Long>()
     private val lastConnectionTimeByIp = ConcurrentHashMap<InetAddress, Long>()
 
+    @Volatile
     private var tcpServer: ServerSocket? = null
+    @Volatile
     private var udpServer: DatagramSocket? = null
 
     private var lastBroadcast: Long = 0
+    @Volatile
     private var isStopped = true
 
     fun hasDevice(id: String): Boolean {
