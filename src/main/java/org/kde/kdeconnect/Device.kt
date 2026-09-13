@@ -575,6 +575,7 @@ class Device : PacketReceiver {
         if (!plugin.checkRequiredPermissions()) {
             Log.d("KDE/addPlugin", "No permission $pluginKey")
             pluginsWithoutPermissions[pluginKey] = plugin
+            pluginsWithoutOptionalPermissions.remove(pluginKey)
             if (plugin.loadPluginWhenRequiredPermissionsMissing()) {
                 loadedPlugins[pluginKey] = plugin
             } else {
