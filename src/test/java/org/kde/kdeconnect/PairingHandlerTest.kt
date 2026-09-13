@@ -5,6 +5,8 @@
  */
 package org.kde.kdeconnect
 
+import io.mockk.mockk
+import io.mockk.verify
 import org.junit.Assert
 import org.junit.Test
 import org.kde.kdeconnect.helpers.security.SslHelper
@@ -36,6 +38,31 @@ class PairingHandlerTest {
         Assert.assertEquals("54DC916E", PairingHandler.getVerificationKey(certA, certB, timestampA))
         Assert.assertEquals("54DC916E", PairingHandler.getVerificationKey(certB, certA, timestampA))
         Assert.assertEquals("8C07153A", PairingHandler.getVerificationKey(certA, certB, timestampB))
+    }
+
+
+    @Test
+    fun acceptPairingRequiresIncomingRequest() {
+        val device = mockk<Device>(relaxed = true)
+        val handler = PairingHandler(device, mockk(relaxed = true), PairingHandler.PairState.NotPaired)
+
+        handler.acceptPairing()
+
+        Assert.assertEquals(PairingHandler.PairState.NotPaired, handler.state)
+        verify(exactly = 0) { device.sendPacket(any(), any()) }
+    }
+
+    @Test
+    fun cancelPairingRequiresPairingInProgress() {
+        val device = mockk<Device>(relaxed = true)
+        val callback = mockk<PairingHandler.PairingCallback>(relaxed = true)
+        val handler = PairingHandler(device, callback, PairingHandler.PairState.Paired)
+
+        handler.cancelPairing()
+
+        Assert.assertEquals(PairingHandler.PairState.Paired, handler.state)
+        verify(exactly = 0) { device.sendPacket(any()) }
+        verify(exactly = 0) { callback.pairingFailed(any()) }
     }
 
     @Test
