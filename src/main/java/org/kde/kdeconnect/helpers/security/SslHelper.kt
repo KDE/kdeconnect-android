@@ -173,7 +173,7 @@ object SslHelper {
     }
 
     private fun configureSslSocket(socket: SSLSocket, isDeviceTrusted: Boolean, isClient: Boolean) {
-        socket.setSoTimeout(10000)
+        socket.setSoTimeout(10 * 1000)
         if (isClient) {
             socket.useClientMode = true
         } else {

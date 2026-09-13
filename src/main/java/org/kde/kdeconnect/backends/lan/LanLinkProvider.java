@@ -270,6 +270,7 @@ public class LanLinkProvider extends BaseLinkProvider {
     private void configureSocket(Socket socket) {
         try {
             socket.setKeepAlive(true);
+            socket.setSoTimeout(10 * 1000);
         } catch (SocketException e) {
             Log.e("LanLink", "Exception", e);
         }
