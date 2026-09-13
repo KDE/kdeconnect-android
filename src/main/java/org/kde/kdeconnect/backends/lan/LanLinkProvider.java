@@ -95,8 +95,10 @@ public class LanLinkProvider extends BaseLinkProvider {
 
     public void onConnectionLost(BaseLink link) {
         String deviceId = link.getDeviceId();
-        visibleDevices.remove(deviceId);
-        super.onConnectionLost(link);
+        // Do not let an old connection remove its replacement.
+        if (visibleDevices.remove(deviceId, link)) {
+            super.onConnectionLost(link);
+        }
     }
 
     Pair<NetworkPacket, Boolean> unserializeReceivedIdentityPacket(String message) {
