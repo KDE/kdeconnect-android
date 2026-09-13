@@ -74,6 +74,9 @@ class MdnsDiscovery {
             val serviceInfo: NsdServiceInfo?
             try {
                 serviceInfo = createNsdServiceInfo()
+            } catch (e: IllegalStateException) {
+                Log.w(LOG_TAG, "Couldn't start announcing via MDNS: " + e.message)
+                return
             } catch (e: IllegalAccessException) {
                 Log.w(LOG_TAG, "Couldn't start announcing via MDNS: " + e.message)
                 return
@@ -113,7 +116,7 @@ class MdnsDiscovery {
         }
     }
 
-    @Throws(IllegalAccessException::class)
+    @Throws(IllegalAccessException::class, IllegalStateException::class)
     fun createNsdServiceInfo(): NsdServiceInfo {
         val serviceInfo = NsdServiceInfo()
 
@@ -122,7 +125,7 @@ class MdnsDiscovery {
         // Also, it must be unique, otherwise it will be automatically renamed. For these reasons we use the deviceId.
         serviceInfo.serviceName = deviceId
         serviceInfo.serviceType = SERVICE_TYPE
-        serviceInfo.port = lanLinkProvider.tcpPort
+        serviceInfo.port = lanLinkProvider.tcpPort ?: throw IllegalStateException("tcpPort is null")
 
         // The following fields aren't really used for anything, since we can't include enough info
         // for it to be useful (namely: we can't include the device certificate).
@@ -157,7 +160,7 @@ class MdnsDiscovery {
                 return
             }
 
-            if (lanLinkProvider.visibleDevices.containsKey(deviceId)) {
+            if (lanLinkProvider.hasDevice(deviceId)) {
                 Log.i(LOG_TAG, "MDNS discovered $deviceId to which I'm already connected to. Ignoring.")
                 return
             }
@@ -203,7 +206,7 @@ class MdnsDiscovery {
             // TODO: In protocol version 8 we should be able to call "identityPacketReceived"
             //       here, since we already have all the info we need to start a connection
             //       and the remaining identity info will be exchanged later.
-            lanLinkProvider.sendUdpIdentityPacket(mutableListOf<InetAddress?>(remoteAddress), null)
+            lanLinkProvider.sendUdpIdentityPacket(listOf(remoteAddress), null)
         }
     }
 
