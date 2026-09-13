@@ -607,7 +607,10 @@ class Device : PacketReceiver {
 
     // Helper function for reloadPluginsFromSettings(), do not call from elsewhere
     private fun removePlugin(pluginKey: String): Boolean {
-        val plugin = loadedPlugins.remove(pluginKey) ?: return false
+        val plugin = loadedPlugins.remove(pluginKey)
+        pluginsWithoutPermissions.remove(pluginKey)
+        pluginsWithoutOptionalPermissions.remove(pluginKey)
+        if (plugin == null) return false
 
         try {
             plugin.onDestroy()
