@@ -21,6 +21,7 @@ import org.kde.kdeconnect.helpers.DeviceHelper
 import org.kde.kdeconnect.helpers.DeviceHelper.deviceType
 import org.kde.kdeconnect.helpers.DeviceHelper.getDeviceId
 import org.kde.kdeconnect.helpers.DeviceHelper.getDeviceName
+import org.kde.kdeconnect.helpers.TrustedNetworkHelper
 import java.net.InetAddress
 
 class MdnsDiscovery {
@@ -44,6 +45,10 @@ class MdnsDiscovery {
     fun startDiscovering() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CINNAMON_BUN && ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_LOCAL_NETWORK) != PERMISSION_GRANTED) {
             Log.w("MdnsDiscover", "Will not MDNS discover, missing ACCESS_LOCAL_NETWORK permission")
+            return
+        }
+        if (!TrustedNetworkHelper.isTrustedNetwork(context)) {
+            Log.i(LOG_TAG, "Will not MDNS discover on an untrusted network")
             return
         }
         if (discoveryListener == null) {
@@ -200,6 +205,13 @@ class MdnsDiscovery {
 
         override fun onServiceResolved(serviceInfo: NsdServiceInfo) {
             Log.i(LOG_TAG, "MDNS successfully resolved $serviceInfo")
+
+            // Discovery can have been stopped while this resolve was in flight.
+            // Do not leak our identity to a service discovered on an untrusted network.
+            if (!TrustedNetworkHelper.isTrustedNetwork(context)) {
+                Log.i(LOG_TAG, "Ignoring MDNS result on an untrusted network")
+                return
+            }
 
             // Let the LanLinkProvider handle the connection
             val remoteAddress = serviceInfo.host
