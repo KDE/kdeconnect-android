@@ -59,15 +59,15 @@ class MdnsDiscovery {
     }
 
     fun stopDiscovering() {
-        try {
-            if (discoveryListener != null) {
+        if (discoveryListener != null) {
+            try {
                 mNsdManager.stopServiceDiscovery(discoveryListener)
-                multicastLock.release()
+            } catch (_: IllegalArgumentException) {
+                // Ignore "listener not registered" exception
             }
-        } catch (_: IllegalArgumentException) {
-            // Ignore "listener not registered" exception
+            discoveryListener = null
+            multicastLock.release()
         }
-        discoveryListener = null
     }
 
     fun startAnnouncing() {
