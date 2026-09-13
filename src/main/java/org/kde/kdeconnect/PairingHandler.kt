@@ -200,6 +200,11 @@ class PairingHandler(private val device: Device, private val callback: PairingCa
     }
 
     fun cancelPairing() {
+        if (state != PairState.Requested && state != PairState.RequestedByPeer) {
+            Log.w("PairingHandler", "Cannot cancel pairing when no pairing is in progress")
+            return
+        }
+
         cancelTimer()
         state = PairState.NotPaired
         val np = NetworkPacket(NetworkPacket.PACKET_TYPE_PAIR)
