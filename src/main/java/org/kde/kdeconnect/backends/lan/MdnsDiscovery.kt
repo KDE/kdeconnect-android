@@ -42,6 +42,7 @@ class MdnsDiscovery {
         multicastLock = wifiManager.createMulticastLock("kdeConnectMdnsMulticastLock")
     }
 
+    @Synchronized
     fun startDiscovering() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CINNAMON_BUN && ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_LOCAL_NETWORK) != PERMISSION_GRANTED) {
             Log.w("MdnsDiscover", "Will not MDNS discover, missing ACCESS_LOCAL_NETWORK permission")
@@ -58,6 +59,7 @@ class MdnsDiscovery {
         }
     }
 
+    @Synchronized
     fun stopDiscovering() {
         if (discoveryListener != null) {
             try {
@@ -70,6 +72,7 @@ class MdnsDiscovery {
         }
     }
 
+    @Synchronized
     fun startAnnouncing() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CINNAMON_BUN && ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_LOCAL_NETWORK) != PERMISSION_GRANTED) {
             Log.w("MdnsDiscover", "Will not MDNS announce, missing ACCESS_LOCAL_NETWORK permission")
@@ -91,6 +94,7 @@ class MdnsDiscovery {
         }
     }
 
+    @Synchronized
     fun stopAnnouncing() {
         if (registrationListener != null) {
             try {
