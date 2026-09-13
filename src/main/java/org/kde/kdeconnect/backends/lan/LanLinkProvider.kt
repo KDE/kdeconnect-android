@@ -391,6 +391,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
         }
     }
 
+    @Synchronized
     private fun setupUdpListener() {
         if (udpServer != null) {
             return
@@ -434,6 +435,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
         }
     }
 
+    @Synchronized
     private fun setupTcpListener() {
         if (tcpServer != null) {
             return
