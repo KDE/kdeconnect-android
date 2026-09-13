@@ -42,13 +42,23 @@ class NsdResolveQueue {
 
     private inner class ListenerWrapper(private val listener: NsdManager.ResolveListener) : NsdManager.ResolveListener {
         override fun onResolveFailed(serviceInfo: NsdServiceInfo, errorCode: Int) {
-            listener.onResolveFailed(serviceInfo, errorCode)
-            postResolve()
+            try {
+                listener.onResolveFailed(serviceInfo, errorCode)
+            } catch (e: RuntimeException) {
+                e.printStackTrace()
+            } finally {
+                postResolve()
+            }
         }
 
         override fun onServiceResolved(serviceInfo: NsdServiceInfo) {
-            listener.onServiceResolved(serviceInfo)
-            postResolve()
+            try {
+                listener.onServiceResolved(serviceInfo)
+            } catch (e: RuntimeException) {
+                e.printStackTrace()
+            } finally {
+                postResolve()
+            }
         }
 
         private fun postResolve() {
