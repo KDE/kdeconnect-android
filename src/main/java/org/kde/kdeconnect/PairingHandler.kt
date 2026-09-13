@@ -174,6 +174,14 @@ class PairingHandler(private val device: Device, private val callback: PairingCa
     }
 
     fun acceptPairing() {
+        if (state == PairState.Paired) {
+            return
+        }
+        if (state != PairState.RequestedByPeer) {
+            Log.w("PairingHandler", "Cannot accept pairing without a pairing request")
+            return
+        }
+
         cancelTimer()
         val stateCallback = object : Device.SendPacketStatusCallback() {
             override fun onSuccess() {
