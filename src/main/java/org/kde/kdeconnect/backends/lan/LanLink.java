@@ -94,6 +94,7 @@ public class LanLink extends BaseLink {
                 }
             } catch (Exception e) {
                 Log.i("LanLink", "Socket closed: " + newSocket.hashCode() + ". Reason: " + e.getMessage());
+                try { newSocket.close(); } catch (IOException ignored) { }
                 try { Thread.sleep(300); } catch (InterruptedException ignored) {} // Wait a bit because we might receive a new socket meanwhile
                 boolean thereIsaANewSocket = (newSocket != socket);
                 if (!thereIsaANewSocket) {

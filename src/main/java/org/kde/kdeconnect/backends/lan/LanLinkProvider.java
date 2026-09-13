@@ -142,11 +142,13 @@ public class LanLinkProvider extends BaseLinkProvider {
 
         if (!isPrivateAddress(address)) {
             Log.i("LanLinkProvider", "Discarding TCP packet from a non-local IP");
+            try { socket.close(); } catch (IOException ignored) { }
             return;
         }
 
         if (rateLimitByIp(address)) {
             Log.i("LanLinkProvider", "Discarding second TCP packet from the same ip " + address + " received too quickly");
+            try { socket.close(); } catch (IOException ignored) { }
             return;
         }
 
@@ -159,11 +161,13 @@ public class LanLinkProvider extends BaseLinkProvider {
             //Log.e("TcpListener", "Received TCP packet: " + message);
         } catch (Exception e) {
             Log.e("KDE/LanLinkProvider", "Exception while receiving TCP packet", e);
+            try { socket.close(); } catch (IOException ignored) { }
             return;
         }
 
         final Pair<NetworkPacket, Boolean> pair = unserializeReceivedIdentityPacket(message);
         if (pair == null) {
+            try { socket.close(); } catch (IOException ignored) { }
             return;
         }
         final NetworkPacket identityPacket = pair.first;
@@ -175,10 +179,12 @@ public class LanLinkProvider extends BaseLinkProvider {
         Integer targetProtocolVersion = identityPacket.getIntOrNull("targetProtocolVersion");
         if (targetDeviceId != null && !targetDeviceId.equals(DeviceHelper.getDeviceId(context))) {
             Log.e("KDE/LanLinkProvider","Received a connection request for a device that isn't me: " + targetDeviceId);
+            try { socket.close(); } catch (IOException ignored) { }
             return;
         }
         if (targetProtocolVersion != null && targetProtocolVersion != DeviceHelper.PROTOCOL_VERSION) {
             Log.e("KDE/LanLinkProvider","Received a connection request for a protocol version that isn't mine: " + targetProtocolVersion);
+            try { socket.close(); } catch (IOException ignored) { }
             return;
         }
 
@@ -259,8 +265,10 @@ public class LanLinkProvider extends BaseLinkProvider {
             out.flush();
 
             identityPacketReceived(identityPacket, socket, LanLink.ConnectionStarted.Remotely, deviceTrusted);
+            socket = null; // The SSL socket now owns the underlying socket, or it was rejected and closed.
         } catch (IOException | CertificateException | JSONException e) {
             Log.e("LanLinkProvider", "Exception receiving incoming UDP connection", e);
+        } finally {
             if (socket != null) {
                 try { socket.close(); } catch (IOException ignored) { }
             }
@@ -293,11 +301,13 @@ public class LanLinkProvider extends BaseLinkProvider {
 
         if (deviceTrusted && isProtocolDowngrade(deviceId, protocolVersion)) {
             Log.w("KDE/LanLinkProvider", "Refusing to connect to a device using an older protocol version:" + protocolVersion);
+            try { socket.close(); } catch (IOException ignored) { }
             return;
         }
 
         if (deviceTrusted && !TrustedDevices.isCertificateStored(context, deviceId)) {
             Log.e("KDE/LanLinkProvider", "Device trusted but no cert stored. This should not happen.");
+            try { socket.close(); } catch (IOException ignored) { }
             return;
         }
 
@@ -380,6 +390,7 @@ public class LanLinkProvider extends BaseLinkProvider {
         if (link != null) {
             if (!link.getDeviceInfo().certificate.equals(deviceInfo.certificate)) {
                 Log.e("LanLinkProvider", "LanLink was asked to replace a socket but the certificate doesn't match, aborting");
+                try { socket.close(); } catch (IOException ignored) { }
                 return;
             }
             // Update existing link
