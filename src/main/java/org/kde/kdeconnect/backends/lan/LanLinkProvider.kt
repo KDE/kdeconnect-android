@@ -292,6 +292,12 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
             return
         }
 
+        if (!deviceTrusted && visibleDevices.size >= MAX_UNPAIRED_CONNECTIONS) {
+            Log.w("KDE/LanLinkProvider", "Too many devices on the network. Ignoring $deviceId")
+            socket.closeSafe()
+            return
+        }
+
         Log.i("KDE/LanLinkProvider", "Starting SSL handshake with $deviceId trusted:$deviceTrusted")
 
         // If I'm the TCP server I will be the SSL client and vice-versa.
@@ -375,11 +381,6 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
         }
 
         if (linkCreated) {
-            if (!TrustedDevices.isTrustedDevice(context, deviceInfo.id) && visibleDevices.size > MAX_UNPAIRED_CONNECTIONS) {
-                Log.w("KDE/LanLinkProvider", "Too many devices on the network. Ignoring ${deviceInfo.id}")
-                socket.closeSafe()
-                return
-            }
             Log.d("KDE/LanLinkProvider", "Creating a new link for device " + deviceInfo.id)
             onConnectionReceived(link)
         } else {
