@@ -133,7 +133,6 @@ class PairingHandler(private val device: Device, private val callback: PairingCa
 
         if (state == PairState.Paired) {
             Log.w("PairingHandler", "requestPairing was called on an already paired device")
-            callback.pairingFailed(device.context.getString(R.string.error_already_paired))
             return
         }
 
