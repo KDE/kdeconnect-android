@@ -47,7 +47,6 @@ import java.net.UnknownHostException;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -77,7 +76,7 @@ public class LanLinkProvider extends BaseLinkProvider {
 
     private final Context context;
 
-    final HashMap<String, LanLink> visibleDevices = new HashMap<>(); // Links by device id
+    final ConcurrentHashMap<String, LanLink> visibleDevices = new ConcurrentHashMap<>(); // Links by device id
 
     final static int MAX_RATE_LIMIT_ENTRIES = 255;
     final ConcurrentHashMap<String, Long> lastConnectionTimeByDeviceId = new ConcurrentHashMap<>();
