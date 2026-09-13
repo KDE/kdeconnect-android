@@ -114,6 +114,11 @@ class MdnsDiscovery {
 
         override fun onRegistrationFailed(serviceInfo: NsdServiceInfo?, errorCode: Int) {
             Log.e(LOG_TAG, "Registration failed with: $errorCode")
+            synchronized(this@MdnsDiscovery) {
+                if (registrationListener === this) {
+                    registrationListener = null
+                }
+            }
         }
 
         override fun onServiceUnregistered(serviceInfo: NsdServiceInfo?) {
@@ -192,6 +197,12 @@ class MdnsDiscovery {
 
         override fun onStartDiscoveryFailed(serviceType: String?, errorCode: Int) {
             Log.e(LOG_TAG, "MDNS discovery start failed: $errorCode")
+            synchronized(this@MdnsDiscovery) {
+                if (discoveryListener === this) {
+                    discoveryListener = null
+                    multicastLock.release()
+                }
+            }
         }
 
         override fun onStopDiscoveryFailed(serviceType: String?, errorCode: Int) {
