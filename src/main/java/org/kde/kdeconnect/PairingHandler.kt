@@ -19,7 +19,6 @@ import org.kde.kdeconnect_tp.R
 import java.security.MessageDigest
 import java.security.cert.Certificate
 import java.util.Formatter
-import kotlin.math.abs
 import kotlin.time.Duration.Companion.seconds
 
 class PairingHandler(private val device: Device, private val callback: PairingCallback, var state: PairState) {
@@ -77,7 +76,8 @@ class PairingHandler(private val device: Device, private val callback: PairingCa
                             return
                         }
                         val currentTimestamp = System.currentTimeMillis() / 1000L
-                        if (abs(pairingTimestamp - currentTimestamp) > allowedTimestampDifferenceSeconds) {
+                        if (pairingTimestamp < currentTimestamp - allowedTimestampDifferenceSeconds
+                            || pairingTimestamp > currentTimestamp + allowedTimestampDifferenceSeconds) {
                             state = PairState.NotPaired
                             callback.pairingFailed(device.context.getString(R.string.error_clocks_not_match))
                             return
