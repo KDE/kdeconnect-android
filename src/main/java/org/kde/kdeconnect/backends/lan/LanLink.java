@@ -235,11 +235,12 @@ public class LanLink extends BaseLink {
             }
         } catch(SocketTimeoutException e) {
             Log.e("LanLink", "Socket for payload in packet " + np.getType() + " timed out. The other end didn't fetch the payload.");
+            throw e;
         } catch(CertificateException | SSLHandshakeException e) {
             // The exception can be due to several causes. "Connection closed by peer" seems to be a common one.
             // If we could distinguish different cases we could react differently for some of them, but I haven't found how.
-            Log.e("sendPacket","Payload SSLSocket failed");
-            e.printStackTrace();
+            Log.e("LanLink/sendPacket", "Payload SSLSocket failed", e);
+            throw new IOException("Payload SSL socket failed", e);
         } finally {
             try { server.close(); } catch (Exception ignored) { }
             try { IOUtils.close(payloadSocket); } catch (Exception ignored) { }
