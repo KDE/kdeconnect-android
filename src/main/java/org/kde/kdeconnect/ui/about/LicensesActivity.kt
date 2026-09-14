@@ -32,9 +32,8 @@ class LicensesActivity : AppCompatActivity() {
     private val scrollEvents = MutableSharedFlow<LicensesEvent>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
         enableEdgeToEdge()
+        super.onCreate(savedInstanceState)
 
         setContent {
             KdeTheme(this) {

@@ -17,9 +17,9 @@ import org.kde.kdeconnect.ui.compose.screen.easteregg.EasterEggScreen
 class EasterEggActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
 
-        enableEdgeToEdge()
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_NOSENSOR
 
         setContent {
