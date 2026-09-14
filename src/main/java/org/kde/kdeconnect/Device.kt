@@ -657,7 +657,8 @@ class Device : PacketReceiver {
         Log.i("Device", "${deviceInfo.name}: reloading plugins")
         val newPluginsByIncomingInterface: MultiValuedMap<String, String> = ArrayListValuedHashMap()
 
-        (loadedPlugins.keys - supportedPlugins.toSet()).forEach(::removePlugin)
+        val existingPluginKeys = loadedPlugins.keys + pluginsWithoutPermissions.keys + pluginsWithoutOptionalPermissions.keys
+        (existingPluginKeys - supportedPlugins.toSet()).forEach(::removePlugin)
 
         supportedPlugins.forEach { pluginKey ->
             val pluginInfo = PluginFactory.getPluginInfo(pluginKey)
@@ -665,9 +666,11 @@ class Device : PacketReceiver {
 
             val pluginEnabled = (isPaired || listenToUnpaired) && this.isReachable && isPluginEnabled(pluginKey)
 
-            if (pluginEnabled && addPlugin(pluginKey)) {
-                pluginInfo.supportedPacketTypes.forEach { packetType ->
-                    newPluginsByIncomingInterface.put(packetType, pluginKey)
+            if (pluginEnabled) {
+                if (addPlugin(pluginKey)) {
+                    pluginInfo.supportedPacketTypes.forEach { packetType ->
+                        newPluginsByIncomingInterface.put(packetType, pluginKey)
+                    }
                 }
             } else {
                 removePlugin(pluginKey)
