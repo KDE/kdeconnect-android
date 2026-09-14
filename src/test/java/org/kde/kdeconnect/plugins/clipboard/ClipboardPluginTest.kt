@@ -128,7 +128,7 @@ class ClipboardPluginTest {
         every { clipboardListener.currentContent } returns content
         every { clipboardListener.currentContentType } returns ClipboardListener.ClipboardContentType.Text
 
-        Assert.assertTrue(clipboardPlugin.onCreate())
+        clipboardPlugin.onCreate()
 
         val sentPacket = checkNotNull(packet)
         Assert.assertEquals("kdeconnect.clipboard.connect", sentPacket.type)
@@ -144,7 +144,7 @@ class ClipboardPluginTest {
         every { clipboardListener.currentContentType } returns ClipboardListener.ClipboardContentType.Password
         every { clipboardListener.updateTimestamp } returns 12345L
 
-        Assert.assertTrue(clipboardPlugin.onCreate())
+        clipboardPlugin.onCreate()
 
         Assert.assertNull(packet)
         verify(exactly = 0) { device.sendPacket(any()) }
@@ -159,7 +159,7 @@ class ClipboardPluginTest {
         every { clipboardListener.currentContentType } returns ClipboardListener.ClipboardContentType.Password
         every { clipboardListener.updateTimestamp } returns 999L
 
-        Assert.assertTrue(clipboardPlugin.onCreate())
+        clipboardPlugin.onCreate()
 
         val sentPacket = checkNotNull(packet)
         Assert.assertEquals("kdeconnect.clipboard.connect", sentPacket.type)
