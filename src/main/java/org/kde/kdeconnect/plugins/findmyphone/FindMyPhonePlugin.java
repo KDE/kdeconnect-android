@@ -232,7 +232,7 @@ public class FindMyPhonePlugin extends Plugin {
 
     @Override
     public PluginSettingsFragment getSettingsFragment(Activity activity) {
-        return FindMyPhoneSettingsFragment.newInstance(getPluginKey(), R.xml.findmyphoneplugin_preferences);
+        return FindMyPhoneSettingsFragment.newInstance(getPluginKey(), getDevice().getDeviceId(), R.xml.findmyphoneplugin_preferences);
     }
 
     @NonNull

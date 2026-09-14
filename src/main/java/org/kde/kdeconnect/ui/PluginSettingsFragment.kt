@@ -23,17 +23,13 @@ open class PluginSettingsFragment : PreferenceFragmentCompat() {
     @JvmField
     protected var plugin: Plugin? = null
 
-    protected fun setArguments(pluginKey: String, vararg settingsLayouts: Int): Bundle {
+    protected fun setArguments(pluginKey: String, deviceId: String, vararg settingsLayouts: Int): Bundle {
         val args = Bundle()
         args.putString(ARG_PLUGIN_KEY, pluginKey)
+        args.putString(ARG_DEVICE_ID, deviceId)
         args.putIntArray(ARG_LAYOUT, settingsLayouts)
         setArguments(args)
         return args
-    }
-
-    /** Stores the owning device with the fragment so it survives process recreation. */
-    fun setDeviceId(deviceId: String) {
-        requireArguments().putString(ARG_DEVICE_ID, deviceId)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,9 +71,8 @@ open class PluginSettingsFragment : PreferenceFragmentCompat() {
     }
 
     val deviceId: String
-        get() = arguments?.getString(ARG_DEVICE_ID)
-            ?: requireActivity().intent.getStringExtra(PluginSettingsActivity.EXTRA_DEVICE_ID)
-            ?: throw RuntimeException("You must start PluginSettingsActivity with a deviceId extra")
+        get() = requireArguments().getString(ARG_DEVICE_ID)
+            ?: throw RuntimeException("You must provide a deviceId by calling setArguments(@NonNull String pluginKey, @NonNull String deviceId, int... settingsLayouts)")
 
     companion object {
         private const val ARG_PLUGIN_KEY = "plugin_key"
@@ -85,9 +80,9 @@ open class PluginSettingsFragment : PreferenceFragmentCompat() {
         private const val ARG_DEVICE_ID = "device_id"
 
         @JvmStatic
-        fun newInstance(pluginKey: String, vararg settingsLayout: Int): PluginSettingsFragment {
+        fun newInstance(pluginKey: String, deviceId: String, vararg settingsLayout: Int): PluginSettingsFragment {
             val fragment = PluginSettingsFragment()
-            fragment.setArguments(pluginKey, *settingsLayout)
+            fragment.setArguments(pluginKey, deviceId, *settingsLayout)
             return fragment
         }
     }

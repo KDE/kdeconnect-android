@@ -54,9 +54,9 @@ public class FindMyPhoneSettingsFragment extends PluginSettingsFragment {
                 Toast.makeText(requireContext(), R.string.findmyphone_camera_explanation, Toast.LENGTH_SHORT).show();
             });
 
-    public static FindMyPhoneSettingsFragment newInstance(@NonNull String pluginKey, int layout) {
+    public static FindMyPhoneSettingsFragment newInstance(@NonNull String pluginKey, @NonNull String deviceId, int layout) {
         FindMyPhoneSettingsFragment fragment = new FindMyPhoneSettingsFragment();
-        fragment.setArguments(pluginKey, layout);
+        fragment.setArguments(pluginKey, deviceId, layout);
 
         return fragment;
     }

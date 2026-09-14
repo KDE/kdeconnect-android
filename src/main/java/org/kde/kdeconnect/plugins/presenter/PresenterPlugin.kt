@@ -33,7 +33,7 @@ class PresenterPlugin : Plugin() {
     override fun hasSettings(): Boolean = true
 
     override fun getSettingsFragment(activity: Activity): PluginSettingsFragment {
-        return newInstance(pluginKey, R.xml.presenterplugin_preferences)
+        return newInstance(pluginKey, device.deviceId, R.xml.presenterplugin_preferences)
     }
 
     override fun getUiButtons(): List<PluginUiButton> = listOf(

@@ -76,7 +76,7 @@ class DigitizerPlugin : Plugin() {
 
     override fun hasSettings(): Boolean = true
     override fun getSettingsFragment(activity: Activity): PluginSettingsFragment =
-        PluginSettingsFragment.newInstance(pluginKey, R.xml.digitizer_preferences)
+        PluginSettingsFragment.newInstance(pluginKey, device.deviceId, R.xml.digitizer_preferences)
 
     override val supportedPacketTypes: Array<String>
         get() = arrayOf()

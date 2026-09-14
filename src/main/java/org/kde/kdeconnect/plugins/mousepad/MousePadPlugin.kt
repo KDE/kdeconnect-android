@@ -68,9 +68,9 @@ class MousePadPlugin : Plugin() {
 
     override fun getSettingsFragment(activity: Activity): PluginSettingsFragment? {
         return if (device.deviceType == DeviceType.TV) {
-            newInstance(pluginKey, R.xml.mousepadplugin_preferences, R.xml.mousepadplugin_preferences_tv)
+            newInstance(pluginKey, device.deviceId, R.xml.mousepadplugin_preferences, R.xml.mousepadplugin_preferences_tv)
         } else {
-            newInstance(pluginKey, R.xml.mousepadplugin_preferences)
+            newInstance(pluginKey, device.deviceId, R.xml.mousepadplugin_preferences)
         }
     }
 

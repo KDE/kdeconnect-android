@@ -198,7 +198,7 @@ class TelephonyPlugin : Plugin() {
 
     override fun hasSettings(): Boolean = true
 
-    override fun getSettingsFragment(activity: Activity): PluginSettingsFragment = newInstance(pluginKey, R.xml.telephonyplugin_preferences)
+    override fun getSettingsFragment(activity: Activity): PluginSettingsFragment = newInstance(pluginKey, device.deviceId, R.xml.telephonyplugin_preferences)
 
     companion object {
         /**

@@ -212,7 +212,7 @@ class MprisPlugin : Plugin() {
     override fun hasSettings(): Boolean = true
 
     override fun getSettingsFragment(activity: Activity): PluginSettingsFragment {
-        return PluginSettingsFragment.newInstance(pluginKey, R.xml.mprisplugin_preferences)
+        return PluginSettingsFragment.newInstance(pluginKey, device.deviceId, R.xml.mprisplugin_preferences)
     }
 
     override fun onCreate(): Boolean {

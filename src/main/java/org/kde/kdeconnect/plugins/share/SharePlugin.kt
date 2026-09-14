@@ -281,7 +281,7 @@ class SharePlugin : Plugin() {
     }
 
     override fun getSettingsFragment(activity: Activity): PluginSettingsFragment =
-        ShareSettingsFragment.newInstance(pluginKey, R.xml.shareplugin_preferences)
+        ShareSettingsFragment.newInstance(pluginKey, device.deviceId, R.xml.shareplugin_preferences)
 
     override val supportedPacketTypes= arrayOf(
         PACKET_TYPE_SHARE_REQUEST,

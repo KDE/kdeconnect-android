@@ -47,9 +47,7 @@ class PluginSettingsActivity : BaseActivity<ActivityPluginSettingsBinding>(), Pl
                 if (device != null) {
                     val plugin = device.getPluginIncludingWithoutPermissions(pluginKey)
                     if (plugin != null) {
-                        fragment = plugin.getSettingsFragment(this)?.also {
-                            it.setDeviceId(settingsDeviceId)
-                        }
+                        fragment = plugin.getSettingsFragment(this)
                     }
                 }
             }
@@ -108,7 +106,6 @@ class PluginSettingsActivity : BaseActivity<ActivityPluginSettingsBinding>(), Pl
         // TODO: getSettingsFragment return is nullable because NotificationFilterActivity isn't a PluginSettingsFragment yet
         val fragment = plugin.getSettingsFragment(this)
             ?: return
-        fragment.setDeviceId(settingsDeviceId)
 
         supportFragmentManager
             .beginTransaction()

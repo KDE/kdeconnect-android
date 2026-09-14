@@ -208,7 +208,7 @@ class SftpPlugin : Plugin(), OnSharedPreferenceChangeListener {
     override fun supportsDeviceSpecificSettings(): Boolean = true
 
     override fun getSettingsFragment(activity: Activity): PluginSettingsFragment {
-        return SftpSettingsFragment.newInstance(pluginKey, R.xml.sftpplugin_preferences)
+        return SftpSettingsFragment.newInstance(pluginKey, device.deviceId, R.xml.sftpplugin_preferences)
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String?) {

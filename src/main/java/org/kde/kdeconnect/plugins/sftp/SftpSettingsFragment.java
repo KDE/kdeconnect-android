@@ -57,9 +57,9 @@ public class SftpSettingsFragment
     private ActionMode actionMode;
     private JSONObject savedActionModeState;
 
-    public static SftpSettingsFragment newInstance(@NonNull String pluginKey, int layout) {
+    public static SftpSettingsFragment newInstance(@NonNull String pluginKey, @NonNull String deviceId, int layout) {
         SftpSettingsFragment fragment = new SftpSettingsFragment();
-        fragment.setArguments(pluginKey, layout);
+        fragment.setArguments(pluginKey, deviceId, layout);
 
         return fragment;
     }

@@ -165,7 +165,7 @@ public class RemoteKeyboardIMEPlugin extends Plugin implements SharedPreferences
 
     @Override
     public PluginSettingsFragment getSettingsFragment(Activity activity) {
-        return PluginSettingsFragment.newInstance(getPluginKey(), R.xml.remotekeyboardplugin_preferences);
+        return PluginSettingsFragment.newInstance(getPluginKey(), getDevice().getDeviceId(), R.xml.remotekeyboardplugin_preferences);
     }
 
     @Override

@@ -35,9 +35,9 @@ public class ShareSettingsFragment extends PluginSettingsFragment {
 
     private Preference filePicker;
 
-    public static ShareSettingsFragment newInstance(@NonNull String pluginKey, int layout) {
+    public static ShareSettingsFragment newInstance(@NonNull String pluginKey, @NonNull String deviceId, int layout) {
         ShareSettingsFragment fragment = new ShareSettingsFragment();
-        fragment.setArguments(pluginKey, layout);
+        fragment.setArguments(pluginKey, deviceId, layout);
 
         return fragment;
     }
