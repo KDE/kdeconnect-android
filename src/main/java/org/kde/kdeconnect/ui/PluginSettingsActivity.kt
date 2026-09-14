@@ -25,37 +25,34 @@ class PluginSettingsActivity : BaseActivity<ActivityPluginSettingsBinding>(), Pl
 
     override val binding by lazy { ActivityPluginSettingsBinding.inflate(layoutInflater) }
 
+    private lateinit var settingsDeviceId: String
+
     public override fun onCreate(savedInstanceState: Bundle?) {
+        settingsDeviceId = intent.getStringExtra(EXTRA_DEVICE_ID)
+            ?: throw RuntimeException("You must start DeviceSettingActivity using an intent that has a $EXTRA_DEVICE_ID extra")
+
         super.onCreate(savedInstanceState)
 
         setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
-        var pluginKey: String? = null
-
-        if (intent.hasExtra(EXTRA_DEVICE_ID)) {
-            settingsDeviceId = intent.getStringExtra(EXTRA_DEVICE_ID)
-            if (intent.hasExtra(EXTRA_PLUGIN_KEY)) {
-                pluginKey = intent.getStringExtra(EXTRA_PLUGIN_KEY)
-            }
-        } else if (settingsDeviceId == null) {
-            throw RuntimeException("You must start DeviceSettingActivity using an intent that has a $EXTRA_DEVICE_ID extra")
-        }
-
         var fragment = supportFragmentManager.findFragmentById(R.id.fragmentPlaceHolder)
         if (fragment == null) {
+            val pluginKey = intent.getStringExtra(EXTRA_PLUGIN_KEY)
             if (pluginKey != null) {
                 val device = getInstance().getDevice(settingsDeviceId)
                 if (device != null) {
                     val plugin = device.getPluginIncludingWithoutPermissions(pluginKey)
                     if (plugin != null) {
-                        fragment = plugin.getSettingsFragment(this)
+                        fragment = plugin.getSettingsFragment(this)?.also {
+                            it.setDeviceId(settingsDeviceId)
+                        }
                     }
                 }
             }
             if (fragment == null) {
-                fragment = PluginSettingsListFragment.newInstance(settingsDeviceId!!)
+                fragment = PluginSettingsListFragment.newInstance(settingsDeviceId)
             }
 
             supportFragmentManager
@@ -86,7 +83,7 @@ class PluginSettingsActivity : BaseActivity<ActivityPluginSettingsBinding>(), Pl
         }
         menu.add(R.string.plugin_stats)
             .setOnMenuItemClickListener {
-                val stats = DeviceStats.getStatsForDevice(settingsDeviceId!!)
+                val stats = DeviceStats.getStatsForDevice(settingsDeviceId)
                 val alertDialog = MaterialAlertDialogBuilder(this@PluginSettingsActivity)
                     .setTitle(R.string.plugin_stats)
                     .setPositiveButton(R.string.ok) { dialog, _ ->
@@ -109,6 +106,7 @@ class PluginSettingsActivity : BaseActivity<ActivityPluginSettingsBinding>(), Pl
         // TODO: getSettingsFragment return is nullable because NotificationFilterActivity isn't a PluginSettingsFragment yet
         val fragment = plugin.getSettingsFragment(this)
             ?: return
+        fragment.setDeviceId(settingsDeviceId)
 
         supportFragmentManager
             .beginTransaction()
@@ -135,10 +133,5 @@ class PluginSettingsActivity : BaseActivity<ActivityPluginSettingsBinding>(), Pl
     companion object {
         const val EXTRA_DEVICE_ID: String = "deviceId"
         const val EXTRA_PLUGIN_KEY: String = "pluginKey"
-
-        // Weird name because Activity already has getters and setters for 'deviceId'
-        // Static because if we get here by using the back button in the action bar, the extra deviceId will not be set.
-        var settingsDeviceId: String? = null
-            private set
     }
 }

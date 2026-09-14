@@ -31,6 +31,11 @@ open class PluginSettingsFragment : PreferenceFragmentCompat() {
         return args
     }
 
+    /** Stores the owning device with the fragment so it survives process recreation. */
+    fun setDeviceId(deviceId: String) {
+        requireArguments().putString(ARG_DEVICE_ID, deviceId)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         val arguments = requireArguments()
         if (!arguments.containsKey(ARG_PLUGIN_KEY)) {
@@ -69,12 +74,15 @@ open class PluginSettingsFragment : PreferenceFragmentCompat() {
         requireActivity().title = getString(R.string.plugin_settings_with_name, info.displayName)
     }
 
-    val deviceId: String?
-        get() = PluginSettingsActivity.settingsDeviceId
+    val deviceId: String
+        get() = arguments?.getString(ARG_DEVICE_ID)
+            ?: requireActivity().intent.getStringExtra(PluginSettingsActivity.EXTRA_DEVICE_ID)
+            ?: throw RuntimeException("You must start PluginSettingsActivity with a deviceId extra")
 
     companion object {
         private const val ARG_PLUGIN_KEY = "plugin_key"
         private const val ARG_LAYOUT = "layout"
+        private const val ARG_DEVICE_ID = "device_id"
 
         @JvmStatic
         fun newInstance(pluginKey: String, vararg settingsLayout: Int): PluginSettingsFragment {
