@@ -72,13 +72,13 @@ class PluginPreference : SwitchPreference {
         onStateChanged(holder, isChecked)
     }
 
-    private fun onStateChanged(holder: PreferenceViewHolder, state: Boolean) {
+    private fun onStateChanged(holder: PreferenceViewHolder, isEnabled: Boolean) {
         val content = holder.findViewById(R.id.content)
         val divider = holder.findViewById(R.id.divider)
         val widget = holder.findViewById(android.R.id.widget_frame)
         val parent = holder.itemView
 
-        val hasDetails = state && listener != null
+        val hasDetails = isEnabled && listener != null && device.isReachable && device.isPaired
 
         divider.visibility = if (hasDetails) View.VISIBLE else View.GONE
         content.isClickable = hasDetails
