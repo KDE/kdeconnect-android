@@ -17,12 +17,14 @@ import android.content.IntentFilter
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.database.ContentObserver
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.preference.PreferenceManager
 import android.provider.Telephony
 import android.telephony.PhoneNumberUtils
 import android.telephony.SmsMessage
+import androidx.annotation.RequiresApi
 import androidx.annotation.WorkerThread
 import androidx.core.content.ContextCompat
 import com.klinker.android.logger.Log
@@ -55,6 +57,7 @@ import java.util.concurrent.locks.ReentrantLock
 
 @LoadablePlugin
 @SuppressLint("InlinedApi")
+@RequiresApi(Build.VERSION_CODES.O)
 class SMSPlugin : Plugin() {
     private val receiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
@@ -220,6 +223,8 @@ class SMSPlugin : Plugin() {
 
         device.sendPacket(np)
     }
+
+    override val minSdk: Int = Build.VERSION_CODES.O
 
     override val permissionExplanation: Int = R.string.telepathy_permission_explanation
 
