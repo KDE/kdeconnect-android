@@ -134,10 +134,8 @@ public class RemoteKeyboardService
                     if (instances.size() == 1) {  // single instance of RemoteKeyboardPlugin -> access its settings
                         RemoteKeyboardIMEPlugin plugin = instances.get(0);
                         if (plugin != null) {
-                            Intent intent = new Intent(this, PluginSettingsActivity.class);
+                            Intent intent = PluginSettingsActivity.createIntent(this, plugin.getDeviceId(), plugin.getPluginKey());
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            intent.putExtra(PluginSettingsActivity.EXTRA_DEVICE_ID, plugin.getDeviceId());
-                            intent.putExtra(PluginSettingsActivity.EXTRA_PLUGIN_KEY, plugin.getPluginKey());
                             startActivity(intent);
                         }
                     } else { // != 1 instance of plugin -> show main activity view

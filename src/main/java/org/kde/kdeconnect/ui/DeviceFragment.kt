@@ -5,7 +5,6 @@
  */
 package org.kde.kdeconnect.ui
 
-import android.content.Intent
 import android.os.Bundle
 import android.content.Context
 import android.os.Build
@@ -107,8 +106,7 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
                     true
                 }
             }
-            val intent = Intent(mActivity, PluginSettingsActivity::class.java)
-            intent.putExtra("deviceId", deviceId)
+            val intent = PluginSettingsActivity.createIntent(mActivity!!, deviceId)
             menu.add(R.string.device_menu_plugins).setOnMenuItemClickListener {
                 startActivity(intent)
                 true

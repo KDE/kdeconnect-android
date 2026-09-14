@@ -7,7 +7,6 @@
 package org.kde.kdeconnect.plugins.digitizer
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Gravity
@@ -160,11 +159,7 @@ class DigitizerActivity : BaseActivity<ActivityDigitizerBinding>(), DrawingPadVi
                 true
             }
             R.id.menu_open_settings -> {
-                startActivity(
-                    Intent(this, PluginSettingsActivity::class.java)
-                        .putExtra(PluginSettingsActivity.EXTRA_DEVICE_ID, deviceId)
-                        .putExtra(PluginSettingsActivity.EXTRA_PLUGIN_KEY, DigitizerPlugin::class.java.getSimpleName())
-                )
+                startActivity(PluginSettingsActivity.createIntent(this, deviceId, DigitizerPlugin::class.java.getSimpleName()))
                 true
             }
             else -> super.onOptionsItemSelected(item)

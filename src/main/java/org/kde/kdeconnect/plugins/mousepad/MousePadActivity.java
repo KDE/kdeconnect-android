@@ -268,9 +268,7 @@ public class MousePadActivity
             sendMiddleClick();
             return true;
         } else if (id == R.id.menu_open_mousepad_settings) {
-            Intent intent = new Intent(this, PluginSettingsActivity.class)
-                    .putExtra(PluginSettingsActivity.EXTRA_DEVICE_ID, deviceId)
-                    .putExtra(PluginSettingsActivity.EXTRA_PLUGIN_KEY, MousePadPlugin.class.getSimpleName());
+            Intent intent = PluginSettingsActivity.createIntent(this, deviceId, MousePadPlugin.class.getSimpleName());
             startActivity(intent);
             return true;
         } else if (id == R.id.menu_show_keyboard) {
