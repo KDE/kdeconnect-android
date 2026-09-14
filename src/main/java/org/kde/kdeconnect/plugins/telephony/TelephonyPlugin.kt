@@ -162,11 +162,10 @@ class TelephonyPlugin : Plugin() {
 
     override val optionalPermissionExplanation: Int = R.string.telephony_optional_permission_explanation
 
-    override fun onCreate(): Boolean {
+    override fun onCreate() {
         val filter = IntentFilter(TelephonyManager.ACTION_PHONE_STATE_CHANGED)
         filter.priority = 500
         context.registerReceiver(receiver, filter)
-        return true
     }
 
     override fun onDestroy() {

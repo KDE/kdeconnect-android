@@ -113,7 +113,7 @@ public class RemoteKeyboardIMEPlugin extends Plugin implements SharedPreferences
     }
 
     @Override
-    public boolean onCreate() {
+    public void onCreate() {
         Log.d(LOG_TAG, "Creating for device " + getDevice().getName());
         acquireInstances();
         try {
@@ -128,8 +128,6 @@ public class RemoteKeyboardIMEPlugin extends Plugin implements SharedPreferences
         prefs.registerOnSharedPreferenceChangeListener(this);
 
         notifyKeyboardState(isKeyboardAvailable());
-
-        return true;
     }
 
     @Override

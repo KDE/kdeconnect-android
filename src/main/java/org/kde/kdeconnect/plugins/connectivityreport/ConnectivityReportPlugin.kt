@@ -68,9 +68,8 @@ class ConnectivityReportPlugin : Plugin() {
         }
     }
 
-    override fun onCreate(): Boolean {
+    override fun onCreate() {
         getInstance(context).listenStateChanges(listener)
-        return true
     }
 
     override fun onDestroy() {

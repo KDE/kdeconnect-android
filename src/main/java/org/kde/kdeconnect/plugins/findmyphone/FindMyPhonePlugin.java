@@ -70,7 +70,7 @@ public class FindMyPhonePlugin extends Plugin {
     }
 
     @Override
-    public boolean onCreate() {
+    public void onCreate() throws IOException {
         notificationManager = ContextCompat.getSystemService(context, NotificationManager.class);
         notificationId = (int) System.currentTimeMillis();
         audioManager = ContextCompat.getSystemService(context, AudioManager.class);
@@ -86,24 +86,17 @@ public class FindMyPhonePlugin extends Plugin {
             ringtone = Uri.parse(ringtoneString);
         }
 
-        try {
-            mediaPlayer = new MediaPlayer();
-            mediaPlayer.setDataSource(context, ringtone);
-            AudioAttributes audioAttributes = new AudioAttributes.Builder()
-                .setUsage(AudioAttributes.USAGE_ALARM)
-                .setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
-                .setFlags(AudioAttributes.FLAG_AUDIBILITY_ENFORCED)
-                .build();
-            mediaPlayer.setWakeMode(context, PowerManager.SCREEN_DIM_WAKE_LOCK); // Prevent screen turning off, requires WAKE_LOCK permission
-            mediaPlayer.setAudioAttributes(audioAttributes);
-            mediaPlayer.setLooping(true);
-            mediaPlayer.prepare();
-        } catch (Exception e) {
-            Log.e("FindMyPhoneActivity", "Exception", e);
-            return false;
-        }
-
-        return true;
+        mediaPlayer = new MediaPlayer();
+        mediaPlayer.setDataSource(context, ringtone);
+        AudioAttributes audioAttributes = new AudioAttributes.Builder()
+            .setUsage(AudioAttributes.USAGE_ALARM)
+            .setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
+            .setFlags(AudioAttributes.FLAG_AUDIBILITY_ENFORCED)
+            .build();
+        mediaPlayer.setWakeMode(context, PowerManager.SCREEN_DIM_WAKE_LOCK); // Prevent screen turning off, requires WAKE_LOCK permission
+        mediaPlayer.setAudioAttributes(audioAttributes);
+        mediaPlayer.setLooping(true);
+        mediaPlayer.prepare();
     }
 
     @Override

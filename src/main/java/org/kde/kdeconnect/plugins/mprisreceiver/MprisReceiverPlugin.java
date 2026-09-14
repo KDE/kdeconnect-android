@@ -50,28 +50,19 @@ public class MprisReceiverPlugin extends Plugin {
     private MediaSessionChangeListener mediaSessionChangeListener;
 
     @Override
-    public boolean onCreate() {
-        if (!NotificationReceiver.hasReadNotificationsPermission(context)) {
-            return false;
-        }
+    public void onCreate() {
         players = new HashMap<>();
         playerCbs = new HashMap<>();
-        try {
-            MediaSessionManager manager = ContextCompat.getSystemService(context, MediaSessionManager.class);
-            if (null == manager)
-                return false;
 
-            assert(mediaSessionChangeListener == null);
-            mediaSessionChangeListener = new MediaSessionChangeListener();
-            manager.addOnActiveSessionsChangedListener(mediaSessionChangeListener, new ComponentName(context, NotificationReceiver.class), new Handler(Looper.getMainLooper()));
+        MediaSessionManager manager = ContextCompat.getSystemService(context, MediaSessionManager.class);
+        assert(manager != null);
 
-            createPlayers(manager.getActiveSessions(new ComponentName(context, NotificationReceiver.class)));
-            sendPlayerList();
-        } catch (Exception e) {
-            Log.e(TAG, "Exception", e);
-        }
+        assert(mediaSessionChangeListener == null);
+        mediaSessionChangeListener = new MediaSessionChangeListener();
+        manager.addOnActiveSessionsChangedListener(mediaSessionChangeListener, new ComponentName(context, NotificationReceiver.class), new Handler(Looper.getMainLooper()));
 
-        return true;
+        createPlayers(manager.getActiveSessions(new ComponentName(context, NotificationReceiver.class)));
+        sendPlayerList();
     }
 
     @Override

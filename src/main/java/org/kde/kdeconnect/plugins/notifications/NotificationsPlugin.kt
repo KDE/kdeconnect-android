@@ -79,7 +79,7 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
         return NotificationReceiver.hasReadNotificationsPermission(context)
     }
 
-    override fun onCreate(): Boolean {
+    override fun onCreate() {
         appDatabase = AppDatabase.getInstance(context)
         sharedPreferences = context.getSharedPreferences(sharedPreferencesName, Context.MODE_PRIVATE)
         keyguardManager = context.getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
@@ -88,7 +88,6 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
             service.addListener(this@NotificationsPlugin)
             serviceReady = service.isConnected
         }
-        return true
     }
 
     override fun onDestroy() {

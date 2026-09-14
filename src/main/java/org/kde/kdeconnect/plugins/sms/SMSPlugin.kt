@@ -228,7 +228,7 @@ class SMSPlugin : Plugin() {
 
     override val permissionExplanation: Int = R.string.telepathy_permission_explanation
 
-    override fun onCreate(): Boolean {
+    override fun onCreate() {
         val filter = IntentFilter(Telephony.Sms.Intents.SMS_RECEIVED_ACTION)
         filter.priority = 500
         context.registerReceiver(receiver, filter)
@@ -244,8 +244,6 @@ class SMSPlugin : Plugin() {
         mostRecentTimestampLock.lock()
         mostRecentTimestamp = getNewestMessageTimestamp(context)
         mostRecentTimestampLock.unlock()
-
-        return true
     }
 
     override fun onDestroy() {

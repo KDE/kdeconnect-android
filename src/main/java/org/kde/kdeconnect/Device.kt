@@ -605,17 +605,14 @@ class Device : PacketReceiver {
             return true
         }
 
-        val initializedOk = runCatching {
+        try {
             plugin.onCreate()
-        }.onFailure {
-            Log.e("KDE/addPlugin", "plugin failed to load $pluginKey", it)
-        }.getOrDefault(false)
-
-        if (!initializedOk) {
+        } catch (e : Exception) {
+            Log.e("KDE/addPlugin", "plugin failed to load $pluginKey", e)
             removePlugin(pluginKey)
+            return false
         }
-
-        return initializedOk
+        return true
     }
 
     // Helper function for reloadPluginsFromSettings(), do not call from elsewhere

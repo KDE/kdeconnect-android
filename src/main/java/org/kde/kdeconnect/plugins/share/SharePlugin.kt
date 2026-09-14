@@ -56,11 +56,10 @@ class SharePlugin : Plugin() {
     private var uploadFileJob: CompositeUploadFileJob? = null
 
 
-    override fun onCreate(): Boolean {
+    override fun onCreate() {
         createOrUpdateDynamicShortcut()
         // Deliver URLs previously shared to this device now that it's connected
         deliverPreviouslySentIntents()
-        return true
     }
 
     override fun onDestroy() {

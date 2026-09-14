@@ -130,10 +130,9 @@ public class RunCommandPlugin extends Plugin {
     }
 
     @Override
-    public boolean onCreate() {
+    public void onCreate() {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.context);
         requestCommandList();
-        return true;
     }
 
     @Override

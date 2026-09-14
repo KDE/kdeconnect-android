@@ -74,11 +74,10 @@ class RemoteKeyboardPlugin : Plugin() {
         }
     }
 
-    override fun onCreate(): Boolean {
+    override fun onCreate() {
         val np = NetworkPacket(PACKET_TYPE_MOUSEPAD_KEYBOARDSTATE)
         np["state"] = true
         device.sendPacket(np)
-        return true
     }
 
     override fun onDestroy() {

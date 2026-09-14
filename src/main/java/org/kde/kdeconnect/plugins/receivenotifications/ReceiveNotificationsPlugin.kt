@@ -34,12 +34,11 @@ class ReceiveNotificationsPlugin : Plugin() {
 
     override val isEnabledByDefault: Boolean = false
 
-    override fun onCreate(): Boolean {
+    override fun onCreate() {
         // request all existing notifications
         val np = NetworkPacket(PACKET_TYPE_NOTIFICATION_REQUEST)
         np["request"] = true
         device.sendPacket(np)
-        return true
     }
 
     override fun onPacketReceived(np: NetworkPacket): Boolean {

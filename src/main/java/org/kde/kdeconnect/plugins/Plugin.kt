@@ -155,13 +155,10 @@ abstract class Plugin {
      *
      * If [isCompatible] or [checkRequiredPermissions] returns false, this
      * will *not* be called.
-     *
-     * @return true if initialization was successful, false otherwise
      */
     @EmptySuper
-    open fun onCreate(): Boolean {
-        return true
-    }
+    @Throws(Exception::class)
+    open fun onCreate() {}
 
     /**
      * Finish any ongoing operations, remove listeners... so

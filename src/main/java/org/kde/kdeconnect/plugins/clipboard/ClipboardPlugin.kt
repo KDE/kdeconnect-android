@@ -99,10 +99,9 @@ class ClipboardPlugin : Plugin() {
     }
 
 
-    override fun onCreate(): Boolean {
+    override fun onCreate() {
         ClipboardListener.instance(context).registerObserver(observer)
         sendConnectPacket()
-        return true
     }
 
     override fun onDestroy() {

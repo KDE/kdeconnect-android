@@ -215,7 +215,7 @@ class MprisPlugin : Plugin() {
         return PluginSettingsFragment.newInstance(pluginKey, device.deviceId, R.xml.mprisplugin_preferences)
     }
 
-    override fun onCreate(): Boolean {
+    override fun onCreate() {
         MprisMediaSession.instance.addDevice(context.applicationContext, this, device.deviceId)
 
         // Always request the player list so the data is up-to-date
@@ -223,8 +223,6 @@ class MprisPlugin : Plugin() {
 
         initializeDiskCache(context)
         registerPlugin(this)
-
-        return true
     }
 
     override fun onDestroy() {

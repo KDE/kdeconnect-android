@@ -84,7 +84,7 @@ class BatteryPlugin : Plugin() {
         }
     }
 
-    override fun onCreate(): Boolean {
+    override fun onCreate() {
         val intentFilter = IntentFilter().apply {
             addAction(Intent.ACTION_BATTERY_CHANGED)
             addAction(Intent.ACTION_BATTERY_LOW)
@@ -92,7 +92,6 @@ class BatteryPlugin : Plugin() {
         }
         val currentState = context.registerReceiver(receiver, intentFilter)
         receiver.onReceive(context, currentState)
-        return true
     }
 
     override fun onDestroy() {
