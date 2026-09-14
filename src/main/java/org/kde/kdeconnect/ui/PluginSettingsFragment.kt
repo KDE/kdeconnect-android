@@ -42,10 +42,10 @@ open class PluginSettingsFragment : PreferenceFragmentCompat() {
         val device = getInstance().getDevice(this.deviceId)
         if (device == null) {
             requireActivity().finish()
-            return
+        } else {
+            this.device = device
+            this.plugin = device.getPluginIncludingWithoutPermissions(pluginKey)
         }
-        this.device = device
-        this.plugin = device.getPluginIncludingWithoutPermissions(pluginKey)
         super.onCreate(savedInstanceState)
     }
 

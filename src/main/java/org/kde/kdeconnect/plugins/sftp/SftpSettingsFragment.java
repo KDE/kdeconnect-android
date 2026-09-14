@@ -89,6 +89,11 @@ public class SftpSettingsFragment
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         super.onCreatePreferences(savedInstanceState, rootKey);
 
+        // The activity is finishing because its device is no longer available.
+        if (plugin == null) {
+            return;
+        }
+
         // Can't use try-with-resources since TypedArray's close method was only added in API 31
         TypedArray ta = requireContext().obtainStyledAttributes(new int[]{androidx.appcompat.R.attr.colorAccent});
         int colorAccent = ta.getColor(0, 0);
