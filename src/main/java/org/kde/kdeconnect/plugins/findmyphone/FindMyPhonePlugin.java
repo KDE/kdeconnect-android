@@ -27,6 +27,7 @@ import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.jetbrains.annotations.NotNull;
 import org.kde.kdeconnect.helpers.DeviceHelper;
 import org.kde.kdeconnect.helpers.LifecycleHelper;
 import org.kde.kdeconnect.helpers.NotificationHelper;
@@ -231,7 +232,7 @@ public class FindMyPhonePlugin extends Plugin {
     }
 
     @Override
-    public PluginSettingsFragment getSettingsFragment(Activity activity) {
+    public PluginSettingsFragment getSettingsFragment(@NotNull Activity activity) {
         return FindMyPhoneSettingsFragment.newInstance(getPluginKey(), getDevice().getDeviceId(), R.xml.findmyphoneplugin_preferences);
     }
 

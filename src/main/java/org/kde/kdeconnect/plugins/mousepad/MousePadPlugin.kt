@@ -15,7 +15,6 @@ import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.plugins.PluginFactory.LoadablePlugin
 import org.kde.kdeconnect.ui.PluginSettingsFragment
-import org.kde.kdeconnect.ui.PluginSettingsFragment.Companion.newInstance
 import org.kde.kdeconnect_tp.R
 
 @LoadablePlugin
@@ -66,11 +65,11 @@ class MousePadPlugin : Plugin() {
 
     override fun hasSettings(): Boolean = true
 
-    override fun getSettingsFragment(activity: Activity): PluginSettingsFragment? {
+    override fun getSettingsFragment(activity: Activity): PluginSettingsFragment {
         return if (device.deviceType == DeviceType.TV) {
-            newInstance(pluginKey, device.deviceId, R.xml.mousepadplugin_preferences, R.xml.mousepadplugin_preferences_tv)
+            PluginSettingsFragment.newInstance(pluginKey, device.deviceId, R.xml.mousepadplugin_preferences, R.xml.mousepadplugin_preferences_tv)
         } else {
-            newInstance(pluginKey, device.deviceId, R.xml.mousepadplugin_preferences)
+            PluginSettingsFragment.newInstance(pluginKey, device.deviceId, R.xml.mousepadplugin_preferences)
         }
     }
 

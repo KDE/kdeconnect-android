@@ -115,7 +115,7 @@ public class RunCommandPlugin extends Plugin {
 
     @Nullable
     @Override
-    public PluginSettingsFragment getSettingsFragment(Activity activity) {
+    public PluginSettingsFragment getSettingsFragment(@NotNull Activity activity) {
         return PluginSettingsFragment.newInstance(getPluginKey(), getDevice().getDeviceId(), R.xml.runcommand_preferences);
     }
 

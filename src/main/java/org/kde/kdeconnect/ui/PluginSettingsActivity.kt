@@ -43,13 +43,9 @@ class PluginSettingsActivity : BaseActivity<ActivityPluginSettingsBinding>(), Pl
         if (fragment == null) {
             val pluginKey = intent.getStringExtra(EXTRA_PLUGIN_KEY)
             if (pluginKey != null) {
-                val device = getInstance().getDevice(settingsDeviceId)
-                if (device != null) {
-                    val plugin = device.getPluginIncludingWithoutPermissions(pluginKey)
-                    if (plugin != null) {
-                        fragment = plugin.getSettingsFragment(this)
-                    }
-                }
+                fragment = getInstance().getDevice(settingsDeviceId)
+                    ?.getPluginIncludingWithoutPermissions(pluginKey)
+                    ?.getSettingsFragment(this)
             }
             if (fragment == null) {
                 fragment = PluginSettingsListFragment.newInstance(settingsDeviceId)

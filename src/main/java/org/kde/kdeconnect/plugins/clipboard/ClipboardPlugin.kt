@@ -34,8 +34,9 @@ class ClipboardPlugin : Plugin() {
 
     override fun supportsDeviceSpecificSettings(): Boolean = true
 
-    override fun getSettingsFragment(activity: Activity): PluginSettingsFragment =
-        PluginSettingsFragment.newInstance(pluginKey, device.deviceId, R.xml.clipboardplugin_preferences)
+    override fun getSettingsFragment(activity: Activity): PluginSettingsFragment {
+        return PluginSettingsFragment.newInstance(pluginKey, device.deviceId, R.xml.clipboardplugin_preferences)
+    }
 
     override fun onPacketReceived(np: NetworkPacket): Boolean {
         val content = np.getString("content")

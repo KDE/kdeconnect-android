@@ -23,7 +23,6 @@ import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.plugins.PluginFactory.LoadablePlugin
 import org.kde.kdeconnect.ui.PluginSettingsFragment
-import org.kde.kdeconnect.ui.PluginSettingsFragment.Companion.newInstance
 import org.kde.kdeconnect_tp.R
 import java.util.Timer
 import java.util.TimerTask
@@ -198,7 +197,9 @@ class TelephonyPlugin : Plugin() {
 
     override fun hasSettings(): Boolean = true
 
-    override fun getSettingsFragment(activity: Activity): PluginSettingsFragment = newInstance(pluginKey, device.deviceId, R.xml.telephonyplugin_preferences)
+    override fun getSettingsFragment(activity: Activity): PluginSettingsFragment {
+        return PluginSettingsFragment.newInstance(pluginKey, device.deviceId, R.xml.telephonyplugin_preferences)
+    }
 
     companion object {
         /**

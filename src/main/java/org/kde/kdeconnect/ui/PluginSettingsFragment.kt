@@ -35,12 +35,12 @@ open class PluginSettingsFragment : PreferenceFragmentCompat() {
     override fun onCreate(savedInstanceState: Bundle?) {
         val arguments = requireArguments()
         if (!arguments.containsKey(ARG_PLUGIN_KEY)) {
-            throw RuntimeException("You must provide a pluginKey by calling setArguments(@NonNull String pluginKey)")
+            throw RuntimeException("You must provide a pluginKey by calling setArguments()")
         }
-        val pluginKey = arguments.getString(ARG_PLUGIN_KEY)!!
-        this.pluginKey = pluginKey
+        this.pluginKey = arguments.getString(ARG_PLUGIN_KEY)!!
         this.layouts = arguments.getIntArray(ARG_LAYOUT)!!
-        val device = getInstance().getDevice(this.deviceId)
+        val deviceId = requireArguments().getString(ARG_DEVICE_ID)!!
+        val device = getInstance().getDevice(deviceId)
         if (device == null) {
             requireActivity().finish()
         } else {
@@ -69,10 +69,6 @@ open class PluginSettingsFragment : PreferenceFragmentCompat() {
         val info = PluginFactory.getPluginInfo(pluginKey)
         requireActivity().title = getString(R.string.plugin_settings_with_name, info.displayName)
     }
-
-    val deviceId: String
-        get() = requireArguments().getString(ARG_DEVICE_ID)
-            ?: throw RuntimeException("You must provide a deviceId by calling setArguments(@NonNull String pluginKey, @NonNull String deviceId, int... settingsLayouts)")
 
     companion object {
         private const val ARG_PLUGIN_KEY = "plugin_key"

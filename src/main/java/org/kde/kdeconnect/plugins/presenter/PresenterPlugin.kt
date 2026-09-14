@@ -14,7 +14,6 @@ import org.kde.kdeconnect.plugins.mousepad.KeyListenerView
 import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.plugins.PluginFactory.LoadablePlugin
 import org.kde.kdeconnect.ui.PluginSettingsFragment
-import org.kde.kdeconnect.ui.PluginSettingsFragment.Companion.newInstance
 import org.kde.kdeconnect_tp.R
 
 
@@ -33,7 +32,7 @@ class PresenterPlugin : Plugin() {
     override fun hasSettings(): Boolean = true
 
     override fun getSettingsFragment(activity: Activity): PluginSettingsFragment {
-        return newInstance(pluginKey, device.deviceId, R.xml.presenterplugin_preferences)
+        return PluginSettingsFragment.newInstance(pluginKey, device.deviceId, R.xml.presenterplugin_preferences)
     }
 
     override fun getUiButtons(): List<PluginUiButton> = listOf(

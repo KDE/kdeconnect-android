@@ -26,6 +26,7 @@ import androidx.annotation.NonNull;
 import androidx.core.util.Pair;
 import androidx.fragment.app.DialogFragment;
 
+import org.jetbrains.annotations.NotNull;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.plugins.Plugin;
 import org.kde.kdeconnect.plugins.PluginFactory;
@@ -164,7 +165,7 @@ public class RemoteKeyboardIMEPlugin extends Plugin implements SharedPreferences
     }
 
     @Override
-    public PluginSettingsFragment getSettingsFragment(Activity activity) {
+    public PluginSettingsFragment getSettingsFragment(@NotNull Activity activity) {
         return PluginSettingsFragment.newInstance(getPluginKey(), getDevice().getDeviceId(), R.xml.remotekeyboardplugin_preferences);
     }
 
