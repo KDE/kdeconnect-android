@@ -560,6 +560,12 @@ class Device : PacketReceiver {
     }
 
     // Helper function for reloadPluginsFromSettings(), do not call from elsewhere
+    // Places the plugin in one of these buckets:
+    // - required permissions missing: pluginsWithoutPermissions only
+    // - required permissions missing, loadPluginWhenRequiredPermissionsMissing() == true: loadedPlugins + pluginsWithoutPermissions
+    // - optional permissions missing: loadedPlugins + pluginsWithoutOptionalPermissions
+    // - all permissions granted: loadedPlugins only
+    // returns true if the plugin ended up in loadedPlugins
     private fun addPlugin(pluginKey: String): Boolean {
         val isNewPlugin = !loadedPlugins.containsKey(pluginKey)
 
@@ -599,11 +605,17 @@ class Device : PacketReceiver {
             return true
         }
 
-        return runCatching {
+        val initializedOk = runCatching {
             plugin.onCreate()
         }.onFailure {
             Log.e("KDE/addPlugin", "plugin failed to load $pluginKey", it)
         }.getOrDefault(false)
+
+        if (!initializedOk) {
+            removePlugin(pluginKey)
+        }
+
+        return initializedOk
     }
 
     // Helper function for reloadPluginsFromSettings(), do not call from elsewhere
