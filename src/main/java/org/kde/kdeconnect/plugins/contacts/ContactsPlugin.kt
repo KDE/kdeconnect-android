@@ -112,7 +112,7 @@ class ContactsPlugin : Plugin() {
         val reply = NetworkPacket(PACKET_TYPE_CONTACTS_RESPONSE_UIDS_TIMESTAMPS).apply {
             val uIDsAsString = mutableListOf<String>()
             for ((contactID: uID, timestamp: Long) in uIDsToTimestamps) {
-                set(contactID.toString(), timestamp.toString())
+                set(contactID.toString(), timestamp)
                 uIDsAsString.add(contactID.toString())
             }
             set(PACKET_UIDS_KEY, uIDsAsString)
