@@ -73,6 +73,7 @@ public class MousePadActivity
     private boolean doubleTapDragEnabled = false;
     private int gyroscopeSensitivity = 100;
     private boolean isScrolling = false;
+    private double accumulatedDistanceX = 0;
     private double accumulatedDistanceY = 0;
     private boolean pendingShowKeyboard = false;
     private boolean keyboardShown = false;
@@ -394,7 +395,7 @@ public class MousePadActivity
             accumulatedDistanceY += distanceY;
 
             if (accumulatedDistanceY > MinDistanceToSendGenericScroll || accumulatedDistanceY < -MinDistanceToSendGenericScroll) {
-                sendScroll(accumulatedDistanceY);
+                sendScroll(0, accumulatedDistanceY);
                 accumulatedDistanceY = 0;
             }
         }
@@ -411,10 +412,12 @@ public class MousePadActivity
 
         isScrolling = true;
 
+        accumulatedDistanceX += distanceX * scrollCoefficient;
         accumulatedDistanceY += distanceY * scrollCoefficient;
-        if (accumulatedDistanceY > MinDistanceToSendScroll || accumulatedDistanceY < -MinDistanceToSendScroll) {
-            sendScroll(scrollDirection * accumulatedDistanceY);
+        if (Math.abs(accumulatedDistanceX) > MinDistanceToSendScroll || Math.abs(accumulatedDistanceY) > MinDistanceToSendScroll) {
+            sendScroll(-scrollDirection * accumulatedDistanceX, scrollDirection * accumulatedDistanceY);
 
+            accumulatedDistanceX = 0;
             accumulatedDistanceY = 0;
         }
 
@@ -564,13 +567,13 @@ public class MousePadActivity
         plugin.sendRightClick();
     }
 
-    private void sendScroll(final double y) {
+    private void sendScroll(final double x, final double y) {
         MousePadPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, MousePadPlugin.class);
         if (plugin == null) {
             finish();
             return;
         }
-        plugin.sendScroll(0, y);
+        plugin.sendScroll(x, y);
     }
 
     private void toggleKeyboard() {
