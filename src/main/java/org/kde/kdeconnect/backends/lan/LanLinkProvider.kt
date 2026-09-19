@@ -373,6 +373,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
      */
     @WorkerThread
     @Throws(IOException::class)
+    @Synchronized
     private fun addOrUpdateLink(socket: SSLSocket, deviceInfo: DeviceInfo) {
         var linkCreated = false
         val link = visibleDevices.computeIfAbsent(deviceInfo.id) {
@@ -383,6 +384,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
         if (linkCreated) {
             Log.d("KDE/LanLinkProvider", "Creating a new link for device " + deviceInfo.id)
             onConnectionReceived(link)
+            link.startListening()
         } else {
             if (link.deviceInfo.certificate != deviceInfo.certificate) {
                 Log.e("LanLinkProvider", "LanLink was asked to replace a socket but the certificate doesn't match, aborting")

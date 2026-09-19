@@ -420,11 +420,6 @@ class Device : PacketReceiver {
             return
         }
 
-        // pluginsByIncomingInterface may not be built yet
-        if (pluginsByIncomingInterface.isEmpty) {
-            reloadPluginsFromSettings()
-        }
-
         if (!isPaired) {
             // If it is pair packet, it should be captured by "if" at start
             // If not and device is paired, it should be captured by isPaired

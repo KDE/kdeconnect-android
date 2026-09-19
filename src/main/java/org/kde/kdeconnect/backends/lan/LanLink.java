@@ -74,11 +74,16 @@ public class LanLink extends BaseLink {
 
         IOUtils.close(oldSocket); //This should cancel the readThread
 
-        //Log.e("LanLink", "Start listening");
-        //Create a thread to take care of incoming data for the new socket
+        startListening(newSocket);
+
+        return oldSocket;
+    }
+
+    private void startListening(final SSLSocket socket) {
+        // Create a thread to take care of incoming data for the socket
         ThreadHelper.execute(() -> {
             try {
-                BufferedInputStream stream = new BufferedInputStream(newSocket.getInputStream());
+                BufferedInputStream stream = new BufferedInputStream(socket.getInputStream());
                 while (true) {
                     String packet;
                     try {
@@ -93,24 +98,27 @@ public class LanLink extends BaseLink {
                     receivedNetworkPacket(np);
                 }
             } catch (Exception e) {
-                Log.i("LanLink", "Socket closed: " + newSocket.hashCode() + ". Reason: " + e.getMessage());
-                try { newSocket.close(); } catch (IOException ignored) { }
+                Log.i("LanLink", "Socket closed: " + socket.hashCode() + ". Reason: " + e.getMessage());
+                try { socket.close(); } catch (IOException ignored) { }
                 try { Thread.sleep(300); } catch (InterruptedException ignored) {} // Wait a bit because we might receive a new socket meanwhile
-                boolean thereIsaANewSocket = (newSocket != socket);
+                boolean thereIsaANewSocket = (socket != this.socket);
                 if (!thereIsaANewSocket) {
                     Log.i("LanLink", "Socket closed and there's no new socket, disconnecting device");
                     getLinkProvider().onConnectionLost(LanLink.this);
                 }
             }
         });
-
-        return oldSocket;
     }
 
     @WorkerThread
-    public LanLink(@NonNull Context context, @NonNull DeviceInfo deviceInfo, @NonNull BaseLinkProvider linkProvider, @NonNull SSLSocket socket) throws IOException {
+    public LanLink(@NonNull Context context, @NonNull DeviceInfo deviceInfo, @NonNull BaseLinkProvider linkProvider, @NonNull SSLSocket socket) {
         super(context, linkProvider);
-        reset(socket, deviceInfo);
+        this.deviceInfo = deviceInfo;
+        this.socket = socket;
+    }
+
+    public void startListening() {
+        startListening(socket);
     }
 
     @Override

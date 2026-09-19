@@ -181,6 +181,26 @@ class DeviceTest {
     }
 
     @Test
+    fun receiverIsRegisteredBeforeInitialPluginLoad() {
+        val device = Device(context, "testDevice")
+        val events = mutableListOf<String>()
+        device.addPluginsChangedListener { events.add("plugins loaded") }
+
+        val link = mockk<LanLink>()
+        every { link.deviceInfo } returns device.deviceInfo
+        every { link.addPacketReceiver(any()) } answers {
+            events.add("receiver registered")
+        }
+
+        device.addLink(link)
+
+        Assert.assertEquals(
+            listOf("receiver registered", "plugins loaded"),
+            events
+        )
+    }
+
+    @Test
     @Throws(CertificateException::class)
     fun testPairingDone() {
         val fakeNetworkPacket = NetworkPacket(NetworkPacket.PACKET_TYPE_IDENTITY)
