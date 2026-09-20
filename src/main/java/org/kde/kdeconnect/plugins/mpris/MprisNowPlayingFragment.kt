@@ -173,15 +173,17 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
         targetPlayer = plugin.getPlayerStatus(targetPlayerName)
 
         plugin.setPlayerStatusUpdatedHandler("activity") {
-            requireActivity().runOnUiThread {
+            val activity = activity ?: return@setPlayerStatusUpdatedHandler
+            activity.runOnUiThread {
                 updatePlayerStatus(plugin)
             }
         }
         plugin.setPlayerListUpdatedHandler("activity") {
-            requireActivity().runOnUiThread {
+            val activity = activity ?: return@setPlayerListUpdatedHandler
+            activity.runOnUiThread {
                 val playerList = plugin.playerList
                 val adapter = ArrayAdapter(
-                    requireContext(),
+                    activity,
                     android.R.layout.simple_spinner_item,
                     playerList.toTypedArray()
                 )
@@ -260,6 +262,7 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
             //Fragment is not attached to an activity. We will crash if we try to do anything here.
             return
         }
+        val activity = requireActivity()
 
         var playerStatus = targetPlayer
         if (playerStatus == null) {
@@ -277,7 +280,7 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
 
         val albumArt = playerStatus.getAlbumArt()
         if (albumArt == null) {
-            val drawable = ContextCompat.getDrawable(requireContext(), R.drawable.ic_album_art_placeholder)!!
+            val drawable = ContextCompat.getDrawable(activity, R.drawable.ic_album_art_placeholder)!!
             activityMprisBinding.albumArt.setImageDrawable(DrawableCompat.wrap(drawable))
         } else {
             activityMprisBinding.albumArt.setImageBitmap(albumArt)
@@ -327,7 +330,7 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
         mprisControlBinding.ffButton.visibility =
             if (playerStatus.isSeekAllowed) View.VISIBLE else View.GONE
 
-        requireActivity().invalidateOptionsMenu()
+        activity.invalidateOptionsMenu()
 
         //Show and hide previous/next buttons simultaneously
         if (playerStatus.isGoPreviousAllowed || playerStatus.isGoNextAllowed) {
