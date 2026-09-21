@@ -11,6 +11,7 @@ import android.content.Context
 import android.text.TextUtils
 import androidx.core.content.edit
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -58,7 +59,10 @@ sealed class SaveResult {
     data object Duplicate : SaveResult()
 }
 
-class CustomDevicesViewModel(application: Application) : AndroidViewModel(application) {
+class CustomDevicesViewModel(
+    application: Application,
+    private val savedStateHandle: SavedStateHandle
+) : AndroidViewModel(application) {
 
     private val prefs = application.getSharedPreferences(
         application.packageName + "_preferences",
@@ -73,32 +77,36 @@ class CustomDevicesViewModel(application: Application) : AndroidViewModel(applic
 
     init {
         val loaded = CustomDevicesActivity.getCustomDeviceList(application)
+        val devices = loaded.map { DeviceHostUiModel(it) }
+            .sortedBy { model -> model.host.toString() }
         _uiState.update {
             it.copy(
-                devices = loaded.map { h -> DeviceHostUiModel(h) }
-                    .sortedBy { model -> model.host.toString() }
+                devices = devices,
+                dialogState = restoreDialogState(devices)
             )
         }
         loaded.forEach { triggerPingFor(it) }
     }
 
     fun openAddDialog() {
+        savedStateHandle[KEY_OPEN_DIALOG_HOST] = ""
         _uiState.update { it.copy(dialogState = DialogState.AddingNew) }
     }
 
     fun openEditDialog(id: String) {
         _uiState.update { state ->
             val model = state.devices.find { it.id == id } ?: return@update state
-            state.copy(
-                dialogState = DialogState.Editing(
-                    editId = id,
-                    initialText = model.host.toString()
-                )
+            val dialogState = DialogState.Editing(
+                editId = id,
+                initialText = model.host.toString()
             )
+            savedStateHandle[KEY_OPEN_DIALOG_HOST] = model.host.toString()
+            state.copy(dialogState = dialogState)
         }
     }
 
     fun onDialogDismissed() {
+        savedStateHandle.remove<String>(KEY_OPEN_DIALOG_HOST)
         _uiState.update { it.copy(dialogState = DialogState.Hidden) }
     }
 
@@ -160,6 +168,9 @@ class CustomDevicesViewModel(application: Application) : AndroidViewModel(applic
         modelsToPersist?.let {
             persistDevicesList(it)
             triggerPingFor(host)
+        }
+        if (result == SaveResult.Success && _uiState.value.dialogState == DialogState.Hidden) {
+            savedStateHandle.remove<String>(KEY_OPEN_DIALOG_HOST)
         }
 
         return result
@@ -236,5 +247,23 @@ class CustomDevicesViewModel(application: Application) : AndroidViewModel(applic
                 TextUtils.join(CustomDevicesActivity.IP_DELIM, models.map { it.host })
             )
         }
+    }
+
+    private fun restoreDialogState(devices: List<DeviceHostUiModel>): DialogState {
+        val host = savedStateHandle.get<String>(KEY_OPEN_DIALOG_HOST)
+            ?: return DialogState.Hidden
+        if (host.isEmpty()) return DialogState.AddingNew
+
+        val model = devices.find { it.host.toString() == host }
+        return if (model == null) {
+            savedStateHandle.remove<String>(KEY_OPEN_DIALOG_HOST)
+            DialogState.Hidden
+        } else {
+            DialogState.Editing(editId = model.id, initialText = host)
+        }
+    }
+
+    private companion object {
+        const val KEY_OPEN_DIALOG_HOST = "open_dialog_host"
     }
 }
