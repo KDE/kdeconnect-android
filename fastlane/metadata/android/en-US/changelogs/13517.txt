@@ -1,3 +1,6 @@
+1.35.17:
+- Bugfixes
+
 1.35.16:
 - Remote Keyboard no longer needs the custom keyboard
 - Support sharing multiple URLs
