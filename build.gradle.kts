@@ -69,7 +69,7 @@ android {
 
     packaging {
         resources {
-            merges += listOf("META-INF/DEPENDENCIES", "META-INF/LICENSE", "META-INF/NOTICE")
+            merges += listOf("META-INF/DEPENDENCIES", "META-INF/LICENSE", "META-INF/LICENSE.md", "META-INF/NOTICE")
         }
     }
     signingConfigs {
@@ -292,7 +292,7 @@ dependencies {
     implementation(libs.apache.sshd.mina)
     implementation(libs.apache.mina.core)
 
-    implementation(libs.bcpkix.jdk15on) //For SSL certificate generation
+    implementation(libs.bcpkix.jdk18on) //For SSL certificate generation
 
     ksp(libs.classindexksp)
 
