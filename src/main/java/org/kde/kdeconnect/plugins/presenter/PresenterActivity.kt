@@ -253,23 +253,29 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener, OnSharedPref
     @Composable
     private fun PresenterAppBar() {
 
-        var dropdownShownState by remember { mutableStateOf(false) }
+        var menuExpanded by remember { mutableStateOf(false) }
 
         KdeTopAppBar(
             title = stringResource(R.string.pref_plugin_presenter),
             navIconOnClick = { onBackPressedDispatcher.onBackPressed() },
             navIconDescription = getString(androidx.appcompat.R.string.abc_action_bar_up_description),
             actions = {
-                IconButton(onClick = { dropdownShownState = true }) {
+                IconButton(onClick = { menuExpanded = true }) {
                     Icon(Icons.Default.MoreVert, stringResource(R.string.extra_options))
                 }
-                DropdownMenu(expanded = dropdownShownState, onDismissRequest = { dropdownShownState = false }) {
+                DropdownMenu(expanded = menuExpanded, onDismissRequest = { menuExpanded = false }) {
                     DropdownMenuItem(
-                        onClick = { plugin.sendFullscreen() },
+                        onClick = {
+                            menuExpanded = false
+                            plugin.sendFullscreen()
+                        },
                         text = { Text(stringResource(R.string.presenter_fullscreen)) },
                     )
                     DropdownMenuItem(
-                        onClick = { plugin.sendEsc() },
+                        onClick = {
+                            menuExpanded = false
+                            plugin.sendEsc()
+                        },
                         text = { Text(stringResource(R.string.presenter_exit)) },
                     )
                 }
