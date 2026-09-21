@@ -196,7 +196,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
     private fun updateDevicesByIpSummary() {
         devicesByIpPref.setSummary(getString(
             R.string.custom_devices_settings_summary,
-            CustomDevicesActivity.getCustomDeviceList(context).size
+            CustomDevicesActivity.getCustomDeviceList(requireContext()).size
         ))
     }
 
