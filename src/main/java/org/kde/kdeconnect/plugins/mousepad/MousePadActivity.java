@@ -55,6 +55,7 @@ public class MousePadActivity
 
     private final static float MinDistanceToSendScroll = 2.5f; // touch gesture scroll
     private final static float MinDistanceToSendGenericScroll = 0.1f; // real mouse scroll wheel event
+    private final static float DirectionLockRatio = 0.5f;
     private final static float StandardDpi = 240.0f; // = hdpi
     private final static float MinDraggingDistance2 = 25.0f; // distance squared to move after
                                                              // a double tap to start dragging
@@ -412,8 +413,23 @@ public class MousePadActivity
 
         isScrolling = true;
 
-        accumulatedDistanceX += distanceX * scrollCoefficient;
-        accumulatedDistanceY += distanceY * scrollCoefficient;
+        float filteredDistanceX = distanceX;
+        float filteredDistanceY = distanceY;
+
+        final float absX = Math.abs(filteredDistanceX);
+        final float absY = Math.abs(filteredDistanceY);
+
+        // Suppress minor perpendicular motion near either axis while preserving
+        // deliberate diagonal scrolling.
+        if (absX < absY * DirectionLockRatio) {
+            filteredDistanceX = 0;
+        } else if (absY < absX * DirectionLockRatio) {
+            filteredDistanceY = 0;
+        }
+
+        accumulatedDistanceX += filteredDistanceX * scrollCoefficient;
+        accumulatedDistanceY += filteredDistanceY * scrollCoefficient;
+
         if (Math.abs(accumulatedDistanceX) > MinDistanceToSendScroll || Math.abs(accumulatedDistanceY) > MinDistanceToSendScroll) {
             sendScroll(-scrollDirection * accumulatedDistanceX, scrollDirection * accumulatedDistanceY);
 
