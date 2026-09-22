@@ -4,8 +4,9 @@ FILE_PREFIX=kdeconnect-android-store
 function export_pot_dir # First parameter will be the path of the directory where we have to store the pot files
 {
     potdir=$1
-    txt2po --no-segmentation --progress=names -P -i ./metadata/android/en-US/short_description.txt -o $potdir/kdeconnect-android-store-short.pot
-    txt2po --no-segmentation --progress=names -P -i ./metadata/android/en-US/full_description.txt -o $potdir/kdeconnect-android-store-full.pot
+    # Must end in ._static_.pot, so that scripty doesn't copy the .po files back to the repo
+    txt2po --no-segmentation --progress=names -P -i ./metadata/android/en-US/short_description.txt -o $potdir/kdeconnect-android-store-short._static_.pot
+    txt2po --no-segmentation --progress=names -P -i ./metadata/android/en-US/full_description.txt -o $potdir/kdeconnect-android-store-full._static_.pot
 }
 
 function import_po_dirs # First parameter will be a path that will be a directory to the dirs for each lang and then all the .po files inside
@@ -29,11 +30,11 @@ function import_po_dirs # First parameter will be a path that will be a director
         fi
     done
     for lang in $(ls $podir); do
-        if [ -f $podir/$lang/kdeconnect-android-store-short.po ] && [ -f $podir/$lang/kdeconnect-android-store-full.po ]; then
+        if [ -f $podir/$lang/kdeconnect-android-store-short._static_.po ] && [ -f $podir/$lang/kdeconnect-android-store-full._static_.po ]; then
             mkdir -p ./metadata/android/$lang/
             cp ./metadata/android/en-US/title.txt ./metadata/android/$lang/title.txt # we do not translate the app name
-            po2txt --fuzzy --progress=names -i $podir/$lang/kdeconnect-android-store-short.po -o ./metadata/android/$lang/short_description.txt
-            po2txt --fuzzy --progress=names -i $podir/$lang/kdeconnect-android-store-full.po -o ./metadata/android/$lang/full_description.txt
+            po2txt --fuzzy --progress=names -i $podir/$lang/kdeconnect-android-store-short._static_.po -o ./metadata/android/$lang/short_description.txt
+            po2txt --fuzzy --progress=names -i $podir/$lang/kdeconnect-android-store-full._static_.po -o ./metadata/android/$lang/full_description.txt
         fi
     done
 }
