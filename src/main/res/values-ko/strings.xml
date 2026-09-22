@@ -18,11 +18,15 @@
   <string name="pref_plugin_clipboard">클립보드 동기화</string>
   <string name="pref_plugin_clipboard_desc">클립보드 내용 동기화</string>
   <string name="pref_plugin_clipboard_sent">클립보드 보냄</string>
+  <string name="clipboard_preference_title_skip_sensitive">민감한 항목 클립보드 동기화 건너뛰기</string>
+  <string name="clipboard_preference_summary_skip_sensitive">암호나 민감함으로 표시된 항목 자동으로 동기화 안 함</string>
   <string name="pref_plugin_mousepad">원격 입력</string>
   <string name="pref_plugin_mousepad_desc_nontv">내 휴대폰이나 태블릿을 터치패드와 키보드로 사용하기</string>
   <string name="pref_plugin_mousepad_desc_tv">내 휴대폰이나 태블릿을 TV 리모콘으로 사용하기</string>
   <string name="pref_plugin_presenter">프레젠테이션 리모콘</string>
   <string name="pref_plugin_presenter_desc">내 장치로 프레젠테이션 슬라이드 전환하기</string>
+  <string name="pref_plugin_remotekeyboard_ime">키보드 수신기(안드로이드 키보드 사용)</string>
+  <string name="pref_plugin_remotekeyboard_accessibility">키보드 수신기(접근성 사용)</string>
   <string name="pref_plugin_remotekeyboard_desc">원격 장치의 키 입력 이벤트 받기</string>
   <string name="pref_plugin_mpris">멀티미디어 제어</string>
   <string name="pref_plugin_mpris_desc">내 미디어 재생기 원격 제어</string>
@@ -45,8 +49,12 @@
   <string name="sad_ok">확인 :(</string>
   <string name="cancel">취소</string>
   <string name="open_settings">설정 열기</string>
+  <string name="open_accessibility_settings">접근성 설정 열기</string>
+  <string name="open_input_settings">키보드 설정 열기</string>
   <string name="no_permissions">알림 접근 권한이 필요합니다</string>
   <string name="no_permission_mprisreceiver">미디어 재생기를 제어하려면 알림 접근 권한이 필요합니다</string>
+  <string name="no_permissions_remotekeyboard_ime">키 입력을 받으려면 안드로이드 키보드 앱에서 KDE Connect 원격 키보드를 활성화해야 합니다</string>
+  <string name="no_permissions_remotekeyboard_accessibility">키 입력을 받으려면 접근성 권한을 허용해야 합니다</string>
   <string name="send_ping">핑 보내기</string>
   <string name="open_mpris_controls">멀티미디어 제어</string>
   <string name="remotekeyboard_editing_only_title">편집할 때에만 원격 키 처리하기</string>
@@ -71,6 +79,7 @@
   <string name="bigscreen_hide_mouse_input">마우스와 키보드 원격 입력 단추 숨기기</string>
   <string name="bigscreen_show_home_title">홈 단추 표시</string>
   <string name="bigscreen_show_back_title">뒤로 이동 단추 표시</string>
+  <string name="bigscreen_show_close_title">닫기 단추 표시</string>
   <string-array name="mousepad_tap_entries">
     <item>왼쪽 클릭</item>
     <item>오른쪽 단추 클릭</item>
@@ -106,6 +115,8 @@
   <string name="pref_plugin_mousepad_send_keystrokes">키 입력으로 보내기</string>
   <string name="mouse_receiver_plugin_description">원격 마우스 움직임 받기</string>
   <string name="mouse_receiver_plugin_name">마우스 수신기</string>
+  <string name="mouse_receiver_no_permissions">원격으로 터치 입력을 받으려면 접근성 권한을 허용해야 합니다</string>
+  <string name="mouse_keyboard_receiver_service_description">원격 마우스 움직임과 키보드 입력 받기</string>
   <string name="view_status_title">상태</string>
   <string name="battery_status_format">배터리: %d%%</string>
   <string name="battery_status_low_format">배터리: %d%% 배터리 부족</string>
@@ -165,6 +176,7 @@
   <string name="show_keyboard">키보드 표시</string>
   <string name="show_mouse_and_keyboard">마우스와 키보드 표시</string>
   <string name="device_not_paired">장치가 페어링되지 않음</string>
+  <string name="pairing_missing_local_network_permission">근처 기기 접근 권한이 없으면 앱을 사용할 수 없습니다.</string>
   <string name="pairing_duplicate_names">경고: 이름이 같은 장치가 여러 대 있습니다.</string>
   <string name="request_pairing">페어링 요청</string>
   <string name="pairing_accept">수락</string>
@@ -356,6 +368,7 @@
   <string name="mpris_open_url">여기에서 계속 재생</string>
   <string name="cant_open_url">계속 재생할 URL을 열 수 없음</string>
   <string name="bigscreen_home">홈</string>
+  <string name="bigscreen_close">닫기</string>
   <string name="bigscreen_up">위</string>
   <string name="bigscreen_left">왼쪽</string>
   <string name="bigscreen_select">선택</string>
@@ -458,4 +471,10 @@
   <string name="pref_presenter_enable_volume_keys_summary">안드로이드 13 이상 15 이하에서는 대기 모드에서 지원하지 않습니다</string>
   <string name="presenter_volume_keys_foreground_tip">음량 키를 이전/다음 슬라이드 단추로 사용하려면 화면을 켜 두십시오</string>
   <string name="presenter_volume_keys_tip">음량 키를 이전/다음 슬라이드 단추로 사용하려면 화면을 켜 두거나 장치를 잠그십시오</string>
+  <string name="runcommand_output_no_output_desc">명령의 출력이 여기에 표시됩니다.</string>
+  <string name="runcommand_output_no_output">실행한 명령 없음</string>
+  <string name="runcommand_stop">현재 명령 정지</string>
+  <string name="runcommand_clear_output">출력 비우기</string>
+  <string name="pref_mpris_volume_control_title">하드웨어 음량 키</string>
+  <string name="pref_mpris_volume_control_summary">연결된 장치의 미디어 음량을 휴대폰의 하드웨어 단추로 제어</string>
 </resources>
