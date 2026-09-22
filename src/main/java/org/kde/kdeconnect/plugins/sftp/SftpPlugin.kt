@@ -68,6 +68,12 @@ class SftpPlugin : Plugin(), OnSharedPreferenceChangeListener {
                 .create()
         }
 
+    override fun onCreate() {
+        device.sendPacket(NetworkPacket(PACKET_TYPE_SFTP).apply {
+            this["serverRunning"] = false
+        })
+    }
+
     override fun onDestroy() {
         server.stop()
         preferences?.unregisterOnSharedPreferenceChangeListener(this)
