@@ -180,7 +180,7 @@
   <string name="tap_to_answer">Pulse para responder</string>
   <string name="left_click">Enviar clic izquierdo</string>
   <string name="right_click">Enviar clic derecho</string>
-  <string name="middle_click">Enviar clic del botón central</string>
+  <string name="middle_click">Enviar clic central</string>
   <string name="show_keyboard">Mostrar teclado</string>
   <string name="show_mouse_and_keyboard">Mostrar ratón y teclado</string>
   <string name="device_not_paired">Dispositivo no vinculado</string>
@@ -413,11 +413,11 @@
     <item>Claro</item>
     <item>Oscuro</item>
   </string-array>
-  <string name="report_bug">Reportar error</string>
-  <string name="donate">Realizar una donación</string>
+  <string name="report_bug">Informar de fallo</string>
+  <string name="donate">Hacer un donativo</string>
   <string name="source_code">Código fuente</string>
   <string name="licenses">Licencias</string>
-  <string name="website">Página web</string>
+  <string name="website">Sitio web</string>
   <string name="about">Acerca de</string>
   <string name="authors">Autores</string>
   <string name="thanks_to">Gracias a</string>
