@@ -102,7 +102,7 @@ fun RunCommandScreen(
             modifier = Modifier.safeDrawingPadding(),
             topBar = {
                 RunCommandAppBar(
-                    name = device.name,
+                    subTitle = device.name,
                     onBackPressedDispatcher = onBackPressedDispatcher,
                     showClearOutput = showOutputCard,
                     onClearOutput = { plugin.clearOutput() },
@@ -343,14 +343,14 @@ private fun OutputCard(
 
 @Composable
 fun RunCommandAppBar(
-    name: String,
+    subTitle: String,
     onBackPressedDispatcher: OnBackPressedDispatcher,
     showClearOutput: Boolean,
     onClearOutput: () -> Unit,
 ) {
     KdeTopAppBar(
         title = stringResource(R.string.pref_plugin_runcommand),
-        subTitle = name,
+        subTitle = subTitle,
         navIconOnClick = { onBackPressedDispatcher.onBackPressed() },
         navIconDescription = stringResource(androidx.appcompat.R.string.abc_action_bar_up_description),
         actions = {

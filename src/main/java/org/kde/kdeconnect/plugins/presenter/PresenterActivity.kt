@@ -44,7 +44,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInteropFilter
 import androidx.compose.ui.platform.LocalContext
@@ -71,7 +70,7 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener, OnSharedPref
     private lateinit var plugin : PresenterPlugin
     private var prefsApplied = false
     private var volumeKeys = false
-    private var prefs: SharedPreferences? = null
+    private lateinit var prefs: SharedPreferences
     private var sensitivity = 0.03f
 
     override fun onSensorChanged(event: SensorEvent?) {
@@ -84,23 +83,25 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener, OnSharedPref
     }
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
-        //ignored
+        // ignored
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
-        prefs = PreferenceManager.getDefaultSharedPreferences(this)
-        prefs!!.registerOnSharedPreferenceChangeListener(this)
+        prefs = PreferenceManager.getDefaultSharedPreferences(this)!!
+        prefs.registerOnSharedPreferenceChangeListener(this)
         applyPrefs()
 
-        plugin = KdeConnect.getInstance().getDevicePlugin(intent.getStringExtra("deviceId"), PresenterPlugin::class.java)
+        val deviceId = intent.getStringExtra("deviceId")!!
+        val device = KdeConnect.getInstance().getDevice(deviceId)
+        plugin = device?.getPlugin(PresenterPlugin::class.java)
             ?: run {
                 finish()
                 return
             }
-        setContent { PresenterScreen() }
+        setContent { PresenterScreen(device.name) }
         createMediaSession()
     }
 
@@ -158,27 +159,30 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener, OnSharedPref
     private fun applyPrefs() {
         if (prefsApplied) return
 
-        var scrollSensitivity = prefs!!.getInt(getString(R.string.pref_presenter_sensitivity), 50)
+        var scrollSensitivity = prefs.getInt(getString(R.string.pref_presenter_sensitivity), 50)
         scrollSensitivity += 10 // Do not allow near-zero sensitivity
         sensitivity = ((scrollSensitivity / 100f)/10f)*(6f/10f)
 
-        volumeKeys =
-            prefs!!.getBoolean(getString(R.string.pref_presenter_enable_volume_keys), true)
+        volumeKeys = prefs.getBoolean(getString(R.string.pref_presenter_enable_volume_keys), true)
 
         prefsApplied = true
     }
 
-    @OptIn(ExperimentalComposeUiApi::class)
     @Preview
     @Composable
-    private fun PresenterScreen() {
+    private fun PresenterScreenPreview() {
+        PresenterScreen("TestDevice")
+    }
+
+    @Composable
+    private fun PresenterScreen(deviceName: String) {
 
         val sensorManager = LocalContext.current.getSystemService(SENSOR_SERVICE) as? SensorManager
 
         KdeTheme(this) {
             Scaffold(
                 modifier = Modifier.safeDrawingPadding(),
-                topBar = { PresenterAppBar() }
+                topBar = { PresenterAppBar(deviceName) }
             ) {
                 Column(
                     modifier = Modifier
@@ -249,14 +253,14 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener, OnSharedPref
         }
     }
 
-    @Preview
     @Composable
-    private fun PresenterAppBar() {
+    private fun PresenterAppBar(subTitle: String) {
 
         var menuExpanded by remember { mutableStateOf(false) }
 
         KdeTopAppBar(
             title = stringResource(R.string.pref_plugin_presenter),
+            subTitle = subTitle,
             navIconOnClick = { onBackPressedDispatcher.onBackPressed() },
             navIconDescription = getString(androidx.appcompat.R.string.abc_action_bar_up_description),
             actions = {
