@@ -392,11 +392,12 @@ public class MousePadActivity
     public boolean onGenericMotionEvent(MotionEvent e) {
         if (e.getAction() == MotionEvent.ACTION_SCROLL) {
             final float distanceY = e.getAxisValue(MotionEvent.AXIS_VSCROLL);
+            final float distanceX = e.getAxisValue(MotionEvent.AXIS_HSCROLL);
 
             accumulatedDistanceY += distanceY;
 
-            if (accumulatedDistanceY > MinDistanceToSendGenericScroll || accumulatedDistanceY < -MinDistanceToSendGenericScroll) {
-                sendScroll(0, accumulatedDistanceY);
+            if (Math.abs(accumulatedDistanceX) > MinDistanceToSendScroll || Math.abs(accumulatedDistanceY) > MinDistanceToSendScroll) {
+                sendScroll(accumulatedDistanceX, accumulatedDistanceY);
                 accumulatedDistanceY = 0;
             }
         }
