@@ -488,7 +488,8 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
         try {
             spotifyRunning = service.activeNotifications.any { n -> n.isSpotify() }
             updateMediaNotification()
-        } catch (e: SecurityException) {
+        } catch (e: RuntimeException) {
+            // getActiveNotifications can fail unexpectedly trying to unserialize Parcelables
             Log.w(TAG, "Failed to get active notifications", e)
         }
     }
