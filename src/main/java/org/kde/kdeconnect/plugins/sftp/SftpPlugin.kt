@@ -14,6 +14,7 @@ import android.net.Uri
 import android.os.Environment
 import android.os.storage.StorageManager
 import android.provider.Settings
+import androidx.core.content.getSystemService
 import androidx.core.net.toUri
 import org.json.JSONException
 import org.json.JSONObject
@@ -100,12 +101,11 @@ class SftpPlugin : Plugin(), OnSharedPreferenceChangeListener {
         val pathNames = mutableListOf<String>()
 
         if (SimpleSftpServer.SUPPORTS_NATIVEFS) {
-            val volumes = context.getSystemService(
-                StorageManager::class.java
-            ).storageVolumes
-            for (sv in volumes) {
+            val storageManager = context.getSystemService<StorageManager>()!!
+            for (sv in storageManager.storageVolumes) {
+                val directory = sv.directory ?: continue
                 pathNames.add(sv.getDescription(context))
-                paths.add(sv.directory!!.path)
+                paths.add(directory.path)
             }
         } else {
             val storageInfoList = SftpSettingsFragment.getStorageInfoList(context, this)
