@@ -328,11 +328,7 @@ class SMSPlugin : Plugin() {
         val threadID = ThreadID(packet.getLong("threadID"))
 
         val rangeStartTimestamp: Long = packet.getLong("rangeStartTimestamp", -1)
-        var numberToGet: Long? = packet.getLong("numberToRequest", -1)
-
-        if (numberToGet!! < 0) {
-            numberToGet = null
-        }
+        val numberToGet: Long? = packet.getLong("numberToRequest", -1).takeIf { it >= 0 }
 
         val conversation = if (rangeStartTimestamp < 0) {
             getMessagesInThread(this.context, threadID, numberToGet)

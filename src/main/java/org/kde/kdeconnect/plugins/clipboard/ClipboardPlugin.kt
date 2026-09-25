@@ -15,6 +15,7 @@ import android.os.Build
 import android.widget.Toast
 import androidx.annotation.VisibleForTesting
 import androidx.core.content.ContextCompat
+import androidx.core.content.getSystemService
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.plugins.PluginFactory.LoadablePlugin
@@ -135,9 +136,9 @@ class ClipboardPlugin : Plugin() {
 
     private fun userInitiatedSendClipboard() {
         if (isDeviceInitialized) {
-            val clipboardManager = ContextCompat.getSystemService<ClipboardManager>(this.context, ClipboardManager::class.java)
+            val clipboardManager = this.context.getSystemService<ClipboardManager>()!!
             val item: ClipData.Item
-            if (clipboardManager!!.hasPrimaryClip()) {
+            if (clipboardManager.hasPrimaryClip()) {
                 item = clipboardManager.primaryClip!!.getItemAt(0)
                 val content = item.coerceToText(this.context).toString()
                 // Don't check if the content is sensitive, just send it

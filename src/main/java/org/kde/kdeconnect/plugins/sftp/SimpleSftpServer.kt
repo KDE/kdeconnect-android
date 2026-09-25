@@ -75,10 +75,10 @@ internal class SimpleSftpServer {
     val isInitialized: Boolean
         get() = ::sshd.isInitialized
 
-    private var safFileSystemFactory: SafFileSystemFactory? = null
+    private lateinit var safFileSystemFactory: SafFileSystemFactory
 
     fun setSafRoots(storageInfoList: List<SftpPlugin.StorageInfo>) {
-        safFileSystemFactory!!.initRoots(storageInfoList)
+        safFileSystemFactory.initRoots(storageInfoList)
     }
 
     fun initialize(context: Context, device: Device) {

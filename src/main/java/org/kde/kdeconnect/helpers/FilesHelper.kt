@@ -57,8 +57,8 @@ object FilesHelper {
     /*
         Source https://android.googlesource.com/platform/frameworks/base/+/refs/heads/main/core/java/android/os/FileUtils.java
      */
-    private fun buildValidFatFilename(name: String?): String {
-        val res = StringBuilder(name!!.length)
+    private fun buildValidFatFilename(name: String): String {
+        val res = StringBuilder(name.length)
 
         for (c in name) {
             if (isValidFatFilenameChar(c)) {
@@ -107,12 +107,12 @@ object FilesHelper {
      */
     @JvmStatic
     @WorkerThread
-    fun uriToNetworkPacket(context: Context, uri: Uri, type: String?): NetworkPacket? {
+    fun uriToNetworkPacket(context: Context, uri: Uri, type: String): NetworkPacket? {
         try {
             val contentResolver = context.contentResolver
             val inputStream = contentResolver.openInputStream(uri)
 
-            val packet = NetworkPacket(type!!)
+            val packet = NetworkPacket(type)
 
             val sizeDefault = -1L
 
@@ -138,8 +138,8 @@ object FilesHelper {
                 val proj = arrayOf(OpenableColumns.SIZE, OpenableColumns.DISPLAY_NAME)
 
                 try {
-                    contentResolver.query(uri, proj, null, null, null).use { cursor ->
-                        val nameColumnIndex = cursor!!.getColumnIndexOrThrow(MediaStore.MediaColumns.DISPLAY_NAME)
+                    contentResolver.query(uri, proj, null, null, null)!!.use { cursor ->
+                        val nameColumnIndex = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DISPLAY_NAME)
                         val sizeColumnIndex = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.SIZE)
                         cursor.moveToFirst()
 
@@ -234,9 +234,11 @@ object FilesHelper {
                     }
                 }
 
-                val lastModifiedTime: Long? = if (!cursor.isNull(properColumnIndex)) cursor.getLong(properColumnIndex) else null
-
-                return if (!milliseconds) lastModifiedTime!! * 1000 else lastModifiedTime
+                if (cursor.isNull(properColumnIndex)) {
+                    return null
+                }
+                val lastModifiedTime: Long = cursor.getLong(properColumnIndex)
+                return if (!milliseconds) lastModifiedTime * 1000 else lastModifiedTime
             }
         }
         return null

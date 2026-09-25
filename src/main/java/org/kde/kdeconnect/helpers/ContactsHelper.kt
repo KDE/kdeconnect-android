@@ -88,9 +88,9 @@ object ContactsHelper {
 
         val encodedPhoto = ByteArrayOutputStream()
         try {
-            context.contentResolver.openInputStream(photoUri).use { input ->
+            context.contentResolver.openInputStream(photoUri)!!.use { input ->
                 Base64OutputStream(encodedPhoto, Base64.DEFAULT).use { output ->
-                    input!!.copyTo(output, 1024)
+                    input.copyTo(output, 1024)
                 }
             }
             return encodedPhoto.toString()

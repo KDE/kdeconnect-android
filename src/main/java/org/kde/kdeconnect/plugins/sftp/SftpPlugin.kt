@@ -158,8 +158,10 @@ class SftpPlugin : Plugin(), OnSharedPreferenceChangeListener {
             if (prevInfo != null && curInfo.uri.toString().startsWith(prevInfo.uri.toString())) {
                 pathBuilder.append(prevInfo.displayName)
                 pathBuilder.append("/")
-                if (curInfo.uri.path != null && prevInfo.uri.path != null) {
-                    pathBuilder.append(curInfo.uri.path!!.substring(prevInfo.uri.path!!.length))
+                val curPath = curInfo.uri.path
+                val prevPath = prevInfo.uri.path
+                if (curPath != null && prevPath != null) {
+                    pathBuilder.append(curPath.substring(prevPath.length))
                 } else {
                     throw RuntimeException("curInfo.uri.getPath() or parentInfo.uri.getPath() returned null")
                 }
