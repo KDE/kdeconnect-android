@@ -446,14 +446,8 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
         if (tcpServer != null) {
             return
         }
-        var newTcpServer: ServerSocket?
-        try {
-            newTcpServer = openServerSocketOnFreePort(MIN_PORT)
-            tcpServer = newTcpServer
-        } catch (e: IOException) {
-            Log.e("LanLinkProvider", "Error creating tcp server", e)
-            throw RuntimeException(e)
-        }
+        val newTcpServer = openServerSocketOnFreePort(MIN_PORT)
+        tcpServer = newTcpServer
         ThreadHelper.execute {
             while (!isStopped) {
                 try {
