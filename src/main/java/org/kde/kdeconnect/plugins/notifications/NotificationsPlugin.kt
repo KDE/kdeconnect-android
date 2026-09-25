@@ -251,8 +251,7 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
 
         np["id"] = key
         np["isClearable"] = statusBarNotification.isClearable
-        val appName = appNameLookup(context, packageName)
-        np["appName"] = appName ?: packageName
+        np["appName"] = appNameLookup(context, packageName)
         np["time"] = statusBarNotification.postTime.toString()
         np["silent"] = isPreexisting
 

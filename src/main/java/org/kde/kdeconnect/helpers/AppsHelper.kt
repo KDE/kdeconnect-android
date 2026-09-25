@@ -11,15 +11,14 @@ import android.util.Log
 
 object AppsHelper {
     @JvmStatic
-    fun appNameLookup(context: Context, packageName: String): String? {
+    fun appNameLookup(context: Context, packageName: String): String {
         return try {
             val manager = context.packageManager
             val info = manager.getApplicationInfo(packageName, 0)
-
             manager.getApplicationLabel(info).toString()
         } catch (e: PackageManager.NameNotFoundException) {
             Log.e("AppsHelper", "Could not resolve name $packageName", e)
-            null
+            packageName
         }
     }
 }

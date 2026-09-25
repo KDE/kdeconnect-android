@@ -12,7 +12,7 @@ import org.apache.commons.lang3.StringUtils
 
 internal class MprisReceiverPlayer(
     val controller: MediaController,
-    val name: String?,
+    val name: String,
 ) {
 
     fun isPlaying(): Boolean {

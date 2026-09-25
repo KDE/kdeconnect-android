@@ -200,7 +200,8 @@ public class MprisReceiverPlugin extends Plugin {
         // Skip the media session we created ourselves as KDE Connect
         if (controller.getPackageName().equals(context.getPackageName())) return;
 
-        MprisReceiverPlayer player = new MprisReceiverPlayer(controller, AppsHelper.appNameLookup(context, controller.getPackageName()));
+        String playerName = AppsHelper.appNameLookup(context, controller.getPackageName());
+        MprisReceiverPlayer player = new MprisReceiverPlayer(controller, playerName);
         MprisReceiverCallback cb = new MprisReceiverCallback(this, player);
         controller.registerCallback(cb, new Handler(Looper.getMainLooper()));
         playerCbs.put(player.getName(), cb);
