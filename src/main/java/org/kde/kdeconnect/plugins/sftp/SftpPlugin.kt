@@ -125,9 +125,7 @@ class SftpPlugin : Plugin(), OnSharedPreferenceChangeListener {
             return false
         }
 
-        if (preferences != null) {
-            preferences!!.registerOnSharedPreferenceChangeListener(this)
-        }
+        preferences.registerOnSharedPreferenceChangeListener(this)
 
         device.sendPacket(NetworkPacket(PACKET_TYPE_SFTP).apply {
             this["ip"] = getLocalIpAddress()!!.hostAddress

@@ -31,16 +31,15 @@ abstract class Plugin {
     protected val isDeviceInitialized: Boolean
         get() = ::device.isInitialized
 
-    var preferences: SharedPreferences? = null
-        protected set
+    lateinit var preferences: SharedPreferences
+        private set
 
     fun setContext(context: Context, device: Device?) {
         this.context = context
 
         if (device != null) {
             this.device = device
-            this.preferences =
-                this.context.getSharedPreferences(this.sharedPreferencesName, Context.MODE_PRIVATE)
+            this.preferences = context.getSharedPreferences(this.sharedPreferencesName, Context.MODE_PRIVATE)
         }
     }
 

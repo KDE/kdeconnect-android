@@ -63,7 +63,7 @@ class ClipboardPlugin : Plugin() {
     private val observer: ClipboardObserver = object : ClipboardObserver {
         override fun clipboardChanged(content: String, contentType: ClipboardListener.ClipboardContentType) {
             if (contentType == ClipboardListener.ClipboardContentType.Password &&
-                preferences!!.getBoolean(
+                preferences.getBoolean(
                     context.getString(R.string.clipboard_preference_key_skip_sensitive),
                     false,
                 )
@@ -84,7 +84,7 @@ class ClipboardPlugin : Plugin() {
     private fun sendConnectPacket() {
         val content = ClipboardListener.instance(context).currentContent ?: return // Send clipboard only if it had been initialized
         if (ClipboardListener.instance(context).currentContentType == ClipboardListener.ClipboardContentType.Password &&
-            preferences!!.getBoolean(
+            preferences.getBoolean(
                 context.getString(R.string.clipboard_preference_key_skip_sensitive),
                 false,
             )

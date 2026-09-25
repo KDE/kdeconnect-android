@@ -45,7 +45,7 @@ class ContactsPlugin : Plugin() {
         if (!arePermissionsGranted(requiredPermissions)) {
             return false
         }
-        return preferences!!.getBoolean("acceptedToTransferContacts", false)
+        return preferences.getBoolean("acceptedToTransferContacts", false)
     }
 
     override fun supportsDeviceSpecificSettings(): Boolean = true
@@ -64,7 +64,7 @@ class ContactsPlugin : Plugin() {
                 .apply {
                     setCallback(object : AlertDialogFragment.Callback() {
                         override fun onPositiveButtonClicked(): Boolean {
-                            preferences!!.edit { putBoolean("acceptedToTransferContacts", true) }
+                            preferences.edit { putBoolean("acceptedToTransferContacts", true) }
                             device.launchBackgroundReloadPluginsFromSettings()
                             return true
                         }
