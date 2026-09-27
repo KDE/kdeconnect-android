@@ -57,7 +57,10 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
     private val mdnsDiscovery = MdnsDiscovery(context, this)
 
     private val lastConnectionTimeByDeviceId = ConcurrentHashMap<String, Long>()
-    private val lastConnectionTimeByIp = ConcurrentHashMap<InetAddress, Long>()
+    private val lastUdpConnectionTimeByIp = ConcurrentHashMap<InetAddress, Long>()
+    // Separate from the above so that connecting to a device doesn't make us reject its connection to us before
+    // reading its identity, which we need for the tie-break in unserializeReceivedIdentityPacket
+    private val lastTcpConnectionTimeByIp = ConcurrentHashMap<InetAddress, Long>()
 
     @Volatile
     private var tcpServer: ServerSocket? = null
@@ -102,8 +105,14 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
         }
 
         if (rateLimitByDeviceId(deviceId)) {
-            Log.i("LanLinkProvider", "Discarding second packet from the same device $deviceId received too quickly")
-            return null
+            // If both devices are connecting to each other at the same time, keep only the connection started by the device with
+            // the smaller id. If they also implement this logic, will reject ours. That's indicated by the flag connectionTieBreak.
+            val peerWinsTieBreak = identityPacket.getBoolean("connectionTieBreak", false) && deviceId < myId
+            if (!peerWinsTieBreak) {
+                Log.i("LanLinkProvider", "Discarding second packet from the same device $deviceId received too quickly")
+                return null
+            }
+            Log.i("LanLinkProvider", "Simultaneous connections with $deviceId, keeping the one they started")
         }
 
         val deviceTrusted = TrustedDevices.isTrustedDevice(context, deviceId)
@@ -127,7 +136,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
             return
         }
 
-        if (rateLimitByIp(address)) {
+        if (rateLimitByIp(address, lastTcpConnectionTimeByIp)) {
             Log.i("LanLinkProvider", "Discarding second TCP packet from the same ip $address received too quickly" )
             socket.closeSafe()
             return
@@ -169,15 +178,15 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
         identityPacketReceived(identityPacket, socket, ConnectionStarted.Locally, deviceTrusted)
     }
 
-    fun rateLimitByIp(address: InetAddress): Boolean {
+    fun rateLimitByIp(address: InetAddress, lastConnectionTimes: ConcurrentHashMap<InetAddress, Long>): Boolean {
         val now = System.currentTimeMillis()
-        val last = lastConnectionTimeByIp[address]
+        val last = lastConnectionTimes[address]
         if (last != null && (last + MILLIS_DELAY_BETWEEN_CONNECTIONS_TO_SAME_DEVICE > now)) {
             return true
         }
-        lastConnectionTimeByIp[address] = now
-        if (lastConnectionTimeByIp.size > MAX_RATE_LIMIT_ENTRIES) {
-            lastConnectionTimeByIp.entries.removeIf { it.value + MILLIS_DELAY_BETWEEN_CONNECTIONS_TO_SAME_DEVICE < now }
+        lastConnectionTimes[address] = now
+        if (lastConnectionTimes.size > MAX_RATE_LIMIT_ENTRIES) {
+            lastConnectionTimes.entries.removeIf { it.value + MILLIS_DELAY_BETWEEN_CONNECTIONS_TO_SAME_DEVICE < now }
         }
         return false
     }
@@ -205,7 +214,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
             return
         }
 
-        if (rateLimitByIp(address)) {
+        if (rateLimitByIp(address, lastUdpConnectionTimeByIp)) {
             Log.i("LanLinkProvider", "Discarding second UDP packet from the same ip $address received too quickly")
             return
         }
@@ -232,6 +241,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
             val myIdentity = myDeviceInfo.toIdentityPacket()
             myIdentity["targetDeviceId"] = identityPacket.getString("deviceId")
             myIdentity["targetProtocolVersion"] = identityPacket.getString("protocolVersion")
+            myIdentity["connectionTieBreak"] = true // See unserializeReceivedIdentityPacket
 
             val out = socket.getOutputStream()
             out.write(myIdentity.serialize().toByteArray())
@@ -241,6 +251,10 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
             socket = null // The SSL socket now owns the underlying socket, or it was rejected and closed.
         } catch (e: IOException) {
             Log.e("LanLinkProvider", "Exception receiving incoming UDP connection", e)
+            if (socket == null) {
+                // We didn't connect, so don't reject their connection to us because of this attempt
+                lastConnectionTimeByDeviceId.remove(identityPacket.getString("deviceId"))
+            }
         } catch (e: CertificateException) {
             Log.e("LanLinkProvider", "Exception receiving incoming UDP connection", e)
         } catch (e: JSONException) {
@@ -622,7 +636,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
         private const val MAX_IDENTITY_PACKET_SIZE: Int = 1024 * 512
         private const val MAX_UDP_PACKET_SIZE: Int = 1024 * 512
 
-        const val MILLIS_DELAY_BETWEEN_CONNECTIONS_TO_SAME_DEVICE: Long = 1000L
+        const val MILLIS_DELAY_BETWEEN_CONNECTIONS_TO_SAME_DEVICE: Long = 500L
 
         private const val MAX_RATE_LIMIT_ENTRIES: Int = 255
         private const val MAX_UNPAIRED_CONNECTIONS: Int = 42
