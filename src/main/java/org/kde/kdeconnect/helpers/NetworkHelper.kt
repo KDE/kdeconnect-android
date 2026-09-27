@@ -11,6 +11,19 @@ import java.net.InetAddress
 import java.net.NetworkInterface
 import java.net.SocketException
 
+fun InetAddress.normalizedMappedIpv4Address(): InetAddress {
+    if (this !is Inet6Address) {
+        return this
+    }
+
+    val bytes = address
+    if (bytes.size != 16 || bytes.sliceArray(0..9).any { it != 0.toByte() } || bytes[10] != 0xff.toByte() || bytes[11] != 0xff.toByte()) {
+        return this
+    }
+
+    return InetAddress.getByAddress(bytes.copyOfRange(12, 16))
+}
+
 fun getLocalIpAddress(): InetAddress? {
     var ip6: InetAddress? = null
     try {

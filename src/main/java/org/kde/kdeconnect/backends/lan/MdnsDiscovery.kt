@@ -22,6 +22,7 @@ import org.kde.kdeconnect.helpers.DeviceHelper.deviceType
 import org.kde.kdeconnect.helpers.DeviceHelper.getDeviceId
 import org.kde.kdeconnect.helpers.DeviceHelper.getDeviceName
 import org.kde.kdeconnect.helpers.TrustedNetworkHelper
+import org.kde.kdeconnect.helpers.normalizedMappedIpv4Address
 import java.net.InetAddress
 
 class MdnsDiscovery {
@@ -229,7 +230,7 @@ class MdnsDiscovery {
             }
 
             // Let the LanLinkProvider handle the connection
-            val remoteAddress = serviceInfo.host
+            val remoteAddress = serviceInfo.host.normalizedMappedIpv4Address()
             // TODO: In protocol version 8 we should be able to call "identityPacketReceived"
             //       here, since we already have all the info we need to start a connection
             //       and the remaining identity info will be exchanged later.
