@@ -338,7 +338,7 @@ public class NotificationFilterActivity extends BaseActivity<ActivityNotificatio
 
     @Override
     public boolean onSupportNavigateUp() {
-        super.onBackPressed();
+        getOnBackPressedDispatcher().onBackPressed();
         return true;
     }
 

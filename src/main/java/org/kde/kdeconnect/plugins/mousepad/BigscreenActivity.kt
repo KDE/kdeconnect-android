@@ -131,7 +131,7 @@ class BigscreenActivity : BaseActivity<ActivityBigscreenBinding>() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        super.onBackPressed()
+        onBackPressedDispatcher.onBackPressed()
         return true
     }
 

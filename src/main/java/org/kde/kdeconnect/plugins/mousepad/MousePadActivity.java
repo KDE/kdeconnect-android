@@ -703,7 +703,7 @@ public class MousePadActivity
     @Override
     public boolean onSupportNavigateUp() {
         hideKeyboard();
-        super.onBackPressed();
+        getOnBackPressedDispatcher().onBackPressed();
         return true;
     }
 }
