@@ -20,6 +20,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -54,7 +55,6 @@ private const val MENU_ENTRY_SETTINGS = 2
 private const val MENU_ENTRY_ABOUT = 3
 private const val MENU_ENTRY_DEVICE_FIRST_ID = 1000 //All subsequent ids are devices in the menu
 private const val MENU_ENTRY_DEVICE_UNKNOWN = 9999 //It's still a device, but we don't know which one yet
-private const val STORAGE_LOCATION_CONFIGURED = 2020
 private const val STATE_SELECTED_MENU_ENTRY = "selected_entry" //Saved only in onSaveInstanceState
 private const val STATE_SELECTED_DEVICE = "selected_device" //Saved persistently in preferences
 
@@ -62,6 +62,12 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private val mNavigationView: NavigationView by lazy { binding.navigationDrawer }
     private var mDrawerLayout: DrawerLayout? = null
+
+    private val openDocumentTreeLauncher = registerForActivityResult(ActivityResultContracts.OpenDocumentTree()) { uri ->
+        if (uri != null) {
+            ShareSettingsFragment.saveStorageLocationPreference(this, uri)
+        }
+    }
 
     private lateinit var mNavViewDeviceName: TextView
 
@@ -364,10 +370,6 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
                     KdeConnect.getInstance().devices.values.forEach(Device::reloadPluginsFromSettings)
                 }
             }
-            STORAGE_LOCATION_CONFIGURED if resultCode == RESULT_OK && data != null -> {
-                val uri = data.data
-                ShareSettingsFragment.saveStorageLocationPreference(this, uri)
-            }
             else -> super.onActivityResult(requestCode, resultCode, data)
         }
     }
@@ -384,8 +386,7 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && isPermissionGranted(permissions, grantResults, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                 // To get a writeable path manually on Android 10 and later for Share and Receive Plugin.
                 // Otherwise, Receiving files will keep failing until the user chooses a path manually to receive files.
-                val intent = Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
-                startActivityForResult(intent, STORAGE_LOCATION_CONFIGURED)
+                openDocumentTreeLauncher.launch(null)
             }
 
             if (isPermissionGranted(permissions, grantResults, Manifest.permission.BLUETOOTH_CONNECT) &&
