@@ -16,7 +16,7 @@ import android.content.pm.PackageManager
 import android.media.AudioManager
 import android.os.Build
 import android.os.Handler
-import android.preference.PreferenceManager
+import androidx.preference.PreferenceManager
 import android.service.notification.StatusBarNotification
 import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.session.MediaSessionCompat

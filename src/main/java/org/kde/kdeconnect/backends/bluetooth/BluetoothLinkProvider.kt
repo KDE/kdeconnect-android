@@ -17,7 +17,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.net.Network
 import android.os.Parcelable
-import android.preference.PreferenceManager
+import androidx.preference.PreferenceManager
 import android.util.Base64
 import android.util.Log
 import androidx.core.content.edit

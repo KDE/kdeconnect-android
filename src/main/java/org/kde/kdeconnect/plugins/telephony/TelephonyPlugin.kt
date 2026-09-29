@@ -13,7 +13,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.media.AudioManager
-import android.preference.PreferenceManager
+import androidx.preference.PreferenceManager
 import android.telephony.PhoneNumberUtils
 import android.telephony.TelephonyManager
 import android.util.Log

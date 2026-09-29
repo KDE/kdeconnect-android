@@ -7,7 +7,7 @@ package org.kde.kdeconnect
 
 import android.app.NotificationManager
 import android.content.Context
-import android.preference.PreferenceManager
+import androidx.preference.PreferenceManager
 import androidx.core.content.ContextCompat
 import io.mockk.every
 import io.mockk.mockk

@@ -10,7 +10,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.net.wifi.SupplicantState
 import android.net.wifi.WifiManager
-import android.preference.PreferenceManager
+import androidx.preference.PreferenceManager
 import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.core.content.edit

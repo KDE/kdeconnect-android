@@ -20,7 +20,7 @@ import android.database.ContentObserver
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.preference.PreferenceManager
+import androidx.preference.PreferenceManager
 import android.provider.Telephony
 import android.telephony.PhoneNumberUtils
 import android.telephony.SmsMessage

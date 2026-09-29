@@ -7,7 +7,7 @@ package org.kde.kdeconnect.helpers.security
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.preference.PreferenceManager
+import androidx.preference.PreferenceManager
 import android.util.Base64
 import android.util.Log
 import androidx.core.content.edit

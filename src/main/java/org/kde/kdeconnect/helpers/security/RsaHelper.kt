@@ -7,7 +7,7 @@ package org.kde.kdeconnect.helpers.security
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.preference.PreferenceManager
+import androidx.preference.PreferenceManager
 import android.security.keystore.KeyProperties
 import android.util.Base64
 import android.util.Log

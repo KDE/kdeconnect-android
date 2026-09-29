@@ -9,7 +9,7 @@ package org.kde.kdeconnect.plugins.mousepad;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import androidx.preference.PreferenceManager;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
