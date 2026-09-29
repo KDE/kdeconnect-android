@@ -11,6 +11,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.os.SystemClock;
 import android.util.Log;
 
 import androidx.annotation.GuardedBy;
@@ -55,6 +56,9 @@ import java.util.List;
  * @see CompositeUploadFileJob
  */
 public class CompositeReceiveFileJob extends BackgroundJob<Device, Void> {
+    // How long to wait for the next file of the batch before failing the batch
+    private static final long NEXT_PACKET_TIMEOUT_MILLIS = 1000;
+
     private final ReceiveNotification receiveNotification;
     private NetworkPacket currentNetworkPacket;
     private String currentFileName;
@@ -99,6 +103,8 @@ public class CompositeReceiveFileJob extends BackgroundJob<Device, Void> {
 
             receiveNotification.setTitle(getDevice().getContext().getResources()
                     .getQuantityString(R.plurals.incoming_file_title, totalNumFiles, totalNumFiles, getDevice().getName()));
+
+            lock.notifyAll();
         }
     }
 
@@ -112,6 +118,9 @@ public class CompositeReceiveFileJob extends BackgroundJob<Device, Void> {
 
                 receiveNotification.setTitle(getDevice().getContext().getResources()
                         .getQuantityString(R.plurals.incoming_file_title, totalNumFiles, totalNumFiles, getDevice().getName()));
+
+                // Wake up run() if it's waiting for the next packet
+                lock.notifyAll();
             }
         }
     }
@@ -181,26 +190,31 @@ public class CompositeReceiveFileJob extends BackgroundJob<Device, Void> {
                     }
                 }
 
-                boolean listIsEmpty;
-
                 synchronized (lock) {
                     networkPacketList.remove(0);
-                    listIsEmpty = networkPacketList.isEmpty();
-                }
 
-                if (listIsEmpty && !isCancelled()) {
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException ignored) {}
-
-                    synchronized (lock) {
-                        if (currentFileNum < totalNumFiles && networkPacketList.isEmpty()) {
-                            throw new RuntimeException("Failed to receive " + (totalNumFiles - currentFileNum + 1) + " files");
+                    // Some senders only send the next packet after the previous payload has been fully transferred,
+                    // so the list can be empty here. Wait for the next packet to arrive or for the timeout to expire.
+                    final long deadline = SystemClock.elapsedRealtime() + NEXT_PACKET_TIMEOUT_MILLIS;
+                    while (networkPacketList.isEmpty() && !isCancelled()) {
+                        // elapsedRealtime is monotonic, unlike currentTimeMillis() which changes when the time changes
+                        long remainingMillis = deadline - SystemClock.elapsedRealtime();
+                        if (remainingMillis <= 0) { // Note wait(0) would wait forever
+                            break;
+                        }
+                        try {
+                            lock.wait(remainingMillis);
+                        } catch (InterruptedException e) {
+                            // Job was cancelled
+                            Thread.currentThread().interrupt();
+                            break;
                         }
                     }
-                }
 
-                synchronized (lock) {
+                    if (!isCancelled() && currentFileNum < totalNumFiles && networkPacketList.isEmpty()) {
+                        throw new RuntimeException("Failed to receive " + (totalNumFiles - currentFileNum + 1) + " files");
+                    }
+
                     done = networkPacketList.isEmpty();
                 }
             }
