@@ -47,6 +47,7 @@
   <string name="sad_ok">OK :(</string>
   <string name="cancel">Avbryt</string>
   <string name="open_settings">Opna innstillingar</string>
+  <string name="open_input_settings">Opna tastaturinnstillingar</string>
   <string name="no_permissions">Du må gje tilgang til lesing av varslingar</string>
   <string name="no_permission_mprisreceiver">Du må gje tilgang til varslingar for å kunne kontrollera mediespelarar</string>
   <string name="send_ping">Send pingsignal</string>
