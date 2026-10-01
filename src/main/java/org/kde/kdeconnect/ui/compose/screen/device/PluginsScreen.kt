@@ -41,6 +41,7 @@ import org.kde.kdeconnect.plugins.mpris.MprisPlugin
 import org.kde.kdeconnect.plugins.ping.PingPlugin
 import org.kde.kdeconnect.plugins.presenter.PresenterPlugin
 import org.kde.kdeconnect.plugins.runcommand.RunCommandPlugin
+import org.kde.kdeconnect.extensions.safeDrawingBottomPadding
 import org.kde.kdeconnect.ui.compose.KdeTheme
 import org.kde.kdeconnect.ui.compose.components.KdeThemePreviews
 import org.kde.kdeconnect_tp.R
@@ -73,12 +74,14 @@ private fun PluginsScreenContent(
     actionNeedPermissions: (plugin: Plugin) -> Unit,
     actionNeedOptionalPermissions: (plugin: Plugin) -> Unit,
 ) {
+    val bottomPadding = safeDrawingBottomPadding().calculateBottomPadding()
+
     Surface(modifier = Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(state = rememberScrollState())
-                .padding(top = 16.dp)
+                .padding(top = 16.dp, bottom = bottomPadding)
         ) {
             val numColumns = LocalResources.current.getInteger(R.integer.plugins_columns)
 
