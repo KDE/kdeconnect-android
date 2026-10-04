@@ -18,6 +18,8 @@
   <string name="pref_plugin_clipboard">Leikepöydän synkronointi</string>
   <string name="pref_plugin_clipboard_desc">Jaa leikepöydän sisältö</string>
   <string name="pref_plugin_clipboard_sent">Leikepöytä lähetetty</string>
+  <string name="clipboard_preference_title_skip_sensitive">Sivuuta arkaluontoisen leikepöydän tahdistaminen</string>
+  <string name="clipboard_preference_summary_skip_sensitive">Älä tahdista salasanoja tai muuta arkaluontoiseksi merkittyä sisältöä automaattisesti</string>
   <string name="pref_plugin_mousepad">Kauko-ohjaus</string>
   <string name="pref_plugin_mousepad_desc_nontv">Käytä puhelinta tai tablettia kosketuslevynä ja näppäimistönä</string>
   <string name="pref_plugin_mousepad_desc_tv">Käytä puhelinta tai tablettia TV-kaukosäätimenä</string>
@@ -38,6 +40,8 @@
   <string name="pref_plugin_receive_notifications_desc">Vastaanota ilmoituksia toiselta laitteelta ja näytä ne Androidissa</string>
   <string name="pref_plugin_sharereceiver">Jako ja vastaanottaminen</string>
   <string name="pref_plugin_sharereceiver_desc">Jaa tiedostoja ja osoitteita laitteiden välillä</string>
+  <string name="pref_plugin_inputdevicesreceiver">Jaa syötelaitteita</string>
+  <string name="pref_plugin_inputdevicesreceiver_desc">Jaa hiiri ja näppäimistö etälaitteen kanssa</string>
   <string name="device_list_empty">Ei laitteita</string>
   <string name="ok">OK</string>
   <string name="sad_ok">OK :(</string>
@@ -69,6 +73,7 @@
   <string name="bigscreen_hide_mouse_input">Piilota hiiren ja näppäimistön etäsyötepainike</string>
   <string name="bigscreen_show_home_title">Näytä Koti-painike</string>
   <string name="bigscreen_show_back_title">Näytä Takaisin-painike</string>
+  <string name="bigscreen_show_close_title">Näytä sulkemispainike</string>
   <string-array name="mousepad_tap_entries">
     <item>Vasen napsautus</item>
     <item>Oikea napsautus</item>
@@ -116,6 +121,7 @@
   <string name="pair_new_device">Kytke uusi laite pariksi</string>
   <string name="cancel_pairing">Peru paritus</string>
   <string name="unknown_device">Tuntematon laite</string>
+  <string name="unknown_sender">Tuntematon lähettäjä</string>
   <string name="error_not_reachable">Laite tavoittamattomissa</string>
   <string name="error_already_paired">Laite on jo kytketty pariksi</string>
   <string name="error_timed_out">Aikakatkaisu</string>
@@ -170,6 +176,7 @@
   <string name="show_keyboard">Näytä näppäimistö</string>
   <string name="show_mouse_and_keyboard">Näytä hiiri ja näppäimistö</string>
   <string name="device_not_paired">Laitetta ei ole kytketty pariksi</string>
+  <string name="pairing_missing_local_network_permission">Läheisten laitteiden käyttöoikeuksia puuttuu: sovellus ei toimi.</string>
   <string name="pairing_duplicate_names">Varoitus: Useammalla laitteella on sama nimi.</string>
   <string name="request_pairing">Pyydä pariksi kytkemistä</string>
   <string name="pairing_accept">Hyväksy</string>
@@ -361,6 +368,7 @@
   <string name="mpris_open_url">Jatka toistoa tästä</string>
   <string name="cant_open_url">Verkko-osoitetta ei voi avata toiston jatkamiseksi</string>
   <string name="bigscreen_home">Koti</string>
+  <string name="bigscreen_close">Sulje</string>
   <string name="bigscreen_up">Ylemmäs</string>
   <string name="bigscreen_left">Vasemmalle</string>
   <string name="bigscreen_select">Valitse</string>
@@ -463,4 +471,10 @@
   <string name="pref_presenter_enable_volume_keys_summary">Valmiustilassa tätä ei tueta Android-versioissa 13–15</string>
   <string name="presenter_volume_keys_foreground_tip">Näytön voi jättää käyttöön ja käyttää äänenvoimakkuuspainikkeita edellinen/seuraava dia -painikkeina</string>
   <string name="presenter_volume_keys_tip">Näytön voi jättää käyttöön tai laitteen lukita ja käyttää äänenvoimakkuuspainikkeita edellinen/seuraava dia -painikkeina</string>
+  <string name="runcommand_output_no_output_desc">Komentojen tuloste ilmestyy tähän.</string>
+  <string name="runcommand_output_no_output">Ei suoritettuja komentoja</string>
+  <string name="runcommand_stop">Pysäytä nykyinen komento</string>
+  <string name="runcommand_clear_output">Tyhjennä tuloste</string>
+  <string name="pref_mpris_volume_control_title">Äänenvoimakkuuden laitepainikkeet</string>
+  <string name="pref_mpris_volume_control_summary">Hallitse yhdistetyn laitteen äänenvoimakkuutta tämän puhelimen laitepainikkein</string>
 </resources>
