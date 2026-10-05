@@ -44,9 +44,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInteropFilter
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -178,6 +180,7 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener, OnSharedPref
     private fun PresenterScreen(deviceName: String) {
 
         val sensorManager = LocalContext.current.getSystemService(SENSOR_SERVICE) as? SensorManager
+        val haptics = LocalHapticFeedback.current
 
         KdeTheme(this) {
             Scaffold(
@@ -206,7 +209,10 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener, OnSharedPref
                         horizontalArrangement = Arrangement.spacedBy(20.dp),
                     ) {
                         KdeButton(
-                            onClick = { plugin.sendPrevious() },
+                            onClick = {
+                                plugin.sendPrevious()
+                                haptics.performHapticFeedback(HapticFeedbackType.Confirm)
+                            },
                             modifier = Modifier
                                 .fillMaxSize()
                                 .weight(1f),
@@ -214,7 +220,10 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener, OnSharedPref
                             icon = Icons.Default.ArrowBack,
                         )
                         KdeButton(
-                            onClick = { plugin.sendNext() },
+                            onClick = {
+                                plugin.sendNext()
+                                haptics.performHapticFeedback(HapticFeedbackType.Confirm)
+                            },
                             contentDescription = getString(R.string.mpris_next),
                             modifier = Modifier
                                 .fillMaxSize()
@@ -231,6 +240,7 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener, OnSharedPref
                             .pointerInteropFilter { event ->
                                 when (event.action) {
                                     MotionEvent.ACTION_DOWN -> {
+                                        haptics.performHapticFeedback(HapticFeedbackType.LongPress)
                                         sensorManager.registerListener(
                                             this@PresenterActivity,
                                             sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE),
@@ -239,6 +249,7 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener, OnSharedPref
                                     }
 
                                     MotionEvent.ACTION_UP -> {
+                                        haptics.performHapticFeedback(HapticFeedbackType.GestureEnd)
                                         sensorManager.unregisterListener(this@PresenterActivity)
                                         plugin.stopPointer()
                                         false
