@@ -138,14 +138,14 @@ public class TelephonyHelper {
         )) {
             while (cursor != null && cursor.moveToNext()) {
 
-                String type = cursor.getString(cursor.getColumnIndex(Telephony.Carriers.TYPE));
+                String type = cursor.getString(cursor.getColumnIndexOrThrow(Telephony.Carriers.TYPE));
                 if (!isValidApnType(type, APN_TYPE_MMS)) continue;
 
                 ApnSetting.Builder apnBuilder = new ApnSetting.Builder()
-                        .setMmsc(Uri.parse(cursor.getString(cursor.getColumnIndex(Telephony.Carriers.MMSC))))
-                        .setMmsProxyAddress(cursor.getString(cursor.getColumnIndex(Telephony.Carriers.MMSPROXY)));
+                        .setMmsc(Uri.parse(cursor.getString(cursor.getColumnIndexOrThrow(Telephony.Carriers.MMSC))))
+                        .setMmsProxyAddress(cursor.getString(cursor.getColumnIndexOrThrow(Telephony.Carriers.MMSPROXY)));
 
-                String maybeMmsProxyPort = cursor.getString(cursor.getColumnIndex(Telephony.Carriers.MMSPORT));
+                String maybeMmsProxyPort = cursor.getString(cursor.getColumnIndexOrThrow(Telephony.Carriers.MMSPORT));
                 try {
                     int mmsProxyPort = Integer.parseInt(maybeMmsProxyPort);
                     apnBuilder.setMmsProxyPort(mmsProxyPort);

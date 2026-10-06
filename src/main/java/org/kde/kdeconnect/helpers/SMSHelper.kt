@@ -249,12 +249,12 @@ object SMSHelper {
                         val transportTypeColumn = myCursor.getColumnIndex(
                             TRANSPORT_TYPE_DISCRIMINATOR_COLUMN
                         )
-                        val transportType = if (transportTypeColumn < 0) {
-                            // The column didn't actually exist. See https://issuetracker.google.com/issues/134592631
+                        val transportType = if (transportTypeColumn < 0 || myCursor.isNull(transportTypeColumn)) {
+                            // The column didn't actually exist or is null. See https://issuetracker.google.com/issues/134592631
                             // Try to determine using other information
                             val messageBoxColumn = myCursor.getColumnIndex(Telephony.Mms.MESSAGE_BOX)
                             // MessageBoxColumn is defined for MMS only
-                            val messageBoxExists = !myCursor.isNull(messageBoxColumn)
+                            val messageBoxExists = messageBoxColumn >= 0 && !myCursor.isNull(messageBoxColumn)
                             if (messageBoxExists) {
                                 TransportType.MMS
                             } else {
@@ -436,10 +436,10 @@ object SMSHelper {
                 val dateColumn = threadIdCursor.getColumnIndex("date")
                 var threadID: ThreadID? = null
                 var messageDate: Long = -1
-                if (!threadIdCursor.isNull(idColumn)) {
+                if (idColumn >= 0 && !threadIdCursor.isNull(idColumn)) {
                     threadID = ThreadID(threadIdCursor.getLong(idColumn))
                 }
-                if (!threadIdCursor.isNull(dateColumn)) {
+                if (dateColumn >= 0 && !threadIdCursor.isNull(dateColumn)) {
                     // I think the presence of the "date" column depends on the specifics of the
                     // device. If it's there, we'll use it to return threads in a sorted order.
                     // If it's not there, we'll return them unsorted (maybe you get lucky and the

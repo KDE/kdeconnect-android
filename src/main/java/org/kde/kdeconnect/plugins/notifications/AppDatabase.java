@@ -120,7 +120,7 @@ class AppDatabase {
             boolean result;
             if (res.getCount() > 0) {
                 res.moveToFirst();
-                result = (res.getInt(res.getColumnIndex(KEY_IS_ENABLED)) != 0);
+                result = (res.getInt(res.getColumnIndexOrThrow(KEY_IS_ENABLED)) != 0);
             } else {
                 result = getDefaultStatus(packageName);
             }
@@ -149,7 +149,7 @@ class AppDatabase {
             int result;
             if (res.getCount() > 0) {
                 res.moveToFirst();
-                result = res.getInt(res.getColumnIndex(KEY_PRIVACY_OPTIONS));
+                result = res.getInt(res.getColumnIndexOrThrow(KEY_PRIVACY_OPTIONS));
             } else {
                 result = 0;
             }
