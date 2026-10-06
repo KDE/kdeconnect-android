@@ -790,14 +790,9 @@ object SMSHelper {
     /**
      * Represent an ID used to uniquely identify a message thread
      */
-    class ThreadID(val threadID: Long) {
+    @JvmInline
+    value class ThreadID(val threadID: Long) {
         override fun toString(): String = threadID.toString()
-
-        override fun hashCode(): Int = java.lang.Long.hashCode(threadID)
-
-        override fun equals(other: Any?): Boolean {
-            return other!!.javaClass.isAssignableFrom(ThreadID::class.java) && (other as ThreadID?)!!.threadID == threadID
-        }
 
         companion object {
 
