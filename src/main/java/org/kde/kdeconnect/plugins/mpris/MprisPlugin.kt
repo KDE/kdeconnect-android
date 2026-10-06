@@ -108,7 +108,7 @@ class MprisPlugin : Plugin() {
         }
 
         fun getHttpUrl(): String? {
-            return url?.takeIf { it.startsWith("http://") || it.startsWith("https://") }
+            return url.takeIf { it.startsWith("http://") || it.startsWith("https://") }
         }
 
         val isSetVolumeAllowed: Boolean

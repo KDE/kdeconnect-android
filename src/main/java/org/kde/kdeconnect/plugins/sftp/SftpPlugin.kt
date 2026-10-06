@@ -77,7 +77,7 @@ class SftpPlugin : Plugin(), OnSharedPreferenceChangeListener {
 
     override fun onDestroy() {
         server.stop()
-        preferences?.unregisterOnSharedPreferenceChangeListener(this)
+        preferences.unregisterOnSharedPreferenceChangeListener(this)
     }
 
     override fun loadPluginWhenRequiredPermissionsMissing() = true
@@ -128,7 +128,7 @@ class SftpPlugin : Plugin(), OnSharedPreferenceChangeListener {
         preferences.registerOnSharedPreferenceChangeListener(this)
 
         device.sendPacket(NetworkPacket(PACKET_TYPE_SFTP).apply {
-            this["ip"] = getLocalIpAddress()!!.hostAddress
+            this["ip"] = getLocalIpAddress()?.hostAddress!!
             this["port"] = server.port
             this["user"] = SimpleSftpServer.USER
             this["password"] = server.regeneratePassword()
