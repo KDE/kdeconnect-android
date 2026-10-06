@@ -49,12 +49,12 @@ class ConnectivityListener(context: Context) {
         }
     }
 
-    private val connectivityListeners = mutableMapOf<Int?, PhoneStateListener?>()
-    private val states = mutableMapOf<Int, SubscriptionState>() // by subscription ID
+    private val connectivityListeners = HashMap<Int?, PhoneStateListener?>()
+    private val states = HashMap<Int, SubscriptionState>() // by subscription ID
 
-    private val externalListeners = mutableSetOf<StateCallback>()
+    private val externalListeners = HashSet<StateCallback>()
 
-    private val activeIDs = mutableSetOf<Int>()
+    private val activeIDs = HashSet<Int>()
 
     private fun statesChanged() {
         val listenersCopy = synchronized(externalListeners) {

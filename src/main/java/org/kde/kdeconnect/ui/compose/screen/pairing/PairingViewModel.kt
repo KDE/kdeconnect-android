@@ -74,7 +74,7 @@ class PairingViewModel(application: Application) : AndroidViewModel(application)
             val connected = mutableListOf<DeviceUiModel>()
             val available = mutableListOf<DeviceUiModel>()
             val remembered = mutableListOf<DeviceUiModel>()
-            val names = mutableSetOf<String>()
+            val names = HashSet<String>()
             var hasDuplicateNames = false
 
             for (device in deviceList) {

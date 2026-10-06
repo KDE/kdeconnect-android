@@ -48,11 +48,11 @@ import androidx.core.graphics.createBitmap
 @LoadablePlugin
 class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener {
     private lateinit var appDatabase: AppDatabase
-    private val currentNotifications = mutableSetOf<String>()
+    private val currentNotifications = HashSet<String>()
     // Here we will map every notification to it's icon(hash)
-    private val notificationsIcons = mutableMapOf<String, String>()
-    private val postedNotifications = mutableSetOf<String>()
-    private val pendingIntents = mutableMapOf<String, RepliableNotification>()
+    private val notificationsIcons = HashMap<String, String>()
+    private val postedNotifications = HashSet<String>()
+    private val pendingIntents = HashMap<String, RepliableNotification>()
     private val pendingActions = ArrayListValuedHashMap<String, Notification.Action>()
     private var serviceReady = false
     private lateinit var sharedPreferences: SharedPreferences

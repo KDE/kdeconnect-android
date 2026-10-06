@@ -273,7 +273,7 @@ object SMSHelper {
                                 continue
                             }
                         }
-                        val messageInfo = mutableMapOf<String, String?>()
+                        val messageInfo = HashMap<String, String?>()
                         for (columnIdx in 0 until myCursor.columnCount) {
                             val colName = myCursor.getColumnName(columnIdx)
                             val body = myCursor.getString(columnIdx)
@@ -348,7 +348,7 @@ object SMSHelper {
         sortOrder: String?,
         numberToGet: Long?
     ): List<Message> {
-        val allColumns = mutableSetOf<String>()
+        val allColumns = HashSet<String>()
         allColumns.addAll(Message.smsColumns)
         allColumns.addAll(Message.mmsColumns)
         if (getSubscriptionIdSupport(uri, context)) {

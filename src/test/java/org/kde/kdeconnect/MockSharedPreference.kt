@@ -11,7 +11,7 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener
  * From https://gist.github.com/amardeshbd/354173d00b988574ee5019c4ba0c8a0b
  */
 internal class MockSharedPreference : SharedPreferences {
-    private val preferenceMap = mutableMapOf<String, Any?>()
+    private val preferenceMap = HashMap<String, Any?>()
     private val preferenceEditor = MockSharedPreferenceEditor(preferenceMap)
 
     override fun getAll(): Map<String, *> = preferenceMap
