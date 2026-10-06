@@ -231,7 +231,7 @@ object SMSHelper {
         sortOrder: String?,
         numberToGet: Long?
     ): MutableList<Message> {
-        val toReturn: MutableList<Message> = ArrayList()
+        val toReturn = mutableListOf<Message>()
 
         // Get all the active phone numbers so we can filter the user out of the list of targets
         // of any MMSes
@@ -273,7 +273,7 @@ object SMSHelper {
                                 continue
                             }
                         }
-                        val messageInfo = HashMap<String, String?>()
+                        val messageInfo = mutableMapOf<String, String?>()
                         for (columnIdx in 0 until myCursor.columnCount) {
                             val colName = myCursor.getColumnName(columnIdx)
                             val body = myCursor.getString(columnIdx)
@@ -299,7 +299,7 @@ object SMSHelper {
                 }
             }
         } catch (e: SQLiteException) {
-            var unfilteredColumns = arrayOf<String?>()
+            var unfilteredColumns = emptyArray<String>()
             context.contentResolver.query(uri, null, null, null, null)
                 .use { unfilteredColumnsCursor ->
                     if (unfilteredColumnsCursor != null) {
@@ -312,7 +312,7 @@ object SMSHelper {
                 throw MessageAccessException(unfilteredColumns, uri, e)
             }
         } catch (e: IllegalArgumentException) {
-            var unfilteredColumns = arrayOf<String?>()
+            var unfilteredColumns = emptyArray<String>()
             context.contentResolver.query(uri, null, null, null, null)
                 .use { unfilteredColumnsCursor ->
                     if (unfilteredColumnsCursor != null) {
@@ -348,7 +348,7 @@ object SMSHelper {
         sortOrder: String?,
         numberToGet: Long?
     ): List<Message> {
-        val allColumns: MutableSet<String> = HashSet()
+        val allColumns = mutableSetOf<String>()
         allColumns.addAll(Message.smsColumns)
         allColumns.addAll(Message.mmsColumns)
         if (getSubscriptionIdSupport(uri, context)) {
@@ -426,7 +426,7 @@ object SMSHelper {
             null,
             null
         ).use { threadIdCursor ->
-            val threadTimestampPair: MutableList<Pair<ThreadID, Long>> = ArrayList()
+            val threadTimestampPair = mutableListOf<Pair<ThreadID, Long>>()
             while (threadIdCursor != null && threadIdCursor.moveToNext()) {
                 // The "_id" column returned from the `content://sms-mms/conversations?simple=true` URI
                 // is actually what the rest of the world calls a thread_id.
@@ -527,7 +527,7 @@ object SMSHelper {
         val threadID = ThreadID(messageInfo[Message.THREAD_ID]?.toLongOrNull() ?: ThreadID.invalidThreadId.threadID)
         val uID = messageInfo[Message.U_ID]?.toLongOrNull() ?: 0L
         val subscriptionID = messageInfo[Message.SUBSCRIPTION_ID]?.toIntOrNull() ?: 0
-        val attachments: MutableList<Attachment> = ArrayList()
+        val attachments = mutableListOf<Attachment>()
         val columns = arrayOf(
             Telephony.Mms.Part._ID,  // The content ID of this part
             Telephony.Mms.Part._DATA,  // The location in the filesystem of the data
@@ -651,7 +651,7 @@ object SMSHelper {
         val msg = getMessagePdu(context, uID)
         val from = SmsMmsUtils.getMmsFrom(context, msg)
         val to = SmsMmsUtils.getMmsTo(context, msg)
-        val addresses: MutableList<Address> = ArrayList()
+        val addresses = mutableListOf<Address>()
         if (from != null) {
             val isLocalPhoneNumber = userPhoneNumbers
                 .any { localPhoneNumber: LocalPhoneNumber ->
@@ -774,7 +774,7 @@ object SMSHelper {
      * converts a given JSONArray into List<Address>
     </Address> */
     fun jsonArrayToAddressList(context: Context, jsonArray: JSONArray): List<Address> {
-        val addresses: MutableList<Address> = ArrayList()
+        val addresses = mutableListOf<Address>()
         try {
             for (i in 0 until jsonArray.length()) {
                 val jsonObject = jsonArray.getJSONObject(i)
@@ -877,9 +877,9 @@ object SMSHelper {
      * More useful for logging than catching and handling
      */
     class MessageAccessException : RuntimeException {
-        internal constructor(uri: Uri, cause: Throwable?) : super("Error getting messages from $uri", cause)
+        internal constructor(uri: Uri, cause: Throwable) : super("Error getting messages from $uri", cause)
 
-        internal constructor(availableColumns: Array<String?>, uri: Uri, cause: Throwable?) :
+        internal constructor(availableColumns: Array<String>, uri: Uri, cause: Throwable) :
             super("Error getting messages from $uri. Available columns were: ${availableColumns.contentToString()}", cause)
     }
 
