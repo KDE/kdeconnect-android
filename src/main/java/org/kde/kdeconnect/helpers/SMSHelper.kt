@@ -480,7 +480,12 @@ object SMSHelper {
             while (threadIdsIndex < threadIds.size) {
                 val nextThreadId = threadIds[threadIdsIndex]
                 threadIdsIndex++
-                val firstMessage = getMessagesInThread(context, nextThreadId, 1L)
+                val firstMessage = try {
+                    getMessagesInThread(context, nextThreadId, 1L)
+                } catch (e: Exception) {
+                    Log.e("SMSHelper", "Error reading messages of ThreadID: $nextThreadId", e)
+                    continue
+                }
                 if (firstMessage.size > 1) {
                     Log.w("SMSHelper", "getConversations got two messages for the same ThreadID: $nextThreadId")
                 }
