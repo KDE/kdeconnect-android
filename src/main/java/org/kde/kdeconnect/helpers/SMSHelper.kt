@@ -503,7 +503,7 @@ object SMSHelper {
      */
     private fun parseSMS(context: Context, messageInfo: Map<String, String?>): Message {
         return Message(
-            addresses = listOf(Address(context, messageInfo[Telephony.Sms.ADDRESS]!!)),
+            addresses = listOfNotNull(messageInfo[Telephony.Sms.ADDRESS]).map { Address(context, it) },
             body = messageInfo[Message.BODY] ?: "",
             date = messageInfo[Message.DATE]?.toLongOrNull() ?: 0L,
             type = messageInfo[Message.TYPE]?.toIntOrNull() ?: 0,
