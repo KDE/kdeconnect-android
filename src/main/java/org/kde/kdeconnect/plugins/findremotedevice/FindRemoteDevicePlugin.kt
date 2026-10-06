@@ -6,9 +6,9 @@
 package org.kde.kdeconnect.plugins.findremotedevice
 
 import org.kde.kdeconnect.NetworkPacket
-import org.kde.kdeconnect.plugins.findmyphone.FindMyPhonePlugin
 import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.plugins.PluginFactory.LoadablePlugin
+import org.kde.kdeconnect.plugins.findmyphone.FindMyPhonePlugin
 import org.kde.kdeconnect_tp.R
 
 @LoadablePlugin

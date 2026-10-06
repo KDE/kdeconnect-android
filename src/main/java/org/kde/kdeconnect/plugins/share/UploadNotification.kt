@@ -10,7 +10,7 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Intent
 import androidx.core.app.NotificationCompat
-import androidx.core.content.ContextCompat
+import androidx.core.content.getSystemService
 import androidx.preference.PreferenceManager
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.helpers.NotificationHelper
@@ -23,7 +23,7 @@ internal class UploadNotification {
         this.device = device
         this.jobId = jobId
         notificationId = System.currentTimeMillis().toInt()
-        notificationManager = ContextCompat.getSystemService(device.context, NotificationManager::class.java)!!
+        notificationManager = device.context.getSystemService<NotificationManager>()!!
         builder = NotificationCompat.Builder(device.context, NotificationHelper.Channels.FILETRANSFER_UPLOAD)
             .setSmallIcon(android.R.drawable.stat_sys_upload)
             .setAutoCancel(true)

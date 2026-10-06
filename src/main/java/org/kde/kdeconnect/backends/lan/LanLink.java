@@ -16,13 +16,14 @@ import androidx.annotation.WorkerThread;
 
 import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
-import org.kde.kdeconnect.backends.BaseLink;
-import org.kde.kdeconnect.backends.BaseLinkProvider;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.DeviceInfo;
-import org.kde.kdeconnect.helpers.security.SslHelper;
-import org.kde.kdeconnect.helpers.ThreadHelper;
 import org.kde.kdeconnect.NetworkPacket;
+import org.kde.kdeconnect.backends.BaseLink;
+import org.kde.kdeconnect.backends.BaseLinkProvider;
+import org.kde.kdeconnect.helpers.LineTooLongException;
+import org.kde.kdeconnect.helpers.ThreadHelper;
+import org.kde.kdeconnect.helpers.security.SslHelper;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -39,7 +40,6 @@ import javax.net.ssl.SSLHandshakeException;
 import javax.net.ssl.SSLSocket;
 
 import kotlin.text.Charsets;
-import org.kde.kdeconnect.helpers.LineTooLongException;
 
 public class LanLink extends BaseLink {
 

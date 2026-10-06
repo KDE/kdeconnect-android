@@ -14,9 +14,9 @@ import android.widget.ArrayAdapter
 import android.widget.CheckBox
 import android.widget.ListView
 import androidx.appcompat.app.AlertDialog
-import org.kde.kdeconnect.helpers.TrustedNetworkHelper
 import org.kde.kdeconnect.base.BaseActivity
 import org.kde.kdeconnect.extensions.viewBinding
+import org.kde.kdeconnect.helpers.TrustedNetworkHelper
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.TrustedNetworkListBinding
 

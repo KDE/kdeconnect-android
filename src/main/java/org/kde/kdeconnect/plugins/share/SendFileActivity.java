@@ -16,8 +16,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.kde.kdeconnect.helpers.ThreadHelper;
 import org.kde.kdeconnect.KdeConnect;
+import org.kde.kdeconnect.helpers.ThreadHelper;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;

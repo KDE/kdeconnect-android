@@ -28,6 +28,7 @@ import android.service.notification.StatusBarNotification
 import android.text.TextUtils
 import android.util.Log
 import androidx.core.app.NotificationCompat
+import androidx.core.graphics.createBitmap
 import androidx.fragment.app.DialogFragment
 import org.apache.commons.collections4.multimap.ArrayListValuedHashMap
 import org.json.JSONArray
@@ -43,7 +44,6 @@ import org.kde.kdeconnect_tp.R
 import java.io.ByteArrayOutputStream
 import java.security.MessageDigest
 import java.util.Locale
-import androidx.core.graphics.createBitmap
 
 @LoadablePlugin
 class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener {

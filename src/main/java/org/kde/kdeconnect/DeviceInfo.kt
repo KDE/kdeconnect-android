@@ -10,13 +10,13 @@ import android.content.Context
 import android.util.Base64
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
+import androidx.core.content.edit
 import org.kde.kdeconnect.helpers.DeviceHelper
 import org.kde.kdeconnect.helpers.TrustedDevices
 import org.kde.kdeconnect_tp.R
 import java.security.cert.Certificate
 import java.security.cert.CertificateEncodingException
 import java.security.cert.CertificateException
-import androidx.core.content.edit
 
 /**
  * DeviceInfo contains all the properties needed to instantiate a Device.

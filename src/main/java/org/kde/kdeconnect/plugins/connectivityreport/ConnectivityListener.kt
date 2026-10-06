@@ -18,7 +18,7 @@ import android.telephony.SubscriptionManager.OnSubscriptionsChangedListener
 import android.telephony.TelephonyManager
 import android.util.Log
 import androidx.annotation.RequiresApi
-import androidx.core.content.ContextCompat
+import androidx.core.content.getSystemService
 
 /**
  * Registers a listener for changes in connectivity for the device.
@@ -136,7 +136,7 @@ class ConnectivityListener(context: Context) {
         runOnMainThread {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 // Multi-SIM supported on Nougat+
-                val sm = ContextCompat.getSystemService(context, SubscriptionManager::class.java)
+                val sm = context.getSystemService<SubscriptionManager>()
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                     sm?.addOnSubscriptionsChangedListener(context.mainExecutor, subscriptionsListener)
                 } else {
@@ -154,7 +154,7 @@ class ConnectivityListener(context: Context) {
         runOnMainThread {
             val tm = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                val sm = ContextCompat.getSystemService(context, SubscriptionManager::class.java)
+                val sm = context.getSystemService<SubscriptionManager>()
                 sm?.removeOnSubscriptionsChangedListener(subscriptionsListener)
             }
             for (subID in connectivityListeners.keys) {
@@ -202,7 +202,7 @@ class ConnectivityListener(context: Context) {
      */
     @Throws(SecurityException::class)
     fun getActiveSubscriptionIDs(): List<Int> {
-        val subscriptionManager = ContextCompat.getSystemService(context, SubscriptionManager::class.java)
+        val subscriptionManager = context.getSystemService<SubscriptionManager>()
         if (subscriptionManager == null) {
             Log.w(TAG, "Could not get SubscriptionManager")
             return emptyList()

@@ -136,7 +136,7 @@ class ClipboardPlugin : Plugin() {
 
     private fun userInitiatedSendClipboard() {
         if (isDeviceInitialized) {
-            val clipboardManager = this.context.getSystemService<ClipboardManager>()!!
+            val clipboardManager = context.getSystemService<ClipboardManager>()!!
             val item: ClipData.Item
             if (clipboardManager.hasPrimaryClip()) {
                 item = clipboardManager.primaryClip!!.getItemAt(0)
@@ -151,8 +151,8 @@ class ClipboardPlugin : Plugin() {
     companion object {
         /**
          * Packet containing just clipboard contents, sent when a device updates its clipboard.
-         * 
-         * 
+         *
+         *
          * The body should look like so:
          * {
          * "content": "password"
@@ -163,12 +163,12 @@ class ClipboardPlugin : Plugin() {
         /**
          * Packet containing clipboard contents and a timestamp that the contents were last updated, sent
          * on first connection
-         * 
-         * 
+         *
+         *
          * The timestamp is milliseconds since epoch. It can be 0, which indicates that the clipboard
          * update time is currently unknown.
-         * 
-         * 
+         *
+         *
          * The body should look like so:
          * {
          * "timestamp": 542904563213,

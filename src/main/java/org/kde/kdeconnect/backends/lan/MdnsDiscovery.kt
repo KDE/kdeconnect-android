@@ -23,7 +23,6 @@ import org.kde.kdeconnect.helpers.DeviceHelper.getDeviceId
 import org.kde.kdeconnect.helpers.DeviceHelper.getDeviceName
 import org.kde.kdeconnect.helpers.TrustedNetworkHelper
 import org.kde.kdeconnect.helpers.normalizedMappedIpv4Address
-import java.net.InetAddress
 
 class MdnsDiscovery {
     private val context: Context

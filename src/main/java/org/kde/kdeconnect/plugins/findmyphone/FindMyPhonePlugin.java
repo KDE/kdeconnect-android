@@ -19,7 +19,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.PowerManager;
 import android.provider.Settings;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
@@ -28,10 +27,10 @@ import androidx.preference.PreferenceManager;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.jetbrains.annotations.NotNull;
+import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.helpers.DeviceHelper;
 import org.kde.kdeconnect.helpers.LifecycleHelper;
 import org.kde.kdeconnect.helpers.NotificationHelper;
-import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.plugins.Plugin;
 import org.kde.kdeconnect.plugins.PluginFactory;
 import org.kde.kdeconnect.ui.PluginSettingsFragment;

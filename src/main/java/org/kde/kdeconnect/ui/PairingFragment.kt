@@ -25,6 +25,7 @@ import androidx.annotation.RequiresApi
 import androidx.compose.runtime.getValue
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.edit
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -40,7 +41,6 @@ import org.kde.kdeconnect.ui.compose.screen.pairing.PairingScreen
 import org.kde.kdeconnect.ui.compose.screen.pairing.PairingViewModel
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.DevicesListBinding
-import androidx.core.content.edit
 
 /**
  * The view that the user will see when there are no devices paired, or when you choose "add a new device" from the sidebar.

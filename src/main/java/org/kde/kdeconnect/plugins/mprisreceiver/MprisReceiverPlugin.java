@@ -19,12 +19,12 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 
 import org.apache.commons.lang3.StringUtils;
+import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.helpers.AppsHelper;
 import org.kde.kdeconnect.helpers.ThreadHelper;
-import org.kde.kdeconnect.NetworkPacket;
-import org.kde.kdeconnect.plugins.notifications.NotificationReceiver;
 import org.kde.kdeconnect.plugins.Plugin;
 import org.kde.kdeconnect.plugins.PluginFactory;
+import org.kde.kdeconnect.plugins.notifications.NotificationReceiver;
 import org.kde.kdeconnect.ui.MainActivity;
 import org.kde.kdeconnect.ui.StartActivityAlertDialogFragment;
 import org.kde.kdeconnect_tp.R;

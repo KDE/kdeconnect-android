@@ -15,12 +15,12 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
-import androidx.preference.PreferenceManager
 import android.provider.Telephony
 import android.telephony.SmsManager
 import android.text.TextUtils
 import android.util.Base64
 import android.util.Log
+import androidx.preference.PreferenceManager
 import com.android.mms.dom.smil.parser.SmilXmlSerializer
 import com.google.android.mms.ContentType
 import com.google.android.mms.InvalidHeaderValueException
@@ -40,10 +40,10 @@ import com.klinker.android.send_message.Settings
 import com.klinker.android.send_message.Transaction
 import com.klinker.android.send_message.Utils
 import org.apache.commons.io.IOUtils
+import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.helpers.SMSHelper
 import org.kde.kdeconnect.helpers.TelephonyHelper
 import org.kde.kdeconnect.helpers.TelephonyHelper.LocalPhoneNumber
-import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect_tp.R
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream

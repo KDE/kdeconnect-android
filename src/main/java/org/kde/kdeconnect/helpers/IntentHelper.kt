@@ -19,7 +19,6 @@ import org.kde.kdeconnect.extensions.getParcelableArrayListCompat
 import org.kde.kdeconnect.extensions.getParcelableCompat
 import org.kde.kdeconnect.helpers.LifecycleHelper.isInForeground
 import org.kde.kdeconnect_tp.R
-import kotlin.text.endsWith
 
 object IntentHelper {
     /**

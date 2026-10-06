@@ -7,12 +7,12 @@ package org.kde.kdeconnect.backends.loopback
 
 import android.content.Context
 import androidx.annotation.WorkerThread
-import org.kde.kdeconnect.backends.BaseLink
-import org.kde.kdeconnect.backends.BaseLinkProvider
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.DeviceInfo
-import org.kde.kdeconnect.helpers.DeviceHelper.getDeviceInfo
 import org.kde.kdeconnect.NetworkPacket
+import org.kde.kdeconnect.backends.BaseLink
+import org.kde.kdeconnect.backends.BaseLinkProvider
+import org.kde.kdeconnect.helpers.DeviceHelper.getDeviceInfo
 
 class LoopbackLink : BaseLink {
     constructor(context: Context, linkProvider: BaseLinkProvider) : super(context, linkProvider)

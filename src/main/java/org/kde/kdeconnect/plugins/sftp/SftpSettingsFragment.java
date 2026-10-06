@@ -30,8 +30,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.KdeConnect;
 import org.kde.kdeconnect.plugins.Plugin;
 import org.kde.kdeconnect.ui.PluginSettingsActivity;
 import org.kde.kdeconnect.ui.PluginSettingsFragment;

@@ -12,10 +12,10 @@ import android.util.Log
 import androidx.annotation.WorkerThread
 import org.json.JSONException
 import org.json.JSONObject
-import org.kde.kdeconnect.backends.BaseLink
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.DeviceInfo
 import org.kde.kdeconnect.NetworkPacket
+import org.kde.kdeconnect.backends.BaseLink
 import java.io.IOException
 import java.io.InputStream
 import java.io.InputStreamReader

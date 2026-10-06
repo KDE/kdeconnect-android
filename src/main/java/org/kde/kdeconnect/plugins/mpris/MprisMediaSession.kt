@@ -16,7 +16,6 @@ import android.content.pm.PackageManager
 import android.media.AudioManager
 import android.os.Build
 import android.os.Handler
-import androidx.preference.PreferenceManager
 import android.service.notification.StatusBarNotification
 import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.session.MediaSessionCompat
@@ -25,9 +24,11 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.TaskStackBuilder
 import androidx.core.content.ContextCompat
+import androidx.core.content.getSystemService
+import androidx.preference.PreferenceManager
 import org.kde.kdeconnect.Device
-import org.kde.kdeconnect.helpers.NotificationHelper
 import org.kde.kdeconnect.KdeConnect
+import org.kde.kdeconnect.helpers.NotificationHelper
 import org.kde.kdeconnect.plugins.mpris.MprisPlugin.MprisPlayer
 import org.kde.kdeconnect.plugins.notifications.NotificationReceiver
 import org.kde.kdeconnect.plugins.systemvolume.SystemVolumePlugin
@@ -434,7 +435,7 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
             if (this.mediaSession == null) {
                 this.mediaSession = mediaSession
             }
-            ContextCompat.getSystemService(context, NotificationManager::class.java)
+            context.getSystemService<NotificationManager>()
                 ?.notify(MPRIS_MEDIA_NOTIFICATION_ID, notification.build())
         }
 
@@ -444,7 +445,7 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
 
     fun closeMediaNotification() {
         // Remove the notification
-        ContextCompat.getSystemService(context, NotificationManager::class.java)
+        context.getSystemService<NotificationManager>()
             ?.cancel(MPRIS_MEDIA_NOTIFICATION_ID)
 
         // Clear the current player and media session

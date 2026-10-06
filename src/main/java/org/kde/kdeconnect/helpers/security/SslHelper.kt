@@ -7,10 +7,10 @@ package org.kde.kdeconnect.helpers.security
 
 import android.annotation.SuppressLint
 import android.content.Context
-import androidx.preference.PreferenceManager
 import android.util.Base64
 import android.util.Log
 import androidx.core.content.edit
+import androidx.preference.PreferenceManager
 import org.bouncycastle.asn1.x500.X500Name
 import org.bouncycastle.asn1.x500.X500NameBuilder
 import org.bouncycastle.asn1.x500.style.BCStyle
@@ -20,9 +20,9 @@ import org.bouncycastle.cert.jcajce.JcaX509v3CertificateBuilder
 import org.bouncycastle.operator.jcajce.JcaContentSignerBuilder
 import org.kde.kdeconnect.helpers.DeviceHelper.getDeviceId
 import org.kde.kdeconnect.helpers.RandomHelper
+import org.kde.kdeconnect.helpers.TrustedDevices
 import org.kde.kdeconnect.helpers.security.RsaHelper.getPrivateKey
 import org.kde.kdeconnect.helpers.security.RsaHelper.getPublicKey
-import org.kde.kdeconnect.helpers.TrustedDevices
 import java.io.ByteArrayInputStream
 import java.math.BigInteger
 import java.net.Socket

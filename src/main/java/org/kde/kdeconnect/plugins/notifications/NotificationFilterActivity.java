@@ -43,8 +43,8 @@ import androidx.core.widget.TextViewCompat;
 
 import com.google.android.material.materialswitch.MaterialSwitch;
 
-import org.kde.kdeconnect.helpers.ThreadHelper;
 import org.kde.kdeconnect.base.BaseActivity;
+import org.kde.kdeconnect.helpers.ThreadHelper;
 import org.kde.kdeconnect_tp.R;
 import org.kde.kdeconnect_tp.databinding.ActivityNotificationFilterBinding;
 

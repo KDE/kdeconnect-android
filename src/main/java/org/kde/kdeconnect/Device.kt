@@ -18,8 +18,8 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.VisibleForTesting
 import androidx.annotation.WorkerThread
 import androidx.core.app.NotificationCompat
-import androidx.core.content.ContextCompat
 import androidx.core.content.edit
+import androidx.core.content.getSystemService
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -28,15 +28,15 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.launch
 import org.apache.commons.collections4.MultiValuedMap
 import org.apache.commons.collections4.multimap.ArrayListValuedHashMap
-import org.kde.kdeconnect.backends.BaseLink
-import org.kde.kdeconnect.backends.BaseLink.PacketReceiver
 import org.kde.kdeconnect.DeviceInfo.Companion.loadFromSettings
 import org.kde.kdeconnect.DeviceStats.countReceived
 import org.kde.kdeconnect.DeviceStats.countSent
+import org.kde.kdeconnect.PairingHandler.PairingCallback
+import org.kde.kdeconnect.backends.BaseLink
+import org.kde.kdeconnect.backends.BaseLink.PacketReceiver
 import org.kde.kdeconnect.helpers.DeviceHelper
 import org.kde.kdeconnect.helpers.NotificationHelper
 import org.kde.kdeconnect.helpers.TrustedDevices
-import org.kde.kdeconnect.PairingHandler.PairingCallback
 import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.plugins.Plugin.Companion.getPluginKey
 import org.kde.kdeconnect.plugins.PluginFactory
@@ -247,6 +247,9 @@ class Device : PacketReceiver {
     // Notification related methods used during pairing
     //
     fun displayPairingNotification() {
+        val notificationManager = context.getSystemService<NotificationManager>()
+            ?: return
+
         hidePairingNotification()
 
         notificationId = System.currentTimeMillis().toInt()
@@ -291,8 +294,6 @@ class Device : PacketReceiver {
 
         val res = context.resources
 
-        val notificationManager = ContextCompat.getSystemService(context, NotificationManager::class.java)!!
-
         val noti = NotificationCompat.Builder(context, NotificationHelper.Channels.DEFAULT)
             .setContentTitle(res.getString(R.string.pairing_request_from, name))
             .setContentText(res.getString(R.string.pairing_verification_code, verificationKey))
@@ -304,13 +305,12 @@ class Device : PacketReceiver {
             .setAutoCancel(true)
             .setDefaults(Notification.DEFAULT_ALL)
             .build()
-
         notificationManager.notify(notificationId, noti)
     }
 
     fun hidePairingNotification() {
-        val notificationManager = ContextCompat.getSystemService(context, NotificationManager::class.java)!!
-        notificationManager.cancel(notificationId)
+        context.getSystemService<NotificationManager>()
+            ?.cancel(notificationId)
     }
 
     val isReachable: Boolean

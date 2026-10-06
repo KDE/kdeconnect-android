@@ -11,8 +11,8 @@ import android.media.session.MediaController
 import android.media.session.PlaybackState
 import android.net.Uri
 import android.util.Pair
-import java.io.ByteArrayOutputStream
 import androidx.core.net.toUri
+import java.io.ByteArrayOutputStream
 
 internal class MprisReceiverCallback : MediaController.Callback {
     private val plugin: MprisReceiverPlugin
@@ -153,7 +153,7 @@ internal class MprisReceiverCallback : MediaController.Callback {
     val artAsArray: ByteArray?
         /**
          * Get the JPG art of the current track as a bytearray.
-         * 
+         *
          * @return null if no art is available, otherwise a PNG image serialized into a bytearray
          */
         get() {

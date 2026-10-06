@@ -10,7 +10,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.SystemClock;
-import androidx.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
 import android.util.SparseIntArray;
@@ -25,6 +24,7 @@ import android.view.inputmethod.InputMethodManager;
 import androidx.annotation.NonNull;
 import androidx.core.util.Pair;
 import androidx.fragment.app.DialogFragment;
+import androidx.preference.PreferenceManager;
 
 import org.jetbrains.annotations.NotNull;
 import org.kde.kdeconnect.NetworkPacket;

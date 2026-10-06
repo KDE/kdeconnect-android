@@ -7,8 +7,9 @@ package org.kde.kdeconnect
 
 import android.app.NotificationManager
 import android.content.Context
-import androidx.preference.PreferenceManager
 import androidx.core.content.ContextCompat
+import androidx.core.content.getSystemService
+import androidx.preference.PreferenceManager
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkStatic
@@ -18,18 +19,18 @@ import org.junit.After
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-import org.kde.kdeconnect.backends.lan.LanLink
-import org.kde.kdeconnect.backends.lan.LanLinkProvider
 import org.kde.kdeconnect.DeviceInfo.Companion.fromIdentityPacketAndCert
 import org.kde.kdeconnect.DeviceInfo.Companion.isValidDeviceId
 import org.kde.kdeconnect.DeviceInfo.Companion.isValidIdentityPacket
 import org.kde.kdeconnect.DeviceInfo.Companion.loadFromSettings
 import org.kde.kdeconnect.DeviceType.Companion.fromString
+import org.kde.kdeconnect.PairingHandler.PairingCallback
+import org.kde.kdeconnect.backends.lan.LanLink
+import org.kde.kdeconnect.backends.lan.LanLinkProvider
 import org.kde.kdeconnect.helpers.DeviceHelper
+import org.kde.kdeconnect.helpers.TrustedDevices
 import org.kde.kdeconnect.helpers.security.RsaHelper
 import org.kde.kdeconnect.helpers.security.SslHelper
-import org.kde.kdeconnect.helpers.TrustedDevices
-import org.kde.kdeconnect.PairingHandler.PairingCallback
 import java.security.cert.CertificateException
 
 class DeviceTest {
@@ -93,7 +94,7 @@ class DeviceTest {
         RsaHelper.initialiseRsaKeys(context)
 
         mockkStatic(ContextCompat::class)
-        every { ContextCompat.getSystemService(context, NotificationManager::class.java) } returns mockk(relaxed = true)
+        every { context.getSystemService<NotificationManager>() } returns mockk(relaxed = true)
 
         mockkStatic(android.util.Log::class)
     }

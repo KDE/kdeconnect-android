@@ -9,9 +9,9 @@ import android.content.Context
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.os.Build
-import androidx.preference.PreferenceManager
 import android.util.Log
 import androidx.core.content.edit
+import androidx.preference.PreferenceManager
 import com.univocity.parsers.common.TextParsingException
 import com.univocity.parsers.csv.CsvParser
 import com.univocity.parsers.csv.CsvParserSettings

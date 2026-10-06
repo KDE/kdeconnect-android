@@ -144,7 +144,7 @@ class BackgroundService : Service() {
             updateForegroundNotification()
         }
         else {
-            stopForeground(true)
+            stopForeground(true) // Pass STOP_FOREGROUND_REMOVE instead of true when we only support API 24+
             Start(this)
         }
     }

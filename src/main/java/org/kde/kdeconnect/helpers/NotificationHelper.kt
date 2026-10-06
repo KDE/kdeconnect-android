@@ -7,11 +7,11 @@ package org.kde.kdeconnect.helpers
 
 import android.content.Context
 import android.os.Build
-import androidx.preference.PreferenceManager
 import androidx.core.app.NotificationChannelCompat
 import androidx.core.app.NotificationManagerCompat
-import org.kde.kdeconnect_tp.R
 import androidx.core.content.edit
+import androidx.preference.PreferenceManager
+import org.kde.kdeconnect_tp.R
 
 object NotificationHelper {
     fun initializeChannels(context: Context) {

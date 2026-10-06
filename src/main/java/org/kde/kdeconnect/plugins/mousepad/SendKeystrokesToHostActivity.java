@@ -9,20 +9,20 @@ package org.kde.kdeconnect.plugins.mousepad;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import androidx.preference.PreferenceManager;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.preference.PreferenceManager;
 
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.KdeConnect;
+import org.kde.kdeconnect.base.BaseActivity;
 import org.kde.kdeconnect.helpers.SafeTextChecker;
 import org.kde.kdeconnect.helpers.WindowHelper;
-import org.kde.kdeconnect.KdeConnect;
 import org.kde.kdeconnect.ui.list.DeviceItem;
 import org.kde.kdeconnect.ui.list.ListAdapter;
 import org.kde.kdeconnect.ui.list.SectionItem;
-import org.kde.kdeconnect.base.BaseActivity;
 import org.kde.kdeconnect_tp.R;
 import org.kde.kdeconnect_tp.databinding.ActivitySendkeystrokesBinding;
 

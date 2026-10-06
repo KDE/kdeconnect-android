@@ -12,11 +12,11 @@ import android.Manifest
 import android.util.Log
 import androidx.core.content.edit
 import androidx.fragment.app.DialogFragment
+import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.helpers.ContactsHelper
 import org.kde.kdeconnect.helpers.ContactsHelper.ContactNotFoundException
 import org.kde.kdeconnect.helpers.ContactsHelper.VCardBuilder
 import org.kde.kdeconnect.helpers.ContactsHelper.uID
-import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.plugins.PluginFactory.LoadablePlugin
 import org.kde.kdeconnect.ui.AlertDialogFragment

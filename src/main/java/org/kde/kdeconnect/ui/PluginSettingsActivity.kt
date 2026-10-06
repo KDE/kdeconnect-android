@@ -13,7 +13,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.kde.kdeconnect.DeviceStats
 import org.kde.kdeconnect.KdeConnect.Companion.getInstance

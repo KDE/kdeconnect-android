@@ -14,8 +14,8 @@ import org.junit.After
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-import org.kde.kdeconnect.helpers.security.SslHelper
 import org.kde.kdeconnect.MockSharedPreference
+import org.kde.kdeconnect.helpers.security.SslHelper
 import java.security.cert.X509Certificate
 import java.util.Base64
 

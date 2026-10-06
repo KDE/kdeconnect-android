@@ -13,13 +13,14 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.media.AudioManager
-import androidx.preference.PreferenceManager
 import android.telephony.PhoneNumberUtils
 import android.telephony.TelephonyManager
 import android.util.Log
 import androidx.core.content.ContextCompat
-import org.kde.kdeconnect.helpers.ContactsHelper
+import androidx.core.content.getSystemService
+import androidx.preference.PreferenceManager
 import org.kde.kdeconnect.NetworkPacket
+import org.kde.kdeconnect.helpers.ContactsHelper
 import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.plugins.PluginFactory.LoadablePlugin
 import org.kde.kdeconnect.ui.PluginSettingsFragment
@@ -142,7 +143,7 @@ class TelephonyPlugin : Plugin() {
 
     private fun unmuteRinger() {
         if (isMuted) {
-            val am = ContextCompat.getSystemService(context, AudioManager::class.java) ?: return
+            val am = context.getSystemService<AudioManager>() ?: return
             am.setStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_UNMUTE, 0)
             isMuted = false
         }
@@ -151,7 +152,7 @@ class TelephonyPlugin : Plugin() {
     private fun muteRinger() {
         if (isMuted) return
 
-        val am = ContextCompat.getSystemService(context, AudioManager::class.java) ?: return
+        val am = context.getSystemService<AudioManager>() ?: return
         if (!am.isStreamMute(AudioManager.STREAM_RING)) {
             am.setStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_MUTE, 0)
             isMuted = true

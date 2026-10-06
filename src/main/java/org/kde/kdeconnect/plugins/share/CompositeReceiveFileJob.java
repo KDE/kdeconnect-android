@@ -21,10 +21,10 @@ import androidx.documentfile.provider.DocumentFile;
 
 import org.apache.commons.io.IOUtils;
 import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.helpers.FilesHelper;
-import org.kde.kdeconnect.helpers.MediaStoreHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.async.BackgroundJob;
+import org.kde.kdeconnect.helpers.FilesHelper;
+import org.kde.kdeconnect.helpers.MediaStoreHelper;
 import org.kde.kdeconnect_tp.R;
 
 import java.io.BufferedOutputStream;

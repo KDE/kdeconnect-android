@@ -7,11 +7,11 @@ package org.kde.kdeconnect.helpers.security
 
 import android.content.Context
 import android.content.SharedPreferences
-import androidx.preference.PreferenceManager
 import android.security.keystore.KeyProperties
 import android.util.Base64
 import android.util.Log
 import androidx.core.content.edit
+import androidx.preference.PreferenceManager
 import java.security.KeyFactory
 import java.security.KeyPair
 import java.security.KeyPairGenerator

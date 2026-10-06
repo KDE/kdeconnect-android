@@ -15,11 +15,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
-import androidx.preference.PreferenceManager;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
+import androidx.preference.PreferenceManager;
 
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.helpers.NotificationHelper;

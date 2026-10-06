@@ -9,10 +9,10 @@ import android.Manifest
 import org.json.JSONException
 import org.json.JSONObject
 import org.kde.kdeconnect.NetworkPacket
-import org.kde.kdeconnect.plugins.connectivityreport.ConnectivityListener.Companion.getInstance
-import org.kde.kdeconnect.plugins.connectivityreport.ConnectivityListener.SubscriptionState
 import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.plugins.PluginFactory.LoadablePlugin
+import org.kde.kdeconnect.plugins.connectivityreport.ConnectivityListener.Companion.getInstance
+import org.kde.kdeconnect.plugins.connectivityreport.ConnectivityListener.SubscriptionState
 import org.kde.kdeconnect_tp.R
 
 @LoadablePlugin

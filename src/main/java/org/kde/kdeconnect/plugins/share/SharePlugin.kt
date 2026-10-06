@@ -17,35 +17,35 @@ import android.os.Looper
 import android.util.Log
 import android.widget.Toast
 import androidx.annotation.WorkerThread
-import androidx.core.content.ContextCompat
 import androidx.core.content.LocusIdCompat
+import androidx.core.content.edit
+import androidx.core.content.getSystemService
 import androidx.core.content.pm.ShortcutInfoCompat
 import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.core.graphics.drawable.IconCompat
+import androidx.core.net.toUri
 import androidx.preference.PreferenceManager
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.async.BackgroundJob
 import org.kde.kdeconnect.async.BackgroundJobHandler
 import org.kde.kdeconnect.async.BackgroundJobHandler.Companion.newFixedThreadPoolBackgroundJobHandler
 import org.kde.kdeconnect.helpers.FilesHelper.uriToNetworkPacket
+import org.kde.kdeconnect.helpers.IntentHelper
 import org.kde.kdeconnect.helpers.IntentHelper.startActivityFromBackgroundOrCreateNotification
+import org.kde.kdeconnect.helpers.ThreadHelper
 import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.plugins.PluginFactory.LoadablePlugin
 import org.kde.kdeconnect.ui.MainActivity
 import org.kde.kdeconnect.ui.PluginSettingsFragment
 import org.kde.kdeconnect_tp.R
-import androidx.core.content.edit
-import androidx.core.net.toUri
-import org.kde.kdeconnect.helpers.IntentHelper
-import org.kde.kdeconnect.helpers.ThreadHelper
 
 /**
  * A Plugin for sharing and receiving files and uris.
- * 
- * 
+ *
+ *
  * All of the associated I/O work is scheduled on background
  * threads by [BackgroundJobHandler].
- * 
+ *
  */
 @LoadablePlugin
 class SharePlugin : Plugin() {
@@ -194,7 +194,7 @@ class SharePlugin : Plugin() {
     }
 
     private fun receiveText(np: NetworkPacket) {
-        val cm = ContextCompat.getSystemService(context, ClipboardManager::class.java)!!
+        val cm = context.getSystemService<ClipboardManager>()!!
         cm.text = np.getString("text")
         handler.post {
             Toast.makeText(context, R.string.shareplugin_text_saved, Toast.LENGTH_LONG).show()

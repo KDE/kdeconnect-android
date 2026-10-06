@@ -10,9 +10,9 @@ import android.content.Intent
 import android.view.KeyEvent
 import org.kde.kdeconnect.DeviceType
 import org.kde.kdeconnect.NetworkPacket
-import org.kde.kdeconnect.plugins.mousepad.KeyListenerView
 import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.plugins.PluginFactory.LoadablePlugin
+import org.kde.kdeconnect.plugins.mousepad.KeyListenerView
 import org.kde.kdeconnect.ui.PluginSettingsFragment
 import org.kde.kdeconnect_tp.R
 

@@ -9,8 +9,8 @@ package org.kde.kdeconnect.plugins.digitizer
 import android.app.Activity
 import android.content.Intent
 import android.util.Log
-import org.kde.kdeconnect.helpers.DeviceHelper
 import org.kde.kdeconnect.NetworkPacket
+import org.kde.kdeconnect.helpers.DeviceHelper
 import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.plugins.PluginFactory
 import org.kde.kdeconnect.ui.PluginSettingsFragment
