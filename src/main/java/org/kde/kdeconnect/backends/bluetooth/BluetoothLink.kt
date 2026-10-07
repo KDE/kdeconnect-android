@@ -16,11 +16,11 @@ import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.DeviceInfo
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.backends.BaseLink
+import org.kde.kdeconnect.helpers.readLineBounded
+import java.io.BufferedInputStream
 import java.io.IOException
 import java.io.InputStream
-import java.io.InputStreamReader
 import java.io.OutputStream
-import java.io.Reader
 import java.util.UUID
 import kotlin.text.Charsets.UTF_8
 
@@ -36,28 +36,12 @@ class BluetoothLink(
     private var continueAccepting = true
     private val receivingThread = Thread(object : Runnable {
         override fun run() {
-            val sb = StringBuilder()
             try {
-                val reader: Reader = InputStreamReader(input, UTF_8)
-                val buf = CharArray(512)
+                val stream = BufferedInputStream(input)
                 while (continueAccepting) {
-                    while (sb.indexOf("\n") == -1 && continueAccepting) {
-                        var charsRead: Int
-                        if (reader.read(buf).also { charsRead = it } > 0) {
-                            sb.append(buf, 0, charsRead)
-                        }
-                        if (charsRead < 0) {
-                            disconnect()
-                            return
-                        }
-                    }
+                    val message = readLineBounded(stream, MAX_PACKET_SIZE)
                     if (!continueAccepting) break
-                    val endIndex = sb.indexOf("\n")
-                    if (endIndex != -1) {
-                        val message = sb.substring(0, endIndex + 1)
-                        sb.delete(0, endIndex + 1)
-                        processMessage(message)
-                    }
+                    processMessage(message)
                 }
             } catch (e: IOException) {
                 Log.e("BluetoothLink/receiving", "Connection to " + remoteAddress.address + " likely broken.", e)
@@ -154,5 +138,9 @@ class BluetoothLink(
             callback.onFailure(e)
             false
         }
+    }
+
+    companion object {
+        private const val MAX_PACKET_SIZE = 32 * 1024 * 1024
     }
 }
