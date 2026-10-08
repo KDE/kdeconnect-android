@@ -29,6 +29,7 @@ import org.kde.kdeconnect.ui.PluginSettingsFragment
 import org.kde.kdeconnect.ui.StartActivityAlertDialogFragment
 import org.kde.kdeconnect_tp.BuildConfig
 import org.kde.kdeconnect_tp.R
+import java.nio.file.Path
 
 @LoadablePlugin
 class SftpPlugin : Plugin(), OnSharedPreferenceChangeListener {
@@ -107,6 +108,7 @@ class SftpPlugin : Plugin(), OnSharedPreferenceChangeListener {
                 pathNames.add(sv.getDescription(context))
                 paths.add(directory.path)
             }
+            server.setNativeStorageDirs(paths.map { Path.of(it) })
         } else {
             val storageInfoList = SftpSettingsFragment.getStorageInfoList(context, this)
             storageInfoList.sortBy { it.uri }
@@ -118,7 +120,7 @@ class SftpPlugin : Plugin(), OnSharedPreferenceChangeListener {
             }
             getPathsAndNamesForStorageInfoList(paths, pathNames, storageInfoList)
             storageInfoList.removeChildren()
-            server.setSafRoots(storageInfoList)
+            server.setSafStorageDirs(storageInfoList)
         }
 
         if (!server.start()) {
