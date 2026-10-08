@@ -14,6 +14,7 @@ import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.Telephony
 import android.telephony.SmsManager
@@ -228,10 +229,20 @@ object SmsMmsUtils {
             Log.e(SENDING_MESSAGE, "Error while writing temporary PDU file: ", e)
         }
 
-        val mSmsManager = if (klinkerSettings.subscriptionId < 0) {
-            SmsManager.getDefault()
+        val mSmsManager = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            val baseManager = context.getSystemService(SmsManager::class.java)
+            if (klinkerSettings.subscriptionId < 0) {
+                baseManager
+            } else {
+                baseManager.createForSubscriptionId(klinkerSettings.subscriptionId)
+            }
         } else {
-            SmsManager.getSmsManagerForSubscriptionId(klinkerSettings.subscriptionId)
+            @Suppress("DEPRECATION")
+            if (klinkerSettings.subscriptionId < 0) {
+                SmsManager.getDefault()
+            } else {
+                SmsManager.getSmsManagerForSubscriptionId(klinkerSettings.subscriptionId)
+            }
         }
 
         mSmsManager.sendMultimediaMessage(context, contentUri, null, configOverrides, null)
