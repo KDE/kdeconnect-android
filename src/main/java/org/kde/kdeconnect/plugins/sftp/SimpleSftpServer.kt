@@ -10,7 +10,6 @@ import android.content.Context
 import android.os.Build
 import android.util.Log
 import androidx.core.net.toUri
-import org.apache.sshd.common.file.nativefs.NativeFileSystemFactory
 import org.apache.sshd.common.keyprovider.AbstractKeyPairProvider
 import org.apache.sshd.common.session.SessionContext
 import org.apache.sshd.common.util.io.PathUtils
@@ -76,16 +75,22 @@ internal class SimpleSftpServer {
         get() = ::sshd.isInitialized
 
     private lateinit var safFileSystemFactory: SafFileSystemFactory
+    private lateinit var nativeFileSystemFactory: NativeStorageFileSystemFactory
 
-    fun setSafRoots(storageInfoList: List<SftpPlugin.StorageInfo>) {
+    fun setSafStorageDirs(storageInfoList: List<SftpPlugin.StorageInfo>) {
         safFileSystemFactory.initRoots(storageInfoList)
+    }
+
+    fun setNativeStorageDirs(paths: List<Path>) {
+        nativeFileSystemFactory.storageDirs = paths
     }
 
     fun initialize(context: Context, device: Device) {
         val sshd = ServerBuilder.builder().apply {
             fileSystemFactory(
                 if (SUPPORTS_NATIVEFS) {
-                    NativeFileSystemFactory()
+                    nativeFileSystemFactory = NativeStorageFileSystemFactory()
+                    nativeFileSystemFactory
                 } else {
                     safFileSystemFactory = SafFileSystemFactory(context)
                     safFileSystemFactory
