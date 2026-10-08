@@ -1,0 +1,7 @@
+1.36.0:
+Remote input: Support horizontal scrolling
+Remote filesystem: Reconnect after Android disconnects
+Find my phone: remove "FLAG_AUDIBILITY_ENFORCED" which caused problems on some devices
+Share files: Speed-up receiving files
+Presentation remote: add haptic feedback
+SMS: continue reading conversations if one fails
