@@ -7,45 +7,62 @@ package org.kde.kdeconnect.plugins.mpris
 
 import android.content.Context
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.net.ConnectivityManager
-import android.net.Uri
 import android.util.Log
-import androidx.annotation.WorkerThread
 import androidx.collection.LruCache
 import androidx.core.content.getSystemService
 import androidx.core.net.ConnectivityManagerCompat
 import androidx.core.net.toUri
-import com.jakewharton.disklrucache.DiskLruCache
+import coil3.ImageLoader
+import coil3.decode.DataSource
+import coil3.decode.ImageSource
+import coil3.disk.DiskCache
+import coil3.fetch.FetchResult
+import coil3.fetch.Fetcher
+import coil3.fetch.SourceFetchResult
+import coil3.memory.MemoryCache
+import coil3.network.okhttp.OkHttpNetworkFetcherFactory
+import coil3.request.CachePolicy
+import coil3.request.ImageRequest
+import coil3.request.Options
+import coil3.request.allowHardware
+import coil3.size.Precision
+import coil3.toBitmap
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
+import okio.Path.Companion.toOkioPath
+import okio.source
 import org.kde.kdeconnect.NetworkPacket.Payload
-import org.kde.kdeconnect_tp.BuildConfig
 import java.io.File
 import java.io.IOException
-import java.io.InputStream
-import java.net.HttpURLConnection
-import java.net.URL
-import java.net.URLDecoder
-import java.security.MessageDigest
+import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.CopyOnWriteArrayList
 
 /**
- * Handles the cache for album art
+ * Handles the cache for album art. Downloading, decoding, resizing and caching are delegated to Coil.
  */
 internal object AlbumArtCache {
-    /**
-     * An in-memory cache for album art bitmaps. Holds at most 10 entries (to prevent too much memory usage)
-     * Also remembers failure to fetch urls.
-     */
-    private val memoryCache = LruCache<String, MemoryCacheItem>(10)
+    private const val TAG = "KDE/Mpris/AlbumArtCache"
 
     /**
-     * An on-disk cache for album art bitmaps.
+     * Urls we failed to fetch, so we don't retry them. Bounded, so they get retried eventually.
      */
-    private lateinit var diskCache: DiskLruCache
+    private val failedUrls = LruCache<String, Boolean>(10)
+
+    /**
+     * Urls currently being loaded or written to the disk cache.
+     */
+    private val pendingUrls: MutableSet<String> = ConcurrentHashMap.newKeySet()
+
+    /**
+     * Loads album art from http(s) or from the disk cache (for art transferred from the device).
+     * Its memory cache holds at most 16 MB of uncompressed bitmaps, and its disk cache at most 12 MB of image files.
+     */
+    private lateinit var imageLoader: ImageLoader
+
+    private lateinit var appContext: Context
 
     /**
      * Used to check if the connection is metered
@@ -53,33 +70,16 @@ internal object AlbumArtCache {
     private lateinit var connectivityManager: ConnectivityManager
 
     /**
-     * A list of urls yet to be fetched.
-     */
-    private val fetchUrlList = ArrayList<Uri>()
-
-    /**
-     * A list of urls currently being fetched
-     */
-    private val isFetchingList = ArrayList<Uri>()
-
-    /**
-     * A integer indicating how many fetches are in progress.
-     */
-    private var numFetching = 0
-
-    /**
      * A list of plugins to notify on fetched album art
      */
     private val registeredPlugins = CopyOnWriteArrayList<MprisPlugin>()
 
-    @JvmStatic
     val ALLOWED_SCHEMES = listOf("http", "https", "file", "kdeconnect")
 
     /**
-     * A list of art url schemes that require a fetch from remote side.
+     * A list of art url schemes that require a transfer from the connected device.
      */
-    @JvmStatic
-    private val REMOTE_FETCH_SCHEMES = listOf("file", "kdeconnect")
+    private val DEVICE_FETCH_SCHEMES = listOf("file", "kdeconnect")
 
     private val cacheScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
 
@@ -88,17 +88,27 @@ internal object AlbumArtCache {
      *
      * @param context The context
      */
-    @JvmStatic
     fun initializeDiskCache(context: Context) {
-        if (this::diskCache.isInitialized) return
-        val cacheDir = File(context.cacheDir, "album_art")
-        try {
-            //Initialize the disk cache with a limit of 5 MB storage (fits ~830 images, taking Spotify as reference)
-            diskCache = DiskLruCache.open(cacheDir, BuildConfig.VERSION_CODE, 1, 1000 * 1000 * 5.toLong())
-        } catch (e: IOException) {
-            Log.e("KDE/Mpris/AlbumArtCache", "Could not open the album art disk cache!", e)
-        }
-        connectivityManager = context.applicationContext.getSystemService()!!
+        if (this::imageLoader.isInitialized) return
+        appContext = context.applicationContext
+        connectivityManager = appContext.getSystemService()!!
+        imageLoader = ImageLoader.Builder(appContext)
+            .memoryCache {
+                MemoryCache.Builder()
+                    .maxSizeBytes(16L * 1024L * 1024L)
+                    .build()
+            }
+            .diskCache {
+                DiskCache.Builder()
+                    .directory(File(appContext.cacheDir, "album_art").toOkioPath())
+                    .maxSizeBytes(1000L * 1000L * 12L)
+                    .build()
+            }
+            .components {
+                add(OkHttpNetworkFetcherFactory())
+                add(DeviceAlbumArtFetcher.Factory())
+            }
+            .build()
     }
 
     /**
@@ -106,7 +116,6 @@ internal object AlbumArtCache {
      *
      * @param mpris The mpris plugin
      */
-    @JvmStatic
     fun registerPlugin(mpris: MprisPlugin) {
         registeredPlugins.add(mpris)
     }
@@ -116,313 +125,209 @@ internal object AlbumArtCache {
      *
      * @param mpris The mpris plugin
      */
-    @JvmStatic
     fun deregisterPlugin(mpris: MprisPlugin?) {
         registeredPlugins.remove(mpris)
     }
 
     /**
-     * Get the album art for the given url. Currently only handles http(s) urls.
-     * If it's not in the cache, will initiate a request to fetch it.
+     * Get the album art for the given url.
+     * If it's not in the in-memory cache, will initiate a request to load it, and
+     * [MprisPlugin.fetchedAlbumArt] will be called with it once loaded.
      *
      * @param albumUrl The album art url
      * @return A bitmap for the album art. Can be null if not (yet) found
      */
-    @JvmStatic
     fun getAlbumArt(albumUrl: String?, plugin: MprisPlugin, player: String?): Bitmap? {
-        //If the url is invalid, return "no album art"
+        // If the url is invalid, return "no album art"
         if (albumUrl.isNullOrEmpty()) {
             return null
         }
         val url = albumUrl.toUri()
 
-        //We currently only support http(s), file, and kdeconnect urls
+        // We currently only support http(s), file, and kdeconnect urls
         if (url.scheme !in ALLOWED_SCHEMES) {
             return null
         }
 
-        //First, check the in-memory cache
-        val albumItem = memoryCache[albumUrl]
-        if (albumItem != null) {
-            //Do not retry failed fetches
-            return if (albumItem.failedFetch) {
-                null
-            } else {
-                albumItem.albumArt
-            }
-        }
-
-        //If not found, check the disk cache
-        if (!this::diskCache.isInitialized) {
-            Log.e("KDE/Mpris/AlbumArtCache", "The disk cache is not initialized!")
-            return null
-        }
-        try {
-            val item = diskCache[urlToDiskCacheKey(albumUrl)]
-            if (item != null) {
-                val result = BitmapFactory.decodeStream(item.getInputStream(0).buffered())
-                item.close()
-                val memItem = MemoryCacheItem()
-                if (result != null) {
-                    memItem.failedFetch = false
-                    memItem.albumArt = result
-                } else {
-                    //Invalid bitmap, so remember it as a "failed fetch" and remove it from the disk cache
-                    memItem.failedFetch = true
-                    memItem.albumArt = null
-                    diskCache.remove(urlToDiskCacheKey(albumUrl))
-                    Log.d("KDE/Mpris/AlbumArtCache", "Invalid image: $albumUrl")
-                }
-                memoryCache.put(albumUrl, memItem)
-                return result
-            }
-        } catch (e: IOException) {
+        if (!this::imageLoader.isInitialized) {
+            Log.e(TAG, "The cache is not initialized!")
             return null
         }
 
-        /* If not found, we have not tried fetching it (recently), or a fetch is in-progress.
-           Either way, just add it to the fetch queue and starting fetching it if no fetch is running. */
-        if (url.scheme in REMOTE_FETCH_SCHEMES) {
-            //Special-case file or kdeconnect, since we need to fetch it from the remote
-            if (url in isFetchingList) return null
+        // First, check the in-memory cache
+        getFromMemoryCache(albumUrl)?.let { return it }
+
+        // Do not retry failed fetches
+        if (failedUrls[albumUrl] != null) {
+            return null
+        }
+
+        if (albumUrl in pendingUrls) {
+            return null
+        }
+
+        val fromDevice = url.scheme in DEVICE_FETCH_SCHEMES
+        if (fromDevice && !isInDiskCache(albumUrl)) {
+            // Special-case file or kdeconnect, since we need to fetch it from the connected device
             if (!plugin.askTransferAlbumArt(albumUrl, player)) {
-                //It doesn't support transferring the art, so mark it as failed in the memory cache
-                memoryCache.put(url.toString(), MemoryCacheItem(true))
+                // It doesn't support transferring the art, so mark it as failed
+                failedUrls.put(albumUrl, true)
             }
-        } else {
-            fetchUrl(url)
+            return null
         }
+
+        load(albumUrl, fromDevice)
         return null
     }
 
-    /**
-     * Fetches an album art url and puts it in the cache
-     *
-     * @param url The url
-     */
-    private fun fetchUrl(url: Uri) {
-        //We need the disk cache for this
-        if (!this::diskCache.isInitialized) {
-            Log.e("KDE/Mpris/AlbumArtCache", "The disk cache is not initialized!")
-            return
-        }
-        if (ConnectivityManagerCompat.isActiveNetworkMetered(connectivityManager)) {
-            //Only download art on unmetered networks (wifi etc.)
-            return
-        }
-
-        //Only fetch an URL if we're not fetching it already
-        synchronized(fetchUrlList) {
-            if (url in fetchUrlList || url in isFetchingList) {
-                return
-            }
-            fetchUrlList.add(url)
-        }
-        initiateFetch()
+    private fun getFromMemoryCache(albumUrl: String): Bitmap? {
+        return imageLoader.memoryCache?.get(MemoryCache.Key(albumUrl))?.image?.toBitmap()
     }
 
-    /**
-     * Does the actual fetching and makes sure only not too many fetches are running at the same time
-     */
-    private fun initiateFetch() {
-        var url : Uri
-        synchronized(fetchUrlList) {
-            if (numFetching >= 2 || fetchUrlList.isEmpty()) return
-            //Fetch the last-requested url first, it will probably be needed first
-            url = fetchUrlList.last()
-            //Remove the url from the to-fetch list
-            fetchUrlList.remove(url)
-        }
-        if (url.scheme in REMOTE_FETCH_SCHEMES) {
-            throw AssertionError("Only http(s) urls should be possible here!")
-        }
-
-        //Download the album art ourselves
-        ++numFetching
-        //Add the url to the currently-fetching list
-        isFetchingList.add(url)
-        try {
-            val cacheItem = diskCache.edit(urlToDiskCacheKey(url.toString()))
-            if (cacheItem == null) {
-                Log.e("KDE/Mpris/AlbumArtCache",
-                        "Two disk cache edits happened at the same time, should be impossible!")
-                --numFetching
-                return
-            }
-
-            //Do the actual fetch in the background
-            cacheScope.launch { fetchURL(url, null, cacheItem) }
+    private fun isInDiskCache(albumUrl: String): Boolean {
+        return try {
+            imageLoader.diskCache?.openSnapshot(albumUrl)?.use { true } ?: false
         } catch (e: IOException) {
-            Log.e("KDE/Mpris/AlbumArtCache", "Problems with the disk cache", e)
-            --numFetching
+            Log.e(TAG, "Disk cache problem!", e)
+            false
         }
     }
 
     /**
-     * The disk cache requires mostly alphanumeric characters, and at most 64 characters.
-     * So hash the url to get a valid key
+     * Loads the album art (from the disk cache or the network) and hands it to the plugins
      *
-     * @param url The url
-     * @return A valid disk cache key
+     * @param albumUrl   The url
+     * @param fromDevice Whether the art was transferred from the connected device, so it can only come from the disk cache
      */
-    private fun urlToDiskCacheKey(url: String): String {
-        return MessageDigest.getInstance("MD5").digest(url.toByteArray())
-                .joinToString(separator = "") { String.format("%02x", it) }
+    private fun load(albumUrl: String, fromDevice: Boolean) {
+        // Only download art on unmetered networks (wifi etc.), but still use what's in the disk cache
+        val metered = ConnectivityManagerCompat.isActiveNetworkMetered(connectivityManager)
+        pendingUrls.add(albumUrl)
+        val request = ImageRequest.Builder(appContext)
+            .data(if (fromDevice) DeviceAlbumArt(albumUrl) else albumUrl)
+            .memoryCacheKey(albumUrl)
+            .diskCacheKey(albumUrl)
+            .networkCachePolicy(if (metered) CachePolicy.DISABLED else CachePolicy.ENABLED)
+            // The bitmaps get passed to the media session and notifications
+            .allowHardware(false)
+            // Downscale big images (we don't need more for the notification or the now playing screen), never upscale
+            .size(1024)
+            .precision(Precision.INEXACT)
+            .listener(
+                onCancel = { pendingUrls.remove(albumUrl) },
+                onSuccess = { _, result ->
+                    pendingUrls.remove(albumUrl)
+                    val albumArt = result.image.toBitmap()
+                    for (mpris in registeredPlugins) {
+                        mpris.fetchedAlbumArt(albumUrl, albumArt)
+                    }
+                },
+                onError = { _, result ->
+                    pendingUrls.remove(albumUrl)
+                    // Not having it cached while on a metered connection is not a failure, retry later
+                    if (fromDevice || !metered) {
+                        Log.d(TAG, "Failed to load album art: $albumUrl", result.throwable)
+                        failedUrls.put(albumUrl, true)
+                        // It might be an invalid image, don't keep it
+                        try {
+                            imageLoader.diskCache?.remove(albumUrl)
+                        } catch (e: IOException) {
+                            Log.e(TAG, "Disk cache problem!", e)
+                        }
+                    }
+                },
+            )
+            .build()
+        imageLoader.enqueue(request)
     }
 
     /**
      * Transfer an asked-for album art payload to the disk cache.
      *
-     * @param albumUrl The url of the album art (must be one of the [REMOTE_FETCH_SCHEMES])
+     * @param albumUrl The url of the album art (must be one of the [DEVICE_FETCH_SCHEMES])
      * @param payload  The payload input stream
      */
-    @JvmStatic
     fun payloadToDiskCache(albumUrl: String, payload: Payload?) {
-        //We need the disk cache for this
         if (payload == null) {
             return
         }
-        if (!this::diskCache.isInitialized) {
-            Log.e("KDE/Mpris/AlbumArtCache", "The disk cache is not initialized!")
+        // We need the disk cache for this
+        val diskCache = if (this::imageLoader.isInitialized) imageLoader.diskCache else null
+        if (diskCache == null) {
+            Log.e(TAG, "The disk cache is not initialized!")
             payload.close()
             return
         }
         val url = albumUrl.toUri()
-        if (url.scheme !in REMOTE_FETCH_SCHEMES) {
-            //Shouldn't happen (checked on receival of the url), but just to be sure
-            Log.e("KDE/Mpris/AlbumArtCache", "Got invalid art url with payload: $albumUrl")
+        if (url.scheme !in DEVICE_FETCH_SCHEMES) {
+            // Shouldn't happen (checked on receival of the url), but just to be sure
+            Log.e(TAG, "Got invalid art url with payload: $albumUrl")
             payload.close()
             return
         }
 
-        //Only fetch the URL if we're not fetching it already
-        if (url in isFetchingList) {
+        // Check if we already have this art, or are already fetching it
+        if (getFromMemoryCache(albumUrl) != null || isInDiskCache(albumUrl) || !pendingUrls.add(albumUrl)) {
             payload.close()
             return
         }
 
-        //Check if we already have this art
-        try {
-            if (memoryCache[albumUrl] != null || diskCache[urlToDiskCacheKey(albumUrl)] != null) {
-                payload.close()
-                return
-            }
-        } catch (e: IOException) {
-            Log.e("KDE/Mpris/AlbumArtCache", "Disk cache problem!", e)
-            payload.close()
-            return
-        }
-
-        //Add it to the currently-fetching list
-        isFetchingList.add(url)
-        ++numFetching
-        try {
-            val cacheItem = diskCache.edit(urlToDiskCacheKey(url.toString()))
-            if (cacheItem == null) {
-                Log.e("KDE/Mpris/AlbumArtCache",
-                        "Two disk cache edits happened at the same time, should be impossible!")
-                --numFetching
-                payload.close()
-                return
-            }
-
-            //Do the actual fetch in the background
-            cacheScope.launch { fetchURL(url, payload, cacheItem) }
-        } catch (e: IOException) {
-            Log.e("KDE/Mpris/AlbumArtCache", "Problems with the disk cache", e)
-            --numFetching
-        }
-    }
-
-    private class MemoryCacheItem(var failedFetch: Boolean = false, var albumArt: Bitmap? = null)
-
-    /**
-     * Initialize an url fetch
-     *
-     * @param url          The url being fetched
-     * @param payload      A NetworkPacket Payload (if from the connected device). null if fetched from http(s)
-     * @param cacheItem    The disk cache item to edit
-     */
-    @WorkerThread
-    private fun fetchURL(url: Uri, payload: Payload?, cacheItem: DiskLruCache.Editor) {
-        try {
-            //See if we need to open a http(s) connection here, or if we use a payload input stream
-            val inputStream = payload?.inputStream ?: openHttp(url)
-            val buffer = ByteArray(4096)
-            var bytesRead: Int
-            val output = cacheItem.newOutputStream(0)
-            if (inputStream != null) {
-                while (inputStream.read(buffer).also { bytesRead = it } != -1) {
-                    output.write(buffer, 0, bytesRead)
-                }
-                inputStream.close()
-            }
-            output.flush()
-            output.close()
-            cacheItem.commit()
-
-            // Now it's in the disk cache, the getAlbumArt() function should be able to read it
-            // So notify the mpris plugins of the fetched art
-            for (mpris in registeredPlugins) {
-                val stringUrl = url.toString()
-                mpris.fetchedAlbumArt(stringUrl)
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
+        cacheScope.launch {
+            var editor: DiskCache.Editor? = null
+            var stored = false
             try {
-                cacheItem.abort()
-            } catch (e: IOException) {
-                Log.e("KDE/Mpris/AlbumArtCache", "Problem with the disk cache", e)
+                editor = diskCache.openEditor(albumUrl)
+                if (editor == null) {
+                    Log.e(TAG, "Two disk cache edits happened at the same time, should be impossible!")
+                    return@launch
+                }
+                val inputStream = payload.inputStream ?: throw IOException("Payload without input stream")
+                diskCache.fileSystem.write(editor.data) {
+                    inputStream.source().use { writeAll(it) }
+                }
+                editor.commit()
+                stored = true
+            } catch (e: Exception) {
+                Log.e(TAG, "Failed to receive album art: $albumUrl", e)
+                try {
+                    editor?.abort()
+                } catch (e: Exception) {
+                    Log.e(TAG, "Problem with the disk cache", e)
+                }
+                failedUrls.put(albumUrl, true)
+            } finally {
+                payload.close()
+                pendingUrls.remove(albumUrl)
             }
-            //Mark the fetch as failed in the memory cache
-            memoryCache.put(url.toString(), MemoryCacheItem(true))
-        } finally {
-            payload?.close()
+            // Now it's in the disk cache, so it can be loaded
+            if (stored) {
+                load(albumUrl, fromDevice = true)
+            }
         }
-
-        //Remove the url from the fetching list
-        isFetchingList.remove(url)
-        //Fetch the next url (if any)
-        --numFetching
-        initiateFetch()
     }
 
     /**
-     * Opens the http(s) connection
-     *
-     * @return True if succeeded
+     * Album art transferred from the connected device, which can only be found in the disk cache
      */
-    @WorkerThread
-    private fun openHttp(url: Uri): InputStream? {
-        //Default android behaviour does not follow https -> http urls, so do this manually
-        if (url.scheme !in arrayOf("http", "https")) {
-            throw IllegalArgumentException("Invalid url: not http(s) in background album art fetch")
-        }
-        // TODO: Should use contentResolver from android instead of opening our own connection
-        var currentUrl = URL(url.toString())
-        var connection: HttpURLConnection
-        loop@ for (i in 0..4) {
-            connection = currentUrl.openConnection() as HttpURLConnection
-            connection.connectTimeout = 10000
-            connection.readTimeout = 10000
-            connection.instanceFollowRedirects = false
-            when (connection.responseCode) {
-                HttpURLConnection.HTTP_MOVED_PERM, HttpURLConnection.HTTP_MOVED_TEMP -> {
-                    var location = connection.getHeaderField("Location")
-                    location = URLDecoder.decode(location, "UTF-8")
-                    currentUrl = URL(currentUrl, location) // Deal with relative URLs
-                    //Again, only support http(s)
-                    if (currentUrl.protocol !in arrayOf("http", "https")) {
-                        return null
-                    }
-                    connection.disconnect()
-                    continue@loop
-                }
-            }
+    private class DeviceAlbumArt(val url: String)
 
-            //Found a non-redirecting connection, so do something with it
-            return connection.inputStream
+    /**
+     * Reads [DeviceAlbumArt] from the disk cache. Prevents Coil from interpreting file:// urls as local files.
+     */
+    private class DeviceAlbumArtFetcher(private val url: String, private val diskCache: DiskCache) : Fetcher {
+        override suspend fun fetch(): FetchResult {
+            val snapshot = diskCache.openSnapshot(url) ?: throw IOException("Album art not in the disk cache: $url")
+            return SourceFetchResult(
+                source = ImageSource(snapshot.data, diskCache.fileSystem, url, snapshot),
+                mimeType = null,
+                dataSource = DataSource.DISK,
+            )
         }
-        return null
+
+        class Factory : Fetcher.Factory<DeviceAlbumArt> {
+            override fun create(data: DeviceAlbumArt, options: Options, imageLoader: ImageLoader): Fetcher? {
+                return imageLoader.diskCache?.let { DeviceAlbumArtFetcher(data.url, it) }
+            }
+        }
     }
 }

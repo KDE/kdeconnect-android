@@ -57,6 +57,10 @@ class MprisPlugin : Plugin() {
         var album: String = ""
             internal set
         internal var albumArtUrl: String = ""
+        /**
+         * The album art delivered by [AlbumArtCache], together with the url it was fetched from
+         */
+        internal var fetchedAlbumArt: Pair<String, Bitmap>? = null
         internal var url: String = ""
         var loopStatus: String = ""
             internal set
@@ -104,6 +108,9 @@ class MprisPlugin : Plugin() {
          * @return The album art, or null if not available
          */
         fun getAlbumArt(): Bitmap? {
+            fetchedAlbumArt?.let { (url, bitmap) ->
+                if (url == albumArtUrl) return bitmap
+            }
             return getAlbumArt(albumArtUrl, this@MprisPlugin, playerName)
         }
 
@@ -474,8 +481,12 @@ class MprisPlugin : Plugin() {
         device.sendPacket(np)
     }
 
-    fun fetchedAlbumArt(url: String) {
-        if (players.values.stream().anyMatch { player -> url == player.albumArtUrl }) {
+    fun fetchedAlbumArt(url: String, albumArt: Bitmap) {
+        val matchingPlayers = players.values.filter { player -> url == player.albumArtUrl }
+        if (matchingPlayers.isNotEmpty()) {
+            for (player in matchingPlayers) {
+                player.fetchedAlbumArt = url to albumArt
+            }
             notifyPlayerStatusUpdated()
         }
     }
