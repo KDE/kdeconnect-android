@@ -263,7 +263,7 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when (requestCode) {
             RESULT_PAIRING_SUCCESFUL -> if (resultCode == 1) {
-                val deviceId = data?.getStringExtra("deviceId")
+                val deviceId = data?.getStringExtra("deviceId") ?: return
                 (mActivity as? MainActivity)?.onDeviceSelected(deviceId)
             }
 

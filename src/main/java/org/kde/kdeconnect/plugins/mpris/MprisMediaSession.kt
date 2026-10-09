@@ -328,8 +328,8 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
         )
 
         val iOpenActivity = Intent(context, MprisActivity::class.java).apply {
-            putExtra("deviceId", deviceId)
-            putExtra("player", player.playerName)
+            putExtra(MprisActivity.EXTRA_DEVICE_ID, deviceId)
+            putExtra(MprisActivity.EXTRA_PLAYER, player.playerName)
         }
 
         val piOpenActivity = TaskStackBuilder.create(context)

@@ -334,7 +334,7 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
     fun onDeviceSelected(deviceId: String?, fromDeviceList: Boolean = false) {
         mCurrentDevice = deviceId
         preferences.edit { putString(STATE_SELECTED_DEVICE, deviceId) }
-        if (mCurrentDevice != null) {
+        if (deviceId != null) {
             mCurrentMenuEntry = deviceIdToMenuEntryId(deviceId)
             if (mCurrentMenuEntry == MENU_ENTRY_DEVICE_UNKNOWN) {
                 uncheckAllMenuItems(mNavigationView.menu)

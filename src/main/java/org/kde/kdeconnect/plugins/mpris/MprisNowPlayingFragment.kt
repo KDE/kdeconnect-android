@@ -47,7 +47,7 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
     private val positionSeekUpdateHandler = Handler()
     private lateinit var mprisControlBinding: MprisControlBinding
     private lateinit var activityMprisBinding: MprisNowPlayingBinding
-    private var deviceId: String? = null
+    private lateinit var deviceId: String
     private lateinit var positionSeekUpdateRunnable: Runnable
 
     private var targetPlayerName = ""
@@ -57,11 +57,11 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
         activityMprisBinding = MprisNowPlayingBinding.inflate(inflater)
         mprisControlBinding = activityMprisBinding.mprisControl
 
-        deviceId = requireArguments().getString(MprisPlugin.DEVICE_ID_KEY)
+        deviceId = arguments?.getString(EXTRA_DEVICE_ID)!!
 
         val activityIntent = requireActivity().intent
 
-        val stringExtra = activityIntent.getStringExtra("player")
+        val stringExtra = activityIntent.getStringExtra(MprisActivity.EXTRA_PLAYER)
         if (stringExtra != null) {
             activityIntent.removeExtra("player")
         }
@@ -411,16 +411,15 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
     }
 
     companion object {
+        const val EXTRA_DEVICE_ID: String = "deviceId"
         const val MENU_OPEN_URL: Int = Menu.FIRST
-        fun newInstance(deviceId: String?): MprisNowPlayingFragment {
-            val mprisNowPlayingFragment = MprisNowPlayingFragment()
 
-            val arguments = Bundle()
-            arguments.putString(MprisPlugin.DEVICE_ID_KEY, deviceId)
-
-            mprisNowPlayingFragment.arguments = arguments
-
-            return mprisNowPlayingFragment
+        fun newInstance(deviceId: String): MprisNowPlayingFragment {
+            return MprisNowPlayingFragment().apply {
+                arguments = Bundle().apply {
+                    putString(EXTRA_DEVICE_ID, deviceId)
+                }
+            }
         }
 
         private fun durationToProgress(duration: Duration): String = buildString {

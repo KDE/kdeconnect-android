@@ -30,8 +30,7 @@ class SystemVolumeFragment : BaseFragment<SystemVolumeFragmentBinding>(),
     private lateinit var recyclerAdapter: RecyclerSinkAdapter
     private var tracking = false
 
-    private val deviceId: String?
-        get() = arguments?.getString(MprisPlugin.DEVICE_ID_KEY)
+    private lateinit var deviceId: String
 
     override fun getActionBarTitle() = getString(R.string.open_mpris_controls)
 
@@ -45,6 +44,7 @@ class SystemVolumeFragment : BaseFragment<SystemVolumeFragmentBinding>(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        deviceId = arguments?.getString(EXTRA_DEVICE_ID)!!
         recyclerAdapter = RecyclerSinkAdapter()
         binding.audioDevicesRecycler.apply {
             layoutManager = LinearLayoutManager(requireContext())
@@ -72,7 +72,7 @@ class SystemVolumeFragment : BaseFragment<SystemVolumeFragmentBinding>(),
         }
     }
 
-    private fun connectToPlugin(deviceId: String?) {
+    private fun connectToPlugin(deviceId: String) {
         val plugin = KdeConnect.getInstance().getDevicePlugin(
             deviceId,
             SystemVolumePlugin::class.java
@@ -85,7 +85,7 @@ class SystemVolumeFragment : BaseFragment<SystemVolumeFragmentBinding>(),
         sinksChanged()
     }
 
-    private fun disconnectFromPlugin(deviceId: String?) {
+    private fun disconnectFromPlugin(deviceId: String) {
         val plugin = KdeConnect.getInstance().getDevicePlugin(
             deviceId,
             SystemVolumePlugin::class.java
@@ -149,15 +149,14 @@ class SystemVolumeFragment : BaseFragment<SystemVolumeFragmentBinding>(),
     }
 
     companion object {
-        fun newInstance(deviceId: String?): SystemVolumeFragment {
-            val systemVolumeFragment = SystemVolumeFragment()
+        private const val EXTRA_DEVICE_ID = "deviceId"
 
-            val arguments = Bundle()
-            arguments.putString(MprisPlugin.DEVICE_ID_KEY, deviceId)
-
-            systemVolumeFragment.arguments = arguments
-
-            return systemVolumeFragment
+        fun newInstance(deviceId: String): SystemVolumeFragment {
+            return SystemVolumeFragment().apply {
+                arguments = Bundle().apply {
+                    putString(EXTRA_DEVICE_ID, deviceId)
+                }
+            }
         }
     }
 }

@@ -204,7 +204,7 @@ class BackgroundService : Service() {
                     // Adding two action buttons only when there is a single device connected.
                     // Setting up Send File Intent.
                     val sendFile = Intent(this, SendFileActivity::class.java)
-                    sendFile.putExtra("deviceId", deviceId)
+                    sendFile.putExtra(SendFileActivity.EXTRA_DEVICE_ID, deviceId)
                     val sendPendingFile = PendingIntent.getActivity(this, 1, sendFile, UPDATE_IMMUTABLE_FLAGS)
                     notification.addAction(0, getString(R.string.send_files), sendPendingFile)
 
@@ -212,7 +212,7 @@ class BackgroundService : Service() {
                     val plugin = device.getPlugin("RunCommandPlugin") as RunCommandPlugin?
                     if (plugin != null && plugin.commandList.isNotEmpty()) {
                         val runCommand = Intent(this, RunCommandActivity::class.java)
-                        runCommand.putExtra("deviceId", connectedDeviceIds[0])
+                        runCommand.putExtra(RunCommandActivity.EXTRA_DEVICE_ID, connectedDeviceIds[0])
                         val runPendingCommand = PendingIntent.getActivity(this, 2, runCommand, UPDATE_IMMUTABLE_FLAGS)
                         notification.addAction(0, getString(R.string.pref_plugin_runcommand), runPendingCommand)
                     }

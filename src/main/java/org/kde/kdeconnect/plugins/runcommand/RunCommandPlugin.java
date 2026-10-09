@@ -123,7 +123,7 @@ public class RunCommandPlugin extends Plugin {
     public @NotNull List<@NotNull PluginUiButton> getUiButtons() {
         return List.of(new PluginUiButton(context.getString(R.string.pref_plugin_runcommand), R.drawable.run_command_plugin_icon_24dp, parentActivity -> {
             Intent intent = new Intent(parentActivity, RunCommandActivity.class);
-            intent.putExtra("deviceId", getDevice().getDeviceId());
+            intent.putExtra(RunCommandActivity.EXTRA_DEVICE_ID, getDevice().getDeviceId());
             parentActivity.startActivity(intent);
             return Unit.INSTANCE;
         }));

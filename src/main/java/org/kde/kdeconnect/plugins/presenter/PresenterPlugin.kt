@@ -41,7 +41,7 @@ class PresenterPlugin : Plugin() {
             R.drawable.ic_presenter_24dp
         ) { parentActivity ->
             val intent = Intent(parentActivity, PresenterActivity::class.java)
-            intent.putExtra("deviceId", device.deviceId)
+            intent.putExtra(PresenterActivity.EXTRA_DEVICE_ID, device.deviceId)
             parentActivity.startActivity(intent)
         })
 

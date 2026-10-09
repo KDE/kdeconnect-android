@@ -53,12 +53,13 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
         private const val ARG_DEVICE_ID = "deviceId"
         private const val ARG_FROM_DEVICE_LIST = "fromDeviceList"
         private const val TAG = "KDE/DeviceFragment"
-        fun newInstance(deviceId: String?, fromDeviceList: Boolean): DeviceFragment {
-            val frag = DeviceFragment()
-            val args = Bundle()
-            args.putString(ARG_DEVICE_ID, deviceId)
-            args.putBoolean(ARG_FROM_DEVICE_LIST, fromDeviceList)
-            frag.arguments = args
+        fun newInstance(deviceId: String, fromDeviceList: Boolean): DeviceFragment {
+            val frag = DeviceFragment().apply {
+                arguments = Bundle().apply {
+                    putString(ARG_DEVICE_ID, deviceId)
+                    putBoolean(ARG_FROM_DEVICE_LIST, fromDeviceList)
+                }
+            }
             return frag
         }
     }

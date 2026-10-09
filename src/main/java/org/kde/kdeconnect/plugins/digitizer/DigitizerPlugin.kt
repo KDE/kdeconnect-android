@@ -33,7 +33,7 @@ class DigitizerPlugin : Plugin() {
             R.drawable.ic_draw_24dp
         ) { parentActivity ->
             val intent = Intent(parentActivity, DigitizerActivity::class.java)
-            intent.putExtra("deviceId", device.deviceId)
+            intent.putExtra(DigitizerActivity.EXTRA_DEVICE_ID, device.deviceId)
             parentActivity.startActivity(intent)
         })
 

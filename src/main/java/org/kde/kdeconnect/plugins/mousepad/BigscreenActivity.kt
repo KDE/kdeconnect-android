@@ -25,6 +25,8 @@ import org.kde.kdeconnect_tp.databinding.ActivityBigscreenBinding
 
 class BigscreenActivity : BaseActivity<ActivityBigscreenBinding>() {
 
+    private lateinit var deviceId: String
+
     override val binding : ActivityBigscreenBinding by viewBinding(ActivityBigscreenBinding::inflate)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +36,7 @@ class BigscreenActivity : BaseActivity<ActivityBigscreenBinding>() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
-        val deviceId = intent.getStringExtra("deviceId")
+        deviceId = intent.getStringExtra(EXTRA_DEVICE_ID)!!
 
         if (!SpeechRecognizer.isRecognitionAvailable(this)) {
             binding.micButton.isEnabled = false
@@ -105,7 +107,7 @@ class BigscreenActivity : BaseActivity<ActivityBigscreenBinding>() {
         val id = item.itemId
         if (id == R.id.menu_use_mouse_and_keyboard) {
             val intent = Intent(this, MousePadActivity::class.java)
-            intent.putExtra("deviceId", getIntent().getStringExtra("deviceId"))
+            intent.putExtra(MousePadActivity.EXTRA_DEVICE_ID, deviceId)
             startActivity(intent)
             return true
         } else {
@@ -119,7 +121,6 @@ class BigscreenActivity : BaseActivity<ActivityBigscreenBinding>() {
             // The results are ordered by confidence, use the first one
             val firstResult = data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)?.first()
             if (firstResult != null) {
-                val deviceId = intent.getStringExtra("deviceId")
                 val plugin = getInstance().getDevicePlugin(deviceId,MousePadPlugin::class.java)
                 if (plugin == null) {
                     finish()
@@ -136,6 +137,7 @@ class BigscreenActivity : BaseActivity<ActivityBigscreenBinding>() {
     }
 
     companion object {
+        const val EXTRA_DEVICE_ID = "deviceId"
         private const val REQUEST_SPEECH = 100
     }
 }

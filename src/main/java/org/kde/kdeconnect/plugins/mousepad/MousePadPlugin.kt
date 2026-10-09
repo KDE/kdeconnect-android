@@ -36,7 +36,7 @@ class MousePadPlugin : Plugin() {
             R.drawable.touchpad_plugin_action_24dp
         ) { parentActivity ->
             val intent = Intent(parentActivity, MousePadActivity::class.java)
-            intent.putExtra("deviceId", device.deviceId)
+            intent.putExtra(MousePadActivity.EXTRA_DEVICE_ID, device.deviceId)
             parentActivity.startActivity(intent)
         }
         return if (device.deviceType == DeviceType.TV) {
@@ -45,7 +45,7 @@ class MousePadPlugin : Plugin() {
                 R.drawable.tv_remote_24px
             ) { parentActivity ->
                 val intent = Intent(parentActivity, BigscreenActivity::class.java)
-                intent.putExtra("deviceId", device.deviceId)
+                intent.putExtra(BigscreenActivity.EXTRA_DEVICE_ID, device.deviceId)
                 parentActivity.startActivity(intent)
             }
             val prefs = PreferenceManager.getDefaultSharedPreferences(context)

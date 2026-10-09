@@ -58,7 +58,7 @@ class DigitizerActivity : BaseActivity<ActivityDigitizerBinding>(), DrawingPadVi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        deviceId = intent.getStringExtra("deviceId")!!
+        deviceId = intent.getStringExtra(EXTRA_DEVICE_ID)!!
 
         setSupportActionBar(binding.toolbarLayout.toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -175,6 +175,7 @@ class DigitizerActivity : BaseActivity<ActivityDigitizerBinding>(), DrawingPadVi
     }
 
     companion object {
+        const val EXTRA_DEVICE_ID = "deviceId"
         private const val INCHES_TO_MM = 0.0393701
     }
 }

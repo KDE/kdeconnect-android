@@ -153,7 +153,7 @@ class SharePlugin : Plugin() {
                 R.drawable.share_plugin_action_24dp
             ) { parentActivity: Activity ->
                 val intent = Intent(parentActivity, SendFileActivity::class.java)
-                intent.putExtra("deviceId", device.deviceId)
+                intent.putExtra(SendFileActivity.EXTRA_DEVICE_ID, device.deviceId)
                 parentActivity.startActivity(intent)
             })
     }

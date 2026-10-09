@@ -25,13 +25,15 @@ import java.util.ArrayList;
 
 public class SendFileActivity extends AppCompatActivity {
 
+    public static final String EXTRA_DEVICE_ID = "deviceId";
+
     private String mDeviceId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mDeviceId = getIntent().getStringExtra("deviceId");
+        mDeviceId = getIntent().getStringExtra(EXTRA_DEVICE_ID);
 
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("*/*");

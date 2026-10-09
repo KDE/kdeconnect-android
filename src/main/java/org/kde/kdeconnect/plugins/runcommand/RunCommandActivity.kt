@@ -32,15 +32,14 @@ class RunCommandActivity : AppCompatActivity() {
 
     val commandList = mutableStateListOf<CommandEntry>()
 
-    private var deviceId: String? = null
+    private lateinit var deviceId: String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d("RunCommandActivity", "Launched")
-        deviceId = this.intent.getStringExtra("deviceId")
-        val plugin =
-            getInstance().getDevicePlugin(deviceId, RunCommandPlugin::class.java)
+        deviceId = intent.getStringExtra(EXTRA_DEVICE_ID)!!
+        val plugin = getInstance().getDevicePlugin(deviceId, RunCommandPlugin::class.java)
         if (plugin == null) {
             finish()
             return
@@ -117,6 +116,10 @@ class RunCommandActivity : AppCompatActivity() {
             finish()
             return
         }
+    }
+
+    companion object {
+        const val EXTRA_DEVICE_ID = "deviceId"
     }
 }
 

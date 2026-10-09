@@ -59,6 +59,8 @@ public class MousePadActivity
     private final static float MinDraggingDistance2 = 25.0f; // distance squared to move after
                                                              // a double tap to start dragging
 
+    public static final String EXTRA_DEVICE_ID = "deviceId";
+
     private float mPrevX;
     private float mPrevY;
     boolean dragging = false;
@@ -163,7 +165,7 @@ public class MousePadActivity
         getBinding().mouseClickMiddle.setOnClickListener(v -> sendMiddleClick());
         getBinding().mouseClickRight.setOnClickListener(v -> sendRightClick());
 
-        deviceId = getIntent().getStringExtra("deviceId");
+        deviceId = getIntent().getStringExtra(EXTRA_DEVICE_ID);
 
         getWindow().getDecorView().setHapticFeedbackEnabled(true);
 
@@ -614,7 +616,7 @@ public class MousePadActivity
 
     private void showCompose() {
         Intent intent = new Intent(this, ComposeSendActivity.class);
-        intent.putExtra("org.kde.kdeconnect.plugins.mousepad.deviceId", deviceId);
+        intent.putExtra(ComposeSendActivity.EXTRA_DEVICE_ID, deviceId);
         startActivity(intent);
     }
 

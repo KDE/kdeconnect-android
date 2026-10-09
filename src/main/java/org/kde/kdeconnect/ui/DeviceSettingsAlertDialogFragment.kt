@@ -9,29 +9,18 @@ package org.kde.kdeconnect.ui
 import android.os.Bundle
 
 class DeviceSettingsAlertDialogFragment : AlertDialogFragment() {
-    private var pluginKey: String? = null
-    private var deviceId: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val args = arguments
-        if (args == null || !args.containsKey(KEY_PLUGIN_KEY)) {
-            throw RuntimeException("You must call Builder.setPluginKey() to set the plugin")
-        }
-        if (!args.containsKey(KEY_DEVICE_ID)) {
-            throw RuntimeException("You must call Builder.setDeviceId() to set the device")
-        }
-
-        pluginKey = args.getString(KEY_PLUGIN_KEY)
-        deviceId = args.getString(KEY_DEVICE_ID)
+        val args = arguments ?: throw RuntimeException("You must call Builder.setPluginKey() and Builder.setDeviceId()")
+        val pluginKey = args.getString(KEY_PLUGIN_KEY) ?: throw RuntimeException("You must call Builder.setPluginKey() and Builder.setDeviceId()")
+        val deviceId = args.getString(KEY_DEVICE_ID) ?: throw RuntimeException("You must call Builder.setPluginKey() and Builder.setDeviceId()")
 
         callback = object : Callback() {
             override fun onPositiveButtonClicked(): Boolean {
-                val currentDeviceId = deviceId ?: return true
-                val currentPluginKey = pluginKey ?: return true
                 requireActivity().startActivity(
-                    PluginSettingsActivity.createIntent(requireActivity(), currentDeviceId, currentPluginKey)
+                    PluginSettingsActivity.createIntent(requireActivity(), deviceId, pluginKey)
                 )
                 return true
             }

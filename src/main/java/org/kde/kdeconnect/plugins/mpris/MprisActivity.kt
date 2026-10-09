@@ -49,7 +49,7 @@ class MprisActivity : BaseActivity<ActivityMprisBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val deviceId = intent.getStringExtra(MprisPlugin.DEVICE_ID_KEY)
+        val deviceId = intent.getStringExtra(EXTRA_DEVICE_ID)!!
 
         mprisPagerAdapter = MprisPagerAdapter(this, deviceId)
         binding.mprisPager.adapter = mprisPagerAdapter
@@ -68,7 +68,7 @@ class MprisActivity : BaseActivity<ActivityMprisBinding>() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
     }
 
-    internal class MprisPagerAdapter(fragmentActivity: FragmentActivity, private val deviceId: String?) :
+    internal class MprisPagerAdapter(fragmentActivity: FragmentActivity, private val deviceId: String) :
         ExtendedFragmentAdapter(fragmentActivity) {
         override fun createFragment(position: Int): Fragment = if (position == 1) {
             SystemVolumeFragment.newInstance(deviceId)
@@ -105,5 +105,10 @@ class MprisActivity : BaseActivity<ActivityMprisBinding>() {
     override fun onSupportNavigateUp(): Boolean {
         super.onBackPressedDispatcher.onBackPressed()
         return true
+    }
+
+    companion object {
+        const val EXTRA_DEVICE_ID: String = "deviceId"
+        const val EXTRA_PLAYER: String = "player"
     }
 }

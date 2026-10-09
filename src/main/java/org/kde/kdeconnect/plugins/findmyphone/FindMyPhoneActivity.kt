@@ -14,7 +14,7 @@ import org.kde.kdeconnect.base.BaseActivity
 import org.kde.kdeconnect_tp.databinding.ActivityFindMyPhoneBinding
 
 class FindMyPhoneActivity : BaseActivity<ActivityFindMyPhoneBinding>() {
-    private var deviceId: String? = null
+    private lateinit var deviceId: String
 
     override val binding: ActivityFindMyPhoneBinding by lazy {
         ActivityFindMyPhoneBinding.inflate(layoutInflater)
@@ -29,13 +29,7 @@ class FindMyPhoneActivity : BaseActivity<ActivityFindMyPhoneBinding>() {
             setDisplayShowHomeEnabled(true)
         }
 
-        if (!intent.hasExtra(EXTRA_DEVICE_ID)) {
-            Log.e(TAG, "You must include the deviceId for which this activity is started as an intent EXTRA")
-            finish()
-            return
-        }
-
-        deviceId = intent.getStringExtra(EXTRA_DEVICE_ID)
+        deviceId = intent.getStringExtra(EXTRA_DEVICE_ID)!!
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
             setShowWhenLocked(true)

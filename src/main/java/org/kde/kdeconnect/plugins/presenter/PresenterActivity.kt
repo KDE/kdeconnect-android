@@ -96,7 +96,7 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener, OnSharedPref
         prefs.registerOnSharedPreferenceChangeListener(this)
         applyPrefs()
 
-        val deviceId = intent.getStringExtra("deviceId")!!
+        val deviceId = intent.getStringExtra(EXTRA_DEVICE_ID)!!
         val device = KdeConnect.getInstance().getDevice(deviceId)
         plugin = device?.getPlugin(PresenterPlugin::class.java)
             ?: run {
@@ -296,5 +296,9 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener, OnSharedPref
                 }
             }
         )
+    }
+
+    companion object {
+        const val EXTRA_DEVICE_ID = "deviceId"
     }
 }

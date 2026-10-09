@@ -32,13 +32,10 @@ public class ShareChooserTargetService extends ChooserTargetService {
                 final String targetName = d.getName();
                 final Icon targetIcon = Icon.createWithResource(this, R.drawable.icon);
                 final float targetRanking = 1;
-                final ComponentName targetComponentName = new ComponentName(getPackageName(),
-                        ShareActivity.class.getCanonicalName());
+                final ComponentName targetComponentName = new ComponentName(getPackageName(), ShareActivity.class.getCanonicalName());
                 final Bundle targetExtras = new Bundle();
-                targetExtras.putString("deviceId", d.getDeviceId());
-                targets.add(new ChooserTarget(
-                        targetName, targetIcon, targetRanking, targetComponentName, targetExtras
-                ));
+                targetExtras.putString(ShareActivity.EXTRA_DEVICE_ID, d.getDeviceId());
+                targets.add(new ChooserTarget(targetName, targetIcon, targetRanking, targetComponentName, targetExtras));
             }
         }
 

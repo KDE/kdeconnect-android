@@ -39,19 +39,18 @@ import org.kde.kdeconnect_tp.R
 private const val INPUT_CACHE_KEY = "compose_send_input_cache"
 
 class ComposeSendActivity : AppCompatActivity() {
-    private var deviceId: String? = null
+    private lateinit var deviceId: String
     private val userInput = mutableStateOf(String())
     private val prefs by lazy { PreferenceManager.getDefaultSharedPreferences(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
 
         prefs.getString(INPUT_CACHE_KEY, null)?.let { userInput.value = it }
 
         setContent { ComposeSendScreen() }
 
-        deviceId = intent.getStringExtra("org.kde.kdeconnect.plugins.mousepad.deviceId")
+        deviceId = intent.getStringExtra(EXTRA_DEVICE_ID)!!
     }
 
     override fun onStop() {
@@ -123,5 +122,9 @@ class ComposeSendActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    companion object {
+        const val EXTRA_DEVICE_ID = "deviceId"
     }
 }

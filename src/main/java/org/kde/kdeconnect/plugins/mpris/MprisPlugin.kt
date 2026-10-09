@@ -204,7 +204,7 @@ class MprisPlugin : Plugin() {
             R.drawable.mpris_plugin_action_24dp
         ) { parentActivity ->
             val intent = Intent(parentActivity, MprisActivity::class.java)
-            intent.putExtra(DEVICE_ID_KEY, device.deviceId)
+            intent.putExtra(MprisActivity.EXTRA_DEVICE_ID, device.deviceId)
             parentActivity.startActivity(intent)
         }
     )
@@ -506,7 +506,6 @@ class MprisPlugin : Plugin() {
     override val optionalPermissionExplanation: Int = R.string.mpris_notifications_explanation
 
     companion object {
-        const val DEVICE_ID_KEY: String = "deviceId"
         private const val PACKET_TYPE_MPRIS = "kdeconnect.mpris"
         private const val PACKET_TYPE_MPRIS_REQUEST = "kdeconnect.mpris.request"
     }
