@@ -23,12 +23,12 @@ import org.kde.kdeconnect.plugins.notifications.NotificationReceiver
 import org.kde.kdeconnect.ui.MainActivity
 import org.kde.kdeconnect.ui.StartActivityAlertDialogFragment
 import org.kde.kdeconnect_tp.R
-import kotlin.collections.HashMap
+import java.util.concurrent.ConcurrentHashMap
 import kotlin.collections.MutableList
 
 @LoadablePlugin
 class MprisReceiverPlugin : Plugin() {
-    private val players: HashMap<String, MprisReceiverPlayer> = HashMap()
+    private val players = ConcurrentHashMap<String, MprisReceiverPlayer>()
 
     private var mediaSessionChangeListener = MediaSessionChangeListener()
 
@@ -138,14 +138,15 @@ class MprisReceiverPlugin : Plugin() {
 
         val playerName = appNameLookup(context, controller.getPackageName())
         val player = MprisReceiverPlayer(controller, playerName, ::sendMetadata)
-        players[player.name] = player
+        // Release the player we replace, if any, so its callback doesn't stay registered
+        players.put(player.name, player)?.release()
     }
 
     private fun releasePlayers() {
-        for (player in players.values) {
-            player.release()
+        // Remove one by one instead of clear(), so we never drop a player added concurrently without releasing it
+        for (name in players.keys) {
+            players.remove(name)?.release()
         }
-        players.clear()
     }
 
     private fun sendPlayerList() {
@@ -156,33 +157,24 @@ class MprisReceiverPlugin : Plugin() {
     }
 
     private fun sendAlbumArt(player: MprisReceiverPlayer, requestedUrl: String?) {
-        // NOTE: It is possible that the player gets killed in the middle of this method.
-        // The proper thing to do this case would be to abort the send - but that gets into the
-        //   territory of async cancellation or putting a lock.
-        // For now, we just continue to send the art - player stores the bitmap, so it will be valid.
-        //   player will get GC'd after this method completes.
-        val localArtUrl = player.artUrl
-        if (localArtUrl == null) {
+        // NOTE: It is possible that the player gets killed or changes track in the middle of this method.
+        // We read the art snapshot only once, so the url and bitmap we send always match, even if the art became outdated in the meantime.
+        val art = player.art
+        if (art == null) {
             Log.w(TAG, "art not found!")
             return
         }
-        val artUrl = requestedUrl ?: localArtUrl
-        if (requestedUrl != null && !requestedUrl.contentEquals(localArtUrl)) {
+        if (requestedUrl != null && requestedUrl != art.url) {
             Log.w(TAG, "sendAlbumArt: Doesn't match current url")
-            Log.d(TAG, "current:   $localArtUrl")
+            Log.d(TAG, "current:   ${art.url}")
             Log.d(TAG, "requested: $requestedUrl")
             return
         }
-        val p = player.artAsArray
-        if (p == null) {
-            Log.w(TAG, "sendAlbumArt: Failed to get art stream")
-            return
-        }
         val np = NetworkPacket(PACKET_TYPE_MPRIS)
-        np.payload = NetworkPacket.Payload(p)
+        np.payload = NetworkPacket.Payload(art.toJpeg())
         np["player"] = player.name
         np["transferringAlbumArt"] = true
-        np["albumArtUrl"] = artUrl
+        np["albumArtUrl"] = art.url
         device.sendPacket(np)
     }
 
@@ -202,7 +194,7 @@ class MprisReceiverPlugin : Plugin() {
         np["canGoNext"] = player.canGoNext()
         np["canSeek"] = player.canSeek()
         np["volume"] = player.volume
-        np["albumArtUrl"] = player.artUrl ?: ""
+        np["albumArtUrl"] = player.art?.url ?: ""
         device.sendPacket(np)
     }
 

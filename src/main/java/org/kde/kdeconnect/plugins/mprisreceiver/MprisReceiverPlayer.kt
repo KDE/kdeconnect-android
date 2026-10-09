@@ -22,12 +22,30 @@ internal class MprisReceiverPlayer(
     val name: String,
     private val onChanged: (MprisReceiverPlayer) -> Unit,
 ) {
-    private var artHash: Long? = null
-    private var displayArt: Bitmap? = null
-    var artUrl: String? = null
+    /**
+     * Immutable snapshot of the current album art. Updated on the main thread but read from
+     * other threads, so it is swapped as a whole to keep the url and bitmap consistent.
+     */
+    class AlbumArt(
+        val hash: Long,
+        val bitmap: Bitmap,
+        val url: String,
+        val album: String?,
+        val artist: String?,
+    ) {
+        /**
+         * Get the art as a JPG image serialized into a bytearray.
+         */
+        fun toJpeg(): ByteArray {
+            val stream = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, stream)
+            return stream.toByteArray()
+        }
+    }
+
+    @Volatile
+    var art: AlbumArt? = null
         private set
-    private var artAlbum: String? = null
-    private var artArtist: String? = null
 
     private val callback = object : MediaController.Callback() {
         override fun onPlaybackStateChanged(state: PlaybackState?) {
@@ -48,13 +66,8 @@ internal class MprisReceiverPlayer(
     init {
         val artAndUri: Pair<Bitmap, String>? = getArtAndUri(metadata)
         if (artAndUri != null) {
-            val bitmap = artAndUri.first
-            val hash = hashBitmap(bitmap)
-            artHash = hash
-            artUrl = makeArtUrl(hash, artAndUri.second)
-            displayArt = bitmap
-            artAlbum = album
-            artArtist = artist
+            val hash = hashBitmap(artAndUri.first)
+            art = AlbumArt(hash, artAndUri.first, makeArtUrl(hash, artAndUri.second), album, artist)
         }
         controller.registerCallback(callback, Handler(Looper.getMainLooper()))
     }
@@ -63,17 +76,9 @@ internal class MprisReceiverPlayer(
         controller.unregisterCallback(callback)
     }
 
-    private fun clearArt() {
-        artHash = null
-        displayArt = null
-        artUrl = null
-        artAlbum = null
-        artArtist = null
-    }
-
     private fun updateArt(metadata: MediaMetadata?) {
         if (metadata == null) {
-            clearArt()
+            art = null
             return
         }
         // We could check hasRequestedAlbumArt to avoid hashing art for clients that don't support it
@@ -82,37 +87,21 @@ internal class MprisReceiverPlayer(
         val artAndUri: Pair<Bitmap, String>? = getArtAndUri(metadata)
         val newAlbum = metadata.getString(MediaMetadata.METADATA_KEY_ALBUM)
         val newArtist = metadata.getString(MediaMetadata.METADATA_KEY_ARTIST)
+        val currentArt = art
         if (artAndUri == null) {
             // Check if the album+artist is still the same. some players don't send art every time
-            if (newAlbum != artAlbum || newArtist != artArtist) {
+            if (newAlbum != currentArt?.album || newArtist != currentArt?.artist) {
                 // there really is no new art
-                clearArt()
+                art = null
             }
         } else {
             val newHash: Long = hashBitmap(artAndUri.first)
             // In case the hashes are equal, we do a full comparison to protect against collisions
-            if ((newHash != artHash || !artAndUri.first.sameAs(displayArt))) {
-                artHash = newHash
-                displayArt = artAndUri.first
-                artUrl = makeArtUrl(newHash, artAndUri.second)
-                artArtist = newArtist
-                artAlbum = newAlbum
+            if (newHash != currentArt?.hash || !artAndUri.first.sameAs(currentArt.bitmap)) {
+                art = AlbumArt(newHash, artAndUri.first, makeArtUrl(newHash, artAndUri.second), newAlbum, newArtist)
             }
         }
     }
-
-    val artAsArray: ByteArray?
-        /**
-         * Get the JPG art of the current track as a bytearray.
-         *
-         * @return null if no art is available, otherwise a JPG image serialized into a bytearray
-         */
-        get() {
-            val displayArt = this.displayArt ?: return null
-            val stream = ByteArrayOutputStream()
-            displayArt.compress(Bitmap.CompressFormat.JPEG, 90, stream)
-            return stream.toByteArray()
-        }
 
     fun isPlaying(): Boolean {
         val state = controller.playbackState ?: return false
