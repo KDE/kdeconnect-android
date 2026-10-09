@@ -1,0 +1,243 @@
+/*
+ * SPDX-FileCopyrightText: 2018 Nicolas Fella <nicolas.fella@gmx.de>
+ *
+ * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
+ */
+package org.kde.kdeconnect.plugins.mprisreceiver
+
+import android.content.ComponentName
+import android.media.session.MediaController
+import android.media.session.MediaSessionManager
+import android.media.session.MediaSessionManager.OnActiveSessionsChangedListener
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
+import androidx.core.content.getSystemService
+import androidx.fragment.app.DialogFragment
+import org.kde.kdeconnect.NetworkPacket
+import org.kde.kdeconnect.helpers.AppsHelper.appNameLookup
+import org.kde.kdeconnect.helpers.ThreadHelper
+import org.kde.kdeconnect.plugins.Plugin
+import org.kde.kdeconnect.plugins.PluginFactory.LoadablePlugin
+import org.kde.kdeconnect.plugins.notifications.NotificationReceiver
+import org.kde.kdeconnect.ui.MainActivity
+import org.kde.kdeconnect.ui.StartActivityAlertDialogFragment
+import org.kde.kdeconnect_tp.R
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
+import kotlin.collections.MutableList
+
+@LoadablePlugin
+class MprisReceiverPlugin : Plugin() {
+    // TODO: Those two are always accessed together, merge them
+    private val players: HashMap<String, MprisReceiverPlayer> = HashMap()
+    private val playerCbs: HashMap<String, MprisReceiverCallback> = HashMap()
+
+    private var mediaSessionChangeListener = MediaSessionChangeListener()
+
+    override fun onCreate() {
+        val manager = context.getSystemService<MediaSessionManager>()!!
+        manager.addOnActiveSessionsChangedListener(
+            mediaSessionChangeListener,
+            ComponentName(context, NotificationReceiver::class.java),
+            Handler(Looper.getMainLooper())
+        )
+
+        createPlayers(
+            manager.getActiveSessions(
+                ComponentName(context, NotificationReceiver::class.java)
+            )
+        )
+        sendPlayerList()
+    }
+
+    override fun onDestroy() {
+        val manager = context.getSystemService<MediaSessionManager>()!!
+        manager.removeOnActiveSessionsChangedListener(mediaSessionChangeListener)
+        players.clear()
+        playerCbs.clear()
+    }
+
+    private fun createPlayers(sessions: MutableList<MediaController>) {
+        for (controller in sessions) {
+            createPlayer(controller)
+        }
+    }
+
+    override val displayName: String
+        get() = context.getString(R.string.pref_plugin_mprisreceiver)
+
+    override val description: String
+        get() = context.getString(R.string.pref_plugin_mprisreceiver_desc)
+
+    override fun onPacketReceived(np: NetworkPacket): Boolean {
+        if (np.getBoolean("requestPlayerList")) {
+            sendPlayerList()
+            return true
+        }
+
+        val playerName = np.getStringOrNull("player")
+            ?: return false
+        val player = players[playerName]
+            ?: return false
+
+        val artUrl = np.getString("albumArtUrl", "")
+        if (!artUrl.isEmpty()) {
+            val playerName = player.name
+            val cb = playerCbs[playerName]
+            if (cb == null) {
+                Log.e(TAG, "no callback for $playerName (player likely stopped)")
+                return false
+            }
+            // run it on a different thread to avoid blocking
+            ThreadHelper.execute { sendAlbumArt(playerName, cb, artUrl) }
+            return true
+        }
+
+        if (np.getBoolean("requestNowPlaying", false)) {
+            sendMetadata(player)
+            return true
+        }
+
+        if (np.has("SetPosition")) {
+            val position = np.getLong("SetPosition", 0)
+            player.position = position
+        }
+
+        if (np.has("setVolume")) {
+            val volume = np.getInt("setVolume", 100)
+            player.volume = volume
+            // Setting volume doesn't seem to always trigger the callback
+            sendMetadata(player)
+        }
+
+        if (np.has("action")) {
+            val action = np.getString("action")
+            when (action) {
+                "Play" -> player.play()
+                "Pause" -> player.pause()
+                "PlayPause" -> player.playPause()
+                "Next" -> player.next()
+                "Previous" -> player.previous()
+                "Stop" -> player.stop()
+            }
+        }
+
+        return true
+    }
+
+    override val supportedPacketTypes = arrayOf(PACKET_TYPE_MPRIS_REQUEST)
+
+    override val outgoingPacketTypes = arrayOf(PACKET_TYPE_MPRIS)
+
+    private inner class MediaSessionChangeListener : OnActiveSessionsChangedListener {
+        override fun onActiveSessionsChanged(controllers: MutableList<MediaController>?) {
+            if (null == controllers) {
+                return
+            }
+
+            // Make a copy to avoid ConcurrentModificationException
+            val playersCopy = ArrayList<MprisReceiverPlayer>(players.values)
+            for (p in playersCopy) {
+                p.controller.unregisterCallback(playerCbs[p.name]!!)
+            }
+            playerCbs.clear()
+            players.clear()
+
+            createPlayers(controllers)
+            sendPlayerList()
+        }
+    }
+
+    private fun createPlayer(controller: MediaController) {
+        // Skip the media session we created ourselves as KDE Connect
+        if (controller.getPackageName() == context.packageName) return
+
+        val playerName = appNameLookup(context, controller.getPackageName())
+        val player = MprisReceiverPlayer(controller, playerName)
+        val cb = MprisReceiverCallback(this, player)
+        controller.registerCallback(cb, Handler(Looper.getMainLooper()))
+        playerCbs[player.name] = cb
+        players[player.name] = player
+    }
+
+    private fun sendPlayerList() {
+        val np = NetworkPacket(PACKET_TYPE_MPRIS)
+        np["playerList"] = players.keys
+        np["supportAlbumArtPayload"] = true
+        device.sendPacket(np)
+    }
+
+    private fun sendAlbumArt(playerName: String, cb: MprisReceiverCallback, requestedUrl: String?) {
+        // NOTE: It is possible that the player gets killed in the middle of this method.
+        // The proper thing to do this case would be to abort the send - but that gets into the
+        //   territory of async cancellation or putting a lock.
+        // For now, we just continue to send the art- cb stores the bitmap, so it will be valid.
+        //   cb will get GC'd after this method completes.
+        val localArtUrl = cb.artUrl
+        if (localArtUrl == null) {
+            Log.w(TAG, "art not found!")
+            return
+        }
+        val artUrl = requestedUrl ?: localArtUrl
+        if (requestedUrl != null && !requestedUrl.contentEquals(localArtUrl)) {
+            Log.w(TAG, "sendAlbumArt: Doesn't match current url")
+            Log.d(TAG, "current:   $localArtUrl")
+            Log.d(TAG, "requested: $requestedUrl")
+            return
+        }
+        val p = cb.artAsArray
+        if (p == null) {
+            Log.w(TAG, "sendAlbumArt: Failed to get art stream")
+            return
+        }
+        val np = NetworkPacket(PACKET_TYPE_MPRIS)
+        np.payload = NetworkPacket.Payload(p)
+        np["player"] = playerName
+        np["transferringAlbumArt"] = true
+        np["albumArtUrl"] = artUrl
+        device.sendPacket(np)
+    }
+
+    internal fun sendMetadata(player: MprisReceiverPlayer) {
+        val np = NetworkPacket(PACKET_TYPE_MPRIS)
+        np["player"] = player.name
+        np["title"] = player.title
+        np["artist"] = player.artist
+        np["nowPlaying"] = player.title // GSConnect 50 (so, Ubuntu 22.04) needs this
+        np["album"] = player.album
+        np["isPlaying"] = player.isPlaying()
+        np["pos"] = player.position
+        np["length"] = player.length
+        np["canPlay"] = player.canPlay()
+        np["canPause"] = player.canPause()
+        np["canGoPrevious"] = player.canGoPrevious()
+        np["canGoNext"] = player.canGoNext()
+        np["canSeek"] = player.canSeek()
+        np["volume"] = player.volume
+        np["albumArtUrl"] = playerCbs[player.name]?.artUrl ?: ""
+        device.sendPacket(np)
+    }
+
+    override fun checkRequiredPermissions(): Boolean {
+        return NotificationReceiver.hasReadNotificationsPermission(context)
+    }
+
+    override val permissionExplanationDialog: DialogFragment
+        get() = StartActivityAlertDialogFragment.Builder()
+            .setTitle(R.string.pref_plugin_mpris)
+            .setMessage(R.string.no_permission_mprisreceiver)
+            .setPositiveButton(R.string.open_settings)
+            .setNegativeButton(R.string.cancel)
+            .setIntentAction("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS")
+            .setStartForResult(true)
+            .setRequestCode(MainActivity.RESULT_NEEDS_RELOAD)
+            .create()
+
+    companion object {
+        private const val PACKET_TYPE_MPRIS = "kdeconnect.mpris"
+        private const val PACKET_TYPE_MPRIS_REQUEST = "kdeconnect.mpris.request"
+
+        private const val TAG = "MprisReceiver"
+    }
+}
