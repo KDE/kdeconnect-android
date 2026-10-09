@@ -23,7 +23,6 @@ import com.google.android.mms.pdu_alt.MultimediaMessagePdu
 import com.google.android.mms.pdu_alt.PduPersister
 import com.google.android.mms.util_alt.PduCache
 import com.google.android.mms.util_alt.PduCacheEntry
-import org.apache.commons.io.IOUtils
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -35,7 +34,6 @@ import java.util.SortedMap
 import java.util.TreeMap
 import java.util.concurrent.locks.Lock
 import java.util.concurrent.locks.ReentrantLock
-import kotlin.text.Charsets.UTF_8
 
 @SuppressLint("InlinedApi")
 object SMSHelper {
@@ -729,18 +727,13 @@ object SMSHelper {
      */
     private fun getMmsText(context: Context, id: Long): String {
         val partURI = ContentUris.withAppendedId(mMSPartUri, id)
-        var body = ""
-        try {
-            context.contentResolver.openInputStream(partURI).use { stream ->
-                if (stream != null) {
-                    // The stream is buffered internally, so buffering it separately is unnecessary.
-                    body = IOUtils.toString(stream, UTF_8)
-                }
-            }
+        return try {
+            context.contentResolver.openInputStream(partURI)?.use { stream ->
+                stream.reader(Charsets.UTF_8).readText()
+            }.orEmpty()
         } catch (e: IOException) {
             throw MessageAccessException(partURI, e)
         }
-        return body
     }
 
     /**

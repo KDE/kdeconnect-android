@@ -21,7 +21,6 @@ import android.util.Base64
 import android.util.Log
 import androidx.core.content.edit
 import androidx.preference.PreferenceManager
-import org.apache.commons.io.IOUtils
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.DeviceInfo
 import org.kde.kdeconnect.DeviceInfo.Companion.fromIdentityPacketAndCert
@@ -127,7 +126,7 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
         fun stopProcessing() {
             continueProcessing = false
             try {
-                IOUtils.close(serverSocket)
+                serverSocket?.close()
             } catch (e: IOException) {
                 Log.e("KDEConnect", "Exception", e)
             }
