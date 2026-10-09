@@ -98,7 +98,6 @@ class ClipboardListener {
         }
     }
 
-    @Suppress("deprecation")
     fun setText(text: String?) {
         if (this::cm.isInitialized) {
             updateTimestamp = System.currentTimeMillis()
