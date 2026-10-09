@@ -257,13 +257,13 @@ object TelephonyHelper {
         /**
          * The phone number
          */
-        @JvmField val number: String?,
+        @JvmField val number: String,
         /**
          * The subscription ID to which this phone number belongs
          */
         @JvmField val subscriptionID: Int
     ) {
-        override fun toString(): String = number ?: ""
+        override fun toString(): String = number
 
         /**
          * Do some basic fuzzy matching on two phone numbers to determine whether they match
@@ -274,8 +274,7 @@ object TelephonyHelper {
          * @return True if the phone numbers appear to be the same, false otherwise
          */
         fun isMatchingPhoneNumber(potentialMatchingPhoneNumber: String): Boolean {
-            val currentNumber = number ?: return false
-            val mPhoneNumber = canonicalizePhoneNumber(currentNumber)
+            val mPhoneNumber = canonicalizePhoneNumber(number)
             val oPhoneNumber = canonicalizePhoneNumber(potentialMatchingPhoneNumber)
 
             if (mPhoneNumber.isEmpty() || oPhoneNumber.isEmpty()) {

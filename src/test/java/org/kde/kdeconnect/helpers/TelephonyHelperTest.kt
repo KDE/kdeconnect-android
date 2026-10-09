@@ -68,9 +68,5 @@ class TelephonyHelperTest {
         // Non match
         Assert.assertFalse(localNumber.isMatchingPhoneNumber("12025550199"))
         Assert.assertFalse(localNumber.isMatchingPhoneNumber(""))
-
-        // Null number safety
-        val nullNumber = TelephonyHelper.LocalPhoneNumber(null, 1)
-        Assert.assertFalse(nullNumber.isMatchingPhoneNumber("+12025550173"))
     }
 }
