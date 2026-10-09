@@ -8,7 +8,9 @@ package org.kde.kdeconnect
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
+import org.kde.kdeconnect.extensions.closeSafe
 import java.io.ByteArrayInputStream
+import java.io.Closeable
 import java.io.IOException
 import java.io.InputStream
 import java.net.Socket
@@ -241,7 +243,7 @@ class NetworkPacket private constructor(
         return payloadTransferInfo.length() > 0
     }
 
-    class Payload {
+    class Payload : Closeable {
         /**
          * **NOTE: Do not close the InputStream directly call Payload.close() instead, this is because of this [bug](https://issuetracker.google.com/issues/37018094)**
          */
@@ -268,17 +270,9 @@ class NetworkPacket private constructor(
             this.payloadSize = payloadSize
         }
 
-        fun close() {
-            // TODO: If socket only close socket if that also closes the streams that is
-            try {
-                inputStream?.close()
-            } catch (ignored: IOException) {
-            }
-
-            try {
-                inputSocket?.close()
-            } catch (ignored: IOException) {
-            }
+        override fun close() {
+            inputStream?.closeSafe()
+            inputSocket?.closeSafe()
         }
     }
 
