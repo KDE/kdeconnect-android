@@ -190,7 +190,7 @@ class LanLink(
             val outputStream = payloadSocket.outputStream
 
             Log.i(LOG_TAG, "Beginning to send payload for ${np.type})")
-            val buffer = ByteArray(4096)
+            val buffer = ByteArray(PAYLOAD_BUFFER_SIZE)
             val size = np.payloadSize
             var bytesRead = 0
             var progress: Long = 0
@@ -250,5 +250,6 @@ class LanLink(
     companion object {
         const val LOG_TAG = "LanLink"
         const val MAX_PACKET_SIZE: Int = 32 * 1024 * 1024
+        const val PAYLOAD_BUFFER_SIZE: Int = 256 * 1024
     }
 }

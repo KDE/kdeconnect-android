@@ -58,6 +58,8 @@ import java.util.List;
 public class CompositeReceiveFileJob extends BackgroundJob<Device, Void> {
     // How long to wait for the next file of the batch before failing the batch
     private static final long NEXT_PACKET_TIMEOUT_MILLIS = 1000;
+    private static final int WRITE_BUFFER_SIZE = 1024 * 1024;
+    private static final int READ_BUFFER_SIZE = 256 * 1024;
 
     private final ReceiveNotification receiveNotification;
     private NetworkPacket currentNetworkPacket;
@@ -151,7 +153,7 @@ public class CompositeReceiveFileJob extends BackgroundJob<Device, Void> {
                 fileDocument = getDocumentFileFor(currentFileName, currentNetworkPacket.getBoolean("open", false));
 
                 if (currentNetworkPacket.hasPayload()) {
-                    outputStream = new BufferedOutputStream(getDevice().getContext().getContentResolver().openOutputStream(fileDocument.getUri()));
+                    outputStream = new BufferedOutputStream(getDevice().getContext().getContentResolver().openOutputStream(fileDocument.getUri()), WRITE_BUFFER_SIZE);
                     InputStream inputStream = currentNetworkPacket.getPayload().getInputStream();
 
                     long received = receiveFile(inputStream, outputStream);
@@ -295,7 +297,7 @@ public class CompositeReceiveFileJob extends BackgroundJob<Device, Void> {
     }
 
     private long receiveFile(InputStream input, OutputStream output) throws IOException {
-        byte[] data = new byte[4096];
+        byte[] data = new byte[READ_BUFFER_SIZE];
         int count;
         long received = 0;
 
