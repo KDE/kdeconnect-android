@@ -22,7 +22,6 @@ import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.preference.PreferenceManager
-import org.apache.commons.lang3.ArrayUtils
 import org.kde.kdeconnect.DeviceType
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.helpers.DeviceHelper
@@ -33,17 +32,18 @@ import org.kde.kdeconnect.plugins.PluginFactory.LoadablePlugin
 import org.kde.kdeconnect.ui.PluginSettingsFragment
 import org.kde.kdeconnect_tp.R
 import java.io.IOException
+import kotlin.random.Random
 
 @LoadablePlugin
 class FindMyPhonePlugin : Plugin() {
 
-    private var notificationManager: NotificationManager? = null
-    private var notificationId: Int = 0
-    private var audioManager: AudioManager? = null
+    private lateinit var notificationManager: NotificationManager
+    private lateinit var audioManager: AudioManager
+    private lateinit var powerManager: PowerManager
+    private lateinit var flashlightManager: FlashlightManager
     private var mediaPlayer: MediaPlayer? = null
     private var previousVolume: Int = -1
-    private var powerManager: PowerManager? = null
-    private var flashlightManager: FlashlightManager? = null
+    private val notificationId: Int = Random.nextInt()
 
     override val displayName: String
         get() = when (DeviceHelper.deviceType) {
@@ -57,10 +57,9 @@ class FindMyPhonePlugin : Plugin() {
         get() = context.getString(R.string.findmyphone_description)
 
     override fun onCreate() {
-        notificationManager = ContextCompat.getSystemService(context, NotificationManager::class.java)
-        notificationId = System.currentTimeMillis().toInt()
-        audioManager = ContextCompat.getSystemService(context, AudioManager::class.java)
-        powerManager = ContextCompat.getSystemService(context, PowerManager::class.java)
+        notificationManager = ContextCompat.getSystemService(context, NotificationManager::class.java)!!
+        audioManager = ContextCompat.getSystemService(context, AudioManager::class.java)!!
+        powerManager = ContextCompat.getSystemService(context, PowerManager::class.java)!!
         flashlightManager = FlashlightManager(context)
 
         val prefs = PreferenceManager.getDefaultSharedPreferences(context)
@@ -90,10 +89,9 @@ class FindMyPhonePlugin : Plugin() {
         if (mediaPlayer?.isPlaying == true) {
             stopPlaying()
         }
-        audioManager = null
         mediaPlayer?.release()
         mediaPlayer = null
-        flashlightManager = null
+        stopFlashing()
     }
 
     override fun onPacketReceived(np: NetworkPacket): Boolean {
@@ -104,7 +102,7 @@ class FindMyPhonePlugin : Plugin() {
             }
             context.startActivity(intent)
         } else {
-            if (powerManager?.isInteractive == true) {
+            if (powerManager.isInteractive) {
                 startPlaying()
                 startFlashing()
                 showBroadcastNotification()
@@ -156,33 +154,31 @@ class FindMyPhonePlugin : Plugin() {
             .setContentTitle(context.getString(R.string.findmyphone_found))
             .setGroup("BackgroundService")
 
-        notificationManager?.notify(notificationId, notification.build())
+        notificationManager.notify(notificationId, notification.build())
     }
 
     fun startPlaying() {
         val player = mediaPlayer ?: return
-        val audio = audioManager ?: return
         if (!player.isPlaying) {
-            previousVolume = audio.getStreamVolume(AudioManager.STREAM_ALARM)
-            audio.setStreamVolume(AudioManager.STREAM_ALARM, audio.getStreamMaxVolume(AudioManager.STREAM_ALARM), 0)
+            previousVolume = audioManager.getStreamVolume(AudioManager.STREAM_ALARM)
+            audioManager.setStreamVolume(AudioManager.STREAM_ALARM, audioManager.getStreamMaxVolume(AudioManager.STREAM_ALARM), 0)
             player.start()
         }
     }
 
     fun startFlashing() {
         if (isFlashlightEnabledInSettings() && isPermissionGranted(Manifest.permission.CAMERA)) {
-            flashlightManager?.startFlashing()
+            flashlightManager.startFlashing()
         }
     }
 
     fun hideNotification() {
-        notificationManager?.cancel(notificationId)
+        notificationManager.cancel(notificationId)
     }
 
     fun stopPlaying() {
-        val audio = audioManager ?: return
         if (previousVolume != -1) {
-            audio.setStreamVolume(AudioManager.STREAM_ALARM, previousVolume, 0)
+            audioManager.setStreamVolume(AudioManager.STREAM_ALARM, previousVolume, 0)
         }
         mediaPlayer?.let { player ->
             player.stop()
@@ -195,7 +191,7 @@ class FindMyPhonePlugin : Plugin() {
     }
 
     fun stopFlashing() {
-        flashlightManager?.stopFlashing()
+        flashlightManager.stopFlashing()
     }
 
     override val supportedPacketTypes: Array<String> = arrayOf(PACKET_TYPE_FINDMYPHONE_REQUEST)
