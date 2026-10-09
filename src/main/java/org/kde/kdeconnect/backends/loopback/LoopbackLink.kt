@@ -18,6 +18,7 @@ class LoopbackLink : BaseLink {
     constructor(context: Context, linkProvider: BaseLinkProvider) : super(context, linkProvider)
 
     override val name: String = "LoopbackLink"
+
     override val deviceInfo: DeviceInfo
         get() = getDeviceInfo(context).let { deviceInfo ->
             deviceInfo.copy(
@@ -27,11 +28,11 @@ class LoopbackLink : BaseLink {
         }
 
     @WorkerThread
-    override fun sendPacket(packet: NetworkPacket, callback: Device.SendPacketStatusCallback, sendPayloadFromSameThread: Boolean): Boolean {
-        packetReceived(packet)
-        if (packet.hasPayload()) {
+    override fun sendPacket(np: NetworkPacket, callback: Device.SendPacketStatusCallback, sendPayloadFromSameThread: Boolean): Boolean {
+        packetReceived(np)
+        if (np.hasPayload()) {
             callback.onPayloadProgressChanged(0)
-            packet.payload = packet.payload // this triggers logic in the setter
+            np.payload = np.payload // this triggers logic in the setter
             callback.onPayloadProgressChanged(100)
         }
         callback.onSuccess()
