@@ -14,7 +14,6 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Pair
 import androidx.core.net.toUri
-import org.apache.commons.lang3.StringUtils
 import java.io.ByteArrayOutputStream
 
 internal class MprisReceiverPlayer(
@@ -152,20 +151,20 @@ internal class MprisReceiverPlayer(
     val artist: String
         get() {
             val metadata = controller.metadata ?: return ""
-            return StringUtils.firstNonEmpty<String?>(
+            return listOf(
                 metadata.getString(MediaMetadata.METADATA_KEY_ARTIST),
                 metadata.getString(MediaMetadata.METADATA_KEY_AUTHOR),
                 metadata.getString(MediaMetadata.METADATA_KEY_WRITER)
-            ) ?: ""
+            ).firstOrNull { !it.isNullOrEmpty() } ?: ""
         }
 
     val title: String
         get() {
             val metadata = controller.metadata ?: return ""
-            return StringUtils.firstNonEmpty<String?>(
+            return listOf(
                 metadata.getString(MediaMetadata.METADATA_KEY_TITLE),
                 metadata.getString(MediaMetadata.METADATA_KEY_DISPLAY_TITLE)
-            ) ?: ""
+            ).firstOrNull { !it.isNullOrEmpty() } ?: ""
         }
 
     fun previous() {

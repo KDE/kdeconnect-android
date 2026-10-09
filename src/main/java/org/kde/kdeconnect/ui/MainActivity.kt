@@ -39,7 +39,6 @@ import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import org.apache.commons.lang3.ArrayUtils
 import org.kde.kdeconnect.BackgroundService
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.KdeConnect
@@ -375,13 +374,13 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
     }
 
     fun isPermissionGranted(permissions: Array<String>, grantResults: IntArray, permission : String) : Boolean {
-        val index = ArrayUtils.indexOf(permissions, permission)
-        return index != ArrayUtils.INDEX_NOT_FOUND && grantResults[index] == PERMISSION_GRANTED
+        val index = permissions.indexOf(permission)
+        return index != -1 && grantResults[index] == PERMISSION_GRANTED
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        val permissionsGranted = ArrayUtils.contains(grantResults, PERMISSION_GRANTED)
+        val permissionsGranted = grantResults.contains(PERMISSION_GRANTED)
         if (permissionsGranted) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && isPermissionGranted(permissions, grantResults, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                 // To get a writeable path manually on Android 10 and later for Share and Receive Plugin.

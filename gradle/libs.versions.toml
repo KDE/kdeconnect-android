@@ -8,7 +8,6 @@ bcpkixJdk18on = "1.86"
 classindexksp = "1.2"
 commonsCollections4 = "4.6.0"
 commonsIo = "2.22.0"
-commonsLang3 = "3.21.0"
 constraintlayoutCompose = "1.1.2"
 coreKtx = "1.19.1"
 dependencyLicenseReport = "3.1.4"
@@ -69,7 +68,6 @@ bcpkix-jdk18on = { module = "org.bouncycastle:bcpkix-jdk18on", version.ref = "bc
 classindexksp = { module = "com.github.albertvaka:classindexksp", version.ref = "classindexksp" }
 commons-collections4 = { module = "org.apache.commons:commons-collections4", version.ref = "commonsCollections4" }
 commons-io = { module = "commons-io:commons-io", version.ref = "commonsIo" }
-commons-lang3 = { module = "org.apache.commons:commons-lang3", version.ref = "commonsLang3" }
 disklrucache = { module = "com.jakewharton:disklrucache", version.ref = "disklrucache" }
 jsonassert = { module = "org.skyscreamer:jsonassert", version.ref = "jsonassert" }
 junit = { module = "junit:junit", version.ref = "junit" }
