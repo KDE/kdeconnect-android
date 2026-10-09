@@ -106,19 +106,14 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
         }
     }
 
-    override fun onListenerConnected(service: NotificationReceiver?) {
+    override fun onListenerConnected(service: NotificationReceiver) {
         serviceReady = true
         NotificationReceiver.RunCommand(context) { service ->
             this.sendCurrentNotifications(service)
         }
     }
 
-    override fun onNotificationRemoved(statusBarNotification: StatusBarNotification?) {
-        if (statusBarNotification == null) {
-            Log.w(TAG, "onNotificationRemoved: notification is null")
-            return
-        }
-
+    override fun onNotificationRemoved(statusBarNotification: StatusBarNotification) {
         val id = getNotificationKeyCompat(statusBarNotification)
 
         synchronized(postedNotificationsLock) {
