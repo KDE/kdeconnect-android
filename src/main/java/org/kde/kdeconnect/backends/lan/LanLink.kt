@@ -7,88 +7,71 @@
 package org.kde.kdeconnect.backends.lan
 
 import android.content.Context
+import android.os.SystemClock
 import android.util.Log
 import androidx.annotation.WorkerThread
-import org.apache.commons.io.IOUtils
 import org.json.JSONObject
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.DeviceInfo
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.backends.BaseLink
 import org.kde.kdeconnect.backends.BaseLinkProvider
+import org.kde.kdeconnect.backends.lan.LanLinkProvider.Companion.openServerSocketOnFreePort
+import org.kde.kdeconnect.extensions.closeSafe
 import org.kde.kdeconnect.helpers.LineTooLongException
 import org.kde.kdeconnect.helpers.ThreadHelper
 import org.kde.kdeconnect.helpers.readLineBounded
-import org.kde.kdeconnect.helpers.security.SslHelper
+import org.kde.kdeconnect.helpers.security.SslHelper.convertToSslSocket
 import java.io.BufferedInputStream
 import java.io.IOException
-import java.io.InputStream
 import java.io.OutputStream
 import java.net.InetSocketAddress
 import java.net.ServerSocket
 import java.net.Socket
 import java.net.SocketTimeoutException
-import java.nio.channels.NotYetConnectedException
 import java.security.cert.CertificateException
 import javax.net.ssl.SSLHandshakeException
 import javax.net.ssl.SSLSocket
+import kotlin.concurrent.Volatile
 
-open class LanLink @WorkerThread constructor(
+class LanLink(
     context: Context,
-    deviceInfo: DeviceInfo,
     linkProvider: BaseLinkProvider,
-    @Volatile private var socket: SSLSocket?
+    override var deviceInfo: DeviceInfo,
+    @Volatile private var socket: SSLSocket
 ) : BaseLink(context, linkProvider) {
 
-    enum class ConnectionStarted {
-        Locally, Remotely
-    }
-
-    private var _deviceInfo: DeviceInfo = deviceInfo
-
-    override val name: String
-        get() = "LanLink"
-
-    override val deviceInfo: DeviceInfo
-        get() = _deviceInfo
+    override val name = "LanLink"
 
     override fun disconnect() {
-        Log.i("LanLink/Disconnect", "socket:" + socket.hashCode())
+        Log.i(LOG_TAG, "Disconnect socket: ${socket.hashCode()}")
         try {
-            socket?.close()
+            socket.close()
         } catch (e: IOException) {
-            Log.e("LanLink", "Error", e)
+            Log.e(LOG_TAG, "Disconnect error", e)
         }
     }
 
-    // Returns the old socket
-    @WorkerThread
-    @Throws(IOException::class)
-    fun reset(newSocket: SSLSocket, deviceInfo: DeviceInfo): SSLSocket? {
-        this._deviceInfo = deviceInfo
-
+    fun reset(newSocket: SSLSocket, newDeviceInfo: DeviceInfo) {
+        deviceInfo = newDeviceInfo
         val oldSocket = socket
         socket = newSocket
-
-        IOUtils.close(oldSocket) // This should cancel the readThread
-
-        startListening(newSocket)
-
-        return oldSocket
+        oldSocket.closeSafe() // This should cancel the readThread
+        startListening()
     }
 
-    private fun startListening(socket: SSLSocket?) {
-        if (socket == null) return
+    fun startListening() {
+        val currentSocket = socket
         // Create a thread to take care of incoming data for the socket
         ThreadHelper.execute {
             try {
-                val stream = BufferedInputStream(socket.inputStream)
+                val stream = BufferedInputStream(currentSocket.inputStream)
                 while (true) {
                     val packet: String = try {
                         readLineBounded(stream, MAX_PACKET_SIZE)
-                    } catch (e: LineTooLongException) {
+                    } catch (_: LineTooLongException) {
                         continue
-                    } catch (e: SocketTimeoutException) {
+                    } catch (_: SocketTimeoutException) {
                         continue
                     }
                     if (packet.isEmpty()) {
@@ -98,26 +81,19 @@ open class LanLink @WorkerThread constructor(
                     receivedNetworkPacket(np)
                 }
             } catch (e: Exception) {
-                Log.i("LanLink", "Socket closed: " + socket.hashCode() + ". Reason: " + e.message)
-                try {
-                    socket.close()
-                } catch (ignored: IOException) {
-                }
-                try {
-                    Thread.sleep(300)
-                } catch (ignored: InterruptedException) {
-                } // Wait a bit because we might receive a new socket meanwhile
-                val thereIsaANewSocket = (socket !== this.socket)
+                Log.i(LOG_TAG, "Socket closed: ${currentSocket.hashCode()}. Reason: ${e.message}")
+                currentSocket.closeSafe()
+
+                // Wait a bit because we might receive a new socket meanwhile
+                try { Thread.sleep(300) } catch (_: InterruptedException) { }
+
+                val thereIsaANewSocket = (currentSocket !== socket)
                 if (!thereIsaANewSocket) {
-                    Log.i("LanLink", "Socket closed and there's no new socket, disconnecting device")
+                    Log.i(LOG_TAG, "Socket closed and there's no new socket, disconnecting device")
                     linkProvider.onConnectionLost(this@LanLink)
                 }
             }
         }
-    }
-
-    fun startListening() {
-        startListening(socket)
     }
 
     @WorkerThread
@@ -127,38 +103,26 @@ open class LanLink @WorkerThread constructor(
         sendPayloadFromSameThread: Boolean
     ): Boolean {
         var payloadTransferStarted = false
-        val currentSocket = socket
-        if (currentSocket == null) {
-            Log.e("KDE/sendPacket", "Not yet connected")
-            callback.onFailure(NotYetConnectedException())
-            return false
-        }
-
         try {
             // Prepare socket for the payload
             val server: ServerSocket? = if (np.hasPayload()) {
-                val s = LanLinkProvider.openServerSocketOnFreePort(LanLinkProvider.PAYLOAD_TRANSFER_MIN_PORT)
-                val payloadTransferInfo = JSONObject()
-                payloadTransferInfo.put("port", s.localPort)
-                np.payloadTransferInfo = payloadTransferInfo
-                s
+                openServerSocketOnFreePort(LanLinkProvider.PAYLOAD_TRANSFER_MIN_PORT).also {
+                    val payloadTransferInfo = JSONObject()
+                    payloadTransferInfo.put("port", it.localPort)
+                    np.payloadTransferInfo = payloadTransferInfo
+                }
             } else {
                 null
             }
 
             // Send body of the network packet
             try {
-                val writer: OutputStream = currentSocket.outputStream
+                val writer: OutputStream = socket.outputStream
                 writer.write(np.serialize().toByteArray(Charsets.UTF_8))
                 writer.flush()
             } catch (e: Exception) {
                 disconnect() // main socket is broken, disconnect
-                if (server != null) {
-                    try {
-                        server.close()
-                    } catch (ignored: Exception) {
-                    }
-                }
+                server?.closeSafe()
                 throw e
             }
 
@@ -173,10 +137,7 @@ open class LanLink @WorkerThread constructor(
                             sendPayload(np, callback, server)
                         } catch (e: IOException) {
                             e.printStackTrace()
-                            Log.e(
-                                "LanLink/sendPacket",
-                                "Async sendPayload failed for packet of type " + np.type + ". The Plugin was NOT notified."
-                            )
+                            Log.e(LOG_TAG, "Async sendPayload failed for packet of type " + np.type + ". The Plugin was NOT notified.")
                         }
                     }
                     payloadTransferStarted = true
@@ -192,9 +153,8 @@ open class LanLink @WorkerThread constructor(
             return false
         } finally {
             // Close the payload if we never called sendPayload(). Otherwise it will close it.
-            val payload = np.payload
-            if (payload != null && !payloadTransferStarted) {
-                payload.close()
+            if (!payloadTransferStarted) {
+                np.payload?.close()
             }
         }
     }
@@ -205,92 +165,82 @@ open class LanLink @WorkerThread constructor(
         callback: Device.SendPacketStatusCallback,
         server: ServerSocket
     ) {
+        val payload = np.payload!!
         var payloadSocket: Socket? = null
-        var outputStream: OutputStream? = null
-        val payload = np.payload
-        val inputStream: InputStream? = payload?.inputStream
         try {
-            if (!np.isCanceled && inputStream != null) {
-                // Wait a maximum of 10 seconds for the other end to establish a connection with our socket, close it afterwards
-                server.soTimeout = 10 * 1000
+            if (np.isCanceled) {
+                return
+            }
 
-                payloadSocket = server.accept()
+            val inputStream = payload.inputStream
+                ?: throw IOException("Payload for packet ${np.type} has no InputStream")
 
-                // Convert to SSL if needed
-                payloadSocket = SslHelper.convertToSslSocket(context, payloadSocket, deviceId, true, false)
+            // Wait a maximum of 10 seconds for the other end to establish a connection with our socket, close it afterwards
+            server.setSoTimeout(10 * 1000)
 
-                outputStream = payloadSocket.getOutputStream()
+            payloadSocket = server.accept()
 
-                Log.i("KDE/LanLink", "Beginning to send payload for " + np.type)
-                val buffer = ByteArray(4096)
-                var bytesRead = 0
-                val size = np.payloadSize
-                var progress: Long = 0
-                var timeSinceLastUpdate: Long = -1
-                while (!np.isCanceled && inputStream.read(buffer).also { bytesRead = it } != -1) {
-                    progress += bytesRead.toLong()
-                    outputStream.write(buffer, 0, bytesRead)
-                    if (size > 0) {
-                        if (timeSinceLastUpdate + 500 < System.currentTimeMillis()) { // Report progress every half a second
-                            val percent = (100 * progress) / size
-                            callback.onPayloadProgressChanged(percent.toInt())
-                            timeSinceLastUpdate = System.currentTimeMillis()
-                        }
+            // Convert to SSL if needed
+            payloadSocket = convertToSslSocket(context, payloadSocket, deviceId,
+                isDeviceTrusted = true,
+                clientMode = false
+            )
+
+            // Doesn't need closing since closing payloadSocket also closes its stream
+            val outputStream = payloadSocket.outputStream
+
+            Log.i(LOG_TAG, "Beginning to send payload for ${np.type})")
+            val buffer = ByteArray(4096)
+            val size = np.payloadSize
+            var bytesRead = 0
+            var progress: Long = 0
+            var timeSinceLastUpdate: Long = -1
+            while (!np.isCanceled && (inputStream.read(buffer).also { bytesRead = it }) != -1) {
+                progress += bytesRead
+                outputStream.write(buffer, 0, bytesRead)
+                if (size > 0) {
+                    if (timeSinceLastUpdate + 500 < SystemClock.elapsedRealtime()) { //Report progress every half a second
+                        val percent = ((100 * progress) / size)
+                        callback.onPayloadProgressChanged(percent.toInt())
+                        timeSinceLastUpdate = SystemClock.elapsedRealtime()
                     }
                 }
-                outputStream.flush()
-                Log.i("KDE/LanLink", "Finished sending payload ($progress bytes written)")
             }
+            outputStream.flush()
+            Log.i(LOG_TAG, "Finished sending payload ($progress bytes written)")
         } catch (e: SocketTimeoutException) {
-            Log.e(
-                "LanLink",
-                "Socket for payload in packet " + np.type + " timed out. The other end didn't fetch the payload."
-            )
+            Log.e(LOG_TAG, "Socket for payload in packet ${np.type} timed out. The other end didn't fetch the payload.")
             throw e
-        } catch (e: Exception) {
-            when (e) {
-                is CertificateException, is SSLHandshakeException -> {
-                    // The exception can be due to several causes. "Connection closed by peer" seems to be a common one.
-                    // If we could distinguish different cases we could react differently for some of them, but I haven't found how.
-                    Log.e("LanLink/sendPacket", "Payload SSLSocket failed", e)
-                    throw IOException("Payload SSL socket failed", e)
-                }
-                else -> throw e
-            }
+        } catch (e: CertificateException) {
+            // The exception can be due to several causes. "Connection closed by peer" seems to be a common one.
+            // If we could distinguish different cases we could react differently for some of them, but I haven't found how.
+            Log.e(LOG_TAG, "Payload SSLSocket failed", e)
+            throw IOException("Payload SSL socket failed", e)
+        } catch (e: SSLHandshakeException) {
+            Log.e(LOG_TAG, "Payload SSLSocket failed", e)
+            throw IOException("Payload SSL socket failed", e)
         } finally {
-            try {
-                server.close()
-            } catch (ignored: Exception) {
-            }
-            try {
-                IOUtils.close(payloadSocket)
-            } catch (ignored: Exception) {
-            }
-            payload?.close()
-            try {
-                IOUtils.close(outputStream)
-            } catch (ignored: Exception) {
-            }
+            server.closeSafe()
+            payloadSocket?.closeSafe()
+            payload.close()
         }
     }
 
     private fun receivedNetworkPacket(np: NetworkPacket) {
         if (np.hasPayloadTransferInfo()) {
-            val payloadSocket = Socket()
+            var payloadSocket = Socket()
             try {
                 val tcpPort = np.payloadTransferInfo.getInt("port")
-                val deviceAddress = socket?.remoteSocketAddress as? InetSocketAddress
-                if (deviceAddress != null) {
-                    payloadSocket.connect(InetSocketAddress(deviceAddress.address, tcpPort))
-                    val sslPayloadSocket = SslHelper.convertToSslSocket(context, payloadSocket, deviceId, true, true)
-                    np.payload = NetworkPacket.Payload(sslPayloadSocket, np.payloadSize)
-                }
+                val deviceAddress = socket.getRemoteSocketAddress() as InetSocketAddress
+                payloadSocket.connect(InetSocketAddress(deviceAddress.address, tcpPort))
+                payloadSocket = convertToSslSocket(context, payloadSocket, deviceId,
+                    isDeviceTrusted = true,
+                    clientMode = true
+                )
+                np.payload = NetworkPacket.Payload(payloadSocket, np.payloadSize)
             } catch (e: Exception) {
-                try {
-                    payloadSocket.close()
-                } catch (ignored: Exception) {
-                }
-                Log.e("KDE/LanLink", "Exception connecting to payload remote socket", e)
+                payloadSocket.closeSafe()
+                Log.e(LOG_TAG, "Exception connecting to payload remote socket", e)
             }
         }
 
@@ -298,6 +248,7 @@ open class LanLink @WorkerThread constructor(
     }
 
     companion object {
+        const val LOG_TAG = "LanLink"
         const val MAX_PACKET_SIZE: Int = 32 * 1024 * 1024
     }
 }

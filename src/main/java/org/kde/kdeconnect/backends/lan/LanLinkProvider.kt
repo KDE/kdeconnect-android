@@ -2,7 +2,8 @@
  * SPDX-FileCopyrightText: 2026 Albert Vaca Cintora <albertvaka@gmail.com>
  *
  * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
-*/
+ */
+
 package org.kde.kdeconnect.backends.lan
 
 import android.Manifest
@@ -22,7 +23,6 @@ import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.NetworkPacket.Companion.unserialize
 import org.kde.kdeconnect.backends.BaseLink
 import org.kde.kdeconnect.backends.BaseLinkProvider
-import org.kde.kdeconnect.backends.lan.LanLink.ConnectionStarted
 import org.kde.kdeconnect.extensions.closeSafe
 import org.kde.kdeconnect.helpers.DeviceHelper
 import org.kde.kdeconnect.helpers.ThreadHelper
@@ -345,10 +345,10 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
                     addOrUpdateLink(sslSocket, deviceInfo)
                 } catch (e: JSONException) {
                     Log.e("KDE/LanLinkProvider", "Remote device doesn't correctly implement protocol version 8", e)
-                    try { sslSocket.close() } catch (_: IOException) { }
+                    sslSocket.closeSafe()
                 } catch (e: IOException) {
                     Log.e("KDE/LanLinkProvider", "Handshake as $mode failed with $deviceId", e)
-                    try { sslSocket.close() } catch (_: IOException) { }
+                    sslSocket.closeSafe()
                 }
             }
         }
@@ -372,13 +372,12 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
      * @throws IOException if an exception is thrown by [LanLink.reset]
      */
     @WorkerThread
-    @Throws(IOException::class)
     @Synchronized
     private fun addOrUpdateLink(socket: SSLSocket, deviceInfo: DeviceInfo) {
         var linkCreated = false
         val link = visibleDevices.computeIfAbsent(deviceInfo.id) {
             linkCreated = true
-            LanLink(context, deviceInfo, this, socket)
+            LanLink(context, this, deviceInfo, socket)
         }
 
         if (linkCreated) {
@@ -457,7 +456,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
                         try {
                             tcpPacketReceived(socket)
                         } catch (e: IOException) {
-                            try { socket.close() } catch (_: IOException) {}
+                            socket.closeSafe()
                             Log.e("LanLinkProvider", "Exception receiving incoming TCP connection", e)
                         } catch (e: CertificateException) {
                             socket.closeSafe()
@@ -612,6 +611,10 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
 
     val tcpPort: Int?
         get() = tcpServer?.getLocalPort()
+
+    private enum class ConnectionStarted {
+        Locally, Remotely
+    }
 
     companion object {
         private const val UDP_PORT: Int = 1716
