@@ -123,11 +123,6 @@ class RunCommandActivity : AppCompatActivity() {
     }
 }
 
-/**
- * Kotlin's `mutableStateOf` isn't directly callable from Java (its default arguments aren't
- * exposed as Java overloads), so this is a small wrapper to be called from Java.
- */
-fun mutableBooleanStateFor(initial: Boolean): MutableState<Boolean> = mutableStateOf(initial)
 
 enum class RunCommandStatus {
     STDERR,
