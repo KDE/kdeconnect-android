@@ -62,13 +62,13 @@ class ContactsPlugin : Plugin() {
                 .setNegativeButton(R.string.cancel)
                 .create()
                 .apply {
-                    setCallback(object : AlertDialogFragment.Callback() {
+                    callback = object : AlertDialogFragment.Callback() {
                         override fun onPositiveButtonClicked(): Boolean {
                             preferences.edit { putBoolean("acceptedToTransferContacts", true) }
                             device.launchBackgroundReloadPluginsFromSettings()
                             return true
                         }
-                    })
+                    }
                 }
         }
 

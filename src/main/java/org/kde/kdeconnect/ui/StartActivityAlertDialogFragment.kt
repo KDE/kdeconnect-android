@@ -33,7 +33,7 @@ class StartActivityAlertDialogFragment : AlertDialogFragment() {
             "You requested startForResult but you did not set the requestCode"
         }
 
-        setCallback(object : Callback() {
+        callback = object : Callback() {
             override fun onPositiveButtonClicked(): Boolean {
                 val intentUrl = intentUrl
                 val intent = if (!intentUrl.isNullOrEmpty()) {
@@ -49,7 +49,7 @@ class StartActivityAlertDialogFragment : AlertDialogFragment() {
                 }
                 return true
             }
-        })
+        }
     }
 
     class Builder : AbstractBuilder<Builder, StartActivityAlertDialogFragment>() {
