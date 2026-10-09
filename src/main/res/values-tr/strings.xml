@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="kde_connect">KDE Bağlan</string>
+  <string name="kde_connect">KDE Connect</string>
   <string name="manifest_label_share">Aygıta Gönder</string>
   <string name="foreground_notification_no_devices">Hiçbir aygıta bağlı değil</string>
   <string name="foreground_notification_devices">Bağlı: %s</string>
@@ -53,7 +53,7 @@
   <string name="open_input_settings">Klavye ayarlarını aç</string>
   <string name="no_permissions">Bildirimler erişebilmek için izine gereksiniminiz var</string>
   <string name="no_permission_mprisreceiver">Ortam oynatıcılarınızı denelemek için bildirimlere erişim izni vermeniz gerekir</string>
-  <string name="no_permissions_remotekeyboard_ime">Düğme basımlarını almak için KDE Bağlan Uzak Klavye’yi, bir Android giriş yöntemi olarak etkinleştirmeniz gerekir.</string>
+  <string name="no_permissions_remotekeyboard_ime">Düğme basımlarını almak için KDE Connect Uzak Klavye’yi, bir Android giriş yöntemi olarak etkinleştirmeniz gerekir.</string>
   <string name="no_permissions_remotekeyboard_accessibility">Düğme basımlarını almak için erişilebilirlik izinlerini sağlamanız gerekir.</string>
   <string name="send_ping">Ping gönder</string>
   <string name="open_mpris_controls">Çoklu ortam denetimi</string>
@@ -211,7 +211,7 @@
   </string-array>
   <string name="mpris_notifications_explanation">Bildirim izni, bildirim çekmecesinde uzak konum ortamını göstermek için gereklidir</string>
   <string name="mpris_notification_settings_title">Ortam denetim bildirimini göster</string>
-  <string name="mpris_notification_settings_summary">KDE Bağlan’ı açmadan ortam oynatıcılarınızı denetlemenize izin verin</string>
+  <string name="mpris_notification_settings_summary">KDE Connect’i açmadan ortam oynatıcılarınızı denetlemenize izin verin</string>
   <string name="share_to">Şuraya Paylaş…</string>
   <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
   <string name="unreachable_device_url_share_text">Erişilemeyen bir aygıta gönderilen URL’ler, aygıt erişilebilir olduğunda teslim edilir.\n\n</string>
@@ -253,7 +253,7 @@
   <string name="sftp_action_mode_menu_delete">Sil</string>
   <string name="sftp_no_storage_locations_configured">Yapılandırılmış depolama yeri yok</string>
   <string name="sftp_saf_permission_explanation">Dosyalara uzaktan erişmek için depolama konumlarını yapılandırmanız gerekir</string>
-  <string name="sftp_manage_storage_permission_explanation">Bu aygıttaki dosyalara uzak erişime izin vermek için KDE Bağlan’a depolamayı yönetmesi için izin vermeniz gerekiyor.</string>
+  <string name="sftp_manage_storage_permission_explanation">Bu aygıttaki dosyalara uzak erişime izin vermek için KDE Connect’e depolamayı yönetmesi için izin vermeniz gerekiyor.</string>
   <string name="sftp_missing_permission_error">Eksik izinler: Dosya sistemi erişimi</string>
   <string name="no_players_connected">Bulunan oynatıcı yok</string>
   <string name="send_files">Dosyaları gönder</string>
@@ -272,8 +272,8 @@
   </string-array>
   <string name="block_notification_contents">Bildirim içeriğini engelle</string>
   <string name="block_notification_images">Bildirim görsellerini engelle</string>
-  <string name="pairing_title">KDE Bağlan Aygıtları</string>
-  <string name="pairing_description">KDE Bağlan’te çalışan, aynı ağdaki diğer aygıtlar burada gözükmelidir.</string>
+  <string name="pairing_title">KDE Connect Aygıtları</string>
+  <string name="pairing_description">KDE Connect’te çalışan, aynı ağdaki diğer aygıtlar burada gözükmelidir.</string>
   <string name="device_rename_title">Aygıtı yeniden adlandır</string>
   <string name="device_rename_confirm">Yeniden adlandır</string>
   <string name="refresh">Yenile</string>
@@ -284,7 +284,7 @@
   <string name="pref_plugin_telepathy">SMS Gönder</string>
   <string name="pref_plugin_telepathy_desc">Masaüstünden metin iletisi gönder</string>
   <string name="pref_plugin_telepathy_mms">MMS Gönder</string>
-  <string name="pref_plugin_telepathy_mms_desc">KDE Bağlan üzerinden MMS göndermek için onu öntanımlı SMS uygulaması olarak ayarlayın.</string>
+  <string name="pref_plugin_telepathy_mms_desc">KDE Connect üzerinden MMS göndermek için onu öntanımlı SMS uygulaması olarak ayarlayın.</string>
   <string name="findmyphone_title">Telefonumu bul</string>
   <string name="findmyphone_title_tablet">Tabletimi bul</string>
   <string name="findmyphone_title_tv">TV’mi bul</string>
@@ -303,7 +303,7 @@
   <string name="telephony_permission_explanation">Masaüstünde telefon görüşmelerini görmek için telefon görüşmesi kayıtlarına ve telefon durumuna izin vermeniz gerekir</string>
   <string name="telephony_optional_permission_explanation">Telefon numarası yerine kişi adı görebilmek için telefonun kişilerine erişim gereklidir</string>
   <string name="contacts_permission_explanation">Kişilerinizi masaüstüyle paylaşmak için kişiler izni vermeniz gerekir</string>
-  <string name="contacts_per_device_confirmation">Telefondaki kişileriniz bu aygıta kopyalanacak; böylece KDE Bağlan ve başka uygulamalar tarafından kullanılabilecekler.</string>
+  <string name="contacts_per_device_confirmation">Telefondaki kişileriniz bu aygıta kopyalanacak; böylece KDE Connect ve başka uygulamalar tarafından kullanılabilecekler.</string>
   <string name="select_ringtone">Bir zil sesi seç</string>
   <string name="telephony_pref_blocked_title">Engellenen numaralar</string>
   <string name="telephony_pref_blocked_dialog_desc">Bu numaralardan gelen aramaları ve SMS’leri göstermeyin. Lütfen her satıra bir numara belirtin</string>
@@ -314,7 +314,7 @@
   <string name="presenter_lock_tip">Bir önceki/bir sonraki slayta geçmek için aygıtınızı kilitleyebilir ve ses düzeyi düğmelerini kullanabilirsiniz</string>
   <string name="add_command">Komut ekle</string>
   <string name="addcommand_explanation">Kayıtlı komut yok</string>
-  <string name="addcommand_explanation2">KDE Bağlan Sistem Ayarlarında yeni komutlar ekleyebilirsiniz</string>
+  <string name="addcommand_explanation2">KDE Connect Sistem Ayarlarında yeni komutlar ekleyebilirsiniz</string>
   <string name="add_command_description">Masaüstüne komut ekleyebilirsiniz</string>
   <string name="pref_plugin_mprisreceiver">Ortam Oynatıcısı Denetimi</string>
   <string name="pref_plugin_mprisreceiver_desc">Telefonunuzun ortam oynatıcılarını başka bir aygıttan denetleyin</string>
@@ -347,7 +347,7 @@
   <string name="devices">Aygıtlar</string>
   <string name="settings_rename">Aygıt adı</string>
   <string name="settings_dark_mode">Karanlık tema</string>
-  <string name="settings_export_logs">KDE Bağlan Günlüklerini Dışa Aktar</string>
+  <string name="settings_export_logs">KDE Connect Günlüklerini Dışa Aktar</string>
   <string name="settings_export_logs_text">Sorun tanılama konusunda yandımcı olabilecek yürütme bilgisini içeren bir dosya üretin.</string>
   <string name="settings_more_settings_title">Daha fazla ayar</string>
   <string name="settings_more_settings_text">Aygıt başına ayarlar, bir aygıt içinden “Eklenti Ayarları” altında bulunabilir.</string>
@@ -362,7 +362,7 @@
   <string name="notification_channel_receivenotification">Diğer aygıtlardan gelen bildirimler</string>
   <string name="findmyphone_preference_title_flashlight">Flaşı yak</string>
   <string name="no_app_for_opening">Bu dosyayı açmak için uygun bir uygulama bulunamadı</string>
-  <string name="remote_keyboard_service">KDE Bağlan Uzaktan Klavye</string>
+  <string name="remote_keyboard_service">KDE Connect Uzaktan Klavye</string>
   <string name="presenter_pointer">İşaretçi</string>
   <string name="trusted_networks">Güvenilir ağlar</string>
   <string name="trusted_networks_desc">Otomatik keşfi bilinen ağlarla kısıtla</string>
@@ -370,8 +370,8 @@
   <string name="empty_trusted_networks_list_text">Henüz herhangi bir güvenilen ağ eklemediniz</string>
   <string name="allow_all_networks_text">Hepsine izin ver</string>
   <string name="location_permission_needed_title">İzin gerekli</string>
-  <string name="bluetooth_permission_needed_desc">KDE Bağlan, Bluetooth kullanarak eşleştirilmiş aygıtların KDE Bağlan’da görülebilir olmasını sağlamak için yakındaki aygıtlara bağlanma iznine gereksinim duyar.</string>
-  <string name="location_permission_needed_desc">KDE Bağlan, uygulama arka planda olsa bile bağlı olduğunuz Wi-Fi ağını bilmek için arka plan konumu iznine gereksinim duyar. Bunun nedeni, çevrenizdeki Wi-Fi ağlarının adının, KDE Bağlan’ın yaptığı bu olmasa bile konumunuzu bulmak için kullanılabilmesidir.</string>
+  <string name="bluetooth_permission_needed_desc">KDE Connect, Bluetooth kullanarak eşleştirilmiş aygıtların KDE Connect’te görülebilir olmasını sağlamak için yakındaki aygıtlara bağlanma iznine gereksinim duyar.</string>
+  <string name="location_permission_needed_desc">KDE Connect, uygulama arka planda olsa bile bağlı olduğunuz Wi-Fi ağını bilmek için arka plan konumu iznine gereksinim duyar. Bunun nedeni, çevrenizdeki Wi-Fi ağlarının adının, KDE Connect’in yaptığı bu olmasa bile konumunuzu bulmak için kullanılabilmesidir.</string>
   <string name="clipboard_android_x_incompat">Android 10, tüm uygulamalara pano erişimini kaldırdı. Bu eklenti devre dışı bırakılacak.</string>
   <string name="mpris_open_url">Oynamayı burada sürdürün</string>
   <string name="cant_open_url">Oynamayı sürdürmek için URL açılamıyor</string>
@@ -453,7 +453,7 @@
   <string name="holger_kaelberer_task">Uzak klavye eklentisi ve hata düzeltmeleri</string>
   <string name="saikrishna_arcot_task">Uzaktan girdi eklentisinde klavye kullanımı desteği, hata düzeltmeleri ve genel iyileştirmeler</string>
   <string name="shellwen_chen_task">SFTP güvenliğini artır, projenin bakımını daha da kolaylaştır, hata düzeltmeleri ve genel iyileştirmeler</string>
-  <string name="everyone_else">KDE Bağlan’a yıllar boyunca katkıda bulunan herkes</string>
+  <string name="everyone_else">KDE Connect’e yıllar boyunca katkıda bulunan herkes</string>
   <string name="send_clipboard">Pano Gönder</string>
   <string name="tap_to_execute">Yürütmek için Dokun</string>
   <string name="plugin_stats">Eklenti İstatistikleri</string>
