@@ -54,4 +54,23 @@ class TelephonyHelperTest {
             Assert.assertEquals(message, expected, result)
         }
     }
+
+    @Test
+    fun isMatchingPhoneNumber() {
+        val localNumber = TelephonyHelper.LocalPhoneNumber("+1-202-555-0173", 1)
+
+        // Exact match
+        Assert.assertTrue(localNumber.isMatchingPhoneNumber("+12025550173"))
+        // Localized area-code match (10 digits >= 75% of 11 digits)
+        Assert.assertTrue(localNumber.isMatchingPhoneNumber("2025550173"))
+        // Numbers that are too short (< 75% length ratio) are discarded
+        Assert.assertFalse(localNumber.isMatchingPhoneNumber("5550173"))
+        // Non match
+        Assert.assertFalse(localNumber.isMatchingPhoneNumber("12025550199"))
+        Assert.assertFalse(localNumber.isMatchingPhoneNumber(""))
+
+        // Null number safety
+        val nullNumber = TelephonyHelper.LocalPhoneNumber(null, 1)
+        Assert.assertFalse(nullNumber.isMatchingPhoneNumber("+12025550173"))
+    }
 }
