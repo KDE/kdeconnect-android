@@ -105,13 +105,9 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
         serverRunnable!!.stopProcessing()
     }
 
-    override fun getName(): String {
-        return "BluetoothLinkProvider"
-    }
+    override val name: String = "BluetoothLinkProvider"
 
-    override fun getPriority(): Int {
-        return 10
-    }
+    override val priority: Int = 10
 
     fun disconnectedLink(link: BluetoothLink, remoteAddress: BluetoothDevice?) {
         Log.i("BluetoothLinkProvider", "disconnectedLink called")

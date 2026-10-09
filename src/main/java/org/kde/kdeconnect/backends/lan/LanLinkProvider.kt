@@ -605,9 +605,9 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
         udpServer = null
     }
 
-    override fun getName() = "LanLinkProvider"
+    override val name: String = "LanLinkProvider"
 
-    override fun getPriority() = 20
+    override val priority: Int = 20
 
     val tcpPort: Int?
         get() = tcpServer?.getLocalPort()
