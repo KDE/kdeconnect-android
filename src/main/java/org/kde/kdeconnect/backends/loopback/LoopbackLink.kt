@@ -17,13 +17,14 @@ import org.kde.kdeconnect.helpers.DeviceHelper.getDeviceInfo
 class LoopbackLink : BaseLink {
     constructor(context: Context, linkProvider: BaseLinkProvider) : super(context, linkProvider)
 
-    override fun getName(): String = "LoopbackLink"
-    override fun getDeviceInfo(): DeviceInfo = getDeviceInfo(context).let { deviceInfo ->
-        deviceInfo.copy(
-            incomingCapabilities = deviceInfo.outgoingCapabilities,
-            outgoingCapabilities = deviceInfo.incomingCapabilities,
-        )
-    }
+    override val name: String = "LoopbackLink"
+    override val deviceInfo: DeviceInfo
+        get() = getDeviceInfo(context).let { deviceInfo ->
+            deviceInfo.copy(
+                incomingCapabilities = deviceInfo.outgoingCapabilities,
+                outgoingCapabilities = deviceInfo.incomingCapabilities,
+            )
+        }
 
     @WorkerThread
     override fun sendPacket(packet: NetworkPacket, callback: Device.SendPacketStatusCallback, sendPayloadFromSameThread: Boolean): Boolean {
