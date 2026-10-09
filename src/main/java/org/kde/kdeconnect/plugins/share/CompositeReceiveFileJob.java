@@ -105,6 +105,7 @@ public class CompositeReceiveFileJob extends BackgroundJob<Device, Void> {
 
             receiveNotification.setTitle(getDevice().getContext().getResources()
                     .getQuantityString(R.plurals.incoming_file_title, totalNumFiles, totalNumFiles, getDevice().getName()));
+            showNewTotalsIfRunning();
 
             lock.notifyAll();
         }
@@ -120,6 +121,7 @@ public class CompositeReceiveFileJob extends BackgroundJob<Device, Void> {
 
                 receiveNotification.setTitle(getDevice().getContext().getResources()
                         .getQuantityString(R.plurals.incoming_file_title, totalNumFiles, totalNumFiles, getDevice().getName()));
+                showNewTotalsIfRunning();
 
                 // Wake up run() if it's waiting for the next packet
                 lock.notifyAll();
@@ -329,6 +331,13 @@ public class CompositeReceiveFileJob extends BackgroundJob<Device, Void> {
     private void closeAllInputStreams() {
         for (NetworkPacket np : networkPacketList) {
             np.getPayload().close();
+        }
+    }
+
+    private void showNewTotalsIfRunning() {
+        // If we are already receiving a file, update the notification right away to show the new number of files
+        if (isRunning && currentFileNum > 0) {
+            setProgress((int)prevProgressPercentage);
         }
     }
 
