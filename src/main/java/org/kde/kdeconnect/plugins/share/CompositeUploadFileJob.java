@@ -172,7 +172,12 @@ public class CompositeUploadFileJob extends BackgroundJob<Device, Void> {
             uploadNotification.setTitle(getDevice().getContext().getResources()
                     .getQuantityString(R.plurals.outgoing_file_title, totalNumFiles, totalNumFiles, getDevice().getName()));
 
-            //Give SharePlugin some time to add more NetworkPackets
+            // If we are already sending a file, update the notification right away to show the new number of files
+            if (isRunning && currentFileNum > 0) {
+                setProgress(prevProgressPercentage);
+            }
+
+            // Give SharePlugin some time to add more NetworkPackets
             if (isRunning && !updatePacketPending) {
                 updatePacketPending = true;
                 handler.post(this::sendUpdatePacket);
