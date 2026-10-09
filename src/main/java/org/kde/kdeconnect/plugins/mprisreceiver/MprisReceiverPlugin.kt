@@ -23,15 +23,12 @@ import org.kde.kdeconnect.plugins.notifications.NotificationReceiver
 import org.kde.kdeconnect.ui.MainActivity
 import org.kde.kdeconnect.ui.StartActivityAlertDialogFragment
 import org.kde.kdeconnect_tp.R
-import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 import kotlin.collections.MutableList
 
 @LoadablePlugin
 class MprisReceiverPlugin : Plugin() {
-    // TODO: Those two are always accessed together, merge them
     private val players: HashMap<String, MprisReceiverPlayer> = HashMap()
-    private val playerCbs: HashMap<String, MprisReceiverCallback> = HashMap()
 
     private var mediaSessionChangeListener = MediaSessionChangeListener()
 
@@ -54,8 +51,7 @@ class MprisReceiverPlugin : Plugin() {
     override fun onDestroy() {
         val manager = context.getSystemService<MediaSessionManager>()!!
         manager.removeOnActiveSessionsChangedListener(mediaSessionChangeListener)
-        players.clear()
-        playerCbs.clear()
+        releasePlayers()
     }
 
     private fun createPlayers(sessions: MutableList<MediaController>) {
@@ -83,14 +79,8 @@ class MprisReceiverPlugin : Plugin() {
 
         val artUrl = np.getString("albumArtUrl", "")
         if (!artUrl.isEmpty()) {
-            val playerName = player.name
-            val cb = playerCbs[playerName]
-            if (cb == null) {
-                Log.e(TAG, "no callback for $playerName (player likely stopped)")
-                return false
-            }
             // run it on a different thread to avoid blocking
-            ThreadHelper.execute { sendAlbumArt(playerName, cb, artUrl) }
+            ThreadHelper.execute { sendAlbumArt(player, artUrl) }
             return true
         }
 
@@ -136,14 +126,7 @@ class MprisReceiverPlugin : Plugin() {
                 return
             }
 
-            // Make a copy to avoid ConcurrentModificationException
-            val playersCopy = ArrayList<MprisReceiverPlayer>(players.values)
-            for (p in playersCopy) {
-                p.controller.unregisterCallback(playerCbs[p.name]!!)
-            }
-            playerCbs.clear()
-            players.clear()
-
+            releasePlayers()
             createPlayers(controllers)
             sendPlayerList()
         }
@@ -154,11 +137,15 @@ class MprisReceiverPlugin : Plugin() {
         if (controller.getPackageName() == context.packageName) return
 
         val playerName = appNameLookup(context, controller.getPackageName())
-        val player = MprisReceiverPlayer(controller, playerName)
-        val cb = MprisReceiverCallback(this, player)
-        controller.registerCallback(cb, Handler(Looper.getMainLooper()))
-        playerCbs[player.name] = cb
+        val player = MprisReceiverPlayer(controller, playerName, ::sendMetadata)
         players[player.name] = player
+    }
+
+    private fun releasePlayers() {
+        for (player in players.values) {
+            player.release()
+        }
+        players.clear()
     }
 
     private fun sendPlayerList() {
@@ -168,13 +155,13 @@ class MprisReceiverPlugin : Plugin() {
         device.sendPacket(np)
     }
 
-    private fun sendAlbumArt(playerName: String, cb: MprisReceiverCallback, requestedUrl: String?) {
+    private fun sendAlbumArt(player: MprisReceiverPlayer, requestedUrl: String?) {
         // NOTE: It is possible that the player gets killed in the middle of this method.
         // The proper thing to do this case would be to abort the send - but that gets into the
         //   territory of async cancellation or putting a lock.
-        // For now, we just continue to send the art- cb stores the bitmap, so it will be valid.
-        //   cb will get GC'd after this method completes.
-        val localArtUrl = cb.artUrl
+        // For now, we just continue to send the art - player stores the bitmap, so it will be valid.
+        //   player will get GC'd after this method completes.
+        val localArtUrl = player.artUrl
         if (localArtUrl == null) {
             Log.w(TAG, "art not found!")
             return
@@ -186,20 +173,20 @@ class MprisReceiverPlugin : Plugin() {
             Log.d(TAG, "requested: $requestedUrl")
             return
         }
-        val p = cb.artAsArray
+        val p = player.artAsArray
         if (p == null) {
             Log.w(TAG, "sendAlbumArt: Failed to get art stream")
             return
         }
         val np = NetworkPacket(PACKET_TYPE_MPRIS)
         np.payload = NetworkPacket.Payload(p)
-        np["player"] = playerName
+        np["player"] = player.name
         np["transferringAlbumArt"] = true
         np["albumArtUrl"] = artUrl
         device.sendPacket(np)
     }
 
-    internal fun sendMetadata(player: MprisReceiverPlayer) {
+    private fun sendMetadata(player: MprisReceiverPlayer) {
         val np = NetworkPacket(PACKET_TYPE_MPRIS)
         np["player"] = player.name
         np["title"] = player.title
@@ -215,7 +202,7 @@ class MprisReceiverPlugin : Plugin() {
         np["canGoNext"] = player.canGoNext()
         np["canSeek"] = player.canSeek()
         np["volume"] = player.volume
-        np["albumArtUrl"] = playerCbs[player.name]?.artUrl ?: ""
+        np["albumArtUrl"] = player.artUrl ?: ""
         device.sendPacket(np)
     }
 
