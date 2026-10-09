@@ -16,23 +16,26 @@ import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.DeviceInfo
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.backends.BaseLink
+import org.kde.kdeconnect.extensions.closeSafe
 import org.kde.kdeconnect.helpers.readLineBounded
 import java.io.BufferedInputStream
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
 import java.util.UUID
-import kotlin.text.Charsets.UTF_8
 
 class BluetoothLink(
     context: Context,
     private val connection: ConnectionMultiplexer,
-    val input: InputStream,
-    val output: OutputStream,
-    val remoteAddress: BluetoothDevice,
-    val theDeviceInfo: DeviceInfo,
-    override val linkProvider: BluetoothLinkProvider
+    input: InputStream,
+    private val output: OutputStream,
+    private val remoteAddress: BluetoothDevice,
+    override val deviceInfo: DeviceInfo,
+    linkProvider: BluetoothLinkProvider
 ) : BaseLink(context, linkProvider) {
+
+    override val name = "BluetoothLink"
+
     private var continueAccepting = true
     private val receivingThread = Thread(object : Runnable {
         override fun run() {
@@ -44,7 +47,7 @@ class BluetoothLink(
                     processMessage(message)
                 }
             } catch (e: IOException) {
-                Log.e("BluetoothLink/receiving", "Connection to " + remoteAddress.address + " likely broken.", e)
+                Log.e("BluetoothLink/receiving", "Connection to ${remoteAddress.address} likely broken.", e)
                 disconnect()
             }
         }
@@ -73,24 +76,15 @@ class BluetoothLink(
         receivingThread.start()
     }
 
-    override val name: String
-        get() = "BluetoothLink"
-
-    override val deviceInfo: DeviceInfo
-        get() = theDeviceInfo
-
     override fun disconnect() {
         continueAccepting = false
-        try {
-            connection.close()
-        } catch (_: IOException) {
-        }
-        linkProvider.disconnectedLink(this, remoteAddress)
+        connection.closeSafe()
+        (linkProvider as BluetoothLinkProvider).disconnectedLink(this, remoteAddress)
     }
 
     @Throws(JSONException::class, IOException::class)
     private fun sendMessage(np: NetworkPacket) {
-        val message = np.serialize().toByteArray(UTF_8)
+        val message = np.serialize().toByteArray(Charsets.UTF_8)
         output.write(message)
     }
 

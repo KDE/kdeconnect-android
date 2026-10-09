@@ -12,18 +12,16 @@ import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.DeviceInfo
 import org.kde.kdeconnect.NetworkPacket
 import java.io.IOException
-import java.util.ArrayList
 
 abstract class BaseLink(
-    @JvmField protected val context: Context,
-    open val linkProvider: BaseLinkProvider,
+    protected val context: Context,
+    val linkProvider: BaseLinkProvider
 ) {
-
     fun interface PacketReceiver {
         fun onPacketReceived(np: NetworkPacket)
     }
 
-    private val receivers = ArrayList<PacketReceiver>()
+    private val receivers = mutableListOf<PacketReceiver>()
 
     /* To be implemented by each link for pairing handlers */
     abstract val name: String
@@ -31,7 +29,7 @@ abstract class BaseLink(
     abstract val deviceInfo: DeviceInfo
 
     val deviceId: String
-        get() = deviceInfo.id
+        get() = this.deviceInfo.id
 
     fun addPacketReceiver(pr: PacketReceiver) {
         receivers.add(pr)
