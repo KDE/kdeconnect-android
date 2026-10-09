@@ -76,7 +76,7 @@ object SmsMmsUtils {
             return null
         } else {
             // Pick an arbitrary phone number
-            Log.w(SENDING_MESSAGE, "Unable to determine correct outgoing address for sub ID $subscriptionID. Using $sendingPhoneNumber")
+            Log.w(SENDING_MESSAGE, "Unable to determine correct outgoing address for sub ID $subscriptionID. Using ${allPhoneNumbers[0]}")
             return allPhoneNumbers[0]
         }
     }
