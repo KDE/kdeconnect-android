@@ -9,6 +9,7 @@ package org.kde.kdeconnect
 import android.accessibilityservice.AccessibilityService
 import android.accessibilityservice.GestureDescription
 import android.accessibilityservice.GestureDescription.StrokeDescription
+import android.content.res.Configuration
 import android.graphics.Path
 import android.graphics.PixelFormat
 import android.os.Build
@@ -26,6 +27,7 @@ import android.view.accessibility.AccessibilityNodeInfo
 import android.widget.ImageView
 import androidx.annotation.RequiresApi
 import androidx.core.content.getSystemService
+import androidx.core.math.MathUtils.clamp
 import org.kde.kdeconnect.plugins.inputdevicesreceiver.InputDevicesReceiverPlugin.Cursor
 import org.kde.kdeconnect_tp.R
 import java.util.ArrayDeque
@@ -35,68 +37,87 @@ import kotlin.math.sign
 
 open class KdeConnectAccessibilityService : AccessibilityService() {
 
+    // Currently active window
     var window: AccessibilityNodeInfo? = null
 
-    private var cursorView: View? = null
-    private var cursorLayout: LayoutParams? = null
-    private var windowManager: WindowManager? = null
-    private var runHandler: Handler? = null
-    private var hideRunnable: Runnable? = null
+    // Position of the center of the cursor
+    private var x = 0
+    private var y = 0
+
+    private lateinit var windowManager : WindowManager
+
+    private var cursorView : View? = null
+    private val cursorLayout = LayoutParams(
+        LayoutParams.WRAP_CONTENT,
+        LayoutParams.WRAP_CONTENT,
+        LayoutParams.TYPE_ACCESSIBILITY_OVERLAY,
+        LayoutParams.FLAG_DISMISS_KEYGUARD or LayoutParams.FLAG_NOT_FOCUSABLE
+                or LayoutParams.FLAG_NOT_TOUCHABLE or LayoutParams.FLAG_FULLSCREEN
+                or LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+        PixelFormat.TRANSLUCENT
+    ).apply {
+        // allow cursor to move over status bar on devices having a display cutout
+        // https://developer.android.com/guide/topics/display-cutout/#render_content_in_short_edge_cutout_areas
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            layoutInDisplayCutoutMode = LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+        }
+        gravity = Gravity.START or Gravity.TOP
+    }
+
+    private val runHandler = Handler(Looper.getMainLooper())
+    private val hideRunnable = Runnable {
+        cursorView?.visibility = View.GONE
+        Log.i("KdeConnectAccessibilityService", "Hiding pointer due to inactivity")
+    }
+
     private var swipeStoke: StrokeDescription? = null
     private var scrollSum = 0.0
 
+    private var cursorHalfWidth = 0
+    private var cursorHalfHeight = 0
+
+    private var screenWidth = 0
+    private var screenHeight = 0
+
     override fun onCreate() {
         super.onCreate()
+        windowManager = getSystemService<WindowManager>()!!
         instance = this
         Log.i("KdeConnectAccessibilityService", "created")
     }
 
     override fun onServiceConnected() {
-        // Create an overlay and display the cursor
-        val wm = getSystemService<WindowManager>()
-        windowManager = wm
+        cursorView = View.inflate(baseContext, R.layout.mouse_receiver_cursor, null).apply {
+            // https://developer.android.com/training/system-ui/navigation.html#behind
+            systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION)
+            visibility = View.GONE
+            // GONE views don't get measured, but we need the size to center the cursor on x/y
+            measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
+            cursorHalfHeight = measuredHeight / 2
+            cursorHalfWidth = measuredWidth / 2
+        }
+        windowManager.addView(cursorView, cursorLayout)
+
         val displayMetrics = DisplayMetrics()
-        wm?.defaultDisplay?.getMetrics(displayMetrics)
+        windowManager.defaultDisplay?.getMetrics(displayMetrics)
+        x = displayMetrics.widthPixels / 2
+        y = displayMetrics.heightPixels / 2
 
-        val cv = View.inflate(baseContext, R.layout.mouse_receiver_cursor, null)
-        cursorView = cv
-        val cl = LayoutParams(
-            LayoutParams.WRAP_CONTENT,
-            LayoutParams.WRAP_CONTENT,
-            LayoutParams.TYPE_ACCESSIBILITY_OVERLAY,
-            LayoutParams.FLAG_DISMISS_KEYGUARD or LayoutParams.FLAG_NOT_FOCUSABLE
-                or LayoutParams.FLAG_NOT_TOUCHABLE or LayoutParams.FLAG_FULLSCREEN
-                or LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-            PixelFormat.TRANSLUCENT
-        )
-        cursorLayout = cl
+        updateScreenBounds()
+    }
 
-        // allow cursor to move over status bar on devices having a display cutout
-        // https://developer.android.com/guide/topics/display-cutout/#render_content_in_short_edge_cutout_areas
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            cl.layoutInDisplayCutoutMode = LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
-        }
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        updateScreenBounds()
+    }
 
-        cl.gravity = Gravity.START or Gravity.TOP
-        cl.x = displayMetrics.widthPixels / 2
-        cl.y = displayMetrics.heightPixels / 2
-
-        // https://developer.android.com/training/system-ui/navigation.html#behind
-        cv.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-            or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-            or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION)
-
-        wm?.addView(cv, cl)
-
-        val hr = Runnable {
-            cv.visibility = View.GONE
-            Log.i("KdeConnectAccessibilityService", "Hiding pointer due to inactivity")
-        }
-        hideRunnable = hr
-        val handler = Handler(Looper.getMainLooper())
-        runHandler = handler
-
-        cv.visibility = View.GONE
+    private fun updateScreenBounds() {
+        val displayMetrics = DisplayMetrics()
+        windowManager.defaultDisplay?.getRealMetrics(displayMetrics)
+        screenWidth = displayMetrics.widthPixels
+        screenHeight = displayMetrics.heightPixels
     }
 
     private fun hideAfter5Seconds() {
@@ -104,53 +125,27 @@ open class KdeConnectAccessibilityService : AccessibilityService() {
     }
 
     fun hide(delayMillis: Int) {
-        val runnable = hideRunnable ?: return
-        runHandler?.removeCallbacks(runnable)
-        runHandler?.postDelayed(runnable, delayMillis.toLong())
+        runHandler.removeCallbacks(hideRunnable)
+        runHandler.postDelayed(hideRunnable, delayMillis.toLong())
     }
 
-    val x: Int
-        get() {
-            val cl = cursorLayout ?: return 0
-            val cv = cursorView ?: return 0
-            return cl.x + cv.width / 2
-        }
-
-    val y: Int
-        get() {
-            val cl = cursorLayout ?: return 0
-            val cv = cursorView ?: return 0
-            return cl.y + cv.height / 2
-        }
-
     fun moveView(dx: Int, dy: Int) {
-        val wm = windowManager ?: return
-        val cv = cursorView ?: return
-        val cl = cursorLayout ?: return
+        x = clamp(x + dx, 0, screenWidth)
+        y = clamp(y + dy, 0, screenHeight)
 
-        val displayMetrics = DisplayMetrics()
-        wm.defaultDisplay.getRealMetrics(displayMetrics)
+        // Position the cursor view by its top-left corner
+        cursorLayout.x = x - cursorHalfWidth
+        cursorLayout.y = y - cursorHalfHeight
 
-        cl.x += dx
-        cl.y += dy
-
-        if (x > displayMetrics.widthPixels) {
-            cl.x = displayMetrics.widthPixels - cv.width / 2
-        }
-        if (y > displayMetrics.heightPixels) {
-            cl.y = displayMetrics.heightPixels - cv.height / 2
-        }
-        if (x < 0) cl.x = -cv.width / 2
-        if (y < 0) cl.y = -cv.height / 2
-
+        // Hack for InputDevicesReceiver
         Cursor.x = x
         Cursor.y = y
 
         Handler(mainLooper).post {
-            // Log.i("KdeConnectAccessibilityService", "performing move")
             try {
-                wm.updateViewLayout(cv, cl)
-                cv.visibility = View.VISIBLE
+                val cursorView = cursorView ?: return@post
+                windowManager.updateViewLayout(cursorView, cursorLayout)
+                cursorView.visibility = View.VISIBLE
             } catch (e: IllegalArgumentException) {
                 e.printStackTrace()
             }
@@ -172,8 +167,8 @@ open class KdeConnectAccessibilityService : AccessibilityService() {
         return true
     }
 
-    fun setPos(x: Int, y: Int): Boolean {
-        return move(x - this.x, y - this.y)
+    fun setPos(x2: Int, y2: Int): Boolean {
+        return move(x2 - x, y2 - y)
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -294,12 +289,10 @@ open class KdeConnectAccessibilityService : AccessibilityService() {
     }
 
     override fun onDestroy() {
-        val wm = windowManager
-        val cv = cursorView
-        if (wm != null && cv != null) {
-            wm.removeView(cv)
-        }
         window = null
+        cursorView?.let {
+            windowManager.removeView(it)
+        }
         super.onDestroy()
     }
 
@@ -307,8 +300,7 @@ open class KdeConnectAccessibilityService : AccessibilityService() {
         window = rootInActiveWindow
     }
 
-    override fun onInterrupt() {
-    }
+    override fun onInterrupt() { }
 
     companion object {
         @JvmField
