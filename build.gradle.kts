@@ -279,8 +279,7 @@ dependencies {
     implementation(libs.androidx.documentfile)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.lifecycle.extensions)
-    implementation(libs.androidx.lifecycle.common.java8)
+    implementation(libs.androidx.lifecycle.process)
     implementation(libs.androidx.gridlayout)
     implementation(libs.google.android.material)
     implementation(libs.disklrucache) //For caching album art bitmaps. FIXME: Not updated in 10+ years. Replace with Kache.
@@ -310,7 +309,6 @@ dependencies {
     implementation(libs.univocity.parsers)
 
     // Kotlin
-    implementation(libs.kotlin.stdlib.jdk8)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
 
