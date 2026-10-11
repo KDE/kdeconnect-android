@@ -68,7 +68,7 @@ class SendFileActivity : AppCompatActivity() {
                     } else {
                         ThreadHelper.execute {
                             try {
-                                val plugin = KdeConnect.getInstance().getDevicePlugin(mDeviceId, SharePlugin::class.java)
+                                val plugin = KdeConnect.getInstance().getDevicePlugin<SharePlugin>(mDeviceId)
                                 plugin?.sendFiles(uris)
                             } finally {
                                 // The read permissions ACTION_GET_CONTENT grants for these URIs are tied to

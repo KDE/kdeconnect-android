@@ -541,6 +541,8 @@ class Device : PacketReceiver {
     //
     // Plugin-related functions
     //
+    inline fun <reified T : Plugin> getPlugin(): T? = getPlugin(T::class.java)
+
     fun <T : Plugin> getPlugin(pluginClass: Class<T>): T? {
         val plugin = getPlugin(getPluginKey(pluginClass))
         return plugin?.let(pluginClass::cast)

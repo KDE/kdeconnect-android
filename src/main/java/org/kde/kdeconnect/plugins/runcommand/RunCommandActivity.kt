@@ -13,9 +13,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.platform.Clipboard
 import androidx.compose.ui.platform.LocalClipboard
 import androidx.compose.ui.platform.toClipEntry
@@ -24,7 +22,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.json.JSONException
 import org.kde.kdeconnect.Device
-import org.kde.kdeconnect.KdeConnect.Companion.getInstance
+import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect_tp.R
 
 
@@ -39,7 +37,8 @@ class RunCommandActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Log.d("RunCommandActivity", "Launched")
         deviceId = intent.getStringExtra(EXTRA_DEVICE_ID)!!
-        val plugin = getInstance().getDevicePlugin(deviceId, RunCommandPlugin::class.java)
+        val device = KdeConnect.getInstance().getDevice(deviceId)
+        val plugin = device?.getPlugin<RunCommandPlugin>()
         if (plugin == null) {
             finish()
             return
@@ -53,7 +52,7 @@ class RunCommandActivity : AppCompatActivity() {
             }
         }
         commandList.sortBy { it.name.lowercase() }
-        val device = getInstance().getDevice(deviceId) ?: return
+
 
         setContent {
             val clipboardManager = LocalClipboard.current
@@ -95,8 +94,7 @@ class RunCommandActivity : AppCompatActivity() {
 
     private fun updateList() {
         commandList.removeAll(commandList)
-        val plugin =
-            getInstance().getDevicePlugin(deviceId, RunCommandPlugin::class.java) ?: return
+        val plugin = KdeConnect.getInstance().getDevicePlugin<RunCommandPlugin>(deviceId) ?: return
 
         for (obj in plugin.commandList) {
             try {
@@ -111,7 +109,7 @@ class RunCommandActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         val plugin =
-            getInstance().getDevicePlugin(deviceId, RunCommandPlugin::class.java)
+            KdeConnect.getInstance().getDevicePlugin<RunCommandPlugin>(deviceId)
         if (plugin == null) {
             finish()
             return

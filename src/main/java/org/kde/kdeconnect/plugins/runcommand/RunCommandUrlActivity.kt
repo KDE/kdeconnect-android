@@ -43,7 +43,7 @@ class RunCommandUrlActivity : AppCompatActivity() {
                     return
                 }
 
-                val plugin = device.getPlugin(RunCommandPlugin::class.java)
+                val plugin = device.getPlugin<RunCommandPlugin>()
                 if (plugin == null) {
                     error(R.string.runcommand_noruncommandplugin)
                     return

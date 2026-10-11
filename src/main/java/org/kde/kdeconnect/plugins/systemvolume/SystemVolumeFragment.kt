@@ -73,27 +73,15 @@ class SystemVolumeFragment : BaseFragment<SystemVolumeFragmentBinding>(),
     }
 
     private fun connectToPlugin(deviceId: String) {
-        val plugin = KdeConnect.getInstance().getDevicePlugin(
-            deviceId,
-            SystemVolumePlugin::class.java
-        )
-        if (plugin == null) {
-            return
-        }
+        val plugin = KdeConnect.getInstance().getDevicePlugin<SystemVolumePlugin>(deviceId) ?: return
         this.plugin = plugin
         plugin.addSinkListener(this@SystemVolumeFragment)
         sinksChanged()
     }
 
     private fun disconnectFromPlugin(deviceId: String) {
-        val plugin = KdeConnect.getInstance().getDevicePlugin(
-            deviceId,
-            SystemVolumePlugin::class.java
-        )
-        if (plugin == null) {
-            return
-        }
-        plugin.removeSinkListener(this@SystemVolumeFragment)
+        KdeConnect.getInstance().getDevicePlugin<SystemVolumePlugin>(deviceId)
+            ?.removeSinkListener(this@SystemVolumeFragment)
     }
 
     override fun sinksChanged() {

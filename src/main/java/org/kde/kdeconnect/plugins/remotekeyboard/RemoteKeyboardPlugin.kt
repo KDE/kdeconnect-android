@@ -82,7 +82,7 @@ class RemoteKeyboardPlugin : Plugin() {
     }
 
     override fun onDestroy() {
-        if (device.getPlugin(RemoteKeyboardIMEPlugin::class.java)?.isKeyboardAvailable == true) {
+        if (device.getPlugin<RemoteKeyboardIMEPlugin>()?.isKeyboardAvailable == true) {
             return
         }
 

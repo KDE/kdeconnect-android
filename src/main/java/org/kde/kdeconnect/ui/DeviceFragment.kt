@@ -348,7 +348,7 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
      *
      */
     private fun displayBatteryInfoIfPossible() {
-        val batteryPlugin = device?.getPlugin(BatteryPlugin::class.java)
+        val batteryPlugin = device?.getPlugin<BatteryPlugin>()
 
         val info = batteryPlugin?.remoteBatteryInfo
         if (info != null) {

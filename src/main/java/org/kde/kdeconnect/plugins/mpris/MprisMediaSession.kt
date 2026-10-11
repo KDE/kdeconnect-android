@@ -188,7 +188,7 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
     private fun getPlayerFromDevice(device: Device, preferredPlayer: MprisPlayer?): MprisPlayer? {
         if (!mprisDevices.contains(device.deviceId)) return null
 
-        val plugin = device.getPlugin(MprisPlugin::class.java) ?: return null
+        val plugin = device.getPlugin<MprisPlugin>() ?: return null
         // First try the preferred player, if supplied & available, otherwise, accept any playing player
         val player = preferredPlayer?.takeIf(plugin::hasPlayer)
             ?: plugin.playingPlayer
@@ -201,7 +201,7 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
     }
 
     private fun updateRemoteDeviceVolumeControl(device: Device) {
-        val plugin = device.getPlugin(SystemVolumePlugin::class.java)
+        val plugin = device.getPlugin<SystemVolumePlugin>()
         val systemVolumeProvider = SystemVolumeProvider.getInstance()
         systemVolumeProvider.setPlugin(plugin)
         systemVolumeProvider.addStateListener( this)

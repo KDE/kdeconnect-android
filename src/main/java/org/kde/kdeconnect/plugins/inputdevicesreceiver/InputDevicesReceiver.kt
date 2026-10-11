@@ -11,6 +11,7 @@ import android.view.Display
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.plugins.PluginFactory.LoadablePlugin
+import org.kde.kdeconnect.plugins.mousereceiver.MouseReceiverPlugin
 import org.kde.kdeconnect_tp.R
 
 @LoadablePlugin
@@ -67,7 +68,7 @@ class InputDevicesReceiverPlugin : Plugin() {
     }
 
     override fun onPacketReceived(np: NetworkPacket): Boolean {
-        val mouseReceiverPlugin = device.getPlugin("MouseReceiverPlugin")
+        val mouseReceiverPlugin = device.getPlugin<MouseReceiverPlugin>()
 
         // If we do not have the permission or the MouseReceiverPlugin is disabled (either from the beginning or the user disabled it while the cursor was in our possession),
         // we must hand over control to the other end.

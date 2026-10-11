@@ -40,15 +40,13 @@ class KeyListenerView @JvmOverloads constructor(
     override fun onCheckIsTextEditor(): Boolean = true
 
     fun sendChars(chars: CharSequence) {
-        val currentDeviceId = deviceId ?: return
-        val plugin = KdeConnect.getInstance().getDevicePlugin(currentDeviceId, MousePadPlugin::class.java) ?: return
-        plugin.sendText(chars.toString())
+        KdeConnect.getInstance().getDevicePlugin<MousePadPlugin>(deviceId)
+            ?.sendText(chars.toString())
     }
 
     private fun sendKeyPressPacket(np: NetworkPacket) {
-        val currentDeviceId = deviceId ?: return
-        val plugin = KdeConnect.getInstance().getDevicePlugin(currentDeviceId, MousePadPlugin::class.java) ?: return
-        plugin.sendPacket(np)
+        KdeConnect.getInstance().getDevicePlugin<MousePadPlugin>(deviceId)
+            ?.sendPacket(np)
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {

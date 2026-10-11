@@ -95,8 +95,7 @@ class ShareActivity : BaseActivity<ActivityShareBinding>() {
                 Toast.makeText(this, getString(R.string.error_not_reachable), Toast.LENGTH_LONG).show()
             }
         } else {
-            val plugin = device.getPlugin(SharePlugin::class.java)
-            plugin?.share(intent)
+            device.getPlugin<SharePlugin>()?.share(intent)
         }
         finish()
     }

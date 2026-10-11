@@ -15,7 +15,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.preference.PreferenceManager
-import org.kde.kdeconnect.KdeConnect.Companion.getInstance
+import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect.base.BaseActivity
 import org.kde.kdeconnect.extensions.viewBinding
 import org.kde.kdeconnect.ui.MainActivity
@@ -43,7 +43,7 @@ class BigscreenActivity : BaseActivity<ActivityBigscreenBinding>() {
             binding.micButton.visibility = View.INVISIBLE
         }
 
-        val plugin = getInstance().getDevicePlugin(deviceId, MousePadPlugin::class.java)
+        val plugin = KdeConnect.getInstance().getDevicePlugin<MousePadPlugin>(deviceId)
         if (plugin == null) {
             finish()
             return
@@ -121,7 +121,7 @@ class BigscreenActivity : BaseActivity<ActivityBigscreenBinding>() {
             // The results are ordered by confidence, use the first one
             val firstResult = data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)?.first()
             if (firstResult != null) {
-                val plugin = getInstance().getDevicePlugin(deviceId,MousePadPlugin::class.java)
+                val plugin = KdeConnect.getInstance().getDevicePlugin<MousePadPlugin>(deviceId)
                 if (plugin == null) {
                     finish()
                     return

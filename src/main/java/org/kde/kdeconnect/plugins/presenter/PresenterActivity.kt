@@ -98,7 +98,7 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener, OnSharedPref
 
         val deviceId = intent.getStringExtra(EXTRA_DEVICE_ID)!!
         val device = KdeConnect.getInstance().getDevice(deviceId)
-        plugin = device?.getPlugin(PresenterPlugin::class.java)
+        plugin = device?.getPlugin<PresenterPlugin>()
             ?: run {
                 finish()
                 return

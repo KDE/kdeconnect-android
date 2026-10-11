@@ -57,7 +57,7 @@ class RunCommandWidgetProvider : AppWidgetProvider() {
         if (intent.action == RUN_COMMAND_ACTION) {
             val targetCommand = intent.getStringExtra(TARGET_COMMAND)
             val targetDevice = intent.getStringExtra(TARGET_DEVICE)
-            val plugin = KdeConnect.getInstance().getDevicePlugin(targetDevice, RunCommandPlugin::class.java)
+            val plugin = KdeConnect.getInstance().getDevicePlugin<RunCommandPlugin>(targetDevice)
             if (plugin != null) {
                 try {
                     plugin.runCommand(targetCommand)
@@ -130,7 +130,7 @@ internal fun updateAppWidget(
         views.setTextViewText(R.id.widget_error_text, "Whose commands should we show? Click the title to set a device.")
     } else {
         views.setTextViewText(R.id.widget_title_text, device.name)
-        val plugin = device.getPlugin(RunCommandPlugin::class.java)
+        val plugin = device.getPlugin<RunCommandPlugin>()
         if (device.isReachable) {
             val message: String = if (plugin == null) {
                 "Device doesn't allow us to run commands."

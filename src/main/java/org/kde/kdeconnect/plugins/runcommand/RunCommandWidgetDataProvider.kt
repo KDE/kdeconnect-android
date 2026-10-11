@@ -39,7 +39,7 @@ internal class RunCommandWidgetDataProvider(private val context: Context, val in
     override fun onDestroy() {}
 
     private fun getPlugin(): RunCommandPlugin? {
-        return KdeConnect.getInstance().getDevicePlugin(deviceId, RunCommandPlugin::class.java)
+        return KdeConnect.getInstance().getDevicePlugin<RunCommandPlugin>(deviceId)
     }
 
     override fun getCount(): Int {

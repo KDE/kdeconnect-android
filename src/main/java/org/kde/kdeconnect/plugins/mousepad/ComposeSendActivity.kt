@@ -62,7 +62,7 @@ class ComposeSendActivity : AppCompatActivity() {
     }
 
     private fun sendComposed() {
-        val plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, MousePadPlugin::class.java)
+        val plugin = KdeConnect.getInstance().getDevicePlugin<MousePadPlugin>(deviceId)
         if (plugin == null) {
             finish()
             return

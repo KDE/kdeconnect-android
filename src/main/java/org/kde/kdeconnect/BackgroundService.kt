@@ -209,7 +209,7 @@ class BackgroundService : Service() {
                     notification.addAction(0, getString(R.string.send_files), sendPendingFile)
 
                     // Checking if there are registered commands and adding the button.
-                    val plugin = device.getPlugin("RunCommandPlugin") as RunCommandPlugin?
+                    val plugin = device.getPlugin<RunCommandPlugin>()
                     if (plugin != null && plugin.commandList.isNotEmpty()) {
                         val runCommand = Intent(this, RunCommandActivity::class.java)
                         runCommand.putExtra(RunCommandActivity.EXTRA_DEVICE_ID, connectedDeviceIds[0])

@@ -108,7 +108,7 @@ class RemoteKeyboardIMEPluginTest {
 
     @Test
     fun testImeDoesNotReportUnavailableWhenAccessibilityKeyboardIsActive() {
-        every { device.getPlugin(AccessibilityRemoteKeyboardPlugin::class.java) } returns mockk()
+        every { device.getPlugin<AccessibilityRemoteKeyboardPlugin>() } returns mockk()
 
         remoteKeyboardPlugin.notifyKeyboardState(false)
 
@@ -120,7 +120,7 @@ class RemoteKeyboardIMEPluginTest {
         val imePlugin = mockk<RemoteKeyboardIMEPlugin> {
             every { isKeyboardAvailable } returns true
         }
-        every { device.getPlugin(RemoteKeyboardIMEPlugin::class.java) } returns imePlugin
+        every { device.getPlugin<RemoteKeyboardIMEPlugin>() } returns imePlugin
 
         AccessibilityRemoteKeyboardPlugin().apply {
             setContext(context, device)
@@ -135,7 +135,7 @@ class RemoteKeyboardIMEPluginTest {
         val imePlugin = mockk<RemoteKeyboardIMEPlugin> {
             every { isKeyboardAvailable } returns false
         }
-        every { device.getPlugin(RemoteKeyboardIMEPlugin::class.java) } returns imePlugin
+        every { device.getPlugin<RemoteKeyboardIMEPlugin>() } returns imePlugin
 
         AccessibilityRemoteKeyboardPlugin().apply {
             setContext(context, device)

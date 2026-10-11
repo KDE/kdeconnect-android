@@ -30,7 +30,7 @@ class FindMyPhoneReceiver : BroadcastReceiver() {
             return
         }
         val deviceId = intent.getStringExtra(EXTRA_DEVICE_ID)
-        val plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, FindMyPhonePlugin::class.java) ?: return
+        val plugin = KdeConnect.getInstance().getDevicePlugin<FindMyPhonePlugin>(deviceId) ?: return
         plugin.stopPlaying()
         plugin.stopFlashing()
     }

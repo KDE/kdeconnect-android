@@ -34,7 +34,7 @@ class ShareBroadcastReceiver : BroadcastReceiver() {
         val jobId = intent.getLongExtra(SharePlugin.CANCEL_SHARE_BACKGROUND_JOB_ID_EXTRA, -1)
         val deviceId = intent.getStringExtra(SharePlugin.CANCEL_SHARE_DEVICE_ID_EXTRA) ?: return
 
-        val plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, SharePlugin::class.java) ?: return
-        plugin.cancelJob(jobId)
+        KdeConnect.getInstance().getDevicePlugin<SharePlugin>(deviceId)
+            ?.cancelJob(jobId)
     }
 }

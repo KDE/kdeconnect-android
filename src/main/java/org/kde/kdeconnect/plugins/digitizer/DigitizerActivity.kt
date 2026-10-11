@@ -25,6 +25,7 @@ import androidx.preference.PreferenceManager
 import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect.base.BaseActivity
 import org.kde.kdeconnect.extensions.viewBinding
+import org.kde.kdeconnect.plugins.mousepad.MousePadPlugin
 import org.kde.kdeconnect.ui.PluginSettingsActivity
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.ActivityDigitizerBinding
@@ -41,11 +42,9 @@ class DigitizerActivity : BaseActivity<ActivityDigitizerBinding>(), DrawingPadVi
 
     private val plugin: DigitizerPlugin?
         get() {
-            val plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, DigitizerPlugin::class.java)
-
+            val plugin = KdeConnect.getInstance().getDevicePlugin<DigitizerPlugin>(deviceId)
             if (plugin == null)
                 finish()
-
             return plugin
         }
 

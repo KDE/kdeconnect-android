@@ -49,7 +49,7 @@ class FindMyPhoneActivity : BaseActivity<ActivityFindMyPhoneBinding>() {
 
     override fun onStart() {
         super.onStart()
-        val plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, FindMyPhonePlugin::class.java) ?: return
+        val plugin = KdeConnect.getInstance().getDevicePlugin<FindMyPhonePlugin>(deviceId) ?: return
         plugin.startPlaying()
         plugin.startFlashing()
         plugin.hideNotification()
@@ -57,7 +57,7 @@ class FindMyPhoneActivity : BaseActivity<ActivityFindMyPhoneBinding>() {
 
     override fun onStop() {
         super.onStop()
-        val plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, FindMyPhonePlugin::class.java) ?: return
+        val plugin = KdeConnect.getInstance().getDevicePlugin<FindMyPhonePlugin>(deviceId) ?: return
         plugin.stopPlaying()
         plugin.stopFlashing()
     }

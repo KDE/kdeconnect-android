@@ -156,7 +156,7 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
     }
 
     private fun disconnectFromPlugin() {
-        val plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, MprisPlugin::class.java) ?: return
+        val plugin = KdeConnect.getInstance().getDevicePlugin<MprisPlugin>(deviceId) ?: return
         plugin.apply {
             removePlayerListUpdatedHandler("activity")
             removePlayerStatusUpdatedHandler("activity")
@@ -164,7 +164,7 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
     }
 
     private fun connectToPlugin() {
-        val plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, MprisPlugin::class.java)
+        val plugin = KdeConnect.getInstance().getDevicePlugin<MprisPlugin>(deviceId)
         if (plugin == null) {
             if (isAdded) {
                 requireActivity().finish()

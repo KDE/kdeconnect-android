@@ -116,6 +116,8 @@ class KdeConnect : Application() {
         return devices[id]
     }
 
+    inline fun <reified T : Plugin> getDevicePlugin(deviceId: String?): T? = getDevicePlugin(deviceId, T::class.java)
+
     fun <T : Plugin> getDevicePlugin(deviceId: String?, pluginClass: Class<T>): T? {
         val device = getDevice(deviceId)
         return device?.getPlugin(pluginClass)
