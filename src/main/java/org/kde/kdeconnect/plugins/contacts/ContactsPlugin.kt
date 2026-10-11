@@ -107,7 +107,7 @@ class ContactsPlugin : Plugin() {
      * @param np The packet containing the request
      * @return true if successfully handled, false otherwise
      */
-    private fun handleRequestAllUIDsTimestamps(@Suppress("unused") np: NetworkPacket): Boolean {
+    private fun handleRequestAllUIDsTimestamps(np: NetworkPacket): Boolean {
         val uIDsToTimestamps: Map<uID, Long> = ContactsHelper.getAllContactTimestamps(context)
         val reply = NetworkPacket(PACKET_TYPE_CONTACTS_RESPONSE_UIDS_TIMESTAMPS).apply {
             val uIDsAsString = mutableListOf<String>()

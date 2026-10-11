@@ -201,7 +201,7 @@ class ConnectionMultiplexer(private val socket: BluetoothSocket) : Closeable {
         socket.outputStream.write(data)
     }
 
-    private fun handleException(@Suppress("UNUSED_PARAMETER") ignored: Exception) {
+    private fun handleException(e: Exception) {
         channelsLock.withLock {
             open = false
             for (channel in channels.values) {
