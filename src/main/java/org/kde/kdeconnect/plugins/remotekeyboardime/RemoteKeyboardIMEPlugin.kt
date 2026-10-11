@@ -15,7 +15,6 @@ import android.util.Log
 import android.util.SparseIntArray
 import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
-import android.view.inputmethod.ExtractedText
 import android.view.inputmethod.ExtractedTextRequest
 import android.view.inputmethod.InputConnection
 import android.view.inputmethod.InputMethodInfo
@@ -93,40 +92,6 @@ class RemoteKeyboardIMEPlugin : Plugin(), SharedPreferences.OnSharedPreferenceCh
         return specialKeyMap.get(key, 0) > 0
     }
 
-    private fun getCharPos(extractedText: ExtractedText?, ch: Char, forward: Boolean): Int {
-        var pos = -1
-        if (extractedText != null) {
-            pos = if (!forward) { // backward
-                extractedText.text.toString().lastIndexOf(" ", extractedText.selectionEnd - 2)
-            } else {
-                extractedText.text.toString().indexOf(" ", extractedText.selectionEnd + 1)
-            }
-            return pos
-        }
-        return pos
-    }
-
-    private fun currentTextLength(extractedText: ExtractedText?): Int {
-        if (extractedText != null) {
-            return extractedText.text.length
-        }
-        return -1
-    }
-
-    private fun currentCursorPos(extractedText: ExtractedText?): Int {
-        if (extractedText != null) {
-            return extractedText.selectionEnd
-        }
-        return -1
-    }
-
-    private fun currentSelection(extractedText: ExtractedText?): Pair<Int, Int> {
-        if (extractedText != null) {
-            return Pair(extractedText.selectionStart, extractedText.selectionEnd)
-        }
-        return Pair(-1, -1)
-    }
-
     private fun handleSpecialKey(key: Int, shift: Boolean, ctrl: Boolean, alt: Boolean): Boolean {
         val keyEvent = specialKeyMap.get(key, 0)
         if (keyEvent == 0) {
@@ -136,48 +101,25 @@ class RemoteKeyboardIMEPlugin : Plugin(), SharedPreferences.OnSharedPreferenceCh
 //        Log.d(LOG_TAG, "Handling special key " + key + " translated to " + keyEvent + " shift=" + shift + " ctrl=" + ctrl + " alt=" + alt);
 
         // special sequences:
-        if (ctrl && keyEvent == KeyEvent.KEYCODE_DPAD_RIGHT) {
-            // Ctrl + right -> next word
-            val extractedText = inputConn.getExtractedText(ExtractedTextRequest(), 0)
-            var pos = getCharPos(extractedText, ' ', keyEvent == KeyEvent.KEYCODE_DPAD_RIGHT)
-            if (pos == -1) {
-                pos = currentTextLength(extractedText)
+        if (ctrl && (keyEvent == KeyEvent.KEYCODE_DPAD_RIGHT || keyEvent == KeyEvent.KEYCODE_DPAD_LEFT)) {
+            // Ctrl + right/left -> jump to next/previous word
+            val forward = keyEvent == KeyEvent.KEYCODE_DPAD_RIGHT
+            val extractedText = inputConn.getExtractedText(ExtractedTextRequest(), 0) ?: return false
+            val text = extractedText.text?.toString() ?: return false
+            val cursor = extractedText.selectionEnd
+            val spacePos = if (forward) {
+                text.indexOf(' ', cursor)
             } else {
-                pos++
+                text.lastIndexOf(' ', cursor - 2)
             }
-            var startPos = pos
-            val endPos = pos
-            if (shift) { // Shift -> select word (otherwise jump)
-                val (selStart, selEnd) = currentSelection(extractedText)
-                val cursor = currentCursorPos(extractedText)
-//                Log.d(LOG_TAG, "Selection (to right): " + sel.first + " / " + sel.second + " cursor: " + cursor);
-                startPos = cursor
-                if (selStart !in cursor..selEnd) { // active selection from right to left -> shrink
-                    startPos = selStart
-                }
+            val pos = when {
+                spacePos != -1 -> spacePos + 1
+                forward -> text.length
+                else -> 0
             }
-            inputConn.setSelection(startPos, endPos)
-        } else if (ctrl && keyEvent == KeyEvent.KEYCODE_DPAD_LEFT) {
-            // Ctrl + left -> previous word
-            val extractedText = inputConn.getExtractedText(ExtractedTextRequest(), 0)
-            var pos = getCharPos(extractedText, ' ', keyEvent == KeyEvent.KEYCODE_DPAD_RIGHT)
-            if (pos == -1) {
-                pos = 0
-            } else {
-                pos++
-            }
-            var startPos = pos
-            val endPos = pos
-            if (shift) {
-                val (selStart, selEnd) = currentSelection(extractedText)
-                val cursor = currentCursorPos(extractedText)
-//                Log.d(LOG_TAG, "Selection (to left): " + sel.first + " / " + sel.second + " cursor: " + cursor);
-                startPos = cursor
-                if (selStart !in selEnd..cursor) {  // active selection from right to left -> shrink
-                    startPos = selStart
-                }
-            }
-            inputConn.setSelection(startPos, endPos)
+            // Shift -> extend/shrink the selection, keeping its anchor
+            val anchor = if (shift) extractedText.selectionStart else pos
+            inputConn.setSelection(anchor, pos)
         } else if (shift && (keyEvent == KeyEvent.KEYCODE_DPAD_LEFT ||
                 keyEvent == KeyEvent.KEYCODE_DPAD_RIGHT ||
                 keyEvent == KeyEvent.KEYCODE_DPAD_UP ||
