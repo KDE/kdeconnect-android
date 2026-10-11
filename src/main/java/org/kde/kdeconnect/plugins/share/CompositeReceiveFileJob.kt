@@ -67,6 +67,10 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
     @GuardedBy("lock")
     private var totalPayloadSize: Long = 0
 
+    // Once set, this job can't be used anymore and addNetworkPacket() will reject new packets
+    @GuardedBy("lock")
+    private var finished: Boolean = false
+
     @Volatile // Read by SharePlugin from the packet-receiving thread
     var isRunning: Boolean = false
         private set
@@ -89,8 +93,16 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
         }
     }
 
-    fun addNetworkPacket(networkPacket: NetworkPacket) {
+    /**
+     * @return false if the job has already finished and won't receive this packet, so the caller
+     * should use a new job instead
+     */
+    fun addNetworkPacket(networkPacket: NetworkPacket): Boolean {
         synchronized(lock) {
+            if (finished) {
+                return false
+            }
+
             if (!networkPacketList.contains(networkPacket)) {
                 networkPacketList.add(networkPacket)
 
@@ -107,6 +119,7 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
                 lock.notifyAll()
             }
         }
+        return true
     }
 
     override fun run() {
@@ -120,7 +133,13 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
             while (!isCancelled) {
                 // The packet stays in the list until it's been received, so addNetworkPacket can detect duplicates
                 val packet = synchronized(lock) {
-                    networkPacketList.firstOrNull()?.also { currentNetworkPacket = it }
+                    val next = networkPacketList.firstOrNull()
+                    if (next == null) {
+                        finished = true
+                    } else {
+                        currentNetworkPacket = next
+                    }
+                    next
                 } ?: break
 
                 currentFileName = packet.getString("filename", System.currentTimeMillis().toString())
@@ -190,8 +209,13 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
                         }
                     }
 
-                    if (!isCancelled && currentFileNum < totalNumFiles && networkPacketList.isEmpty()) {
-                        throw RuntimeException("Failed to receive ${totalNumFiles - currentFileNum + 1} files")
+                    if (networkPacketList.isEmpty()) {
+                        // Stop accepting packets now, before we throw or leave the loop
+                        finished = true
+
+                        if (!isCancelled && currentFileNum < totalNumFiles) {
+                            throw RuntimeException("Failed to receive ${totalNumFiles - currentFileNum + 1} files")
+                        }
                     }
                 }
             }
@@ -224,6 +248,8 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
         } catch (_: ActivityNotFoundException) {
             receiveNotification.setFinished(device.context.getString(R.string.no_app_for_opening))
             receiveNotification.show()
+            // The file was received fine, there's just no app to open it
+            reportResult(Unit)
         } catch (e: Exception) {
             isRunning = false
 
@@ -236,9 +262,13 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
             receiveNotification.show()
             reportError(e)
         } finally {
-            synchronized(lock) {
-                closeAllInputStreams()
-                networkPacketList.clear()
+            val remainingPackets = synchronized(lock) {
+                finished = true
+                networkPacketList.toList().also { networkPacketList.clear() }
+            }
+            // Close outside the lock: closing a payload socket can block, and addNetworkPacket() would block with it
+            for (np in remainingPackets) {
+                np.payload?.close()
             }
             outputStream?.closeSafe()
         }
@@ -291,13 +321,6 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
         output.flush()
 
         return received
-    }
-
-    @GuardedBy("lock")
-    private fun closeAllInputStreams() {
-        for (np in networkPacketList) {
-            np.payload?.close()
-        }
     }
 
     private fun showNewTotalsIfRunning() {

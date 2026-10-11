@@ -23,7 +23,7 @@ import org.kde.kdeconnect_tp.R
  *
  * Each packet should have a 'filename' property and a payload. If the payload is
  * missing, we'll just send an empty file. You can add new packets anytime via
- * [addNetworkPacket].
+ * [addNetworkPackets].
  *
  * The I/O-part of this file sending is handled by
  * [Device.sendPacketBlocking].
@@ -59,6 +59,10 @@ class CompositeUploadFileJob(device: Device, callback: Callback<Unit>)
     @GuardedBy("lock")
     private var totalPayloadSize: Long = 0
 
+    // Once set, this job can't be used anymore and addNetworkPackets() will reject new packets
+    @GuardedBy("lock")
+    private var finished: Boolean = false
+
     private val device: Device
         get() = requestInfo
 
@@ -68,8 +72,14 @@ class CompositeUploadFileJob(device: Device, callback: Callback<Unit>)
         try {
             while (!isCancelled) {
                 val packet = synchronized(lock) {
-                    networkPacketList.removeFirstOrNull()?.also { currentNetworkPacket = it }
-                } ?: break
+                    val next = networkPacketList.removeFirstOrNull()
+                    if (next == null) {
+                        finished = true
+                        break
+                    }
+                    currentNetworkPacket = next
+                    next
+                }
 
                 currentFileName = packet.getString("filename")
                 currentFileNum++
@@ -120,6 +130,7 @@ class CompositeUploadFileJob(device: Device, callback: Callback<Unit>)
             isRunning = false
 
             synchronized(lock) {
+                finished = true
                 for (networkPacket in networkPacketList) {
                     networkPacket.payload?.close()
                 }
@@ -151,14 +162,26 @@ class CompositeUploadFileJob(device: Device, callback: Callback<Unit>)
         uploadNotification.show()
     }
 
-    fun addNetworkPacket(networkPacket: NetworkPacket) {
+    /**
+     * Adds either all the packets or none of them.
+     *
+     * @return false if the job has already finished and won't send these packets, so the caller
+     * should use a new job instead
+     */
+    fun addNetworkPackets(networkPackets: List<NetworkPacket>): Boolean {
         synchronized(lock) {
-            networkPacketList.add(networkPacket)
+            if (finished) {
+                return false
+            }
 
-            totalNumFiles++
+            for (networkPacket in networkPackets) {
+                networkPacketList.add(networkPacket)
 
-            if (networkPacket.payloadSize >= 0) {
-                totalPayloadSize += networkPacket.payloadSize
+                totalNumFiles++
+
+                if (networkPacket.payloadSize >= 0) {
+                    totalPayloadSize += networkPacket.payloadSize
+                }
             }
 
             uploadNotification.setTitle(
@@ -181,6 +204,7 @@ class CompositeUploadFileJob(device: Device, callback: Callback<Unit>)
                 handler.post { sendUpdatePacket() }
             }
         }
+        return true
     }
 
     /**

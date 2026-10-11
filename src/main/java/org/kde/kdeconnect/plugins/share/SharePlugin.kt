@@ -16,7 +16,6 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.widget.Toast
-import androidx.annotation.WorkerThread
 import androidx.core.content.LocusIdCompat
 import androidx.core.content.edit
 import androidx.core.content.getSystemService
@@ -163,7 +162,6 @@ class SharePlugin : Plugin() {
 
     override fun hasSettings(): Boolean = true
 
-    @WorkerThread
     override fun onPacketReceived(np: NetworkPacket): Boolean {
         try {
             if (np.type == PACKET_TYPE_SHARE_REQUEST_UPDATE) {
@@ -204,27 +202,30 @@ class SharePlugin : Plugin() {
         }
     }
 
-    @WorkerThread
     private fun receiveFile(np: NetworkPacket) {
         val hasNumberOfFiles = np.has(KEY_NUMBER_OF_FILES)
         val isOpen = np.getBoolean("open", false)
-
-        val job = receiveFileJob?.takeIf { hasNumberOfFiles && !isOpen }
-            ?: CompositeReceiveFileJob(device, receiveFileJobCallback)
+        // Only one batch receive job (`receiveFileJob`) runs at a time, and all new files are added to it
+        // The exceptions are packets from older clients that don't set KEY_NUMBER_OF_FILES, or packets with `open` set to true
+        val canAddToBatch = hasNumberOfFiles && !isOpen
 
         if (!hasNumberOfFiles) {
             np[KEY_NUMBER_OF_FILES] = 1
             np[KEY_TOTAL_PAYLOAD_SIZE] = np.payloadSize
         }
 
-        job.addNetworkPacket(np)
-
-        if (job !== receiveFileJob) {
-            if (hasNumberOfFiles && !isOpen) {
-                receiveFileJob = job
-            }
-            backgroundJobHandler.runJob(job)
+        // If there's an existing batch, try adding the packet to it
+        if (canAddToBatch && receiveFileJob?.addNetworkPacket(np) == true) {
+            // If the current job can accept the packets, we are done
+            return
         }
+
+        val job = CompositeReceiveFileJob(device, receiveFileJobCallback)
+        job.addNetworkPacket(np)
+        if (canAddToBatch) {
+            receiveFileJob = job
+        }
+        backgroundJobHandler.runJob(job)
     }
 
     fun sendUrls(urls: List<String>) {
@@ -242,22 +243,23 @@ class SharePlugin : Plugin() {
     }
 
     fun sendFiles(uriList: List<Uri>) {
-        val job = uploadFileJob
-            ?: CompositeUploadFileJob(device, this.receiveFileJobCallback)
-
         //Read all the data early, as we only have permissions to do it while the activity is alive
-        for (uri in uriList) {
-            val np = uriToNetworkPacket(context, uri, PACKET_TYPE_SHARE_REQUEST)
+        val packets = uriList.mapNotNull { uriToNetworkPacket(context, it, PACKET_TYPE_SHARE_REQUEST) }
 
-            if (np != null) {
-                job.addNetworkPacket(np)
-            }
+        if (packets.isEmpty()) {
+            return
         }
 
-        if (job !== uploadFileJob) {
-            uploadFileJob = job
-            backgroundJobHandler.runJob(job)
+        // If there's an existing batch, try adding the packets to it
+        if (uploadFileJob?.addNetworkPackets(packets) == true) {
+            // If the current job can accept the packets, we are done
+            return
         }
+
+        val job = CompositeUploadFileJob(device, receiveFileJobCallback)
+        job.addNetworkPackets(packets)
+        uploadFileJob = job
+        backgroundJobHandler.runJob(job)
     }
 
     fun share(intent: Intent) {
