@@ -43,7 +43,9 @@ internal class UploadNotification {
         cancelIntent.putExtra(SharePlugin.CANCEL_SHARE_BACKGROUND_JOB_ID_EXTRA, jobId)
         cancelIntent.putExtra(SharePlugin.CANCEL_SHARE_DEVICE_ID_EXTRA, device.deviceId)
         val flags = PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-        val cancelPendingIntent = PendingIntent.getBroadcast(device.context, 0, cancelIntent, flags)
+        // Use a unique request code: extras are ignored when matching PendingIntents, so with a fixed one
+        // all the cancel buttons would share a single PendingIntent with the job id of the latest notification
+        val cancelPendingIntent = PendingIntent.getBroadcast(device.context, jobId.toInt(), cancelIntent, flags)
 
         builder.addAction(org.kde.kdeconnect_tp.R.drawable.ic_reject_pairing_24dp, device.context.getString(org.kde.kdeconnect_tp.R.string.cancel), cancelPendingIntent)
     }

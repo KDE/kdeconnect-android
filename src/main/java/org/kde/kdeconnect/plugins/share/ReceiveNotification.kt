@@ -55,9 +55,11 @@ internal class ReceiveNotification(private val device: Device, private val jobId
             putExtra(SharePlugin.CANCEL_SHARE_BACKGROUND_JOB_ID_EXTRA, jobId)
             putExtra(SharePlugin.CANCEL_SHARE_DEVICE_ID_EXTRA, device.deviceId)
         }
+        // Use a unique request code: extras are ignored when matching PendingIntents, so with a fixed one
+        // all the cancel buttons would share a single PendingIntent with the job id of the latest notification
         val cancelPendingIntent = PendingIntent.getBroadcast(
             device.context,
-            0,
+            jobId.toInt(),
             cancelIntent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
