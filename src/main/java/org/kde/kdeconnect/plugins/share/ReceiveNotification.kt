@@ -13,6 +13,7 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Build
+import android.os.SystemClock
 import androidx.core.app.NotificationCompat
 import androidx.core.content.FileProvider
 import androidx.core.content.getSystemService
@@ -23,11 +24,12 @@ import org.kde.kdeconnect_tp.BuildConfig
 import org.kde.kdeconnect_tp.R
 import java.io.File
 import java.io.IOException
+import kotlin.random.Random
 
 internal class ReceiveNotification(private val device: Device, private val jobId: Long) {
     private val notificationManager: NotificationManager =
         device.context.getSystemService<NotificationManager>()!!
-    private val notificationId: Int = System.currentTimeMillis().toInt()
+    private val notificationId: Int = SystemClock.elapsedRealtime().toInt()
     private var builder: NotificationCompat.Builder =
         NotificationCompat.Builder(device.context, NotificationHelper.Channels.FILETRANSFER_DOWNLOAD)
             .setSmallIcon(android.R.drawable.stat_sys_download)
@@ -164,7 +166,7 @@ internal class ReceiveNotification(private val device: Device, private val jobId
 
         val resultPendingIntent = PendingIntent.getActivity(
             device.context,
-            0,
+            Random.nextInt(),
             intent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
@@ -178,7 +180,7 @@ internal class ReceiveNotification(private val device: Device, private val jobId
         )
         val sharePendingIntent = PendingIntent.getActivity(
             device.context,
-            System.currentTimeMillis().toInt(),
+            Random.nextInt(),
             shareIntent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )

@@ -307,7 +307,7 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
             val progressPercentage = synchronized(lock) {
                 totalReceived * 100 / totalPayloadSize
             }.toInt()
-            val curTimeMillis = System.currentTimeMillis()
+            val curTimeMillis = SystemClock.elapsedRealtime()
 
             if (progressPercentage != prevProgressPercentage &&
                 (progressPercentage == 100 || curTimeMillis - lastProgressTimeMillis >= 500)

@@ -12,6 +12,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Build
+import android.os.SystemClock
 import android.util.Log
 import androidx.annotation.AnyThread
 import androidx.annotation.DrawableRes
@@ -250,7 +251,7 @@ class Device : PacketReceiver {
 
         hidePairingNotification()
 
-        notificationId = System.currentTimeMillis().toInt()
+        notificationId = SystemClock.elapsedRealtime().toInt()
 
         val intent = Intent(context, MainActivity::class.java).apply {
             // PendingIntent matching ignores extras, so scope each action to this device.

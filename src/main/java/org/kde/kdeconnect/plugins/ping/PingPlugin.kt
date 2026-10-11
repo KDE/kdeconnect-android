@@ -14,6 +14,7 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
+import android.os.SystemClock
 import android.util.Log
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
@@ -44,7 +45,7 @@ class PingPlugin : Plugin() {
         val resultPendingIntent = PendingIntent.getActivity(context, 0, Intent(context, MainActivity::class.java), mutableUpdateFlags)
 
         val (id: Int, message: String) = if (np.has("message")) {
-            val id = System.currentTimeMillis().toInt()
+            val id = SystemClock.elapsedRealtime().toInt()
             Pair(id, np.getString("message"))
         } else {
             val id = 42 // A unique id to create only one notification

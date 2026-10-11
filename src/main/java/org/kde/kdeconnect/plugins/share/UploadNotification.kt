@@ -9,6 +9,7 @@ import android.app.Notification
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Intent
+import android.os.SystemClock
 import androidx.core.app.NotificationCompat
 import androidx.core.content.getSystemService
 import androidx.preference.PreferenceManager
@@ -22,7 +23,7 @@ internal class UploadNotification {
     constructor(device: Device, jobId: Long) {
         this.device = device
         this.jobId = jobId
-        notificationId = System.currentTimeMillis().toInt()
+        notificationId = SystemClock.elapsedRealtime().toInt()
         notificationManager = device.context.getSystemService<NotificationManager>()!!
         builder = NotificationCompat.Builder(device.context, NotificationHelper.Channels.FILETRANSFER_UPLOAD)
             .setSmallIcon(android.R.drawable.stat_sys_upload)

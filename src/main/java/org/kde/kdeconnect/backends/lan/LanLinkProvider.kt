@@ -11,6 +11,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.net.Network
 import android.os.Build
+import android.os.SystemClock
 import android.util.Log
 import androidx.annotation.WorkerThread
 import androidx.core.content.ContextCompat
@@ -170,7 +171,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
     }
 
     fun rateLimitByIp(address: InetAddress): Boolean {
-        val now = System.currentTimeMillis()
+        val now = SystemClock.elapsedRealtime()
         val last = lastConnectionTimeByIp[address]
         if (last != null && (last + MILLIS_DELAY_BETWEEN_CONNECTIONS_TO_SAME_DEVICE > now)) {
             return true
@@ -183,7 +184,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
     }
 
     fun rateLimitByDeviceId(deviceId: String): Boolean {
-        val now = System.currentTimeMillis()
+        val now = SystemClock.elapsedRealtime()
         val last = lastConnectionTimeByDeviceId[deviceId]
         if (last != null && (last + MILLIS_DELAY_BETWEEN_CONNECTIONS_TO_SAME_DEVICE > now)) {
             return true
@@ -571,11 +572,11 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
 
     override fun onNetworkChange(network: Network?) {
         if (isStopped) return
-        if (System.currentTimeMillis() < lastBroadcast + DELAY_BETWEEN_BROADCASTS) {
+        if (SystemClock.elapsedRealtime() < lastBroadcast + DELAY_BETWEEN_BROADCASTS) {
             Log.i("LanLinkProvider", "onNetworkChange: relax cowboy")
             return
         }
-        lastBroadcast = System.currentTimeMillis()
+        lastBroadcast = SystemClock.elapsedRealtime()
 
         setupUdpListener()
         setupTcpListener()

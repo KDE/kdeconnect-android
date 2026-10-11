@@ -17,6 +17,7 @@ import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Build
 import android.os.PowerManager
+import android.os.SystemClock
 import android.provider.Settings
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
@@ -32,7 +33,6 @@ import org.kde.kdeconnect.plugins.PluginFactory.LoadablePlugin
 import org.kde.kdeconnect.ui.PluginSettingsFragment
 import org.kde.kdeconnect_tp.R
 import java.io.IOException
-import kotlin.random.Random
 
 @LoadablePlugin
 class FindMyPhonePlugin : Plugin() {
@@ -43,7 +43,7 @@ class FindMyPhonePlugin : Plugin() {
     private lateinit var flashlightManager: FlashlightManager
     private var mediaPlayer: MediaPlayer? = null
     private var previousVolume: Int = -1
-    private val notificationId: Int = Random.nextInt()
+    private val notificationId: Int = SystemClock.elapsedRealtime().toInt()
 
     override val displayName: String
         get() = when (DeviceHelper.deviceType) {

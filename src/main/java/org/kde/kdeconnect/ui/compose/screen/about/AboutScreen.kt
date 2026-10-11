@@ -9,6 +9,7 @@ package org.kde.kdeconnect.ui.compose.screen.about
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.os.SystemClock
 import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -120,7 +121,7 @@ private fun AppInfoCard(
             clipboard.setPrimaryClip(ClipData.newPlainText("Version", aboutData.versionName))
             Toast.makeText(context, R.string.clipboard_toast, Toast.LENGTH_SHORT).show()
 
-            val currentMillis = System.currentTimeMillis()
+            val currentMillis = SystemClock.elapsedRealtime()
             if (firstTapMillis == null) {
                 firstTapMillis = currentMillis
             }

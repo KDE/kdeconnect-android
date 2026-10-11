@@ -1,5 +1,6 @@
 package org.kde.kdeconnect
 
+import android.os.SystemClock
 import org.kde.kdeconnect.helpers.ThreadHelper
 import java.net.InetAddress
 
@@ -19,9 +20,9 @@ class DeviceHost private constructor(private val host: String) {
         ThreadHelper.execute {
             try {
                 val address = InetAddress.getByName(this.host)
-                val startTime = System.currentTimeMillis()
+                val startTime = SystemClock.elapsedRealtime()
                 val pingable = address.isReachable(PING_TIMEOUT)
-                val delayMillis = System.currentTimeMillis() - startTime
+                val delayMillis = SystemClock.elapsedRealtime() - startTime
                 val pingResult = PingResult(if (pingable) delayMillis else null)
                 ping = pingResult
             }

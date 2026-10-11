@@ -14,6 +14,7 @@ import android.graphics.Bitmap
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
+import android.os.SystemClock
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.content.getSystemService
@@ -44,7 +45,7 @@ class MprisPlugin : Plugin() {
         var isPlaying: Boolean = false
             internal set(value) {
                 if (value && !field) {
-                    playStartTime = System.currentTimeMillis()
+                    playStartTime = SystemClock.elapsedRealtime()
                 }
                 field = value
             }
@@ -86,7 +87,7 @@ class MprisPlugin : Plugin() {
             internal set
 
         init {
-            lastPositionTime = System.currentTimeMillis()
+            lastPositionTime = SystemClock.elapsedRealtime()
         }
 
         val isSpotify: Boolean
@@ -113,7 +114,7 @@ class MprisPlugin : Plugin() {
 
         val position: Long
             get() = if (isPlaying) {
-                lastPosition + (System.currentTimeMillis() - lastPositionTime)
+                lastPosition + (SystemClock.elapsedRealtime() - lastPositionTime)
             } else {
                 lastPosition
             }
@@ -171,7 +172,7 @@ class MprisPlugin : Plugin() {
                 sendCommand(playerName, "SetPosition", position)
 
                 lastPosition = position.toLong()
-                lastPositionTime = System.currentTimeMillis()
+                lastPositionTime = SystemClock.elapsedRealtime()
             }
         }
 
@@ -282,7 +283,7 @@ class MprisPlugin : Plugin() {
                 playerStatus.length = np.getLong("length", playerStatus.length)
                 if (np.has("pos")) {
                     playerStatus.lastPosition = np.getLong("pos", playerStatus.lastPosition)
-                    playerStatus.lastPositionTime = System.currentTimeMillis()
+                    playerStatus.lastPositionTime = SystemClock.elapsedRealtime()
                 }
                 playerStatus.isPlaying = np.getBoolean("isPlaying", playerStatus.isPlaying)
                 playerStatus.isPlayAllowed = np.getBoolean("canPlay", playerStatus.isPlayAllowed)
@@ -351,7 +352,7 @@ class MprisPlugin : Plugin() {
     }
 
     private fun showContinueWatchingNotification(playerStatus: MprisPlayer) {
-        if (playerStatus.playStartTime + 5000 > System.currentTimeMillis()) {
+        if (playerStatus.playStartTime + 5000 > SystemClock.elapsedRealtime()) {
             // Playback was too short
             return
         }
@@ -381,7 +382,7 @@ class MprisPlugin : Plugin() {
                             .setContentIntent(pendingIntent)
                             .setContentText(context.resources.getString(R.string.mpris_keepwatching) + " " + playerStatus.title)
                         notificationManager.notify(
-                            System.currentTimeMillis().toInt(),
+                            SystemClock.elapsedRealtime().toInt(),
                             builder.build()
                         )
                     }
