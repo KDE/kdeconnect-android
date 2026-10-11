@@ -11,8 +11,10 @@ import android.accessibilityservice.AccessibilityServiceInfo
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
+import android.os.SystemClock
 import android.provider.Settings
 import android.util.Log
+import android.view.KeyEvent
 import android.view.View
 import android.view.accessibility.AccessibilityManager
 import android.view.accessibility.AccessibilityNodeInfo
@@ -324,6 +326,16 @@ class RemoteKeyboardPlugin : Plugin() {
     }
 
     private fun keyInput(focus: AccessibilityNodeInfo, key: String): Boolean {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && focus.isEditable) {
+            val inputConnection = KdeConnectAccessibilityService.instance
+                ?.inputMethod?.currentInputConnection
+            if (inputConnection != null) {
+                // Use the editor's input pipeline instead of replacing the entire field.
+                inputConnection.commitText(key, 1, null)
+                return true
+            }
+        }
+
         val text = getFieldText(focus) ?: ""
         val arguments = Bundle()
         val selectionStart = focus.textSelectionStart
@@ -356,6 +368,21 @@ class RemoteKeyboardPlugin : Plugin() {
     }
 
     private fun delete(focus: AccessibilityNodeInfo, forward: Boolean, words: Boolean = false) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && focus.isEditable) {
+            val inputConnection = KdeConnectAccessibilityService.instance
+                ?.inputMethod?.currentInputConnection
+            if (inputConnection != null) {
+                // Let the editor handle selections, word boundaries and multi-character glyphs.
+                val keyCode = if (forward) KeyEvent.KEYCODE_FORWARD_DEL else KeyEvent.KEYCODE_DEL
+                val metaState = if (words) KeyEvent.META_CTRL_ON else 0
+                val now = SystemClock.uptimeMillis()
+                val event = KeyEvent(now, now, KeyEvent.ACTION_DOWN, keyCode, 0, metaState)
+                inputConnection.sendKeyEvent(event)
+                inputConnection.sendKeyEvent(KeyEvent.changeAction(event, KeyEvent.ACTION_UP))
+                return
+            }
+        }
+
         val text = getFieldText(focus)
             ?: return
         val selectionStart = focus.textSelectionStart
