@@ -15,9 +15,9 @@ import android.os.Bundle
 import android.util.Log
 import android.util.SparseBooleanArray
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.view.ActionMode
+import androidx.core.content.edit
 import androidx.core.util.set
 import androidx.preference.Preference
 import androidx.preference.PreferenceCategory
@@ -31,7 +31,6 @@ import org.kde.kdeconnect.ui.PluginSettingsActivity
 import org.kde.kdeconnect.ui.PluginSettingsFragment
 import org.kde.kdeconnect_tp.R
 import java.util.Collections
-import androidx.core.content.edit
 
 class SftpSettingsFragment :
     PluginSettingsFragment(),

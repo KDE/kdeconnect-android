@@ -95,11 +95,8 @@ class MprisPlugin : Plugin() {
         val isSeekAllowed: Boolean
             get() = seekAllowed && length >= 0 && position >= 0
 
-        val hasAlbumArt: Boolean
-            get() = albumArtUrl.isNotEmpty()
-
         /**
-         * Returns the album art (if available). Note that this can return null even if hasAlbumArt() returns true.
+         * Returns the album art (if available). Note that this can return null even if albumArtUrl is set
          *
          * @return The album art, or null if not available
          */

@@ -19,7 +19,6 @@ import android.view.View
 import android.view.accessibility.AccessibilityManager
 import android.view.accessibility.AccessibilityNodeInfo
 import android.view.accessibility.AccessibilityNodeInfo.FOCUS_INPUT
-import android.view.inputmethod.EditorInfo
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.DialogFragment
 import org.kde.kdeconnect.KdeConnectAccessibilityService
@@ -353,7 +352,7 @@ class RemoteKeyboardPlugin : Plugin() {
         )
         if (!wasPerformed) {
             return false
-        };
+        }
 
         if (text != "") {
             moveCursorToPos(selectionFirst + key.length, focus)

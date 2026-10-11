@@ -11,7 +11,6 @@ import android.content.Intent
 import android.util.Log
 import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect.extensions.getParcelableExtraCompat
-import org.kde.kdeconnect.plugins.mousepad.MousePadPlugin
 
 /**
  * Called when the mpris media notification's buttons are pressed

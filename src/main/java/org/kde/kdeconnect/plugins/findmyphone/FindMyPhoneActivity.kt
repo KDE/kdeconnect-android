@@ -7,7 +7,6 @@ package org.kde.kdeconnect.plugins.findmyphone
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.WindowManager
 import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect.base.BaseActivity

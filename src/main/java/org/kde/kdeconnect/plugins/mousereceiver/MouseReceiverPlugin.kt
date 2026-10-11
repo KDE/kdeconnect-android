@@ -8,7 +8,6 @@ package org.kde.kdeconnect.plugins.mousereceiver
 import android.accessibilityservice.AccessibilityService
 import android.os.Build
 import android.provider.Settings
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.DialogFragment
 import org.kde.kdeconnect.KdeConnectAccessibilityService

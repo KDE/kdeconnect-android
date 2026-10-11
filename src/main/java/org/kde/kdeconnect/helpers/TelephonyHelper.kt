@@ -11,7 +11,6 @@ import android.content.Context
 import android.net.Uri
 import android.provider.Telephony
 import android.telephony.SubscriptionManager
-import android.telephony.TelephonyManager
 import android.util.Log
 import androidx.core.content.ContextCompat
 
@@ -49,41 +48,6 @@ object TelephonyHelper {
             } else {
                 null
             }
-        }
-    }
-
-    /**
-     * Try to get the phone number to which the TelephonyManager is pinned
-     */
-    @JvmStatic
-    @Throws(SecurityException::class)
-    fun getPhoneNumber(telephonyManager: TelephonyManager): LocalPhoneNumber? {
-        @SuppressLint("HardwareIds")
-        val maybeNumber = telephonyManager.line1Number
-
-        if (maybeNumber == null) {
-            Log.d(LOGGING_TAG, "Got 'null' instead of a phone number")
-            return null
-        }
-        // Sometimes we will get some garbage like "Unknown" or "?????" or a variety of other things
-        // Per https://stackoverflow.com/a/25131061/3723163, the only real solution to this is to
-        // query the user for the proper phone number
-        // As a quick possible check, I say if a "number" is not at least 25% digits, it is not actually
-        // a number
-        var digitCount = 0
-        for (digit in "0123456789".toCharArray()) {
-            // https://stackoverflow.com/a/8910767/3723163
-            // The number of occurrences of a particular character can be counted by looking at the
-            // total length of the string and subtracting the length of the string without the
-            // target digit
-            val count = maybeNumber.length - maybeNumber.replace("" + digit, "").length
-            digitCount += count
-        }
-        if (maybeNumber.length > digitCount * 4) {
-            Log.d(LOGGING_TAG, "Discarding $maybeNumber because it does not contain a high enough digit ratio to be a real phone number")
-            return null
-        } else {
-            return LocalPhoneNumber(maybeNumber, -1)
         }
     }
 
