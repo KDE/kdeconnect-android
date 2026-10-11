@@ -3,4 +3,5 @@
 <resources>
     <string name="kde_connect">Debug KDE Connect</string>
     <string name="quit_app_shortcut">Quit</string>
+    <string name="remote_keyboard_service">Debug KDE Connect Remote Keyboard</string>
 </resources>
