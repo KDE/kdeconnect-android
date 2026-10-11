@@ -173,7 +173,7 @@ class RemoteKeyboardPlugin : Plugin() {
         shift: Boolean,
         ctrl: Boolean
     ) {
-        val focus = KdeConnectAccessibilityService.instance?.window?.findFocus(FOCUS_INPUT)
+        val focus = KdeConnectAccessibilityService.instance?.findFocus(FOCUS_INPUT)
             ?: return
         val specialKey = SpecialKeys.fromInt(sKey)
 
@@ -233,7 +233,7 @@ class RemoteKeyboardPlugin : Plugin() {
     }
 
     private fun specialKey(sKey: Int) {
-        val focus = KdeConnectAccessibilityService.instance?.window?.findFocus(FOCUS_INPUT)
+        val focus = KdeConnectAccessibilityService.instance?.findFocus(FOCUS_INPUT)
             ?: return
         val specialKey = SpecialKeys.fromInt(sKey)
 
@@ -300,7 +300,7 @@ class RemoteKeyboardPlugin : Plugin() {
     }
 
     private fun keyInput(key: String): Boolean {
-        val focus = KdeConnectAccessibilityService.instance?.window?.findFocus(FOCUS_INPUT)
+        val focus = KdeConnectAccessibilityService.instance?.findFocus(FOCUS_INPUT)
             ?: return false
         val text = getFieldText(focus) ?: ""
         val arguments = Bundle()
@@ -332,7 +332,7 @@ class RemoteKeyboardPlugin : Plugin() {
     }
 
     private fun delete(forward: Boolean, words: Boolean = false) {
-        val focus = KdeConnectAccessibilityService.instance?.window?.findFocus(FOCUS_INPUT)
+        val focus = KdeConnectAccessibilityService.instance?.findFocus(FOCUS_INPUT)
             ?: return
         val text = getFieldText(focus)
             ?: return
@@ -423,7 +423,7 @@ class RemoteKeyboardPlugin : Plugin() {
         movement: Movement = Movement.CHARACTER,
         makeSelection: Boolean = false
     ) {
-        val focus = KdeConnectAccessibilityService.instance?.window?.findFocus(FOCUS_INPUT)
+        val focus = KdeConnectAccessibilityService.instance?.findFocus(FOCUS_INPUT)
             ?: return
         val args = Bundle().apply {
             putInt(

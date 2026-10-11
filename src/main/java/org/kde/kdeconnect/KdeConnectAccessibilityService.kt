@@ -37,9 +37,6 @@ import kotlin.math.sign
 
 open class KdeConnectAccessibilityService : AccessibilityService() {
 
-    // Currently active window
-    var window: AccessibilityNodeInfo? = null
-
     // Position of the center of the cursor
     private var x = 0
     private var y = 0
@@ -294,16 +291,13 @@ open class KdeConnectAccessibilityService : AccessibilityService() {
     }
 
     override fun onDestroy() {
-        window = null
         cursorView?.let {
             windowManager.removeView(it)
         }
         super.onDestroy()
     }
 
-    override fun onAccessibilityEvent(ignored: AccessibilityEvent?) {
-        window = rootInActiveWindow
-    }
+    override fun onAccessibilityEvent(ignored: AccessibilityEvent?) { }
 
     override fun onInterrupt() { }
 
