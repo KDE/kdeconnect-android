@@ -67,6 +67,7 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
     @GuardedBy("lock")
     private var totalPayloadSize: Long = 0
 
+    @Volatile // Read by SharePlugin from the packet-receiving thread
     var isRunning: Boolean = false
         private set
 
@@ -109,23 +110,19 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
     }
 
     override fun run() {
-        var done: Boolean
         var outputStream: OutputStream? = null
-
-        synchronized(lock) {
-            done = networkPacketList.isEmpty()
-        }
 
         try {
             var fileDocument: DocumentFile? = null
 
             isRunning = true
 
-            while (!done && !isCancelled) {
-                synchronized(lock) {
-                    currentNetworkPacket = networkPacketList[0]
-                }
-                val packet = currentNetworkPacket!!
+            while (!isCancelled) {
+                // The packet stays in the list until it's been received, so addNetworkPacket can detect duplicates
+                val packet = synchronized(lock) {
+                    networkPacketList.firstOrNull()?.also { currentNetworkPacket = it }
+                } ?: break
+
                 currentFileName = packet.getString("filename", System.currentTimeMillis().toString())
                 currentFileNum++
 
@@ -196,8 +193,6 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
                     if (!isCancelled && currentFileNum < totalNumFiles && networkPacketList.isEmpty()) {
                         throw RuntimeException("Failed to receive ${totalNumFiles - currentFileNum + 1} files")
                     }
-
-                    done = networkPacketList.isEmpty()
                 }
             }
 
@@ -219,7 +214,7 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
                 // Update the notification and allow to open the file from it
                 receiveNotification.setFinished(device.context.resources.getQuantityString(R.plurals.received_files_title, numFiles, device.name, numFiles))
 
-                if (totalNumFiles == 1 && fileDocument != null) {
+                if (numFiles == 1 && fileDocument != null) {
                     receiveNotification.setURI(fileDocument.uri, fileDocument.type, fileDocument.name)
                 }
 
@@ -232,18 +227,19 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
         } catch (e: Exception) {
             isRunning = false
 
-            Log.e("Shareplugin", "Error receiving file", e)
+            Log.e("SharePlugin", "Error receiving file", e)
 
-            val failedFiles: Int = synchronized(lock) {
-                totalNumFiles - currentFileNum + 1
+            synchronized(lock) {
+                val failedFiles = totalNumFiles - currentFileNum + 1
+                receiveNotification.setFailed(device.context.resources.getQuantityString(R.plurals.received_files_fail_title, failedFiles, device.name, failedFiles, totalNumFiles))
             }
-
-            receiveNotification.setFailed(device.context.resources.getQuantityString(R.plurals.received_files_fail_title, failedFiles, device.name, failedFiles, totalNumFiles))
             receiveNotification.show()
             reportError(e)
         } finally {
-            closeAllInputStreams()
-            networkPacketList.clear()
+            synchronized(lock) {
+                closeAllInputStreams()
+                networkPacketList.clear()
+            }
             outputStream?.closeSafe()
         }
     }
@@ -297,6 +293,7 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
         return received
     }
 
+    @GuardedBy("lock")
     private fun closeAllInputStreams() {
         for (np in networkPacketList) {
             np.payload?.close()

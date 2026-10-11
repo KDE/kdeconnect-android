@@ -15,7 +15,6 @@ import org.kde.kdeconnect.async.BackgroundJob
 import org.kde.kdeconnect.plugins.share.SharePlugin.Companion.KEY_NUMBER_OF_FILES
 import org.kde.kdeconnect.plugins.share.SharePlugin.Companion.KEY_TOTAL_PAYLOAD_SIZE
 import org.kde.kdeconnect_tp.R
-import java.util.ArrayList
 
 /**
  * A type of [BackgroundJob] that sends Files to another device.
@@ -36,6 +35,7 @@ class CompositeUploadFileJob(device: Device, callback: Callback<Unit>)
     : BackgroundJob<Device, Unit>(device, callback)
 {
 
+    @Volatile
     private var isRunning: Boolean = false
     private val handler: Handler = Handler(Looper.getMainLooper())
     private var currentFileName: String = ""
@@ -65,17 +65,11 @@ class CompositeUploadFileJob(device: Device, callback: Callback<Unit>)
     override fun run() {
         isRunning = true
 
-        var done: Boolean
-        synchronized(lock) {
-            done = networkPacketList.isEmpty()
-        }
         try {
-            while (!done && !isCancelled) {
-                val packet: NetworkPacket
-                synchronized(lock) {
-                    packet = networkPacketList.removeAt(0)
-                    currentNetworkPacket = packet
-                }
+            while (!isCancelled) {
+                val packet = synchronized(lock) {
+                    networkPacketList.removeFirstOrNull()?.also { currentNetworkPacket = it }
+                } ?: break
 
                 currentFileName = packet.getString("filename")
                 currentFileNum++
@@ -88,10 +82,6 @@ class CompositeUploadFileJob(device: Device, callback: Callback<Unit>)
                 // has been received by the other end, so payloads are sent one by one.
                 if (!device.sendPacketBlocking(packet, sendPacketStatusCallback, true)) {
                     throw RuntimeException("Sending packet failed")
-                }
-
-                synchronized(lock) {
-                    done = networkPacketList.isEmpty()
                 }
             }
 
@@ -129,10 +119,12 @@ class CompositeUploadFileJob(device: Device, callback: Callback<Unit>)
         } finally {
             isRunning = false
 
-            for (networkPacket in networkPacketList) {
-                networkPacket.payload?.close()
+            synchronized(lock) {
+                for (networkPacket in networkPacketList) {
+                    networkPacket.payload?.close()
+                }
+                networkPacketList.clear()
             }
-            networkPacketList.clear()
         }
     }
 
