@@ -98,7 +98,12 @@ open class KdeConnectAccessibilityService : AccessibilityService() {
             cursorHalfHeight = measuredHeight / 2
             cursorHalfWidth = measuredWidth / 2
         }
-        windowManager.addView(cursorView, cursorLayout)
+        try {
+            windowManager.addView(cursorView, cursorLayout)
+        } catch (e: WindowManager.BadTokenException) {
+            Log.e("KdeConnectAccessibilityService", "Could not add cursor overlay", e)
+            cursorView = null
+        }
 
         val displayMetrics = DisplayMetrics()
         windowManager.defaultDisplay?.getMetrics(displayMetrics)
