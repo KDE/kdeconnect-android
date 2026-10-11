@@ -360,10 +360,12 @@ class MousePadActivity :
             val distanceY = e.getAxisValue(MotionEvent.AXIS_VSCROLL)
             val distanceX = e.getAxisValue(MotionEvent.AXIS_HSCROLL)
 
+            accumulatedDistanceX += distanceX
             accumulatedDistanceY += distanceY
 
             if (abs(accumulatedDistanceX) > MinDistanceToSendScroll || abs(accumulatedDistanceY) > MinDistanceToSendScroll) {
                 sendScroll(accumulatedDistanceX, accumulatedDistanceY)
+                accumulatedDistanceX = 0.0
                 accumulatedDistanceY = 0.0
             }
         }
