@@ -20,12 +20,12 @@ import java.util.ArrayList
 
 class SendFileActivity : AppCompatActivity() {
 
-    private lateinit var mDeviceId: String
+    private lateinit var deviceId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        mDeviceId = intent.getStringExtra(EXTRA_DEVICE_ID)!!
+        deviceId = intent.getStringExtra(EXTRA_DEVICE_ID)!!
 
         val intent = Intent(Intent.ACTION_GET_CONTENT).apply {
             type = "*/*"
@@ -35,9 +35,9 @@ class SendFileActivity : AppCompatActivity() {
         try {
             startActivityForResult(
                 Intent.createChooser(intent, getString(R.string.send_files)),
-                Activity.RESULT_FIRST_USER,
+                RESULT_FIRST_USER,
             )
-        } catch (ex: ActivityNotFoundException) {
+        } catch (_: ActivityNotFoundException) {
             Toast.makeText(this, R.string.no_file_browser, Toast.LENGTH_SHORT).show()
             finish()
         }
@@ -45,7 +45,7 @@ class SendFileActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when (requestCode) {
-            Activity.RESULT_FIRST_USER -> {
+            RESULT_FIRST_USER -> {
                 if (resultCode == RESULT_OK && data != null) {
                     val uris = ArrayList<Uri>()
 
@@ -54,10 +54,10 @@ class SendFileActivity : AppCompatActivity() {
                         uris.add(uri)
                     }
 
-                    val clipdata = data.clipData
-                    if (clipdata != null) {
-                        for (i in 0 until clipdata.itemCount) {
-                            uris.add(clipdata.getItemAt(i).uri)
+                    val clipData = data.clipData
+                    if (clipData != null) {
+                        for (i in 0 until clipData.itemCount) {
+                            uris.add(clipData.getItemAt(i).uri)
                         }
                     }
 
@@ -67,8 +67,8 @@ class SendFileActivity : AppCompatActivity() {
                     } else {
                         ThreadHelper.execute {
                             try {
-                                val plugin = KdeConnect.getInstance().getDevicePlugin<SharePlugin>(mDeviceId)
-                                plugin?.sendFiles(uris)
+                                KdeConnect.getInstance().getDevicePlugin<SharePlugin>(deviceId)
+                                    ?.sendFiles(uris)
                             } finally {
                                 // The read permissions ACTION_GET_CONTENT grants for these URIs are tied to
                                 // this activity's lifetime, so we can't finish() until sendFiles() has opened
