@@ -135,22 +135,18 @@ class RemoteKeyboardIMEPlugin : Plugin(), SharedPreferences.OnSharedPreferenceCh
         } else if (keyEvent == KeyEvent.KEYCODE_NUMPAD_ENTER || keyEvent == KeyEvent.KEYCODE_ENTER) {
             // Enter key
             val editorInfo: EditorInfo? = RemoteKeyboardService.instance?.currentInputEditorInfo
-//            Log.d(LOG_TAG, "Enter: " + editorInfo.imeOptions);
             if (editorInfo != null && (((editorInfo.imeOptions and EditorInfo.IME_FLAG_NO_ENTER_ACTION) == 0) || ctrl)) { // Ctrl+Return overrides IME_FLAG_NO_ENTER_ACTION (FIXME: make configurable?)
                 // check for special DONE/GO/etc actions first:
-                val actions = intArrayOf(
+                val action = editorInfo.imeOptions and EditorInfo.IME_MASK_ACTION
+                return when (action) {
                     EditorInfo.IME_ACTION_GO,
                     EditorInfo.IME_ACTION_NEXT,
                     EditorInfo.IME_ACTION_SEND,
-                    EditorInfo.IME_ACTION_SEARCH,
-                    EditorInfo.IME_ACTION_DONE,
-                ) // note: DONE should be last or we might hide the ime instead of "go"
-                for (action in actions) {
-                    if ((editorInfo.imeOptions and action) == action) {
-//                        Log.d(LOG_TAG, "Enter-action: " + actions[i]);
+                    EditorInfo.IME_ACTION_SEARCH -> {
                         inputConn.performEditorAction(action)
-                        return true
+                        true
                     }
+                    else -> false
                 }
             } else {
                 // else: fall back to regular Enter-event:
