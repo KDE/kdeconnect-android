@@ -268,7 +268,7 @@ open class KdeConnectAccessibilityService : AccessibilityService() {
     }
 
     // https://codelabs.developers.google.com/codelabs/developing-android-a11y-service/#6
-    private fun findNodeByAction(
+    fun findNodeByAction(
         root: AccessibilityNodeInfo?,
         action: AccessibilityNodeInfo.AccessibilityAction
     ): AccessibilityNodeInfo? {

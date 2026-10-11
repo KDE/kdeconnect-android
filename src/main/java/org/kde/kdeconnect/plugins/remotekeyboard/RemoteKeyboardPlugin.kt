@@ -148,14 +148,27 @@ class RemoteKeyboardPlugin : Plugin() {
             return false
         }
 
+        val focus = KdeConnectAccessibilityService.instance?.findFocus(FOCUS_INPUT)
+        if (focus == null) {
+            val specialKey = SpecialKeys.fromInt(sKey)
+            if (specialKey == SpecialKeys.TAB) {
+                KdeConnectAccessibilityService.instance?.findNodeByAction(
+                    KdeConnectAccessibilityService.instance?.rootInActiveWindow,
+                    AccessibilityNodeInfo.AccessibilityAction.ACTION_FOCUS
+                )?.performAction(AccessibilityNodeInfo.ACTION_FOCUS)
+                return true
+            }
+            return false
+        }
+
         if (np.getBoolean("shift") || np.getBoolean("ctrl")) {
             multiKey(
-                key, sKey, np.getBoolean("shift"), np.getBoolean("ctrl")
+                focus, key, sKey, np.getBoolean("shift"), np.getBoolean("ctrl")
             )
         } else if (sKey != 0) {
-            specialKey(sKey)
+            specialKey(focus, sKey)
         } else {
-            keyInput(key)
+            keyInput(focus, key)
         }
         return true
     }
@@ -169,13 +182,12 @@ class RemoteKeyboardPlugin : Plugin() {
     )
 
     private fun multiKey(
+        focus: AccessibilityNodeInfo,
         key: String,
         sKey: Int,
         shift: Boolean,
         ctrl: Boolean
     ) {
-        val focus = KdeConnectAccessibilityService.instance?.findFocus(FOCUS_INPUT)
-            ?: return
         val specialKey = SpecialKeys.fromInt(sKey)
 
         if (shift) {
@@ -184,31 +196,35 @@ class RemoteKeyboardPlugin : Plugin() {
                 SpecialKeys.TAB -> moveFocus(forward = false, focus)
 
                 SpecialKeys.DPAD_LEFT -> moveCursor(
+                    focus,
                     forward = false,
                     movement,
                     makeSelection = true
                 )
 
                 SpecialKeys.DPAD_RIGHT -> moveCursor(
+                    focus,
                     forward = true,
                     movement,
                     makeSelection = true
                 )
 
                 SpecialKeys.MOVE_HOME, SpecialKeys.DPAD_UP -> moveCursor(
+                    focus,
                     forward = false,
                     Movement.LINE,
                     makeSelection = true
                 )
 
                 SpecialKeys.MOVE_END, SpecialKeys.DPAD_DOWN -> moveCursor(
+                    focus,
                     forward = true,
                     Movement.LINE,
                     makeSelection = true
                 )
 
                 // We already get the letters capitalized or as special characters.
-                SpecialKeys.NO_KEY -> keyInput(key)
+                SpecialKeys.NO_KEY -> keyInput(focus, key)
 
                 else -> {}
             }
@@ -220,10 +236,10 @@ class RemoteKeyboardPlugin : Plugin() {
                 "a" -> focus.setSelection(0, focus.text?.length ?: 0)
             }
             when (specialKey) {
-                SpecialKeys.DPAD_LEFT -> moveCursor(forward = false, Movement.WORD)
-                SpecialKeys.DPAD_RIGHT -> moveCursor(forward = true, Movement.WORD)
-                SpecialKeys.DEL -> delete(forward = false, words = true)
-                SpecialKeys.FORWARD_DEL -> delete(forward = true, words = true)
+                SpecialKeys.DPAD_LEFT -> moveCursor(focus, forward = false, Movement.WORD)
+                SpecialKeys.DPAD_RIGHT -> moveCursor(focus, forward = true, Movement.WORD)
+                SpecialKeys.DEL -> delete(focus, forward = false, words = true)
+                SpecialKeys.FORWARD_DEL -> delete(focus, forward = true, words = true)
                 SpecialKeys.ENTER -> {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                         focus.performAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_IME_ENTER.id)
@@ -235,49 +251,47 @@ class RemoteKeyboardPlugin : Plugin() {
         }
     }
 
-    private fun specialKey(sKey: Int) {
-        val focus = KdeConnectAccessibilityService.instance?.findFocus(FOCUS_INPUT)
-            ?: return
+    private fun specialKey(focus: AccessibilityNodeInfo, sKey: Int) {
         val specialKey = SpecialKeys.fromInt(sKey)
 
         when (specialKey) {
             SpecialKeys.TAB -> moveFocus(forward = true, focus)
 
-            SpecialKeys.DEL -> delete(false)
+            SpecialKeys.DEL -> delete(focus, false)
 
-            SpecialKeys.FORWARD_DEL -> delete(true)
+            SpecialKeys.FORWARD_DEL -> delete(focus, true)
 
-            SpecialKeys.MOVE_END -> moveCursor(forward = true, Movement.LINE)
+            SpecialKeys.MOVE_END -> moveCursor(focus, forward = true, Movement.LINE)
 
-            SpecialKeys.MOVE_HOME -> moveCursor(forward = false, Movement.LINE)
+            SpecialKeys.MOVE_HOME -> moveCursor(focus, forward = false, Movement.LINE)
 
             SpecialKeys.DPAD_LEFT -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 KdeConnectAccessibilityService.instance?.performGlobalAction(AccessibilityService.GLOBAL_ACTION_DPAD_LEFT)
             } else {
-                moveCursor(false)
+                moveCursor(focus, false)
             }
 
             SpecialKeys.DPAD_RIGHT -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 KdeConnectAccessibilityService.instance?.performGlobalAction(AccessibilityService.GLOBAL_ACTION_DPAD_RIGHT)
             } else {
-                moveCursor(true)
+                moveCursor(focus, true)
             }
 
             SpecialKeys.DPAD_UP -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 KdeConnectAccessibilityService.instance?.performGlobalAction(AccessibilityService.GLOBAL_ACTION_DPAD_UP)
             } else {
-                moveCursor(forward = false, Movement.LINE)
+                moveCursor(focus, forward = false, Movement.LINE)
             }
 
             SpecialKeys.DPAD_DOWN -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 KdeConnectAccessibilityService.instance?.performGlobalAction(AccessibilityService.GLOBAL_ACTION_DPAD_DOWN)
             } else {
-                moveCursor(forward = true, Movement.LINE)
+                moveCursor(focus, forward = true, Movement.LINE)
             }
 
             SpecialKeys.ENTER -> {
                 val didEnterNewLine = if (focus.isMultiLine) {
-                    keyInput("\n")
+                    keyInput(focus, "\n")
                 } else {
                     false
                 }
@@ -314,9 +328,7 @@ class RemoteKeyboardPlugin : Plugin() {
         next.performAction(AccessibilityNodeInfo.ACTION_FOCUS)
     }
 
-    private fun keyInput(key: String): Boolean {
-        val focus = KdeConnectAccessibilityService.instance?.findFocus(FOCUS_INPUT)
-            ?: return false
+    private fun keyInput(focus: AccessibilityNodeInfo, key: String): Boolean {
         val text = getFieldText(focus) ?: ""
         val arguments = Bundle()
         val selectionStart = focus.textSelectionStart
@@ -346,9 +358,7 @@ class RemoteKeyboardPlugin : Plugin() {
         return true
     }
 
-    private fun delete(forward: Boolean, words: Boolean = false) {
-        val focus = KdeConnectAccessibilityService.instance?.findFocus(FOCUS_INPUT)
-            ?: return
+    private fun delete(focus: AccessibilityNodeInfo, forward: Boolean, words: Boolean = false) {
         val text = getFieldText(focus)
             ?: return
         val selectionStart = focus.textSelectionStart
@@ -434,12 +444,11 @@ class RemoteKeyboardPlugin : Plugin() {
     }
 
     private fun moveCursor(
+        focus: AccessibilityNodeInfo,
         forward: Boolean,
         movement: Movement = Movement.CHARACTER,
         makeSelection: Boolean = false
     ) {
-        val focus = KdeConnectAccessibilityService.instance?.findFocus(FOCUS_INPUT)
-            ?: return
         val args = Bundle().apply {
             putInt(
                 AccessibilityNodeInfo.ACTION_ARGUMENT_MOVEMENT_GRANULARITY_INT,
