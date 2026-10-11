@@ -13,7 +13,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import android.content.pm.PackageManager
-import android.media.AudioManager
 import android.os.Build
 import android.os.Handler
 import android.service.notification.StatusBarNotification
@@ -25,6 +24,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.TaskStackBuilder
 import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
+import androidx.media.VolumeProviderCompat
 import androidx.preference.PreferenceManager
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.KdeConnect
@@ -59,6 +59,8 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
 
     private lateinit var context: Context
     private var mediaSession: MediaSessionCompat? = null
+    private var activeVolumeProvider: SystemVolumeProvider? = null
+    private val fixedVolumeProvider = object : VolumeProviderCompat(VOLUME_CONTROL_FIXED, 0, 0) {}
 
     // Callback for control via the media session API
     private val mediaSessionCallback: MediaSessionCompat.Callback = object : MediaSessionCompat.Callback() {
@@ -200,7 +202,6 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
 
     private fun updateRemoteDeviceVolumeControl(device: Device) {
         val plugin = device.getPlugin(SystemVolumePlugin::class.java)
-            ?: return
         val systemVolumeProvider = SystemVolumeProvider.getInstance()
         systemVolumeProvider.setPlugin(plugin)
         systemVolumeProvider.addStateListener( this)
@@ -427,6 +428,7 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
             val mediaSession = mediaSession ?: MediaSessionCompat(context, MPRIS_MEDIA_SESSION_TAG).apply {
                 setCallback(mediaSessionCallback, Handler(context.mainLooper))
             }
+            configureRemotePlayback(mediaSession)
             mediaSession.setMetadata(metadata.build())
             mediaSession.setPlaybackState(playbackState.build())
             mediaStyle.setMediaSession(mediaSession.sessionToken)
@@ -496,15 +498,14 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
     }
 
     override fun onProviderStateChanged(systemVolumeProvider: SystemVolumeProvider, isActive: Boolean) {
-        val mediaSession = mediaSession ?: return
+        activeVolumeProvider = systemVolumeProvider.takeIf { isActive }
+        mediaSession?.let(::configureRemotePlayback)
+    }
+
+    private fun configureRemotePlayback(mediaSession: MediaSessionCompat) {
         val prefs = PreferenceManager.getDefaultSharedPreferences(context)
         val allowVolumeKeys = prefs.getBoolean(context.getString(R.string.pref_mpris_volume_control_key), true)
-
-        if (isActive && allowVolumeKeys) {
-            mediaSession.setPlaybackToRemote(systemVolumeProvider)
-        } else {
-            mediaSession.setPlaybackToLocal(AudioManager.STREAM_MUSIC)
-        }
+        mediaSession.setPlaybackToRemote(activeVolumeProvider?.takeIf { allowVolumeKeys } ?: fixedVolumeProvider)
     }
 
     private fun StatusBarNotification.isSpotify(): Boolean =
