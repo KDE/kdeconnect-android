@@ -19,6 +19,7 @@ import android.view.View
 import android.view.accessibility.AccessibilityManager
 import android.view.accessibility.AccessibilityNodeInfo
 import android.view.accessibility.AccessibilityNodeInfo.FOCUS_INPUT
+import android.view.inputmethod.EditorInfo
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.DialogFragment
 import org.kde.kdeconnect.KdeConnectAccessibilityService
@@ -158,10 +159,10 @@ class RemoteKeyboardPlugin : Plugin() {
             return false
         }
 
-        if (np.getBoolean("shift") || np.getBoolean("ctrl")) {
-            multiKey(
-                focus, key, sKey, np.getBoolean("shift"), np.getBoolean("ctrl")
-            )
+        val shift = np.getBoolean("shift")
+        val ctrl = np.getBoolean("ctrl")
+        if (shift || ctrl) {
+            multiKey(focus, key, sKey, shift, ctrl)
         } else if (sKey != 0) {
             specialKey(focus, sKey)
         } else {
@@ -220,6 +221,8 @@ class RemoteKeyboardPlugin : Plugin() {
                     makeSelection = true
                 )
 
+                SpecialKeys.ENTER -> keyInput(focus, "\n")
+
                 // We already get the letters capitalized or as special characters.
                 SpecialKeys.NO_KEY -> keyInput(focus, key)
 
@@ -238,11 +241,12 @@ class RemoteKeyboardPlugin : Plugin() {
                 SpecialKeys.DEL -> delete(focus, forward = false, words = true)
                 SpecialKeys.FORWARD_DEL -> delete(focus, forward = true, words = true)
                 SpecialKeys.ENTER -> {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    if (focus.isEditable && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                         focus.performAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_IME_ENTER.id)
+                    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                        KdeConnectAccessibilityService.instance?.performGlobalAction(AccessibilityService.GLOBAL_ACTION_DPAD_CENTER)
                     }
                 }
-
                 else -> {}
             }
         }
@@ -287,20 +291,11 @@ class RemoteKeyboardPlugin : Plugin() {
             }
 
             SpecialKeys.ENTER -> {
-                val didEnterNewLine = if (focus.isMultiLine) {
-                    keyInput(focus, "\n")
-                } else {
-                    false
+                if (focus.isEditable && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    KdeConnectAccessibilityService.instance?.performGlobalAction(AccessibilityService.GLOBAL_ACTION_DPAD_CENTER)
+                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    focus.performAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_IME_ENTER.id)
                 }
-
-                if (!didEnterNewLine) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                        KdeConnectAccessibilityService.instance?.performGlobalAction(AccessibilityService.GLOBAL_ACTION_DPAD_CENTER)
-                    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                        focus.performAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_IME_ENTER.id)
-                    }
-                }
-
             }
 
             SpecialKeys.ESCAPE -> {
