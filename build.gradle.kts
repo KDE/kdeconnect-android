@@ -277,9 +277,9 @@ dependencies {
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.swiperefreshlayout)
     implementation(libs.androidx.documentfile)
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.lifecycle.process)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx) // For ViewModel
+    implementation(libs.androidx.lifecycle.livedata.ktx) // For LiveData
+    implementation(libs.androidx.lifecycle.process) // For ProcessLifecycleOwner
     implementation(libs.androidx.gridlayout)
     implementation(libs.google.android.material)
     implementation(libs.disklrucache) //For caching album art bitmaps. FIXME: Not updated in 10+ years. Replace with Kache.
