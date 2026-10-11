@@ -33,6 +33,7 @@ import org.kde.kdeconnect.helpers.DEFAULT_MAX_VOLUME
 import org.kde.kdeconnect.helpers.DEFAULT_VOLUME_STEP
 import org.kde.kdeconnect.helpers.VideoUrlsHelper
 import org.kde.kdeconnect.helpers.calculateNewVolume
+import org.kde.kdeconnect.plugins.mpris.MprisActivity.Companion.MENU_OPEN_URL
 import org.kde.kdeconnect.plugins.mpris.MprisPlugin.MprisPlayer
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.MprisControlBinding
@@ -362,12 +363,12 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity?.addMenuProvider(object : MenuProvider {
-            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) = Unit
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menu.add(0, MENU_OPEN_URL, Menu.NONE, R.string.mpris_open_url)
+            }
+
             override fun onPrepareMenu(menu: Menu) {
-                menu.clear()
-                if (!targetPlayer?.getHttpUrl().isNullOrEmpty()) {
-                    menu.add(0, MENU_OPEN_URL, Menu.NONE, R.string.mpris_open_url)
-                }
+                menu.findItem(MENU_OPEN_URL).isVisible = !targetPlayer?.getHttpUrl().isNullOrEmpty()
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
@@ -412,7 +413,6 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
 
     companion object {
         const val EXTRA_DEVICE_ID: String = "deviceId"
-        const val MENU_OPEN_URL: Int = Menu.FIRST
 
         fun newInstance(deviceId: String): MprisNowPlayingFragment {
             return MprisNowPlayingFragment().apply {
