@@ -54,7 +54,7 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
     private var currentFileNum: Int = 0
     private var totalReceived: Long = 0
     private var lastProgressTimeMillis: Long = 0
-    private var prevProgressPercentage: Long = 0
+    private var prevProgressPercentage = 0
 
     private val lock = Object() // Use to protect concurrent access to the variables below
 
@@ -145,7 +145,7 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
                 currentFileName = packet.getString("filename", System.currentTimeMillis().toString())
                 currentFileNum++
 
-                setProgress(prevProgressPercentage.toInt())
+                setProgress(prevProgressPercentage)
 
                 fileDocument = getDocumentFileFor(currentFileName!!, packet.getBoolean("open", false))
 
@@ -304,17 +304,17 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
 
             output.write(data, 0, count)
 
-            val progressPercentage: Long = synchronized(lock) {
+            val progressPercentage = synchronized(lock) {
                 totalReceived * 100 / totalPayloadSize
-            }
+            }.toInt()
             val curTimeMillis = System.currentTimeMillis()
 
             if (progressPercentage != prevProgressPercentage &&
-                (progressPercentage == 100L || curTimeMillis - lastProgressTimeMillis >= 500)
+                (progressPercentage == 100 || curTimeMillis - lastProgressTimeMillis >= 500)
             ) {
                 prevProgressPercentage = progressPercentage
                 lastProgressTimeMillis = curTimeMillis
-                setProgress(progressPercentage.toInt())
+                setProgress(progressPercentage)
             }
         }
 
@@ -326,7 +326,7 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
     private fun showNewTotalsIfRunning() {
         // If we are already receiving a file, update the notification right away to show the new number of files
         if (isRunning && currentFileNum > 0) {
-            setProgress(prevProgressPercentage.toInt())
+            setProgress(prevProgressPercentage)
         }
     }
 
