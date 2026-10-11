@@ -32,8 +32,7 @@ class SystemVolumeProvider :
 
         @JvmStatic
         fun getInstance(): SystemVolumeProvider {
-            val currentProvider = currentProvider ?: SystemVolumeProvider()
-            return currentProvider
+            return currentProvider ?: SystemVolumeProvider().also { currentProvider = it }
         }
 
         private fun scale(value: Int, maxValue: Int, maxScaled: Int): Int {
