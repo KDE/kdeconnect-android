@@ -92,11 +92,6 @@ class RemoteKeyboardPlugin : Plugin() {
     }
 
     override fun onPacketReceived(np: NetworkPacket): Boolean {
-        if (np.type != PACKET_TYPE_MOUSEPAD_REQUEST) {
-            Log.e(LOG_TAG, "Invalid packet type for RemoteKeyboardPlugin: ${np.type}")
-            return false
-        }
-
         // Check if this package is for the Mouse Receiver
         if (!(np.has("key") || np.has("specialKey"))) {
             return false

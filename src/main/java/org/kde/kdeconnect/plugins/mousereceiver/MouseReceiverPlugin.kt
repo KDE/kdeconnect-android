@@ -41,11 +41,6 @@ class MouseReceiverPlugin : Plugin() {
             .create()
 
     override fun onPacketReceived(np: NetworkPacket): Boolean {
-        if (np.type != PACKET_TYPE_MOUSEPAD_REQUEST) {
-            Log.e("MouseReceiverPlugin", "Invalid packet type for MouseReceiverPlugin: ${np.type}")
-            return false
-        }
-
         if (getMousePadPacketType(np) != MousePadPacketType.Mouse) {
             return false // This packet will be handled by the remotekeyboard instead, silently ignore
         }

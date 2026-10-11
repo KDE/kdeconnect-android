@@ -276,11 +276,6 @@ class RemoteKeyboardIMEPlugin : Plugin(), SharedPreferences.OnSharedPreferenceCh
     }
 
     override fun onPacketReceived(np: NetworkPacket): Boolean {
-        if (np.type != PACKET_TYPE_MOUSEPAD_REQUEST) {
-            Log.e(LOG_TAG, "Invalid packet type for RemoteKeyboardIMEPlugin: ${np.type}")
-            return false
-        }
-
         if (getMousePadPacketType(np) != MousePadPacketType.Keyboard) {
             return false // This packet will be handled by the MouseReceiverPlugin instead, silently ignore
         }
