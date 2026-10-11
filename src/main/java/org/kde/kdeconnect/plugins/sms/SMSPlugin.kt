@@ -212,9 +212,12 @@ class SMSPlugin : Plugin() {
                 np["contactName"] = name
             }
 
-            val photoID = result.photoId
-            if (photoID != null) {
-                np["phoneThumbnail"] = ContactsHelper.photoId64Encoded(context, photoID)
+            val photoId = result.photoId
+            if (photoId != null) {
+                val base64photo = ContactsHelper.photoId64Encoded(context, photoId)
+                if (!base64photo.isNullOrEmpty()) {
+                    np["phoneThumbnail"] = base64photo
+                }
             }
         }
         if (phoneNumber != null) {

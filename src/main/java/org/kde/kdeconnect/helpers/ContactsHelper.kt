@@ -3,7 +3,7 @@
  * SPDX-FileCopyrightText: 2018 Simon Redman <simon@ergotech.com>
  *
  * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
-*/
+ */
 package org.kde.kdeconnect.helpers
 
 import android.content.ContentResolver
@@ -15,6 +15,7 @@ import android.util.Base64
 import android.util.Base64OutputStream
 import android.util.Log
 import java.io.ByteArrayOutputStream
+import androidx.core.net.toUri
 
 /**
  * Helper object for contacts-related operations.
@@ -74,29 +75,25 @@ object ContactsHelper {
      * @param context the context running the request.
      * @param photoId the photoId of the contact.
      *
-     * @return the base64 encoded photo, or an empty string if the photo could not be encoded or [photoId] is null.
+     * @return the base64 encoded photo, or null if the photo could not be encoded.
      */
     @JvmStatic
     fun photoId64Encoded(
         context: Context,
-        photoId: String?
-    ): String { // TODO: Make photoId notnull, make return type nullable to tag error
-        if (photoId == null) {
-            return ""
-        }
-        val photoUri = Uri.parse(photoId)
-
+        photoId: String
+    ): String? {
+        val photoUri = photoId.toUri()
         val encodedPhoto = ByteArrayOutputStream()
-        try {
+        return try {
             context.contentResolver.openInputStream(photoUri)!!.use { input ->
                 Base64OutputStream(encodedPhoto, Base64.DEFAULT).use { output ->
                     input.copyTo(output, 1024)
                 }
             }
-            return encodedPhoto.toString()
+            encodedPhoto.toString()
         } catch (ex: Exception) {
             Log.e(TAG, "Error encoding photo", ex)
-            return ""
+            null
         }
     }
 

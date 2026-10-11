@@ -15,7 +15,6 @@ import android.content.pm.PackageManager
 import android.media.AudioManager
 import android.telephony.PhoneNumberUtils
 import android.telephony.TelephonyManager
-import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
 import androidx.preference.PreferenceManager
@@ -78,15 +77,11 @@ class TelephonyPlugin : Plugin() {
                 np["contactName"] = name
             }
 
-            val photoUri = result.photoId
-            if (photoUri != null) {
-                try {
-                    val base64photo = ContactsHelper.photoId64Encoded(context, photoUri)
-                    if (!base64photo.isNullOrEmpty()) {
-                        np["phoneThumbnail"] = base64photo
-                    }
-                } catch (e: Exception) {
-                    Log.e("TelephonyPlugin", "Failed to get contact photo")
+            val photoId = result.photoId
+            if (photoId != null) {
+                val base64photo = ContactsHelper.photoId64Encoded(context, photoId)
+                if (!base64photo.isNullOrEmpty()) {
+                    np["phoneThumbnail"] = base64photo
                 }
             }
         } else if (phoneNumber != null) {
