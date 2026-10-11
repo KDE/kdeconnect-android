@@ -13,6 +13,7 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
+import android.view.View
 import android.view.accessibility.AccessibilityManager
 import android.view.accessibility.AccessibilityNodeInfo
 import android.view.accessibility.AccessibilityNodeInfo.FOCUS_INPUT
@@ -180,6 +181,8 @@ class RemoteKeyboardPlugin : Plugin() {
         if (shift) {
             val movement = if (ctrl) Movement.WORD else Movement.CHARACTER
             when (specialKey) {
+                SpecialKeys.TAB -> moveFocus(forward = false, focus)
+
                 SpecialKeys.DPAD_LEFT -> moveCursor(
                     forward = false,
                     movement,
@@ -238,6 +241,8 @@ class RemoteKeyboardPlugin : Plugin() {
         val specialKey = SpecialKeys.fromInt(sKey)
 
         when (specialKey) {
+            SpecialKeys.TAB -> moveFocus(forward = true, focus)
+
             SpecialKeys.DEL -> delete(false)
 
             SpecialKeys.FORWARD_DEL -> delete(true)
@@ -297,6 +302,16 @@ class RemoteKeyboardPlugin : Plugin() {
 
             else -> {}
         }
+    }
+
+    private fun moveFocus(
+        forward: Boolean,
+        focus: AccessibilityNodeInfo
+    ) {
+        val direction = if (forward) View.FOCUS_FORWARD else View.FOCUS_BACKWARD
+        val next = focus.focusSearch(direction)
+            ?: return
+        next.performAction(AccessibilityNodeInfo.ACTION_FOCUS)
     }
 
     private fun keyInput(key: String): Boolean {
