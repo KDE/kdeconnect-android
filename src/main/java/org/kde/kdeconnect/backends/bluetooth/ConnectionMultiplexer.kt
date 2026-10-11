@@ -122,7 +122,7 @@ class ConnectionMultiplexer(private val socket: BluetoothSocket) : Closeable {
                     if (readBuffer.position() <= 0) {
                         try {
                             lockCondition.await()
-                        } catch (ignored: Exception) {
+                        } catch (_: Exception) {
                         }
                     }
                 }

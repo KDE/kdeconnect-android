@@ -252,7 +252,7 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
                     Log.i("ClientRunnable", "after connectToDevices")
                     try {
                         Thread.sleep(15000)
-                    } catch (ignored: InterruptedException) {
+                    } catch (_: InterruptedException) {
                     }
                 }
                 Log.i("ClientRunnable", "unregisteringReceiver")

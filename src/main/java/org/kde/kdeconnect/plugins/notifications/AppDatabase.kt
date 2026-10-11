@@ -12,6 +12,7 @@ import android.content.SharedPreferences
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
+import androidx.core.content.edit
 
 internal class AppDatabase private constructor(context: Context) {
 
@@ -56,7 +57,7 @@ internal class AppDatabase private constructor(context: Context) {
     var allEnabled: Boolean
         get() = prefs.getBoolean(SETTINGS_KEY_ALL_ENABLED, true)
         set(enabled) {
-            prefs.edit().putBoolean(SETTINGS_KEY_ALL_ENABLED, enabled).apply()
+            prefs.edit { putBoolean(SETTINGS_KEY_ALL_ENABLED, enabled) }
             val ourDatabase = ourHelper.writableDatabase
             ourDatabase.execSQL("UPDATE $TABLE_ENABLED SET $KEY_IS_ENABLED=" + if (enabled) "1" else "0")
         }

@@ -147,7 +147,7 @@ class ContactsPlugin : Plugin() {
                     uIDsAsStrings.add(uID.toString())
                     // Add the uid -> vcard pairing to the packet
                     set(uID.toString(), vcardWithMetadata.toString())
-                } catch (e: ContactNotFoundException) {
+                } catch (_: ContactNotFoundException) {
                     Log.e("ContactsPlugin", "handleRequestVCardsByUIDs failed to find contact with uID $uID")
                 }
             }

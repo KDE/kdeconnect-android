@@ -32,8 +32,8 @@ import java.util.ArrayList
  * @see CompositeReceiveFileJob
  * @see Device.SendPacketStatusCallback
  */
-class CompositeUploadFileJob(device: Device, callback: Callback<Void?>)
-    : BackgroundJob<Device, Void?>(device, callback)
+class CompositeUploadFileJob(device: Device, callback: Callback<Unit>)
+    : BackgroundJob<Device, Unit>(device, callback)
 {
 
     private var isRunning: Boolean = false
@@ -108,7 +108,7 @@ class CompositeUploadFileJob(device: Device, callback: Callback<Void?>)
                 )
                 uploadNotification.show()
 
-                reportResult(null)
+                reportResult(Unit)
             }
         } catch (e: RuntimeException) {
             synchronized(lock) {

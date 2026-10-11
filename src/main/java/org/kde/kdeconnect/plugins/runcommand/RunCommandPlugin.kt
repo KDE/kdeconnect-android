@@ -24,6 +24,7 @@ import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.plugins.PluginFactory.LoadablePlugin
 import org.kde.kdeconnect.ui.PluginSettingsFragment
 import org.kde.kdeconnect_tp.R
+import androidx.core.content.edit
 
 @LoadablePlugin
 class RunCommandPlugin : Plugin() {
@@ -118,9 +119,9 @@ class RunCommandPlugin : Plugin() {
                         array.put(command)
                     }
 
-                    sharedPreferences.edit()
-                        .putString(KEY_COMMANDS_PREFERENCE + device.deviceId, array.toString())
-                        .apply()
+                    sharedPreferences.edit {
+                        putString(KEY_COMMANDS_PREFERENCE + device.deviceId, array.toString())
+                    }
                 }
 
                 forceRefreshWidgets(context)

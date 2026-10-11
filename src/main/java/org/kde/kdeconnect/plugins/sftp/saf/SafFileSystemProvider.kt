@@ -270,7 +270,7 @@ class SafFileSystemProvider(
                     }
                     source.safUri = newUri
                     return
-                } catch (ignored: FileNotFoundException) {
+                } catch (_: FileNotFoundException) {
                     // no-op: fallback to the next method
                 }
             }

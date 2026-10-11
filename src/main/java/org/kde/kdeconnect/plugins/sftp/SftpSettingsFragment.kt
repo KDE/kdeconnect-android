@@ -31,6 +31,7 @@ import org.kde.kdeconnect.ui.PluginSettingsActivity
 import org.kde.kdeconnect.ui.PluginSettingsFragment
 import org.kde.kdeconnect_tp.R
 import java.util.Collections
+import androidx.core.content.edit
 
 class SftpSettingsFragment :
     PluginSettingsFragment(),
@@ -60,7 +61,7 @@ class SftpSettingsFragment :
         if (savedInstanceState != null && savedInstanceState.containsKey(KEY_ACTION_MODE_STATE)) {
             try {
                 savedActionModeState = JSONObject(savedInstanceState.getString(KEY_ACTION_MODE_STATE, "{}"))
-            } catch (ignored: JSONException) {}
+            } catch (_: JSONException) {}
         }
     }
 
@@ -144,7 +145,7 @@ class SftpSettingsFragment :
                     }
                 }
             }
-        } catch (ignored: JSONException) {}
+        } catch (_: JSONException) {}
     }
 
     override fun onDisplayPreferenceDialog(preference: Preference) {
@@ -183,7 +184,7 @@ class SftpSettingsFragment :
             }
 
             outState.putString(KEY_ACTION_MODE_STATE, jsonObject.toString())
-        } catch (ignored: JSONException) {}
+        } catch (_: JSONException) {}
     }
 
     private fun saveStorageInfoList() {
@@ -196,12 +197,11 @@ class SftpSettingsFragment :
             for (storageInfo in this.storageInfoList) {
                 jsonArray.put(storageInfo.toJSON())
             }
-        } catch (ignored: JSONException) {}
+        } catch (_: JSONException) {}
 
-        preferences
-            .edit()
-            .putString(requireContext().getString(SftpPlugin.PREFERENCE_KEY_STORAGE_INFO_LIST), jsonArray.toString())
-            .apply()
+        preferences.edit {
+            putString(requireContext().getString(SftpPlugin.PREFERENCE_KEY_STORAGE_INFO_LIST), jsonArray.toString())
+        }
     }
 
     private fun sortStorageInfoListOnDisplayName() {

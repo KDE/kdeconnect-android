@@ -176,7 +176,7 @@ internal object AlbumArtCache {
                 memoryCache.put(albumUrl, memItem)
                 return result
             }
-        } catch (e: IOException) {
+        } catch (_: IOException) {
             return null
         }
 

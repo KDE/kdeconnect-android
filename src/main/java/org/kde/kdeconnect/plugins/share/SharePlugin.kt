@@ -51,10 +51,14 @@ import org.kde.kdeconnect_tp.R
 class SharePlugin : Plugin() {
     private val backgroundJobHandler: BackgroundJobHandler = newFixedThreadPoolBackgroundJobHandler(5)
     private val handler: Handler = Handler(Looper.getMainLooper())
-    private val receiveFileJobCallback: Callback = this.Callback()
+    private val receiveFileJobCallback: Callback = Callback()
     private var receiveFileJob: CompositeReceiveFileJob? = null
     private var uploadFileJob: CompositeUploadFileJob? = null
 
+    private inner class Callback : BackgroundJob.Callback<Unit> {
+        override fun onResult(job: BackgroundJob<*, *>, result: Unit) = jobDone(job)
+        override fun onError(job: BackgroundJob<*, *>, error: Throwable) = jobDone(job)
+    }
 
     override fun onCreate() {
         createOrUpdateDynamicShortcut()
@@ -73,7 +77,6 @@ class SharePlugin : Plugin() {
                 ShortcutManagerCompat.removeLongLivedShortcuts(context,listOf(shortcut.id))
             }
         }
-        super.onDestroy()
     }
 
     private fun createOrUpdateDynamicShortcut(shortcutToUpdate: ShortcutInfoCompat? = null) {
@@ -239,8 +242,8 @@ class SharePlugin : Plugin() {
     }
 
     fun sendFiles(uriList: List<Uri>) {
-        val job = uploadFileJob ?:
-        CompositeUploadFileJob(device, this.receiveFileJobCallback)
+        val job = uploadFileJob
+            ?: CompositeUploadFileJob(device, this.receiveFileJobCallback)
 
         //Read all the data early, as we only have permissions to do it while the activity is alive
         for (uri in uriList) {
@@ -305,11 +308,6 @@ class SharePlugin : Plugin() {
         } else if (job === uploadFileJob) {
             uploadFileJob = null
         }
-    }
-
-    private inner class Callback : BackgroundJob.Callback<Void?> {
-        override fun onResult(job: BackgroundJob<*, *>, result: Void?) = jobDone(job)
-        override fun onError(job: BackgroundJob<*, *>, error: Throwable) = jobDone(job)
     }
 
     fun cancelJob(jobId: Long) {

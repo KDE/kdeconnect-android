@@ -158,7 +158,7 @@ class DigitizerActivity : BaseActivity<ActivityDigitizerBinding>(), DrawingPadVi
                 true
             }
             R.id.menu_open_settings -> {
-                startActivity(PluginSettingsActivity.createIntent(this, deviceId, DigitizerPlugin::class.java.getSimpleName()))
+                startActivity(PluginSettingsActivity.createIntent(this, deviceId, DigitizerPlugin::class.java.simpleName))
                 true
             }
             else -> super.onOptionsItemSelected(item)

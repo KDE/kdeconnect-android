@@ -11,7 +11,6 @@ import org.json.JSONObject
 import org.kde.kdeconnect.extensions.closeSafe
 import java.io.ByteArrayInputStream
 import java.io.Closeable
-import java.io.IOException
 import java.io.InputStream
 import java.net.Socket
 
@@ -53,7 +52,7 @@ class NetworkPacket private constructor(
     operator fun set(key: String, value: String) {
         try {
             mBody.put(key, value)
-        } catch (ignored: Exception) {
+        } catch (_: Exception) {
         }
     }
 
@@ -73,7 +72,7 @@ class NetworkPacket private constructor(
     operator fun set(key: String, value: Int) {
         try {
             mBody.put(key, value)
-        } catch (ignored: Exception) {
+        } catch (_: Exception) {
         }
     }
 
@@ -88,7 +87,7 @@ class NetworkPacket private constructor(
     operator fun set(key: String, value: Long) {
         try {
             mBody.put(key, value)
-        } catch (ignored: Exception) {
+        } catch (_: Exception) {
         }
     }
 
@@ -103,7 +102,7 @@ class NetworkPacket private constructor(
     operator fun set(key: String, value: Boolean) {
         try {
             mBody.put(key, value)
-        } catch (ignored: Exception) {
+        } catch (_: Exception) {
         }
     }
 
@@ -118,7 +117,7 @@ class NetworkPacket private constructor(
     operator fun set(key: String, value: Double) {
         try {
             mBody.put(key, value)
-        } catch (ignored: Exception) {
+        } catch (_: Exception) {
         }
     }
 
@@ -129,7 +128,7 @@ class NetworkPacket private constructor(
     operator fun set(key: String, value: JSONArray?) {
         try {
             mBody.put(key, value)
-        } catch (ignored: Exception) {
+        } catch (_: Exception) {
         }
     }
 
@@ -140,7 +139,7 @@ class NetworkPacket private constructor(
     operator fun set(key: String, value: JSONObject?) {
         try {
             mBody.put(key, value)
-        } catch (ignored: JSONException) {
+        } catch (_: JSONException) {
         }
     }
 
@@ -152,7 +151,7 @@ class NetworkPacket private constructor(
             try {
                 val str = jsonArray.getString(i)
                 list.add(str)
-            } catch (ignored: Exception) {
+            } catch (_: Exception) {
             }
         }
         return list
@@ -170,7 +169,7 @@ class NetworkPacket private constructor(
                 jsonArray.put(str)
             }
             mBody.put(key, jsonArray)
-        } catch (ignored: Exception) {
+        } catch (_: Exception) {
         }
     }
 
@@ -182,7 +181,7 @@ class NetworkPacket private constructor(
             try {
                 val str = jsonArray.getString(i)
                 list.add(str)
-            } catch (ignored: Exception) {
+            } catch (_: Exception) {
             }
         }
         return list
@@ -200,7 +199,7 @@ class NetworkPacket private constructor(
                 jsonArray.put(str)
             }
             mBody.put(key, jsonArray)
-        } catch (ignored: Exception) {
+        } catch (_: Exception) {
         }
     }
 

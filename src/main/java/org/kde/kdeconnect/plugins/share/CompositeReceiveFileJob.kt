@@ -44,7 +44,9 @@ import java.nio.file.attribute.FileTime
  *
  * @see CompositeUploadFileJob
  */
-class CompositeReceiveFileJob(device: Device, callBack: Callback<Void?>) : BackgroundJob<Device, Void?>(device, callBack) {
+class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
+    : BackgroundJob<Device, Unit>(device, callBack)
+{
 
     private val receiveNotification: ReceiveNotification = ReceiveNotification(device, id)
     private var currentNetworkPacket: NetworkPacket? = null
@@ -223,7 +225,7 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Void?>) : Backg
 
                 receiveNotification.show()
             }
-            reportResult(null)
+            reportResult(Unit)
         } catch (_: ActivityNotFoundException) {
             receiveNotification.setFinished(device.context.getString(R.string.no_app_for_opening))
             receiveNotification.show()

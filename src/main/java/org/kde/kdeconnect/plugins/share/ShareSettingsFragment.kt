@@ -19,6 +19,7 @@ import androidx.preference.PreferenceManager
 import androidx.preference.SwitchPreference
 import org.kde.kdeconnect.ui.PluginSettingsFragment
 import java.io.File
+import androidx.core.content.edit
 
 class ShareSettingsFragment : PluginSettingsFragment() {
 
@@ -125,8 +126,8 @@ class ShareSettingsFragment : PluginSettingsFragment() {
             )
 
             val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-            prefs.edit().putString(PREFERENCE_DESTINATION, uri.toString()).apply()
-            prefs.edit().putBoolean(PREFERENCE_CUSTOMIZE_DESTINATION, true).apply()
+            prefs.edit { putString(PREFERENCE_DESTINATION, uri.toString()) }
+            prefs.edit { putBoolean(PREFERENCE_CUSTOMIZE_DESTINATION, true) }
         }
     }
 }
