@@ -196,6 +196,9 @@ class RunCommandControlsProviderService : ControlsProviderService() {
                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 .putExtra(MainActivity.EXTRA_DEVICE_ID, device?.deviceId)
 
-        return PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+        // Use a request code unique to the device: extras are ignored when matching PendingIntents, so with a
+        // fixed one the controls of all devices would share the device id of the latest one
+        val requestCode = device?.deviceId.hashCode()
+        return PendingIntent.getActivity(this, requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
     }
 }

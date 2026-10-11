@@ -122,7 +122,7 @@ class FindMyPhonePlugin : Plugin() {
 
         val pendingIntent = PendingIntent.getBroadcast(
             context,
-            0,
+            notificationId,
             intent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
@@ -137,7 +137,7 @@ class FindMyPhonePlugin : Plugin() {
 
         val pi = PendingIntent.getActivity(
             context,
-            0,
+            notificationId,
             intent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
