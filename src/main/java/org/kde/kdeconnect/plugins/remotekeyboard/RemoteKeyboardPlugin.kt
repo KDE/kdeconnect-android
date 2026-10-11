@@ -328,9 +328,11 @@ class RemoteKeyboardPlugin : Plugin() {
         val arguments = Bundle()
         val selectionStart = focus.textSelectionStart
         val selectionEnd = focus.textSelectionEnd
+        val selectionFirst = minOf(selectionStart, selectionEnd).coerceIn(0, text.length)
+        val selectionLast = maxOf(selectionStart, selectionEnd).coerceIn(0, text.length)
 
-        val newTextPartOne = text.substring(0, selectionStart.coerceIn(0, text.length))
-        val newTextPartTwo = text.substring(selectionEnd.coerceIn(0, text.length))
+        val newTextPartOne = text.substring(0, selectionFirst)
+        val newTextPartTwo = text.substring(selectionLast)
         val newText = newTextPartOne + key + newTextPartTwo
 
         arguments.putCharSequence(
@@ -347,7 +349,7 @@ class RemoteKeyboardPlugin : Plugin() {
         };
 
         if (text != "") {
-            moveCursorToPos(selectionStart + key.length, focus)
+            moveCursorToPos(selectionFirst + key.length, focus)
         }
 
         return true
