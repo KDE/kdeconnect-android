@@ -12,15 +12,54 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect.helpers.ThreadHelper
 import org.kde.kdeconnect_tp.R
-import java.util.ArrayList
 
 class SendFileActivity : AppCompatActivity() {
 
     private lateinit var deviceId: String
+
+    private val chooseFilesLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == RESULT_OK && result.data != null) {
+            val data = result.data!!
+            val uris = mutableListOf<Uri>()
+
+            val uri = data.data
+            if (uri != null) {
+                uris.add(uri)
+            }
+
+            val clipData = data.clipData
+            if (clipData != null) {
+                for (i in 0 until clipData.itemCount) {
+                    uris.add(clipData.getItemAt(i).uri)
+                }
+            }
+
+            if (uris.isEmpty()) {
+                Log.w("SendFileActivity", "No files to send?")
+                finish()
+            } else {
+                ThreadHelper.execute {
+                    try {
+                        KdeConnect.getInstance().getDevicePlugin<SharePlugin>(deviceId)
+                            ?.sendFiles(uris)
+                    } finally {
+                        // The read permissions ACTION_GET_CONTENT grants for these URIs are tied to
+                        // this activity's lifetime, so we can't finish() until sendFiles() has opened
+                        // all of them -- otherwise any URI not yet opened throws a SecurityException
+                        // ("... requires that you obtain access using ACTION_OPEN_DOCUMENT").
+                        runOnUiThread(this::finish)
+                    }
+                }
+            }
+        } else {
+            finish()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,56 +72,12 @@ class SendFileActivity : AppCompatActivity() {
             addCategory(Intent.CATEGORY_OPENABLE)
         }
         try {
-            startActivityForResult(
-                Intent.createChooser(intent, getString(R.string.send_files)),
-                RESULT_FIRST_USER,
+            chooseFilesLauncher.launch(
+                Intent.createChooser(intent, getString(R.string.send_files))
             )
         } catch (_: ActivityNotFoundException) {
             Toast.makeText(this, R.string.no_file_browser, Toast.LENGTH_SHORT).show()
             finish()
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        when (requestCode) {
-            RESULT_FIRST_USER -> {
-                if (resultCode == RESULT_OK && data != null) {
-                    val uris = ArrayList<Uri>()
-
-                    val uri = data.data
-                    if (uri != null) {
-                        uris.add(uri)
-                    }
-
-                    val clipData = data.clipData
-                    if (clipData != null) {
-                        for (i in 0 until clipData.itemCount) {
-                            uris.add(clipData.getItemAt(i).uri)
-                        }
-                    }
-
-                    if (uris.isEmpty()) {
-                        Log.w("SendFileActivity", "No files to send?")
-                        finish()
-                    } else {
-                        ThreadHelper.execute {
-                            try {
-                                KdeConnect.getInstance().getDevicePlugin<SharePlugin>(deviceId)
-                                    ?.sendFiles(uris)
-                            } finally {
-                                // The read permissions ACTION_GET_CONTENT grants for these URIs are tied to
-                                // this activity's lifetime, so we can't finish() until sendFiles() has opened
-                                // all of them -- otherwise any URI not yet opened throws a SecurityException
-                                // ("... requires that you obtain access using ACTION_OPEN_DOCUMENT").
-                                runOnUiThread(this::finish)
-                            }
-                        }
-                    }
-                } else {
-                    finish()
-                }
-            }
-            else -> super.onActivityResult(requestCode, resultCode, data)
         }
     }
 
