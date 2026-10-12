@@ -262,7 +262,6 @@ abstract class Plugin {
     open val minSdk: Int = Build.VERSION_CODES.BASE
 
     companion object {
-        @JvmStatic
         fun getPluginKey(p: Class<out Plugin>): String {
             return p.simpleName
         }

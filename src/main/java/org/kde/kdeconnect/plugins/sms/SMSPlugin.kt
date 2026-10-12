@@ -56,7 +56,6 @@ import java.util.concurrent.locks.Lock
 import java.util.concurrent.locks.ReentrantLock
 
 @LoadablePlugin
-@SuppressLint("InlinedApi")
 @RequiresApi(Build.VERSION_CODES.O)
 class SMSPlugin : Plugin() {
     private val receiver: BroadcastReceiver = object : BroadcastReceiver() {

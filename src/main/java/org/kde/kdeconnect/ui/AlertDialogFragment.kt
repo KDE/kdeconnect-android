@@ -97,7 +97,6 @@ open class AlertDialogFragment : DialogFragment() {
     }
 
     abstract class AbstractBuilder<B : AbstractBuilder<B, F>, F : DialogFragment> {
-        @JvmField
         protected val args = Bundle()
 
         abstract fun getThis(): B

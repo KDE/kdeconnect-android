@@ -40,7 +40,6 @@ class ConnectivityListener(context: Context) {
     companion object {
         private const val TAG: String = "ConnectivityListener"
         private var instance: ConnectivityListener? = null
-        @JvmStatic
         fun getInstance(context: Context): ConnectivityListener {
             if (instance == null) {
                 instance = ConnectivityListener(context)

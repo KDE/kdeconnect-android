@@ -329,7 +329,6 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
         super.onStop()
     }
 
-    @JvmOverloads
     fun onDeviceSelected(deviceId: String?, fromDeviceList: Boolean = false) {
         mCurrentDevice = deviceId
         preferences.edit { putString(STATE_SELECTED_DEVICE, deviceId) }

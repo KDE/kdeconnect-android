@@ -11,7 +11,6 @@ import java.security.cert.Certificate
 
 object TrustedDevices {
 
-    @JvmStatic
     fun isTrustedDevice(context: Context, deviceId: String): Boolean {
         val preferences: SharedPreferences = context.getSharedPreferences("trusted_devices", MODE_PRIVATE)
         return preferences.getBoolean(deviceId, false)
@@ -55,7 +54,6 @@ object TrustedDevices {
         return parseCertificate(certificateBytes)
     }
 
-    @JvmStatic
     fun isCertificateStored(context: Context, deviceId: String): Boolean {
         val devicePreferences = context.getSharedPreferences(deviceId, MODE_PRIVATE)
         val cert: String = devicePreferences.getString("certificate", "")!!

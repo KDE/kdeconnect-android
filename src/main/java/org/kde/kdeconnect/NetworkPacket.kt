@@ -284,7 +284,6 @@ class NetworkPacket private constructor(
             PACKET_TYPE_PAIR
         )
 
-        @JvmStatic
         @Throws(JSONException::class)
         fun unserialize(s: String): NetworkPacket {
             val jo = JSONObject(s)

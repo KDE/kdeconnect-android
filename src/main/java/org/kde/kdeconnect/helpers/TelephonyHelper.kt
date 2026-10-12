@@ -25,7 +25,6 @@ object TelephonyHelper {
      *
      * Note that entries of the returned list might return null if the phone number is not known by the device
      */
-    @JvmStatic
     @Throws(SecurityException::class)
     fun getAllPhoneNumbers(context: Context): List<LocalPhoneNumber> {
         // Each subscription is a different SIM card
@@ -70,8 +69,6 @@ object TelephonyHelper {
      * @param subscriptionId Subscription ID for which to get the preferred APN. Ignored for devices older than Lollypop
      * @return Null if the preferred APN can't be found or doesn't support MMS, otherwise an ApnSetting object
      */
-    @SuppressLint("InlinedApi")
-    @JvmStatic
     fun getPreferredApn(context: Context, subscriptionId: Int): ApnSetting? {
         val apnProjection = arrayOf(
             Telephony.Carriers.TYPE,
@@ -139,7 +136,6 @@ object TelephonyHelper {
      * @param requestType Value which we would like to find in types
      * @return True if the APN supports the requested type, false otherwise
      */
-    @JvmStatic
     fun isValidApnType(types: String?, requestType: String): Boolean {
         // If APN type is unspecified, assume APN_TYPE_ALL.
         if (types.isNullOrEmpty()) {
@@ -162,7 +158,6 @@ object TelephonyHelper {
      * @param phoneNumber The phone number to canonicalize
      * @return The canonicalized version of the input phone number
      */
-    @JvmStatic
     fun canonicalizePhoneNumber(phoneNumber: String): String {
         var toReturn = phoneNumber
         toReturn = toReturn.replace(" ", "")
@@ -221,11 +216,11 @@ object TelephonyHelper {
         /**
          * The phone number
          */
-        @JvmField val number: String,
+        val number: String,
         /**
          * The subscription ID to which this phone number belongs
          */
-        @JvmField val subscriptionID: Int
+        val subscriptionID: Int
     ) {
         override fun toString(): String = number
 

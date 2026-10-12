@@ -41,7 +41,6 @@ object ContactsHelper {
      *
      * @return a map containing the `name` and `photoID` of the contact, or an empty map if the contact could not be found.
      */
-    @JvmStatic
     fun phoneNumberLookup(
         context: Context,
         number: String
@@ -77,7 +76,6 @@ object ContactsHelper {
      *
      * @return the base64 encoded photo, or null if the photo could not be encoded.
      */
-    @JvmStatic
     fun photoId64Encoded(
         context: Context,
         photoId: String
@@ -135,7 +133,6 @@ object ContactsHelper {
      * @param ids collection of raw contact IDs to look up.
      * @return map of raw contact IDs to the corresponding VCard.
      */
-    @JvmStatic
     fun getVCardsForContactIDs(context: Context, ids: Collection<uID>): Map<uID, VCardBuilder> {
         return getVCardsSlow(context, ids)
     }
@@ -146,7 +143,6 @@ object ContactsHelper {
      * @param context [android.content.Context] running the request.
      * @return map of contact uID to last-modified timestamp.
      */
-    @JvmStatic
     fun getAllContactTimestamps(context: Context): Map<uID, Long> {
         val projection =
             arrayOf(uID.COLUMN, ContactsContract.Contacts.CONTACT_LAST_UPDATED_TIMESTAMP)
@@ -169,7 +165,6 @@ object ContactsHelper {
      * @throws ContactNotFoundException if the given ID for some reason does not match a contact.
      * @return last-modified timestamp of the contact.
      */
-    @JvmStatic
     @Throws(ContactNotFoundException::class)
     fun getContactTimestamp(context: Context, contactID: uID): Long {
         val projection =

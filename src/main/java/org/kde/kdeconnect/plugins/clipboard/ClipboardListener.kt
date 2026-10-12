@@ -110,13 +110,11 @@ class ClipboardListener {
     companion object {
         private var _instance: ClipboardListener? = null
 
-        @JvmStatic
         fun instance(context: Context): ClipboardListener {
             // FIXME: The _instance we return won't be completely initialized yet since initialization happens on a new thread (why?)
             return _instance ?: ClipboardListener(context).also { _instance = it }
         }
 
-        @JvmStatic
         fun detectContentType(clip: ClipData?): ClipboardContentType {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
                 return ClipboardContentType.Text

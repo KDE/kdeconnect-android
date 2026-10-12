@@ -14,7 +14,7 @@ import androidx.preference.DialogPreference
 import androidx.preference.PreferenceViewHolder
 import org.kde.kdeconnect_tp.R
 
-class StoragePreference @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
+class StoragePreference(context: Context, attrs: AttributeSet? = null) :
     DialogPreference(
         context, attrs
     ) {

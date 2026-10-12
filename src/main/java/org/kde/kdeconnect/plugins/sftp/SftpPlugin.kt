@@ -229,7 +229,7 @@ class SftpPlugin : Plugin(), OnSharedPreferenceChangeListener {
         onPacketReceived(np)
     }
 
-    data class StorageInfo(@JvmField var displayName: String, @JvmField val uri: Uri) {
+    data class StorageInfo(var displayName: String, val uri: Uri) {
         val isFileUri: Boolean = uri.scheme == ContentResolver.SCHEME_FILE
         val isContentUri: Boolean = uri.scheme == ContentResolver.SCHEME_CONTENT
 
@@ -245,12 +245,10 @@ class SftpPlugin : Plugin(), OnSharedPreferenceChangeListener {
             private const val KEY_DISPLAY_NAME = "DisplayName"
             private const val KEY_URI = "Uri"
 
-            @JvmStatic
             @Throws(JSONException::class)
-            fun fromJSON(jsonObject: JSONObject): StorageInfo { // TODO: Use Result after migrate callee to Kotlin
+            fun fromJSON(jsonObject: JSONObject): StorageInfo {
                 val displayName = jsonObject.getString(KEY_DISPLAY_NAME)
                 val uri = jsonObject.getString(KEY_URI).toUri()
-
                 return StorageInfo(displayName, uri)
             }
         }
@@ -260,7 +258,6 @@ class SftpPlugin : Plugin(), OnSharedPreferenceChangeListener {
         private const val PACKET_TYPE_SFTP = "kdeconnect.sftp"
         private const val PACKET_TYPE_SFTP_REQUEST = "kdeconnect.sftp.request"
 
-        @JvmField
         val PREFERENCE_KEY_STORAGE_INFO_LIST: Int = R.string.sftp_preference_key_storage_info_list
 
         private val server = SimpleSftpServer()

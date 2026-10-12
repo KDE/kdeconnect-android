@@ -10,7 +10,6 @@ import android.content.pm.PackageManager
 import android.util.Log
 
 object AppsHelper {
-    @JvmStatic
     fun appNameLookup(context: Context, packageName: String): String {
         return try {
             val manager = context.packageManager

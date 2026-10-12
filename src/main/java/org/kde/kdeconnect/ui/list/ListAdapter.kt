@@ -15,7 +15,6 @@ class ListAdapter : ArrayAdapter<ListAdapter.Item> {
     private val items: List<Item>
     private val isEnabled: Boolean
 
-    @JvmOverloads
     constructor(context: Context, items: List<Item>, isEnabled: Boolean = true) : super(context, 0, items) {
         this.items = items
         this.isEnabled = isEnabled

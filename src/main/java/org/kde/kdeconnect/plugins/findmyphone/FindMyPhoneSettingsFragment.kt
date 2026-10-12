@@ -154,7 +154,6 @@ class FindMyPhoneSettingsFragment : PluginSettingsFragment() {
     }
 
     companion object {
-        @JvmStatic
         fun newInstance(pluginKey: String, deviceId: String, layout: Int): FindMyPhoneSettingsFragment {
             return FindMyPhoneSettingsFragment().apply {
                 setArguments(pluginKey, deviceId, layout)

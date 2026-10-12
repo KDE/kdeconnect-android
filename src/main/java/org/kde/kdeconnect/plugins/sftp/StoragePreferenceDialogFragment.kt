@@ -296,9 +296,7 @@ class StoragePreferenceDialogFragment : PreferenceDialogFragmentCompat(), TextWa
     }
 
     class CallbackResult {
-        @JvmField
         var isAllowed: Boolean = false
-        @JvmField
         var errorMessage: String? = null
     }
 
@@ -314,7 +312,6 @@ class StoragePreferenceDialogFragment : PreferenceDialogFragmentCompat(), TextWa
         private const val KEY_STORAGE_INFO = "StorageInfo"
         private const val KEY_TAKE_FLAGS = "TakeFlags"
 
-        @JvmStatic
         fun newInstance(key: String): StoragePreferenceDialogFragment {
             return StoragePreferenceDialogFragment().apply {
                 arguments = Bundle().apply {

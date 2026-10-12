@@ -315,24 +315,20 @@ class RemoteKeyboardIMEPlugin : Plugin(), SharedPreferences.OnSharedPreferenceCh
         private val instances = ArrayList<RemoteKeyboardIMEPlugin>()
         private val instancesLock = ReentrantLock(true)
 
-        @JvmStatic
         fun acquireInstances(): ArrayList<RemoteKeyboardIMEPlugin> {
             instancesLock.lock()
             return instances
         }
 
-        @JvmStatic
         fun releaseInstances(): ArrayList<RemoteKeyboardIMEPlugin> {
             instancesLock.unlock()
             return instances
         }
 
-        @JvmStatic
         fun isConnected(): Boolean {
             return instances.isNotEmpty()
         }
 
-        @JvmStatic
         fun getMousePadPacketType(np: NetworkPacket): MousePadPacketType {
             return if (np.has("key") || np.has("specialKey")) {
                 MousePadPacketType.Keyboard

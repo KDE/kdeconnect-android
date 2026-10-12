@@ -22,13 +22,13 @@ import java.security.cert.CertificateException
  * DeviceInfo contains all the properties needed to instantiate a Device.
  */
 data class DeviceInfo(
-    @JvmField val id: String,
-    @JvmField val certificate: Certificate,
-    @JvmField var name: String,
-    @JvmField var type: DeviceType,
-    @JvmField var protocolVersion: Int = 0,
-    @JvmField var incomingCapabilities: Set<String>? = null,
-    @JvmField var outgoingCapabilities: Set<String>? = null,
+    val id: String,
+    val certificate: Certificate,
+    var name: String,
+    var type: DeviceType,
+    var protocolVersion: Int = 0,
+    var incomingCapabilities: Set<String>? = null,
+    var outgoingCapabilities: Set<String>? = null,
 ) {
 
     /**
@@ -70,7 +70,6 @@ data class DeviceInfo(
         /**
          * Recreates a DeviceInfo object that was persisted using saveInSettings()
          */
-        @JvmStatic
         @Throws(CertificateException::class)
         fun loadFromSettings(context: Context, deviceId: String) =
             with(TrustedDevices.getDeviceSettings(context, deviceId)) {
@@ -86,7 +85,6 @@ data class DeviceInfo(
         /**
          * Reads the stored
          */
-        @JvmStatic
         fun loadProtocolVersionFromSettings(context: Context, deviceId: String) =
             with(TrustedDevices.getDeviceSettings(context, deviceId)) {
                 getInt("protocolVersion", 0)
@@ -96,7 +94,6 @@ data class DeviceInfo(
          * Recreates a DeviceInfo object that was serialized using toIdentityPacket().
          * Since toIdentityPacket() doesn't serialize the certificate, this needs to be passed separately.
          */
-        @JvmStatic
         fun fromIdentityPacketAndCert(identityPacket: NetworkPacket, certificate: Certificate) =
             with(identityPacket) {
                 DeviceInfo(
@@ -110,7 +107,6 @@ data class DeviceInfo(
                 )
             }
 
-        @JvmStatic
         fun isValidIdentityPacket(identityPacket: NetworkPacket): Boolean = with(identityPacket) {
             type == NetworkPacket.PACKET_TYPE_IDENTITY &&
                     DeviceHelper.filterInvalidCharactersFromDeviceNameAndLimitLength(getString("deviceName", "")).isNotBlank() &&
@@ -119,7 +115,6 @@ data class DeviceInfo(
 
         private val DEVICE_ID_REGEX = "^[a-zA-Z0-9_-]{32,38}$".toRegex()
 
-        @JvmStatic
         fun isValidDeviceId(deviceId: String): Boolean = deviceId.matches(DEVICE_ID_REGEX)
     }
 }
@@ -159,7 +154,6 @@ enum class DeviceType {
         }
 
     companion object {
-        @JvmStatic
         fun fromString(s: String) =
             when (s) {
                 "phone" -> PHONE

@@ -24,7 +24,6 @@ import java.security.spec.X509EncodedKeySpec
 object RsaHelper {
     private const val RSA = "RSA" // KeyProperties.KEY_ALGORITHM_RSA isn't available until API 23+
 
-    @JvmStatic
     fun initialiseRsaKeys(context: Context) {
         val settings = PreferenceManager.getDefaultSharedPreferences(context)
 
@@ -57,14 +56,12 @@ object RsaHelper {
     /** For backwards compat: if no keyAlgorithm setting is set, it means it was generated using RSA */
     private fun algorithmFromSettings(pref: SharedPreferences) = pref.getString("keyAlgorithm", RSA)!!
 
-    @JvmStatic
     fun getPublicKey(context: Context): PublicKey {
         val settings = PreferenceManager.getDefaultSharedPreferences(context)
         val publicKeyBytes = Base64.decode(settings.getString("publicKey", ""), 0)
         return KeyFactory.getInstance(algorithmFromSettings(settings)).generatePublic(X509EncodedKeySpec(publicKeyBytes))
     }
 
-    @JvmStatic
     fun getPrivateKey(context: Context): PrivateKey {
         val settings = PreferenceManager.getDefaultSharedPreferences(context)
         val privateKeyBytes = Base64.decode(settings.getString("privateKey", ""), 0)

@@ -302,7 +302,6 @@ open class KdeConnectAccessibilityService : AccessibilityService() {
     override fun onInterrupt() { }
 
     companion object {
-        @JvmField
         var instance: KdeConnectAccessibilityService? = null
 
         @RequiresApi(api = Build.VERSION_CODES.N)

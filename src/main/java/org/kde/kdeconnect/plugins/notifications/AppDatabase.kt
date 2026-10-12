@@ -178,7 +178,6 @@ internal class AppDatabase private constructor(context: Context) {
 
         private var instance: AppDatabase? = null
 
-        @JvmStatic
         fun getInstance(context: Context): AppDatabase {
             return instance ?: AppDatabase(context.applicationContext).also { instance = it }
         }

@@ -8,7 +8,6 @@ package org.kde.kdeconnect.helpers
 import java.security.SecureRandom
 
 object RandomHelper {
-    @JvmField
     val secureRandom: SecureRandom = SecureRandom()
 
     private val symbols = (('A'..'Z').toList() + ('a'..'z').toList() + ('0'..'9').toList()).toCharArray()

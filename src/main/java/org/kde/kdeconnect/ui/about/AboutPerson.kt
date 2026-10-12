@@ -8,7 +8,7 @@ package org.kde.kdeconnect.ui.about
 
 import androidx.annotation.StringRes
 
-class AboutPerson @JvmOverloads constructor(
+class AboutPerson(
     val name: String,
     @StringRes val task: Int? = null,
     val emailAddress: String? = null,

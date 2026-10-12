@@ -35,7 +35,6 @@ import java.util.TreeMap
 import java.util.concurrent.locks.Lock
 import java.util.concurrent.locks.ReentrantLock
 
-@SuppressLint("InlinedApi")
 object SMSHelper {
     private const val THUMBNAIL_HEIGHT = 100
     private const val THUMBNAIL_WIDTH = 100
@@ -1019,7 +1018,6 @@ object SMSHelper {
              * Since this means a thread has to be spawned, this method might block until that thread is
              * ready to serve requests
              */
-            @JvmStatic // required for ConnectivityReportPlugin.java
             fun getLooper(): Looper? {
                 if (singleton == null) {
                     looperReadyLock.lock()

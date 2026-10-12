@@ -67,7 +67,6 @@ class ClipboardFloatingActivity : AppCompatActivity() {
     companion object {
         private const val KEY_SHOW_TOAST = "SHOW_TOAST"
 
-        @JvmStatic
         fun getIntent(context: Context, showToast: Boolean): Intent {
             return Intent(context.applicationContext, ClipboardFloatingActivity::class.java).apply {
                 putExtra(KEY_SHOW_TOAST, showToast)

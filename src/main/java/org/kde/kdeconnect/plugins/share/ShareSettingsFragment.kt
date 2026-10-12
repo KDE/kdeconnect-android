@@ -78,25 +78,21 @@ class ShareSettingsFragment : PluginSettingsFragment() {
 
         private const val RESULT_PICKER = Activity.RESULT_FIRST_USER
 
-        @JvmStatic
         fun newInstance(pluginKey: String, deviceId: String, layout: Int): ShareSettingsFragment {
             val fragment = ShareSettingsFragment()
             fragment.setArguments(pluginKey, deviceId, layout)
             return fragment
         }
 
-        @JvmStatic
         fun getDefaultDestinationDirectory(): File {
             return Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
         }
 
-        @JvmStatic
         fun isCustomDestinationEnabled(context: Context): Boolean {
             return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(PREFERENCE_CUSTOMIZE_DESTINATION, false)
         }
 
         // Will return the appropriate directory, whether it is customized or not
-        @JvmStatic
         fun getDestinationDirectory(context: Context): DocumentFile {
             if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(PREFERENCE_CUSTOMIZE_DESTINATION, false)) {
                 val path = PreferenceManager.getDefaultSharedPreferences(context).getString(PREFERENCE_DESTINATION, null)
@@ -118,7 +114,6 @@ class ShareSettingsFragment : PluginSettingsFragment() {
             return DocumentFile.fromFile(getDefaultDestinationDirectory())
         }
 
-        @JvmStatic
         fun saveStorageLocationPreference(context: Context, uri: Uri) {
             context.contentResolver.takePersistableUriPermission(
                 uri,

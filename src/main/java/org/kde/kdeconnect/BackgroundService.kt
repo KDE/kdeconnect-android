@@ -267,7 +267,6 @@ class BackgroundService : Service() {
         const val UPDATE_IMMUTABLE_FLAGS = PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         private const val FOREGROUND_NOTIFICATION_ID = 1
 
-        @JvmStatic
         var instance: BackgroundService? = null
             private set
 
@@ -298,7 +297,6 @@ class BackgroundService : Service() {
             ContextCompat.startForegroundService(context, intent)
         }
 
-        @JvmStatic
         fun ForceRefreshConnections(context: Context) {
             Log.d(LOG_TAG, "ForceRefreshConnections")
             val intent = Intent(context, BackgroundService::class.java)

@@ -242,10 +242,8 @@ class KdeConnect : Application() {
     }
 
     companion object {
-        @JvmStatic
         private lateinit var _instance: KdeConnect
 
-        @JvmStatic
         fun getInstance(): KdeConnect = _instance
     }
 }

@@ -16,7 +16,6 @@ object ThreadHelper {
 
     private val executor: ExecutorService = Executors.newCachedThreadPool()
 
-    @JvmStatic
     fun execute(command: Runnable) = executor.execute(command)
 
     fun assertMainThread() {

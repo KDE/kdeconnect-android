@@ -34,10 +34,8 @@ object PluginFactory {
     val outgoingCapabilities: Set<String>
         get() = pluginInfo.values.flatMap { plugin -> plugin.outgoingPacketTypes }.toSet()
 
-    @JvmStatic
     fun getPluginInfo(pluginKey: String): PluginInfo = pluginInfo[pluginKey]!!
 
-    @JvmStatic
     fun sortPluginList(plugins: List<String>): List<String> {
         return plugins.sortedBy { pluginInfo[it]?.displayName }
     }

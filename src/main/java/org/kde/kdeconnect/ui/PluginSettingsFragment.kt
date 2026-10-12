@@ -20,7 +20,6 @@ open class PluginSettingsFragment : PreferenceFragmentCompat() {
 
     protected lateinit var device: Device
 
-    @JvmField
     protected var plugin: Plugin? = null
 
     protected fun setArguments(pluginKey: String, deviceId: String, vararg settingsLayouts: Int): Bundle {
@@ -75,7 +74,6 @@ open class PluginSettingsFragment : PreferenceFragmentCompat() {
         private const val ARG_LAYOUT = "layout"
         private const val ARG_DEVICE_ID = "device_id"
 
-        @JvmStatic
         fun newInstance(pluginKey: String, deviceId: String, vararg settingsLayout: Int): PluginSettingsFragment {
             val fragment = PluginSettingsFragment()
             fragment.setArguments(pluginKey, deviceId, *settingsLayout)

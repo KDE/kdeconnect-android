@@ -137,7 +137,6 @@ class PluginSettingsListFragment : PreferenceFragmentCompat() {
         private const val ARG_DEVICE_ID = "deviceId"
         private const val KEY_RECYCLERVIEW_LAYOUTMANAGER_STATE = "RecyclerViewLayoutmanagerState"
 
-        @JvmStatic
         fun newInstance(deviceId: String): PluginSettingsListFragment {
             return PluginSettingsListFragment().apply {
                 arguments = Bundle().apply {

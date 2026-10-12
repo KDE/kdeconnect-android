@@ -358,14 +358,12 @@ class SftpSettingsFragment :
         private const val KEY_ACTION_MODE_ENABLED = "ActionModeEnabled"
         private const val KEY_ACTION_MODE_SELECTED_ITEMS = "ActionModeSelectedItems"
 
-        @JvmStatic
         fun newInstance(pluginKey: String, deviceId: String, layout: Int): SftpSettingsFragment {
             return SftpSettingsFragment().apply {
                 setArguments(pluginKey, deviceId, layout)
             }
         }
 
-        @JvmStatic
         fun getStorageInfoList(context: Context, plugin: Plugin): MutableList<SftpPlugin.StorageInfo> {
             val storageInfoList = ArrayList<SftpPlugin.StorageInfo>()
             val deviceSettings = plugin.preferences
@@ -383,7 +381,6 @@ class SftpSettingsFragment :
             return storageInfoList
         }
 
-        @JvmStatic
         fun isDisplayNameUnique(storageInfoList: List<SftpPlugin.StorageInfo>, displayName: String, displayNameReadOnly: String): Boolean {
             for (info in storageInfoList) {
                 if (info.displayName == displayName || info.displayName == displayName + displayNameReadOnly) {
@@ -393,7 +390,6 @@ class SftpSettingsFragment :
             return true
         }
 
-        @JvmStatic
         fun isAlreadyConfigured(storageInfoList: List<SftpPlugin.StorageInfo>, sdCardUri: Uri): Boolean {
             for (info in storageInfoList) {
                 if (info.uri == sdCardUri) {

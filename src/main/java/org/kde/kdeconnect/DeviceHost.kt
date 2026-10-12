@@ -5,7 +5,7 @@ import org.kde.kdeconnect.helpers.ThreadHelper
 import java.net.InetAddress
 
 class DeviceHost private constructor(private val host: String) {
-    // Wrapper because Kotlin doesn't allow nested nullability
+
     data class PingResult(val latency: Long?)
 
     /** The amount of milliseconds the ping request took or null it's in progress */
@@ -46,12 +46,10 @@ class DeviceHost private constructor(private val host: String) {
         private const val PING_TIMEOUT = 3_000
         private val hostnameValidityPattern = Regex("^[0-9A-Za-z.:%_-]+$")
 
-        @JvmStatic
         fun isValidDeviceHost(host: String): Boolean {
             return hostnameValidityPattern.matches(host)
         }
 
-        @JvmStatic
         fun toDeviceHostOrNull(host: String): DeviceHost? {
             return if (isValidDeviceHost(host)) {
                 DeviceHost(host)
@@ -60,7 +58,6 @@ class DeviceHost private constructor(private val host: String) {
             }
         }
 
-        @JvmField
         val BROADCAST: DeviceHost = DeviceHost("255.255.255.255")
     }
 }

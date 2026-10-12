@@ -632,7 +632,6 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
         private const val MAX_UNPAIRED_CONNECTIONS: Int = 42
         private const val DELAY_BETWEEN_BROADCASTS: Long = 200
 
-        @JvmStatic
         @Throws(IOException::class)
         fun openServerSocketOnFreePort(minPort: Int): ServerSocket {
             var tcpPort = minPort

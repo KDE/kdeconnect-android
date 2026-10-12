@@ -14,8 +14,8 @@ import org.kde.kdeconnect.BackgroundService
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect.base.BaseActivity
+import org.kde.kdeconnect.extensions.setupBottomPadding
 import org.kde.kdeconnect.helpers.SafeTextChecker
-import org.kde.kdeconnect.helpers.WindowHelper
 import org.kde.kdeconnect.ui.list.DeviceItem
 import org.kde.kdeconnect.ui.list.ListAdapter
 import org.kde.kdeconnect.ui.list.SectionItem
@@ -40,7 +40,7 @@ class SendKeystrokesToHostActivity : BaseActivity<ActivitySendkeystrokesBinding>
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
-        WindowHelper.setupBottomPadding(binding.devicesList)
+        binding.devicesList.setupBottomPadding()
     }
 
     override fun onStart() {

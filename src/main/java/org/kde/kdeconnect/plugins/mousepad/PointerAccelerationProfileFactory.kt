@@ -10,7 +10,6 @@ import kotlin.math.sqrt
 
 
 object PointerAccelerationProfileFactory {
-    @JvmStatic
     fun getProfileWithName(name: String): PointerAccelerationProfile = when (name) {
         "weaker" -> PolynomialProfile(0.25f)
         "weak" -> PolynomialProfile(0.5f)

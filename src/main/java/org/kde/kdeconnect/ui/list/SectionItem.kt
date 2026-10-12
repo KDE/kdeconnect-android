@@ -16,7 +16,6 @@ class SectionItem : ListAdapter.Item {
         this.title = title
     }
 
-    @JvmField
     var isEmpty: Boolean = true
 
     override fun inflateView(layoutInflater: LayoutInflater): View {

@@ -22,7 +22,6 @@ import org.kde.kdeconnect_tp.R
 
 class AboutFragment : Fragment() {
     companion object {
-        @JvmStatic
         fun newInstance(): Fragment = AboutFragment()
     }
 

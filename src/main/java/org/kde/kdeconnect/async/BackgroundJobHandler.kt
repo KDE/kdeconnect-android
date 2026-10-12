@@ -128,7 +128,6 @@ class BackgroundJobHandler(
     companion object {
         private val LOG_TAG: String = BackgroundJobHandler::class.java.simpleName
 
-        @JvmStatic
         fun newFixedThreadPoolBackgroundJobHandler(numThreads: Int): BackgroundJobHandler {
             return BackgroundJobHandler(numThreads, numThreads, 0L, TimeUnit.MILLISECONDS, LinkedBlockingQueue())
         }

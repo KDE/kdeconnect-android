@@ -14,7 +14,6 @@ object LifecycleHelper {
         ProcessLifecycleOwner.get().lifecycle.addObserver(foregroundTracker)
     }
 
-    @JvmStatic
     val isInForeground: Boolean
         get() = foregroundTracker.isInForeground
 

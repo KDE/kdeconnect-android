@@ -128,8 +128,6 @@ class PluginSettingsActivity : BaseActivity<ActivityPluginSettingsBinding>(), Pl
         const val EXTRA_DEVICE_ID: String = "deviceId"
         const val EXTRA_PLUGIN_KEY: String = "pluginKey"
 
-        @JvmStatic
-        @JvmOverloads
         fun createIntent(context: Context, deviceId: String, pluginKey: String? = null): Intent =
             Intent(context, PluginSettingsActivity::class.java).apply {
                 putExtra(EXTRA_DEVICE_ID, deviceId)

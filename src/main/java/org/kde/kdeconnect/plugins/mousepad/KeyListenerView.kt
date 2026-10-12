@@ -16,7 +16,7 @@ import android.view.inputmethod.InputConnection
 import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect.NetworkPacket
 
-class KeyListenerView @JvmOverloads constructor(
+class KeyListenerView(
     context: Context,
     attrs: AttributeSet? = null
 ) : View(context, attrs) {
@@ -115,7 +115,6 @@ class KeyListenerView @JvmOverloads constructor(
     }
 
     companion object {
-        @JvmField
         val SpecialKeysMap = SparseIntArray().apply {
             var i = 0
             put(KeyEvent.KEYCODE_DEL, ++i) // 1

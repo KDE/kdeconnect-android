@@ -26,11 +26,9 @@ class SystemVolumeProvider :
     }
 
     companion object {
-        @JvmStatic
         var currentProvider: SystemVolumeProvider? = null
             private set
 
-        @JvmStatic
         fun getInstance(): SystemVolumeProvider {
             return currentProvider ?: SystemVolumeProvider().also { currentProvider = it }
         }

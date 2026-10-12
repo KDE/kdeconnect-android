@@ -6,7 +6,6 @@
 
 package org.kde.kdeconnect.plugins.notifications
 
-import android.app.Service
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
@@ -117,12 +116,11 @@ class NotificationReceiver : NotificationListenerService() {
         } finally {
             mutex.unlock()
         }
-        return Service.START_STICKY
+        return START_STICKY
     }
 
     companion object {
         // Reading notifications uses a different kind of permission, because it was added before the runtime permissions model
-        @JvmStatic
         fun hasReadNotificationsPermission(context: Context): Boolean {
             val notificationListenerList =
                 Settings.Secure.getString(context.contentResolver, "enabled_notification_listeners")
@@ -134,12 +132,10 @@ class NotificationReceiver : NotificationListenerService() {
         private val callbacks = ArrayList<InstanceCallback>()
         private val mutex: Lock = ReentrantLock(true)
 
-        @JvmStatic
         fun Start(c: Context) {
             RunCommand(c, null)
         }
 
-        @JvmStatic
         fun RunCommand(c: Context, callback: InstanceCallback?) {
             if (callback != null) {
                 mutex.lock()

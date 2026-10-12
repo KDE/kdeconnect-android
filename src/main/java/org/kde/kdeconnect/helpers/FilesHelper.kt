@@ -22,7 +22,6 @@ import java.nio.charset.StandardCharsets
 object FilesHelper {
     private const val LOG_TAG: String = "SendFileActivity"
 
-    @JvmStatic
     fun getMimeTypeFromFile(file: String?): String {
         val mime = file?.let {
             val extension = file.substringAfterLast('.')
@@ -31,7 +30,6 @@ object FilesHelper {
         return mime ?: "*/*"
     }
 
-    @JvmStatic
     fun findValidNonExistingFileName(folder: DocumentFile, filename: String): String {
         var filename = filename.trimEnd('.')
         if (filename.isEmpty()) {
@@ -107,7 +105,6 @@ object FilesHelper {
     /**
      * Creates a network packet from the given URI
      */
-    @JvmStatic
     @WorkerThread
     fun uriToNetworkPacket(context: Context, uri: Uri, type: String): NetworkPacket? {
         try {
@@ -217,7 +214,7 @@ object FilesHelper {
                 // Do we actually have a DocumentProvider here?
                 // I do not think this code path will ever happen for a non-media file is selected on an API < KitKat device, since those will be delivered as a file:// URI and handled accordingly.
                 // Therefore, it is safe to ignore the warning that this field requires API 19
-                @SuppressLint("InlinedApi") val documentLastModifiedColumnIndex = cursor.getColumnIndex(DocumentsContract.Document.COLUMN_LAST_MODIFIED)
+                val documentLastModifiedColumnIndex = cursor.getColumnIndex(DocumentsContract.Document.COLUMN_LAST_MODIFIED)
 
                 // If we have an image, it may be the case that MediaStore.MediaColumns.DATE_MODIFIED catches the modification date, but if not, here is another column we can look for.
                 // This should be checked *after* DATE_MODIFIED since I think that column might give better information

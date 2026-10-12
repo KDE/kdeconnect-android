@@ -66,7 +66,6 @@ class TrustedNetworkHelper(private val context: Context) {
         private const val NETWORK_SSID_DELIMITER = "\u0000"
         private const val NOT_AVAILABLE_SSID_RESULT = "<unknown ssid>"
 
-        @JvmStatic
         fun isTrustedNetwork(context: Context): Boolean = TrustedNetworkHelper(context).isTrustedNetwork
     }
 }
