@@ -44,7 +44,7 @@ class RemoteKeyboardIMEPlugin : Plugin(), SharedPreferences.OnSharedPreferenceCh
             releaseInstances()
         }
         RemoteKeyboardService.instance?.let { service ->
-            service.handler?.post { service.updateInputView() }
+            service.handler.post { service.updateInputView() }
         }
 
         val prefs = PreferenceManager.getDefaultSharedPreferences(context)
@@ -61,7 +61,7 @@ class RemoteKeyboardIMEPlugin : Plugin(), SharedPreferences.OnSharedPreferenceCh
                 instances.remove(this)
                 if (instances.isEmpty()) {
                     RemoteKeyboardService.instance?.let { service ->
-                        service.handler?.post { service.updateInputView() }
+                        service.handler.post { service.updateInputView() }
                     }
                 }
             }
