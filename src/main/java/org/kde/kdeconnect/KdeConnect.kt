@@ -12,6 +12,9 @@ import android.os.StrictMode.ThreadPolicy
 import android.os.StrictMode.VmPolicy
 import android.util.Log
 import androidx.annotation.WorkerThread
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.kde.kdeconnect.PairingHandler.PairingCallback
 import org.kde.kdeconnect.backends.BaseLink
 import org.kde.kdeconnect.backends.BaseLinkProvider.ConnectionReceiver
@@ -121,6 +124,13 @@ class KdeConnect : Application() {
     fun <T : Plugin> getDevicePlugin(deviceId: String?, pluginClass: Class<T>): T? {
         val device = getDevice(deviceId)
         return device?.getPlugin(pluginClass)
+    }
+
+    // To be triggered when new permissions are accepted
+    fun reloadAllDevicePlugins() {
+        CoroutineScope(Dispatchers.IO).launch {
+            devices.values.forEach(Device::reloadPluginsFromSettings)
+        }
     }
 
     private fun loadRememberedDevicesFromSettings() {

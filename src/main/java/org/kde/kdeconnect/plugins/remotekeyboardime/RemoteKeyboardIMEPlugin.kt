@@ -25,7 +25,6 @@ import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.plugins.PluginFactory
 import org.kde.kdeconnect.plugins.remotekeyboard.RemoteKeyboardPlugin
-import org.kde.kdeconnect.ui.MainActivity
 import org.kde.kdeconnect.ui.PluginSettingsFragment
 import org.kde.kdeconnect.ui.StartActivityAlertDialogFragment
 import org.kde.kdeconnect_tp.R
@@ -292,8 +291,7 @@ class RemoteKeyboardIMEPlugin : Plugin(), SharedPreferences.OnSharedPreferenceCh
             .setPositiveButton(R.string.open_input_settings)
             .setNegativeButton(R.string.cancel)
             .setIntentAction(Settings.ACTION_INPUT_METHOD_SETTINGS)
-            .setStartForResult(true)
-            .setRequestCode(MainActivity.RESULT_NEEDS_RELOAD)
+            .setReloadPluginsOnResult(true)
             .create()
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
