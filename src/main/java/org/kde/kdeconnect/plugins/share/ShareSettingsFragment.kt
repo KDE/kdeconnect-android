@@ -6,13 +6,13 @@
 
 package org.kde.kdeconnect.plugins.share
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.documentfile.provider.DocumentFile
 import androidx.preference.Preference
 import androidx.preference.PreferenceManager
@@ -20,10 +20,18 @@ import androidx.preference.SwitchPreference
 import org.kde.kdeconnect.ui.PluginSettingsFragment
 import java.io.File
 import androidx.core.content.edit
+import androidx.core.net.toUri
 
 class ShareSettingsFragment : PluginSettingsFragment() {
 
     private lateinit var filePicker: Preference
+
+    private val openDocumentTreeLauncher = registerForActivityResult(ActivityResultContracts.OpenDocumentTree()) { uri ->
+        if (uri != null) {
+            saveStorageLocationPreference(requireContext(), uri)
+            filePicker.summary = uri.path
+        }
+    }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         super.onCreatePreferences(savedInstanceState, rootKey)
@@ -37,8 +45,7 @@ class ShareSettingsFragment : PluginSettingsFragment() {
             true
         }
         filePicker.setOnPreferenceClickListener {
-            val intent = Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
-            startActivityForResult(intent, RESULT_PICKER)
+            openDocumentTreeLauncher.launch(null)
             true
         }
 
@@ -56,27 +63,15 @@ class ShareSettingsFragment : PluginSettingsFragment() {
             .getString(PREFERENCE_DESTINATION, null)
 
         if (enabled && path != null) {
-            filePicker.summary = Uri.parse(path).path
+            filePicker.summary = path.toUri().path
         } else {
             filePicker.summary = getDefaultDestinationDirectory().absolutePath
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, resultData: Intent?) {
-        super.onActivityResult(requestCode, resultCode, resultData)
-        if (requestCode == RESULT_PICKER && resultCode == Activity.RESULT_OK && resultData != null) {
-            val uri = resultData.data ?: return
-            saveStorageLocationPreference(requireContext(), uri)
-
-            filePicker.summary = uri.path
         }
     }
 
     companion object {
         private const val PREFERENCE_CUSTOMIZE_DESTINATION = "share_destination_custom"
         private const val PREFERENCE_DESTINATION = "share_destination_folder_uri"
-
-        private const val RESULT_PICKER = Activity.RESULT_FIRST_USER
 
         fun newInstance(pluginKey: String, deviceId: String, layout: Int): ShareSettingsFragment {
             val fragment = ShareSettingsFragment()
@@ -97,7 +92,7 @@ class ShareSettingsFragment : PluginSettingsFragment() {
             if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(PREFERENCE_CUSTOMIZE_DESTINATION, false)) {
                 val path = PreferenceManager.getDefaultSharedPreferences(context).getString(PREFERENCE_DESTINATION, null)
                 if (path != null) {
-                    val treeDocumentFile = DocumentFile.fromTreeUri(context, Uri.parse(path))
+                    val treeDocumentFile = DocumentFile.fromTreeUri(context, path.toUri())
                     if (treeDocumentFile != null && treeDocumentFile.canWrite()) { // Checks for FLAG_DIR_SUPPORTS_CREATE on directories
                         return treeDocumentFile
                     } else {
