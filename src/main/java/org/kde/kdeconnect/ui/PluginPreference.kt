@@ -45,7 +45,7 @@ class PluginPreference : SwitchPreference {
     override fun onBindViewHolder(holder: PreferenceViewHolder) {
         super.onBindViewHolder(holder)
 
-        val toggleListener = View.OnClickListener { v: View? ->
+        val toggleListener = View.OnClickListener {
             val newState = !device.isPluginEnabled(pluginKey)
             isChecked = newState // It actually works on API<14
             onStateChanged(holder, newState)

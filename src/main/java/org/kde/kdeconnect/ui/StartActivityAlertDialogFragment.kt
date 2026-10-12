@@ -47,15 +47,16 @@ class StartActivityAlertDialogFragment : AlertDialogFragment() {
                     Intent(intentAction)
                 }
 
-                if (reloadPlugins) {
+                return if (reloadPlugins) {
                     if (!launched) {
                         launched = true
                         reloadPluginsOnResultLauncher.launch(intent)
                     }
-                    return false // Keep the dialog open until the result arrives
+                    false // Keep the dialog open until the result arrives
+                } else {
+                    requireActivity().startActivity(intent)
+                    true
                 }
-                requireActivity().startActivity(intent)
-                return true
             }
         }
     }

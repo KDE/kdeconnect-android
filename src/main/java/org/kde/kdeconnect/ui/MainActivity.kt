@@ -34,14 +34,12 @@ import androidx.core.view.updatePadding
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
-import androidx.preference.SwitchPreference
 import com.google.android.material.navigation.NavigationView
 import org.kde.kdeconnect.BackgroundService
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect.extensions.setOnApplyWindowInsetsListenerCompat
 import org.kde.kdeconnect.helpers.DeviceHelper
-import org.kde.kdeconnect.plugins.share.ShareSettingsFragment
 import org.kde.kdeconnect.ui.about.AboutFragment
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.ActivityMainBinding
@@ -59,9 +57,16 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
     private val mNavigationView: NavigationView by lazy { binding.navigationDrawer }
     private var mDrawerLayout: DrawerLayout? = null
 
-    private val openDocumentTreeLauncher = registerForActivityResult(ActivityResultContracts.OpenDocumentTree()) { uri ->
-        if (uri != null) {
-            ShareSettingsFragment.saveStorageLocationPreference(this, uri)
+    private val upfrontPermissionsLauncher = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { results ->
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CINNAMON_BUN && results[Manifest.permission.ACCESS_LOCAL_NETWORK] == true) {
+            BackgroundService.ForceRefreshConnections(this)
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && results[Manifest.permission.POST_NOTIFICATIONS] == true) {
+            KdeConnect.getInstance().reloadAllDevicePlugins()
+        }
+        if (results.containsValue(true)) {
+            // If PairingFragment is active, update its permissions header
+            (currentFragment as? PairingFragment)?.updatePermissionsHeader()
         }
     }
 
@@ -233,8 +238,9 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
             missingPermissions.add(Manifest.permission.POST_NOTIFICATIONS)
         }
 
-        if (missingPermissions.isNotEmpty()) {
-            ActivityCompat.requestPermissions(this, missingPermissions.toTypedArray(), 0)
+        // Check savedInstanceState to avoid requesting permissions again if the activity is recreated eg on rotation
+        if (missingPermissions.isNotEmpty() && savedInstanceState == null) {
+            upfrontPermissionsLauncher.launch(missingPermissions.toTypedArray())
         }
     }
 
@@ -358,50 +364,6 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
         super.onSaveInstanceState(outState)
         outState.putString(STATE_SELECTED_DEVICE, mCurrentDevice)
         outState.putInt(STATE_SELECTED_MENU_ENTRY, mCurrentMenuEntry)
-    }
-
-    fun isPermissionGranted(permissions: Array<String>, grantResults: IntArray, permission : String) : Boolean {
-        val index = permissions.indexOf(permission)
-        return index != -1 && grantResults[index] == PERMISSION_GRANTED
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        val permissionsGranted = grantResults.contains(PERMISSION_GRANTED)
-        if (permissionsGranted) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && isPermissionGranted(permissions, grantResults, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                // To get a writeable path manually on Android 10 and later for Share and Receive Plugin.
-                // Otherwise, Receiving files will keep failing until the user chooses a path manually to receive files.
-                openDocumentTreeLauncher.launch(null)
-            }
-
-            if (isPermissionGranted(permissions, grantResults, Manifest.permission.BLUETOOTH_CONNECT) &&
-                isPermissionGranted(permissions, grantResults, Manifest.permission.BLUETOOTH_SCAN)) {
-                PreferenceManager.getDefaultSharedPreferences(this).edit {
-                    putBoolean(SettingsFragment.KEY_BLUETOOTH_ENABLED, true)
-                }
-                BackgroundService.ForceRefreshConnections(this) // Restarts the BluetoothLinkProvider
-                // If SettingsFragment is active, update the switch
-                (currentFragment as? SettingsFragment)
-                    ?.findPreference<SwitchPreference>(SettingsFragment.KEY_BLUETOOTH_ENABLED)
-                    ?.isChecked = true
-            }
-
-            if (
-                (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isPermissionGranted(permissions, grantResults, Manifest.permission.POST_NOTIFICATIONS))
-                || (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CINNAMON_BUN && isPermissionGranted(permissions, grantResults, Manifest.permission.ACCESS_LOCAL_NETWORK))
-            ) {
-                // If PairingFragment is active, update its permissions header
-                (currentFragment as? PairingFragment)?.updatePermissionsHeader()
-            }
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CINNAMON_BUN && isPermissionGranted(permissions, grantResults, Manifest.permission.ACCESS_LOCAL_NETWORK)) {
-                BackgroundService.ForceRefreshConnections(this)
-            }
-
-            // New permission granted, reload plugins
-            KdeConnect.getInstance().reloadAllDevicePlugins()
-        }
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String?) {

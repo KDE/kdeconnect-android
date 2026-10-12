@@ -64,15 +64,15 @@ class BigscreenActivity : BaseActivity<ActivityBigscreenBinding>() {
             return
         }
 
-        binding.leftButton.setOnClickListener { v: View? -> plugin.sendLeft() }
-        binding.rightButton.setOnClickListener { v: View? -> plugin.sendRight() }
-        binding.upButton.setOnClickListener { v: View? -> plugin.sendUp() }
-        binding.downButton.setOnClickListener { v: View? -> plugin.sendDown() }
-        binding.selectButton.setOnClickListener { v: View? -> plugin.sendSelect() }
-        binding.homeButton.setOnClickListener { v: View? -> plugin.sendHome() }
-        binding.backButton.setOnClickListener { v: View? -> plugin.sendBack() }
-        binding.closeButton.setOnClickListener { v: View? -> plugin.sendClose() }
-        binding.micButton.setOnClickListener { v: View? ->
+        binding.leftButton.setOnClickListener { plugin.sendLeft() }
+        binding.rightButton.setOnClickListener { plugin.sendRight() }
+        binding.upButton.setOnClickListener { plugin.sendUp() }
+        binding.downButton.setOnClickListener { plugin.sendDown() }
+        binding.selectButton.setOnClickListener { plugin.sendSelect() }
+        binding.homeButton.setOnClickListener { plugin.sendHome() }
+        binding.backButton.setOnClickListener { plugin.sendBack() }
+        binding.closeButton.setOnClickListener { plugin.sendClose() }
+        binding.micButton.setOnClickListener {
             if (plugin.hasMicPermission()) {
                 activateSTT()
             } else {
@@ -80,6 +80,7 @@ class BigscreenActivity : BaseActivity<ActivityBigscreenBinding>() {
                     .setTitle(plugin.displayName)
                     .setMessage(R.string.bigscreen_optional_permission_explanation)
                     .setPermissions(arrayOf(Manifest.permission.RECORD_AUDIO))
+                    .setReloadPluginsOnResult(false) // We will check again when the user clicks micButton again
                     .create()
                     .show(supportFragmentManager, null)
             }

@@ -133,11 +133,7 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
                                     openAppDetailsSettings()
                                 } else {
                                     markPermissionRequested(Manifest.permission.POST_NOTIFICATIONS)
-                                    ActivityCompat.requestPermissions(
-                                        requireActivity(),
-                                        arrayOf(Manifest.permission.POST_NOTIFICATIONS),
-                                        0
-                                    )
+                                    notificationsPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
                                 }
                             } else {
                                 openAppDetailsSettings()
@@ -150,11 +146,7 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
                                 openAppDetailsSettings()
                             } else {
                                 markPermissionRequested(Manifest.permission.ACCESS_LOCAL_NETWORK)
-                                ActivityCompat.requestPermissions(
-                                    requireActivity(),
-                                    arrayOf(Manifest.permission.ACCESS_LOCAL_NETWORK),
-                                    0
-                                )
+                                localNetworkPermissionLauncher.launch(Manifest.permission.ACCESS_LOCAL_NETWORK)
                             }
                         },
                         onRefresh = { viewModel.onRefresh() }
@@ -164,6 +156,22 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
         }
     }
 
+
+    private val notificationsPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
+            if (granted) {
+                updatePermissionsHeader()
+                KdeConnect.getInstance().reloadAllDevicePlugins()
+            }
+        }
+
+    private val localNetworkPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
+            if (granted) {
+                updatePermissionsHeader()
+                ForceRefreshConnections(requireContext())
+            }
+        }
 
     private val appSettingsLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
