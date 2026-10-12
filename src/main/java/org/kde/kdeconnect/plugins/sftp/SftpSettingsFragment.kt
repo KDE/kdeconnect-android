@@ -9,7 +9,6 @@ package org.kde.kdeconnect.plugins.sftp
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.graphics.PorterDuff
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -18,6 +17,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.view.ActionMode
 import androidx.core.content.edit
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.util.set
 import androidx.preference.Preference
 import androidx.preference.PreferenceCategory
@@ -70,11 +70,6 @@ class SftpSettingsFragment :
         // The activity is finishing because its device is no longer available.
         val currentPlugin = plugin ?: return
 
-        // Can't use try-with-resources since TypedArray's close method was only added in API 31
-        val ta = requireContext().obtainStyledAttributes(intArrayOf(androidx.appcompat.R.attr.colorAccent))
-        val colorAccent = ta.getColor(0, 0)
-        ta.recycle()
-
         storageInfoList = getStorageInfoList(requireContext(), currentPlugin)
 
         val preferenceScreen = preferenceScreen
@@ -86,7 +81,13 @@ class SftpSettingsFragment :
         }
 
         val addStoragePreference: Preference? = preferenceScreen.findPreference(getString(R.string.sftp_preference_key_add_storage))
-        addStoragePreference?.icon?.setColorFilter(colorAccent, PorterDuff.Mode.SRC_IN)
+        addStoragePreference?.icon?.let { icon ->
+            // Can't use try-with-resources since TypedArray's close method was only added in API 31
+            val ta = requireContext().obtainStyledAttributes(intArrayOf(androidx.appcompat.R.attr.colorAccent))
+            val colorAccent = ta.getColor(0, 0)
+            ta.recycle()
+            DrawableCompat.setTint(icon, colorAccent)
+        }
     }
 
     private fun addStoragePreferences(preferenceCategory: PreferenceCategory) {
