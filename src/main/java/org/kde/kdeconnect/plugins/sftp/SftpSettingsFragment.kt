@@ -30,7 +30,6 @@ import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.ui.PluginSettingsActivity
 import org.kde.kdeconnect.ui.PluginSettingsFragment
 import org.kde.kdeconnect_tp.R
-import java.util.Collections
 
 class SftpSettingsFragment :
     PluginSettingsFragment(),
@@ -205,7 +204,9 @@ class SftpSettingsFragment :
     }
 
     private fun sortStorageInfoListOnDisplayName() {
-        Collections.sort(storageInfoList) { si1, si2 -> si1.displayName.compareTo(si2.displayName, ignoreCase = true) }
+        storageInfoList.sortWith { si1, si2 ->
+            si1.displayName.compareTo(si2.displayName, ignoreCase = true)
+        }
     }
 
     override fun isDisplayNameAllowed(displayName: String): StoragePreferenceDialogFragment.CallbackResult {
@@ -380,24 +381,6 @@ class SftpSettingsFragment :
             }
 
             return storageInfoList
-        }
-
-        fun isDisplayNameUnique(storageInfoList: List<SftpPlugin.StorageInfo>, displayName: String, displayNameReadOnly: String): Boolean {
-            for (info in storageInfoList) {
-                if (info.displayName == displayName || info.displayName == displayName + displayNameReadOnly) {
-                    return false
-                }
-            }
-            return true
-        }
-
-        fun isAlreadyConfigured(storageInfoList: List<SftpPlugin.StorageInfo>, sdCardUri: Uri): Boolean {
-            for (info in storageInfoList) {
-                if (info.uri == sdCardUri) {
-                    return true
-                }
-            }
-            return false
         }
     }
 }
