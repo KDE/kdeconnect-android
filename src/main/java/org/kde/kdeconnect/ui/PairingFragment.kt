@@ -225,7 +225,7 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
         )
     }
 
-    private fun updatePermissionsHeader() {
+    fun updatePermissionsHeader() {
         val hasNotificationsPermission = Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU
                 || ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.POST_NOTIFICATIONS) == PERMISSION_GRANTED
 

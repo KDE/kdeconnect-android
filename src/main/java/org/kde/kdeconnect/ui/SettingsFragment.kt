@@ -215,6 +215,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
                     return@OnPreferenceChangeListener false
                 }
             }
+            // Restarts the BluetoothLinkProvider. The preference is saved before the service handles this.
+            BackgroundService.ForceRefreshConnections(context)
             true
         }
     }

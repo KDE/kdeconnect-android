@@ -34,6 +34,7 @@ import androidx.core.view.updatePadding
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
+import androidx.preference.SwitchPreference
 import com.google.android.material.navigation.NavigationView
 import org.kde.kdeconnect.BackgroundService
 import org.kde.kdeconnect.Device
@@ -343,6 +344,9 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
         }
     }
 
+    private val currentFragment: Fragment?
+        get() = supportFragmentManager.findFragmentById(R.id.container)
+
     private fun setContentFragment(fragment: Fragment) {
         supportFragmentManager
             .beginTransaction()
@@ -376,17 +380,19 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
                 PreferenceManager.getDefaultSharedPreferences(this).edit {
                     putBoolean(SettingsFragment.KEY_BLUETOOTH_ENABLED, true)
                 }
-                setContentFragment(SettingsFragment())
+                BackgroundService.ForceRefreshConnections(this) // Restarts the BluetoothLinkProvider
+                // If SettingsFragment is active, update the switch
+                (currentFragment as? SettingsFragment)
+                    ?.findPreference<SwitchPreference>(SettingsFragment.KEY_BLUETOOTH_ENABLED)
+                    ?.isChecked = true
             }
 
             if (
                 (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isPermissionGranted(permissions, grantResults, Manifest.permission.POST_NOTIFICATIONS))
                 || (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CINNAMON_BUN && isPermissionGranted(permissions, grantResults, Manifest.permission.ACCESS_LOCAL_NETWORK))
             ) {
-                // If PairingFragment is active, reload it
-                if (mCurrentDevice == null) {
-                    setContentFragment(PairingFragment())
-                }
+                // If PairingFragment is active, update its permissions header
+                (currentFragment as? PairingFragment)?.updatePermissionsHeader()
             }
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CINNAMON_BUN && isPermissionGranted(permissions, grantResults, Manifest.permission.ACCESS_LOCAL_NETWORK)) {
