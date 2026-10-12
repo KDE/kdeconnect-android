@@ -119,23 +119,21 @@ internal fun updateAppWidget(
     // Android should automatically toggle between the command list and the error text
     views.setEmptyView(R.id.widget_command_list, R.id.widget_error_text)
 
-    // TODO: Use string resources
-
     if (device == null) {
         // There are two reasons we reach this condition:
         // 1. there is no preference string for this widget id
         // 2. the string id does not match any devices in KdeConnect.getInstance()
         // In both cases, we want the user to assign a device to this widget
         views.setTextViewText(R.id.widget_title_text, context.getString(R.string.kde_connect))
-        views.setTextViewText(R.id.widget_error_text, "Whose commands should we show? Click the title to set a device.")
+        views.setTextViewText(R.id.widget_error_text, context.getString(R.string.runcommand_widget_no_device))
     } else {
         views.setTextViewText(R.id.widget_title_text, device.name)
         val plugin = device.getPlugin<RunCommandPlugin>()
         if (device.isReachable) {
             val message: String = if (plugin == null) {
-                "Device doesn't allow us to run commands."
+                context.getString(R.string.runcommand_noruncommandplugin)
             } else {
-                "Device has no commands available."
+                context.getString(R.string.addcommand_explanation)
             }
             views.setTextViewText(R.id.widget_error_text, message)
             assignListAdapter(context, appWidgetId, views)
