@@ -141,7 +141,7 @@ class SMSPlugin : Plugin() {
     override fun onCreate() {
         val refreshFilter = IntentFilter(Transaction.REFRESH)
         refreshFilter.priority = 500
-        context.registerReceiver(messagesUpdateReceiver, refreshFilter, ContextCompat.RECEIVER_EXPORTED)
+        ContextCompat.registerReceiver(context, messagesUpdateReceiver, refreshFilter, ContextCompat.RECEIVER_EXPORTED)
 
         context.contentResolver.registerContentObserver(SMSHelper.mConversationUri, true, messageObserver)
 
