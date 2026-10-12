@@ -6,7 +6,6 @@
 package org.kde.kdeconnect.ui
 
 import android.Manifest
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager.PERMISSION_GRANTED
@@ -260,20 +259,7 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
         )
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        when (requestCode) {
-            RESULT_PAIRING_SUCCESFUL -> if (resultCode == 1) {
-                val deviceId = data?.getStringExtra("deviceId") ?: return
-                (mActivity as? MainActivity)?.onDeviceSelected(deviceId)
-            }
-
-            else -> super.onActivityResult(requestCode, resultCode, data)
-        }
-    }
-
     companion object {
-        private const val RESULT_PAIRING_SUCCESFUL = Activity.RESULT_FIRST_USER
-
         private const val PREFS_NAME = "permission_prefs"
     }
 }
