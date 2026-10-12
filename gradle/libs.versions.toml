@@ -7,7 +7,6 @@ appcompat = "1.8.0"
 bcpkixJdk18on = "1.86"
 classindexksp = "1.2"
 coil = "3.5.0"
-commonsIo = "2.22.0"
 constraintlayoutCompose = "1.1.2"
 coreKtx = "1.19.1"
 dependencyLicenseReport = "3.1.4"
@@ -65,7 +64,6 @@ bcpkix-jdk18on = { module = "org.bouncycastle:bcpkix-jdk18on", version.ref = "bc
 classindexksp = { module = "com.github.albertvaka:classindexksp", version.ref = "classindexksp" }
 coil-core = { module = "io.coil-kt.coil3:coil-core", version.ref = "coil" }
 coil-network-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil" }
-commons-io = { module = "commons-io:commons-io", version.ref = "commonsIo" }
 jsonassert = { module = "org.skyscreamer:jsonassert", version.ref = "jsonassert" }
 junit = { module = "junit:junit", version.ref = "junit" }
 android-gradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "androidGradlePlugin" }

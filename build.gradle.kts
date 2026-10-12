@@ -305,8 +305,6 @@ dependencies {
     implementation(libs.android.smsmms)
     implementation(libs.logger)
 
-    implementation(libs.commons.io)
-
     implementation(libs.univocity.parsers)
 
     // Kotlin
