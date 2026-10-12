@@ -18,8 +18,6 @@ import androidx.core.content.ContextCompat
 import org.json.JSONException
 import org.kde.kdeconnect.DeviceHost
 import org.kde.kdeconnect.DeviceInfo
-import org.kde.kdeconnect.DeviceInfo.Companion.fromIdentityPacketAndCert
-import org.kde.kdeconnect.DeviceInfo.Companion.isValidIdentityPacket
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.NetworkPacket.Companion.unserialize
 import org.kde.kdeconnect.backends.BaseLink
@@ -90,7 +88,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
             return null
         }
 
-        if (!isValidIdentityPacket(identityPacket)) {
+        if (!DeviceInfo.isValidIdentityPacket(identityPacket)) {
             Log.w("KDE/LanLinkProvider", "Invalid identity packet received.")
             return null
         }
@@ -320,7 +318,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
                         val line = readLineBounded(sslSocket.getInputStream(), MAX_IDENTITY_PACKET_SIZE)
                         // Do not trust the identity packet we received unencrypted
                         secureIdentityPacket = unserialize(line)
-                        if (!isValidIdentityPacket(secureIdentityPacket)) {
+                        if (!DeviceInfo.isValidIdentityPacket(secureIdentityPacket)) {
                             Log.e("KDE/LanLinkProvider", "Identity packet isn't valid")
                             sslSocket.close()
                             return@execute
@@ -341,7 +339,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
                         secureIdentityPacket = identityPacket
                     }
                     val certificate = event.peerCertificates[0]
-                    val deviceInfo = fromIdentityPacketAndCert(secureIdentityPacket, certificate)
+                    val deviceInfo = DeviceInfo.fromIdentityPacketAndCert(secureIdentityPacket, certificate)
                     Log.i("KDE/LanLinkProvider", "Handshake as $mode successful with ${deviceInfo.name} secured with ${event.cipherSuite}")
                     addOrUpdateLink(sslSocket, deviceInfo)
                 } catch (e: JSONException) {

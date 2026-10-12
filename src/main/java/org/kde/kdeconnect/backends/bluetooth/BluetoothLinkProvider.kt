@@ -23,7 +23,6 @@ import androidx.core.content.edit
 import androidx.preference.PreferenceManager
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.DeviceInfo
-import org.kde.kdeconnect.DeviceInfo.Companion.fromIdentityPacketAndCert
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.backends.BaseLinkProvider
 import org.kde.kdeconnect.extensions.getParcelableArrayExtraCompat
@@ -211,7 +210,7 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
                             .replace("-----END CERTIFICATE-----\n", "")
                     val pemEncodedCertificateBytes = Base64.decode(base64CertificateString, 0)
                     val certificate = SslHelper.parseCertificate(pemEncodedCertificateBytes)
-                    val deviceInfo = fromIdentityPacketAndCert(identityPacket, certificate)
+                    val deviceInfo = DeviceInfo.fromIdentityPacketAndCert(identityPacket, certificate)
                     Log.i("BTLinkProvider/Server", "About to create link")
                     val link = BluetoothLink(context, connection,
                             inputStream, outputStream, socket.remoteDevice,
@@ -396,7 +395,7 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
 
                 val pemEncodedCertificateBytes = Base64.decode(base64CertificateString, 0)
                 val certificate = SslHelper.parseCertificate(pemEncodedCertificateBytes)
-                val deviceInfo = fromIdentityPacketAndCert(identityPacket, certificate)
+                val deviceInfo = DeviceInfo.fromIdentityPacketAndCert(identityPacket, certificate)
                 val link = BluetoothLink(context, connection, inputStream, outputStream,
                         socket.remoteDevice, deviceInfo, this@BluetoothLinkProvider)
 

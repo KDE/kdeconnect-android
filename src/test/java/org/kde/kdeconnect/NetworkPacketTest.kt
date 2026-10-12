@@ -9,7 +9,6 @@ import io.mockk.mockk
 import org.json.JSONException
 import org.junit.Assert
 import org.junit.Test
-import org.kde.kdeconnect.DeviceInfo.Companion.fromIdentityPacketAndCert
 import org.kde.kdeconnect.NetworkPacket.Companion.unserialize
 import java.security.cert.Certificate
 
@@ -52,7 +51,7 @@ class NetworkPacketTest {
 
         Assert.assertEquals(np.getInt("protocolVersion").toLong(), 12)
 
-        val parsed = fromIdentityPacketAndCert(np, cert)
+        val parsed = DeviceInfo.fromIdentityPacketAndCert(np, cert)
 
         Assert.assertEquals(parsed.name, deviceInfo.name)
         Assert.assertEquals(parsed.id, deviceInfo.id)

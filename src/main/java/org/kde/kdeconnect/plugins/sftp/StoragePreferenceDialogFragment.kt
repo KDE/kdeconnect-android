@@ -30,7 +30,6 @@ import androidx.preference.PreferenceDialogFragmentCompat
 import org.json.JSONException
 import org.json.JSONObject
 import org.kde.kdeconnect.helpers.StorageHelper
-import org.kde.kdeconnect.plugins.sftp.SftpPlugin.StorageInfo.Companion.fromJSON
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.FragmentStoragePreferenceDialogBinding
 
@@ -65,7 +64,7 @@ class StoragePreferenceDialogFragment : PreferenceDialogFragmentCompat(), TextWa
             takeFlags = savedInstanceState.getInt(KEY_TAKE_FLAGS, 0)
             try {
                 val jsonObject = JSONObject(savedInstanceState.getString(KEY_STORAGE_INFO, "{}"))
-                storageInfo = fromJSON(jsonObject)
+                storageInfo = SftpPlugin.StorageInfo.fromJSON(jsonObject)
             } catch (_: JSONException) {
             }
         }

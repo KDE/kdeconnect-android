@@ -27,7 +27,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.launch
-import org.kde.kdeconnect.DeviceInfo.Companion.loadFromSettings
 import org.kde.kdeconnect.DeviceStats.countReceived
 import org.kde.kdeconnect.DeviceStats.countSent
 import org.kde.kdeconnect.PairingHandler.PairingCallback
@@ -108,7 +107,7 @@ class Device : PacketReceiver {
      */
     internal constructor(context: Context, deviceId: String) {
         this.context = context
-        this.deviceInfo = loadFromSettings(context, deviceId)
+        this.deviceInfo = DeviceInfo.loadFromSettings(context, deviceId)
         this.pairingHandler = PairingHandler(this, createDefaultPairingCallback(), PairingHandler.PairState.Paired)
         this.supportedPlugins = Vector(PluginFactory.availablePlugins) // Assume all are supported until we receive capabilities
         Log.i("Device", "Loading trusted device: ${deviceInfo.name}")
