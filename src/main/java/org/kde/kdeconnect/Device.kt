@@ -42,7 +42,6 @@ import org.kde.kdeconnect.ui.MainActivity
 import org.kde.kdeconnect_tp.R
 import java.io.IOException
 import java.security.cert.Certificate
-import java.util.Vector
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.ConcurrentMap
 import java.util.concurrent.CopyOnWriteArrayList
@@ -71,7 +70,7 @@ class Device : PacketReceiver {
     /**
      * Plugins that have matching capabilities.
      */
-    var supportedPlugins: List<String>
+    var supportedPlugins: Set<String>
         private set
 
     /**
@@ -109,7 +108,7 @@ class Device : PacketReceiver {
         this.context = context
         this.deviceInfo = DeviceInfo.loadFromSettings(context, deviceId)
         this.pairingHandler = PairingHandler(this, createDefaultPairingCallback(), PairingHandler.PairState.Paired)
-        this.supportedPlugins = Vector(PluginFactory.availablePlugins) // Assume all are supported until we receive capabilities
+        this.supportedPlugins = PluginFactory.availablePlugins // Assume all are supported until we receive capabilities
         Log.i("Device", "Loading trusted device: ${deviceInfo.name}")
     }
 
@@ -122,7 +121,7 @@ class Device : PacketReceiver {
         this.context = context
         this.deviceInfo = link.deviceInfo
         this.pairingHandler = PairingHandler(this, createDefaultPairingCallback(), PairingHandler.PairState.NotPaired)
-        this.supportedPlugins = Vector(PluginFactory.availablePlugins) // Assume all are supported until we receive capabilities
+        this.supportedPlugins = PluginFactory.availablePlugins // Assume all are supported until we receive capabilities
         Log.i("Device", "Creating untrusted device: ${deviceInfo.name}")
         addLink(link)
     }
@@ -398,11 +397,9 @@ class Device : PacketReceiver {
             Log.i("updateDeviceInfo", "Updating supported plugins according to new capabilities")
             deviceInfo.outgoingCapabilities = newOutgoingCapabilities
             deviceInfo.incomingCapabilities = newIncomingCapabilities
-            supportedPlugins = Vector(
-                PluginFactory.pluginsForCapabilities(
-                    newIncomingCapabilities,
-                    newOutgoingCapabilities
-                )
+            supportedPlugins = PluginFactory.pluginsForCapabilities(
+                newIncomingCapabilities,
+                newOutgoingCapabilities
             )
         }
 
@@ -662,7 +659,7 @@ class Device : PacketReceiver {
         val newPluginsByIncomingInterface = mutableMapOf<String, MutableList<String>>()
 
         val existingPluginKeys = loadedPlugins.keys + pluginsWithoutPermissions.keys + pluginsWithoutOptionalPermissions.keys
-        (existingPluginKeys - supportedPlugins.toSet()).forEach(::removePlugin)
+        (existingPluginKeys - supportedPlugins).forEach(::removePlugin)
 
         supportedPlugins.forEach { pluginKey ->
             val pluginInfo = PluginFactory.getPluginInfo(pluginKey)

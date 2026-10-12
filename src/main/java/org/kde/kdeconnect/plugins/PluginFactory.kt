@@ -36,7 +36,7 @@ object PluginFactory {
 
     fun getPluginInfo(pluginKey: String): PluginInfo = pluginInfo[pluginKey]!!
 
-    fun sortPluginList(plugins: List<String>): List<String> {
+    fun sortPluginList(plugins: Collection<String>): List<String> {
         return plugins.sortedBy { pluginInfo[it]?.displayName }
     }
 
