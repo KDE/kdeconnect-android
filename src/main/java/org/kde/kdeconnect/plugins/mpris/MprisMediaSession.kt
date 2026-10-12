@@ -351,11 +351,11 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
 
         // Only set the notification body text if we have an author and/or album
         if (player.artist.isNotEmpty() && player.album.isNotEmpty()) {
-            notification.setContentText(player.artist + " - " + player.album + " (" + player.playerName + ")")
+            notification.setContentText("${player.artist} - ${player.album} (${player.playerName})")
         } else if (player.artist.isNotEmpty()) {
-            notification.setContentText(player.artist + " (" + player.playerName + ")")
+            notification.setContentText("${player.artist} (${player.playerName})")
         } else if (player.album.isNotEmpty()) {
-            notification.setContentText(player.album + " (" + player.playerName + ")")
+            notification.setContentText("${player.album} (${player.playerName})")
         } else {
             notification.setContentText(player.playerName)
         }

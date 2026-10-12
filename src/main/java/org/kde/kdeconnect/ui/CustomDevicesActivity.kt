@@ -37,7 +37,7 @@ class CustomDevicesActivity : AppCompatActivity() {
         const val IP_DELIM = ","
 
         fun getCustomDeviceList(context: Context): ArrayList<DeviceHost> {
-            val prefs = context.getSharedPreferences(context.packageName + "_preferences", MODE_PRIVATE)
+            val prefs = context.getSharedPreferences("${context.packageName}_preferences", MODE_PRIVATE)
             val raw = prefs.getString(KEY_CUSTOM_DEVICE_LIST_PREFERENCE, "") ?: ""
             val list = ArrayList<DeviceHost>()
             if (raw.isNotEmpty()) {

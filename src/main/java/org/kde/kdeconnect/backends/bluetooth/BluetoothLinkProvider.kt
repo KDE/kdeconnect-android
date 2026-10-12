@@ -156,14 +156,14 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
         private fun connect(socket: BluetoothSocket) {
             synchronized(sockets) {
                 if (sockets.containsKey(socket.remoteDevice)) {
-                    Log.i("BTLinkProvider/Server", "Received duplicate connection from " + socket.remoteDevice.address)
+                    Log.i("BTLinkProvider/Server", "Received duplicate connection from ${socket.remoteDevice.address}")
                     socket.close()
                     return
                 } else {
                     sockets.put(socket.remoteDevice, socket)
                 }
             }
-            Log.i("BTLinkProvider/Server", "Received connection from " + socket.remoteDevice.address)
+            Log.i("BTLinkProvider/Server", "Received connection from ${socket.remoteDevice.address}")
 
             //Delay to let bluetooth initialize stuff correctly
             try {
@@ -276,7 +276,7 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
                 Log.i("BluetoothLinkProvider", "Paired Devices is NULL")
                 return
             }
-            Log.i("BluetoothLinkProvider", "Bluetooth adapter paired devices: " + pairedDevices.size)
+            Log.i("BluetoothLinkProvider", "Bluetooth adapter paired devices: ${pairedDevices.size}")
 
             // Loop through Bluetooth paired devices
             for (device in pairedDevices) {
@@ -311,7 +311,7 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
                 }
                 for (uuid in activeUuids) {
                     if (uuid.toString() == SERVICE_UUID.toString() || uuid.toString() == BYTE_REVERSED_SERVICE_UUID.toString()) {
-                        Log.i("BluetoothLinkProvider", "calling connectToDevice for device: " + device!!.address)
+                        Log.i("BluetoothLinkProvider", """calling connectToDevice for device: ${device?.address}""")
                         connectToDevice(device)
                         return
                     }
@@ -346,30 +346,30 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
                 socket.connect()
                 synchronized(sockets) { sockets.put(device, socket) }
             } catch (e: IOException) {
-                Log.e("BTLinkProvider/Client", "Could not connect to KDE Connect service on " + device!!.address, e)
+                Log.e("BTLinkProvider/Client", "Could not connect to KDE Connect service on ${device?.address}", e)
                 return
             } catch (e: SecurityException) {
-                Log.e("BTLinkProvider/Client", "Security Exception connecting to " + device!!.address, e)
+                Log.e("BTLinkProvider/Client", "Security Exception connecting to ${device?.address}", e)
                 return
             }
-            Log.i("BTLinkProvider/Client", "Connected to " + device.address)
+            Log.i("BTLinkProvider/Client", "Connected to ${device.address}")
             try {
                 //Delay to let bluetooth initialize stuff correctly
                 Thread.sleep(500)
                 val connection = ConnectionMultiplexer(socket)
                 val outputStream = connection.defaultOutputStream
                 val inputStream = connection.defaultInputStream
-                Log.i("BTLinkProvider/Client", "Device: " + device.address + " Before inputStream.read()")
+                Log.i("BTLinkProvider/Client","Device: ${device.address} Before inputStream.read()")
                 var character = 0
                 val sb = StringBuilder()
                 while (sb.lastIndexOf("\n") == -1 && inputStream.read().also { character = it } != -1) {
                     sb.append(character.toChar())
                 }
-                Log.i("BTLinkProvider/Client", "Device: " + device.address + " Before sb.toString()")
+                Log.i("BTLinkProvider/Client", "Device: ${device.address} Before sb.toString()")
                 val message = sb.toString()
-                Log.i("BTLinkProvider/Client", "Device: " + device.address + " Before unserialize (message: '" + message + "')")
+                Log.i("BTLinkProvider/Client", "Device: ${device.address} Before unserialize (message: '$message')")
                 val identityPacket = NetworkPacket.unserialize(message)
-                Log.i("BTLinkProvider/Client", "Device: " + device.address + " After unserialize")
+                Log.i("BTLinkProvider/Client", "Device: ${device.address} After unserialize")
 
                 if (!DeviceInfo.isValidIdentityPacket(identityPacket)) {
                     Log.w("BTLinkProvider/Client", "Invalid identity packet received.")
@@ -418,7 +418,7 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
                     override fun onFailure(e: Throwable) {}
                 }, true)
             } catch (e: Exception) {
-                Log.e("BTLinkProvider/Client", "Connection lost/disconnected on " + device.address, e)
+                Log.e("BTLinkProvider/Client", "Connection lost/disconnected on ${device.address}", e)
                 synchronized(sockets) { sockets.remove(device, socket) }
             }
         }

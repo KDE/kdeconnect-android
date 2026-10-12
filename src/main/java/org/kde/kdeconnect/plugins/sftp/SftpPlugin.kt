@@ -54,7 +54,7 @@ class SftpPlugin : Plugin(), OnSharedPreferenceChangeListener {
                 .setPositiveButton(R.string.open_settings)
                 .setNegativeButton(R.string.cancel)
                 .setIntentAction(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
-                .setIntentUrl("package:" + BuildConfig.APPLICATION_ID)
+                .setIntentUrl("package:${BuildConfig.APPLICATION_ID}")
                 .setStartForResult(true)
                 .setRequestCode(MainActivity.RESULT_NEEDS_RELOAD)
                 .create()

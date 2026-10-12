@@ -423,7 +423,7 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
         try {
             repliableNotification.pendingIntent.send(context, 0, localIntent)
         } catch (e: PendingIntent.CanceledException) {
-            Log.e(TAG, "replyToNotification error: " + e.message)
+            Log.e(TAG, "replyToNotification error: ${e.message}")
         }
         pendingIntents.remove(id)
     }
@@ -465,7 +465,7 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
                 ticker = extraText
             }
         } catch (e: Exception) {
-            Log.e(TAG, "problem parsing notification extras for " + notification.tickerText, e)
+            Log.e(TAG, """problem parsing notification extras for ${notification.tickerText}""", e)
         }
 
         if (ticker.isEmpty()) {

@@ -106,7 +106,7 @@ object DeviceHelper {
                         }
                     }
                     if (!found) {
-                        Log.e("DeviceHelper", "Didn't find a device name for " + Build.MODEL)
+                        Log.e("DeviceHelper", "Didn't find a device name for ${Build.MODEL}")
                     }
                 }
             } catch (e: IOException) {

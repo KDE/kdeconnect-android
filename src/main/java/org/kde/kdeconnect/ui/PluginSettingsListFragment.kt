@@ -32,7 +32,7 @@ class PluginSettingsListFragment : PreferenceFragmentCompat() {
         if (activity is PluginPreference.PluginPreferenceCallback) {
             callback = activity
         } else {
-            throw RuntimeException(activity.javaClass.simpleName + " must implement PluginPreference.PluginPreferenceCallback")
+            throw RuntimeException("${activity.javaClass.simpleName} must implement PluginPreference.PluginPreferenceCallback")
         }
 
         super.onCreate(savedInstanceState)

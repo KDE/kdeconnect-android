@@ -98,7 +98,7 @@ class RemoteKeyboardIMEPlugin : Plugin(), SharedPreferences.OnSharedPreferenceCh
             return false
         }
         val inputConn: InputConnection = RemoteKeyboardService.instance?.currentInputConnection ?: return false
-//        Log.d(LOG_TAG, "Handling special key " + key + " translated to " + keyEvent + " shift=" + shift + " ctrl=" + ctrl + " alt=" + alt);
+        //Log.d(LOG_TAG, "Handling special key $key translated to $keyEvent shift=$shift ctrl=$ctrl alt=$alt");
 
         // special sequences:
         if (ctrl && (keyEvent == KeyEvent.KEYCODE_DPAD_RIGHT || keyEvent == KeyEvent.KEYCODE_DPAD_LEFT)) {
@@ -164,7 +164,7 @@ class RemoteKeyboardIMEPlugin : Plugin(), SharedPreferences.OnSharedPreferenceCh
     }
 
     private fun handleVisibleKey(key: String, shift: Boolean, ctrl: Boolean, alt: Boolean): Boolean {
-//        Log.d(LOG_TAG, "Handling visible key " + key + " shift=" + shift + " ctrl=" + ctrl + " alt=" + alt + " " + key.equalsIgnoreCase("c") + " " + key.length());
+        //Log.d(LOG_TAG, "Handling visible key $key shift=$shift ctrl=$ctrl alt=$alt ${key.equals("c", true)} ${key.length}");
 
         if (key.isEmpty()) {
             return false
@@ -184,7 +184,7 @@ class RemoteKeyboardIMEPlugin : Plugin(), SharedPreferences.OnSharedPreferenceCh
             return inputConn.performContextMenuAction(android.R.id.selectAll)
         }
 
-//        Log.d(LOG_TAG, "Committing visible key '" + key + "'");
+        //Log.d(LOG_TAG, "Committing visible key '$key'");
         inputConn.commitText(key, key.length)
         return true
     }

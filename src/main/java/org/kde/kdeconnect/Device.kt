@@ -123,7 +123,7 @@ class Device : PacketReceiver {
         this.deviceInfo = link.deviceInfo
         this.pairingHandler = PairingHandler(this, createDefaultPairingCallback(), PairingHandler.PairState.NotPaired)
         this.supportedPlugins = Vector(PluginFactory.availablePlugins) // Assume all are supported until we receive capabilities
-        Log.i("Device", "Creating untrusted device: " + deviceInfo.name)
+        Log.i("Device", "Creating untrusted device: ${deviceInfo.name}")
         addLink(link)
     }
 
@@ -619,7 +619,7 @@ class Device : PacketReceiver {
 
         try {
             plugin.onDestroy()
-            // Log.e("removePlugin","removed " + pluginKey);
+            // Log.e("removePlugin","removed $pluginKey");
         } catch (e: Exception) {
             Log.e("KDE/removePlugin", "Exception calling onDestroy for plugin $pluginKey", e)
         }

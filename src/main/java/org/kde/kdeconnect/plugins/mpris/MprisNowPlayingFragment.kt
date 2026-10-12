@@ -271,9 +271,10 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
             playerStatus = plugin.getEmptyPlayer()
         }
 
-        var song = playerStatus.title
-        if (playerStatus.artist.isNotEmpty()) {
-            song += " - " + playerStatus.artist
+        val song = if (playerStatus.artist.isEmpty()) {
+            playerStatus.title
+        } else {
+            "${playerStatus.title} - ${playerStatus.artist}"
         }
         if (mprisControlBinding.nowPlayingTextview.text.toString() != song) {
             mprisControlBinding.nowPlayingTextview.text = song

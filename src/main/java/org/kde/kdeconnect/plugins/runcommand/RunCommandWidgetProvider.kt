@@ -52,7 +52,7 @@ class RunCommandWidgetProvider : AppWidgetProvider() {
     }
 
     override fun onReceive(context: Context, intent: Intent) {
-        Log.d("WidgetProvider", "onReceive " + intent.action)
+        Log.d("WidgetProvider", "onReceive ${intent.action}")
 
         if (intent.action == RUN_COMMAND_ACTION) {
             val targetCommand = intent.getStringExtra(TARGET_COMMAND)
@@ -114,7 +114,7 @@ internal fun updateAppWidget(
     val views = RemoteViews(BuildConfig.APPLICATION_ID, R.layout.widget_remotecommandplugin)
     assignTitleIntent(context, appWidgetId, views)
 
-    Log.d("WidgetProvider", "updateAppWidget device: " + (device?.name ?: "null"))
+    Log.d("WidgetProvider", "updateAppWidget device: ${device?.name}")
 
     // Android should automatically toggle between the command list and the error text
     views.setEmptyView(R.id.widget_command_list, R.id.widget_error_text)

@@ -83,10 +83,10 @@ class MdnsDiscovery {
             try {
                 serviceInfo = createNsdServiceInfo()
             } catch (e: IllegalStateException) {
-                Log.w(LOG_TAG, "Couldn't start announcing via MDNS: " + e.message)
+                Log.w(LOG_TAG, "Couldn't start announcing via MDNS: ${e.message}")
                 return
             } catch (e: IllegalAccessException) {
-                Log.w(LOG_TAG, "Couldn't start announcing via MDNS: " + e.message)
+                Log.w(LOG_TAG, "Couldn't start announcing via MDNS: ${e.message}")
                 return
             }
             registrationListener = createRegistrationListener()

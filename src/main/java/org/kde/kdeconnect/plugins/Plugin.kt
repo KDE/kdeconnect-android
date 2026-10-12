@@ -61,10 +61,10 @@ abstract class Plugin {
             if (isDeviceInitialized.not()) {
                 throw RuntimeException("You have to call setContext() before you can call getSharedPreferencesName()")
             }
-            if (this.supportsDeviceSpecificSettings()) {
-                return device.deviceId + "_" + this.pluginKey + "_preferences"
+            if (supportsDeviceSpecificSettings()) {
+                return "${device.deviceId}_${pluginKey}_preferences"
             }
-            return pluginKey + "_preferences"
+            return "${pluginKey}_preferences"
         }
 
     /**

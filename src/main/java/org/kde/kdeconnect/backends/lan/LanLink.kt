@@ -137,7 +137,7 @@ class LanLink(
                             sendPayload(np, callback, server)
                         } catch (e: IOException) {
                             e.printStackTrace()
-                            Log.e(LOG_TAG, "Async sendPayload failed for packet of type " + np.type + ". The Plugin was NOT notified.")
+                            Log.e(LOG_TAG, "Async sendPayload failed for packet of type ${np.type}. The Plugin was NOT notified.")
                         }
                     }
                     payloadTransferStarted = true

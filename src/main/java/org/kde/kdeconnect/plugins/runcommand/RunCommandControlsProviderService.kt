@@ -42,7 +42,7 @@ class RunCommandControlsProviderService : ControlsProviderService() {
 
     override fun createPublisherForAllAvailable(): Flow.Publisher<Control> {
         return FlowAdapters.toFlowPublisher(Flowable.fromIterable(getAllCommandsList().map { commandEntry ->
-            Control.StatelessBuilder(commandEntry.device.deviceId + ":" + commandEntry.key, getIntent(commandEntry.device))
+            Control.StatelessBuilder("${commandEntry.device.deviceId}:${commandEntry.key}", getIntent(commandEntry.device))
                 .setTitle(commandEntry.name)
                 .setSubtitle(commandEntry.command)
                 .setStructure(commandEntry.device.name)

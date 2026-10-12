@@ -61,7 +61,7 @@ object SslHelper {
         val privateKey: PrivateKey = getPrivateKey(context)
         val publicKey: PublicKey = getPublicKey(context)
 
-        Log.i(LOG_TAG, "Key algorithm: " + publicKey.algorithm)
+        Log.i(LOG_TAG, "Key algorithm: ${publicKey.algorithm}")
 
         val deviceId = getDeviceId(context)
 
@@ -79,10 +79,10 @@ object SslHelper {
                     Log.e(LOG_TAG,"The certificate stored is from a different device id! (found: $certDeviceId expected:$deviceId)")
                     needsToGenerateCertificate = true
                 } else if (cert.notAfter.time < currDate.time) {
-                    Log.e(LOG_TAG, "The certificate expired: " + cert.notAfter)
+                    Log.e(LOG_TAG, "The certificate expired: ${cert.notAfter}")
                     needsToGenerateCertificate = true
                 } else if (cert.notBefore.time > currDate.time) {
-                    Log.e(LOG_TAG, "The certificate is not effective yet: " + cert.notBefore)
+                    Log.e(LOG_TAG, "The certificate is not effective yet: ${cert.notBefore}")
                     needsToGenerateCertificate = true
                 } else {
                     certificate = cert

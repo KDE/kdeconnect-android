@@ -65,7 +65,7 @@ class CustomDevicesViewModel(
 ) : AndroidViewModel(application) {
 
     private val prefs = application.getSharedPreferences(
-        application.packageName + "_preferences",
+        "${application.packageName}_preferences",
         Context.MODE_PRIVATE
     )
 

@@ -69,7 +69,7 @@ class NotificationReceiver : NotificationListenerService() {
     }
 
     override fun onNotificationPosted(statusBarNotification: StatusBarNotification) {
-        // Log.e("NotificationReceiver.onNotificationPosted","listeners: " + listeners.size)
+        //Log.e("NotificationReceiver.onNotificationPosted", "listeners: ${listeners.size}")
         for (listener in listeners) {
             listener.onNotificationPosted(statusBarNotification)
         }

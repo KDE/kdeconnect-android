@@ -138,7 +138,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
             // us to keep a single BufferedInputStream instance and pass it around to make sure we don't lose data.
             // This means we are readying byte by byte directly from the OS, which is slow, but only for the handshake.
             message = readLineBounded(socket.getInputStream(), MAX_IDENTITY_PACKET_SIZE)
-            //Log.e("TcpListener", "Received TCP packet: " + message);
+            //Log.e("TcpListener", "Received TCP packet: $message");
         } catch (e: Exception) {
             Log.e("KDE/LanLinkProvider", "Exception while receiving TCP packet", e)
             socket.closeSafe()
@@ -150,7 +150,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
             return
         }
 
-        Log.i("KDE/LanLinkProvider", "identity packet received from a TCP connection from " + identityPacket.getString("deviceName"))
+        Log.i("KDE/LanLinkProvider", "identity packet received from a TCP connection from ${identityPacket.getString("deviceName")}")
 
         val targetDeviceId = identityPacket.getStringOrNull("targetDeviceId")
         val targetProtocolVersion = identityPacket.getIntOrNull("targetProtocolVersion")
@@ -380,7 +380,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
         }
 
         if (linkCreated) {
-            Log.d("KDE/LanLinkProvider", "Creating a new link for device " + deviceInfo.id)
+            Log.d("KDE/LanLinkProvider", "Creating a new link for device ${deviceInfo.id}")
             onConnectionReceived(link)
             link.startListening()
         } else {
@@ -389,7 +389,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
                 socket.closeSafe()
                 return
             }
-            Log.d("KDE/LanLinkProvider", "Reusing same link for device " + deviceInfo.id)
+            Log.d("KDE/LanLinkProvider", "Reusing same link for device ${deviceInfo.id}")
             link.reset(socket, deviceInfo)
             onDeviceInfoUpdated(deviceInfo)
         }

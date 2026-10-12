@@ -77,8 +77,7 @@ class RunCommandActivity : AppCompatActivity() {
         command: CommandEntry,
         clipboardManager: Clipboard
     ) {
-        val url =
-            "kdeconnect://runcommand/" + device.deviceId + "/" + command.key
+        val url = "kdeconnect://runcommand/${device.deviceId}/${command.key}"
         val clipData = ClipData.newPlainText("Command", url)
 
         CoroutineScope(Dispatchers.IO).launch {

@@ -24,7 +24,7 @@ object PluginFactory {
         } catch (e: Exception) {
             throw RuntimeException(e)
         }
-        Log.i("PluginFactory", "Loaded " + pluginInfo.size + " plugins")
+        Log.i("PluginFactory", "Loaded ${pluginInfo.size} plugins")
     }
 
     val availablePlugins: Set<String>

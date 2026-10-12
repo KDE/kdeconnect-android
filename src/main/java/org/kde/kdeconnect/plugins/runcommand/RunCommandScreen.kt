@@ -235,7 +235,7 @@ fun RunCommandScreen(
                     horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
                     var text = stringResource(R.string.addcommand_explanation)
-                    if (!(plugin.canAddCommand())) {
+                    if (!plugin.canAddCommand()) {
                         text += "\n" + stringResource(R.string.addcommand_explanation2)
                     }
                     Text(text)

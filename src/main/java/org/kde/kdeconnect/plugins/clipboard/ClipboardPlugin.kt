@@ -57,7 +57,7 @@ class ClipboardPlugin : Plugin() {
                 }
                 return true
             }
-            else -> throw UnsupportedOperationException("Unknown packet type: " + np.type)
+            else -> throw UnsupportedOperationException("Unknown packet type: ${np.type}")
         }
     }
 
