@@ -34,7 +34,7 @@ class PluginSettingsActivity : BaseActivity<ActivityPluginSettingsBinding>(), Pl
 
         super.onCreate(savedInstanceState)
 
-        setSupportActionBar(findViewById(R.id.toolbar))
+        setSupportActionBar(binding.toolbarLayout.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 

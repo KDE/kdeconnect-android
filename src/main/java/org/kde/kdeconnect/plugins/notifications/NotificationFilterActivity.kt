@@ -31,7 +31,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.getSystemService
 import androidx.core.widget.TextViewCompat
-import com.google.android.material.materialswitch.MaterialSwitch
 import org.kde.kdeconnect.base.BaseActivity
 import org.kde.kdeconnect.helpers.ThreadHelper
 import org.kde.kdeconnect_tp.R
@@ -190,9 +189,8 @@ class NotificationFilterActivity : BaseActivity<ActivityNotificationFilterBindin
     }
 
     private fun configureSwitch(sharedPreferences: SharedPreferences) {
-        val smScreenOffNotification: MaterialSwitch = findViewById(R.id.smScreenOffNotification)
-        smScreenOffNotification.isChecked = sharedPreferences.getBoolean(NotificationsPlugin.PREF_NOTIFICATION_SCREEN_OFF, false)
-        smScreenOffNotification.setOnCheckedChangeListener { _, isChecked ->
+        binding.smScreenOffNotification.isChecked = sharedPreferences.getBoolean(NotificationsPlugin.PREF_NOTIFICATION_SCREEN_OFF, false)
+        binding.smScreenOffNotification.setOnCheckedChangeListener { _, isChecked ->
             sharedPreferences.edit {
                 putBoolean(NotificationsPlugin.PREF_NOTIFICATION_SCREEN_OFF,isChecked)
             }
