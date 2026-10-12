@@ -23,12 +23,14 @@ import android.view.ViewGroup
 import android.widget.EditText
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.preference.EditTextPreference
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -75,6 +77,12 @@ class SettingsFragment : PreferenceFragmentCompat() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         listView.setupBottomPadding()
+    }
+
+    override fun onDestroyView() {
+        bluetoothPermissionsDialog?.dismiss()
+        bluetoothPermissionsDialog = null
+        super.onDestroyView()
     }
 
     private fun deviceNamePref(context: Context) = EditTextPreference(context).apply {
@@ -198,6 +206,17 @@ class SettingsFragment : PreferenceFragmentCompat() {
         ))
     }
 
+    private var bluetoothPermissionsDialog: AlertDialog? = null
+
+    private val bluetoothPermissionsLauncher = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { results ->
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S &&
+            results[Manifest.permission.BLUETOOTH_CONNECT] == true &&
+            results[Manifest.permission.BLUETOOTH_SCAN] == true) {
+            findPreference<SwitchPreference>(KEY_BLUETOOTH_ENABLED)?.isChecked = true // Also saves the preference
+            BackgroundService.ForceRefreshConnections(requireContext()) // Restarts the BluetoothLinkProvider
+        }
+    }
+
     private fun bluetoothSupportPref(context: Context) = SwitchPreference(context).apply {
         setDefaultValue(false)
         key = KEY_BLUETOOTH_ENABLED
@@ -207,11 +226,12 @@ class SettingsFragment : PreferenceFragmentCompat() {
                 val permissions = arrayOf(Manifest.permission.BLUETOOTH_CONNECT, Manifest.permission.BLUETOOTH_SCAN)
                 val permissionsGranted = permissions.all { ContextCompat.checkSelfPermission(context, it) == PackageManager.PERMISSION_GRANTED }
                 if (!permissionsGranted) {
-                    PermissionsAlertDialogFragment.Builder()
+                    bluetoothPermissionsDialog = MaterialAlertDialogBuilder(requireContext())
                         .setTitle(R.string.location_permission_needed_title)
                         .setMessage(R.string.bluetooth_permission_needed_desc)
-                        .setPermissions(permissions)
-                        .create().show(childFragmentManager, null)
+                        .setPositiveButton(R.string.ok) { _, _ -> bluetoothPermissionsLauncher.launch(permissions) }
+                        .setNegativeButton(R.string.cancel, null)
+                        .show()
                     return@OnPreferenceChangeListener false
                 }
             }

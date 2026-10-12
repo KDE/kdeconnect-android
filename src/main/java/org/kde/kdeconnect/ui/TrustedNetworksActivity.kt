@@ -6,14 +6,15 @@
 package org.kde.kdeconnect.ui
 
 import android.Manifest
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView.OnItemClickListener
 import android.widget.ArrayAdapter
 import android.widget.CheckBox
 import android.widget.ListView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.kde.kdeconnect.base.BaseActivity
 import org.kde.kdeconnect.extensions.viewBinding
 import org.kde.kdeconnect.helpers.TrustedNetworkHelper
@@ -32,11 +33,18 @@ class TrustedNetworksActivity : BaseActivity<TrustedNetworkListBinding>() {
         TrustedNetworkHelper(applicationContext) // Lazy to avoid creating it before onCreate, because it needs the context
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (PackageManager.PERMISSION_GRANTED in grantResults) {
+    private var locationPermissionDialog: AlertDialog? = null
+
+    private val locationPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
+        if (granted) {
             allowAllCheckBox.isChecked = false
         }
+    }
+
+    override fun onDestroy() {
+        locationPermissionDialog?.dismiss()
+        locationPermissionDialog = null
+        super.onDestroy()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,11 +65,12 @@ class TrustedNetworksActivity : BaseActivity<TrustedNetworkListBinding>() {
                 addNetworkButton()
             } else {
                 allowAllCheckBox.isChecked = true // Disable unchecking it
-                PermissionsAlertDialogFragment.Builder()
+                locationPermissionDialog = MaterialAlertDialogBuilder(this)
                     .setTitle(R.string.location_permission_needed_title)
                     .setMessage(R.string.location_permission_needed_desc)
-                    .setPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION))
-                    .create().show(supportFragmentManager, null)
+                    .setPositiveButton(R.string.ok) { _, _ -> locationPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION) }
+                    .setNegativeButton(R.string.cancel, null)
+                    .show()
             }
         }
         allowAllCheckBox.isChecked = trustedNetworkHelper.allNetworksAllowed

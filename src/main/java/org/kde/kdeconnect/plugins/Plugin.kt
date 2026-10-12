@@ -232,6 +232,7 @@ abstract class Plugin {
             .setTitle(displayName)
             .setMessage(reason)
             .setPermissions(permissions)
+            .setReloadPluginsOnResult(true)
             .create()
     }
 
