@@ -138,4 +138,37 @@ internal class NetworkHelperTest {
         assertTrue(address.isUniqueLocal)
         assertTrue(isPrivateAddress(address))
     }
+
+    @Test
+    @Throws(Exception::class)
+    fun testAllowedAddressPrivate() {
+        val address = InetAddress.getByName("192.168.1.50")
+        assertTrue(isAllowedAddress(address, emptyList()))
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun testAllowedAddressPublicWithoutCustomDevices() {
+        val address = InetAddress.getByName("190.1.1.2")
+        assertFalse(isPrivateAddress(address))
+        assertFalse(isAllowedAddress(address, emptyList()))
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun testAllowedAddressPublicMatchingCustomDeviceHost() {
+        val address = InetAddress.getByName("190.1.1.2")
+        val customHosts = listOf("190.1.1.2")
+        assertFalse(isPrivateAddress(address))
+        assertTrue(isAllowedAddress(address, customHosts))
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun testAllowedAddressPublicNotMatchingCustomDeviceHost() {
+        val address = InetAddress.getByName("190.1.1.2")
+        val customHosts = listOf("190.1.1.3")
+        assertFalse(isPrivateAddress(address))
+        assertFalse(isAllowedAddress(address, customHosts))
+    }
 }

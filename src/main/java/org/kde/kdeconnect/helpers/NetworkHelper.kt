@@ -92,3 +92,19 @@ fun isPrivateAddress(address: InetAddress): Boolean {
             || address.isCGNAT
             || address.isUniqueLocal
 }
+
+/**
+ * Returns true if the address is a private address or explicitly allowed via custom device hosts
+ */
+fun isAllowedAddress(address: InetAddress, customDeviceHosts: Collection<Any> = emptyList()): Boolean {
+    if (isPrivateAddress(address)) {
+        return true
+    }
+    val hostAddress = address.hostAddress
+    return customDeviceHosts.any { host ->
+        val hostStr = host.toString()
+        hostStr == hostAddress || runCatching {
+            InetAddress.getByName(hostStr) == address
+        }.getOrDefault(false)
+    }
+}

@@ -27,6 +27,7 @@ import org.kde.kdeconnect.helpers.DeviceHelper
 import org.kde.kdeconnect.helpers.ThreadHelper
 import org.kde.kdeconnect.helpers.TrustedDevices
 import org.kde.kdeconnect.helpers.TrustedNetworkHelper
+import org.kde.kdeconnect.helpers.isAllowedAddress
 import org.kde.kdeconnect.helpers.isPrivateAddress
 import org.kde.kdeconnect.helpers.readLineBounded
 import org.kde.kdeconnect.helpers.security.SslHelper
@@ -120,8 +121,8 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
     private fun tcpPacketReceived(socket: Socket) {
         val address = socket.getInetAddress()
 
-        if (!isPrivateAddress(address)) {
-            Log.i("LanLinkProvider", "Discarding TCP packet from a non-local IP")
+        if (!isAllowedAddress(address)) {
+            Log.i("LanLinkProvider", "Discarding TCP packet from a non-local IP: $address")
             socket.closeSafe()
             return
         }
@@ -168,6 +169,10 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
         identityPacketReceived(identityPacket, socket, ConnectionStarted.Locally, deviceTrusted)
     }
 
+    private fun isAllowedAddress(address: InetAddress): Boolean {
+        return isAllowedAddress(address, CustomDevicesActivity.getCustomDeviceList(context))
+    }
+
     fun rateLimitByIp(address: InetAddress): Boolean {
         val now = SystemClock.elapsedRealtime()
         val last = lastConnectionTimeByIp[address]
@@ -199,8 +204,8 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
     private fun udpPacketReceived(packet: DatagramPacket) {
         val address = packet.address
 
-        if (!isPrivateAddress(address)) {
-            Log.i("LanLinkProvider", "Discarding UDP packet from a non-local IP")
+        if (!isAllowedAddress(address)) {
+            Log.i("LanLinkProvider", "Discarding UDP packet from a non-local IP: $address")
             return
         }
 
