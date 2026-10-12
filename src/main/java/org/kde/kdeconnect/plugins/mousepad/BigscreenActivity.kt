@@ -14,6 +14,7 @@ import android.speech.SpeechRecognizer
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.preference.PreferenceManager
 import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect.base.BaseActivity
@@ -28,6 +29,21 @@ class BigscreenActivity : BaseActivity<ActivityBigscreenBinding>() {
     private lateinit var deviceId: String
 
     override val binding : ActivityBigscreenBinding by viewBinding(ActivityBigscreenBinding::inflate)
+
+    private val speechResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == RESULT_OK) {
+            // The results are ordered by confidence, use the first one
+            val firstResult = result.data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)?.firstOrNull()
+            if (firstResult != null) {
+                val plugin = KdeConnect.getInstance().getDevicePlugin<MousePadPlugin>(deviceId)
+                if (plugin == null) {
+                    finish()
+                    return@registerForActivityResult
+                }
+                plugin.sendText(firstResult)
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -89,13 +105,14 @@ class BigscreenActivity : BaseActivity<ActivityBigscreenBinding>() {
     }
 
     fun activateSTT() {
-        val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
-        intent.putExtra(
-            RecognizerIntent.EXTRA_LANGUAGE_MODEL,
-            RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
-        )
-        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, R.string.bigscreen_speech_extra_prompt)
-        startActivityForResult(intent, REQUEST_SPEECH)
+        val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
+            putExtra(
+                RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
+            )
+            putExtra(RecognizerIntent.EXTRA_PROMPT, R.string.bigscreen_speech_extra_prompt)
+        }
+        speechResultLauncher.launch(intent)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -115,22 +132,6 @@ class BigscreenActivity : BaseActivity<ActivityBigscreenBinding>() {
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_SPEECH && resultCode == RESULT_OK) {
-            // The results are ordered by confidence, use the first one
-            val firstResult = data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)?.first()
-            if (firstResult != null) {
-                val plugin = KdeConnect.getInstance().getDevicePlugin<MousePadPlugin>(deviceId)
-                if (plugin == null) {
-                    finish()
-                    return
-                }
-                plugin.sendText(firstResult)
-            }
-        }
-    }
-
     override fun onSupportNavigateUp(): Boolean {
         onBackPressedDispatcher.onBackPressed()
         return true
@@ -138,7 +139,6 @@ class BigscreenActivity : BaseActivity<ActivityBigscreenBinding>() {
 
     companion object {
         const val EXTRA_DEVICE_ID = "deviceId"
-        private const val REQUEST_SPEECH = 100
     }
 }
 
