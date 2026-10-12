@@ -18,7 +18,6 @@ import android.util.Log
 import androidx.annotation.WorkerThread
 import androidx.core.content.ContextCompat
 import org.json.JSONException
-import org.kde.kdeconnect.DeviceHost
 import org.kde.kdeconnect.DeviceInfo
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.NetworkPacket.Companion.unserialize
@@ -29,7 +28,6 @@ import org.kde.kdeconnect.helpers.DeviceHelper
 import org.kde.kdeconnect.helpers.ThreadHelper
 import org.kde.kdeconnect.helpers.TrustedDevices
 import org.kde.kdeconnect.helpers.TrustedNetworkHelper
-import org.kde.kdeconnect.helpers.isAllowedAddress
 import org.kde.kdeconnect.helpers.isPrivateAddress
 import org.kde.kdeconnect.helpers.readLineBounded
 import org.kde.kdeconnect.helpers.security.SslHelper
@@ -42,7 +40,6 @@ import java.net.InetSocketAddress
 import java.net.ServerSocket
 import java.net.Socket
 import java.net.SocketException
-import java.net.UnknownHostException
 import java.security.cert.CertificateException
 import java.util.concurrent.ConcurrentHashMap
 import javax.net.SocketFactory
@@ -65,11 +62,19 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
         context.getSharedPreferences(context.packageName + "_preferences", Context.MODE_PRIVATE)
 
     @Volatile
-    private var customDeviceList: List<DeviceHost> = CustomDevicesActivity.getCustomDeviceList(context)
+    private var customDeviceAddresses = emptyList<InetAddress>()
 
     private val customDeviceListener = OnSharedPreferenceChangeListener { _, key ->
         if (key == CustomDevicesActivity.KEY_CUSTOM_DEVICE_LIST_PREFERENCE) {
-            customDeviceList = CustomDevicesActivity.getCustomDeviceList(context)
+            updateCustomDevicesList()
+        }
+    }
+
+    fun updateCustomDevicesList() {
+        customDeviceAddresses = CustomDevicesActivity.getCustomDeviceList(context).flatMap {
+            runCatching {
+                InetAddress.getAllByName(it.host).toList()
+            }.getOrDefault(emptyList())
         }
     }
 
@@ -184,7 +189,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
     }
 
     private fun isAllowedAddress(address: InetAddress): Boolean {
-        return isAllowedAddress(address, customDeviceList)
+        return isPrivateAddress(address) || customDeviceAddresses.contains(address)
     }
 
     fun rateLimitByIp(address: InetAddress): Boolean {
@@ -496,22 +501,14 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
             return
         }
         ThreadHelper.execute {
-            val hostList: MutableList<DeviceHost> = CustomDevicesActivity.getCustomDeviceList(context)
+            val ipList = ArrayList<InetAddress>()
             if (TrustedNetworkHelper.isTrustedNetwork(context)) {
-                hostList.add(DeviceHost.BROADCAST) // Default: broadcast.
+                ipList.add(InetAddress.getByName("255.255.255.255")) // Default: broadcast.
             } else {
                 Log.i("LanLinkProvider", "Current network isn't trusted, not broadcasting")
             }
-
-            val ipList = ArrayList<InetAddress>()
-            for (host in hostList) {
-                try {
-                    ipList.add(InetAddress.getByName(host.toString()))
-                } catch (e: UnknownHostException) {
-                    e.printStackTrace()
-                }
-            }
-
+            updateCustomDevicesList()
+            ipList.addAll(customDeviceAddresses)
             if (ipList.isNotEmpty()) {
                 sendUdpIdentityPacket(ipList, network)
             }
@@ -574,7 +571,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
         //Log.i("KDE/LanLinkProvider", "onStart");
         isStopped = false
 
-        customDeviceList = CustomDevicesActivity.getCustomDeviceList(context)
+        updateCustomDevicesList()
         customDevicePreferences.registerOnSharedPreferenceChangeListener(customDeviceListener)
 
         setupUdpListener()

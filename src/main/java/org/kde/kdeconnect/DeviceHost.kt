@@ -4,7 +4,7 @@ import android.os.SystemClock
 import org.kde.kdeconnect.helpers.ThreadHelper
 import java.net.InetAddress
 
-class DeviceHost private constructor(private val host: String) {
+class DeviceHost private constructor(val host: String) {
 
     data class PingResult(val latency: Long?)
 
@@ -57,7 +57,5 @@ class DeviceHost private constructor(private val host: String) {
                 null
             }
         }
-
-        val BROADCAST: DeviceHost = DeviceHost("255.255.255.255")
     }
 }
