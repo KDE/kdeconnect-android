@@ -8,32 +8,23 @@
 package org.kde.kdeconnect.plugins.sms
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.content.SharedPreferences
-import android.content.pm.PackageManager
 import android.database.ContentObserver
 import android.os.Build
-import android.os.Bundle
 import android.os.Handler
-import android.provider.Telephony
-import android.telephony.PhoneNumberUtils
-import android.telephony.SmsMessage
 import androidx.annotation.RequiresApi
 import androidx.annotation.WorkerThread
 import androidx.core.content.ContextCompat
-import androidx.preference.PreferenceManager
 import com.klinker.android.logger.Log
 import com.klinker.android.send_message.Transaction
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import org.kde.kdeconnect.NetworkPacket
-import org.kde.kdeconnect.helpers.ContactsHelper
 import org.kde.kdeconnect.helpers.SMSHelper
 import org.kde.kdeconnect.helpers.SMSHelper.MessageLooper.Companion.getLooper
 import org.kde.kdeconnect.helpers.SMSHelper.ThreadID
@@ -48,9 +39,7 @@ import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.plugins.PluginFactory.LoadablePlugin
 import org.kde.kdeconnect.plugins.sms.SmsMmsUtils.partIdToMessageAttachmentPacket
 import org.kde.kdeconnect.plugins.sms.SmsMmsUtils.sendMessage
-import org.kde.kdeconnect.plugins.telephony.TelephonyPlugin
 import org.kde.kdeconnect.ui.PluginSettingsFragment
-import org.kde.kdeconnect_tp.BuildConfig
 import org.kde.kdeconnect_tp.R
 import java.util.concurrent.locks.Lock
 import java.util.concurrent.locks.ReentrantLock
@@ -58,30 +47,6 @@ import java.util.concurrent.locks.ReentrantLock
 @LoadablePlugin
 @RequiresApi(Build.VERSION_CODES.O)
 class SMSPlugin : Plugin() {
-    private val receiver: BroadcastReceiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent) {
-            val action: String? = intent.action
-
-            //Log.e("TelephonyPlugin","Telephony event: " + action)
-            if (Telephony.Sms.Intents.SMS_RECEIVED_ACTION == action) {
-                val bundle: Bundle = intent.extras ?: return
-                val pdus: Array<ByteArray?> = bundle.get("pdus") as Array<ByteArray?>
-                val messages: MutableList<SmsMessage> = mutableListOf()
-
-                for (pdu in pdus) {
-                    // I hope, but am not sure, that the pdus array is in the order that the parts
-                    // of the SMS message should be
-                    // If it is not, I believe the pdu contains the information necessary to put it
-                    // in order, but in my testing the order seems to be correct, so I won't worry
-                    // about it now.
-                    messages.add(SmsMessage.createFromPdu(pdu))
-                }
-
-                smsBroadcastReceivedDeprecated(messages)
-            }
-        }
-    }
-
     /**
      * Keep track of the most-recently-seen message so that we can query for later ones as they arrive
      */
@@ -169,72 +134,11 @@ class SMSPlugin : Plugin() {
         device.sendPacket(constructBulkMessagePacket(messages))
     }
 
-    /**
-     * Deliver an old-style SMS packet in response to a new message arriving
-     *
-     * For backwards-compatibility with long-lived distro packages, this method needs to exist in
-     * order to support older desktop apps. However, note that it should no longer be used
-     *
-     * This comment is being written 30 August 2018. Distros will likely be running old versions for many years to come...
-     *
-     * @param messages Ordered list of parts of the message body which should be combined into a single message
-     */
-    @Deprecated("")
-    private fun smsBroadcastReceivedDeprecated(messages: MutableList<SmsMessage>) {
-        if (BuildConfig.DEBUG) {
-            if (messages.isEmpty()) {
-                throw AssertionError("This method requires at least one message")
-            }
-        }
-
-        val np = NetworkPacket(TelephonyPlugin.PACKET_TYPE_TELEPHONY)
-
-        np["event"] = "sms"
-
-        np["messageBody"] = buildString {
-            for (message in messages) {
-                append(message.messageBody)
-            }
-        }
-
-        val phoneNumber: String? = messages[0].originatingAddress
-
-        if (isNumberBlocked(phoneNumber)) return
-
-        val permissionCheck: Int = ContextCompat.checkSelfPermission(context, Manifest.permission.READ_CONTACTS)
-
-        if (permissionCheck == PackageManager.PERMISSION_GRANTED && phoneNumber != null) {
-            val result = ContactsHelper.phoneNumberLookup(context, phoneNumber)
-
-            val name = result.name
-            if (name != null) {
-                np["contactName"] = name
-            }
-
-            val photoId = result.photoId
-            if (photoId != null) {
-                val base64photo = ContactsHelper.photoId64Encoded(context, photoId)
-                if (!base64photo.isNullOrEmpty()) {
-                    np["phoneThumbnail"] = base64photo
-                }
-            }
-        }
-        if (phoneNumber != null) {
-            np["phoneNumber"] = phoneNumber
-        }
-
-        device.sendPacket(np)
-    }
-
     override val minSdk: Int = Build.VERSION_CODES.O
 
     override val permissionExplanation: Int = R.string.telepathy_permission_explanation
 
     override fun onCreate() {
-        val filter = IntentFilter(Telephony.Sms.Intents.SMS_RECEIVED_ACTION)
-        filter.priority = 500
-        context.registerReceiver(receiver, filter)
-
         val refreshFilter = IntentFilter(Transaction.REFRESH)
         refreshFilter.priority = 500
         context.registerReceiver(messagesUpdateReceiver, refreshFilter, ContextCompat.RECEIVER_EXPORTED)
@@ -249,7 +153,6 @@ class SMSPlugin : Plugin() {
     }
 
     override fun onDestroy() {
-        context.unregisterReceiver(receiver)
         context.unregisterReceiver(messagesUpdateReceiver)
         context.contentResolver.unregisterContentObserver(messageObserver)
     }
@@ -343,18 +246,6 @@ class SMSPlugin : Plugin() {
         device.sendPacket(reply)
 
         return true
-    }
-
-    private fun isNumberBlocked(number: String?): Boolean {
-        val sharedPref: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-        val blockedNumbers: Array<String> =
-            sharedPref.getString(KEY_PREF_BLOCKED_NUMBERS, "")!!.split("\n".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-
-        for (s: String in blockedNumbers) {
-            if (PhoneNumberUtils.compare(number, s)) return true
-        }
-
-        return false
     }
 
     override fun hasSettings(): Boolean = true
@@ -500,8 +391,6 @@ class SMSPlugin : Plugin() {
          * "payload":               // Actual attachment file to be transferred
          */
         private const val PACKET_TYPE_SMS_ATTACHMENT_FILE: String = "kdeconnect.sms.attachment_file"
-
-        private const val KEY_PREF_BLOCKED_NUMBERS: String = "telephony_blocked_numbers"
 
         /**
          * Construct a proper packet of [PACKET_TYPE_SMS_MESSAGE] from the passed messages

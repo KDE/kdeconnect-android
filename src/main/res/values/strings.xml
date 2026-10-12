@@ -406,7 +406,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
 
     <string name="select_ringtone">Select a ringtone</string>
     <string name="telephony_pref_blocked_title">Blocked numbers</string>
-    <string name="telephony_pref_blocked_dialog_desc">Don\'t show calls and SMS from these numbers. Please specify one number per line</string>
+    <string name="telephony_pref_blocked_dialog_desc">Don\'t show calls from these numbers. Please specify one number per line</string>
     <string name="mpris_coverart_description">Cover art of current media</string>
     <string name="settings_icon_description">Settings icon</string>
 
