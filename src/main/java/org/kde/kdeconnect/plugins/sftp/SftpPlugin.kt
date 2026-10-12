@@ -24,7 +24,6 @@ import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.plugins.PluginFactory.LoadablePlugin
 import org.kde.kdeconnect.ui.AlertDialogFragment
 import org.kde.kdeconnect.ui.DeviceSettingsAlertDialogFragment
-import org.kde.kdeconnect.ui.MainActivity
 import org.kde.kdeconnect.ui.PluginSettingsFragment
 import org.kde.kdeconnect.ui.StartActivityAlertDialogFragment
 import org.kde.kdeconnect_tp.BuildConfig
@@ -55,8 +54,7 @@ class SftpPlugin : Plugin(), OnSharedPreferenceChangeListener {
                 .setNegativeButton(R.string.cancel)
                 .setIntentAction(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
                 .setIntentUrl("package:${BuildConfig.APPLICATION_ID}")
-                .setStartForResult(true)
-                .setRequestCode(MainActivity.RESULT_NEEDS_RELOAD)
+                .setReloadPluginsOnResult(true)
                 .create()
         } else {
             DeviceSettingsAlertDialogFragment.Builder()

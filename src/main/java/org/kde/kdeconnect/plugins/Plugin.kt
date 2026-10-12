@@ -19,7 +19,6 @@ import androidx.fragment.app.DialogFragment
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.ui.AlertDialogFragment
-import org.kde.kdeconnect.ui.MainActivity
 import org.kde.kdeconnect.ui.PermissionsAlertDialogFragment
 import org.kde.kdeconnect.ui.PluginSettingsFragment
 import org.kde.kdeconnect_tp.R
@@ -233,7 +232,6 @@ abstract class Plugin {
             .setTitle(displayName)
             .setMessage(reason)
             .setPermissions(permissions)
-            .setRequestCode(MainActivity.RESULT_NEEDS_RELOAD)
             .create()
     }
 

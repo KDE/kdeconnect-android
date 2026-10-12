@@ -11,26 +11,15 @@ import androidx.core.app.ActivityCompat
 import org.kde.kdeconnect_tp.R
 
 class PermissionsAlertDialogFragment : AlertDialogFragment() {
-    private var permissions: Array<String>? = null
-    private var requestCode = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val args = arguments
-        if (args == null || !args.containsKey(KEY_PERMISSIONS)) {
-            throw RuntimeException("You must call Builder.setPermission() to set the array of needed permissions")
-        }
-
-        permissions = args.getStringArray(KEY_PERMISSIONS)
-        requestCode = args.getInt(KEY_REQUEST_CODE, 0)
+        val permissions = arguments?.getStringArray(KEY_PERMISSIONS)!!
 
         callback = object : Callback() {
             override fun onPositiveButtonClicked(): Boolean {
-                val perms = permissions
-                if (perms != null) {
-                    ActivityCompat.requestPermissions(requireActivity(), perms, requestCode)
-                }
+                ActivityCompat.requestPermissions(requireActivity(), permissions, 0)
                 return true
             }
         }
@@ -49,16 +38,10 @@ class PermissionsAlertDialogFragment : AlertDialogFragment() {
             return getThis()
         }
 
-        fun setRequestCode(requestCode: Int): Builder {
-            args.putInt(KEY_REQUEST_CODE, requestCode)
-            return getThis()
-        }
-
         override fun createFragment(): PermissionsAlertDialogFragment = PermissionsAlertDialogFragment()
     }
 
     companion object {
         private const val KEY_PERMISSIONS = "Permissions"
-        private const val KEY_REQUEST_CODE = "RequestCode"
     }
 }

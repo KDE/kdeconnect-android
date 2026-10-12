@@ -19,7 +19,6 @@ import androidx.preference.PreferenceManager
 import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect.base.BaseActivity
 import org.kde.kdeconnect.extensions.viewBinding
-import org.kde.kdeconnect.ui.MainActivity
 import org.kde.kdeconnect.ui.PermissionsAlertDialogFragment
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.ActivityBigscreenBinding
@@ -81,8 +80,8 @@ class BigscreenActivity : BaseActivity<ActivityBigscreenBinding>() {
                     .setTitle(plugin.displayName)
                     .setMessage(R.string.bigscreen_optional_permission_explanation)
                     .setPermissions(arrayOf(Manifest.permission.RECORD_AUDIO))
-                    .setRequestCode(MainActivity.RESULT_NEEDS_RELOAD)
-                    .create().show(supportFragmentManager, null)
+                    .create()
+                    .show(supportFragmentManager, null)
             }
         }
 

@@ -61,7 +61,6 @@ class TrustedNetworksActivity : BaseActivity<TrustedNetworkListBinding>() {
                     .setTitle(R.string.location_permission_needed_title)
                     .setMessage(R.string.location_permission_needed_desc)
                     .setPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION))
-                    .setRequestCode(0)
                     .create().show(supportFragmentManager, null)
             }
         }

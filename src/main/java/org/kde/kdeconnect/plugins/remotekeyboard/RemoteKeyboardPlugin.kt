@@ -27,7 +27,6 @@ import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.plugins.PluginFactory.LoadablePlugin
 import org.kde.kdeconnect.plugins.remotekeyboardime.RemoteKeyboardIMEPlugin
 import org.kde.kdeconnect.plugins.remotekeyboardime.RemoteKeyboardService
-import org.kde.kdeconnect.ui.MainActivity
 import org.kde.kdeconnect.ui.StartActivityAlertDialogFragment
 import org.kde.kdeconnect_tp.R
 
@@ -51,8 +50,7 @@ class RemoteKeyboardPlugin : Plugin() {
             .setPositiveButton(R.string.open_accessibility_settings)
             .setNegativeButton(R.string.cancel)
             .setIntentAction(Settings.ACTION_ACCESSIBILITY_SETTINGS)
-            .setStartForResult(true)
-            .setRequestCode(MainActivity.RESULT_NEEDS_RELOAD)
+            .setReloadPluginsOnResult(true)
             .create()
 
     companion object {

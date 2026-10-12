@@ -7,7 +7,6 @@
 package org.kde.kdeconnect.ui
 
 import android.Manifest
-import android.content.Intent
 import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import android.content.pm.PackageManager.PERMISSION_GRANTED
@@ -36,9 +35,6 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
 import com.google.android.material.navigation.NavigationView
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import org.kde.kdeconnect.BackgroundService
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.KdeConnect
@@ -237,7 +233,7 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
         }
 
         if (missingPermissions.isNotEmpty()) {
-            ActivityCompat.requestPermissions(this, missingPermissions.toTypedArray(), RESULT_NOTIFICATIONS_ENABLED)
+            ActivityCompat.requestPermissions(this, missingPermissions.toTypedArray(), 0)
         }
     }
 
@@ -360,18 +356,6 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
         outState.putInt(STATE_SELECTED_MENU_ENTRY, mCurrentMenuEntry)
     }
 
-    @Deprecated("Deprecated in Java")
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        when (requestCode) {
-            RESULT_NEEDS_RELOAD -> {
-                CoroutineScope(Dispatchers.IO).launch {
-                    KdeConnect.getInstance().devices.values.forEach(Device::reloadPluginsFromSettings)
-                }
-            }
-            else -> super.onActivityResult(requestCode, resultCode, data)
-        }
-    }
-
     fun isPermissionGranted(permissions: Array<String>, grantResults: IntArray, permission : String) : Boolean {
         val index = permissions.indexOf(permission)
         return index != -1 && grantResults[index] == PERMISSION_GRANTED
@@ -409,10 +393,8 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
                 BackgroundService.ForceRefreshConnections(this)
             }
 
-            //New permission granted, reload plugins
-            CoroutineScope(Dispatchers.IO).launch {
-                KdeConnect.getInstance().devices.values.forEach(Device::reloadPluginsFromSettings)
-            }
+            // New permission granted, reload plugins
+            KdeConnect.getInstance().reloadAllDevicePlugins()
         }
     }
 
@@ -439,8 +421,6 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
         const val PAIRING_ACCEPTED = "accepted"
         const val PAIRING_REJECTED = "rejected"
         const val PAIRING_PENDING = "pending"
-        const val RESULT_NEEDS_RELOAD = RESULT_FIRST_USER
-        const val RESULT_NOTIFICATIONS_ENABLED = RESULT_FIRST_USER+1
         const val FLAG_FORCE_OVERVIEW = "forceOverview"
     }
 

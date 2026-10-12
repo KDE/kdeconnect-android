@@ -136,7 +136,7 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
                                     ActivityCompat.requestPermissions(
                                         requireActivity(),
                                         arrayOf(Manifest.permission.POST_NOTIFICATIONS),
-                                        MainActivity.RESULT_NOTIFICATIONS_ENABLED
+                                        0
                                     )
                                 }
                             } else {
@@ -153,7 +153,7 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
                                 ActivityCompat.requestPermissions(
                                     requireActivity(),
                                     arrayOf(Manifest.permission.ACCESS_LOCAL_NETWORK),
-                                    MainActivity.RESULT_NOTIFICATIONS_ENABLED
+                                    0
                                 )
                             }
                         },

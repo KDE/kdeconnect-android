@@ -211,7 +211,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
                         .setTitle(R.string.location_permission_needed_title)
                         .setMessage(R.string.bluetooth_permission_needed_desc)
                         .setPermissions(permissions)
-                        .setRequestCode(2)
                         .create().show(childFragmentManager, null)
                     return@OnPreferenceChangeListener false
                 }

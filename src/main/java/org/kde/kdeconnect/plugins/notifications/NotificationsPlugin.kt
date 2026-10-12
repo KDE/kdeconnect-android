@@ -36,7 +36,6 @@ import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.helpers.AppsHelper.appNameLookup
 import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.plugins.PluginFactory.LoadablePlugin
-import org.kde.kdeconnect.ui.MainActivity
 import org.kde.kdeconnect.ui.PluginSettingsFragment
 import org.kde.kdeconnect.ui.StartActivityAlertDialogFragment
 import org.kde.kdeconnect_tp.R
@@ -531,8 +530,7 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
             .setPositiveButton(R.string.open_settings)
             .setNegativeButton(R.string.cancel)
             .setIntentAction("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS")
-            .setStartForResult(true)
-            .setRequestCode(MainActivity.RESULT_NEEDS_RELOAD)
+            .setReloadPluginsOnResult(true)
             .create()
 
     override val supportedPacketTypes = arrayOf(
