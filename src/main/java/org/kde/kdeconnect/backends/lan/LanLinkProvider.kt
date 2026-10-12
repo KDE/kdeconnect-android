@@ -8,6 +8,8 @@ package org.kde.kdeconnect.backends.lan
 
 import android.Manifest
 import android.content.Context
+import android.content.SharedPreferences
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import android.content.pm.PackageManager
 import android.net.Network
 import android.os.Build
@@ -58,6 +60,18 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
 
     private val lastConnectionTimeByDeviceId = ConcurrentHashMap<String, Long>()
     private val lastConnectionTimeByIp = ConcurrentHashMap<InetAddress, Long>()
+
+    private val customDevicePreferences: SharedPreferences =
+        context.getSharedPreferences(context.packageName + "_preferences", Context.MODE_PRIVATE)
+
+    @Volatile
+    private var customDeviceList: List<DeviceHost> = CustomDevicesActivity.getCustomDeviceList(context)
+
+    private val customDeviceListener = OnSharedPreferenceChangeListener { _, key ->
+        if (key == CustomDevicesActivity.KEY_CUSTOM_DEVICE_LIST_PREFERENCE) {
+            customDeviceList = CustomDevicesActivity.getCustomDeviceList(context)
+        }
+    }
 
     @Volatile
     private var tcpServer: ServerSocket? = null
@@ -121,14 +135,14 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
     private fun tcpPacketReceived(socket: Socket) {
         val address = socket.getInetAddress()
 
-        if (!isAllowedAddress(address)) {
-            Log.i("LanLinkProvider", "Discarding TCP packet from a non-local IP: $address")
+        if (rateLimitByIp(address)) {
+            Log.i("LanLinkProvider", "Discarding second TCP packet from the same ip $address received too quickly" )
             socket.closeSafe()
             return
         }
 
-        if (rateLimitByIp(address)) {
-            Log.i("LanLinkProvider", "Discarding second TCP packet from the same ip $address received too quickly" )
+        if (!isAllowedAddress(address)) {
+            Log.i("LanLinkProvider", "Discarding TCP packet from a non-local IP: $address")
             socket.closeSafe()
             return
         }
@@ -170,7 +184,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
     }
 
     private fun isAllowedAddress(address: InetAddress): Boolean {
-        return isAllowedAddress(address, CustomDevicesActivity.getCustomDeviceList(context))
+        return isAllowedAddress(address, customDeviceList)
     }
 
     fun rateLimitByIp(address: InetAddress): Boolean {
@@ -204,13 +218,13 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
     private fun udpPacketReceived(packet: DatagramPacket) {
         val address = packet.address
 
-        if (!isAllowedAddress(address)) {
-            Log.i("LanLinkProvider", "Discarding UDP packet from a non-local IP: $address")
+        if (rateLimitByIp(address)) {
+            Log.i("LanLinkProvider", "Discarding second UDP packet from the same ip $address received too quickly")
             return
         }
 
-        if (rateLimitByIp(address)) {
-            Log.i("LanLinkProvider", "Discarding second UDP packet from the same ip $address received too quickly")
+        if (!isAllowedAddress(address)) {
+            Log.i("LanLinkProvider", "Discarding UDP packet from a non-local IP: $address")
             return
         }
 
@@ -560,6 +574,9 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
         //Log.i("KDE/LanLinkProvider", "onStart");
         isStopped = false
 
+        customDeviceList = CustomDevicesActivity.getCustomDeviceList(context)
+        customDevicePreferences.registerOnSharedPreferenceChangeListener(customDeviceListener)
+
         setupUdpListener()
         setupTcpListener()
 
@@ -599,6 +616,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
     override fun onStop() {
         //Log.i("KDE/LanLinkProvider", "onStop");
         isStopped = true
+        customDevicePreferences.unregisterOnSharedPreferenceChangeListener(customDeviceListener)
         synchronized(mdnsDiscovery) {
             mdnsDiscovery.stopAnnouncing()
             mdnsDiscovery.stopDiscovering()
