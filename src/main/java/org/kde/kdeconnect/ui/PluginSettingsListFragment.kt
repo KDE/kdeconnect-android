@@ -49,7 +49,7 @@ class PluginSettingsListFragment : PreferenceFragmentCompat() {
     }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        val preferenceScreen = preferenceManager.createPreferenceScreen(requireContext())
+        val preferenceScreen = preferenceManager.createPreferenceScreen(preferenceManager.context)
         setPreferenceScreen(preferenceScreen)
 
         val deviceId = requireArguments().getString(ARG_DEVICE_ID) ?: return
@@ -64,8 +64,7 @@ class PluginSettingsListFragment : PreferenceFragmentCompat() {
 
         val plugins = PluginFactory.sortPluginList(device.supportedPlugins)
         for (pluginKey in plugins) {
-            //TODO: Use PreferenceManagers context
-            val pref = PluginPreference(requireContext(), pluginKey, device, cb)
+            val pref = PluginPreference(preferenceManager.context, pluginKey, device, cb)
             preferenceScreen.addPreference(pref)
         }
     }
@@ -80,12 +79,7 @@ class PluginSettingsListFragment : PreferenceFragmentCompat() {
         if (recyclerViewLayoutManagerState != null) {
             adapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
                 override fun onChanged() {
-                    val layoutManager = listView?.layoutManager
-
-                    if (layoutManager != null) {
-                        layoutManager.onRestoreInstanceState(recyclerViewLayoutManagerState)
-                    }
-
+                    listView?.layoutManager?.onRestoreInstanceState(recyclerViewLayoutManagerState)
                     recyclerViewLayoutManagerState = null
                     adapter.unregisterAdapterDataObserver(this)
                 }
