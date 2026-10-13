@@ -152,7 +152,7 @@ class ShareActivity : BaseActivity<ActivityShareBinding>() {
         if (deviceId != null) {
             shareToDeviceAndFinish(deviceId, intent)
         } else {
-            KdeConnect.getInstance().addDeviceListChangedCallback(key = "ShareActivity") {
+            KdeConnect.getInstance().addDeviceListChangedCallback("ShareActivity") {
                 runOnUiThread { updateDeviceList() }
             }
             BackgroundService.ForceRefreshConnections(context = this) // force a network re-discover
@@ -161,7 +161,7 @@ class ShareActivity : BaseActivity<ActivityShareBinding>() {
     }
 
     override fun onStop() {
-        KdeConnect.getInstance().removeDeviceListChangedCallback(key = "ShareActivity")
+        KdeConnect.getInstance().removeDeviceListChangedCallback("ShareActivity")
         super.onStop()
     }
 
