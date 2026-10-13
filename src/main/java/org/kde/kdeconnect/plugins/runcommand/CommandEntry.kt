@@ -5,14 +5,15 @@
  */
 package org.kde.kdeconnect.plugins.runcommand
 
-import org.json.JSONException
-import org.json.JSONObject
+import kotlinx.serialization.Serializable
 import org.kde.kdeconnect.ui.list.EntryItem
 
-open class CommandEntry(name: String, cmd: String, val key: String) : EntryItem(name, cmd)  {
+@Serializable
+data class CommandInfo(val name: String, val command: String, val key: String)
 
-    @Throws(JSONException::class)
-    constructor(o: JSONObject) : this(o.getString("name"), o.getString("command"), o.getString("key"))
+open class CommandEntry(info: CommandInfo) : EntryItem(info.name, info.command)  {
+
+    val key: String = info.key
 
     val name: String
         get() = title

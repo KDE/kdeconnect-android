@@ -6,7 +6,9 @@
 package org.kde.kdeconnect
 
 import io.mockk.mockk
-import org.json.JSONException
+import kotlinx.serialization.SerializationException
+import kotlinx.serialization.json.buildJsonObject
+import kotlinx.serialization.json.put
 import org.junit.Assert
 import org.junit.Test
 import org.kde.kdeconnect.NetworkPacket.Companion.unserialize
@@ -15,7 +17,6 @@ import java.security.cert.Certificate
 class NetworkPacketTest {
 
     @Test
-    @Throws(JSONException::class)
     fun testNetworkPacket() {
         val np = NetworkPacket("com.test")
 
@@ -33,13 +34,58 @@ class NetworkPacketTest {
 
         Assert.assertEquals(np.getLong("id"), np2.getLong("id"))
         Assert.assertEquals(np.getString("type"), np2.getString("type"))
-        Assert.assertEquals(np.getJSONArray("body"), np2.getJSONArray("body"))
+        Assert.assertEquals(np.getJsonArray("body"), np2.getJsonArray("body"))
 
         val json = "{\"type\":\"test\",\"body\":{\"testing\":true}}"
         np2 = unserialize(json)
         Assert.assertTrue(np2.getBoolean("testing"))
         Assert.assertFalse(np2.getBoolean("not_testing"))
         Assert.assertTrue(np2.getBoolean("not_testing", true))
+    }
+
+    @Test
+    fun testSerializePayload() {
+        val np = NetworkPacket("com.test")
+        np["path"] = "/a/b"
+        np.payload = NetworkPacket.Payload(42)
+        np.payloadTransferInfo = buildJsonObject { put("port", 1739) }
+
+        val serialized = np.serialize()
+        Assert.assertTrue(serialized.endsWith("\n"))
+        Assert.assertTrue(serialized.contains("\"path\":\"/a/b\""))
+
+        val np2 = unserialize(serialized)
+        Assert.assertEquals("com.test", np2.type)
+        Assert.assertEquals("/a/b", np2.getString("path"))
+        Assert.assertEquals(42L, np2.payloadSize)
+        Assert.assertEquals(np.payloadTransferInfo, np2.payloadTransferInfo)
+
+        val noPayload = NetworkPacket("com.test").serialize()
+        Assert.assertFalse(noPayload.contains("payloadSize"))
+        Assert.assertFalse(noPayload.contains("payloadTransferInfo"))
+    }
+
+    @Test
+    fun testTypeCoercion() {
+        val np = unserialize("{\"id\":1,\"type\":\"test\",\"body\":{\"int\":8,\"str\":\"12\",\"bool\":\"true\",\"nil\":null},\"extra\":0}")
+        Assert.assertEquals("8", np.getString("int"))
+        Assert.assertEquals(12, np.getInt("str"))
+        Assert.assertEquals(12L, np.getLong("str"))
+        Assert.assertTrue(np.getBoolean("bool"))
+        Assert.assertNull(np.getStringOrNull("nil"))
+        Assert.assertEquals(-1, np.getInt("missing"))
+        Assert.assertFalse(np.hasPayload())
+        Assert.assertFalse(np.hasPayloadTransferInfo())
+    }
+
+    @Test(expected = SerializationException::class)
+    fun testUnserializeInvalid() {
+        unserialize("{\"body\":{}}")
+    }
+
+    @Test(expected = SerializationException::class)
+    fun testUnserializePayloadSizeWithoutTransferInfo() {
+        unserialize("{\"id\":1,\"type\":\"test\",\"body\":{},\"payloadSize\":42}")
     }
 
     @Test

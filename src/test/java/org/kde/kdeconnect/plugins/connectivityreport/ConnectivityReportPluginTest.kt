@@ -9,6 +9,9 @@ import io.mockk.mockk
 import io.mockk.slot
 import io.mockk.unmockkObject
 import io.mockk.verify
+import kotlinx.serialization.json.int
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
@@ -71,10 +74,10 @@ class ConnectivityReportPluginTest {
 
         assertEquals("kdeconnect.connectivity_report", sent.type)
 
-        val signalStrengths = sent.getJSONObject("signalStrengths")!!
-        val subInfo = signalStrengths.getJSONObject("6")
-        assertEquals("4G", subInfo.getString("networkType"))
-        assertEquals(3, subInfo.getInt("signalStrength"))
+        val signalStrengths = sent.getJsonObject("signalStrengths")!!
+        val subInfo = signalStrengths.getValue("6").jsonObject
+        assertEquals("4G", subInfo.getValue("networkType").jsonPrimitive.content)
+        assertEquals(3, subInfo.getValue("signalStrength").jsonPrimitive.int)
     }
 
     @Test
@@ -92,15 +95,15 @@ class ConnectivityReportPluginTest {
 
         val sent = checkNotNull(packet)
 
-        val signalStrengths = sent.getJSONObject("signalStrengths")!!
-        val subInfo1 = signalStrengths.getJSONObject("6")
-        val subInfo2 = signalStrengths.getJSONObject("17")
+        val signalStrengths = sent.getJsonObject("signalStrengths")!!
+        val subInfo1 = signalStrengths.getValue("6").jsonObject
+        val subInfo2 = signalStrengths.getValue("17").jsonObject
 
-        assertEquals("5G", subInfo1.getString("networkType"))
-        assertEquals(4, subInfo1.getInt("signalStrength"))
+        assertEquals("5G", subInfo1.getValue("networkType").jsonPrimitive.content)
+        assertEquals(4, subInfo1.getValue("signalStrength").jsonPrimitive.int)
 
-        assertEquals("HSPA", subInfo2.getString("networkType"))
-        assertEquals(2, subInfo2.getInt("signalStrength"))
+        assertEquals("HSPA", subInfo2.getValue("networkType").jsonPrimitive.content)
+        assertEquals(2, subInfo2.getValue("signalStrength").jsonPrimitive.int)
     }
 
     // REMOTE -> LOCAL

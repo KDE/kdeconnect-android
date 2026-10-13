@@ -21,9 +21,7 @@ import androidx.annotation.WorkerThread
 import androidx.core.content.ContextCompat
 import com.klinker.android.logger.Log
 import com.klinker.android.send_message.Transaction
-import org.json.JSONArray
-import org.json.JSONException
-import org.json.JSONObject
+import kotlinx.serialization.json.JsonArray
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.helpers.SMSHelper
 import org.kde.kdeconnect.helpers.SMSHelper.MessageLooper.Companion.getLooper
@@ -180,14 +178,14 @@ class SMSPlugin : Plugin() {
             val textMessage: String = np.getString("messageBody")
             val subID = np.getLong("subID", -1)
 
-            val jsonAddressList = np.getJSONArray("addresses")
+            val jsonAddressList = np.getJsonArray("addresses")
             val addressList = if (jsonAddressList == null) {
                 // If jsonAddressList is null, then the SMS_REQUEST packet is most probably from the older version of the desktop app.
                 listOf(SMSHelper.Address(context, np.getString("phoneNumber")))
             } else {
                 jsonArrayToAddressList(context, jsonAddressList)
             }
-            val attachedFiles: List<SMSHelper.Attachment> = jsonArrayToAttachmentsList(np.getJSONArray("attachments"))
+            val attachedFiles: List<SMSHelper.Attachment> = jsonArrayToAttachmentsList(np.getJsonArray("attachments"))
 
             sendMessage(context, textMessage, attachedFiles, addressList.toMutableList(), subID.toInt())
 
@@ -401,19 +399,7 @@ class SMSPlugin : Plugin() {
         private fun constructBulkMessagePacket(messages: Iterable<SMSHelper.Message>): NetworkPacket {
             val reply = NetworkPacket(PACKET_TYPE_SMS_MESSAGE)
 
-            val body = JSONArray()
-
-            for (message: SMSHelper.Message in messages) {
-                try {
-                    val json: JSONObject = message.toJSONObject()
-
-                    body.put(json)
-                } catch (e: JSONException) {
-                    Log.e("Conversations", "Error serializing message", e)
-                }
-            }
-
-            reply["messages"] = body
+            reply["messages"] = JsonArray(messages.map { it.toJsonObject() })
             reply["version"] = SMS_MESSAGE_PACKET_VERSION
 
             return reply

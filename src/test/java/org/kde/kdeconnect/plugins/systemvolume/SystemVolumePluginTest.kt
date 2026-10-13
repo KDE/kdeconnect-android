@@ -7,8 +7,9 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
-import org.json.JSONArray
-import org.json.JSONObject
+import kotlinx.serialization.json.addJsonObject
+import kotlinx.serialization.json.buildJsonArray
+import kotlinx.serialization.json.put
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
@@ -100,21 +101,21 @@ class SystemVolumePluginTest {
     fun testReceiveSinkList() {
         // Simulate receiving a packet with sink list
         val sinkPacket = NetworkPacket("kdeconnect.systemvolume").apply {
-            set("sinkList", JSONArray().apply {
-                put(JSONObject().apply {
+            set("sinkList", buildJsonArray {
+                addJsonObject {
                     put("name", "Sink 1")
                     put("volume", 50)
                     put("muted", false)
                     put("description", "")
                     put("maxVolume", 100)
-                })
-                put(JSONObject().apply {
+                }
+                addJsonObject {
                     put("name", "Sink 2")
                     put("volume", 70)
                     put("muted", true)
                     put("description", "")
                     put("maxVolume", 100)
-                })
+                }
             })
         }
 
@@ -136,14 +137,14 @@ class SystemVolumePluginTest {
     fun testReceiveSinkUpdate() {
         // First, add a sink to ensure proper updates
         val sinkPacket = NetworkPacket("kdeconnect.systemvolume").apply {
-            set("sinkList", JSONArray().apply {
-                put(JSONObject().apply {
+            set("sinkList", buildJsonArray {
+                addJsonObject {
                     put("name", "Sink 1")
                     put("volume", 30)
                     put("muted", false)
                     put("description", "")
                     put("maxVolume", 100)
-                })
+                }
             })
         }
 
@@ -164,5 +165,39 @@ class SystemVolumePluginTest {
         assertEquals(40, updatedSink.volume)
         assertEquals(true, updatedSink.isMute())
         assertTrue(updatedSink.isMute())
+    }
+
+    @Test
+    fun testReceiveSinkListFloatVolumeAndInvalidSink() {
+        val sinkPacket = NetworkPacket("kdeconnect.systemvolume").apply {
+            set("sinkList", buildJsonArray {
+                addJsonObject {
+                    put("name", "Bad sink")
+                    put("volume", "loud")
+                    put("muted", false)
+                    put("description", "")
+                    put("maxVolume", 100)
+                }
+                addJsonObject {
+                    // The macOS desktop sends the volume as a float
+                    put("name", "macOS sink")
+                    put("volume", 36.99999809265137)
+                    put("muted", true)
+                    put("description", "")
+                    put("maxVolume", 100)
+                    put("enabled", true)
+                }
+            })
+        }
+
+        assertTrue(systemVolumePlugin.onPacketReceived(sinkPacket))
+
+        val sinks = systemVolumePlugin.sinks
+        assertEquals(1, sinks.size)
+        val sink = sinks.first()
+        assertEquals("macOS sink", sink.name)
+        assertEquals(37, sink.volume)
+        assertTrue(sink.isMute())
+        assertTrue(sink.isDefault)
     }
 }

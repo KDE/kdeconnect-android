@@ -6,7 +6,7 @@
 package org.kde.kdeconnect.plugins.systemvolume
 
 import android.util.Log
-import org.json.JSONException
+import kotlinx.serialization.SerializationException
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.plugins.PluginFactory.LoadablePlugin
@@ -32,15 +32,14 @@ class SystemVolumePlugin : Plugin() {
         if ("sinkList" in np) {
             sinkMap.clear()
 
-            try {
-                val sinkArray = checkNotNull(np.getJSONArray("sinkList"))
-                for (i in 0..< sinkArray.length()) {
-                    val sinkObj = sinkArray.getJSONObject(i)
+            val sinkArray = np.getJsonArray("sinkList")
+            for (sinkObj in sinkArray.orEmpty()) {
+                try {
                     val sink = Sink(sinkObj)
                     sinkMap[sink.name] = sink
+                } catch (e: SerializationException) {
+                    Log.e("KDEConnect", "Skipping invalid sink", e)
                 }
-            } catch (e: JSONException) {
-                Log.e("KDEConnect", "Exception", e)
             }
 
             synchronized(listeners) {

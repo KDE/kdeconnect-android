@@ -10,8 +10,10 @@ import android.bluetooth.BluetoothDevice
 import android.content.Context
 import android.util.Log
 import androidx.annotation.WorkerThread
-import org.json.JSONException
-import org.json.JSONObject
+import kotlinx.serialization.SerializationException
+import kotlinx.serialization.json.JsonPrimitive
+import kotlinx.serialization.json.buildJsonObject
+import kotlinx.serialization.json.jsonPrimitive
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.DeviceInfo
 import org.kde.kdeconnect.NetworkPacket
@@ -55,13 +57,13 @@ class BluetoothLink(
         private fun processMessage(message: String) {
             val np = try {
                 NetworkPacket.unserialize(message)
-            } catch (e: JSONException) {
+            } catch (e: SerializationException) {
                 Log.e("BluetoothLink/receiving", "Unable to parse message.", e)
                 return
             }
             if (np.hasPayloadTransferInfo()) {
                 try {
-                    val transferUuid = UUID.fromString(np.payloadTransferInfo.getString("uuid"))
+                    val transferUuid = UUID.fromString(np.payloadTransferInfo.getValue("uuid").jsonPrimitive.content)
                     val payloadInputStream = connection.getChannelInputStream(transferUuid)
                     np.payload = NetworkPacket.Payload(payloadInputStream, np.payloadSize)
                 } catch (e: Exception) {
@@ -82,7 +84,7 @@ class BluetoothLink(
         (linkProvider as BluetoothLinkProvider).disconnectedLink(this, remoteAddress)
     }
 
-    @Throws(JSONException::class, IOException::class)
+    @Throws(SerializationException::class, IOException::class)
     private fun sendMessage(np: NetworkPacket) {
         val message = np.serialize().toByteArray(Charsets.UTF_8)
         output.write(message)
@@ -97,9 +99,9 @@ class BluetoothLink(
             var transferUuid: UUID? = null
             if (np.hasPayload()) {
                 transferUuid = connection.newChannel()
-                val payloadTransferInfo = JSONObject()
-                payloadTransferInfo.put("uuid", transferUuid.toString())
-                np.payloadTransferInfo = payloadTransferInfo
+                np.payloadTransferInfo = buildJsonObject {
+                    put("uuid", JsonPrimitive(transferUuid.toString()))
+                }
             }
             sendMessage(np)
             if (transferUuid != null) {

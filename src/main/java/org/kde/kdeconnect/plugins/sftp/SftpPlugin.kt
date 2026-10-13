@@ -16,9 +16,11 @@ import android.os.storage.StorageManager
 import android.provider.Settings
 import androidx.core.content.getSystemService
 import androidx.core.net.toUri
-import org.json.JSONException
-import org.json.JSONObject
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerializationException
 import org.kde.kdeconnect.NetworkPacket
+import org.kde.kdeconnect.helpers.JsonHelper.json
 import org.kde.kdeconnect.helpers.getLocalIpAddress
 import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.plugins.PluginFactory.LoadablePlugin
@@ -235,24 +237,27 @@ class SftpPlugin : Plugin(), OnSharedPreferenceChangeListener {
         val isFileUri: Boolean = uri.scheme == ContentResolver.SCHEME_FILE
         val isContentUri: Boolean = uri.scheme == ContentResolver.SCHEME_CONTENT
 
-        @Throws(JSONException::class)
-        fun toJSON(): JSONObject {
-            return JSONObject().apply {
-                put(KEY_DISPLAY_NAME, displayName)
-                put(KEY_URI, uri.toString())
-            }
+        private fun toSerialized() = SerializedStorageInfo(displayName, uri.toString())
+
+        fun serialize(): String = json.encodeToString(toSerialized())
+
+        // Persisted in the device preferences, so field names must not change
+        @Serializable
+        private class SerializedStorageInfo(
+            @SerialName("DisplayName") val displayName: String,
+            @SerialName("Uri") val uri: String,
+        ) {
+            fun toStorageInfo() = StorageInfo(displayName, uri.toUri())
         }
 
         companion object {
-            private const val KEY_DISPLAY_NAME = "DisplayName"
-            private const val KEY_URI = "Uri"
+            @Throws(SerializationException::class)
+            fun unserialize(s: String): StorageInfo = json.decodeFromString<SerializedStorageInfo>(s).toStorageInfo()
 
-            @Throws(JSONException::class)
-            fun fromJSON(jsonObject: JSONObject): StorageInfo {
-                val displayName = jsonObject.getString(KEY_DISPLAY_NAME)
-                val uri = jsonObject.getString(KEY_URI).toUri()
-                return StorageInfo(displayName, uri)
-            }
+            fun serializeList(list: List<StorageInfo>): String = json.encodeToString(list.map { it.toSerialized() })
+
+            @Throws(SerializationException::class)
+            fun unserializeList(s: String): List<StorageInfo> = json.decodeFromString<List<SerializedStorageInfo>>(s).map { it.toStorageInfo() }
         }
     }
 

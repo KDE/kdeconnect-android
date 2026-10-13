@@ -197,7 +197,7 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
                     while (sb.lastIndexOf("\n") == -1 && reader.read(buf).also { charsRead = it } != -1) {
                         sb.append(buf, 0, charsRead)
                     }
-                    val response = sb.toString()
+                    val response = sb.toString().substringBefore('\n') // the last chunk may contain the start of the next packet
                     val identityPacket = NetworkPacket.unserialize(response)
                     if (!DeviceInfo.isValidIdentityPacket(identityPacket)) {
                         Log.w("BTLinkProvider/Server", "Invalid identity packet received.")
