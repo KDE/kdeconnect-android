@@ -58,13 +58,14 @@ abstract class Plugin {
 
     val sharedPreferencesName: String
         get() {
-            if (isDeviceInitialized.not()) {
+            if (!isDeviceInitialized) {
                 throw RuntimeException("You have to call setContext() before you can call getSharedPreferencesName()")
             }
-            if (supportsDeviceSpecificSettings()) {
-                return "${device.deviceId}_${pluginKey}_preferences"
+            return if (supportsDeviceSpecificSettings()) {
+                 "${device.deviceId}_${pluginKey}_preferences"
+            } else {
+                "${pluginKey}_preferences"
             }
-            return "${pluginKey}_preferences"
         }
 
     /**
