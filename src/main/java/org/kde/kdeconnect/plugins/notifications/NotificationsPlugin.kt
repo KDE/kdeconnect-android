@@ -515,7 +515,11 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
             val dismissedId = np.getString("cancel")
             currentNotifications.remove(dismissedId)
             NotificationReceiver.RunCommand(context) { service ->
-                service.cancelNotification(dismissedId)
+                try {
+                    service.cancelNotification(dismissedId)
+                } catch (e: SecurityException) {
+                    Log.w(TAG, "Can't cancel notification", e)
+                }
             }
         } else if (np.has("requestReplyId") && np.has("message")) {
             replyToNotification(np.getString("requestReplyId"), np.getString("message"))
