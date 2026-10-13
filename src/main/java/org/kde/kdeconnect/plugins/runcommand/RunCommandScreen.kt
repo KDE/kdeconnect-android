@@ -179,7 +179,7 @@ fun RunCommandScreen(
                                         }
                                     }
                                     .combinedClickable(
-                                        indication = ripple(color = Color.White),
+                                        indication = ripple(),
                                         interactionSource = remember { MutableInteractionSource() },
                                         onClick = { plugin.runCommand(command.key) },
                                         onLongClick = {
