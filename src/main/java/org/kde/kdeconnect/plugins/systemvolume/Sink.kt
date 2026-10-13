@@ -5,7 +5,7 @@
  */
 package org.kde.kdeconnect.plugins.systemvolume
 
-import org.json.JSONObject
+import com.google.gson.JsonObject
 
 class Sink {
     interface UpdateListener {
@@ -22,13 +22,13 @@ class Sink {
     private var enabled: Boolean
     private val listeners: MutableList<UpdateListener> = mutableListOf()
 
-    constructor(obj: JSONObject) {
-        name = obj.getString("name")
-        volume = obj.getInt("volume")
-        mute = obj.getBoolean("muted")
-        description = obj.getString("description")
-        maxVolume = obj.getInt("maxVolume")
-        enabled = obj.optBoolean("enabled", false)
+    constructor(obj: JsonObject) {
+        name = obj.get("name").asString
+        volume = obj.get("volume").asInt
+        mute = obj.get("muted").asBoolean
+        description = obj.get("description").asString
+        maxVolume = obj.get("maxVolume").asInt
+        enabled = obj.get("enabled")?.asBoolean ?: false
     }
 
     fun setVolume(volume: Int) {

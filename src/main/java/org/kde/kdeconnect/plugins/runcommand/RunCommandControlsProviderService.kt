@@ -20,11 +20,10 @@ import android.service.controls.templates.StatelessTemplate
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.preference.PreferenceManager
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
 import io.reactivex.Flowable
 import io.reactivex.processors.ReplayProcessor
-import org.json.JSONArray
-import org.json.JSONException
-import org.json.JSONObject
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect.ui.MainActivity
@@ -33,7 +32,7 @@ import org.reactivestreams.FlowAdapters
 import java.util.concurrent.Flow
 import java.util.function.Consumer
 
-private class CommandEntryWithDevice(o: JSONObject, val device: Device) : CommandEntry(o)
+private class CommandEntryWithDevice(o: JsonObject, val device: Device) : CommandEntry(o)
 
 @RequiresApi(Build.VERSION_CODES.R)
 class RunCommandControlsProviderService : ControlsProviderService() {
@@ -108,15 +107,14 @@ class RunCommandControlsProviderService : ControlsProviderService() {
         val commandList = mutableListOf<CommandEntryWithDevice>()
 
         return try {
-            val jsonArray = JSONArray(sharedPreferences.getString(RunCommandPlugin.KEY_COMMANDS_PREFERENCE + device.deviceId, "[]"))
+            val jsonArray = JsonParser.parseString(sharedPreferences.getString(RunCommandPlugin.KEY_COMMANDS_PREFERENCE + device.deviceId, "[]")).asJsonArray
 
-            for (index in 0 until jsonArray.length()) {
-                val jsonObject = jsonArray.getJSONObject(index)
-                commandList.add(CommandEntryWithDevice(jsonObject, device))
+            for (element in jsonArray) {
+                commandList.add(CommandEntryWithDevice(element.asJsonObject, device))
             }
 
             commandList
-        } catch (error: JSONException) {
+        } catch (error: Exception) {
             Log.e("RunCommand", "Error parsing JSON", error)
             listOf()
         }
@@ -138,7 +136,7 @@ class RunCommandControlsProviderService : ControlsProviderService() {
                 for (jsonObject in plugin.commandList) {
                     try {
                         commandList.add(CommandEntryWithDevice(jsonObject, device))
-                    } catch (error: JSONException) {
+                    } catch (error: Exception) {
                         Log.e("RunCommand", "Error parsing JSON", error)
                     }
                 }
@@ -164,12 +162,7 @@ class RunCommandControlsProviderService : ControlsProviderService() {
         }
 
         return commandList?.find { command ->
-            try {
-                command.key == controlIdParts[1]
-            } catch (error: JSONException) {
-                Log.e("RunCommand", "Error parsing JSON", error)
-                false
-            }
+            command.key == controlIdParts[1]
         }
     }
 

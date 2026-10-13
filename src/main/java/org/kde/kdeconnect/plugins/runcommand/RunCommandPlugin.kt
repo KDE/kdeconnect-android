@@ -16,9 +16,8 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.preference.PreferenceManager
-import org.json.JSONArray
-import org.json.JSONException
-import org.json.JSONObject
+import com.google.gson.JsonArray
+import com.google.gson.JsonObject
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.plugins.PluginFactory.LoadablePlugin
@@ -29,7 +28,7 @@ import androidx.core.content.edit
 @LoadablePlugin
 class RunCommandPlugin : Plugin() {
 
-    val commandList = ArrayList<JSONObject>()
+    val commandList = ArrayList<JsonObject>()
     private val callbacks = ArrayList<CommandsChangedCallback>()
     val commandItems = ArrayList<CommandEntry>()
     val output = SnapshotStateList<RunCommandOutput>()
@@ -94,17 +93,17 @@ class RunCommandPlugin : Plugin() {
             commandList.clear()
             try {
                 commandItems.clear()
-                val obj = JSONObject(np.getString("commandList"))
-                for (s in obj.keys()) {
-                    val o = obj.getJSONObject(s)
-                    o.put("key", s)
+                val obj = NetworkPacket.parseJsonObject(np.getString("commandList"))
+                for ((s, value) in obj.entrySet()) {
+                    val o = value.asJsonObject
+                    o.addProperty("key", s)
                     commandList.add(o)
 
                     try {
                         commandItems.add(
                             CommandEntry(o)
                         )
-                    } catch (e: JSONException) {
+                    } catch (e: Exception) {
                         Log.e("RunCommand", "Error parsing JSON", e)
                     }
                 }
@@ -113,10 +112,10 @@ class RunCommandPlugin : Plugin() {
 
                 // Used only by RunCommandControlsProviderService to display controls correctly even when device is not available
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    val array = JSONArray()
+                    val array = JsonArray()
 
                     for (command in commandList) {
-                        array.put(command)
+                        array.add(command)
                     }
 
                     sharedPreferences.edit {
@@ -126,7 +125,7 @@ class RunCommandPlugin : Plugin() {
 
                 forceRefreshWidgets(context)
 
-            } catch (e: JSONException) {
+            } catch (e: Exception) {
                 Log.e("RunCommand", "Error parsing JSON", e)
             }
 

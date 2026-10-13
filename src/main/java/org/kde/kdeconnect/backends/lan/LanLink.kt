@@ -10,7 +10,7 @@ import android.content.Context
 import android.os.SystemClock
 import android.util.Log
 import androidx.annotation.WorkerThread
-import org.json.JSONObject
+import com.google.gson.JsonObject
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.DeviceInfo
 import org.kde.kdeconnect.NetworkPacket
@@ -107,8 +107,8 @@ class LanLink(
             // Prepare socket for the payload
             val server: ServerSocket? = if (np.hasPayload()) {
                 openServerSocketOnFreePort(LanLinkProvider.PAYLOAD_TRANSFER_MIN_PORT).also {
-                    val payloadTransferInfo = JSONObject()
-                    payloadTransferInfo.put("port", it.localPort)
+                    val payloadTransferInfo = JsonObject()
+                    payloadTransferInfo.addProperty("port", it.localPort)
                     np.payloadTransferInfo = payloadTransferInfo
                 }
             } else {
@@ -230,7 +230,7 @@ class LanLink(
         if (np.hasPayloadTransferInfo()) {
             var payloadSocket = Socket()
             try {
-                val tcpPort = np.payloadTransferInfo.getInt("port")
+                val tcpPort = np.payloadTransferInfo.get("port").asInt
                 val deviceAddress = socket.getRemoteSocketAddress() as InetSocketAddress
                 payloadSocket.connect(InetSocketAddress(deviceAddress.address, tcpPort))
                 payloadSocket = convertToSslSocket(context, payloadSocket, deviceId,

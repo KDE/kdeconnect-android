@@ -23,9 +23,8 @@ import com.google.android.mms.pdu_alt.MultimediaMessagePdu
 import com.google.android.mms.pdu_alt.PduPersister
 import com.google.android.mms.util_alt.PduCache
 import com.google.android.mms.util_alt.PduCacheEntry
-import org.json.JSONArray
-import org.json.JSONException
-import org.json.JSONObject
+import com.google.gson.JsonArray
+import com.google.gson.JsonObject
 import org.kde.kdeconnect.helpers.TelephonyHelper.LocalPhoneNumber
 import org.kde.kdeconnect.plugins.sms.MimeType
 import org.kde.kdeconnect.plugins.sms.SmsMmsUtils
@@ -736,7 +735,7 @@ object SMSHelper {
     }
 
     /**
-     * Converts a given JSONArray of attachments into List<Attachment>
+     * Converts a given JsonArray of attachments into List<Attachment>
      *
      * The structure of the input is expected to be as follows:
      * [
@@ -748,17 +747,17 @@ object SMSHelper {
      * ...
      * ]
     </String></String></String></Attachment> */
-    fun jsonArrayToAttachmentsList(jsonArray: JSONArray?): List<Attachment> {
+    fun jsonArrayToAttachmentsList(jsonArray: JsonArray?): List<Attachment> {
         if (jsonArray == null) {
             return emptyList()
         }
-        val attachedFiles: MutableList<Attachment> = ArrayList(jsonArray.length())
+        val attachedFiles: MutableList<Attachment> = ArrayList(jsonArray.size())
         try {
-            for (i in 0 until jsonArray.length()) {
-                val jsonObject = jsonArray.getJSONObject(i)
-                val base64EncodedFile = jsonObject.getString("base64EncodedFile")
-                val mimeType = jsonObject.getString("mimeType")
-                val fileName = jsonObject.getString("fileName")
+            for (element in jsonArray) {
+                val jsonObject = element.asJsonObject
+                val base64EncodedFile = jsonObject.get("base64EncodedFile").asString
+                val mimeType = jsonObject.get("mimeType").asString
+                val fileName = jsonObject.get("fileName").asString
                 attachedFiles.add(Attachment(-1, mimeType, base64EncodedFile, fileName))
             }
         } catch (e: Exception) {
@@ -768,14 +767,13 @@ object SMSHelper {
     }
 
     /**
-     * converts a given JSONArray into List<Address>
+     * converts a given JsonArray into List<Address>
     </Address> */
-    fun jsonArrayToAddressList(context: Context, jsonArray: JSONArray): List<Address> {
+    fun jsonArrayToAddressList(context: Context, jsonArray: JsonArray): List<Address> {
         val addresses = mutableListOf<Address>()
         try {
-            for (i in 0 until jsonArray.length()) {
-                val jsonObject = jsonArray.getJSONObject(i)
-                val address = jsonObject.getString("address")
+            for (element in jsonArray) {
+                val address = element.asJsonObject.get("address").asString
                 addresses.add(Address(context, address))
             }
         } catch (e: Exception) {
@@ -808,15 +806,14 @@ object SMSHelper {
         val uniqueIdentifier: String
     ) {
 
-        @Throws(JSONException::class)
-        fun toJson(): JSONObject {
-            val json = JSONObject()
-            json.put(PART_ID, partID)
-            json.put(MIME_TYPE, mimeType)
+        fun toJson(): JsonObject {
+            val json = JsonObject()
+            json.addProperty(PART_ID, partID)
+            json.addProperty(MIME_TYPE, mimeType)
             if (base64EncodedFile != null) {
-                json.put(ENCODED_THUMBNAIL, base64EncodedFile)
+                json.addProperty(ENCODED_THUMBNAIL, base64EncodedFile)
             }
-            json.put(UNIQUE_IDENTIFIER, uniqueIdentifier)
+            json.addProperty(UNIQUE_IDENTIFIER, uniqueIdentifier)
             return json
         }
 
@@ -831,11 +828,11 @@ object SMSHelper {
         }
     }
 
+    // TODO: Remove need for Context here
     class Address(context: Context, private val address: String) {
-        @Throws(JSONException::class)
-        fun toJson(): JSONObject {
-            val json = JSONObject()
-            json.put(ADDRESS, address)
+        fun toJson(): JsonObject {
+            val json = JsonObject()
+            json.addProperty(ADDRESS, address)
             return json
         }
 
@@ -899,28 +896,27 @@ object SMSHelper {
         private val subscriptionID: Int,
         private val attachments: List<Attachment>?
     ) {
-        @Throws(JSONException::class)
-        fun toJSONObject(): JSONObject {
-            val json = JSONObject()
-            val jsonAddresses = JSONArray()
+        fun toJsonObject(): JsonObject {
+            val json = JsonObject()
+            val jsonAddresses = JsonArray()
             for (address in addresses) {
-                jsonAddresses.put(address.toJson())
+                jsonAddresses.add(address.toJson())
             }
-            json.put(ADDRESSES, jsonAddresses)
-            json.put(BODY, body)
-            json.put(DATE, date)
-            json.put(TYPE, type)
-            json.put(READ, read)
-            json.put(THREAD_ID, threadID.threadID)
-            json.put(U_ID, uID)
-            json.put(SUBSCRIPTION_ID, subscriptionID)
-            json.put(EVENT, event)
+            json.add(ADDRESSES, jsonAddresses)
+            json.addProperty(BODY, body)
+            json.addProperty(DATE, date)
+            json.addProperty(TYPE, type)
+            json.addProperty(READ, read)
+            json.addProperty(THREAD_ID, threadID.threadID)
+            json.addProperty(U_ID, uID)
+            json.addProperty(SUBSCRIPTION_ID, subscriptionID)
+            json.addProperty(EVENT, event)
             if (attachments != null) {
-                val jsonAttachments = JSONArray()
+                val jsonAttachments = JsonArray()
                 for (attachment in attachments) {
-                    jsonAttachments.put(attachment.toJson())
+                    jsonAttachments.add(attachment.toJson())
                 }
-                json.put(ATTACHMENTS, jsonAttachments)
+                json.add(ATTACHMENTS, jsonAttachments)
             }
             return json
         }

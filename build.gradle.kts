@@ -282,6 +282,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.process) // For ProcessLifecycleOwner
     implementation(libs.androidx.gridlayout)
     implementation(libs.google.android.material)
+    implementation(libs.gson)
     implementation(libs.coil.core) //For loading and caching album art
     implementation(libs.coil.network.okhttp)
     implementation(libs.slf4j.api)

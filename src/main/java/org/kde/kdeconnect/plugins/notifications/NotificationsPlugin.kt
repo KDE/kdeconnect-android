@@ -30,8 +30,8 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.graphics.createBitmap
 import androidx.fragment.app.DialogFragment
-import org.json.JSONArray
-import org.json.JSONObject
+import com.google.gson.JsonArray
+import com.google.gson.JsonObject
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.helpers.AppsHelper.appNameLookup
 import org.kde.kdeconnect.plugins.Plugin
@@ -261,7 +261,7 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
             var conversationLength = 0
             if (isConversation) {
                 val conversation = extractConversation(messagingStyle)
-                conversationLength = conversation.length()
+                conversationLength = conversation.size()
                 if (conversationLength != 0) {
                     np["conversation"] = conversation
                 }
@@ -342,13 +342,13 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
         return null
     }
 
-    private fun extractActions(notification: Notification, key: String): JSONArray? {
+    private fun extractActions(notification: Notification, key: String): JsonArray? {
         val notiActions = notification.actions
         if (notiActions.isNullOrEmpty()) {
             return null
         }
 
-        val jsonArray = JSONArray()
+        val jsonArray = JsonArray()
         for (action in notiActions) {
             val title = action.title
                 ?: continue
@@ -358,7 +358,7 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
                 continue
             }
 
-            jsonArray.put(title.toString())
+            jsonArray.add(title.toString())
 
             pendingActions.getOrPut(key) { mutableListOf() }.add(action)
         }
@@ -366,18 +366,18 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
         return jsonArray
     }
 
-    private fun extractConversation(messagingStyle: NotificationCompat.MessagingStyle?): JSONArray {
+    private fun extractConversation(messagingStyle: NotificationCompat.MessagingStyle?): JsonArray {
         if (messagingStyle == null || Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-            return JSONArray()
+            return JsonArray()
         }
         val messages = messagingStyle.messages
-        val conversation = JSONArray()
+        val conversation = JsonArray()
         for (message in messages) {
             val sender = message?.person?.name?.toString() ?: context.getString(R.string.unknown_sender)
             val content = message.text?.toString() ?: ""
-            conversation.put(JSONObject().apply {
-                put("sender", sender)
-                put("content", content)
+            conversation.add(JsonObject().apply {
+                addProperty("sender", sender)
+                addProperty("content", content)
             })
         }
         return conversation

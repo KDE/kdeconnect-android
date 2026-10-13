@@ -12,6 +12,7 @@ coreKtx = "1.19.1"
 dependencyLicenseReport = "3.1.4"
 documentfile = "1.1.0"
 gridlayout = "1.1.0"
+gson = "2.13.2"
 jsonassert = "1.5.3"
 junit = "4.13.2"
 junitExt = "1.3.0"
@@ -72,6 +73,7 @@ kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutine
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
 logger = { module = "com.klinkerapps:logger", version.ref = "logger" }
 google-android-material = { module = "com.google.android.material:material", version.ref = "androidMaterial" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 apache-mina-core = { module = "org.apache.mina:mina-core", version.ref = "minaCore" }
 apache-sshd-core = { module = "org.apache.sshd:sshd-core", version.ref = "sshdCore" }
 apache-sshd-sftp = { module = "org.apache.sshd:sshd-sftp", version.ref = "sshdCore" }

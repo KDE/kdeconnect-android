@@ -5,14 +5,12 @@
  */
 package org.kde.kdeconnect.plugins.runcommand
 
-import org.json.JSONException
-import org.json.JSONObject
+import com.google.gson.JsonObject
 import org.kde.kdeconnect.ui.list.EntryItem
 
 open class CommandEntry(name: String, cmd: String, val key: String) : EntryItem(name, cmd)  {
 
-    @Throws(JSONException::class)
-    constructor(o: JSONObject) : this(o.getString("name"), o.getString("command"), o.getString("key"))
+    constructor(o: JsonObject) : this(o.get("name").asString, o.get("command").asString, o.get("key").asString)
 
     val name: String
         get() = title

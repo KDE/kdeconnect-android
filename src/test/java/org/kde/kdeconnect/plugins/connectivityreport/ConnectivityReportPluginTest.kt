@@ -71,10 +71,10 @@ class ConnectivityReportPluginTest {
 
         assertEquals("kdeconnect.connectivity_report", sent.type)
 
-        val signalStrengths = sent.getJSONObject("signalStrengths")!!
-        val subInfo = signalStrengths.getJSONObject("6")
-        assertEquals("4G", subInfo.getString("networkType"))
-        assertEquals(3, subInfo.getInt("signalStrength"))
+        val signalStrengths = sent.getJsonObject("signalStrengths")!!
+        val subInfo = signalStrengths.getAsJsonObject("6")
+        assertEquals("4G", subInfo.get("networkType").asString)
+        assertEquals(3, subInfo.get("signalStrength").asInt)
     }
 
     @Test
@@ -92,15 +92,15 @@ class ConnectivityReportPluginTest {
 
         val sent = checkNotNull(packet)
 
-        val signalStrengths = sent.getJSONObject("signalStrengths")!!
-        val subInfo1 = signalStrengths.getJSONObject("6")
-        val subInfo2 = signalStrengths.getJSONObject("17")
+        val signalStrengths = sent.getJsonObject("signalStrengths")!!
+        val subInfo1 = signalStrengths.getAsJsonObject("6")
+        val subInfo2 = signalStrengths.getAsJsonObject("17")
 
-        assertEquals("5G", subInfo1.getString("networkType"))
-        assertEquals(4, subInfo1.getInt("signalStrength"))
+        assertEquals("5G", subInfo1.get("networkType").asString)
+        assertEquals(4, subInfo1.get("signalStrength").asInt)
 
-        assertEquals("HSPA", subInfo2.getString("networkType"))
-        assertEquals(2, subInfo2.getInt("signalStrength"))
+        assertEquals("HSPA", subInfo2.get("networkType").asString)
+        assertEquals(2, subInfo2.get("signalStrength").asInt)
     }
 
     // REMOTE -> LOCAL

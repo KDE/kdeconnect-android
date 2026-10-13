@@ -4,10 +4,10 @@ import android.app.Application
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.google.gson.JsonObject
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
-import org.json.JSONObject
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
@@ -72,14 +72,14 @@ class RunCommandPluginTest {
     @Test
     fun testReceiveCommandList() {
         val commandListPacket = NetworkPacket("kdeconnect.runcommand").apply {
-            set("commandList", JSONObject().apply {
-                put("command1", JSONObject().apply {
-                    put("name", "Command 1")
-                    put("key", "command1")
+            set("commandList", JsonObject().apply {
+                add("command1",JsonObject().apply {
+                    addProperty("name","Command 1")
+                    addProperty("key","command1")
                 })
-                put("command2", JSONObject().apply {
-                    put("name", "Command 2")
-                    put("key", "command2")
+                add("command2",JsonObject().apply {
+                    addProperty("name","Command 2")
+                    addProperty("key","command2")
                 })
             })
         }
@@ -90,12 +90,12 @@ class RunCommandPluginTest {
         assertEquals(2, commandList.size)
 
         val command1 = commandList[0]
-        assertEquals("command1", command1.getString("key"))
-        assertEquals("Command 1", command1.getString("name"))
+        assertEquals("command1", command1.get("key").asString)
+        assertEquals("Command 1", command1.get("name").asString)
 
         val command2 = commandList[1]
-        assertEquals("command2", command2.getString("key"))
-        assertEquals("Command 2", command2.getString("name"))
+        assertEquals("command2", command2.get("key").asString)
+        assertEquals("Command 2", command2.get("name").asString)
 
         verify(exactly = 1) { device.onPluginsChanged() }
     }
@@ -104,10 +104,10 @@ class RunCommandPluginTest {
     fun testReceiveCommandsUpdate() {
         // First, simulate receiving a basic command list
         val initialCommandPacket = NetworkPacket("kdeconnect.runcommand").apply {
-            set("commandList", JSONObject().apply {
-                put("command1", JSONObject().apply {
-                    put("name", "Command 1")
-                    put("key", "command1")
+            set("commandList", JsonObject().apply {
+                add("command1",JsonObject().apply {
+                    addProperty("name","Command 1")
+                    addProperty("key","command1")
                 })
             })
         }
@@ -115,14 +115,14 @@ class RunCommandPluginTest {
 
         // Then, send a new packet with an updated command1 and a new command2
         val updatedCommandPacket = NetworkPacket("kdeconnect.runcommand").apply {
-            set("commandList", JSONObject().apply {
-                put("command1", JSONObject().apply {
-                    put("name", "Updated Command 1")
-                    put("key", "command1")
+            set("commandList", JsonObject().apply {
+                add("command1",JsonObject().apply {
+                    addProperty("name","Updated Command 1")
+                    addProperty("key","command1")
                 })
-                put("command2", JSONObject().apply {
-                    put("name", "Command 2")
-                    put("key", "command2")
+                add("command2",JsonObject().apply {
+                    addProperty("name","Command 2")
+                    addProperty("key","command2")
                 })
             })
         }
@@ -133,12 +133,12 @@ class RunCommandPluginTest {
         assertEquals(2, commandList.size)
 
         val updatedCommand1 = commandList[0]
-        assertEquals("command1", updatedCommand1.getString("key"))
-        assertEquals("Updated Command 1", updatedCommand1.getString("name"))
+        assertEquals("command1", updatedCommand1.get("key").asString)
+        assertEquals("Updated Command 1", updatedCommand1.get("name").asString)
 
         val command2 = commandList[1]
-        assertEquals("command2", command2.getString("key"))
-        assertEquals("Command 2", command2.getString("name"))
+        assertEquals("command2", command2.get("key").asString)
+        assertEquals("Command 2", command2.get("name").asString)
 
         verify { device.onPluginsChanged() }
     }
@@ -149,10 +149,10 @@ class RunCommandPluginTest {
         runCommandPlugin.addCommandsUpdatedCallback(listener)
 
         val commandListPacket = NetworkPacket("kdeconnect.runcommand").apply {
-            set("commandList", JSONObject().apply {
-                put("command1", JSONObject().apply {
-                    put("name", "Command 1")
-                    put("key", "command1")
+            set("commandList", JsonObject().apply {
+                add("command1",JsonObject().apply {
+                    addProperty("name","Command 1")
+                    addProperty("key","command1")
                 })
             })
         }
@@ -164,14 +164,14 @@ class RunCommandPluginTest {
     @Test
     fun testCanAddCommandFlag() {
         fun addBasicCommandList(np: NetworkPacket) {
-            np["commandList"] = JSONObject().apply {
-                put("command1", JSONObject().apply {
-                    put("name", "Command 1")
-                    put("key", "command1")
+            np["commandList"] = JsonObject().apply {
+                add("command1",JsonObject().apply {
+                    addProperty("name","Command 1")
+                    addProperty("key","command1")
                 })
-                put("command2", JSONObject().apply {
-                    put("name", "Command 2")
-                    put("key", "command2")
+                add("command2",JsonObject().apply {
+                    addProperty("name","Command 2")
+                    addProperty("key","command2")
                 })
             }
         }

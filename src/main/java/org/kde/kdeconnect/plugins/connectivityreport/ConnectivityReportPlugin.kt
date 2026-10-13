@@ -6,8 +6,7 @@
 package org.kde.kdeconnect.plugins.connectivityreport
 
 import android.Manifest
-import org.json.JSONException
-import org.json.JSONObject
+import com.google.gson.JsonObject
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.plugins.PluginFactory.LoadablePlugin
@@ -52,16 +51,12 @@ class ConnectivityReportPlugin : Plugin() {
             if (states.isEmpty()) {
                 return
             }
-            val signalStrengths = JSONObject()
+            val signalStrengths = JsonObject()
             states.forEach { (subID: Int, subscriptionState: SubscriptionState) ->
-                try {
-                    val subInfo = JSONObject()
-                    subInfo.put("networkType", subscriptionState.networkType)
-                    subInfo.put("signalStrength", subscriptionState.signalStrength)
-                    signalStrengths.put(subID.toString(), subInfo)
-                } catch (e: JSONException) {
-                    e.printStackTrace()
-                }
+                val subInfo = JsonObject()
+                subInfo.addProperty("networkType", subscriptionState.networkType)
+                subInfo.addProperty("signalStrength", subscriptionState.signalStrength)
+                signalStrengths.add(subID.toString(), subInfo)
             }
             connectivityInfo["signalStrengths"] = signalStrengths
             device.sendPacket(connectivityInfo)

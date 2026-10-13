@@ -20,7 +20,6 @@ import androidx.compose.ui.platform.toClipEntry
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import org.json.JSONException
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect_tp.R
@@ -47,7 +46,7 @@ class RunCommandActivity : AppCompatActivity() {
         for (obj in plugin.commandList) {
             try {
                 commandList.add(CommandEntry(obj))
-            } catch (e: JSONException) {
+            } catch (e: Exception) {
                 Log.e("RunCommand", "Error parsing JSON", e)
             }
         }
@@ -98,7 +97,7 @@ class RunCommandActivity : AppCompatActivity() {
         for (obj in plugin.commandList) {
             try {
                 commandList.add(CommandEntry(obj))
-            } catch (e: JSONException) {
+            } catch (e: Exception) {
                 Log.e("RunCommand", "Error parsing JSON", e)
             }
         }

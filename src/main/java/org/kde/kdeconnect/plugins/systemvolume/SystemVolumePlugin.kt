@@ -6,7 +6,6 @@
 package org.kde.kdeconnect.plugins.systemvolume
 
 import android.util.Log
-import org.json.JSONException
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.plugins.PluginFactory.LoadablePlugin
@@ -33,13 +32,12 @@ class SystemVolumePlugin : Plugin() {
             sinkMap.clear()
 
             try {
-                val sinkArray = checkNotNull(np.getJSONArray("sinkList"))
-                for (i in 0..< sinkArray.length()) {
-                    val sinkObj = sinkArray.getJSONObject(i)
-                    val sink = Sink(sinkObj)
+                val sinkArray = np.getJsonArray("sinkList")!!
+                for (sinkObj in sinkArray) {
+                    val sink = Sink(sinkObj.asJsonObject)
                     sinkMap[sink.name] = sink
                 }
-            } catch (e: JSONException) {
+            } catch (e: Exception) {
                 Log.e("KDEConnect", "Exception", e)
             }
 

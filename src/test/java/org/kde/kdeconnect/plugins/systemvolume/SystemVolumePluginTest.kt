@@ -4,11 +4,11 @@ import android.app.Application
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.google.gson.JsonArray
+import com.google.gson.JsonObject
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
-import org.json.JSONArray
-import org.json.JSONObject
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
@@ -100,20 +100,20 @@ class SystemVolumePluginTest {
     fun testReceiveSinkList() {
         // Simulate receiving a packet with sink list
         val sinkPacket = NetworkPacket("kdeconnect.systemvolume").apply {
-            set("sinkList", JSONArray().apply {
-                put(JSONObject().apply {
-                    put("name", "Sink 1")
-                    put("volume", 50)
-                    put("muted", false)
-                    put("description", "")
-                    put("maxVolume", 100)
+            set("sinkList", JsonArray().apply {
+                add(JsonObject().apply {
+                    addProperty("name", "Sink 1")
+                    addProperty("volume", 50)
+                    addProperty("muted", false)
+                    addProperty("description", "")
+                    addProperty("maxVolume", 100)
                 })
-                put(JSONObject().apply {
-                    put("name", "Sink 2")
-                    put("volume", 70)
-                    put("muted", true)
-                    put("description", "")
-                    put("maxVolume", 100)
+                add(JsonObject().apply {
+                    addProperty("name", "Sink 2")
+                    addProperty("volume", 70)
+                    addProperty("muted", true)
+                    addProperty("description", "")
+                    addProperty("maxVolume", 100)
                 })
             })
         }
@@ -136,13 +136,13 @@ class SystemVolumePluginTest {
     fun testReceiveSinkUpdate() {
         // First, add a sink to ensure proper updates
         val sinkPacket = NetworkPacket("kdeconnect.systemvolume").apply {
-            set("sinkList", JSONArray().apply {
-                put(JSONObject().apply {
-                    put("name", "Sink 1")
-                    put("volume", 30)
-                    put("muted", false)
-                    put("description", "")
-                    put("maxVolume", 100)
+            set("sinkList", JsonArray().apply {
+                add(JsonObject().apply {
+                    addProperty("name", "Sink 1")
+                    addProperty("volume", 30)
+                    addProperty("muted", false)
+                    addProperty("description", "")
+                    addProperty("maxVolume", 100)
                 })
             })
         }
