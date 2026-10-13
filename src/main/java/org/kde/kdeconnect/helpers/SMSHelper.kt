@@ -831,6 +831,7 @@ object SMSHelper {
         }
     }
 
+    // TODO: Remove need for Context here
     class Address(context: Context, private val address: String) {
         @Throws(JSONException::class)
         fun toJson(): JSONObject {
