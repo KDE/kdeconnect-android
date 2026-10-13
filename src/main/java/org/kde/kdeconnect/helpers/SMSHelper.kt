@@ -669,7 +669,7 @@ object SMSHelper {
                     .any { localPhoneNumber: LocalPhoneNumber ->
                         localPhoneNumber.isMatchingPhoneNumber(toAddress.getAddress())
                     }
-                if (!isLocalPhoneNumber && toAddress.toString() != "insert-address-token") {
+                if (!isLocalPhoneNumber && toAddress.toString() != "insert-address-token" && addresses.none { it == toAddress }) {
                     addresses.add(toAddress)
                 }
             }

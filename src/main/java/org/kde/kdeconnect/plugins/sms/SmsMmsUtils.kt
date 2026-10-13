@@ -370,9 +370,9 @@ object SmsMmsUtils {
         val uniqueNumbers = mutableListOf<SMSHelper.Address>()
 
         for (number in numbers) {
-            val duplicate = uniqueNumbers.any { uniqueNumber -> uniqueNumber.getAddress() == number.trim { it <= ' ' } }
-            if (!duplicate) {
-                uniqueNumbers.add(SMSHelper.Address(context, number.trim { it <= ' ' }))
+            val address = SMSHelper.Address(context, number.trim { it <= ' ' })
+            if (uniqueNumbers.none { it == address }) {
+                uniqueNumbers.add(address)
             }
         }
 
