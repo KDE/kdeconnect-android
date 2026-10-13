@@ -98,45 +98,38 @@ object SslHelper {
         if (needsToGenerateCertificate) {
             TrustedDevices.removeAllTrustedDevices(context)
             Log.i(LOG_TAG, "Generating a certificate")
-            //Fix for https://issuetracker.google.com/issues/37095309
+            // Fix for https://issuetracker.google.com/issues/37095309
             val initialLocale = Locale.getDefault()
-            setLocale(Locale.ENGLISH, context)
+            Locale.setDefault(Locale.ENGLISH)
+            try {
+                val nameBuilder = X500NameBuilder(BCStyle.INSTANCE)
+                nameBuilder.addRDN(BCStyle.CN, deviceId)
+                nameBuilder.addRDN(BCStyle.OU, "KDE Connect")
+                nameBuilder.addRDN(BCStyle.O, "KDE")
+                val localDate = LocalDate.now()
+                val notBefore = localDate.minusYears(1).atStartOfDay(ZoneId.systemDefault()).toInstant()
+                val notAfter = localDate.plusYears(10).atStartOfDay(ZoneId.systemDefault()).toInstant()
+                val certificateBuilder: X509v3CertificateBuilder = JcaX509v3CertificateBuilder(
+                    nameBuilder.build(),
+                    BigInteger.ONE,
+                    Date.from(notBefore),
+                    Date.from(notAfter),
+                    nameBuilder.build(),
+                    publicKey
+                )
+                val keyAlgorithm = privateKey.algorithm
+                val signatureAlgorithm = if ("RSA" == keyAlgorithm) "SHA512withRSA" else "SHA512withECDSA"
+                val contentSigner = JcaContentSignerBuilder(signatureAlgorithm).build(privateKey)
+                val certificateBytes = certificateBuilder.build(contentSigner).encoded
+                certificate = parseCertificate(certificateBytes)
 
-            val nameBuilder = X500NameBuilder(BCStyle.INSTANCE)
-            nameBuilder.addRDN(BCStyle.CN, deviceId)
-            nameBuilder.addRDN(BCStyle.OU, "KDE Connect")
-            nameBuilder.addRDN(BCStyle.O, "KDE")
-            val localDate = LocalDate.now()
-            val notBefore = localDate.minusYears(1).atStartOfDay(ZoneId.systemDefault()).toInstant()
-            val notAfter = localDate.plusYears(10).atStartOfDay(ZoneId.systemDefault()).toInstant()
-            val certificateBuilder: X509v3CertificateBuilder = JcaX509v3CertificateBuilder(
-                nameBuilder.build(),
-                BigInteger.ONE,
-                Date.from(notBefore),
-                Date.from(notAfter),
-                nameBuilder.build(),
-                publicKey
-            )
-            val keyAlgorithm = privateKey.algorithm
-            val signatureAlgorithm = if ("RSA" == keyAlgorithm) "SHA512withRSA" else "SHA512withECDSA"
-            val contentSigner = JcaContentSignerBuilder(signatureAlgorithm).build(privateKey)
-            val certificateBytes = certificateBuilder.build(contentSigner).encoded
-            certificate = parseCertificate(certificateBytes)
-
-            settings.edit {
-                putString("certificate", Base64.encodeToString(certificateBytes, 0))
+                settings.edit {
+                    putString("certificate", Base64.encodeToString(certificateBytes, 0))
+                }
+            } finally {
+                Locale.setDefault(initialLocale)
             }
-
-            setLocale(initialLocale, context)
         }
-    }
-
-    private fun setLocale(locale: Locale, context: Context) {
-        Locale.setDefault(locale)
-        val resources = context.resources
-        val config = resources.configuration
-        config.locale = locale
-        resources.updateConfiguration(config, resources.displayMetrics)
     }
 
     private fun getSslContextForDevice(context: Context, deviceId: String, isDeviceTrusted: Boolean): SSLContext {
