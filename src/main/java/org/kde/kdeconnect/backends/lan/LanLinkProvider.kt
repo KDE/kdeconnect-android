@@ -17,7 +17,7 @@ import android.os.SystemClock
 import android.util.Log
 import androidx.annotation.WorkerThread
 import androidx.core.content.ContextCompat
-import org.json.JSONException
+import kotlinx.serialization.SerializationException
 import org.kde.kdeconnect.DeviceInfo
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.NetworkPacket.Companion.unserialize
@@ -103,7 +103,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
         val identityPacket: NetworkPacket?
         try {
             identityPacket = unserialize(message)
-        } catch (e: JSONException) {
+        } catch (e: SerializationException) {
             Log.w("KDE/LanLinkProvider", "Invalid identity packet received: ${e.message}")
             return null
         }
@@ -266,7 +266,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
             Log.e("LanLinkProvider", "Exception receiving incoming UDP connection", e)
         } catch (e: CertificateException) {
             Log.e("LanLinkProvider", "Exception receiving incoming UDP connection", e)
-        } catch (e: JSONException) {
+        } catch (e: SerializationException) {
             Log.e("LanLinkProvider", "Exception receiving incoming UDP connection", e)
         } finally {
             socket?.closeSafe()
@@ -366,7 +366,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
                     val deviceInfo = DeviceInfo.fromIdentityPacketAndCert(secureIdentityPacket, certificate)
                     Log.i("KDE/LanLinkProvider", "Handshake as $mode successful with ${deviceInfo.name} secured with ${event.cipherSuite}")
                     addOrUpdateLink(sslSocket, deviceInfo)
-                } catch (e: JSONException) {
+                } catch (e: SerializationException) {
                     Log.e("KDE/LanLinkProvider", "Remote device doesn't correctly implement protocol version 8", e)
                     sslSocket.closeSafe()
                 } catch (e: IOException) {
@@ -538,7 +538,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
         val bytes: ByteArray
         try {
             bytes = identity.serialize().toByteArray(Charsets.UTF_8)
-        } catch (e: JSONException) {
+        } catch (e: SerializationException) {
             Log.e("KDE/LanLinkProvider", "Failed to serialize identity packet", e)
             return
         }

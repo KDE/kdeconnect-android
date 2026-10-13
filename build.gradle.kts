@@ -24,6 +24,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.dependencyLicenseReport)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 val licenseResDir = "$projectDir/build/dependency-license-res"
@@ -310,6 +311,7 @@ dependencies {
     // Kotlin
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.kotlinx.serialization.json)
 
     // Testing
     testImplementation(libs.junit)

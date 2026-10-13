@@ -18,6 +18,7 @@ junitExt = "1.3.0"
 kotlin = "2.4.21"
 kspPlugin = "2.3.12"
 kotlinxCoroutinesCore = "1.11.0"
+kotlinxSerializationJson = "1.12.0-RC"
 lifecycle = "2.11.0"
 logger = "1.0.3"
 androidMaterial = "1.14.0"
@@ -70,6 +71,7 @@ android-gradlePlugin = { module = "com.android.tools.build:gradle", version.ref 
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutinesCore" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 logger = { module = "com.klinkerapps:logger", version.ref = "logger" }
 google-android-material = { module = "com.google.android.material:material", version.ref = "androidMaterial" }
 apache-mina-core = { module = "org.apache.mina:mina-core", version.ref = "minaCore" }
@@ -89,5 +91,6 @@ slf4j-handroid = { module = "com.gitlab.mvysny.slf4j:slf4j-handroid", version.re
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "kspPlugin" }
 dependencyLicenseReport = { id = "com.github.jk1.dependency-license-report", version.ref = "dependencyLicenseReport" }

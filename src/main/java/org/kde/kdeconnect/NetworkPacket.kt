@@ -5,10 +5,17 @@
  */
 package org.kde.kdeconnect
 
-import org.json.JSONArray
-import org.json.JSONException
-import org.json.JSONObject
+import kotlinx.serialization.EncodeDefault
+import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerializationException
+import kotlinx.serialization.json.JsonArray
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.JsonNull
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.JsonPrimitive
 import org.kde.kdeconnect.extensions.closeSafe
+import org.kde.kdeconnect.helpers.JsonHelper.json
 import java.io.ByteArrayInputStream
 import java.io.Closeable
 import java.io.InputStream
@@ -16,15 +23,15 @@ import java.net.Socket
 
 class NetworkPacket private constructor(
     val type: String,
-    private val mBody: JSONObject,
+    private val mBody: MutableMap<String, JsonElement>,
     var payload: Payload?,
-    var payloadTransferInfo: JSONObject,
+    var payloadTransferInfo: JsonObject,
 ) {
     constructor(type: String) : this(
         type = type,
-        mBody = JSONObject(),
+        mBody = LinkedHashMap(),
         payload = null,
-        payloadTransferInfo = JSONObject()
+        payloadTransferInfo = JsonObject(emptyMap())
     )
 
     @Volatile
@@ -35,195 +42,172 @@ class NetworkPacket private constructor(
         isCanceled = true
     }
 
-    // Most commons getters and setters defined for convenience
+    // Returns the value as a primitive, or null if it's missing, JSON null or not a primitive
+    private fun primitive(key: String): JsonPrimitive? {
+        val value = mBody[key]
+        return if (value is JsonPrimitive && value !is JsonNull) value else null
+    }
+
     fun getString(key: String): String {
-        return mBody.optString(key, "")
+        return getString(key, "")
     }
 
     fun getStringOrNull(key: String): String? {
-        return if (mBody.has(key)) mBody.getString(key)
-        else null
+        return when (val value = mBody[key]) {
+            null, JsonNull -> null
+            is JsonPrimitive -> value.content
+            else -> value.toString()
+        }
     }
 
     fun getString(key: String, defaultValue: String): String {
-        return mBody.optString(key, defaultValue)
+        return getStringOrNull(key) ?: defaultValue
     }
 
     operator fun set(key: String, value: String) {
-        try {
-            mBody.put(key, value)
-        } catch (_: Exception) {
-        }
+        mBody[key] = JsonPrimitive(value)
     }
 
     fun getInt(key: String): Int {
-        return mBody.optInt(key, -1)
+        return getInt(key, -1)
     }
 
     fun getIntOrNull(key: String): Int? {
-        return if (mBody.has(key)) mBody.getInt(key)
-        else null
+        val content = primitive(key)?.content ?: return null
+        return content.toIntOrNull() ?: content.toDoubleOrNull()?.toInt()
     }
 
     fun getInt(key: String, defaultValue: Int): Int {
-        return mBody.optInt(key, defaultValue)
+        return getIntOrNull(key) ?: defaultValue
     }
 
     operator fun set(key: String, value: Int) {
-        try {
-            mBody.put(key, value)
-        } catch (_: Exception) {
-        }
+        mBody[key] = JsonPrimitive(value)
     }
 
     fun getLong(key: String): Long {
-        return mBody.optLong(key, -1)
+        return getLong(key, -1)
     }
 
     fun getLong(key: String, defaultValue: Long): Long {
-        return mBody.optLong(key, defaultValue)
+        val content = primitive(key)?.content ?: return defaultValue
+        return content.toLongOrNull() ?: content.toDoubleOrNull()?.toLong() ?: defaultValue
     }
 
     operator fun set(key: String, value: Long) {
-        try {
-            mBody.put(key, value)
-        } catch (_: Exception) {
-        }
+        mBody[key] = JsonPrimitive(value)
     }
 
     fun getBoolean(key: String): Boolean {
-        return mBody.optBoolean(key, false)
+        return getBoolean(key, false)
     }
 
     fun getBoolean(key: String, defaultValue: Boolean): Boolean {
-        return mBody.optBoolean(key, defaultValue)
+        val content = primitive(key)?.content ?: return defaultValue
+        return when {
+            content.equals("true", ignoreCase = true) -> true
+            content.equals("false", ignoreCase = true) -> false
+            else -> defaultValue
+        }
     }
 
     operator fun set(key: String, value: Boolean) {
-        try {
-            mBody.put(key, value)
-        } catch (_: Exception) {
-        }
+        mBody[key] = JsonPrimitive(value)
     }
 
     fun getDouble(key: String): Double {
-        return mBody.optDouble(key, Double.NaN)
+        return getDouble(key, Double.NaN)
     }
 
     fun getDouble(key: String, defaultValue: Double): Double {
-        return mBody.optDouble(key, defaultValue)
+        return primitive(key)?.content?.toDoubleOrNull() ?: defaultValue
     }
 
     operator fun set(key: String, value: Double) {
-        try {
-            mBody.put(key, value)
-        } catch (_: Exception) {
+        // NaN and infinity can't be represented in JSON
+        if (value.isFinite()) {
+            mBody[key] = JsonPrimitive(value)
         }
     }
 
-    fun getJSONArray(key: String): JSONArray? {
-        return mBody.optJSONArray(key)
+    fun getJsonArray(key: String): JsonArray? {
+        return mBody[key] as? JsonArray
     }
 
-    operator fun set(key: String, value: JSONArray?) {
-        try {
-            mBody.put(key, value)
-        } catch (_: Exception) {
+    operator fun set(key: String, value: JsonArray?) {
+        if (value == null) {
+            mBody.remove(key)
+        } else {
+            mBody[key] = value
         }
     }
 
-    fun getJSONObject(key: String): JSONObject? {
-        return mBody.optJSONObject(key)
+    fun getJsonObject(key: String): JsonObject? {
+        return mBody[key] as? JsonObject
     }
 
-    operator fun set(key: String, value: JSONObject?) {
-        try {
-            mBody.put(key, value)
-        } catch (_: JSONException) {
+    operator fun set(key: String, value: JsonObject?) {
+        if (value == null) {
+            mBody.remove(key)
+        } else {
+            mBody[key] = value
+        }
+    }
+
+    private fun JsonArray.toStringList(): List<String> {
+        return mapNotNull { element ->
+            when (element) {
+                JsonNull -> null
+                is JsonPrimitive -> element.content
+                else -> element.toString()
+            }
         }
     }
 
     fun getStringSet(key: String): Set<String>? {
-        val jsonArray = mBody.optJSONArray(key) ?: return null
-        val list: MutableSet<String> = HashSet()
-        val length = jsonArray.length()
-        for (i in 0 until length) {
-            try {
-                val str = jsonArray.getString(i)
-                list.add(str)
-            } catch (_: Exception) {
-            }
-        }
-        return list
+        return getJsonArray(key)?.toStringList()?.toHashSet()
     }
 
-    fun getStringSet(key: String, defaultValue: Set<String>?): Set<String>? {
-        return if (mBody.has(key)) getStringSet(key)
-        else defaultValue
+    fun getStringSet(key: String, defaultValue: Set<String>): Set<String> {
+        return getStringSet(key) ?: defaultValue
     }
 
     operator fun set(key: String, value: Set<String>) {
-        try {
-            val jsonArray = JSONArray()
-            for (str in value) {
-                jsonArray.put(str)
-            }
-            mBody.put(key, jsonArray)
-        } catch (_: Exception) {
-        }
+        mBody[key] = JsonArray(value.map(::JsonPrimitive))
     }
 
     fun getStringList(key: String): List<String>? {
-        val jsonArray = mBody.optJSONArray(key) ?: return null
-        val list: MutableList<String> = ArrayList()
-        val length = jsonArray.length()
-        for (i in 0 until length) {
-            try {
-                val str = jsonArray.getString(i)
-                list.add(str)
-            } catch (_: Exception) {
-            }
-        }
-        return list
+        return getJsonArray(key)?.toStringList()
     }
 
-    fun getStringList(key: String, defaultValue: List<String>?): List<String>? {
-        return if (mBody.has(key)) getStringList(key)
-        else defaultValue
+    fun getStringList(key: String, defaultValue: List<String>): List<String> {
+        return getStringList(key) ?: defaultValue
     }
 
     operator fun set(key: String, value: List<String>) {
-        try {
-            val jsonArray = JSONArray()
-            for (str in value) {
-                jsonArray.put(str)
-            }
-            mBody.put(key, jsonArray)
-        } catch (_: Exception) {
-        }
+        mBody[key] = JsonArray(value.map(::JsonPrimitive))
     }
 
     fun has(key: String): Boolean {
-        return mBody.has(key)
+        return mBody.containsKey(key)
     }
 
     operator fun contains(key: String): Boolean {
         return has(key)
     }
 
-    @Throws(JSONException::class)
+    @Throws(SerializationException::class)
     fun serialize(): String {
-        val jo = JSONObject()
-        jo.put("id", System.currentTimeMillis())
-        jo.put("type", type)
-        jo.put("body", mBody)
-        if (hasPayload()) {
-            jo.put("payloadSize", payload!!.payloadSize)
-            jo.put("payloadTransferInfo", payloadTransferInfo)
-        }
-        // QJSon does not escape slashes, but Java JSONObject does. Converting to QJson format.
+        val hasPayload = hasPayload()
+        val serialized = SerializedPacket(
+            id = System.currentTimeMillis(),
+            type = type,
+            body = JsonObject(mBody),
+            payloadSize = if (hasPayload) payload!!.payloadSize else null,
+            payloadTransferInfo = if (hasPayload) payloadTransferInfo else null,
+        )
         try {
-            return jo.toString().replace("\\/", "/") + "\n"
+            return json.encodeToString(serialized) + "\n"
         } catch (e : OutOfMemoryError) {
             throw RuntimeException("OOM serializing packet of type $type", e)
         }
@@ -239,7 +223,7 @@ class NetworkPacket private constructor(
     }
 
     fun hasPayloadTransferInfo(): Boolean {
-        return payloadTransferInfo.length() > 0
+        return payloadTransferInfo.isNotEmpty()
     }
 
     class Payload : Closeable {
@@ -275,6 +259,19 @@ class NetworkPacket private constructor(
         }
     }
 
+    /** The on-the-wire representation of a packet */
+    @OptIn(ExperimentalSerializationApi::class)
+    @Serializable
+    private class SerializedPacket(
+        val id: Long = 0,
+        val type: String,
+        val body: JsonObject,
+        @EncodeDefault(EncodeDefault.Mode.NEVER) // omit instead of writing null, peers check for the key's presence
+        val payloadSize: Long? = null,
+        @EncodeDefault(EncodeDefault.Mode.NEVER)
+        val payloadTransferInfo: JsonObject? = null,
+    )
+
     companion object {
         const val PACKET_TYPE_IDENTITY: String = "kdeconnect.identity"
         const val PACKET_TYPE_PAIR: String = "kdeconnect.pair"
@@ -284,16 +281,17 @@ class NetworkPacket private constructor(
             PACKET_TYPE_PAIR
         )
 
-        @Throws(JSONException::class)
+        @Throws(SerializationException::class)
         fun unserialize(s: String): NetworkPacket {
-            val jo = JSONObject(s)
-            val type = jo.getString("type")
-            val mBody = jo.getJSONObject("body")
-
-            val hasPayload = jo.has("payloadSize")
-            val payloadTransferInfo = if (hasPayload) jo.getJSONObject("payloadTransferInfo") else JSONObject()
-            val payload = if (hasPayload) Payload(jo.getLong("payloadSize")) else null
-            return NetworkPacket(type, mBody, payload, payloadTransferInfo)
+            val serialized = json.decodeFromString<SerializedPacket>(s)
+            val payloadSize = serialized.payloadSize
+            val payload = if (payloadSize != null) Payload(payloadSize) else null
+            val payloadTransferInfo = if (payloadSize != null) {
+                serialized.payloadTransferInfo ?: throw SerializationException("Packet has payloadSize but no payloadTransferInfo")
+            } else {
+                JsonObject(emptyMap())
+            }
+            return NetworkPacket(serialized.type, LinkedHashMap(serialized.body), payload, payloadTransferInfo)
         }
     }
 }

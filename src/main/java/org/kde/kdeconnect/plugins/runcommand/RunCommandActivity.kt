@@ -20,7 +20,6 @@ import androidx.compose.ui.platform.toClipEntry
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import org.json.JSONException
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect_tp.R
@@ -44,12 +43,8 @@ class RunCommandActivity : AppCompatActivity() {
             return
         }
 
-        for (obj in plugin.commandList) {
-            try {
-                commandList.add(CommandEntry(obj))
-            } catch (e: JSONException) {
-                Log.e("RunCommand", "Error parsing JSON", e)
-            }
+        for (info in plugin.commandList) {
+            commandList.add(CommandEntry(info))
         }
         commandList.sortBy { it.name.lowercase() }
 
@@ -95,12 +90,8 @@ class RunCommandActivity : AppCompatActivity() {
         commandList.removeAll(commandList)
         val plugin = KdeConnect.getInstance().getDevicePlugin<RunCommandPlugin>(deviceId) ?: return
 
-        for (obj in plugin.commandList) {
-            try {
-                commandList.add(CommandEntry(obj))
-            } catch (e: JSONException) {
-                Log.e("RunCommand", "Error parsing JSON", e)
-            }
+        for (info in plugin.commandList) {
+            commandList.add(CommandEntry(info))
         }
         commandList.sortBy { it.name.lowercase() }
     }

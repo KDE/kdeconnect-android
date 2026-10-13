@@ -16,10 +16,12 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.preference.PreferenceManager
-import org.json.JSONArray
-import org.json.JSONException
-import org.json.JSONObject
+import kotlinx.serialization.SerializationException
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.JsonPrimitive
+import kotlinx.serialization.json.decodeFromJsonElement
 import org.kde.kdeconnect.NetworkPacket
+import org.kde.kdeconnect.helpers.JsonHelper.json
 import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.plugins.PluginFactory.LoadablePlugin
 import org.kde.kdeconnect.ui.PluginSettingsFragment
@@ -29,7 +31,7 @@ import androidx.core.content.edit
 @LoadablePlugin
 class RunCommandPlugin : Plugin() {
 
-    val commandList = ArrayList<JSONObject>()
+    val commandList = ArrayList<CommandInfo>()
     private val callbacks = ArrayList<CommandsChangedCallback>()
     val commandItems = ArrayList<CommandEntry>()
     val output = SnapshotStateList<RunCommandOutput>()
@@ -94,17 +96,13 @@ class RunCommandPlugin : Plugin() {
             commandList.clear()
             try {
                 commandItems.clear()
-                val obj = JSONObject(np.getString("commandList"))
-                for (s in obj.keys()) {
-                    val o = obj.getJSONObject(s)
-                    o.put("key", s)
-                    commandList.add(o)
-
+                val obj = json.decodeFromString<Map<String, JsonObject>>(np.getString("commandList"))
+                for ((s, value) in obj) {
                     try {
-                        commandItems.add(
-                            CommandEntry(o)
-                        )
-                    } catch (e: JSONException) {
+                        val info = json.decodeFromJsonElement<CommandInfo>(JsonObject(value + ("key" to JsonPrimitive(s))))
+                        commandList.add(info)
+                        commandItems.add(CommandEntry(info))
+                    } catch (e: SerializationException) {
                         Log.e("RunCommand", "Error parsing JSON", e)
                     }
                 }
@@ -113,20 +111,15 @@ class RunCommandPlugin : Plugin() {
 
                 // Used only by RunCommandControlsProviderService to display controls correctly even when device is not available
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    val array = JSONArray()
-
-                    for (command in commandList) {
-                        array.put(command)
-                    }
-
+                    val commandsJson = json.encodeToString(commandList)
                     sharedPreferences.edit {
-                        putString(KEY_COMMANDS_PREFERENCE + device.deviceId, array.toString())
+                        putString(KEY_COMMANDS_PREFERENCE + device.deviceId, commandsJson)
                     }
                 }
 
                 forceRefreshWidgets(context)
 
-            } catch (e: JSONException) {
+            } catch (e: SerializationException) {
                 Log.e("RunCommand", "Error parsing JSON", e)
             }
 
