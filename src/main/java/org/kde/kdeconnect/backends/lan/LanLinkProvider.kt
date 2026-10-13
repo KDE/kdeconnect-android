@@ -233,7 +233,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
             return
         }
 
-        val message = String(packet.data, Charsets.UTF_8)
+        val message = String(packet.data, 0, packet.length, Charsets.UTF_8)
 
         val (identityPacket, deviceTrusted) = unserializeReceivedIdentityPacket(message)
             ?: return
