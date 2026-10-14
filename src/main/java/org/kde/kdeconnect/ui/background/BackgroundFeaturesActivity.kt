@@ -47,10 +47,12 @@ class BackgroundFeaturesActivity : AppCompatActivity() {
     private var shizukuState by mutableStateOf(ShizukuState(false, false, false))
     private var healthState by mutableStateOf(HealthCheckState(ShizukuState(false, false, false), false, false, false, "", "", false))
     private var disconnectEntries by mutableStateOf(emptyList<DisconnectLogEntry>())
+    private var labEntries by mutableStateOf(emptyList<ConnectionLabRow>())
     private var showingHealth = false
     private var showingDisconnectLog = false
     private var showingClipboardSync = false
     private var showingCompanion = false
+    private var showingConnectionLab = false
     private var pairingBusy by mutableStateOf(false)
     private var companionMessage by mutableStateOf<Int?>(null)
     private var pendingCompanionId: String? = null
@@ -75,6 +77,9 @@ class BackgroundFeaturesActivity : AppCompatActivity() {
         if (permissions[Manifest.permission.BLUETOOTH_CONNECT] == true && permissions[Manifest.permission.BLUETOOTH_SCAN] == true) pendingCompanionId?.let(::pairCompanion)
         else { pairingBusy = false; pendingCompanionId = null; companionMessage = R.string.companion_permission_needed }
     }
+    private val wifiDirectPermission = registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
+        if (granted) BackgroundService.ForceRefreshConnections(this)
+    }
     private var clipboardSettings by mutableStateOf(ClipboardSyncSettings(false, false, true, true))
     private val receivedListener = Shizuku.OnBinderReceivedListener { runOnUiThread(::refresh) }
     private val deadListener = Shizuku.OnBinderDeadListener { runOnUiThread(::refresh) }
@@ -89,6 +94,21 @@ class BackgroundFeaturesActivity : AppCompatActivity() {
         showingHealth = intent.getStringExtra(EXTRA_SCREEN) == SCREEN_HEALTH
         showingDisconnectLog = intent.getStringExtra(EXTRA_SCREEN) == SCREEN_DISCONNECT_LOG
         showingClipboardSync = intent.getStringExtra(EXTRA_SCREEN) == SCREEN_CLIPBOARD_SYNC
+        showingConnectionLab = intent.getStringExtra(EXTRA_SCREEN) == SCREEN_CONNECTION_LAB
+        if (showingConnectionLab) {
+            val permission = if (Build.VERSION.SDK_INT >= 33) Manifest.permission.NEARBY_WIFI_DEVICES
+                else Manifest.permission.ACCESS_FINE_LOCATION
+            if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+                wifiDirectPermission.launch(permission)
+            }
+        }
+        when (intent.getStringExtra(EXTRA_LAB_ACTION)) {
+            LAB_ACTION_START -> ConnectionLab.start(this, intent.getStringExtra(EXTRA_SCENARIO).orEmpty(), ClipboardSyncManager.pendingDeliveryCount())
+            LAB_ACTION_DROP -> ConnectionLab.markDrop(intent.getStringExtra(EXTRA_SCENARIO).orEmpty())
+            LAB_ACTION_NOTE -> ConnectionLab.recordNote(intent.getStringExtra(EXTRA_SCENARIO).orEmpty())
+            LAB_ACTION_FINISH -> ConnectionLab.finish(this, ClipboardSyncManager.pendingDeliveryCount())
+            LAB_ACTION_EXPORT -> java.io.File(filesDir, "connection-lab.tsv").writeText(ConnectionLab.exportTsv(this))
+        }
         Shizuku.addBinderReceivedListenerSticky(receivedListener)
         Shizuku.addBinderDeadListener(deadListener)
         Shizuku.addRequestPermissionResultListener(permissionListener)
@@ -105,6 +125,15 @@ class BackgroundFeaturesActivity : AppCompatActivity() {
                         })
                 } else if (showingDisconnectLog) {
                     DisconnectLogScreen(disconnectEntries, onBack = { finish() }, onRefresh = ::refresh)
+                } else if (showingConnectionLab) {
+                    ConnectionLabScreen(
+                        rows = labEntries,
+                        onBack = { finish() },
+                        onStart = { ConnectionLab.start(this, it, ClipboardSyncManager.pendingDeliveryCount()); refreshLab() },
+                        onDrop = { ConnectionLab.markDrop(); refreshLab() },
+                        onFinish = { ConnectionLab.finish(this, ClipboardSyncManager.pendingDeliveryCount()); refreshLab() },
+                        onExport = { exportConnectionLab() },
+                    )
                 } else if (showingHealth) {
                     HealthCheckScreen(healthState.copy(keepAlive = KeepAliveSupport.report, keepAliveBusy = KeepAliveSupport.busy), onBack = { finish() }, onCheck = ::refresh,
                         onOpenShizuku = { openSettings(Intent(this, BackgroundFeaturesActivity::class.java).putExtra(EXTRA_SCREEN, SCREEN_SHIZUKU)) },
@@ -260,6 +289,17 @@ class BackgroundFeaturesActivity : AppCompatActivity() {
             clipboardAutomaticAvailable = ClipboardSyncManager.isAutomaticAvailable(this),
         )
         disconnectEntries = DisconnectLog.entries(this)
+        refreshLab()
+    }
+
+    private fun refreshLab() { labEntries = ConnectionLab.rows(this) }
+
+    private fun exportConnectionLab() {
+        val intent = Intent(Intent.ACTION_SEND).apply {
+            type = "text/tab-separated-values"
+            putExtra(Intent.EXTRA_TEXT, ConnectionLab.exportTsv(this@BackgroundFeaturesActivity))
+        }
+        startActivity(Intent.createChooser(intent, getString(R.string.connection_lab_export)))
     }
 
     private fun openBatterySettings() {
@@ -330,6 +370,14 @@ class BackgroundFeaturesActivity : AppCompatActivity() {
         const val SCREEN_DISCONNECT_LOG = "disconnect_log"
         const val SCREEN_CLIPBOARD_SYNC = "clipboard_sync"
         const val SCREEN_COMPANION = "companion"
+        const val SCREEN_CONNECTION_LAB = "connection_lab"
+        const val EXTRA_LAB_ACTION = "lab_action"
+        const val EXTRA_SCENARIO = "scenario"
+        const val LAB_ACTION_START = "start"
+        const val LAB_ACTION_DROP = "drop"
+        const val LAB_ACTION_NOTE = "note"
+        const val LAB_ACTION_FINISH = "finish"
+        const val LAB_ACTION_EXPORT = "export"
         private const val SCREEN_SHIZUKU = "shizuku"
         private const val PREFERENCES = "ecosystem_background"
         private const val KEY_OEM_AUTOSTART_CONFIRMED = "oem_autostart_confirmed"
