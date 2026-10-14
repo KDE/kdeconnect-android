@@ -154,9 +154,14 @@ class SharePlugin : Plugin() {
                 context.getString(R.string.send_files),
                 R.drawable.share_plugin_action_24dp
             ) { parentActivity: Activity ->
-                val intent = Intent(parentActivity, SendFileActivity::class.java)
-                intent.putExtra(SendFileActivity.EXTRA_DEVICE_ID, device.deviceId)
-                parentActivity.startActivity(intent)
+                if (parentActivity is MainActivity) {
+                    parentActivity.openShareScreen(device.deviceId)
+                } else {
+                    val intent = Intent(parentActivity, MainActivity::class.java)
+                        .putExtra(MainActivity.EXTRA_DEVICE_ID, device.deviceId)
+                        .putExtra(MainActivity.EXTRA_SHOW_SHARE, true)
+                    parentActivity.startActivity(intent)
+                }
             })
     }
 
@@ -242,24 +247,25 @@ class SharePlugin : Plugin() {
         device.sendPacket(np)
     }
 
-    fun sendFiles(uriList: List<Uri>) {
+    fun sendFiles(uriList: List<Uri>): Boolean {
         //Read all the data early, as we only have permissions to do it while the activity is alive
         val packets = uriList.mapNotNull { uriToNetworkPacket(context, it, PACKET_TYPE_SHARE_REQUEST) }
 
         if (packets.isEmpty()) {
-            return
+            return false
         }
 
         // If there's an existing batch, try adding the packets to it
         if (uploadFileJob?.addNetworkPackets(packets) == true) {
             // If the current job can accept the packets, we are done
-            return
+            return true
         }
 
         val job = CompositeUploadFileJob(device, receiveFileJobCallback)
         job.addNetworkPackets(packets)
         uploadFileJob = job
         backgroundJobHandler.runJob(job)
+        return true
     }
 
     fun share(intent: Intent) {

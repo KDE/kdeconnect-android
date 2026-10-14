@@ -7,6 +7,7 @@
 package org.kde.kdeconnect.ui
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
@@ -45,6 +46,7 @@ import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect.extensions.setOnApplyWindowInsetsListenerCompat
 import org.kde.kdeconnect.helpers.DeviceHelper
 import org.kde.kdeconnect.plugins.share.ShareSettingsFragment
+import org.kde.kdeconnect.plugins.share.ShareFragment
 import org.kde.kdeconnect.ui.about.AboutFragment
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.ActivityMainBinding
@@ -52,6 +54,7 @@ import org.kde.kdeconnect_tp.databinding.ActivityMainBinding
 private const val MENU_ENTRY_ADD_DEVICE = 1 //0 means no-selection
 private const val MENU_ENTRY_SETTINGS = 2
 private const val MENU_ENTRY_ABOUT = 3
+private const val MENU_ENTRY_SHARE = 4
 private const val MENU_ENTRY_DEVICE_FIRST_ID = 1000 //All subsequent ids are devices in the menu
 private const val MENU_ENTRY_DEVICE_UNKNOWN = 9999 //It's still a device, but we don't know which one yet
 private const val STATE_SELECTED_MENU_ENTRY = "selected_entry" //Saved only in onSaveInstanceState
@@ -78,6 +81,7 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
         set(value) {
             field = value
             mainFragmentCallback.isEnabled = value == MENU_ENTRY_SETTINGS || value == MENU_ENTRY_ABOUT ||
+                value == MENU_ENTRY_SHARE ||
                 (value >= MENU_ENTRY_DEVICE_FIRST_ID && mCurrentDevice != null)
         }
     private val preferences: SharedPreferences by lazy { getSharedPreferences("stored_menu_selection", MODE_PRIVATE) }
@@ -91,7 +95,9 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
 
     private val mainFragmentCallback = object : OnBackPressedCallback(false) {
         override fun handleOnBackPressed() {
-            if (mCurrentMenuEntry == MENU_ENTRY_SETTINGS || mCurrentMenuEntry == MENU_ENTRY_ABOUT) {
+            if (mCurrentMenuEntry == MENU_ENTRY_SETTINGS || mCurrentMenuEntry == MENU_ENTRY_ABOUT ||
+                mCurrentMenuEntry == MENU_ENTRY_SHARE
+            ) {
                 mCurrentMenuEntry = mCurrentDevice?.let { deviceIdToMenuEntryId(it) } ?: MENU_ENTRY_ADD_DEVICE
                 mNavigationView.setCheckedItem(mCurrentMenuEntry)
                 setContentFragment(mCurrentDevice?.let { DeviceFragment.newInstance(it, false) } ?: PairingFragment())
@@ -168,6 +174,8 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
                     setContentFragment(AboutFragment.newInstance())
                 }
 
+                MENU_ENTRY_SHARE -> openShareScreen(mCurrentDevice)
+
                 else -> {
                     val deviceId = mMapMenuToDeviceId[menuItem]
                     onDeviceSelected(deviceId)
@@ -191,6 +199,12 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
                 Log.i(LOG_TAG, "Requested to start main overview")
                 savedDevice = null
                 savedMenuEntry = MENU_ENTRY_ADD_DEVICE
+            }
+
+            isIncomingShareIntent(intent) || intent.getBooleanExtra(EXTRA_SHOW_SHARE, false) -> {
+                savedDevice = intent.getStringExtra(EXTRA_DEVICE_ID)
+                    ?: preferences.getString(STATE_SELECTED_DEVICE, null)
+                savedMenuEntry = MENU_ENTRY_SHARE
             }
 
             intent.hasExtra(EXTRA_DEVICE_ID) -> {
@@ -225,6 +239,7 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
             val fragmentMatchesSelection = when {
                 savedMenuEntry == MENU_ENTRY_SETTINGS -> frag is SettingsFragment
                 savedMenuEntry == MENU_ENTRY_ABOUT -> frag is AboutFragment
+                savedMenuEntry == MENU_ENTRY_SHARE -> frag is ShareFragment
                 savedMenuEntry >= MENU_ENTRY_DEVICE_FIRST_ID && savedDevice != null ->
                     frag is DeviceFragment && frag.deviceId == savedDevice
                 else -> frag is PairingFragment
@@ -239,6 +254,7 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
             when (mCurrentMenuEntry) {
                 MENU_ENTRY_SETTINGS -> setContentFragment(SettingsFragment())
                 MENU_ENTRY_ABOUT -> setContentFragment(AboutFragment.newInstance())
+                MENU_ENTRY_SHARE -> setContentFragment(ShareFragment.newInstance(savedDevice, shareIntentOrNull(intent)))
                 else -> setContentFragment(PairingFragment())
             }
         }
@@ -285,6 +301,38 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
         return if (pairStatus == PAIRING_ACCEPTED || pairStatus == PAIRING_PENDING) deviceId else null
     }
 
+    fun openShareScreen(deviceId: String?) {
+        mCurrentDevice = deviceId
+        if (deviceId != null) {
+            preferences.edit { putString(STATE_SELECTED_DEVICE, deviceId) }
+        }
+        mCurrentMenuEntry = MENU_ENTRY_SHARE
+        mNavigationView.setCheckedItem(MENU_ENTRY_SHARE)
+        setContentFragment(ShareFragment.newInstance(deviceId))
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        if (!isIncomingShareIntent(intent) && !intent.getBooleanExtra(EXTRA_SHOW_SHARE, false)) return
+
+        val selectedDevice = intent.getStringExtra(EXTRA_DEVICE_ID)
+            ?: mCurrentDevice
+            ?: preferences.getString(STATE_SELECTED_DEVICE, null)
+        mCurrentDevice = selectedDevice
+        if (selectedDevice != null) {
+            preferences.edit { putString(STATE_SELECTED_DEVICE, selectedDevice) }
+        }
+        mCurrentMenuEntry = MENU_ENTRY_SHARE
+        mNavigationView.setCheckedItem(MENU_ENTRY_SHARE)
+        setContentFragment(ShareFragment.newInstance(selectedDevice, shareIntentOrNull(intent)))
+    }
+
+    private fun isIncomingShareIntent(intent: Intent): Boolean =
+        intent.action == Intent.ACTION_SEND || intent.action == Intent.ACTION_SEND_MULTIPLE
+
+    private fun shareIntentOrNull(intent: Intent): Intent? = intent.takeIf(::isIncomingShareIntent)
+
     private fun deviceIdToMenuEntryId(deviceId: String?): Int {
         for ((key, value) in mMapMenuToDeviceId) {
             if (value == deviceId) {
@@ -321,6 +369,9 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
         val addDeviceItem = devicesMenu.add(Menu.FIRST, MENU_ENTRY_ADD_DEVICE, 1000, R.string.pair_new_device)
         addDeviceItem.setIcon(R.drawable.ic_action_content_add_circle_outline_32dp)
         addDeviceItem.isCheckable = true
+        val shareItem = menu.add(Menu.FIRST, MENU_ENTRY_SHARE, 999, R.string.share_files_title)
+        shareItem.setIcon(R.drawable.ic_share_white)
+        shareItem.isCheckable = true
         val settingsItem = menu.add(Menu.FIRST, MENU_ENTRY_SETTINGS, 1000, R.string.settings)
         settingsItem.setIcon(R.drawable.ic_settings_white_32dp)
         settingsItem.isCheckable = true
@@ -465,6 +516,14 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
         const val RESULT_NEEDS_RELOAD = RESULT_FIRST_USER
         const val RESULT_NOTIFICATIONS_ENABLED = RESULT_FIRST_USER+1
         const val FLAG_FORCE_OVERVIEW = "forceOverview"
+        const val EXTRA_SHOW_SHARE = "showShare"
+
+        fun getSelectedDeviceId(context: Context): String? = context
+            .getSharedPreferences("stored_menu_selection", Context.MODE_PRIVATE)
+            .getString(STATE_SELECTED_DEVICE, null)
+
+        fun isShareIntent(intent: Intent?): Boolean =
+            intent?.action == Intent.ACTION_SEND || intent?.action == Intent.ACTION_SEND_MULTIPLE
     }
 
     private inner class DrawerToggle(drawerLayout: DrawerLayout) : ActionBarDrawerToggle(

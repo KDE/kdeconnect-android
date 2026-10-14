@@ -15,6 +15,7 @@ import org.kde.kdeconnect.async.BackgroundJob
 import org.kde.kdeconnect.plugins.share.SharePlugin.Companion.KEY_NUMBER_OF_FILES
 import org.kde.kdeconnect.plugins.share.SharePlugin.Companion.KEY_TOTAL_PAYLOAD_SIZE
 import org.kde.kdeconnect_tp.R
+import java.util.IdentityHashMap
 
 /**
  * A type of [BackgroundJob] that sends Files to another device.
@@ -40,6 +41,7 @@ class CompositeUploadFileJob(device: Device, callback: Callback<Unit>)
     private val handler: Handler = Handler(Looper.getMainLooper())
     private var currentFileName: String = ""
     private var currentFileNum: Int = 0
+    private var currentHistoryId: String? = null
     private var updatePacketPending: Boolean = false
     private var totalSend: Long = 0
     private var prevProgressPercentage: Int = 0
@@ -49,6 +51,7 @@ class CompositeUploadFileJob(device: Device, callback: Callback<Unit>)
 
     @GuardedBy("lock")
     private val networkPacketList = mutableListOf<NetworkPacket>()
+    private val historyIdsByPacket = IdentityHashMap<NetworkPacket, String>()
 
     private var currentNetworkPacket: NetworkPacket? = null
     private val sendPacketStatusCallback: SendPacketStatusCallback = SendPacketStatusCallback()
@@ -78,11 +81,13 @@ class CompositeUploadFileJob(device: Device, callback: Callback<Unit>)
                         break
                     }
                     currentNetworkPacket = next
+                    currentHistoryId = historyIdsByPacket[next]
                     next
                 }
 
                 currentFileName = packet.getString("filename")
                 currentFileNum++
+                updateCurrentHistory(TransferStatus.SENDING, 0)
 
                 setProgress(prevProgressPercentage)
 
@@ -96,6 +101,7 @@ class CompositeUploadFileJob(device: Device, callback: Callback<Unit>)
             }
 
             if (isCancelled) {
+                updateCurrentHistory(TransferStatus.FAILED, prevProgressPercentage)
                 uploadNotification.cancel()
             } else {
                 uploadNotification.setFinished(
@@ -111,6 +117,7 @@ class CompositeUploadFileJob(device: Device, callback: Callback<Unit>)
                 reportResult(Unit)
             }
         } catch (e: RuntimeException) {
+            updateCurrentHistory(TransferStatus.FAILED, prevProgressPercentage)
             synchronized(lock) {
                 val failedFiles = totalNumFiles - currentFileNum + 1
                 uploadNotification.setFailed(
@@ -129,13 +136,16 @@ class CompositeUploadFileJob(device: Device, callback: Callback<Unit>)
         } finally {
             isRunning = false
 
-            synchronized(lock) {
+            val pendingPackets = synchronized(lock) {
                 finished = true
-                for (networkPacket in networkPacketList) {
+                val pending = networkPacketList.toList()
+                for (networkPacket in pending) {
                     networkPacket.payload?.close()
                 }
                 networkPacketList.clear()
+                pending
             }
+            pendingPackets.forEach(::markFailed)
         }
     }
 
@@ -178,6 +188,20 @@ class CompositeUploadFileJob(device: Device, callback: Callback<Unit>)
                 networkPacketList.add(networkPacket)
 
                 totalNumFiles++
+                val historyId = ShareTransferHistory.newId()
+                historyIdsByPacket[networkPacket] = historyId
+                ShareTransferHistory.upsert(
+                    device.context,
+                    ShareTransferRecord(
+                        id = historyId,
+                        fileName = networkPacket.getString("filename"),
+                        size = networkPacket.payloadSize,
+                        direction = TransferDirection.SENT,
+                        status = TransferStatus.SENDING,
+                        progress = 0,
+                        deviceName = device.name,
+                    ),
+                )
 
                 if (networkPacket.payloadSize >= 0) {
                     totalPayloadSize += networkPacket.payloadSize
@@ -231,6 +255,7 @@ class CompositeUploadFileJob(device: Device, callback: Callback<Unit>)
     private inner class SendPacketStatusCallback : Device.SendPacketStatusCallback() {
         override fun onPayloadProgressChanged(percent: Int) {
             val payloadSize = currentNetworkPacket?.payloadSize ?: return
+            updateCurrentHistory(TransferStatus.SENDING, percent)
             val send = totalSend + (payloadSize * (percent / 100f))
             val progress = ((send * 100) / totalPayloadSize).toInt()
 
@@ -242,6 +267,7 @@ class CompositeUploadFileJob(device: Device, callback: Callback<Unit>)
 
         override fun onSuccess() {
             val payloadSize = currentNetworkPacket?.payloadSize ?: return
+            updateCurrentHistory(TransferStatus.SENT, 100)
             if (payloadSize == 0L) {
                 synchronized(lock) {
                     if (networkPacketList.isEmpty()) {
@@ -256,5 +282,38 @@ class CompositeUploadFileJob(device: Device, callback: Callback<Unit>)
         override fun onFailure(e: Throwable) {
             // Handled in the run() function when sendPacketBlocking returns false
         }
+    }
+
+    private fun updateCurrentHistory(status: TransferStatus, progress: Int) {
+        val historyId = currentHistoryId ?: return
+        val packet = currentNetworkPacket ?: return
+        ShareTransferHistory.upsert(
+            device.context,
+            ShareTransferRecord(
+                id = historyId,
+                fileName = packet.getString("filename"),
+                size = packet.payloadSize,
+                direction = TransferDirection.SENT,
+                status = status,
+                progress = progress.coerceIn(0, 100),
+                deviceName = device.name,
+            ),
+        )
+    }
+
+    private fun markFailed(packet: NetworkPacket) {
+        val historyId = historyIdsByPacket[packet] ?: return
+        ShareTransferHistory.upsert(
+            device.context,
+            ShareTransferRecord(
+                id = historyId,
+                fileName = packet.getString("filename"),
+                size = packet.payloadSize,
+                direction = TransferDirection.SENT,
+                status = TransferStatus.FAILED,
+                progress = 0,
+                deviceName = device.name,
+            ),
+        )
     }
 }

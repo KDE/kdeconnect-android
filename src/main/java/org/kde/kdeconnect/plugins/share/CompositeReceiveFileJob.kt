@@ -30,6 +30,7 @@ import java.io.OutputStream
 import java.nio.file.Files
 import java.nio.file.Paths
 import java.nio.file.attribute.FileTime
+import java.util.IdentityHashMap
 
 /**
  * A type of [BackgroundJob] that reads Files from another device.
@@ -52,6 +53,8 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
     private var currentNetworkPacket: NetworkPacket? = null
     private var currentFileName: String? = null
     private var currentFileNum: Int = 0
+    private var currentHistoryId: String? = null
+    private var currentFileReceived: Long = 0
     private var totalReceived: Long = 0
     private var lastProgressTimeMillis: Long = 0
     private var prevProgressPercentage = 0
@@ -60,6 +63,7 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
 
     @GuardedBy("lock")
     private val networkPacketList = mutableListOf<NetworkPacket>()
+    private val historyIdsByPacket = IdentityHashMap<NetworkPacket, String>()
 
     @GuardedBy("lock")
     private var totalNumFiles: Int = 0
@@ -105,6 +109,20 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
 
             if (!networkPacketList.contains(networkPacket)) {
                 networkPacketList.add(networkPacket)
+                val historyId = ShareTransferHistory.newId()
+                historyIdsByPacket[networkPacket] = historyId
+                ShareTransferHistory.upsert(
+                    device.context,
+                    ShareTransferRecord(
+                        id = historyId,
+                        fileName = networkPacket.getString("filename", System.currentTimeMillis().toString()),
+                        size = networkPacket.payloadSize,
+                        direction = TransferDirection.RECEIVED,
+                        status = TransferStatus.RECEIVING,
+                        progress = 0,
+                        deviceName = device.name,
+                    ),
+                )
 
                 totalNumFiles = networkPacket.getInt(SharePlugin.KEY_NUMBER_OF_FILES, 1)
                 totalPayloadSize = networkPacket.getLong(SharePlugin.KEY_TOTAL_PAYLOAD_SIZE)
@@ -138,12 +156,14 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
                         finished = true
                     } else {
                         currentNetworkPacket = next
+                        currentHistoryId = historyIdsByPacket[next]
                     }
                     next
                 } ?: break
 
                 currentFileName = packet.getString("filename", System.currentTimeMillis().toString())
                 currentFileNum++
+                currentFileReceived = 0
 
                 setProgress(prevProgressPercentage)
 
@@ -169,11 +189,13 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
                         }
                     } else {
                         publishFile(fileDocument, received)
+                        updateCurrentHistory(TransferStatus.RECEIVED, 100)
                     }
                 } else {
                     // TODO: Only set progress to 100 if this is the only file/packet to send
                     setProgress(100)
                     publishFile(fileDocument, 0)
+                    updateCurrentHistory(TransferStatus.RECEIVED, 100)
                 }
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -223,6 +245,7 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
             isRunning = false
 
             if (isCancelled) {
+                updateCurrentHistory(TransferStatus.FAILED, 0)
                 receiveNotification.cancel()
                 return
             }
@@ -252,6 +275,7 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
             reportResult(Unit)
         } catch (e: Exception) {
             isRunning = false
+            updateCurrentHistory(TransferStatus.FAILED, 0)
 
             Log.e("SharePlugin", "Error receiving file", e)
 
@@ -269,6 +293,7 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
             // Close outside the lock: closing a payload socket can block, and addNetworkPacket() would block with it
             for (np in remainingPackets) {
                 np.payload?.close()
+                markFailed(np)
             }
             outputStream?.closeSafe()
         }
@@ -301,6 +326,7 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
         while (input.read(data).also { count = it } >= 0 && !isCancelled) {
             received += count.toLong()
             totalReceived += count.toLong()
+            currentFileReceived += count.toLong()
 
             output.write(data, 0, count)
 
@@ -315,6 +341,13 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
                 prevProgressPercentage = progressPercentage
                 lastProgressTimeMillis = curTimeMillis
                 setProgress(progressPercentage)
+                val currentFileSize = currentNetworkPacket?.payloadSize ?: -1L
+                val fileProgress = if (currentFileSize > 0) {
+                    (currentFileReceived * 100 / currentFileSize).toInt()
+                } else {
+                    100
+                }
+                updateCurrentHistory(TransferStatus.RECEIVING, fileProgress)
             }
         }
 
@@ -339,6 +372,39 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
             )
         }
         receiveNotification.show()
+    }
+
+    private fun updateCurrentHistory(status: TransferStatus, progress: Int) {
+        val historyId = currentHistoryId ?: return
+        val packet = currentNetworkPacket ?: return
+        ShareTransferHistory.upsert(
+            device.context,
+            ShareTransferRecord(
+                id = historyId,
+                fileName = packet.getString("filename", currentFileName ?: ""),
+                size = packet.payloadSize,
+                direction = TransferDirection.RECEIVED,
+                status = status,
+                progress = progress.coerceIn(0, 100),
+                deviceName = device.name,
+            ),
+        )
+    }
+
+    private fun markFailed(packet: NetworkPacket) {
+        val historyId = historyIdsByPacket[packet] ?: return
+        ShareTransferHistory.upsert(
+            device.context,
+            ShareTransferRecord(
+                id = historyId,
+                fileName = packet.getString("filename", ""),
+                size = packet.payloadSize,
+                direction = TransferDirection.RECEIVED,
+                status = TransferStatus.FAILED,
+                progress = 0,
+                deviceName = device.name,
+            ),
+        )
     }
 
     private fun publishFile(fileDocument: DocumentFile, size: Long) {

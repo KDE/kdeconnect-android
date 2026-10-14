@@ -306,6 +306,26 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="mpris_notification_settings_summary">Allow controlling your media players without opening KDE Connect</string>
     <string name="mpris_notification_key" translatable="false">mpris_notification_enabled</string>
     <string name="share_to">Share to…</string>
+    <string name="share_files_title">Share files</string>
+    <string name="share_choose_files">Choose files</string>
+    <string name="share_drop_files_here">Drop files here</string>
+    <string name="share_sent_to">Sent to %1$s</string>
+    <string name="share_device_offline">%1$s is offline</string>
+    <string name="share_device_offline_error">The selected device is offline.</string>
+    <string name="share_device_not_selected">Select a device from Devices before sending files.</string>
+    <string name="share_choose_device_first">Choose a device first</string>
+    <string name="share_device_offline_short">Connect the selected device to send files.</string>
+    <string name="share_recent">Recent</string>
+    <string name="share_recent_empty">Files you send or receive will appear here.</string>
+    <string name="share_file_size_unknown">Size unknown</string>
+    <string name="share_status_sending">sending</string>
+    <string name="share_status_sent">sent</string>
+    <string name="share_status_receiving">receiving</string>
+    <string name="share_status_received">received</string>
+    <string name="share_status_failed">failed</string>
+    <string name="share_status_done">Done</string>
+    <string name="share_transfer_unavailable">File transfer is unavailable for this device.</string>
+    <string name="share_transfer_failed">Could not send the selected files.</string>
     <string name="unreachable_device_dynamic_shortcut">%s (✕)</string>
     <string name="unreachable_device_url_share_text">URLs shared to an unreachable device will be delivered to it once it becomes reachable.\n\n</string>
     <string name="unreachable_share_toast">The URL will be shared the next time the device is connected.</string>
