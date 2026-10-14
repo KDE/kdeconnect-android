@@ -246,8 +246,9 @@ class SettingsFragment : PreferenceFragmentCompat() {
             setSummary(R.string.setting_persistent_notification_description)
             onPreferenceClickListener = Preference.OnPreferenceClickListener {
                 val intent = Intent()
-                intent.setAction("android.settings.APP_NOTIFICATION_SETTINGS")
+                intent.setAction("android.settings.CHANNEL_NOTIFICATION_SETTINGS")
                 intent.putExtra("android.provider.extra.APP_PACKAGE", context.packageName)
+                intent.putExtra("android.provider.extra.CHANNEL_ID", NotificationHelper.Channels.PERSISTENT)
                 context.startActivity(intent)
                 true
             }

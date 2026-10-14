@@ -34,9 +34,6 @@ import org.kde.kdeconnect.backends.lan.LanLinkProvider
 import org.kde.kdeconnect.helpers.NotificationHelper
 import org.kde.kdeconnect.plugins.clipboard.ClipboardFloatingActivity
 import org.kde.kdeconnect.plugins.clipboard.ClipboardPlugin
-import org.kde.kdeconnect.plugins.runcommand.RunCommandActivity
-import org.kde.kdeconnect.plugins.runcommand.RunCommandPlugin
-import org.kde.kdeconnect.plugins.share.SendFileActivity
 import org.kde.kdeconnect.ui.MainActivity
 import org.kde.kdeconnect_tp.R
 
@@ -51,6 +48,25 @@ class BackgroundService : Service() {
     private lateinit var applicationInstance: KdeConnect
 
     private val linkProviders = mutableListOf<BaseLinkProvider>()
+    private val screenReceiver = KdeConnectBroadcastReceiver()
+    private var receiverRegistered = false
+    private var connectivityManager: ConnectivityManager? = null
+    private val networkCallback = object : NetworkCallback() {
+        override fun onAvailable(network: Network) {
+            isConnectedToNonCellularNetwork.postValue(true)
+            onNetworkChange(network)
+        }
+
+        override fun onLost(network: Network) {
+            val hasNetwork = connectivityManager?.allNetworks?.any { candidate ->
+                connectivityManager?.getNetworkCapabilities(candidate)?.let { capabilities ->
+                    !capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)
+                } == true
+            } == true
+            isConnectedToNonCellularNetwork.postValue(hasNetwork)
+            onNetworkChange(network)
+        }
+    }
 
     /** Indicates whether device is connected over wifi / usb / bluetooth / (anything other than cellular) */
     val isConnectedToNonCellularNetwork: LiveData<Boolean>
@@ -100,6 +116,12 @@ class BackgroundService : Service() {
         Log.d("KdeConnect/BgService", "onCreate")
         this.applicationInstance = KdeConnect.getInstance()
         instance = this
+        // Promote before starting discovery: Android gives a newly started service only a
+        // short deadline to enter foreground mode.
+        if (!promoteToForeground()) {
+            stopSelf()
+            return
+        }
 
         KdeConnect.getInstance().addDeviceListChangedCallback("BackgroundService", this::updateForegroundNotification)
 
@@ -109,27 +131,8 @@ class BackgroundService : Service() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
             filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION)
         }
-        registerReceiver(KdeConnectBroadcastReceiver(), filter)
-
-        // Watch for changes on all network connections except cellular networks
-        val networkRequestBuilder = createNonCellularNetworkRequestBuilder()
-        val connectivityManager = this.getSystemService<ConnectivityManager>()
-        connectivityManager?.registerNetworkCallback(networkRequestBuilder.build(), object : NetworkCallback() {
-
-            // All callbacks run on a dedicated thread that isn't the main thread
-
-            override fun onAvailable(network: Network) {
-                Log.i("BackgroundService", "Valid network available")
-                isConnectedToNonCellularNetwork.postValue(true)
-                onNetworkChange(network)
-            }
-
-            override fun onLost(network: Network) {
-                Log.i("BackgroundService", "Valid network lost")
-                isConnectedToNonCellularNetwork.postValue(false)
-                onNetworkChange(network)
-            }
-        })
+        registerReceiver(screenReceiver, filter)
+        receiverRegistered = true
 
         registerLinkProviders()
         addConnectionListener(applicationInstance.connectionListener) // Link Providers need to be already registered
@@ -137,6 +140,8 @@ class BackgroundService : Service() {
             linkProvider.onStart()
         }
         initialized = true
+        connectivityManager = getSystemService<ConnectivityManager>()
+        connectivityManager?.registerNetworkCallback(createNonCellularNetworkRequestBuilder().build(), networkCallback)
     }
 
     fun changePersistentNotificationVisibility(visible: Boolean) {
@@ -175,16 +180,13 @@ class BackgroundService : Service() {
             setSmallIcon(R.drawable.ic_notification)
             setOngoing(true)
             setContentIntent(pi)
-            setPriority(NotificationCompat.PRIORITY_MIN) //MIN so it's not shown in the status bar before Oreo, on Oreo it will be bumped to LOW
+            setPriority(NotificationCompat.PRIORITY_LOW)
+            setSilent(true)
+            setContentTitle(getString(R.string.kde_connect))
             setShowWhen(false)
             setForegroundServiceBehavior(NotificationCompat.FOREGROUND_SERVICE_IMMEDIATE)
             setAutoCancel(false)
             setGroup("BackgroundService")
-        }
-
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-            // Pre-oreo, the notification will have an empty title line without this
-            notification.setContentTitle(getString(R.string.kde_connect))
         }
 
         if (connectedDevices.isEmpty()) {
@@ -201,29 +203,6 @@ class BackgroundService : Service() {
                 notification.addAction(0, getString(R.string.foreground_notification_send_clipboard), sendPendingClipboard)
             }
 
-            if (connectedDeviceIds.size == 1) {
-                val deviceId = connectedDeviceIds[0]
-                val device = KdeConnect.getInstance().getDevice(deviceId)
-                if (device != null) {
-                    // Adding two action buttons only when there is a single device connected.
-                    // Setting up Send File Intent.
-                    val sendFile = Intent(this, SendFileActivity::class.java)
-                    sendFile.action = "org.kde.kdeconnect.FOREGROUND_NOTIFICATION_SEND_FILE"
-                    sendFile.putExtra(SendFileActivity.EXTRA_DEVICE_ID, deviceId)
-                    val sendPendingFile = PendingIntent.getActivity(this, 0, sendFile, UPDATE_IMMUTABLE_FLAGS)
-                    notification.addAction(0, getString(R.string.send_files), sendPendingFile)
-
-                    // Checking if there are registered commands and adding the button.
-                    val plugin = device.getPlugin<RunCommandPlugin>()
-                    if (plugin != null && plugin.commandList.isNotEmpty()) {
-                        val runCommand = Intent(this, RunCommandActivity::class.java)
-                        runCommand.action = "org.kde.kdeconnect.FOREGROUND_NOTIFICATION_RUN_COMMAND"
-                        runCommand.putExtra(RunCommandActivity.EXTRA_DEVICE_ID, connectedDeviceIds[0])
-                        val runPendingCommand = PendingIntent.getActivity(this, 0, runCommand, UPDATE_IMMUTABLE_FLAGS)
-                        notification.addAction(0, getString(R.string.pref_plugin_runcommand), runPendingCommand)
-                    }
-                }
-            }
         }
         return notification.build()
     }
@@ -231,6 +210,11 @@ class BackgroundService : Service() {
     override fun onDestroy() {
         Log.d("KdeConnect/BgService", "onDestroy")
         initialized = false
+        if (receiverRegistered) unregisterReceiver(screenReceiver)
+        receiverRegistered = false
+        connectivityManager?.let { manager -> runCatching { manager.unregisterNetworkCallback(networkCallback) } }
+        connectivityManager = null
+        if (instance === this) instance = null
         for (linkProvider in linkProviders) {
             linkProvider.onStop()
         }
@@ -242,23 +226,26 @@ class BackgroundService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         Log.d(LOG_TAG, "onStartCommand")
-        if (NotificationHelper.isPersistentNotificationEnabled(this)) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                try {
-                    startForeground(FOREGROUND_NOTIFICATION_ID, createForegroundNotification(), ServiceInfo.FOREGROUND_SERVICE_TYPE_CONNECTED_DEVICE)
-                } catch (e: IllegalStateException) { // To catch ForegroundServiceStartNotAllowedException
-                    Log.w("BackgroundService", "Couldn't startForeground", e)
-                    return START_STICKY
-                }
-            }
-            else {
-                startForeground(FOREGROUND_NOTIFICATION_ID, createForegroundNotification())
-            }
+        if (!promoteToForeground()) {
+            stopSelf()
+            return START_NOT_STICKY
         }
         if (intent != null && intent.getBooleanExtra("refresh", false)) {
             onNetworkChange(null)
         }
         return START_STICKY
+    }
+
+    private fun promoteToForeground(): Boolean = try {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            startForeground(FOREGROUND_NOTIFICATION_ID, createForegroundNotification(), ServiceInfo.FOREGROUND_SERVICE_TYPE_CONNECTED_DEVICE)
+        } else {
+            startForeground(FOREGROUND_NOTIFICATION_ID, createForegroundNotification())
+        }
+        true
+    } catch (e: RuntimeException) {
+        Log.w(LOG_TAG, "Foreground service could not start", e)
+        false
     }
 
     companion object {
@@ -294,14 +281,22 @@ class BackgroundService : Service() {
         fun Start(context: Context) {
             Log.d(LOG_TAG, "Start")
             val intent = Intent(context, BackgroundService::class.java)
-            ContextCompat.startForegroundService(context, intent)
+            try {
+                ContextCompat.startForegroundService(context, intent)
+            } catch (e: RuntimeException) {
+                Log.w(LOG_TAG, "Android did not allow the connection service to start", e)
+            }
         }
 
         fun ForceRefreshConnections(context: Context) {
             Log.d(LOG_TAG, "ForceRefreshConnections")
             val intent = Intent(context, BackgroundService::class.java)
             intent.putExtra("refresh", true)
-            ContextCompat.startForegroundService(context, intent)
+            try {
+                ContextCompat.startForegroundService(context, intent)
+            } catch (e: RuntimeException) {
+                Log.w(LOG_TAG, "Android did not allow the connection service to start", e)
+            }
         }
     }
 }
