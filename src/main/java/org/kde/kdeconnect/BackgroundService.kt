@@ -23,6 +23,7 @@ import android.os.Build
 import android.os.IBinder
 import android.os.PowerManager
 import org.kde.kdeconnect.ui.background.ConnectionRecovery
+import org.kde.kdeconnect.ui.background.HotspotSupport
 import android.util.Log
 import androidx.annotation.MainThread
 import androidx.core.app.NotificationCompat
@@ -33,7 +34,9 @@ import androidx.lifecycle.MutableLiveData
 import org.kde.kdeconnect.backends.BaseLinkProvider
 import org.kde.kdeconnect.backends.BaseLinkProvider.ConnectionReceiver
 import org.kde.kdeconnect.backends.bluetooth.BluetoothLinkProvider
+import org.kde.kdeconnect.backends.ConnectionTransport
 import org.kde.kdeconnect.backends.lan.LanLinkProvider
+import org.kde.kdeconnect.backends.wifidirect.WifiDirectLinkProvider
 import org.kde.kdeconnect.helpers.NotificationHelper
 import org.kde.kdeconnect.plugins.clipboard.ClipboardFloatingActivity
 import org.kde.kdeconnect.plugins.clipboard.ClipboardPlugin
@@ -53,6 +56,7 @@ class BackgroundService : Service() {
     private val linkProviders = mutableListOf<BaseLinkProvider>()
     private val screenReceiver = KdeConnectBroadcastReceiver()
     private val availableNetworks = mutableSetOf<Network>()
+    private val wifiNetworks = mutableSetOf<Network>()
     private val recovery by lazy {
         ConnectionRecovery(this) {
             // Retry LAN discovery only: restarting Bluetooth would interrupt an existing link.
@@ -63,7 +67,23 @@ class BackgroundService : Service() {
     private var connectivityManager: ConnectivityManager? = null
     private val networkCallback = object : NetworkCallback() {
         override fun onAvailable(network: Network) {
-            synchronized(availableNetworks) { availableNetworks.add(network) }
+            val capabilities = connectivityManager?.getNetworkCapabilities(network)
+            val interfaceName = connectivityManager?.getLinkProperties(network)?.interfaceName.orEmpty()
+            val isHotspot = HotspotSupport.onNetworkAvailable(network)
+            synchronized(availableNetworks) {
+                availableNetworks.add(network)
+                if (capabilities?.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) == true &&
+                    !interfaceName.startsWith("p2p", ignoreCase = true)) wifiNetworks.add(network)
+            }
+            when {
+                isHotspot -> setActiveLinkTransport(ConnectionTransport.HOTSPOT)
+                capabilities?.hasTransport(NetworkCapabilities.TRANSPORT_VPN) == true -> Unit
+                capabilities?.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) == true &&
+                    interfaceName.startsWith("p2p", ignoreCase = true) ->
+                    setActiveLinkTransport(ConnectionTransport.WIFI_DIRECT)
+                capabilities?.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) == true ->
+                    setActiveLinkTransport(ConnectionTransport.WIFI)
+            }
             isConnectedToNonCellularNetwork.postValue(true)
             onNetworkChange(network)
             recovery.networkChanged(true)
@@ -74,6 +94,11 @@ class BackgroundService : Service() {
                 availableNetworks.remove(network)
                 availableNetworks.isNotEmpty()
             }
+            val hasWifi = synchronized(availableNetworks) {
+                wifiNetworks.remove(network)
+                wifiNetworks.isNotEmpty()
+            }
+            if (!hasWifi) setActiveLinkTransport(ConnectionTransport.WIFI)
             isConnectedToNonCellularNetwork.postValue(hasNetwork)
             onNetworkChange(network)
             recovery.networkChanged(hasNetwork)
@@ -93,7 +118,9 @@ class BackgroundService : Service() {
     }
 
     private fun registerLinkProviders() {
-        linkProviders.add(LanLinkProvider(this))
+        val lanProvider = LanLinkProvider(this)
+        linkProviders.add(lanProvider)
+        linkProviders.add(WifiDirectLinkProvider(this, lanProvider))
         //linkProviders.add(LoopbackLinkProvider(this))
         linkProviders.add(BluetoothLinkProvider(this))
     }
@@ -118,6 +145,17 @@ class BackgroundService : Service() {
     fun removeConnectionListener(connectionReceiver: ConnectionReceiver) {
         for (linkProvider in linkProviders) {
             linkProvider.removeConnectionReceiver(connectionReceiver)
+        }
+    }
+
+    fun setActiveLinkTransport(transport: ConnectionTransport) {
+        linkProviders.filterIsInstance<LanLinkProvider>().forEach { it.setActiveTransport(transport) }
+    }
+
+    fun announceIdentityOnNetwork(transport: ConnectionTransport, address: java.net.InetAddress, network: Network) {
+        linkProviders.filterIsInstance<LanLinkProvider>().forEach { provider ->
+            provider.setActiveTransport(transport)
+            provider.sendUdpIdentityPacket(listOf(address), network)
         }
     }
 
@@ -226,7 +264,7 @@ class BackgroundService : Service() {
         Log.d("KdeConnect/BgService", "onDestroy")
         initialized = false
         recovery.stop()
-        synchronized(availableNetworks) { availableNetworks.clear() }
+        synchronized(availableNetworks) { availableNetworks.clear(); wifiNetworks.clear() }
         if (receiverRegistered) unregisterReceiver(screenReceiver)
         receiverRegistered = false
         connectivityManager?.let { manager -> runCatching { manager.unregisterNetworkCallback(networkCallback) } }
