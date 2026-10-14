@@ -6,6 +6,7 @@
 package org.kde.kdeconnect
 
 import android.app.Notification
+import android.bluetooth.BluetoothDevice
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.app.Service
@@ -139,6 +140,7 @@ class BackgroundService : Service() {
         // Register screen on listener
         val filter = IntentFilter(Intent.ACTION_SCREEN_ON)
         filter.addAction(PowerManager.ACTION_DEVICE_IDLE_MODE_CHANGED)
+        filter.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED)
         // See: https://developer.android.com/reference/android/net/ConnectivityManager.html#CONNECTIVITY_ACTION
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
             filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION)

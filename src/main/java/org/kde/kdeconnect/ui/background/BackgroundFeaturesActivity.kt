@@ -5,6 +5,21 @@
  */
 package org.kde.kdeconnect.ui.background
 
+import android.Manifest
+import android.bluetooth.BluetoothAdapter
+import android.bluetooth.BluetoothManager
+import android.bluetooth.BluetoothDevice
+import android.companion.AssociationInfo
+import android.companion.AssociationRequest
+import android.companion.BluetoothDeviceFilter
+import android.companion.CompanionDeviceManager
+import android.content.pm.PackageManager
+import androidx.activity.result.IntentSenderRequest
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
+import androidx.preference.PreferenceManager
+import org.kde.kdeconnect.BackgroundService
+import org.kde.kdeconnect.ui.SettingsFragment
 import android.content.ComponentName
 import android.content.Intent
 import android.os.Build
@@ -35,6 +50,31 @@ class BackgroundFeaturesActivity : AppCompatActivity() {
     private var showingHealth = false
     private var showingDisconnectLog = false
     private var showingClipboardSync = false
+    private var showingCompanion = false
+    private var pairingBusy by mutableStateOf(false)
+    private var companionMessage by mutableStateOf<Int?>(null)
+    private var pendingCompanionId: String? = null
+    private val companionChooser = registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) { result ->
+        pairingBusy = false
+        if (result.resultCode == RESULT_OK && Build.VERSION.SDK_INT >= 33) {
+            val info = result.data?.getParcelableExtra(CompanionDeviceManager.EXTRA_ASSOCIATION, AssociationInfo::class.java)
+            val peerId = pendingCompanionId
+            if (info != null && peerId != null) completeCompanion(info, peerId)
+        }
+        pendingCompanionId = null
+        refresh()
+    }
+    private val bluetoothEnable = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        if (it.resultCode == RESULT_OK) pendingCompanionId?.let(::pairCompanion)
+        else { pairingBusy = false; pendingCompanionId = null }
+    }
+    private val discoverablePermission = registerForActivityResult(ActivityResultContracts.RequestPermission()) {
+        if (it) openDiscoverablePrompt() else companionMessage = R.string.companion_permission_needed
+    }
+    private val bluetoothPermissions = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
+        if (permissions[Manifest.permission.BLUETOOTH_CONNECT] == true && permissions[Manifest.permission.BLUETOOTH_SCAN] == true) pendingCompanionId?.let(::pairCompanion)
+        else { pairingBusy = false; pendingCompanionId = null; companionMessage = R.string.companion_permission_needed }
+    }
     private var clipboardSettings by mutableStateOf(ClipboardSyncSettings(false, false, true, true))
     private val receivedListener = Shizuku.OnBinderReceivedListener { runOnUiThread(::refresh) }
     private val deadListener = Shizuku.OnBinderDeadListener { runOnUiThread(::refresh) }
@@ -43,6 +83,9 @@ class BackgroundFeaturesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
+        pendingCompanionId = savedInstanceState?.getString("pending_companion")
+        pairingBusy = pendingCompanionId != null
+        showingCompanion = intent.getStringExtra(EXTRA_SCREEN) == SCREEN_COMPANION
         showingHealth = intent.getStringExtra(EXTRA_SCREEN) == SCREEN_HEALTH
         showingDisconnectLog = intent.getStringExtra(EXTRA_SCREEN) == SCREEN_DISCONNECT_LOG
         showingClipboardSync = intent.getStringExtra(EXTRA_SCREEN) == SCREEN_CLIPBOARD_SYNC
@@ -52,12 +95,23 @@ class BackgroundFeaturesActivity : AppCompatActivity() {
         refresh()
         setContent {
             KdeTheme(this) {
-                if (showingDisconnectLog) {
+                if (showingCompanion) {
+                    CompanionSetupScreen(this, pairingBusy, companionMessage, onBack = { finish() },
+                        onPair = ::pairCompanion, onRemove = { CompanionSupport.remove(this, it); refresh() },
+                        onCheck = { CompanionSupport.restore(this); refresh() }, onDiscoverable = {
+                            if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_ADVERTISE) == PackageManager.PERMISSION_GRANTED) {
+                                openDiscoverablePrompt()
+                            } else discoverablePermission.launch(Manifest.permission.BLUETOOTH_ADVERTISE)
+                        })
+                } else if (showingDisconnectLog) {
                     DisconnectLogScreen(disconnectEntries, onBack = { finish() }, onRefresh = ::refresh)
                 } else if (showingHealth) {
                     HealthCheckScreen(healthState.copy(keepAlive = KeepAliveSupport.report, keepAliveBusy = KeepAliveSupport.busy), onBack = { finish() }, onCheck = ::refresh,
                         onOpenShizuku = { openSettings(Intent(this, BackgroundFeaturesActivity::class.java).putExtra(EXTRA_SCREEN, SCREEN_SHIZUKU)) },
                         onOpenBattery = ::openBatterySettings,
+                        onOpenCompanion = {
+                            openSettings(Intent(this, BackgroundFeaturesActivity::class.java).putExtra(EXTRA_SCREEN, SCREEN_COMPANION))
+                        },
                         onApplyKeepAlive = { KeepAliveSupport.refresh(apply = true) },
                         onOpenNotificationSettings = {
                             openSettings(Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS)
@@ -96,6 +150,69 @@ class BackgroundFeaturesActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putString("pending_companion", pendingCompanionId)
+        super.onSaveInstanceState(outState)
+    }
+
+    private fun openDiscoverablePrompt() {
+        openSettings(Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE)
+            .putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 120))
+    }
+
+    private fun pairCompanion(peerId: String) {
+        if (!CompanionSupport.supported(this)) return
+        val peer = KdeConnect.getInstance().getDevice(peerId) ?: return
+        if (!peer.isPaired || !org.kde.kdeconnect.helpers.TrustedDevices.isTrustedDevice(this, peerId)) return
+        pendingCompanionId = peerId
+        pairingBusy = true
+        val permissions = arrayOf(Manifest.permission.BLUETOOTH_CONNECT, Manifest.permission.BLUETOOTH_SCAN)
+        if (permissions.any { ContextCompat.checkSelfPermission(this, it) != PackageManager.PERMISSION_GRANTED }) {
+            bluetoothPermissions.launch(permissions)
+            return
+        }
+        if (getSystemService(BluetoothManager::class.java)?.adapter?.isEnabled != true) {
+            bluetoothEnable.launch(Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE))
+            return
+        }
+        try {
+            val request = AssociationRequest.Builder().addDeviceFilter(BluetoothDeviceFilter.Builder().build()).build()
+            getSystemService(CompanionDeviceManager::class.java).associate(request, mainExecutor,
+                object : CompanionDeviceManager.Callback() {
+                    override fun onAssociationPending(chooser: android.content.IntentSender) {
+                        if (!isDestroyed) companionChooser.launch(IntentSenderRequest.Builder(chooser).build())
+                    }
+                    override fun onAssociationCreated(info: AssociationInfo) {
+                        // Use application context for persistence even if Android rotated the activity.
+                        CompanionSupport.register(applicationContext, info, peerId)
+                        if (!isDestroyed) completeCompanion(info, peerId)
+                    }
+                    override fun onFailure(error: CharSequence?) {
+                        if (!isDestroyed) { pairingBusy = false; pendingCompanionId = null; companionMessage = R.string.companion_failed }
+                    }
+                })
+        } catch (_: RuntimeException) {
+            pairingBusy = false
+            pendingCompanionId = null
+            companionMessage = R.string.companion_failed
+        }
+    }
+
+    private fun completeCompanion(info: AssociationInfo, peerId: String) {
+        val observed = CompanionSupport.register(this, info, peerId)
+        companionMessage = if (observed) R.string.companion_complete else R.string.companion_observe_failed
+        pairingBusy = false
+        pendingCompanionId = null
+        // A classic Bluetooth association needs a bond and connection for presence detection.
+        runCatching {
+            val device = getSystemService(BluetoothManager::class.java).adapter.getRemoteDevice(requireNotNull(info.deviceMacAddress).toString())
+            if (device.bondState == BluetoothDevice.BOND_NONE) device.createBond()
+            PreferenceManager.getDefaultSharedPreferences(this).edit { putBoolean(SettingsFragment.KEY_BLUETOOTH_ENABLED, true) }
+            BackgroundService.ForceRefreshConnections(this)
+        }.onFailure { companionMessage = R.string.companion_permission_needed }
+        refresh()
     }
 
     override fun onResume() {
@@ -212,6 +329,7 @@ class BackgroundFeaturesActivity : AppCompatActivity() {
         const val SCREEN_HEALTH = "health"
         const val SCREEN_DISCONNECT_LOG = "disconnect_log"
         const val SCREEN_CLIPBOARD_SYNC = "clipboard_sync"
+        const val SCREEN_COMPANION = "companion"
         private const val SCREEN_SHIZUKU = "shizuku"
         private const val PREFERENCES = "ecosystem_background"
         private const val KEY_OEM_AUTOSTART_CONFIRMED = "oem_autostart_confirmed"

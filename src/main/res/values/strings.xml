@@ -796,4 +796,20 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="keep_alive_failed">Some settings could not be verified. Check Shizuku permission and try again.</string>
     <string name="keep_alive_notification">Quiet notification settings</string>
     <string name="keep_alive_notification_hint">The connection uses a silent foreground notification. Android controls whether its status-bar icon can be hidden; keep the connection service running.</string>
+    <string name="companion_title">Nearby companion</string>
+    <string name="companion_explanation">Android can keep Ecosystem available while its Bluetooth companion is connected. Wi-Fi alone does not provide Android proximity detection. Files and clipboard still use your paired, trusted connection.</string>
+    <string name="companion_steps">Set this up on both devices. Open Bluetooth settings on the other device so it is discoverable, then choose that same device in Android’s pairing dialog. This also enables Ecosystem’s existing Bluetooth connection.</string>
+    <string name="companion_setup">Set up companion</string>
+    <string name="companion_pair">Pair Bluetooth companion</string>
+    <string name="companion_pairing">Pairing…</string>
+    <string name="companion_paired">Associated with Android</string>
+    <string name="companion_not_paired">No Android association yet</string>
+    <string name="companion_remove">Remove companion association</string>
+    <string name="companion_unsupported">Companion keep-alive requires Android 13 or later and device support.</string>
+    <string name="companion_no_devices">Pair a trusted device in Ecosystem first.</string>
+    <string name="companion_failed">Pairing did not finish. Open Bluetooth settings on the other device and try again.</string>
+    <string name="companion_permission_needed">Allow Nearby devices permission and finish Bluetooth pairing to enable companion presence.</string>
+    <string name="companion_complete">Association saved and presence monitoring registered. Finish the Bluetooth pairing confirmation if Android shows one.</string>
+    <string name="companion_observe_failed">Association saved, but presence monitoring could not start. Check Nearby devices permission and tap Check again.</string>
+    <string name="companion_discoverable">Make this device discoverable for 2 minutes</string>
 </resources>

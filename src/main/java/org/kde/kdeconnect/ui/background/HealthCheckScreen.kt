@@ -50,6 +50,7 @@ internal fun HealthCheckScreen(
     onOpenShizukuSetup: () -> Unit,
     onApplyKeepAlive: () -> Unit,
     onOpenNotificationSettings: () -> Unit,
+    onOpenCompanion: () -> Unit,
 ) {
     FoundationPage(R.string.health_title, onBack) {
         Text(stringResource(R.string.health_summary), style = MaterialTheme.typography.bodyLarge)
@@ -83,6 +84,11 @@ internal fun HealthCheckScreen(
                 Text(stringResource(R.string.health_battery_next), style = MaterialTheme.typography.bodyMedium)
                 Button(onClick = onOpenBattery) { Text(stringResource(R.string.health_fix_battery)) }
             }
+        }
+        FoundationCard {
+            Text(stringResource(R.string.companion_title), style = MaterialTheme.typography.titleLarge)
+            Text(stringResource(R.string.companion_explanation), style = MaterialTheme.typography.bodyMedium)
+            Button(onClick = onOpenCompanion) { Text(stringResource(R.string.companion_setup)) }
         }
         FoundationCard {
             StatusLine(state.connectedDevice,

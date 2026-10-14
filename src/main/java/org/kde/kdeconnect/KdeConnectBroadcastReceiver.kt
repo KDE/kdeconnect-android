@@ -5,6 +5,9 @@
  */
 package org.kde.kdeconnect
 
+import android.bluetooth.BluetoothDevice
+import android.os.Build
+import org.kde.kdeconnect.ui.background.CompanionSupport
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -37,6 +40,15 @@ class KdeConnectBroadcastReceiver : BroadcastReceiver() {
             WifiManager.SUPPLICANT_CONNECTION_CHANGE_ACTION, WifiManager.WIFI_STATE_CHANGED_ACTION, ConnectivityManager.CONNECTIVITY_ACTION -> {
                 Log.i("KdeConnect", "Connection state changed, trying to connect")
                 BackgroundService.ForceRefreshConnections(context)
+            }
+
+            BluetoothDevice.ACTION_BOND_STATE_CHANGED -> {
+                if (Build.VERSION.SDK_INT >= 33 && intent.getIntExtra(BluetoothDevice.EXTRA_BOND_STATE, -1) == BluetoothDevice.BOND_BONDED) {
+                    val device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE, BluetoothDevice::class.java)
+                    if (CompanionSupport.associations(context).any { it.deviceMacAddress?.toString() == device?.address }) {
+                        BackgroundService.ForceRefreshConnections(context)
+                    }
+                }
             }
 
             PowerManager.ACTION_DEVICE_IDLE_MODE_CHANGED -> {

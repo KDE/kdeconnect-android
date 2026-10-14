@@ -64,6 +64,7 @@ class KdeConnect : Application() {
         org.kde.kdeconnect.ui.background.KeepAliveSupport.initialize(this)
         LifecycleHelper.initializeObserver()
         loadRememberedDevicesFromSettings()
+        org.kde.kdeconnect.ui.background.CompanionSupport.restore(this)
 
         if (BuildConfig.DEBUG && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             val vmPolicyBuilder = VmPolicy.Builder(StrictMode.getVmPolicy())
