@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ecosystem_sidebar">#1C1C1E</color>
+    <color name="ecosystem_toolbar">#000000</color>
+    <color name="ecosystem_nav_text">#F4F4F6</color>
+    <color name="ecosystem_nav_secondary">#A1A1A6</color>
+    <color name="ecosystem_nav_selected">#303033</color>
+    <color name="ecosystem_nav_selected_text">#F4F4F6</color>
+    <color name="ecosystem_settings_card">#1C1C1E</color>
+    <color name="ecosystem_settings_icon">#2C2C2E</color>
+</resources>

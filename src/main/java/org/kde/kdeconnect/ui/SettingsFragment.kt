@@ -52,8 +52,11 @@ import org.kde.kdeconnect_tp.R
 class SettingsFragment : PreferenceFragmentCompat() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         if (activity != null) {
-            (activity as? MainActivity)?.supportActionBar?.setTitle(R.string.settings)
-            (activity as? MainActivity)?.supportActionBar?.subtitle = null
+            val mainActivity = activity as? MainActivity
+            if (mainActivity?.isTwoPaneLayout != true) {
+                mainActivity?.supportActionBar?.setTitle(R.string.settings)
+                mainActivity?.supportActionBar?.subtitle = null
+            }
         }
         return super.onCreateView(inflater, container, savedInstanceState)
     }
@@ -61,24 +64,38 @@ class SettingsFragment : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         val context = preferenceManager.context
         val screen = preferenceManager.createPreferenceScreen(context)
+        if ((activity as? MainActivity)?.isTwoPaneLayout == true) {
+            screen.addPreference(Preference(context).apply {
+                key = SETTINGS_HEADER_KEY
+                title = getString(R.string.settings)
+                isSelectable = false
+                setLayoutResource(R.layout.ecosystem_settings_heading)
+            })
+        }
 
-        screen.addPreference(PreferenceCategory(context).apply {
-            setTitle(R.string.settings_category_device)
-            addPreference(deviceNamePref(context))
-            addPreference(themePref(context))
-        })
-        screen.addPreference(PreferenceCategory(context).apply {
-            setTitle(R.string.settings_category_connections)
-            addPreference(trustedNetworkPref(context))
-            addPreference(devicesByIpPref(context))
-            addPreference(bluetoothSupportPref(context))
-        })
-        screen.addPreference(PreferenceCategory(context).apply {
-            setTitle(R.string.settings_category_app)
-            addPreference(persistentNotificationPref(context))
-            addPreference(exportLogsPref(context))
-            addPreference(moreSettingsPref(context))
-        })
+        fun addCategory(title: Int, preferences: List<Preference>) {
+            val category = PreferenceCategory(context).apply {
+                setTitle(title)
+                setLayoutResource(R.layout.ecosystem_preference_category)
+            }
+            // Attach the category first so PreferenceGroup has its manager before it
+            // assigns IDs to the child preferences.
+            screen.addPreference(category)
+            preferences.forEach(category::addPreference)
+        }
+
+        addCategory(
+            R.string.settings_category_device,
+            listOf(deviceNamePref(context), themePref(context)),
+        )
+        addCategory(
+            R.string.settings_category_connections,
+            listOf(trustedNetworkPref(context), devicesByIpPref(context), bluetoothSupportPref(context)),
+        )
+        addCategory(
+            R.string.settings_category_app,
+            listOf(persistentNotificationPref(context), exportLogsPref(context), moreSettingsPref(context)),
+        )
 
         preferenceScreen = screen
     }
@@ -86,30 +103,41 @@ class SettingsFragment : PreferenceFragmentCompat() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView = listView
-        val layoutManager = GridLayoutManager(requireContext(), 1)
+        val isWideWindow = (activity as? MainActivity)?.isTwoPaneLayout == true
+        val layoutManager = GridLayoutManager(requireContext(), if (isWideWindow) 2 else 1)
         layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
                 val preference = (recyclerView.adapter as? PreferenceGroupAdapter)?.getItem(position)
-                return if (preference is PreferenceCategory) layoutManager.spanCount else 1
+                return if (preference is PreferenceCategory || preference?.key == SETTINGS_HEADER_KEY) {
+                    layoutManager.spanCount
+                } else {
+                    1
+                }
             }
         }
         recyclerView.layoutManager = layoutManager
         val horizontalInset = (16 * resources.displayMetrics.density).toInt()
-        recyclerView.setPadding(horizontalInset, recyclerView.paddingTop, horizontalInset, recyclerView.paddingBottom)
+        val verticalInset = (8 * resources.displayMetrics.density).toInt()
+        recyclerView.setPadding(horizontalInset, verticalInset, horizontalInset, recyclerView.paddingBottom)
+        recyclerView.clipToPadding = false
+        recyclerView.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.ecosystem_toolbar))
+        recyclerView.addItemDecoration(PreferenceSpacingDecoration((8 * resources.displayMetrics.density).toInt()))
         recyclerView.addOnLayoutChangeListener { _, left, _, right, _, oldLeft, _, oldRight, _ ->
             val widthDp = (right - left) / resources.displayMetrics.density
-            val columns = if (widthDp >= 720) 2 else 1
+            val columns = if (widthDp >= 600) 2 else 1
             if (layoutManager.spanCount != columns) layoutManager.spanCount = columns
         }
         recyclerView.post {
             val widthDp = recyclerView.width / resources.displayMetrics.density
-            layoutManager.spanCount = if (widthDp >= 720) 2 else 1
+            layoutManager.spanCount = if (widthDp >= 600) 2 else 1
         }
         listView.setupBottomPadding()
     }
 
     private fun deviceNamePref(context: Context) = EditTextPreference(context).apply {
         key = DeviceHelper.KEY_DEVICE_NAME_PREFERENCE
+        icon = DeviceHelper.deviceType.getIcon(context)
+        setLayoutResource(R.layout.ecosystem_preference_item)
         isSelectable = true
         setOnBindEditTextListener(EditText::setSingleLine)
         setOnBindEditTextListener { editText: EditText ->
@@ -149,6 +177,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
     }
 
     private fun themePref(context: Context) = ListPreference(context).apply {
+        icon = ContextCompat.getDrawable(context, R.drawable.ic_action_image_edit_24dp)
+        setLayoutResource(R.layout.ecosystem_preference_item)
         key = KEY_APP_THEME
         setTitle(R.string.theme_dialog_title)
         setDialogTitle(R.string.theme_dialog_title)
@@ -166,6 +196,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     private fun persistentNotificationPref(context: Context): Preference =
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) Preference(context).apply {
+            icon = ContextCompat.getDrawable(context, R.drawable.ic_baseline_info_24)
+            setLayoutResource(R.layout.ecosystem_preference_item)
             setTitle(R.string.setting_persistent_notification_oreo)
             setSummary(R.string.setting_persistent_notification_description)
             onPreferenceClickListener = Preference.OnPreferenceClickListener {
@@ -178,6 +210,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
         }
         // Persistent notification toggle for Android Versions below Oreo
         else SwitchPreference(context).apply {
+            icon = ContextCompat.getDrawable(context, R.drawable.ic_baseline_info_24)
+            setLayoutResource(R.layout.ecosystem_preference_item)
             isPersistent = false
             isChecked = NotificationHelper.isPersistentNotificationEnabled(context)
             setTitle(R.string.setting_persistent_notification)
@@ -195,6 +229,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
     }
 
     private fun trustedNetworkPref(context: Context) = Preference(context).apply {
+        icon = ContextCompat.getDrawable(context, R.drawable.ic_wifi)
+        setLayoutResource(R.layout.ecosystem_preference_item)
         isPersistent = false
         setTitle(R.string.trusted_networks)
         setSummary(R.string.trusted_networks_desc)
@@ -212,6 +248,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     /** Opens activity to configure device by IP when clicked */
     private fun devicesByIpPref(context: Context) = Preference(context).apply {
+        icon = ContextCompat.getDrawable(context, R.drawable.ic_device_desktop_32dp)
+        setLayoutResource(R.layout.ecosystem_preference_item)
         devicesByIpPref = this
         isPersistent = false
         setTitle(R.string.custom_device_list)
@@ -230,6 +268,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
     }
 
     private fun bluetoothSupportPref(context: Context) = SwitchPreference(context).apply {
+        icon = ContextCompat.getDrawable(context, R.drawable.ic_device_phone_32dp)
+        setLayoutResource(R.layout.ecosystem_preference_item)
         setDefaultValue(false)
         key = KEY_BLUETOOTH_ENABLED
         setTitle(R.string.enable_bluetooth)
@@ -252,6 +292,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
     }
 
     private fun exportLogsPref(context: Context) = Preference(context).apply {
+        icon = ContextCompat.getDrawable(context, R.drawable.ic_baseline_info_24)
+        setLayoutResource(R.layout.ecosystem_preference_item)
         isPersistent = false
         setTitle(R.string.settings_export_logs)
         setSummary(R.string.settings_export_logs_text)
@@ -280,6 +322,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
         }
 
     private fun moreSettingsPref(context: Context) = Preference(context).apply {
+        icon = ContextCompat.getDrawable(context, R.drawable.ic_settings_24dp)
+        setLayoutResource(R.layout.ecosystem_preference_item)
         isPersistent = false
         isSelectable = false
         setTitle(R.string.settings_more_settings_title)
@@ -287,7 +331,31 @@ class SettingsFragment : PreferenceFragmentCompat() {
     }
 
     companion object {
+        private const val SETTINGS_HEADER_KEY = "ecosystem.settings.header"
         const val KEY_BLUETOOTH_ENABLED: String = "bluetooth_enabled"
         const val KEY_APP_THEME: String = "theme_pref"
+    }
+}
+
+private class PreferenceSpacingDecoration(private val spacing: Int) : RecyclerView.ItemDecoration() {
+    override fun getItemOffsets(
+        outRect: android.graphics.Rect,
+        view: View,
+        parent: RecyclerView,
+        state: RecyclerView.State,
+    ) {
+        outRect.top = spacing / 2
+        outRect.bottom = spacing / 2
+        val grid = parent.layoutManager as? GridLayoutManager
+        val position = parent.getChildAdapterPosition(view)
+        val preference = if (position != RecyclerView.NO_POSITION) {
+            (parent.adapter as? PreferenceGroupAdapter)?.getItem(position)
+        } else {
+            null
+        }
+        if ((grid?.spanCount ?: 1) > 1 && preference !is PreferenceCategory && preference?.key != "ecosystem.settings.header") {
+            outRect.left = spacing / 2
+            outRect.right = spacing / 2
+        }
     }
 }
