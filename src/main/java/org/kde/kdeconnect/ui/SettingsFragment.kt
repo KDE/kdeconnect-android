@@ -99,6 +99,17 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
         addCategory(R.string.background_features_title, listOf(
             Preference(context).apply {
+                setTitle(R.string.health_title)
+                setSummary(R.string.health_summary)
+                setLayoutResource(R.layout.ecosystem_preference_item)
+                setOnPreferenceClickListener {
+                    startActivity(Intent(context, org.kde.kdeconnect.ui.background.BackgroundFeaturesActivity::class.java)
+                        .putExtra(org.kde.kdeconnect.ui.background.BackgroundFeaturesActivity.EXTRA_SCREEN,
+                            org.kde.kdeconnect.ui.background.BackgroundFeaturesActivity.SCREEN_HEALTH))
+                    true
+                }
+            },
+            Preference(context).apply {
                 setTitle(R.string.shizuku_setup_title)
                 setSummary(R.string.shizuku_setup_summary)
                 setLayoutResource(R.layout.ecosystem_preference_item)
