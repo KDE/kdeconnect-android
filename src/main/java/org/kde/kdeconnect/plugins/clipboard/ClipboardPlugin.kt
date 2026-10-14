@@ -5,16 +5,14 @@
  */
 package org.kde.kdeconnect.plugins.clipboard
 
-import android.Manifest
 import android.app.Activity
-import android.content.ClipData
+import android.content.ClipDescription
 import android.content.ClipboardManager
 import android.content.Context
-import android.content.pm.PackageManager
 import android.os.Build
+import android.text.Html
 import android.widget.Toast
 import androidx.annotation.VisibleForTesting
-import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.plugins.Plugin
@@ -43,7 +41,10 @@ class ClipboardPlugin : Plugin() {
         val content = np.getString("content")
         when (np.type) {
             (PACKET_TYPE_CLIPBOARD) -> {
-                ClipboardListener.instance(context).setText(content)
+                ClipboardSyncManager.applyIncoming(
+                    context, content, np.getString(ECOSYSTEM_CLIPBOARD_ID), device.name,
+                    np.getBoolean(ECOSYSTEM_CLIPBOARD_SENSITIVE, false),
+                )
                 return true
             }
             (PACKET_TYPE_CLIPBOARD_CONNECT) -> {
@@ -53,7 +54,10 @@ class ClipboardPlugin : Plugin() {
                     return false
                 }
                 if ("content" in np) { // change clipboard if content is in NetworkPacket
-                    ClipboardListener.instance(context).setText(content)
+                    ClipboardSyncManager.applyIncoming(
+                        context, content, np.getString(ECOSYSTEM_CLIPBOARD_ID), device.name,
+                        np.getBoolean(ECOSYSTEM_CLIPBOARD_SENSITIVE, false),
+                    )
                 }
                 return true
             }
@@ -62,16 +66,17 @@ class ClipboardPlugin : Plugin() {
     }
 
     private val observer: ClipboardObserver = object : ClipboardObserver {
-        override fun clipboardChanged(content: String, contentType: ClipboardListener.ClipboardContentType) {
-            if (contentType == ClipboardListener.ClipboardContentType.Password &&
-                preferences.getBoolean(
-                    context.getString(R.string.clipboard_preference_key_skip_sensitive),
-                    false,
+        override fun clipboardChanged(content: String, contentType: ClipboardListener.ClipboardContentType, plainText: Boolean) {
+            if (contentType == ClipboardListener.ClipboardContentType.Password) return
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                ClipboardSyncManager.onLocalClipboardChanged(
+                    content,
+                    contentType == ClipboardListener.ClipboardContentType.Password,
+                    plainText,
                 )
-            ) {
-                return
+            } else {
+                propagateClipboard(content)
             }
-            propagateClipboard(content)
         }
     }
 
@@ -82,20 +87,24 @@ class ClipboardPlugin : Plugin() {
         device.sendPacket(np)
     }
 
+    internal fun sendAutomaticClipboard(content: String, id: String) {
+        val np = NetworkPacket(PACKET_TYPE_CLIPBOARD)
+        np["content"] = content
+        np[ECOSYSTEM_CLIPBOARD_ID] = id
+        device.sendPacket(np)
+    }
+
     private fun sendConnectPacket() {
         val content = ClipboardListener.instance(context).currentContent ?: return // Send clipboard only if it had been initialized
-        if (ClipboardListener.instance(context).currentContentType == ClipboardListener.ClipboardContentType.Password &&
-            preferences.getBoolean(
-                context.getString(R.string.clipboard_preference_key_skip_sensitive),
-                false,
-            )
-        ) {
-            return
-        }
+        if (ClipboardListener.instance(context).currentContentType == ClipboardListener.ClipboardContentType.Password) return
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && !canSyncAutomatically(context)) return
         val np = NetworkPacket(PACKET_TYPE_CLIPBOARD_CONNECT)
         val timestamp = ClipboardListener.instance(context).updateTimestamp
         np["timestamp"] = timestamp
         np["content"] = content
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            np[ECOSYSTEM_CLIPBOARD_ID] = ClipboardSyncManager.contentId(content)
+        }
         device.sendPacket(np)
     }
 
@@ -137,11 +146,18 @@ class ClipboardPlugin : Plugin() {
     private fun userInitiatedSendClipboard() {
         if (isDeviceInitialized) {
             val clipboardManager = context.getSystemService<ClipboardManager>()!!
-            val item: ClipData.Item
             if (clipboardManager.hasPrimaryClip()) {
-                item = clipboardManager.primaryClip!!.getItemAt(0)
-                val content = item.coerceToText(this.context).toString()
-                // Don't check if the content is sensitive, just send it
+                val clip = clipboardManager.primaryClip!!
+                if (ClipboardListener.detectContentType(clip) == ClipboardListener.ClipboardContentType.Password) return
+                val plainText = clip.description.hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN)
+                val htmlText = clip.description.hasMimeType(ClipDescription.MIMETYPE_TEXT_HTML)
+                if (!plainText && !htmlText) return
+                if (ClipboardSyncPreferences.read(context).plainTextOnly && !plainText) return
+                val item = clip.getItemAt(0)
+                val content = item.text?.toString()
+                    ?: item.htmlText?.let { Html.fromHtml(it, Html.FROM_HTML_MODE_LEGACY).toString() }
+                    ?: return
+                if (content.isBlank()) return
                 this.propagateClipboard(content)
                 Toast.makeText(this.context, R.string.pref_plugin_clipboard_sent, Toast.LENGTH_SHORT).show()
             }
@@ -159,6 +175,8 @@ class ClipboardPlugin : Plugin() {
          * }
          */
         private const val PACKET_TYPE_CLIPBOARD = "kdeconnect.clipboard"
+        private const val ECOSYSTEM_CLIPBOARD_ID = "ecosystem_clipboard_id"
+        private const val ECOSYSTEM_CLIPBOARD_SENSITIVE = "ecosystem_clipboard_sensitive"
 
         /**
          * Packet containing clipboard contents and a timestamp that the contents were last updated, sent
@@ -181,8 +199,7 @@ class ClipboardPlugin : Plugin() {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
                 return true
             }
-            // Check if hack to read clipboard changes from logs is enabled
-            return ContextCompat.checkSelfPermission(context, Manifest.permission.READ_LOGS) == PackageManager.PERMISSION_GRANTED
+            return ClipboardSyncManager.isAutomaticAvailable(context)
         }
 
     }

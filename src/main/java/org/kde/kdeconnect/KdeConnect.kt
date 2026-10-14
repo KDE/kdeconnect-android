@@ -60,6 +60,7 @@ class KdeConnect : Application() {
         PluginFactory.initPluginInfo(this)
         NotificationHelper.initializeChannels(this)
         org.kde.kdeconnect.ui.background.ShizukuSupport.initialize(this)
+        org.kde.kdeconnect.plugins.clipboard.ClipboardSyncManager.initialize(this)
         LifecycleHelper.initializeObserver()
         loadRememberedDevicesFromSettings()
 

@@ -21,6 +21,8 @@ import androidx.compose.runtime.setValue
 import androidx.core.content.edit
 import androidx.core.net.toUri
 import org.kde.kdeconnect.KdeConnect
+import org.kde.kdeconnect.plugins.clipboard.ClipboardSyncManager
+import org.kde.kdeconnect.plugins.clipboard.ClipboardSyncSettings
 import org.kde.kdeconnect.plugins.notifications.NotificationReceiver
 import org.kde.kdeconnect.ui.compose.KdeTheme
 import org.kde.kdeconnect_tp.R
@@ -32,6 +34,8 @@ class BackgroundFeaturesActivity : AppCompatActivity() {
     private var disconnectEntries by mutableStateOf(emptyList<DisconnectLogEntry>())
     private var showingHealth = false
     private var showingDisconnectLog = false
+    private var showingClipboardSync = false
+    private var clipboardSettings by mutableStateOf(ClipboardSyncSettings(false, false, true, true))
     private val receivedListener = Shizuku.OnBinderReceivedListener { runOnUiThread(::refresh) }
     private val deadListener = Shizuku.OnBinderDeadListener { runOnUiThread(::refresh) }
     private val permissionListener = Shizuku.OnRequestPermissionResultListener { _, _ -> runOnUiThread(::refresh) }
@@ -41,6 +45,7 @@ class BackgroundFeaturesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         showingHealth = intent.getStringExtra(EXTRA_SCREEN) == SCREEN_HEALTH
         showingDisconnectLog = intent.getStringExtra(EXTRA_SCREEN) == SCREEN_DISCONNECT_LOG
+        showingClipboardSync = intent.getStringExtra(EXTRA_SCREEN) == SCREEN_CLIPBOARD_SYNC
         Shizuku.addBinderReceivedListenerSticky(receivedListener)
         Shizuku.addBinderDeadListener(deadListener)
         Shizuku.addRequestPermissionResultListener(permissionListener)
@@ -57,10 +62,26 @@ class BackgroundFeaturesActivity : AppCompatActivity() {
                         onOpenNotifications = { openSettings(Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS)) },
                         onOpenOemSettings = ::openOemAutostart,
                         onOpenOemBattery = ::openOemBatterySettings,
+                        onOpenClipboardSettings = { openClipboardSync() },
+                        onOpenShizukuSetup = { openShizukuSetup() },
                         onConfirmAutostart = {
                             getSharedPreferences(PREFERENCES, MODE_PRIVATE).edit { putBoolean(KEY_OEM_AUTOSTART_CONFIRMED, true) }
                             refresh()
                         })
+                } else if (showingClipboardSync) {
+                    ClipboardSyncScreen(
+                        settings = clipboardSettings,
+                        watcherActive = ClipboardSyncManager.watcherActive,
+                        automaticAvailable = ClipboardSyncManager.isAutomaticAvailable(this),
+                        onBack = { finish() },
+                        onSettingsChanged = { settings ->
+                            ClipboardSyncManager.updateSettings(this) { settings }
+                            clipboardSettings = settings
+                            refresh()
+                        },
+                        onCheck = ::refresh,
+                        onOpenShizuku = { openShizukuSetup() },
+                    )
                 } else {
                     ShizukuSetupScreen(shizukuState, onBack = { finish() }, onCheck = ::refresh,
                         onOpenShizuku = ::openShizuku,
@@ -84,6 +105,8 @@ class BackgroundFeaturesActivity : AppCompatActivity() {
     }
 
     private fun refresh() {
+        ClipboardSyncManager.refresh()
+        clipboardSettings = ClipboardSyncManager.settings(this)
         shizukuState = ShizukuSupport.state(this)
         val enabledListeners = Settings.Secure.getString(contentResolver, "enabled_notification_listeners")
         val listenerComponent = ComponentName(this, NotificationReceiver::class.java).flattenToString()
@@ -108,6 +131,9 @@ class BackgroundFeaturesActivity : AppCompatActivity() {
             oemInstructions = oemInstructions,
             oemAutostartConfirmed = getSharedPreferences(PREFERENCES, MODE_PRIVATE)
                 .getBoolean(KEY_OEM_AUTOSTART_CONFIRMED, false),
+            clipboardSync = ClipboardSyncManager.settings(this),
+            clipboardWatcherActive = ClipboardSyncManager.watcherActive,
+            clipboardAutomaticAvailable = ClipboardSyncManager.isAutomaticAvailable(this),
         )
         disconnectEntries = DisconnectLog.entries(this)
     }
@@ -150,6 +176,14 @@ class BackgroundFeaturesActivity : AppCompatActivity() {
         }.onFailure { refresh() }
     }
 
+    private fun openClipboardSync() {
+        openSettings(Intent(this, BackgroundFeaturesActivity::class.java).putExtra(EXTRA_SCREEN, SCREEN_CLIPBOARD_SYNC))
+    }
+
+    private fun openShizukuSetup() {
+        openSettings(Intent(this, BackgroundFeaturesActivity::class.java).putExtra(EXTRA_SCREEN, SCREEN_SHIZUKU))
+    }
+
     private fun openShizuku() {
         openSettings(packageManager.getLaunchIntentForPackage("moe.shizuku.privileged.api")
             ?: Intent(Intent.ACTION_VIEW, "https://shizuku.rikka.app/download/".toUri()))
@@ -170,6 +204,7 @@ class BackgroundFeaturesActivity : AppCompatActivity() {
         const val EXTRA_SCREEN = "background_screen"
         const val SCREEN_HEALTH = "health"
         const val SCREEN_DISCONNECT_LOG = "disconnect_log"
+        const val SCREEN_CLIPBOARD_SYNC = "clipboard_sync"
         private const val SCREEN_SHIZUKU = "shizuku"
         private const val PREFERENCES = "ecosystem_background"
         private const val KEY_OEM_AUTOSTART_CONFIRMED = "oem_autostart_confirmed"

@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import org.kde.kdeconnect.plugins.clipboard.ClipboardSyncSettings
 import org.kde.kdeconnect_tp.R
 
 internal data class HealthCheckState(
@@ -26,6 +27,9 @@ internal data class HealthCheckState(
     val oemName: String,
     val oemInstructions: String,
     val oemAutostartConfirmed: Boolean,
+    val clipboardSync: ClipboardSyncSettings = ClipboardSyncSettings(false, false, true, true),
+    val clipboardWatcherActive: Boolean = false,
+    val clipboardAutomaticAvailable: Boolean = false,
 )
 
 @Composable
@@ -40,6 +44,8 @@ internal fun HealthCheckScreen(
     onOpenOemSettings: () -> Unit,
     onOpenOemBattery: () -> Unit,
     onConfirmAutostart: () -> Unit,
+    onOpenClipboardSettings: () -> Unit,
+    onOpenShizukuSetup: () -> Unit,
 ) {
     FoundationPage(R.string.health_title, onBack) {
         Text(stringResource(R.string.health_summary), style = MaterialTheme.typography.bodyLarge)
@@ -74,6 +80,25 @@ internal fun HealthCheckScreen(
                 Text(stringResource(R.string.health_notifications_next), style = MaterialTheme.typography.bodyMedium)
                 Button(onClick = onOpenNotifications) { Text(stringResource(R.string.health_fix_notifications)) }
             }
+        }
+        FoundationCard {
+            if (!state.clipboardSync.enabled) {
+                Text(stringResource(R.string.health_clipboard_off), style = MaterialTheme.typography.bodyLarge)
+            } else {
+                StatusLine(state.clipboardAutomaticAvailable,
+                    stringResource(when {
+                        state.clipboardAutomaticAvailable -> R.string.health_clipboard_running
+                        state.clipboardSync.trustedWifiOnly && state.clipboardWatcherActive -> R.string.clipboard_sync_wifi_fallback
+                        else -> R.string.health_clipboard_manual
+                    }))
+                if (!state.clipboardWatcherActive) {
+                    Text(stringResource(R.string.clipboard_sync_shizuku_hint), style = MaterialTheme.typography.bodyMedium)
+                    Button(onClick = onOpenShizukuSetup) { Text(stringResource(R.string.shizuku_setup_title)) }
+                } else if (state.clipboardSync.trustedWifiOnly && !state.clipboardAutomaticAvailable) {
+                    Text(stringResource(R.string.clipboard_sync_trusted_wifi_hint), style = MaterialTheme.typography.bodyMedium)
+                }
+            }
+            TextButton(onClick = onOpenClipboardSettings) { Text(stringResource(R.string.clipboard_sync_title)) }
         }
         FoundationCard {
             StatusLine(state.oemAutostartConfirmed,

@@ -49,6 +49,7 @@ android {
         viewBinding = true
         compose = true
         buildConfig = true
+        aidl = true
     }
 
     sourceSets.getByName("main") {

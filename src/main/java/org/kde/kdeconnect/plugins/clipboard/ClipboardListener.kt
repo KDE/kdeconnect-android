@@ -13,14 +13,9 @@ import android.content.Context
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
+import android.os.PersistableBundle
+import android.text.Html
 import androidx.core.content.getSystemService
-import org.kde.kdeconnect.helpers.ThreadHelper.execute
-import org.kde.kdeconnect_tp.BuildConfig
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 
 class ClipboardListener {
     enum class ClipboardContentType {
@@ -29,7 +24,7 @@ class ClipboardListener {
     }
 
     interface ClipboardObserver {
-        fun clipboardChanged(content: String, contentType: ClipboardContentType)
+        fun clipboardChanged(content: String, contentType: ClipboardContentType, plainText: Boolean)
     }
 
     private val observers: HashSet<ClipboardObserver> = HashSet()
@@ -50,22 +45,6 @@ class ClipboardListener {
             cm = context.getSystemService<ClipboardManager>()!!
             cm.addPrimaryClipChangedListener { this.onClipboardChanged() }
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && ClipboardPlugin.canSyncAutomatically(context)) {
-            execute {
-                try {
-                    val timeStamp = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.US).format(Date())
-                    // Listen only ClipboardService errors after now
-                    val logcatFilter = if (Build.VERSION.SDK_INT > Build.VERSION_CODES.VANILLA_ICE_CREAM) { "E ClipboardService" } else { "ClipboardService:E" }
-                    val process = Runtime.getRuntime().exec(arrayOf<String>("logcat", "-T", timeStamp, logcatFilter, "*:S"))
-                    val bufferedReader = BufferedReader(InputStreamReader(process.inputStream))
-                    bufferedReader.forEachLine { line ->
-                        if (line.contains(BuildConfig.APPLICATION_ID)) {
-                            context.startActivity(ClipboardFloatingActivity.getIntent(context, false))
-                        }
-                    }
-                } catch (_: Exception) { }
-            }
-        }
     }
 
     fun registerObserver(observer: ClipboardObserver) {
@@ -79,8 +58,13 @@ class ClipboardListener {
     fun onClipboardChanged() {
         try {
             val clip = cm.primaryClip!!
+            val plainText = clip.description.hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN)
+            val htmlText = clip.description.hasMimeType(ClipDescription.MIMETYPE_TEXT_HTML)
+            if (!plainText && !htmlText) return
             val item = clip.getItemAt(0)
-            val content = item.coerceToText(context).toString()
+            val content = item.text?.toString()
+                ?: item.htmlText?.let { Html.fromHtml(it, Html.FROM_HTML_MODE_LEGACY).toString() }
+                ?: return
             val contentType = detectContentType(clip)
 
             if (content == currentContent && contentType == currentContentType) {
@@ -91,7 +75,7 @@ class ClipboardListener {
             currentContentType = contentType
 
             for (observer in observers) {
-                observer.clipboardChanged(content, contentType)
+                observer.clipboardChanged(content, contentType, plainText)
             }
         } catch (_: Exception) {
             //Probably clipboard was not text
@@ -99,12 +83,26 @@ class ClipboardListener {
     }
 
     fun setText(text: String?) {
-        if (this::cm.isInitialized) {
-            updateTimestamp = System.currentTimeMillis()
-            currentContent = text
-            currentContentType = ClipboardContentType.Text
-            cm.text = text
+        setText(text, remoteDevice = false)
+    }
+
+    fun setText(text: String?, remoteDevice: Boolean) {
+        updateTimestamp = System.currentTimeMillis()
+        currentContent = text
+        currentContentType = ClipboardContentType.Text
+        val applyClip = Runnable {
+            if (this::cm.isInitialized) {
+                val clip = ClipData.newPlainText(null, text)
+                if (remoteDevice && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    clip.description.extras = PersistableBundle().apply {
+                        putBoolean(ClipDescription.EXTRA_IS_REMOTE_DEVICE, true)
+                    }
+                }
+                cm.setPrimaryClip(clip)
+            }
         }
+        if (Looper.myLooper() == Looper.getMainLooper()) applyClip.run()
+        else Handler(Looper.getMainLooper()).post(applyClip)
     }
 
     companion object {

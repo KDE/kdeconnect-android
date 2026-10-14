@@ -44,8 +44,24 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="pref_plugin_clipboard_desc">Share the clipboard content</string>
     <string name="pref_plugin_clipboard_sent">Clipboard Sent</string>
     <string name="clipboard_preference_key_skip_sensitive" translatable="false">clipboard_skip_sensitive_sync</string>
-    <string name="clipboard_preference_title_skip_sensitive">Skip sensitive clipboard sync</string>
-    <string name="clipboard_preference_summary_skip_sensitive">Don\'t auto-sync passwords or other content marked as sensitive</string>
+    <string name="clipboard_preference_title_skip_sensitive">Sensitive clipboard protection</string>
+    <string name="clipboard_preference_summary_skip_sensitive">Text marked sensitive by Android is always skipped for automatic and manual sending.</string>
+    <string name="clipboard_sync_title">Clipboard sync settings</string>
+    <string name="clipboard_sync_summary">Choose how Ecosystem shares text between your paired devices.</string>
+    <string name="clipboard_sync_enabled">Automatic clipboard sync</string>
+    <string name="clipboard_sync_enabled_summary">Send new text copies in the background through Shizuku.</string>
+    <string name="clipboard_sync_watcher_active">Background clipboard watcher is running</string>
+    <string name="clipboard_sync_manual_fallback">Automatic sync is unavailable; manual sending is ready</string>
+    <string name="clipboard_sync_wifi_fallback">Waiting for a saved trusted Wi-Fi network; manual sending is ready</string>
+    <string name="clipboard_sync_shizuku_hint">Start Shizuku and allow Ecosystem. After a reboot, start Shizuku again. You can still send clipboard text manually from the device screen.</string>
+    <string name="clipboard_sync_trusted_wifi">Sync only on trusted Wi-Fi</string>
+    <string name="clipboard_sync_trusted_wifi_summary">Automatic copies are sent only on Wi-Fi networks saved as trusted in Ecosystem.</string>
+    <string name="clipboard_sync_trusted_wifi_hint">Add a trusted Wi-Fi network in Ecosystem settings. Location permission is needed for Android to report its network name.</string>
+    <string name="clipboard_sync_plain_text">Plain text only</string>
+    <string name="clipboard_sync_plain_text_summary">Ignore HTML-only clipboard items and send their plain text when available.</string>
+    <string name="clipboard_sync_confirmation">Show copy confirmation</string>
+    <string name="clipboard_sync_confirmation_summary">Show a quiet message when text arrives from another device.</string>
+    <string name="clipboard_received_from">Copied from %1$s</string>
     <string name="pref_plugin_mousepad">Remote input</string>
     <string name="pref_plugin_mousepad_desc_nontv">Use your phone or tablet as a touchpad and keyboard</string>
     <string name="pref_plugin_mousepad_desc_tv">Use your phone or tablet as a TV remote</string>
@@ -749,6 +765,9 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="health_notifications_missing">Notification access is off</string>
     <string name="health_notifications_next">Enable this for Ecosystem if you use the KDE Connect Notifications plugin.</string>
     <string name="health_fix_notifications">Open notification access</string>
+    <string name="health_clipboard_off">Automatic clipboard sync is off. Manual clipboard sending remains available.</string>
+    <string name="health_clipboard_running">Automatic clipboard sync is ready</string>
+    <string name="health_clipboard_manual">Automatic sync is unavailable; manual sending remains available</string>
     <string name="health_hyperos">HyperOS</string>
     <string name="health_oxygenos">OxygenOS</string>
     <string name="health_oem_generic">manufacturer settings</string>
