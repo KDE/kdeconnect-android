@@ -20,20 +20,22 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.ViewCompositionStrategy
+import org.kde.kdeconnect.ui.compose.KdeTheme
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.edit
-import androidx.core.view.GravityCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.get
 import androidx.core.view.size
 import androidx.core.view.updatePadding
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
 import com.google.android.material.navigation.NavigationView
@@ -63,7 +65,6 @@ private const val STATE_SELECTED_DEVICE = "selected_device" //Saved persistently
 class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private val mNavigationView: NavigationView by lazy { binding.navigationDrawer }
-    private var mDrawerLayout: DrawerLayout? = null
 
     val isTwoPaneLayout: Boolean
         get() = resources.getBoolean(R.bool.is_two_pane)
@@ -76,22 +77,18 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
 
     private lateinit var mNavViewDeviceName: TextView
 
+    private var phoneSelectedEntry by mutableIntStateOf(MENU_ENTRY_ADD_DEVICE)
     private var mCurrentDevice: String? = null
     private var mCurrentMenuEntry = 0
         set(value) {
             field = value
+            phoneSelectedEntry = value
             mainFragmentCallback.isEnabled = value == MENU_ENTRY_SETTINGS || value == MENU_ENTRY_ABOUT ||
                 value == MENU_ENTRY_SHARE ||
                 (value >= MENU_ENTRY_DEVICE_FIRST_ID && mCurrentDevice != null)
         }
     private val preferences: SharedPreferences by lazy { getSharedPreferences("stored_menu_selection", MODE_PRIVATE) }
     private val mMapMenuToDeviceId = HashMap<MenuItem, String>()
-
-    private val closeDrawerCallback = object : OnBackPressedCallback(false) {
-        override fun handleOnBackPressed() {
-            mDrawerLayout?.closeDrawer(mNavigationView)
-        }
-    }
 
     private val mainFragmentCallback = object : OnBackPressedCallback(false) {
         override fun handleOnBackPressed() {
@@ -118,7 +115,6 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
 
         val root = binding.root
         setContentView(root)
-        mDrawerLayout = root as? DrawerLayout
         if (isTwoPaneLayout) binding.toolbarLayout.root.visibility = View.GONE
 
         // Pad the drawer header directly: DrawerLayout's default child dispatch stops at
@@ -139,16 +135,23 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
         val mNavViewDeviceType = mDrawerHeader.findViewById<ImageView>(R.id.device_type)
 
         setSupportActionBar(binding.toolbarLayout.toolbar)
-        mDrawerLayout?.let {
-            supportActionBar?.setDisplayHomeAsUpEnabled(true)
-            val mDrawerToggle = DrawerToggle(it).apply { syncState() }
-            it.addDrawerListener(mDrawerToggle)
-            it.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START)
-        } ?: {
-            supportActionBar?.setDisplayShowHomeEnabled(false)
-            supportActionBar?.setHomeButtonEnabled(false)
+        binding.bottomNavigation?.apply {
+            setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
+            setContent {
+                KdeTheme(this@MainActivity) {
+                    PhoneNavigationBar(phoneSelectedEntry) { entry ->
+                        when (entry) {
+                            MENU_ENTRY_SHARE -> openShareScreen(mCurrentDevice)
+                            MENU_ENTRY_SETTINGS -> {
+                                mCurrentMenuEntry = MENU_ENTRY_SETTINGS
+                                setContentFragment(SettingsFragment())
+                            }
+                            else -> onDeviceSelected(mCurrentDevice)
+                        }
+                    }
+                }
+            }
         }
-
         // Note: The preference changed listener should be registered before getting the name, because getting
         // it can trigger a background fetch from the internet that will eventually update the preference
         PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this)
@@ -165,12 +168,10 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
                 }
 
                 MENU_ENTRY_SETTINGS -> {
-                    preferences.edit { putString(STATE_SELECTED_DEVICE, null) }
                     setContentFragment(SettingsFragment())
                 }
 
                 MENU_ENTRY_ABOUT -> {
-                    preferences.edit { putString(STATE_SELECTED_DEVICE, null) }
                     setContentFragment(AboutFragment.newInstance())
                 }
 
@@ -181,7 +182,6 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
                     onDeviceSelected(deviceId)
                 }
             }
-            mDrawerLayout?.closeDrawer(mNavigationView)
             true
         }
 
@@ -231,6 +231,7 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
         mCurrentMenuEntry = savedMenuEntry
         mCurrentDevice = savedDevice
         mNavigationView.setCheckedItem(savedMenuEntry)
+        updatePhoneToolbar()
 
         // FragmentManager restores the previous fragment, but it may not match the saved
         // selection when the activity was recreated during a size/orientation change.
@@ -344,7 +345,7 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return if (item.itemId == android.R.id.home) {
-            mDrawerLayout?.openDrawer(mNavigationView)
+            onBackPressedDispatcher.onBackPressed()
             true
         } else {
             super.onOptionsItemSelected(item)
@@ -392,14 +393,11 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
         KdeConnect.getInstance().addDeviceListChangedCallback("MainActivity") { runOnUiThread { updateDeviceList() } }
         updateDeviceList()
         onBackPressedDispatcher.addCallback(mainFragmentCallback)
-        onBackPressedDispatcher.addCallback(closeDrawerCallback)
-        if (mDrawerLayout == null) closeDrawerCallback.isEnabled = false
     }
 
     override fun onStop() {
         KdeConnect.getInstance().removeDeviceListChangedCallback("MainActivity")
         mainFragmentCallback.remove()
-        closeDrawerCallback.remove()
         super.onStop()
     }
 
@@ -421,7 +419,22 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
         }
     }
 
+    private fun updatePhoneToolbar() {
+        if (binding.bottomNavigation == null) return
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(mCurrentMenuEntry != MENU_ENTRY_ADD_DEVICE)
+            subtitle = null
+            title = when (mCurrentMenuEntry) {
+                MENU_ENTRY_SETTINGS -> getString(R.string.settings)
+                MENU_ENTRY_ABOUT -> getString(R.string.about)
+                else -> mCurrentDevice?.let { KdeConnect.getInstance().getDevice(it)?.name }
+                    ?: getString(R.string.devices)
+            }
+        }
+    }
+
     private fun setContentFragment(fragment: Fragment) {
+        updatePhoneToolbar()
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.container, fragment)
@@ -524,23 +537,6 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
 
         fun isShareIntent(intent: Intent?): Boolean =
             intent?.action == Intent.ACTION_SEND || intent?.action == Intent.ACTION_SEND_MULTIPLE
-    }
-
-    private inner class DrawerToggle(drawerLayout: DrawerLayout) : ActionBarDrawerToggle(
-        this,  /* host Activity */
-        drawerLayout,  /* DrawerLayout object */
-        R.string.open,  /* "open drawer" description */
-        R.string.close /* "close drawer" description */
-    ) {
-        override fun onDrawerClosed(drawerView: View) {
-            super.onDrawerClosed(drawerView)
-            closeDrawerCallback.isEnabled = false
-        }
-
-        override fun onDrawerOpened(drawerView: View) {
-            super.onDrawerOpened(drawerView)
-            closeDrawerCallback.isEnabled = true
-        }
     }
 
 }
