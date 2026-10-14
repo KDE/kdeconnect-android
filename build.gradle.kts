@@ -38,7 +38,7 @@ android {
     namespace = "org.kde.kdeconnect_tp"
     compileSdk = 37
     defaultConfig {
-        applicationId = "org.kde.kdeconnect_tp"
+        applicationId = "com.ecosystem.personal"
         minSdk = 23
         targetSdk = 37
         versionCode = 13600

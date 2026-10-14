@@ -362,7 +362,11 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             // Nougat and later require "content://" uris instead of "file://" uris
             val file = File(fileDocument.uri.path ?: "")
-            val contentUri = FileProvider.getUriForFile(device.context, "org.kde.kdeconnect_tp.fileprovider", file)
+            val contentUri = FileProvider.getUriForFile(
+                device.context,
+                "${device.context.packageName}.fileprovider",
+                file,
+            )
             intent.setDataAndType(contentUri, mimeType)
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_ACTIVITY_NEW_TASK)
         } else {
