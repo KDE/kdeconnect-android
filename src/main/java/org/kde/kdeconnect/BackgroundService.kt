@@ -20,6 +20,8 @@ import android.net.NetworkCapabilities
 import android.net.NetworkRequest
 import android.os.Build
 import android.os.IBinder
+import android.os.PowerManager
+import org.kde.kdeconnect.ui.background.ConnectionRecovery
 import android.util.Log
 import androidx.annotation.MainThread
 import androidx.core.app.NotificationCompat
@@ -49,22 +51,31 @@ class BackgroundService : Service() {
 
     private val linkProviders = mutableListOf<BaseLinkProvider>()
     private val screenReceiver = KdeConnectBroadcastReceiver()
+    private val availableNetworks = mutableSetOf<Network>()
+    private val recovery by lazy {
+        ConnectionRecovery(this) {
+            // Retry LAN discovery only: restarting Bluetooth would interrupt an existing link.
+            linkProviders.filterIsInstance<LanLinkProvider>().forEach { it.onNetworkChange(null) }
+        }
+    }
     private var receiverRegistered = false
     private var connectivityManager: ConnectivityManager? = null
     private val networkCallback = object : NetworkCallback() {
         override fun onAvailable(network: Network) {
+            synchronized(availableNetworks) { availableNetworks.add(network) }
             isConnectedToNonCellularNetwork.postValue(true)
             onNetworkChange(network)
+            recovery.networkChanged(true)
         }
 
         override fun onLost(network: Network) {
-            val hasNetwork = connectivityManager?.allNetworks?.any { candidate ->
-                connectivityManager?.getNetworkCapabilities(candidate)?.let { capabilities ->
-                    !capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)
-                } == true
-            } == true
+            val hasNetwork = synchronized(availableNetworks) {
+                availableNetworks.remove(network)
+                availableNetworks.isNotEmpty()
+            }
             isConnectedToNonCellularNetwork.postValue(hasNetwork)
             onNetworkChange(network)
+            recovery.networkChanged(hasNetwork)
         }
     }
 
@@ -127,6 +138,7 @@ class BackgroundService : Service() {
 
         // Register screen on listener
         val filter = IntentFilter(Intent.ACTION_SCREEN_ON)
+        filter.addAction(PowerManager.ACTION_DEVICE_IDLE_MODE_CHANGED)
         // See: https://developer.android.com/reference/android/net/ConnectivityManager.html#CONNECTIVITY_ACTION
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
             filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION)
@@ -140,6 +152,7 @@ class BackgroundService : Service() {
             linkProvider.onStart()
         }
         initialized = true
+        recovery.start()
         connectivityManager = getSystemService<ConnectivityManager>()
         connectivityManager?.registerNetworkCallback(createNonCellularNetworkRequestBuilder().build(), networkCallback)
     }
@@ -210,6 +223,8 @@ class BackgroundService : Service() {
     override fun onDestroy() {
         Log.d("KdeConnect/BgService", "onDestroy")
         initialized = false
+        recovery.stop()
+        synchronized(availableNetworks) { availableNetworks.clear() }
         if (receiverRegistered) unregisterReceiver(screenReceiver)
         receiverRegistered = false
         connectivityManager?.let { manager -> runCatching { manager.unregisterNetworkCallback(networkCallback) } }
@@ -232,6 +247,7 @@ class BackgroundService : Service() {
         }
         if (intent != null && intent.getBooleanExtra("refresh", false)) {
             onNetworkChange(null)
+            recovery.requestImmediate()
         }
         return START_STICKY
     }

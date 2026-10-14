@@ -11,6 +11,7 @@ import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.wifi.WifiManager
 import android.util.Log
+import android.os.PowerManager
 
 class KdeConnectBroadcastReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
@@ -36,6 +37,12 @@ class KdeConnectBroadcastReceiver : BroadcastReceiver() {
             WifiManager.SUPPLICANT_CONNECTION_CHANGE_ACTION, WifiManager.WIFI_STATE_CHANGED_ACTION, ConnectivityManager.CONNECTIVITY_ACTION -> {
                 Log.i("KdeConnect", "Connection state changed, trying to connect")
                 BackgroundService.ForceRefreshConnections(context)
+            }
+
+            PowerManager.ACTION_DEVICE_IDLE_MODE_CHANGED -> {
+                if (context.getSystemService(PowerManager::class.java)?.isDeviceIdleMode == false) {
+                    BackgroundService.ForceRefreshConnections(context)
+                }
             }
 
             Intent.ACTION_SCREEN_ON -> try {
