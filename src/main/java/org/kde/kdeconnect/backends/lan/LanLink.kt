@@ -16,6 +16,7 @@ import org.kde.kdeconnect.DeviceInfo
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.backends.BaseLink
 import org.kde.kdeconnect.backends.BaseLinkProvider
+import org.kde.kdeconnect.backends.ConnectionTransport
 import org.kde.kdeconnect.backends.lan.LanLinkProvider.Companion.openServerSocketOnFreePort
 import org.kde.kdeconnect.extensions.closeSafe
 import org.kde.kdeconnect.helpers.LineTooLongException
@@ -41,7 +42,12 @@ class LanLink(
     @Volatile private var socket: SSLSocket
 ) : BaseLink(context, linkProvider) {
 
-    override val name = "LanLink"
+    override val transport: ConnectionTransport
+        get() = (linkProvider as? LanLinkProvider)?.transportForRemoteAddress(socket.inetAddress)
+            ?: super.transport
+
+    override val name: String
+        get() = transport.label
 
     override fun disconnect() {
         Log.i(LOG_TAG, "Disconnect socket: ${socket.hashCode()}")

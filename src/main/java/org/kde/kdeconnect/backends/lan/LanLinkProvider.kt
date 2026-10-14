@@ -23,6 +23,7 @@ import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.NetworkPacket.Companion.unserialize
 import org.kde.kdeconnect.backends.BaseLink
 import org.kde.kdeconnect.backends.BaseLinkProvider
+import org.kde.kdeconnect.backends.ConnectionTransport
 import org.kde.kdeconnect.extensions.closeSafe
 import org.kde.kdeconnect.helpers.DeviceHelper
 import org.kde.kdeconnect.helpers.ThreadHelper
@@ -86,6 +87,15 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
     private var lastBroadcast: Long = 0
     @Volatile
     private var isStopped = true
+    @Volatile private var activeTransport = ConnectionTransport.WIFI
+
+    fun setActiveTransport(transport: ConnectionTransport) {
+        activeTransport = transport
+    }
+
+    fun transportForRemoteAddress(remoteAddress: InetAddress): ConnectionTransport {
+        return activeTransport
+    }
 
     fun hasDevice(id: String): Boolean {
         return visibleDevices.containsKey(id)
@@ -543,21 +553,15 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
             return
         }
 
-        val socket: DatagramSocket?
-        try {
-            socket = DatagramSocket()
-            if (network != null) {
-                try {
-                    network.bindSocket(socket)
-                } catch (e: IOException) {
-                    Log.w("LanLinkProvider", "Couldn't bind socket to the network")
-                    e.printStackTrace()
-                }
+        val socket = try {
+            DatagramSocket(null).apply {
+                reuseAddress = true
+                if (network != null) network.bindSocket(this)
+                bind(null)
+                broadcast = true
             }
-            socket.setReuseAddress(true)
-            socket.setBroadcast(true)
-        } catch (e: SocketException) {
-            Log.e("KDE/LanLinkProvider", "Failed to create DatagramSocket", e)
+        } catch (e: IOException) {
+            Log.e("KDE/LanLinkProvider", "Failed to create or bind DatagramSocket", e)
             return
         }
 
@@ -632,7 +636,11 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
 
     override val name: String = "LanLinkProvider"
 
-    override val priority: Int = 20
+    override val priority: Int
+        get() = transport.priority
+
+    override val transport: ConnectionTransport
+        get() = activeTransport
 
     val tcpPort: Int?
         get() = tcpServer?.getLocalPort()

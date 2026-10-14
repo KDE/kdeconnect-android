@@ -17,6 +17,9 @@ abstract class BaseLink(
     protected val context: Context,
     val linkProvider: BaseLinkProvider
 ) {
+    open val transport: ConnectionTransport
+        get() = linkProvider.transport
+
     fun interface PacketReceiver {
         fun onPacketReceived(np: NetworkPacket)
     }

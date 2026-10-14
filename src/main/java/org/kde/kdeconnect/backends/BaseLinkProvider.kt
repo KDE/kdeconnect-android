@@ -71,4 +71,12 @@ abstract class BaseLinkProvider {
     abstract fun onNetworkChange(network: Network?)
     abstract val name: String
     abstract val priority: Int
+
+    open val transport: ConnectionTransport = ConnectionTransport.OTHER
+
+    /** Low-bandwidth links can decline payloads so the sender can leave them queued. */
+    open fun supportsPayload(payloadSize: Long): Boolean = true
+
+    /** Packet-size guard used by transports with a small-data-only policy. */
+    open fun canSendPacket(packet: org.kde.kdeconnect.NetworkPacket): Boolean = true
 }
