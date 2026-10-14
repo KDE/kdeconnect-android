@@ -6,7 +6,10 @@ SPDX-FileCopyrightText: 2021 Art Pinch <leonardo906@mail.ru>
 SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout android:id="@+id/player_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="@integer/mpris_now_playing_orientation"
@@ -30,3 +33,9 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
         android:layout_weight="@integer/mpris_now_playing_controls_weight" />
 
 </LinearLayout>
+
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/empty_state"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</FrameLayout>

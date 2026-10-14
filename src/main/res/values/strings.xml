@@ -372,6 +372,8 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="sftp_saf_permission_explanation">To access files remotely you have to configure storage locations</string>
     <string name="sftp_manage_storage_permission_explanation">To allow remote access to files on this device you need to allow KDE Connect to manage the storage.</string>
     <string name="sftp_missing_permission_error">Permissions missing: filesystem access</string>
+    <string name="media_nothing_playing">Nothing playing</string>
+    <string name="media_empty_hint">Play some music or a video on the other device to control it here.</string>
     <string name="no_players_connected">No players found</string>
     <string name="send_files">Send files</string>
     <string name="use_digitizer">Use as drawing tablet</string>

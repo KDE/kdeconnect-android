@@ -21,6 +21,8 @@ import android.widget.ArrayAdapter
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import android.widget.Toast
+import androidx.compose.ui.platform.ViewCompositionStrategy
+import org.kde.kdeconnect.ui.compose.KdeTheme
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.net.toUri
@@ -58,6 +60,13 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
         activityMprisBinding = MprisNowPlayingBinding.inflate(inflater)
         mprisControlBinding = activityMprisBinding.mprisControl
 
+        activityMprisBinding.emptyState.setViewCompositionStrategy(
+            ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed,
+        )
+        activityMprisBinding.emptyState.setContent {
+            KdeTheme(requireContext()) { MediaEmptyState() }
+        }
+        activityMprisBinding.playerContent.visibility = View.GONE
         deviceId = arguments?.getString(EXTRA_DEVICE_ID)!!
 
         val activityIntent = requireActivity().intent
@@ -150,6 +159,7 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
     }
 
     override fun onDestroyView() {
+        positionSeekUpdateHandler.removeCallbacks(positionSeekUpdateRunnable)
         disconnectFromPlugin()
         mprisControlBinding.playerSpinner.adapter = null
         super.onDestroyView()
@@ -264,6 +274,9 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
             return
         }
         val activity = requireActivity()
+        val hasPlayer = targetPlayer != null
+        activityMprisBinding.emptyState.visibility = if (hasPlayer) View.GONE else View.VISIBLE
+        activityMprisBinding.playerContent.visibility = if (hasPlayer) View.VISIBLE else View.GONE
 
         var playerStatus = targetPlayer
         if (playerStatus == null) {
