@@ -19,6 +19,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.getValue
@@ -78,7 +79,11 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
         }
     }
 
-    override fun getActionBarTitle() = getString(R.string.pairing_title)
+    override fun getActionBarTitle() = if ((mActivity as? MainActivity)?.isTwoPaneLayout == true) {
+        null
+    } else {
+        getString(R.string.pairing_title)
+    }
 
     override fun onInflateBinding(
         inflater: LayoutInflater,
@@ -157,7 +162,9 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
                                 )
                             }
                         },
-                        onRefresh = { viewModel.onRefresh() }
+                        onRefresh = { viewModel.onRefresh() },
+                        showOverflow = (mActivity as? MainActivity)?.isTwoPaneLayout == true,
+                        onMoreClick = { showPairingOptions(binding.composeView) },
                     )
                 }
             }
@@ -176,6 +183,23 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
             Uri.fromParts("package", requireContext().packageName, null)
         )
         appSettingsLauncher.launch(intent)
+    }
+
+    private fun showPairingOptions(anchor: View) {
+        PopupMenu(requireContext(), anchor).apply {
+            menu.add(R.string.refresh).setOnMenuItemClickListener {
+                viewModel.onRefresh()
+                true
+            }
+            menu.add(R.string.custom_device_list).setOnMenuItemClickListener {
+                startActivity(Intent(requireContext(), CustomDevicesActivity::class.java))
+                true
+            }
+            menu.add(R.string.trusted_networks).setOnMenuItemClickListener {
+                startActivity(Intent(requireContext(), TrustedNetworksActivity::class.java))
+                true
+            }
+        }.show()
     }
 
     private fun updateDeviceList() {

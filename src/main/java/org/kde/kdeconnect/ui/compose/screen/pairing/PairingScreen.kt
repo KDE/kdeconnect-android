@@ -6,6 +6,8 @@
 
 package org.kde.kdeconnect.ui.compose.screen.pairing
 
+import android.animation.ValueAnimator
+import android.os.Build
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
@@ -38,13 +40,19 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.material3.pulltorefresh.PullToRefreshState
 import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -53,6 +61,8 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
@@ -60,6 +70,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.MoreVert
 import org.kde.kdeconnect.extensions.safeDrawingBottomPadding
 import org.kde.kdeconnect.ui.compose.KdeTheme
 import org.kde.kdeconnect.ui.compose.components.KdeBodyLargeText
@@ -78,12 +90,26 @@ fun PairingScreen(
     onWifiSettingsClick: () -> Unit = {},
     onNotificationSettingsClick: () -> Unit = {},
     onLocalNetworkPermissionClick: () -> Unit = {},
-    onRefresh: () -> Unit = {}
+    onRefresh: () -> Unit = {},
+    showOverflow: Boolean = false,
+    onMoreClick: () -> Unit = {},
 ) {
     val lazyListState = rememberLazyListState()
     val pullRefreshState = rememberPullToRefreshState()
+    val hapticFeedback = LocalHapticFeedback.current
+    var previousConnectedIds by remember { mutableStateOf(uiState.connected.map { it.id }.toSet()) }
+    var previousAvailableIds by remember { mutableStateOf(uiState.available.map { it.id }.toSet()) }
+    LaunchedEffect(uiState.connected.map { it.id }.toSet(), uiState.available.map { it.id }.toSet()) {
+        val connectedIds = uiState.connected.map { it.id }.toSet()
+        val newlyConnected = connectedIds - previousConnectedIds
+        if (newlyConnected.any { it in previousAvailableIds }) {
+            hapticFeedback.performHapticFeedback(HapticFeedbackType.TextHandleMove)
+        }
+        previousConnectedIds = connectedIds
+        previousAvailableIds = uiState.available.map { it.id }.toSet()
+    }
 
-    Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.surfaceVariant) {
+    Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
         PullToRefreshBox(
             isRefreshing = uiState.isRefreshing,
             onRefresh = onRefresh,
@@ -98,7 +124,9 @@ fun PairingScreen(
                         onClick = onClick,
                         onWifiSettingsClick = onWifiSettingsClick,
                         onNotificationSettingsClick = onNotificationSettingsClick,
-                        onLocalNetworkPermissionClick = onLocalNetworkPermissionClick
+                        onLocalNetworkPermissionClick = onLocalNetworkPermissionClick,
+                        showOverflow = showOverflow,
+                        onMoreClick = onMoreClick,
                     )
                 } else {
                     CompactPairingContent(
@@ -107,7 +135,9 @@ fun PairingScreen(
                         onClick = onClick,
                         onWifiSettingsClick = onWifiSettingsClick,
                         onNotificationSettingsClick = onNotificationSettingsClick,
-                        onLocalNetworkPermissionClick = onLocalNetworkPermissionClick
+                        onLocalNetworkPermissionClick = onLocalNetworkPermissionClick,
+                        showOverflow = showOverflow,
+                        onMoreClick = onMoreClick,
                     )
                 }
             }
@@ -122,7 +152,9 @@ private fun WidePairingContent(
     onClick: (String) -> Unit,
     onWifiSettingsClick: () -> Unit,
     onNotificationSettingsClick: () -> Unit,
-    onLocalNetworkPermissionClick: () -> Unit
+    onLocalNetworkPermissionClick: () -> Unit,
+    showOverflow: Boolean,
+    onMoreClick: () -> Unit,
 ) {
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.TopCenter) {
         Row(
@@ -138,7 +170,7 @@ private fun WidePairingContent(
                     .fillMaxSize(),
                 verticalArrangement = Arrangement.spacedBy(20.dp)
             ) {
-                DiscoveryHeader()
+                DiscoveryHeader(showOverflow, onMoreClick)
                 RadarCard(modifier = Modifier.fillMaxWidth().weight(1f))
                 PairingExplanations(
                     uiState = uiState,
@@ -166,7 +198,9 @@ private fun CompactPairingContent(
     onClick: (String) -> Unit,
     onWifiSettingsClick: () -> Unit,
     onNotificationSettingsClick: () -> Unit,
-    onLocalNetworkPermissionClick: () -> Unit
+    onLocalNetworkPermissionClick: () -> Unit,
+    showOverflow: Boolean,
+    onMoreClick: () -> Unit,
 ) {
     LazyColumn(
         modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp),
@@ -174,7 +208,7 @@ private fun CompactPairingContent(
         state = lazyListState,
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        item { DiscoveryHeader() }
+        item { DiscoveryHeader(showOverflow, onMoreClick) }
         item { RadarCard(modifier = Modifier.fillMaxWidth().height(220.dp)) }
         item {
             PairingExplanations(
@@ -189,35 +223,47 @@ private fun CompactPairingContent(
 }
 
 @Composable
-private fun DiscoveryHeader() {
-    Column(
+private fun DiscoveryHeader(showOverflow: Boolean, onMoreClick: () -> Unit) {
+    Row(
         modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),
-        verticalArrangement = Arrangement.spacedBy(4.dp)
+        verticalAlignment = Alignment.CenterVertically,
     ) {
-        Text(text = stringResource(R.string.add_a_device), style = MaterialTheme.typography.headlineMedium)
-        Text(
-            text = stringResource(R.string.discovery_subtitle),
-            style = MaterialTheme.typography.bodyLarge,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
-        )
+        Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+            Text(text = stringResource(R.string.add_a_device), style = MaterialTheme.typography.headlineMedium)
+            Text(
+                text = stringResource(R.string.discovery_subtitle),
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
+        if (showOverflow) {
+            IconButton(onClick = onMoreClick) {
+                Icon(Icons.Filled.MoreVert, contentDescription = stringResource(R.string.extra_options))
+            }
+        }
     }
 }
 
 @Composable
 private fun RadarCard(modifier: Modifier = Modifier) {
-    val transition = rememberInfiniteTransition(label = "deviceRadar")
-    val sweep by transition.animateFloat(
-        initialValue = 0f,
-        targetValue = 1f,
-        animationSpec = infiniteRepeatable(tween(2600), repeatMode = RepeatMode.Restart),
-        label = "radarSweep"
-    )
-    val pulse by transition.animateFloat(
-        initialValue = 0.65f,
-        targetValue = 1f,
-        animationSpec = infiniteRepeatable(tween(1200), repeatMode = RepeatMode.Reverse),
-        label = "radarPulse"
-    )
+    val (sweep, pulse) = if (systemAnimationsEnabled()) {
+        val transition = rememberInfiniteTransition(label = "deviceRadar")
+        val animatedSweep by transition.animateFloat(
+            initialValue = 0f,
+            targetValue = 1f,
+            animationSpec = infiniteRepeatable(tween(2600), repeatMode = RepeatMode.Restart),
+            label = "radarSweep"
+        )
+        val animatedPulse by transition.animateFloat(
+            initialValue = 0.65f,
+            targetValue = 1f,
+            animationSpec = infiniteRepeatable(tween(1200), repeatMode = RepeatMode.Reverse),
+            label = "radarPulse"
+        )
+        animatedSweep to animatedPulse
+    } else {
+        0f to 0.82f
+    }
     val lineColor = MaterialTheme.colorScheme.primary
 
     Card(
@@ -270,6 +316,9 @@ private fun RadarCard(modifier: Modifier = Modifier) {
         }
     }
 }
+
+private fun systemAnimationsEnabled(): Boolean =
+    Build.VERSION.SDK_INT < Build.VERSION_CODES.O || ValueAnimator.areAnimatorsEnabled()
 
 private fun LazyListScope.DeviceSections(uiState: PairingUiState, onClick: (String) -> Unit) {
     item { DeviceSectionHeader(stringResource(R.string.category_connected_devices)) }

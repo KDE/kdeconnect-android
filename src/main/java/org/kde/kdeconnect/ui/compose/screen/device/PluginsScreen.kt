@@ -6,17 +6,23 @@
 
 package org.kde.kdeconnect.ui.compose.screen.device
 
+import android.animation.ValueAnimator
+import android.os.Build
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
+import androidx.compose.animation.scaleIn
 import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
@@ -39,8 +45,10 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -60,6 +68,9 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.MoreVert
 import org.kde.kdeconnect.extensions.safeDrawingBottomPadding
 import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.plugins.clipboard.ClipboardPlugin
@@ -71,12 +82,25 @@ import org.kde.kdeconnect.ui.compose.KdeTheme
 import org.kde.kdeconnect.ui.compose.components.KdeThemePreviews
 import org.kde.kdeconnect_tp.R
 
+data class PluginDashboardItem(
+    val pluginKey: String,
+    val name: String,
+    val description: String,
+    val iconRes: Int,
+    val enabled: Boolean,
+    val action: Plugin.PluginUiButton?,
+)
+
 @Composable
 fun PluginsScreen(
     pluginsWithButtons: List<Plugin.PluginUiButton>,
+    pluginCards: List<PluginDashboardItem>,
     pluginsNeedPermissions: List<Plugin>,
     pluginsNeedOptionalPermissions: List<Plugin>,
     onButtonClick: (Plugin.PluginUiButton) -> Unit,
+    onPluginClick: (PluginDashboardItem) -> Unit,
+    onPluginEnabledChange: (PluginDashboardItem, Boolean) -> Unit,
+    onDeviceMenuClick: () -> Unit,
     actionNeedPermissions: (plugin: Plugin) -> Unit,
     actionNeedOptionalPermissions: (plugin: Plugin) -> Unit,
     localDeviceName: String,
@@ -86,9 +110,13 @@ fun PluginsScreen(
 ) {
     PluginsScreenContent(
         pluginsWithButtons = pluginsWithButtons,
+        pluginCards = pluginCards,
         pluginsNeedPermissions = pluginsNeedPermissions,
         pluginsNeedOptionalPermissions = pluginsNeedOptionalPermissions,
         onButtonClick = onButtonClick,
+        onPluginClick = onPluginClick,
+        onPluginEnabledChange = onPluginEnabledChange,
+        onDeviceMenuClick = onDeviceMenuClick,
         actionNeedPermissions = actionNeedPermissions,
         actionNeedOptionalPermissions = actionNeedOptionalPermissions,
         localDeviceName = localDeviceName,
@@ -101,9 +129,13 @@ fun PluginsScreen(
 @Composable
 private fun PluginsScreenContent(
     pluginsWithButtons: List<Plugin.PluginUiButton>,
+    pluginCards: List<PluginDashboardItem>,
     pluginsNeedPermissions: List<Plugin>,
     pluginsNeedOptionalPermissions: List<Plugin>,
     onButtonClick: (Plugin.PluginUiButton) -> Unit,
+    onPluginClick: (PluginDashboardItem) -> Unit,
+    onPluginEnabledChange: (PluginDashboardItem, Boolean) -> Unit,
+    onDeviceMenuClick: () -> Unit,
     actionNeedPermissions: (plugin: Plugin) -> Unit,
     actionNeedOptionalPermissions: (plugin: Plugin) -> Unit,
     localDeviceName: String,
@@ -113,7 +145,7 @@ private fun PluginsScreenContent(
 ) {
     val bottomPadding = safeDrawingBottomPadding().calculateBottomPadding()
 
-    Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.surfaceVariant) {
+    Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
         BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
             val columns = when {
                 maxWidth < 360.dp -> 1
@@ -123,12 +155,7 @@ private fun PluginsScreenContent(
             val clipboardAction = pluginsWithButtons.firstOrNull {
                 it.iconRes == R.drawable.ic_baseline_content_paste_24
             }
-            val dashboardButtons = if (clipboardAction == null) {
-                pluginsWithButtons
-            } else {
-                pluginsWithButtons - clipboardAction
-            }
-
+            val isWideLayout = maxWidth >= 600.dp
             Column(
                 modifier = Modifier
                     .fillMaxSize()
@@ -138,6 +165,33 @@ private fun PluginsScreenContent(
                     .padding(start = 20.dp, top = 20.dp, end = 20.dp, bottom = bottomPadding + 20.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
+                if (isWideLayout) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text(text = stringResource(R.string.my_ecosystem), style = MaterialTheme.typography.headlineMedium)
+                        Spacer(Modifier.weight(1f))
+                        clipboardAction?.let { button ->
+                            Button(
+                                onClick = { onButtonClick(button) },
+                                modifier = Modifier.heightIn(min = 56.dp),
+                                shape = CircleShape,
+                                colors = ButtonDefaults.buttonColors(
+                                    containerColor = MaterialTheme.colorScheme.onSurface,
+                                    contentColor = MaterialTheme.colorScheme.surface
+                                )
+                            ) {
+                                Icon(painterResource(button.iconRes), contentDescription = null)
+                                Spacer(Modifier.width(10.dp))
+                                Text(text = button.name, style = MaterialTheme.typography.titleMedium)
+                            }
+                        }
+                        IconButton(onClick = onDeviceMenuClick) {
+                            Icon(Icons.Filled.MoreVert, contentDescription = stringResource(R.string.extra_options))
+                        }
+                    }
+                } else {
+                    Text(text = stringResource(R.string.my_ecosystem), style = MaterialTheme.typography.headlineMedium)
+                }
+
                 ConnectionOverview(
                     localDeviceName = localDeviceName,
                     localDeviceIcon = localDeviceIcon,
@@ -145,7 +199,7 @@ private fun PluginsScreenContent(
                     remoteDeviceIcon = remoteDeviceIcon,
                 )
 
-                clipboardAction?.let { button ->
+                if (!isWideLayout) clipboardAction?.let { button ->
                     Button(
                         onClick = { onButtonClick(button) },
                         modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp),
@@ -162,9 +216,10 @@ private fun PluginsScreenContent(
                 }
 
                 PluginButtons(
-                    buttons = dashboardButtons,
+                    plugins = pluginCards,
                     columns = columns,
-                    onButtonClick = onButtonClick,
+                    onPluginClick = onPluginClick,
+                    onPluginEnabledChange = onPluginEnabledChange,
                 )
 
                 if (pluginsNeedPermissions.isNotEmpty()) {
@@ -202,10 +257,6 @@ private fun ConnectionOverview(
             modifier = Modifier.padding(horizontal = 24.dp, vertical = 20.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            Text(
-                text = stringResource(R.string.my_ecosystem),
-                style = MaterialTheme.typography.headlineMedium,
-            )
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
@@ -268,72 +319,122 @@ private fun DeviceEndpoint(name: String, icon: Int) {
 
 @Composable
 private fun ConnectionLine(modifier: Modifier = Modifier) {
-    val transition = rememberInfiniteTransition(label = "connectionPulse")
-    val pulse by transition.animateFloat(
-        initialValue = 0.45f,
-        targetValue = 1f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(durationMillis = 1100),
-            repeatMode = RepeatMode.Reverse,
-        ),
-        label = "connectionPulseScale",
-    )
+    val (pulse, movingDots) = if (systemAnimationsEnabled()) {
+        val transition = rememberInfiniteTransition(label = "connectionPulse")
+        val animatedPulse by transition.animateFloat(
+            initialValue = 0.45f,
+            targetValue = 1f,
+            animationSpec = infiniteRepeatable(
+                animation = tween(durationMillis = 1100),
+                repeatMode = RepeatMode.Reverse,
+            ),
+            label = "connectionPulseScale",
+        )
+        val animatedDots by transition.animateFloat(
+            initialValue = 0f,
+            targetValue = 1f,
+            animationSpec = infiniteRepeatable(tween(durationMillis = 1500)),
+            label = "connectionDots",
+        )
+        animatedPulse to animatedDots
+    } else {
+        0.82f to 0f
+    }
     val lineColor = MaterialTheme.colorScheme.onSurface
 
-    Canvas(modifier = modifier.height(54.dp).padding(horizontal = 4.dp)) {
-        val centerY = size.height / 2
-        val centerX = size.width / 2
-        val radius = 7.dp.toPx()
-        drawLine(
-            color = lineColor.copy(alpha = 0.8f),
-            start = androidx.compose.ui.geometry.Offset(0f, centerY),
-            end = androidx.compose.ui.geometry.Offset(size.width, centerY),
-            strokeWidth = 2.dp.toPx(),
-            pathEffect = PathEffect.dashPathEffect(floatArrayOf(3.dp.toPx(), 6.dp.toPx())),
-        )
-        drawCircle(lineColor, radius = 3.dp.toPx(), center = androidx.compose.ui.geometry.Offset(0f, centerY))
-        drawCircle(lineColor, radius = 3.dp.toPx(), center = androidx.compose.ui.geometry.Offset(size.width, centerY))
-        drawCircle(
-            color = lineColor.copy(alpha = 0.16f),
-            radius = radius * (1.5f + pulse),
-            center = androidx.compose.ui.geometry.Offset(centerX, centerY),
-            style = Stroke(width = 2.dp.toPx()),
-        )
-        drawCircle(lineColor, radius = radius * pulse, center = androidx.compose.ui.geometry.Offset(centerX, centerY))
+    Box(modifier = modifier.height(54.dp).padding(horizontal = 4.dp), contentAlignment = Alignment.Center) {
+        Canvas(modifier = Modifier.fillMaxSize()) {
+            val centerY = size.height / 2
+            val centerX = size.width / 2
+            val radius = 7.dp.toPx()
+            drawLine(
+                color = lineColor.copy(alpha = 0.8f),
+                start = androidx.compose.ui.geometry.Offset(0f, centerY),
+                end = androidx.compose.ui.geometry.Offset(size.width, centerY),
+                strokeWidth = 2.dp.toPx(),
+                pathEffect = PathEffect.dashPathEffect(floatArrayOf(3.dp.toPx(), 6.dp.toPx())),
+            )
+            drawCircle(lineColor, radius = 3.dp.toPx(), center = androidx.compose.ui.geometry.Offset(0f, centerY))
+            drawCircle(lineColor, radius = 3.dp.toPx(), center = androidx.compose.ui.geometry.Offset(size.width, centerY))
+            repeat(3) { index ->
+                val progress = (movingDots + index / 3f) % 1f
+                drawCircle(
+                    color = lineColor.copy(alpha = 0.86f),
+                    radius = 2.dp.toPx(),
+                    center = androidx.compose.ui.geometry.Offset(size.width * progress, centerY),
+                )
+            }
+            drawCircle(
+                color = lineColor.copy(alpha = 0.16f),
+                radius = radius * (1.5f + pulse),
+                center = androidx.compose.ui.geometry.Offset(centerX, centerY),
+                style = Stroke(width = 2.dp.toPx()),
+            )
+            drawCircle(lineColor, radius = radius * pulse, center = androidx.compose.ui.geometry.Offset(centerX, centerY))
+        }
+        Surface(
+            modifier = Modifier.size(28.dp),
+            shape = CircleShape,
+            color = MaterialTheme.colorScheme.onSurface,
+            contentColor = MaterialTheme.colorScheme.surface,
+        ) {
+            Box(contentAlignment = Alignment.Center) {
+                AnimatedVisibility(
+                    visible = true,
+                    enter = if (systemAnimationsEnabled()) {
+                        scaleIn(animationSpec = spring(dampingRatio = 0.72f, stiffness = 500f)) +
+                            fadeIn(animationSpec = tween(durationMillis = 180))
+                    } else {
+                        EnterTransition.None
+                    },
+                ) {
+                    Icon(Icons.Filled.Check, contentDescription = null, modifier = Modifier.size(18.dp))
+                }
+            }
+        }
     }
 }
 
+private fun systemAnimationsEnabled(): Boolean =
+    Build.VERSION.SDK_INT < Build.VERSION_CODES.O || ValueAnimator.areAnimatorsEnabled()
+
 @Composable
 private fun PluginButtons(
-    buttons: List<Plugin.PluginUiButton>,
+    plugins: List<PluginDashboardItem>,
     columns: Int,
-    onButtonClick: (Plugin.PluginUiButton) -> Unit,
+    onPluginClick: (PluginDashboardItem) -> Unit,
+    onPluginEnabledChange: (PluginDashboardItem, Boolean) -> Unit,
 ) {
     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-        buttons.chunked(columns).forEachIndexed { rowIndex, rowButtons ->
+        plugins.chunked(columns).forEachIndexed { rowIndex, rowPlugins ->
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
             ) {
-                rowButtons.forEachIndexed { columnIndex, button ->
+                rowPlugins.forEachIndexed { columnIndex, plugin ->
                     val buttonIndex = rowIndex * columns + columnIndex
                     AnimatedVisibility(
                         visible = true,
                         modifier = Modifier.weight(1f),
-                        enter = fadeIn(animationSpec = tween(260, delayMillis = buttonIndex * 35)) +
-                            slideInVertically(
-                                animationSpec = tween(260, delayMillis = buttonIndex * 35),
-                                initialOffsetY = { it / 10 },
-                            ),
+                        enter = if (systemAnimationsEnabled()) {
+                            fadeIn(animationSpec = tween(180, delayMillis = buttonIndex * 35)) +
+                                slideInVertically(
+                                    animationSpec = spring(dampingRatio = 0.88f, stiffness = 520f),
+                                    initialOffsetY = { it / 10 },
+                                )
+                        } else {
+                            EnterTransition.None
+                        },
                     ) {
                         PluginButton(
-                            button = button,
+                            plugin = plugin,
                             modifier = Modifier.fillMaxWidth().heightIn(min = 156.dp),
-                            onClick = { onButtonClick(button) },
+                            onClick = { onPluginClick(plugin) },
+                            onEnabledChange = { onPluginEnabledChange(plugin, it) },
                         )
                     }
                 }
-                repeat(columns - rowButtons.size) {
+                repeat(columns - rowPlugins.size) {
                     Spacer(modifier = Modifier.weight(1f))
                 }
             }
@@ -344,9 +445,10 @@ private fun PluginButtons(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun PluginButton(
-    button: Plugin.PluginUiButton,
+    plugin: PluginDashboardItem,
     modifier: Modifier,
     onClick: () -> Unit,
+    onEnabledChange: (Boolean) -> Unit,
 ) {
     Card(
         modifier = modifier
@@ -367,30 +469,28 @@ private fun PluginButton(
                     color = MaterialTheme.colorScheme.surfaceVariant,
                 ) {
                     Icon(
-                        painter = painterResource(id = button.iconRes),
+                        painter = painterResource(id = plugin.iconRes),
                         contentDescription = null,
                         tint = MaterialTheme.colorScheme.onSurface,
                         modifier = Modifier.padding(12.dp),
                     )
                 }
                 Spacer(modifier = Modifier.weight(1f))
-                Text(
-                    text = stringResource(R.string.open_plugin),
-                    style = MaterialTheme.typography.labelMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
+                Switch(checked = plugin.enabled, onCheckedChange = onEnabledChange)
             }
             Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 Text(
-                    text = button.name,
+                    text = plugin.name,
                     style = MaterialTheme.typography.titleLarge,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
                 )
                 Text(
-                    text = stringResource(R.string.plugin_action_description),
+                    text = plugin.description,
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis,
                 )
             }
         }
@@ -451,12 +551,27 @@ private fun PluginsScreenPreview() {
         val pluginsWithButtons = listOf(mprisPlugin, runCommandPlugin, presenterPlugin, pingPlugin)
         val pluginsWithoutPermissions = listOf(clipboardPlugin, presenterPlugin)
         val pluginsWithoutOptionalPermissions = listOf(mprisPlugin, presenterPlugin)
+        val previewPlugins = listOf(mprisPlugin, runCommandPlugin, presenterPlugin, pingPlugin)
 
         PluginsScreenContent(
             pluginsWithButtons = pluginsWithButtons.flatMap { plugin -> plugin.getUiButtons() },
+            pluginCards = previewPlugins.map { plugin ->
+                val action = plugin.getUiButtons().firstOrNull()
+                PluginDashboardItem(
+                    pluginKey = plugin.pluginKey,
+                    name = plugin.displayName,
+                    description = plugin.description,
+                    iconRes = action?.iconRes ?: R.drawable.ic_baseline_info_24,
+                    enabled = true,
+                    action = action,
+                )
+            },
             pluginsNeedPermissions = pluginsWithoutPermissions,
             pluginsNeedOptionalPermissions = pluginsWithoutOptionalPermissions,
             onButtonClick = { /* Do nothing */ },
+            onPluginClick = { /* Do nothing */ },
+            onPluginEnabledChange = { _, _ -> /* Do nothing */ },
+            onDeviceMenuClick = {},
             actionNeedPermissions = { /* Do nothing */ },
             actionNeedOptionalPermissions = { /* Do nothing */ },
             localDeviceName = "Pad 8 Pro",

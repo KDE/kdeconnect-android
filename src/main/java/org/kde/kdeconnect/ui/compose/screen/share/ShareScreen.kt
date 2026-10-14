@@ -6,9 +6,13 @@
 
 package org.kde.kdeconnect.ui.compose.screen.share
 
+import android.animation.ValueAnimator
+import android.os.Build
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -68,7 +72,7 @@ fun ShareScreen(
         stringResource(R.string.share_to)
     }
 
-    Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.surfaceVariant) {
+    Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
         PullToRefreshBox(isRefreshing = isRefreshing, onRefresh = onRefresh) {
             BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
                 val requestedColumns = when {
@@ -112,6 +116,7 @@ private fun ShareDeviceList(
     onDeviceClick: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val animationsEnabled = systemAnimationsEnabled()
     LazyColumn(
         modifier = modifier.fillMaxWidth(),
         contentPadding = safeDrawingBottomPadding(),
@@ -140,8 +145,15 @@ private fun ShareDeviceList(
                         AnimatedVisibility(
                             visible = true,
                             modifier = Modifier.weight(1f),
-                            enter = fadeIn(tween(240, delayMillis = index * 45)) +
-                                slideInVertically(tween(240, delayMillis = index * 45)) { it / 12 }
+                            enter = if (animationsEnabled) {
+                                fadeIn(tween(180, delayMillis = index * 35)) +
+                                    slideInVertically(
+                                        animationSpec = spring(dampingRatio = 0.9f, stiffness = 520f),
+                                        initialOffsetY = { it / 12 },
+                                    )
+                            } else {
+                                EnterTransition.None
+                            }
                         ) {
                             ShareDeviceCard(
                                 device = device,
@@ -156,6 +168,9 @@ private fun ShareDeviceList(
         }
     }
 }
+
+private fun systemAnimationsEnabled(): Boolean =
+    Build.VERSION.SDK_INT < Build.VERSION_CODES.O || ValueAnimator.areAnimatorsEnabled()
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

@@ -15,6 +15,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityManager
 import androidx.activity.OnBackPressedCallback
@@ -36,12 +37,14 @@ import org.kde.kdeconnect.extensions.setupBottomPadding
 import org.kde.kdeconnect.helpers.DeviceHelper
 import org.kde.kdeconnect.helpers.security.SslHelper
 import org.kde.kdeconnect.plugins.Plugin
+import org.kde.kdeconnect.plugins.PluginFactory
 import org.kde.kdeconnect.plugins.battery.BatteryPlugin
 import org.kde.kdeconnect.ui.compose.KdeTheme
 import org.kde.kdeconnect.ui.compose.screen.device.DeviceErrorScreen
 import org.kde.kdeconnect.ui.compose.screen.device.DevicePairingScreen
 import org.kde.kdeconnect.ui.compose.screen.device.DeviceViewModel
 import org.kde.kdeconnect.ui.compose.screen.device.PluginsScreen
+import org.kde.kdeconnect.ui.compose.screen.device.PluginDashboardItem
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.ActivityDeviceBinding
 
@@ -97,66 +100,7 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
     private val menuProvider = object : MenuProvider {
         override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
             menu.clear()
-            val device = device ?: return
-
-            //Plugins button list
-            val menuEntries: Collection<Plugin.PluginUiMenuEntry> =
-                device.loadedPlugins.values.flatMap { it.getUiMenuEntries() }
-            for (p in menuEntries) {
-                menu.add(p.name).setOnMenuItemClickListener {
-                    p.onClick(mActivity!!)
-                    true
-                }
-            }
-            val intent = PluginSettingsActivity.createIntent(mActivity!!, deviceId)
-            menu.add(R.string.device_menu_plugins).setOnMenuItemClickListener {
-                startActivity(intent)
-                true
-            }
-            if (device.isReachable) {
-                val builder = MaterialAlertDialogBuilder(requireContext())
-                builder.setTitle(requireContext().resources.getString(R.string.encryption_info_title))
-                builder.setPositiveButton(requireContext().resources.getString(R.string.ok)) { dialog, _ ->
-                    dialog.dismiss()
-                }
-                builder.setMessage(
-                    "${
-                        requireContext().resources.getString(R.string.my_device_fingerprint)
-                    } \n ${
-                        SslHelper.getCertificateHash(SslHelper.certificate)
-                    } \n\n ${
-                        requireContext().resources.getString(R.string.remote_device_fingerprint)
-                    } \n ${
-                        SslHelper.getCertificateHash(device.certificate)
-                    } \n\n ${
-                        requireContext().resources.getString(R.string.protocol_version)
-                    } ${
-                        device.protocolVersion
-                    }"
-                )
-                menu.add(R.string.encryption_info_title).setOnMenuItemClickListener {
-                    builder.show()
-                    true
-                }
-            }
-            if (device.isPaired) {
-                menu.add(R.string.device_menu_unpair).setOnMenuItemClickListener {
-                    device.apply {
-                        // Remove listener so buttons don't show for an instant before changing the view
-                        removePairingCallback(pairingCallback)
-                        removePluginsChangedListener(pluginsChangedListener)
-                        unpair()
-                    }
-                    (mActivity as? MainActivity)?.onDeviceSelected(null)
-                    true
-                }
-            }
-            if (device.pairStatus == PairingHandler.PairState.Requested) {
-                menu.add(R.string.cancel_pairing).setOnMenuItemClickListener {
-                    device.cancelPairing()
-                    true
-                }
-            }
+            populateDeviceMenu(menu)
         }
 
         override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
@@ -164,11 +108,67 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
         }
     }
 
+    private fun populateDeviceMenu(menu: Menu) {
+        val device = device ?: return
+        val menuEntries: Collection<Plugin.PluginUiMenuEntry> =
+            device.loadedPlugins.values.flatMap { it.getUiMenuEntries() }
+        for (entry in menuEntries) {
+            menu.add(entry.name).setOnMenuItemClickListener {
+                entry.onClick(mActivity!!)
+                true
+            }
+        }
+        val intent = PluginSettingsActivity.createIntent(mActivity!!, deviceId)
+        menu.add(R.string.device_menu_plugins).setOnMenuItemClickListener {
+            startActivity(intent)
+            true
+        }
+        if (device.isReachable) {
+            val builder = MaterialAlertDialogBuilder(requireContext())
+                .setTitle(R.string.encryption_info_title)
+                .setPositiveButton(R.string.ok) { dialog, _ -> dialog.dismiss() }
+                .setMessage(
+                    "${getString(R.string.my_device_fingerprint)} \n ${SslHelper.getCertificateHash(SslHelper.certificate)}" +
+                        " \n\n ${getString(R.string.remote_device_fingerprint)} \n ${SslHelper.getCertificateHash(device.certificate)}" +
+                        " \n\n ${getString(R.string.protocol_version)} ${device.protocolVersion}"
+                )
+            menu.add(R.string.encryption_info_title).setOnMenuItemClickListener {
+                builder.show()
+                true
+            }
+        }
+        if (device.isPaired) {
+            menu.add(R.string.device_menu_unpair).setOnMenuItemClickListener {
+                device.apply {
+                    removePairingCallback(pairingCallback)
+                    removePluginsChangedListener(pluginsChangedListener)
+                    unpair()
+                }
+                (mActivity as? MainActivity)?.onDeviceSelected(null)
+                true
+            }
+        }
+        if (device.pairStatus == PairingHandler.PairState.Requested) {
+            menu.add(R.string.cancel_pairing).setOnMenuItemClickListener {
+                device.cancelPairing()
+                true
+            }
+        }
+    }
+
+    private fun showDeviceOptions(anchor: View) {
+        PopupMenu(requireContext(), anchor).apply {
+            populateDeviceMenu(menu)
+        }.show()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.deviceView.setupBottomPadding()
         device?.apply {
-            mActivity?.supportActionBar?.title = name
+            if ((mActivity as? MainActivity)?.isTwoPaneLayout != true) {
+                mActivity?.supportActionBar?.title = name
+            }
             removePairingCallback(pairingCallback)
             addPairingCallback(pairingCallback)
             removePluginsChangedListener(pluginsChangedListener)
@@ -243,11 +243,53 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
                                     device.pluginsWithoutOptionalPermissions.values.filter { plugin ->
                                         device.isPluginEnabled(plugin.pluginKey)
                                     }
+                                val pluginCards = PluginFactory.sortPluginList(device.supportedPlugins)
+                                    .mapNotNull { pluginKey ->
+                                        val plugin = device.getPluginIncludingWithoutPermissions(pluginKey)
+                                            ?: PluginFactory.instantiatePluginForDevice(
+                                                requireContext(),
+                                                pluginKey,
+                                                device,
+                                            )
+                                        if (plugin == null || !plugin.isCompatible) {
+                                            null
+                                        } else {
+                                            val action = plugin.getUiButtons().firstOrNull() ?: return@mapNotNull null
+                                            PluginDashboardItem(
+                                                pluginKey = pluginKey,
+                                                name = plugin.displayName,
+                                                description = plugin.description,
+                                                iconRes = action.iconRes,
+                                                enabled = device.isPluginEnabled(pluginKey),
+                                                action = action,
+                                            )
+                                        }
+                                    }
                                 PluginsScreen(
                                     pluginsWithButtons = pluginsWithButtons,
+                                    pluginCards = pluginCards,
                                     pluginsNeedPermissions = pluginsNeedPermissions,
                                     pluginsNeedOptionalPermissions = pluginsNeedOptionalPermissions,
                                     onButtonClick = { button -> button.onClick(mActivity!!) },
+                                    onPluginClick = { pluginCard ->
+                                        val plugin = device.getPluginIncludingWithoutPermissions(pluginCard.pluginKey)
+                                        when {
+                                            plugin != null && plugin.pluginKey in device.pluginsWithoutPermissions ->
+                                                plugin.permissionExplanationDialog.show(childFragmentManager, null)
+                                            pluginCard.action != null -> pluginCard.action.onClick(mActivity!!)
+                                            else -> startActivity(
+                                                PluginSettingsActivity.createIntent(
+                                                    requireContext(),
+                                                    device.deviceId,
+                                                    pluginCard.pluginKey,
+                                                )
+                                            )
+                                        }
+                                    },
+                                    onPluginEnabledChange = { pluginCard, enabled ->
+                                        device.setPluginEnabled(pluginCard.pluginKey, enabled)
+                                    },
+                                    onDeviceMenuClick = { showDeviceOptions(binding.deviceView) },
                                     actionNeedPermissions = { plugin ->
                                         plugin.permissionExplanationDialog.show(
                                             childFragmentManager,
@@ -353,6 +395,10 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
      *
      */
     private fun displayBatteryInfoIfPossible() {
+        if ((mActivity as? MainActivity)?.isTwoPaneLayout == true) {
+            mActivity?.supportActionBar?.subtitle = null
+            return
+        }
         val batteryPlugin = device?.getPlugin<BatteryPlugin>()
 
         val info = batteryPlugin?.remoteBatteryInfo
