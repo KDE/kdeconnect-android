@@ -344,16 +344,22 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
     private fun publishFile(fileDocument: DocumentFile, size: Long) {
         if (!ShareSettingsFragment.isCustomDestinationEnabled(device.context)) {
             Log.i("SharePlugin", "Adding to downloads")
-            val manager = ContextCompat.getSystemService(
-                device.context,
-                DownloadManager::class.java,
-            )
-            manager?.addCompletedDownload(fileDocument.uri.lastPathSegment, device.name, true, fileDocument.type, fileDocument.uri.path, size, false)
-        } else {
-            // Make sure it is added to the Android Gallery anyway
-            Log.i("SharePlugin", "Adding to gallery")
-            MediaStoreHelper.indexFile(device.context, fileDocument.uri)
+            try {
+                val manager = ContextCompat.getSystemService(
+                    device.context,
+                    DownloadManager::class.java,
+                )
+                manager?.addCompletedDownload(fileDocument.uri.lastPathSegment, device.name, true, fileDocument.type, fileDocument.uri.path, size, false)
+            } catch (e: Exception) {
+                // DownloadManager.addCompletedDownload is deprecated starting in Android 10 and throws
+                // on modern Android versions (or scoped storage environments) when given raw file paths.
+                Log.w("SharePlugin", "Failed to add completed download to DownloadManager", e)
+            }
         }
+
+        // Index the file in the MediaStore so system scanners (gallery, downloads, file managers) detect it immediately
+        Log.i("SharePlugin", "Indexing file in MediaStore")
+        MediaStoreHelper.indexFile(device.context, fileDocument.uri)
     }
 
     private fun openFile(fileDocument: DocumentFile) {
