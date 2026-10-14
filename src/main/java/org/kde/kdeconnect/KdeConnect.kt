@@ -25,6 +25,7 @@ import org.kde.kdeconnect.helpers.security.SslHelper
 import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.plugins.PluginFactory
 import org.kde.kdeconnect.ui.ThemeUtil
+import org.kde.kdeconnect.ui.background.DisconnectLog
 import org.kde.kdeconnect_tp.BuildConfig
 import org.slf4j.impl.HandroidLoggerAdapter
 import java.security.cert.CertificateException
@@ -177,6 +178,7 @@ class KdeConnect : Application() {
         @WorkerThread
         override fun onConnectionReceived(link: BaseLink) {
             var device = devices[link.deviceId]
+            val wasReachable = device?.isReachable == true
             if (device != null) {
                 device.addLink(link)
             } else {
@@ -184,15 +186,22 @@ class KdeConnect : Application() {
                 devices[link.deviceId] = device
                 device.addPairingCallback(devicePairingCallback)
             }
+            if (!wasReachable && device.isReachable && device.isPaired) {
+                DisconnectLog.record(this@KdeConnect, device.name, connected = true)
+            }
             onDeviceListChanged()
         }
 
         @WorkerThread
         override fun onConnectionLost(link: BaseLink) {
             val device = devices[link.deviceId]
+            val wasReachable = device?.isReachable == true
             Log.i("KDE/onConnectionLost", "removeLink, deviceId: ${link.deviceId}")
             if (device != null) {
                 device.removeLink(link)
+                if (wasReachable && !device.isReachable && device.isPaired) {
+                    DisconnectLog.record(this@KdeConnect, device.name, connected = false)
+                }
                 if (!device.isReachable && !device.isPaired) {
                     scheduleForDeletion(device)
                 }

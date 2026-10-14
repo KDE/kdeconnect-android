@@ -29,7 +29,9 @@ import rikka.shizuku.Shizuku
 class BackgroundFeaturesActivity : AppCompatActivity() {
     private var shizukuState by mutableStateOf(ShizukuState(false, false, false))
     private var healthState by mutableStateOf(HealthCheckState(ShizukuState(false, false, false), false, false, false, "", "", false))
+    private var disconnectEntries by mutableStateOf(emptyList<DisconnectLogEntry>())
     private var showingHealth = false
+    private var showingDisconnectLog = false
     private val receivedListener = Shizuku.OnBinderReceivedListener { runOnUiThread(::refresh) }
     private val deadListener = Shizuku.OnBinderDeadListener { runOnUiThread(::refresh) }
     private val permissionListener = Shizuku.OnRequestPermissionResultListener { _, _ -> runOnUiThread(::refresh) }
@@ -38,13 +40,16 @@ class BackgroundFeaturesActivity : AppCompatActivity() {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         showingHealth = intent.getStringExtra(EXTRA_SCREEN) == SCREEN_HEALTH
+        showingDisconnectLog = intent.getStringExtra(EXTRA_SCREEN) == SCREEN_DISCONNECT_LOG
         Shizuku.addBinderReceivedListenerSticky(receivedListener)
         Shizuku.addBinderDeadListener(deadListener)
         Shizuku.addRequestPermissionResultListener(permissionListener)
         refresh()
         setContent {
             KdeTheme(this) {
-                if (showingHealth) {
+                if (showingDisconnectLog) {
+                    DisconnectLogScreen(disconnectEntries, onBack = { finish() }, onRefresh = ::refresh)
+                } else if (showingHealth) {
                     HealthCheckScreen(healthState, onBack = { finish() }, onCheck = ::refresh,
                         onOpenShizuku = { openSettings(Intent(this, BackgroundFeaturesActivity::class.java).putExtra(EXTRA_SCREEN, SCREEN_SHIZUKU)) },
                         onOpenBattery = ::openBatterySettings,
@@ -104,6 +109,7 @@ class BackgroundFeaturesActivity : AppCompatActivity() {
             oemAutostartConfirmed = getSharedPreferences(PREFERENCES, MODE_PRIVATE)
                 .getBoolean(KEY_OEM_AUTOSTART_CONFIRMED, false),
         )
+        disconnectEntries = DisconnectLog.entries(this)
     }
 
     private fun openBatterySettings() {
@@ -163,6 +169,7 @@ class BackgroundFeaturesActivity : AppCompatActivity() {
     companion object {
         const val EXTRA_SCREEN = "background_screen"
         const val SCREEN_HEALTH = "health"
+        const val SCREEN_DISCONNECT_LOG = "disconnect_log"
         private const val SCREEN_SHIZUKU = "shizuku"
         private const val PREFERENCES = "ecosystem_background"
         private const val KEY_OEM_AUTOSTART_CONFIRMED = "oem_autostart_confirmed"

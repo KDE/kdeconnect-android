@@ -760,4 +760,11 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="health_open_autostart">Open settings for Ecosystem</string>
     <string name="health_open_oem_battery">Open app info</string>
     <string name="health_confirm_autostart">I enabled auto launch</string>
+    <string name="disconnect_log_title">Why did it disconnect?</string>
+    <string name="disconnect_log_summary">Recent connection changes with a plain-language note</string>
+    <string name="disconnect_log_explanation">Ecosystem records when a paired device becomes unreachable or reconnects. Android does not report the exact cause, so the note lists common things to check.</string>
+    <string name="disconnect_log_empty">No disconnects have been observed while Ecosystem was running.</string>
+    <string name="disconnect_log_disconnected">%1$s disconnected</string>
+    <string name="disconnect_log_reconnected">%1$s reconnected</string>
+    <string name="disconnect_log_cause_hint">The other device stopped responding. It may be asleep, offline, or on a different network. Android did not provide an exact cause.</string>
 </resources>
