@@ -258,7 +258,6 @@
   <string name="contacts_per_device_confirmation">கே.டீ.யீ. கனெக்ட் குறுஞ்செய்தி செயலியும் மற்ற செயலிகளும் பயன்படுத்தக்கூடிய வகையில் உங்கள் கைபேசியிலுள்ள தொடர்புகள் இச்சாதனத்திற்கு நகலெடுக்கப்படும்.</string>
   <string name="select_ringtone">மணியோசையைத் தேர்ந்தெடு</string>
   <string name="telephony_pref_blocked_title">தடுக்கப்பட்ட எண்கள்</string>
-  <string name="telephony_pref_blocked_dialog_desc">இந்த எண்களிலிருந்து அழைப்புகள் மற்றும் SMS-கள் காட்டப்படா. வரிக்கு ஓர் எண்ணை மட்டும் குறிப்பிடவும்</string>
   <string name="mpris_coverart_description">தற்போதைய ஊடகத்தின் அட்டை படம்</string>
   <string name="settings_icon_description">அமைப்புகளுக்கான சின்னம்</string>
   <string name="presenter_fullscreen">முழுத்திரை</string>

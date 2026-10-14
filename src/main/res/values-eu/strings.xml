@@ -306,7 +306,6 @@
   <string name="contacts_per_device_confirmation">Zure telefonoko kontaktuak gailu honetara kopiatuko dira, «KDE Connect SMS» aplikazioak eta beste aplikazio batzuek erabili ahal ditzaten.</string>
   <string name="select_ringtone">Hautatu dei-tonu bat</string>
   <string name="telephony_pref_blocked_title">Blokeatutako zenbakiak</string>
-  <string name="telephony_pref_blocked_dialog_desc">Ez erakutsi zenbaki hauen deiak eta SMSak. Zehaztu zenbaki bat lerroko</string>
   <string name="mpris_coverart_description">Uneko euskarriaren azaleko irudia</string>
   <string name="settings_icon_description">Ezarpenen ikonoa</string>
   <string name="presenter_fullscreen">Pantaila-betea</string>

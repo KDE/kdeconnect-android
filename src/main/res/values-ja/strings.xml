@@ -275,7 +275,6 @@
   <string name="contacts_per_device_confirmation">携帯電話に保存されている連絡先はこのデバイスにコピーされ、KDE Connect SMS App などのアプリで使用できるようになります。</string>
   <string name="select_ringtone">着信音を選択</string>
   <string name="telephony_pref_blocked_title">ブロックされた番号</string>
-  <string name="telephony_pref_blocked_dialog_desc">ここで設定された番号からの通話と SMS は非表示になります。一行にひとつずつ電話番号を入力してください</string>
   <string name="mpris_coverart_description">現在のメディアのカバーアート</string>
   <string name="settings_icon_description">設定アイコン</string>
   <string name="presenter_fullscreen">フルスクリーン</string>

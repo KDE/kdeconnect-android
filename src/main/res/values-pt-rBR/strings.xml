@@ -306,7 +306,6 @@
   <string name="contacts_per_device_confirmation">Os contatos do seu telefone serão copiados para este dispositivo, dessa forma eles poderão ser utilizados pelo aplicativo de SMS do KDE Connect e por outros.</string>
   <string name="select_ringtone">Selecionar um toque de chamada</string>
   <string name="telephony_pref_blocked_title">Números bloqueados</string>
-  <string name="telephony_pref_blocked_dialog_desc">Não mostrar as chamadas e SMS destes números. Indique um número por linha.</string>
   <string name="mpris_coverart_description">Capa da mídia atual</string>
   <string name="settings_icon_description">Ícone de configurações</string>
   <string name="presenter_fullscreen">Tela cheia</string>

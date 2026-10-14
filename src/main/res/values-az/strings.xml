@@ -257,7 +257,6 @@
   <string name="contacts_per_device_confirmation">Telefon əlaqələriniz bu cihaza kopyalanacaq, belə ki, onlar KDE Connect SMS və başqa tətbiqlər tərəfindən istifadə oluna bilər.</string>
   <string name="select_ringtone">Zəng səsini seçmək</string>
   <string name="telephony_pref_blocked_title">Əngəllənmiş nömrələr</string>
-  <string name="telephony_pref_blocked_dialog_desc">Bu nömrədən SMS və zənglər göstərilməsin. Hər sətirdə bir nömrə göstərin</string>
   <string name="mpris_coverart_description">Mövcud medianın üz qabığı</string>
   <string name="settings_icon_description">Ayarlar nişanı</string>
   <string name="presenter_fullscreen">Tam_Ekran</string>

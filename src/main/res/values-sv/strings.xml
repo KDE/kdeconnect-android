@@ -306,7 +306,6 @@
   <string name="contacts_per_device_confirmation">Dina telefonkontakter kopieras över till den här apparaten, så att de kan användas av SMS-programmet i KDE-anslut och andra program.</string>
   <string name="select_ringtone">Välj en ringsignal</string>
   <string name="telephony_pref_blocked_title">Blockerade nummer</string>
-  <string name="telephony_pref_blocked_dialog_desc">Visa inte samtal och SMS från dessa nummer. Ange ett nummer per rad.</string>
   <string name="mpris_coverart_description">Omslag för aktuell media</string>
   <string name="settings_icon_description">Inställningsikon</string>
   <string name="presenter_fullscreen">Fullskärm</string>

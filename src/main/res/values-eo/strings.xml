@@ -268,7 +268,6 @@
   <string name="contacts_per_device_confirmation">Viaj telefonaj kontaktoj estos kopiitaj al ĉi tiu aparato, do ili povas esti uzataj de la KDE Connect SMS-aplikaĵo kaj aliaj aplikaĵoj.</string>
   <string name="select_ringtone">Elekti sonoron</string>
   <string name="telephony_pref_blocked_title">Blokitaj nombroj</string>
-  <string name="telephony_pref_blocked_dialog_desc">Ne montru vokojn kaj SMS de ĉi tiuj numeroj. Bonvolu specifi unu numeron po linio</string>
   <string name="mpris_coverart_description">Kovrilo de aktuala aŭdvidaĵo</string>
   <string name="settings_icon_description">Piktogramo de agordoj</string>
   <string name="presenter_fullscreen">Plenekrane</string>

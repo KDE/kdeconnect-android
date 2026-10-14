@@ -274,7 +274,6 @@
   <string name="contacts_per_device_confirmation">Телефонните ви контакти ще бъдат копирани на това устройство, така че те могат да бъдат използвани от приложението за SMS на KDE Connect и от други програми.</string>
   <string name="select_ringtone">Избор на мелодия на звънене</string>
   <string name="telephony_pref_blocked_title">Блокирани номера</string>
-  <string name="telephony_pref_blocked_dialog_desc">Не показвайте обажданията и SMS от тези номера. Моля, посочете по един номер за линия</string>
   <string name="mpris_coverart_description">Обложка на текущата медия</string>
   <string name="settings_icon_description">Икона за настройки</string>
   <string name="presenter_fullscreen">Цял екран</string>

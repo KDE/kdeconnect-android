@@ -265,7 +265,6 @@
   <string name="contacts_per_device_confirmation">Your phone contacts will be copied over to this device, so they can be used by the KDE Connect SMS app and other apps.</string>
   <string name="select_ringtone">Select a ringtone</string>
   <string name="telephony_pref_blocked_title">Blocked numbers</string>
-  <string name="telephony_pref_blocked_dialog_desc">Don\'t show calls and SMS from these numbers. Please specify one number per line</string>
   <string name="mpris_coverart_description">Cover art of current media</string>
   <string name="settings_icon_description">Settings icon</string>
   <string name="presenter_fullscreen">Full-screen</string>

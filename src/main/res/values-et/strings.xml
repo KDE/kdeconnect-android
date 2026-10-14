@@ -210,7 +210,6 @@
   <string name="contacts_permission_explanation">Oma kontaktide jagamiseks töölauaga tuleb anda õigused kontaktidele</string>
   <string name="select_ringtone">Vali helin</string>
   <string name="telephony_pref_blocked_title">Blokitud numbrid</string>
-  <string name="telephony_pref_blocked_dialog_desc">Neilt numbritelt tulevaid kõnesid ja SMS-e ei näidata. Palun pane iga number kirja eraldi reale</string>
   <string name="mpris_coverart_description">Aktiivse meedia kaanepilt</string>
   <string name="settings_icon_description">Seadistuste ikoon</string>
   <string name="presenter_fullscreen">Täisekraan</string>

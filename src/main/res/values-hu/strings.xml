@@ -243,7 +243,6 @@
   <string name="contacts_permission_explanation">Ahhoz, hogy megoszthassa a névjegyzékét az asztali számítógépével, meg kell adnia a névjegyek engedélyt</string>
   <string name="select_ringtone">Válasszon csengőhangot</string>
   <string name="telephony_pref_blocked_title">Blokkolt számok</string>
-  <string name="telephony_pref_blocked_dialog_desc">Ne jelenítsen meg hívásokat és SMS-eket ezekről a számokról. Soronként egy számot adjon meg</string>
   <string name="mpris_coverart_description">A jelenlegi média borítója</string>
   <string name="settings_icon_description">Beállítások ikon</string>
   <string name="presenter_fullscreen">Teljes képernyő</string>
