@@ -94,12 +94,14 @@ case "$SCENARIO" in
   flap)
     mark_drop_both "Rapid Wi-Fi flapping begins"
     for ((i=0; i<60; i++)); do
-      wifi "$PHONE_SERIAL" disabled
-      wifi "$TABLET_SERIAL" disabled
-      sleep 2.5
-      wifi "$PHONE_SERIAL" enabled
-      wifi "$TABLET_SERIAL" enabled
-      sleep 2.5
+      if (( i % 2 == 0 )); then
+        wifi "$PHONE_SERIAL" disabled
+        wifi "$TABLET_SERIAL" disabled
+      else
+        wifi "$PHONE_SERIAL" enabled
+        wifi "$TABLET_SERIAL" enabled
+      fi
+      sleep 5
     done
     ;;
   normal)

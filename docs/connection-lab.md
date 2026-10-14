@@ -22,7 +22,7 @@ Replace the two serial placeholders with the USB serials shown by `adb devices -
 | 4 | New and guest networks | Run `network`, switch both devices to another Wi-Fi, and finish. Run `guest`, join a guest network that blocks peer traffic, and finish after fallback is observed. |
 | 5 | Airplane mode | Run `airplane`; enable then disable airplane mode on the phone, then repeat on the tablet. Wait for each recovery before finishing. |
 | 6 | No Wi-Fi | Run `no-wifi`; disable Wi-Fi on both devices and observe the route order: Wi-Fi Direct, private hotspot, then Bluetooth. Confirm each active route in the connection graphic and switch log. Restore Wi-Fi before finishing. |
-| 7 | Rapid flapping | Run `flap`. The script toggles Wi-Fi on both devices every 2.5 seconds for 60 cycles (five minutes), then exports. |
+| 7 | Rapid flapping | Run `flap`. The script toggles Wi-Fi on both devices every 5 seconds for 60 intervals (five minutes), then exports. |
 | 8 | Screen off, Doze, reboot | Run `screen-doze-reboot`; turn both screens off for 30 minutes, force Doze from USB with `adb -s SERIAL shell dumpsys deviceidle force-idle`, wake the devices, then reboot each with `adb -s SERIAL reboot`. Wait for both USB ADB states to return to `device`, then press Enter. The active lab run is persisted across process restart. |
 | 9 | Distance | Run `distance`; walk away with both devices until the current link drops, then return and wait for recovery. The script asks for the farthest distance and which link broke at each point and writes that note into both TSV rows. |
 | 10 | 100 clipboard copies during switch | Run `clipboard-100`; copy 100 distinct short strings while switching Wi-Fi off and on. Wait for the clipboard queue to drain before finishing. |
