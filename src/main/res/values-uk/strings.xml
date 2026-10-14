@@ -322,6 +322,7 @@
   <string name="contacts_per_device_confirmation">Записи контактів з вашого телефону буде скопійовано на цей пристрій, щоб ними можна було користуватися у програмі для надсилання SMS KDE Connect та інших програмах.</string>
   <string name="select_ringtone">Виберіть мелодію дзвінка</string>
   <string name="telephony_pref_blocked_title">Заблоковані номери</string>
+  <string name="telephony_pref_blocked_dialog_desc">Не показувати виклики з цих номерів. Будь ласка, вказуйте кожен із номерів у окремому рядку.</string>
   <string name="mpris_coverart_description">Зображення обкладинки відтворюваних даних</string>
   <string name="settings_icon_description">Піктограма параметрів</string>
   <string name="presenter_fullscreen">На увесь екран</string>
@@ -348,6 +349,7 @@
   <string name="runcommand_notpaired">Пристрій не пов’язано</string>
   <string name="runcommand_nosuchdevice">Такого пристрою не існує</string>
   <string name="runcommand_noruncommandplugin">Для цього пристрою не увімкнено додаток виконання команд</string>
+  <string name="runcommand_widget_no_device">Натисніть на пункті з назвою, щоб вибрати пристрій.</string>
   <string name="runcommand_category_device_controls_title">Керування пристроєм</string>
   <string name="runcommand_device_controls_summary">Якщо на вашому пристрої передбачено підтримку засобів керування пристроєм, тут буде показано налаштовані вами команди.</string>
   <string name="set_runcommand_name_as_title">set_runcommand_name_as_title</string>

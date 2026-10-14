@@ -322,6 +322,7 @@
   <string name="contacts_per_device_confirmation">Kontakty vašeho zařízení budou zkopírovány do tohoto zařízení aby je bylo možné použít pro připojení aplikací pro SMS a dalších.</string>
   <string name="select_ringtone">Vybrat vyzváněcí tón</string>
   <string name="telephony_pref_blocked_title">Blokovaná čísla</string>
+  <string name="telephony_pref_blocked_dialog_desc">Nezobrazovat hovory z těchto čísel. Uveďte prosím jedno číslo na řádek</string>
   <string name="mpris_coverart_description">Obal současného média</string>
   <string name="settings_icon_description">Ikona nastavení</string>
   <string name="presenter_fullscreen">Celá obrazovka</string>
@@ -348,6 +349,7 @@
   <string name="runcommand_notpaired">Zařízení není spárováno</string>
   <string name="runcommand_nosuchdevice">Není zde žádné takové zařízení</string>
   <string name="runcommand_noruncommandplugin">Toto zařízení nemá povolený modul pro spouštění příkazů</string>
+  <string name="runcommand_widget_no_device">Kliknutím na název vyberte zařízení.</string>
   <string name="runcommand_category_device_controls_title">Ovládání zařízení</string>
   <string name="runcommand_device_controls_summary">Pokud vaše zařízení podporuje Ovládání zařízení, zobrazí se zde příkazy, které jste nastavili.</string>
   <string name="set_runcommand_name_as_title">set_runcommand_name_as_title</string>

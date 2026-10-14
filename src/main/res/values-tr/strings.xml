@@ -306,6 +306,7 @@
   <string name="contacts_per_device_confirmation">Telefondaki kişileriniz bu aygıta kopyalanacak; böylece KDE Connect ve başka uygulamalar tarafından kullanılabilecekler.</string>
   <string name="select_ringtone">Bir zil sesi seç</string>
   <string name="telephony_pref_blocked_title">Engellenen numaralar</string>
+  <string name="telephony_pref_blocked_dialog_desc">Bu numaralardan gelen aramaları göstermeyin. Lütfen satır başına bir numara belirtin.</string>
   <string name="mpris_coverart_description">Geçerli ortamın kapak resmi</string>
   <string name="settings_icon_description">Ayarlar simgesi</string>
   <string name="presenter_fullscreen">Tam ekran</string>
@@ -332,6 +333,7 @@
   <string name="runcommand_notpaired">Aygıt eşleştirilmedi</string>
   <string name="runcommand_nosuchdevice">Böyle bir aygıt yok</string>
   <string name="runcommand_noruncommandplugin">Bu aygıtta Komut Çalıştır Eklentisi etkin değil</string>
+  <string name="runcommand_widget_no_device">Bir aygıt seçmek için başlığa tıklayın.</string>
   <string name="runcommand_category_device_controls_title">Aygıt Denetimleri</string>
   <string name="runcommand_device_controls_summary">Aygıtınız Aygıt Denetimleri’ni destekliyorsa yapılandırdığınız komutlar orada görünür.</string>
   <string name="set_runcommand_name_as_title">çalıştırılacak_komut_adını_başlık_olarak_ayarla</string>

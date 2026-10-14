@@ -306,6 +306,7 @@
   <string name="contacts_per_device_confirmation">Uw telefooncontacten zullen gekopieerd worden naar dit apparaat, ze kunnen dus gebruikt worden door de toepassing KDE Connect SMS en andere toepassingen.</string>
   <string name="select_ringtone">Selecteer een ringtone</string>
   <string name="telephony_pref_blocked_title">Geblokkeerde nummers</string>
+  <string name="telephony_pref_blocked_dialog_desc">Geen oproepen vanaf deze nummers tonen. Specificeer één nummer per regel</string>
   <string name="mpris_coverart_description">Cover-illustratie van huidige media</string>
   <string name="settings_icon_description">Pictogram voor instellingen</string>
   <string name="presenter_fullscreen">Volledig scherm</string>
@@ -332,6 +333,7 @@
   <string name="runcommand_notpaired">Apparaat is niet gepaard</string>
   <string name="runcommand_nosuchdevice">Dit apparaat bestaat niet</string>
   <string name="runcommand_noruncommandplugin">Dit apparaat heeft de \"Run Command Plugin\" niet ingeschakeld</string>
+  <string name="runcommand_widget_no_device">Klik op de titel om een apparaat te selecteren.</string>
   <string name="runcommand_category_device_controls_title">Besturing van apparaat</string>
   <string name="runcommand_device_controls_summary">Als uw apparaat besturing ondersteunt, zullen commando\'s die u hebt geconfigureerd daar verschijnen.</string>
   <string name="set_runcommand_name_as_title">set_runcommand_name_as_title</string>

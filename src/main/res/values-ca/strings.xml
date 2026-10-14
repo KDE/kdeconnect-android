@@ -306,6 +306,7 @@
   <string name="contacts_per_device_confirmation">Els contactes del telèfon es copiaran en aquest dispositiu, de manera que puguin ser utilitzats per l\'aplicació d\'SMS del KDE Connect i altres aplicacions.</string>
   <string name="select_ringtone">Seleccioneu un to de la trucada</string>
   <string name="telephony_pref_blocked_title">Números blocats</string>
+  <string name="telephony_pref_blocked_dialog_desc">No es mostren les trucades d\'aquests números. Especifiqueu un número per línia</string>
   <string name="mpris_coverart_description">Caràtula del fitxer multimèdia actual</string>
   <string name="settings_icon_description">Icona d\'arranjament</string>
   <string name="presenter_fullscreen">Pantalla completa</string>
@@ -332,6 +333,7 @@
   <string name="runcommand_notpaired">El dispositiu no està aparellat</string>
   <string name="runcommand_nosuchdevice">El dispositiu no existeix</string>
   <string name="runcommand_noruncommandplugin">Aquest dispositiu no té activat el connector d\'executar ordres</string>
+  <string name="runcommand_widget_no_device">Feu clic al títol per a seleccionar un dispositiu.</string>
   <string name="runcommand_category_device_controls_title">Controls del dispositiu</string>
   <string name="runcommand_device_controls_summary">Si el vostre dispositiu admet controls de dispositiu, les ordres que hàgiu configurat apareixeran allí.</string>
   <string name="set_runcommand_name_as_title">estableix_nom_ordre_executar_com_a_títol</string>
