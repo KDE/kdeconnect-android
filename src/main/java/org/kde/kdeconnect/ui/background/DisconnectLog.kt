@@ -14,12 +14,15 @@ internal data class DisconnectLogEntry(
     val timestamp: Long,
     val deviceName: String,
     val connected: Boolean,
+    val linkFrom: String? = null,
+    val linkTo: String? = null,
+    val reason: String? = null,
 )
 
 internal object DisconnectLog {
     private const val PREFERENCES = "ecosystem_background"
     private const val KEY_ENTRIES = "disconnect_log"
-    private const val MAX_ENTRIES = 30
+    private const val MAX_ENTRIES = 5000
 
     @Synchronized
     fun record(context: Context, deviceName: String, connected: Boolean) {
@@ -30,11 +33,27 @@ internal object DisconnectLog {
             json.put(JSONObject()
                 .put("timestamp", entry.timestamp)
                 .put("device", entry.deviceName)
-                .put("connected", entry.connected))
+                .put("connected", entry.connected)
+                .put("linkFrom", entry.linkFrom)
+                .put("linkTo", entry.linkTo)
+                .put("reason", entry.reason))
         }
         context.getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE).edit {
             putString(KEY_ENTRIES, json.toString())
         }
+    }
+
+    @Synchronized
+    fun recordLinkSwitch(context: Context, deviceName: String, from: String, to: String, reason: String) {
+        val entries = entries(context).toMutableList()
+        entries.add(0, DisconnectLogEntry(System.currentTimeMillis(), deviceName, true, from, to, reason))
+        val json = JSONArray()
+        entries.take(MAX_ENTRIES).forEach { entry ->
+            json.put(JSONObject().put("timestamp", entry.timestamp).put("device", entry.deviceName)
+                .put("connected", entry.connected).put("linkFrom", entry.linkFrom)
+                .put("linkTo", entry.linkTo).put("reason", entry.reason))
+        }
+        context.getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE).edit { putString(KEY_ENTRIES, json.toString()) }
     }
 
     @Synchronized
@@ -47,7 +66,10 @@ internal object DisconnectLog {
             val timestamp = item.optLong("timestamp", 0)
             val name = item.optString("device", "").takeIf(String::isNotBlank) ?: return@mapNotNull null
             if (timestamp <= 0) return@mapNotNull null
-            DisconnectLogEntry(timestamp, name, item.optBoolean("connected"))
+            DisconnectLogEntry(timestamp, name, item.optBoolean("connected"),
+                item.optString("linkFrom").takeIf(String::isNotBlank),
+                item.optString("linkTo").takeIf(String::isNotBlank),
+                item.optString("reason").takeIf(String::isNotBlank))
         }
     }.getOrDefault(emptyList())
 }

@@ -26,6 +26,7 @@ import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.plugins.PluginFactory
 import org.kde.kdeconnect.ui.ThemeUtil
 import org.kde.kdeconnect.ui.background.DisconnectLog
+import org.kde.kdeconnect.ui.background.ConnectionLab
 import org.kde.kdeconnect_tp.BuildConfig
 import org.slf4j.impl.HandroidLoggerAdapter
 import java.security.cert.CertificateException
@@ -47,6 +48,7 @@ class KdeConnect : Application() {
     val devices: ConcurrentHashMap<String, Device> = ConcurrentHashMap()
 
     private val deviceListChangedCallbacks = ConcurrentHashMap<String, DeviceListChangedCallback>()
+    private val lastConnectivityType = ConcurrentHashMap<String, String>()
 
     override fun onCreate() {
         super.onCreate()
@@ -60,10 +62,12 @@ class KdeConnect : Application() {
         PluginFactory.initPluginInfo(this)
         NotificationHelper.initializeChannels(this)
         org.kde.kdeconnect.ui.background.ShizukuSupport.initialize(this)
+        ConnectionLab.initialize(this)
         org.kde.kdeconnect.plugins.clipboard.ClipboardSyncManager.initialize(this)
         org.kde.kdeconnect.ui.background.KeepAliveSupport.initialize(this)
         LifecycleHelper.initializeObserver()
         loadRememberedDevicesFromSettings()
+        org.kde.kdeconnect.ui.background.HotspotSupport.initialize(this)
         org.kde.kdeconnect.ui.background.CompanionSupport.restore(this)
 
         if (BuildConfig.DEBUG && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -182,6 +186,7 @@ class KdeConnect : Application() {
         override fun onConnectionReceived(link: BaseLink) {
             var device = devices[link.deviceId]
             val wasReachable = device?.isReachable == true
+            val previousLink = device?.connectivityType
             if (device != null) {
                 device.addLink(link)
             } else {
@@ -191,7 +196,14 @@ class KdeConnect : Application() {
             }
             if (!wasReachable && device.isReachable && device.isPaired) {
                 DisconnectLog.record(this@KdeConnect, device.name, connected = true)
+                ConnectionLab.recordRecovered(device.connectivityType.orEmpty())
+            } else if (wasReachable && previousLink != device.connectivityType) {
+                val nextLink = device.connectivityType.orEmpty()
+                val reason = "A higher-priority link became available"
+                DisconnectLog.recordLinkSwitch(this@KdeConnect, device.name, previousLink.orEmpty(), nextLink, reason)
+                ConnectionLab.recordSwitch(previousLink.orEmpty(), nextLink, reason)
             }
+            lastConnectivityType[link.deviceId] = device.connectivityType.orEmpty()
             onDeviceListChanged()
         }
 
@@ -199,12 +211,21 @@ class KdeConnect : Application() {
         override fun onConnectionLost(link: BaseLink) {
             val device = devices[link.deviceId]
             val wasReachable = device?.isReachable == true
+            val previousLink = lastConnectivityType[link.deviceId] ?: device?.connectivityType
             Log.i("KDE/onConnectionLost", "removeLink, deviceId: ${link.deviceId}")
             if (device != null) {
                 device.removeLink(link)
                 if (wasReachable && !device.isReachable && device.isPaired) {
                     DisconnectLog.record(this@KdeConnect, device.name, connected = false)
+                    ConnectionLab.recordNoticed(previousLink.orEmpty(), "${link.name} disconnected")
+                } else if (wasReachable && previousLink != device.connectivityType) {
+                    val nextLink = device.connectivityType.orEmpty()
+                    val reason = "${link.name} disconnected; fallback link remained available"
+                    ConnectionLab.recordNoticed(previousLink.orEmpty(), reason)
+                    DisconnectLog.recordLinkSwitch(this@KdeConnect, device.name, previousLink.orEmpty(), nextLink, reason)
+                    ConnectionLab.recordSwitch(previousLink.orEmpty(), nextLink, reason)
                 }
+                lastConnectivityType[link.deviceId] = device.connectivityType.orEmpty()
                 if (!device.isReachable && !device.isPaired) {
                     scheduleForDeletion(device)
                 }
@@ -221,8 +242,17 @@ class KdeConnect : Application() {
                 Log.e("KdeConnect", "onDeviceInfoUpdated for an unknown device")
                 return
             }
+            val previousLink = lastConnectivityType[deviceInfo.id] ?: device.connectivityType.orEmpty()
             val hasChanges = device.updateDeviceInfo(deviceInfo)
-            if (hasChanges) {
+            device.notifyLinkTransportChanged()
+            val nextLink = device.connectivityType.orEmpty()
+            if (previousLink != nextLink) {
+                val reason = "The authenticated LAN connection moved to another route"
+                DisconnectLog.recordLinkSwitch(this@KdeConnect, device.name, previousLink, nextLink, reason)
+                ConnectionLab.recordSwitch(previousLink, nextLink, reason)
+            }
+            lastConnectivityType[deviceInfo.id] = nextLink
+            if (hasChanges || previousLink != nextLink) {
                 onDeviceListChanged()
             }
         }

@@ -107,6 +107,7 @@ fun PluginsScreen(
     localDeviceIcon: Int,
     remoteDeviceName: String,
     remoteDeviceIcon: Int,
+    connectivityType: String?,
 ) {
     PluginsScreenContent(
         pluginsWithButtons = pluginsWithButtons,
@@ -123,6 +124,7 @@ fun PluginsScreen(
         localDeviceIcon = localDeviceIcon,
         remoteDeviceName = remoteDeviceName,
         remoteDeviceIcon = remoteDeviceIcon,
+        connectivityType = connectivityType,
     )
 }
 
@@ -142,6 +144,7 @@ private fun PluginsScreenContent(
     localDeviceIcon: Int,
     remoteDeviceName: String,
     remoteDeviceIcon: Int,
+    connectivityType: String?,
 ) {
     val bottomPadding = safeDrawingBottomPadding().calculateBottomPadding()
 
@@ -197,6 +200,7 @@ private fun PluginsScreenContent(
                     localDeviceIcon = localDeviceIcon,
                     remoteDeviceName = remoteDeviceName,
                     remoteDeviceIcon = remoteDeviceIcon,
+                    connectivityType = connectivityType,
                 )
 
                 if (!isWideLayout) clipboardAction?.let { button ->
@@ -247,6 +251,7 @@ private fun ConnectionOverview(
     localDeviceIcon: Int,
     remoteDeviceName: String,
     remoteDeviceIcon: Int,
+    connectivityType: String?,
 ) {
     Card(
         modifier = Modifier.fillMaxWidth(),
@@ -282,7 +287,8 @@ private fun ConnectionOverview(
                     ) {}
                     Text(text = stringResource(R.string.connected), style = MaterialTheme.typography.labelLarge)
                     Text(text = "|", color = MaterialTheme.colorScheme.onSurfaceVariant)
-                    Text(text = stringResource(R.string.wifi), style = MaterialTheme.typography.labelLarge)
+                    Text(text = connectivityType ?: stringResource(R.string.connection_generic),
+                        style = MaterialTheme.typography.labelLarge)
                 }
             }
         }
@@ -578,6 +584,7 @@ private fun PluginsScreenPreview() {
             localDeviceIcon = R.drawable.ic_device_tablet_32dp,
             remoteDeviceName = "OnePlus 15",
             remoteDeviceIcon = R.drawable.ic_device_phone_32dp,
+            connectivityType = "Wi-Fi",
         )
     }
 }

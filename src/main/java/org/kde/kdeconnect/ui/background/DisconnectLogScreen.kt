@@ -27,8 +27,13 @@ internal fun DisconnectLogScreen(entries: List<DisconnectLogEntry>, onBack: () -
             entries.forEach { entry ->
                 FoundationCard {
                     StatusLine(entry.connected,
-                        stringResource(if (entry.connected) R.string.disconnect_log_reconnected else R.string.disconnect_log_disconnected,
+                        if (entry.linkFrom != null && entry.linkTo != null) stringResource(R.string.connection_link_switch)
+                        else stringResource(if (entry.connected) R.string.disconnect_log_reconnected else R.string.disconnect_log_disconnected,
                             entry.deviceName))
+                    if (entry.linkFrom != null && entry.linkTo != null) {
+                        Text("${entry.linkFrom} → ${entry.linkTo}", style = MaterialTheme.typography.bodyMedium)
+                    }
+                    entry.reason?.let { Text(it, style = MaterialTheme.typography.bodyMedium) }
                     Text(dateFormat.format(Date(entry.timestamp)), style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant)
                     if (!entry.connected) {

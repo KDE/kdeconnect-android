@@ -306,6 +306,7 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
                                     localDeviceIcon = DeviceHelper.deviceType.toDrawableId(),
                                     remoteDeviceName = device.name,
                                     remoteDeviceIcon = device.deviceType.toDrawableId(),
+                                    connectivityType = device.connectivityType,
                                 )
                                 displayBatteryInfoIfPossible()
                             } else {

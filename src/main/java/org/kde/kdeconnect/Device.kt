@@ -32,6 +32,8 @@ import org.kde.kdeconnect.DeviceStats.countSent
 import org.kde.kdeconnect.PairingHandler.PairingCallback
 import org.kde.kdeconnect.backends.BaseLink
 import org.kde.kdeconnect.backends.BaseLink.PacketReceiver
+import org.kde.kdeconnect.backends.ConnectionTransport
+import org.kde.kdeconnect.backends.FallbackLinkManager
 import org.kde.kdeconnect.helpers.DeviceHelper
 import org.kde.kdeconnect.helpers.NotificationHelper
 import org.kde.kdeconnect.helpers.TrustedDevices
@@ -45,6 +47,8 @@ import java.security.cert.Certificate
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.ConcurrentMap
 import java.util.concurrent.CopyOnWriteArrayList
+import java.util.concurrent.ConcurrentLinkedQueue
+import org.kde.kdeconnect.ui.background.ConnectionLab
 
 class Device : PacketReceiver {
 
@@ -66,6 +70,8 @@ class Device : PacketReceiver {
     var pairingHandler: PairingHandler
 
     private val links = CopyOnWriteArrayList<BaseLink>()
+    private val linkLock = Object()
+    private val deferredPackets = ConcurrentLinkedQueue<NetworkPacketWithCallback>()
 
     /**
      * Plugins that have matching capabilities.
@@ -137,7 +143,10 @@ class Device : PacketReceiver {
     }
 
     val connectivityType: String?
-        get() = links.firstOrNull()?.name
+        get() = FallbackLinkManager.preferredFirst(links).firstOrNull()?.let { context.getString(it.transport.labelRes) }
+
+    val activeTransport: ConnectionTransport?
+        get() = FallbackLinkManager.preferredFirst(links).firstOrNull()?.transport
 
     val name: String
         get() = deviceInfo.name
@@ -317,8 +326,13 @@ class Device : PacketReceiver {
         synchronized(sendChannel) {
             if (sendCoroutine == null) {
                 sendCoroutine = CoroutineScope(Dispatchers.IO).launch {
-                    for ((np, callback) in sendChannel) {
-                        sendPacketBlocking(np, callback)
+                    for (queued in sendChannel) {
+                        if (shouldDeferForFasterLink(queued.np)) {
+                            deferredPackets.add(queued)
+                            Log.i("KDE/sendPacket", "Deferred ${queued.np.type} for $name until a faster link returns")
+                        } else {
+                            sendPacketBlocking(queued.np, queued.callback)
+                        }
                     }
                 }
             }
@@ -326,22 +340,22 @@ class Device : PacketReceiver {
 
         // FilesHelper.LogOpenFileCount();
         links.add(link)
+        synchronized(linkLock) { linkLock.notifyAll() }
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             // sorting CopyOnWriteArrayList is not supported in SDK < 26 (throws UnsupportedOperationException)
             val copy = links.toMutableList()
-            copy.sortWith { o1, o2 ->
-                o2.linkProvider.priority compareTo o1.linkProvider.priority
-            }
+            val sorted = FallbackLinkManager.preferredFirst(copy)
             links.clear()
-            links.addAll(copy)
+            links.addAll(sorted)
         } else {
-            links.sortWith { o1, o2 ->
-                o2.linkProvider.priority compareTo o1.linkProvider.priority
-            }
+            val sorted = FallbackLinkManager.preferredFirst(links)
+            links.clear()
+            links.addAll(sorted)
         }
 
         link.addPacketReceiver(this)
+        drainDeferredPackets()
 
         val hasChanges = updateDeviceInfo(link.deviceInfo)
 
@@ -356,6 +370,7 @@ class Device : PacketReceiver {
 
         link.removePacketReceiver(this)
         links.remove(link)
+        synchronized(linkLock) { linkLock.notifyAll() }
         Log.i(
             "KDE/Device",
             "removeLink: ${link.linkProvider.name} -> $name active links: ${links.size}"
@@ -514,14 +529,55 @@ class Device : PacketReceiver {
             return false
         }
 
-        val success = links.any { link ->
+        // Payloads and packets too large for Bluetooth remain queued until a faster link returns.
+        var disconnectedAt = 0L
+        synchronized(linkLock) {
+            while (links.none { FallbackLinkManager.canSend(it, np) }) {
+                try {
+                    if (links.isEmpty()) {
+                        if (disconnectedAt == 0L) disconnectedAt = android.os.SystemClock.elapsedRealtime()
+                        val elapsed = android.os.SystemClock.elapsedRealtime() - disconnectedAt
+                        val remaining = DISCONNECTED_PACKET_WAIT_MS - elapsed
+                        if (remaining <= 0) {
+                            val error = IOException("No connection returned within ${DISCONNECTED_PACKET_WAIT_MS}ms")
+                            callback.onFailure(error)
+                            return false
+                        }
+                        linkLock.wait(remaining)
+                    } else {
+                        disconnectedAt = 0L
+                        linkLock.wait()
+                    }
+                } catch (_: InterruptedException) {
+                    Thread.currentThread().interrupt()
+                    callback.onFailure(InterruptedException("Waiting for a suitable connection was interrupted"))
+                    return false
+                }
+            }
+        }
+
+        val sendStartedAt = android.os.SystemClock.elapsedRealtime()
+        var selectedLink: BaseLink? = null
+        val success = FallbackLinkManager.preferredFirst(links).any { link ->
+            if (!FallbackLinkManager.canSend(link, np)) return@any false
             try {
-                link.sendPacket(np, callback, sendPayloadFromSameThread)
+                link.sendPacket(np, callback, sendPayloadFromSameThread).also { sent ->
+                    if (sent) selectedLink = link
+                }
             } catch (e: IOException) {
                 Log.w("KDE/sendPacket", "Failed to send packet", e)
                 false
             }.also { sent ->
                 countSent(deviceId, np.type, sent)
+            }
+        }
+
+        if (success) {
+            selectedLink?.let { link ->
+                ConnectionLab.recordChosenLink(link.transport.label)
+                if (np.hasPayload() && sendPayloadFromSameThread) {
+                    ConnectionLab.recordTransfer(np.payloadSize, android.os.SystemClock.elapsedRealtime() - sendStartedAt)
+                }
             }
         }
 
@@ -533,6 +589,28 @@ class Device : PacketReceiver {
         }
 
         return success
+    }
+
+    private fun shouldDeferForFasterLink(packet: NetworkPacket): Boolean =
+        links.any { it.transport == ConnectionTransport.BLUETOOTH } &&
+            links.none { FallbackLinkManager.canSend(it, packet) }
+
+    private fun drainDeferredPackets() {
+        val waiting = deferredPackets.toList()
+        waiting.forEach { queued ->
+            if (links.any { FallbackLinkManager.canSend(it, queued.np) } && deferredPackets.remove(queued)) {
+                sendChannel.trySend(queued)
+            }
+        }
+    }
+
+    fun notifyLinkTransportChanged() {
+        synchronized(linkLock) { linkLock.notifyAll() }
+        drainDeferredPackets()
+    }
+
+    companion object {
+        private const val DISCONNECTED_PACKET_WAIT_MS = 15_000L
     }
 
     //
