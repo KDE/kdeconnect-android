@@ -127,6 +127,12 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
         mprisDevices.remove(device)
         plugin.removePlayerStatusUpdatedHandler("media_notification")
         plugin.removePlayerListUpdatedHandler("media_notification")
+        if (currentShowingPlayer?.device?.deviceId == device) {
+            currentShowingPlayer = null
+        }
+        if (lastShowingDeviceId == device) {
+            lastShowingDeviceId = null
+        }
         updateMediaNotification()
 
         val systemVolumeProvider = SystemVolumeProvider.getInstance()
