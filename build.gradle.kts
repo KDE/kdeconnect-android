@@ -255,6 +255,8 @@ androidComponents {
 }
 
 dependencies {
+    implementation(libs.shizuku.api)
+    implementation(libs.shizuku.provider)
     // It has a bug that causes a crash when using PosixFilePermission and minSdk < 26.
     // It has been used in SSHD Core.
     // We have taken a workaround to fix it.

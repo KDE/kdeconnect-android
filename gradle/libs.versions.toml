@@ -38,7 +38,12 @@ swiperefreshlayout = "1.2.0"
 uiToolingPreview = "1.12.1"
 univocityParsers = "2.9.1"
 
+# 13.1.5 requires API 24; keep API 23 support with the 12.2 line.
+shizuku = "12.2.0"
+
 [libraries]
+shizuku-api = { module = "dev.rikka.shizuku:api", version.ref = "shizuku" }
+shizuku-provider = { module = "dev.rikka.shizuku:provider", version.ref = "shizuku" }
 android-desugarJdkLibsNio = { module = "com.android.tools:desugar_jdk_libs_nio", version.ref = "androidDesugarJdkLibs" }
 android-smsmms = { module = "org.kde.invent.sredman:android-smsmms", version.ref = "androidSmsmms" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }

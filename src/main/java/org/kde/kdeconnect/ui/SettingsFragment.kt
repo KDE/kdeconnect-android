@@ -97,6 +97,17 @@ class SettingsFragment : PreferenceFragmentCompat() {
             listOf(persistentNotificationPref(context), exportLogsPref(context), moreSettingsPref(context)),
         )
 
+        addCategory(R.string.background_features_title, listOf(
+            Preference(context).apply {
+                setTitle(R.string.shizuku_setup_title)
+                setSummary(R.string.shizuku_setup_summary)
+                setLayoutResource(R.layout.ecosystem_preference_item)
+                setOnPreferenceClickListener {
+                    startActivity(Intent(context, org.kde.kdeconnect.ui.background.BackgroundFeaturesActivity::class.java))
+                    true
+                }
+            },
+        ))
         preferenceScreen = screen
     }
 

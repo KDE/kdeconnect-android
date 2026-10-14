@@ -58,6 +58,7 @@ class KdeConnect : Application() {
         SslHelper.initialiseCertificate(this)
         PluginFactory.initPluginInfo(this)
         NotificationHelper.initializeChannels(this)
+        org.kde.kdeconnect.ui.background.ShizukuSupport.initialize(this)
         LifecycleHelper.initializeObserver()
         loadRememberedDevicesFromSettings()
 

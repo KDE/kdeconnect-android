@@ -87,6 +87,17 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
         android:requestLegacyExternalStorage="true"> <!-- requestLegacyExternalStorage is only used in Android 10: https://developer.android.com/training/data-storage/use-cases#opt-out-in-production-app -->
 
 
+        <provider
+            android:name="rikka.shizuku.ShizukuProvider"
+            android:authorities="${applicationId}.shizuku"
+            android:multiprocess="false"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.INTERACT_ACROSS_USERS_FULL" />
+        <activity
+            android:name="org.kde.kdeconnect.ui.background.BackgroundFeaturesActivity"
+            android:exported="false" />
+
         <receiver
             android:name="com.android.mms.transaction.PushReceiver"
             android:exported="true"

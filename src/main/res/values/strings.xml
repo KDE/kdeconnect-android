@@ -708,4 +708,28 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="pref_mpris_volume_control_key" translatable="false">mpris_volume_control_enabled</string>
     <string name="pref_mpris_volume_control_title">Hardware volume keys</string>
     <string name="pref_mpris_volume_control_summary">Control the connected device\'s media volume using this phone\'s hardware buttons</string>
+    <string name="background_features_title">Background features</string>
+    <string name="shizuku_setup_title">Shizuku setup</string>
+    <string name="shizuku_setup_summary">Set up Wireless debugging and check Ecosystem permission</string>
+    <string name="shizuku_running">Shizuku is running</string>
+    <string name="shizuku_stopped">Shizuku is not running</string>
+    <string name="shizuku_permission_granted">Ecosystem has permission</string>
+    <string name="shizuku_permission_missing">Ecosystem needs permission</string>
+    <string name="shizuku_restart_title">Restart Shizuku</string>
+    <string name="shizuku_restart_hint">Shizuku has stopped. Start it again in the Shizuku app using Wireless debugging. It needs starting again after every reboot.</string>
+    <string name="shizuku_step_install">1. Open Shizuku</string>
+    <string name="shizuku_step_install_hint">Install Shizuku from its official download page if it is not installed, then open it.</string>
+    <string name="shizuku_open">Open Shizuku</string>
+    <string name="shizuku_step_debug">2. Enable Wireless debugging</string>
+    <string name="shizuku_step_debug_hint">In Developer options, turn on Wireless debugging while connected to Wi-Fi. If Developer options are hidden, tap the build number seven times in About device.</string>
+    <string name="shizuku_open_debug">Open Developer options</string>
+    <string name="shizuku_step_pair">3. Pair and start</string>
+    <string name="shizuku_step_pair_hint">In Shizuku, choose Pairing. In Wireless debugging, choose Pair device with pairing code and enter that code in Shizuku’s pairing notification. Return to Shizuku and tap Start.</string>
+    <string name="shizuku_step_permission">4. Allow Ecosystem</string>
+    <string name="shizuku_step_permission_hint">Return here and allow Ecosystem to use Shizuku. If permission was denied permanently, enable Ecosystem in Shizuku’s Authorized applications.</string>
+    <string name="shizuku_allow">Allow Ecosystem</string>
+    <string name="background_check_again">Check again</string>
+    <string name="background_back">Back</string>
+    <string name="shizuku_reboot_reminder">After a reboot, open Shizuku and start it again. Ecosystem will remind you if a previously running Shizuku service stops.</string>
+    <string name="background_cannot_open">This settings page is unavailable. Open it from the system Settings app.</string>
 </resources>
