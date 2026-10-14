@@ -8,16 +8,24 @@ package org.kde.kdeconnect.plugins.clipboard
 import android.content.ClipDescription
 import android.content.ClipboardManager
 import android.content.Context
+import android.content.ContextWrapper
+import android.os.Handler
 import android.os.IBinder
+import android.os.Looper
 import android.os.Parcel
 import android.text.Html
 import android.util.Log
 
 /** Runs as Shizuku's shell user so Android permits background clipboard reads. */
-class EcosystemClipboardUserService : IClipboardWatcher.Stub() {
+class EcosystemClipboardUserService() : IClipboardWatcher.Stub() {
     @Volatile private var callback: IClipboardSyncCallback? = null
+    private var serviceContext: Context? = null
     private var clipboardManager: ClipboardManager? = null
     private var listener: ClipboardManager.OnPrimaryClipChangedListener? = null
+
+    constructor(context: Context) : this() {
+        serviceContext = context
+    }
 
     override fun setCallback(callback: IClipboardSyncCallback?) {
         this.callback = callback
@@ -26,8 +34,18 @@ class EcosystemClipboardUserService : IClipboardWatcher.Stub() {
     override fun start(): Boolean {
         if (listener != null) return true
         try {
-            val context = systemContext()
-            val manager = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val context = serviceContext
+                ?: throw IllegalStateException("Shizuku v13 or later is required for the user-service context")
+            // Shizuku runs this process as shell (uid 2000), but its injected Context uses the
+            // Ecosystem package name. Android 16 validates that package against the caller UID
+            // when dispatching clipboard listeners, so attribute this manager to the shell package.
+            val shellContext = object : ContextWrapper(context) {
+                override fun getOpPackageName(): String = SHELL_PACKAGE
+                override fun getPackageName(): String = SHELL_PACKAGE
+            }
+            val constructor = ClipboardManager::class.java.getDeclaredConstructor(Context::class.java, Handler::class.java)
+            constructor.isAccessible = true
+            val manager = constructor.newInstance(shellContext, Handler(Looper.getMainLooper())) as ClipboardManager
             val newListener = ClipboardManager.OnPrimaryClipChangedListener { reportCurrentClip(manager) }
             clipboardManager = manager
             listener = newListener
@@ -83,13 +101,8 @@ class EcosystemClipboardUserService : IClipboardWatcher.Stub() {
         }
     }
 
-    private fun systemContext(): Context {
-        val activityThread = Class.forName("android.app.ActivityThread")
-        val thread = activityThread.getMethod("systemMain").invoke(null)
-        return activityThread.getMethod("getSystemContext").invoke(thread) as Context
-    }
-
     companion object {
         private const val TAG = "EcosystemClipboard"
+        private const val SHELL_PACKAGE = "com.android.shell"
     }
 }

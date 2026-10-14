@@ -90,7 +90,7 @@ internal object ClipboardSyncManager {
         Shizuku.UserServiceArgs(ComponentName(appContext, EcosystemClipboardUserService::class.java))
             .daemon(true)
             .tag(SERVICE_TAG)
-            .version(1)
+            .version(6)
             .processNameSuffix("clipboard_watcher")
     }
 
@@ -201,9 +201,11 @@ internal object ClipboardSyncManager {
         if (ClipboardSyncPreferences.lastLocalHash(appContext) == hash) return
         ClipboardSyncPreferences.rememberLocalHash(appContext, hash)
         ThreadHelper.execute {
-            KdeConnect.getInstance().devices.values
+            val destinations = KdeConnect.getInstance().devices.values
                 .filter { it.isPaired && it.isReachable && TrustedDevices.isTrustedDevice(appContext, it.deviceId) }
-                .forEach { device -> device.getPlugin<ClipboardPlugin>()?.sendAutomaticClipboard(text, hash) }
+            destinations.forEach { device ->
+                device.getPlugin<ClipboardPlugin>()?.sendAutomaticClipboard(text, hash)
+            }
         }
     }
 
