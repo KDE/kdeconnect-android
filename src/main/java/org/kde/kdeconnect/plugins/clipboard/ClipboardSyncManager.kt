@@ -13,21 +13,28 @@ import android.net.NetworkCapabilities
 import android.os.Handler
 import android.os.IBinder
 import android.os.Looper
+import android.os.SystemClock
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import android.util.Log
 import android.widget.Toast
 import androidx.core.content.edit
+import org.json.JSONArray
+import org.json.JSONObject
 import org.kde.kdeconnect.BackgroundService
 import org.kde.kdeconnect.KdeConnect
+import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.helpers.ThreadHelper
 import org.kde.kdeconnect.helpers.TrustedDevices
 import org.kde.kdeconnect.helpers.TrustedNetworkHelper
+import org.kde.kdeconnect.plugins.Plugin
+import org.kde.kdeconnect.ui.background.ConnectionLab
 import org.kde.kdeconnect.ui.background.ShizukuSupport
 import org.kde.kdeconnect_tp.R
 import rikka.shizuku.Shizuku
 import java.security.MessageDigest
+import java.util.UUID
 
 internal data class ClipboardSyncSettings(
     val enabled: Boolean,
@@ -77,8 +84,12 @@ internal object ClipboardSyncManager {
     private const val TAG = "EcosystemClipboard"
     private const val SERVICE_TAG = "ecosystem_clipboard_watcher"
     private const val REMOTE_COOLDOWN_MS = 5_000L
+    private const val DELIVERY_RETRY_MS = 15_000L
     private val mainHandler = Handler(Looper.getMainLooper())
     private val remoteHashes = LinkedHashMap<String, Long>()
+    private val outboxLock = Any()
+    private val inFlight = mutableMapOf<String, Long>()
+    @Volatile private var retryScheduled = false
     private lateinit var appContext: Context
     private var initialized = false
     private var isBound = false
@@ -149,9 +160,13 @@ internal object ClipboardSyncManager {
         if (initialized) return
         initialized = true
         appContext = context.applicationContext
+        KdeConnect.getInstance().addDeviceListChangedCallback("ClipboardDeliveryQueue") {
+            ThreadHelper.execute { flushPendingClipboard() }
+        }
         Shizuku.addBinderReceivedListenerSticky(shizukuReceived)
         Shizuku.addBinderDeadListener(shizukuDead)
         Shizuku.addRequestPermissionResultListener(permissionResult)
+        ThreadHelper.execute(::replayPendingIncoming)
         refresh()
     }
 
@@ -200,13 +215,12 @@ internal object ClipboardSyncManager {
         }
         if (ClipboardSyncPreferences.lastLocalHash(appContext) == hash) return
         ClipboardSyncPreferences.rememberLocalHash(appContext, hash)
-        ThreadHelper.execute {
-            val destinations = KdeConnect.getInstance().devices.values
-                .filter { it.isPaired && it.isReachable && TrustedDevices.isTrustedDevice(appContext, it.deviceId) }
-            destinations.forEach { device ->
-                device.getPlugin<ClipboardPlugin>()?.sendAutomaticClipboard(text, hash)
-            }
-        }
+        val eventId = UUID.randomUUID().toString()
+        val destinations = KdeConnect.getInstance().devices.values
+            .filter { it.isPaired && it.isPluginEnabled(Plugin.getPluginKey(ClipboardPlugin::class.java)) &&
+                TrustedDevices.isTrustedDevice(appContext, it.deviceId) }
+        destinations.forEach { device -> enqueueClipboard(device.deviceId, eventId, text, System.currentTimeMillis()) }
+        flushPendingClipboard()
     }
 
     /** Applies a peer clip after recording it so the privileged watcher cannot echo it back. */
@@ -214,14 +228,25 @@ internal object ClipboardSyncManager {
         if (text.isNullOrBlank() || sensitive) return false
         val settings = ClipboardSyncPreferences.read(context)
         if (id != null && !settings.enabled) return false
+        if (!id.isNullOrBlank() && !beginIncomingDelivery(context, id, text, sourceName)) {
+            ConnectionLab.recordClipboardDuplicate()
+            return true
+        }
         val hash = hash(text)
         synchronized(remoteHashes) {
             pruneRemoteHashes()
-            if (remoteHashes.containsKey(hash)) return true
+            if (remoteHashes.containsKey(hash)) {
+                if (!id.isNullOrBlank()) finishIncomingDelivery(context, id)
+                return true
+            }
             remoteHashes[hash] = System.currentTimeMillis()
         }
-        if (ClipboardListener.instance(context).currentContent == text) return true
+        if (ClipboardListener.instance(context).currentContent == text) {
+            if (!id.isNullOrBlank()) finishIncomingDelivery(context, id)
+            return true
+        }
         ClipboardListener.instance(context).setText(text, remoteDevice = true)
+        if (!id.isNullOrBlank()) finishIncomingDelivery(context, id)
         if (settings.showConfirmation) {
             mainHandler.post {
                 Toast.makeText(context.applicationContext,
@@ -229,6 +254,137 @@ internal object ClipboardSyncManager {
             }
         }
         return true
+    }
+
+    private data class PendingClipboard(val deviceId: String, val id: String, val text: String, val sentAt: Long)
+
+    private fun enqueueClipboard(deviceId: String, id: String, text: String, sentAt: Long) {
+        synchronized(outboxLock) {
+            val pending = readOutbox()
+            if (pending.none { it.deviceId == deviceId && it.id == id }) {
+                pending.add(PendingClipboard(deviceId, id, text, sentAt))
+                writeOutbox(pending)
+            }
+        }
+    }
+
+    private fun flushPendingClipboard() {
+        if (!initialized || !ClipboardSyncPreferences.read(appContext).enabled) return
+        val pending = synchronized(outboxLock) { readOutbox().toList() }
+        val devices = KdeConnect.getInstance().devices
+        pending.forEach { item ->
+            val device = devices[item.deviceId] ?: return@forEach
+            if (!device.isReachable || !device.isPaired ||
+                !device.isPluginEnabled(Plugin.getPluginKey(ClipboardPlugin::class.java)) ||
+                !TrustedDevices.isTrustedDevice(appContext, item.deviceId)) return@forEach
+            val deliveryKey = "${item.deviceId}:${item.id}"
+            val now = SystemClock.elapsedRealtime()
+            val shouldSend = synchronized(inFlight) {
+                val previous = inFlight[deliveryKey]
+                if (previous != null && now - previous < DELIVERY_RETRY_MS) false
+                else { inFlight[deliveryKey] = now; true }
+            }
+            if (!shouldSend) return@forEach
+            val packet = NetworkPacket(ClipboardPlugin.PACKET_TYPE_CLIPBOARD)
+            packet["content"] = item.text
+            packet[ClipboardPlugin.ECOSYSTEM_CLIPBOARD_ID] = item.id
+            packet[ClipboardPlugin.ECOSYSTEM_CLIPBOARD_SENT_AT] = item.sentAt
+            device.sendPacket(packet)
+        }
+        if (pending.isNotEmpty()) scheduleDeliveryRetry()
+    }
+
+    fun confirmDelivery(deviceId: String, id: String) {
+        if (id.isBlank()) return
+        synchronized(outboxLock) {
+            val pending = readOutbox()
+            pending.removeAll { it.deviceId == deviceId && it.id == id }
+            writeOutbox(pending)
+        }
+        synchronized(inFlight) { inFlight.remove("$deviceId:$id") }
+    }
+
+    fun pendingDeliveryCount(): Int = synchronized(outboxLock) { readOutbox().size }
+
+    private fun scheduleDeliveryRetry() {
+        if (retryScheduled) return
+        retryScheduled = true
+        mainHandler.postDelayed({
+            retryScheduled = false
+            ThreadHelper.execute { flushPendingClipboard() }
+        }, DELIVERY_RETRY_MS)
+    }
+
+    private fun beginIncomingDelivery(context: Context, id: String, text: String, sourceName: String): Boolean = synchronized(outboxLock) {
+        val prefs = context.getSharedPreferences("ecosystem_clipboard_sync", Context.MODE_PRIVATE)
+        val seen = runCatching { JSONArray(prefs.getString("seen_clipboard_delivery_ids", "[]")) }
+            .getOrDefault(JSONArray())
+        if ((0 until seen.length()).any { seen.optString(it) == id }) return@synchronized false
+        val pending = runCatching { JSONArray(prefs.getString("pending_incoming_clipboard", "[]")) }
+            .getOrDefault(JSONArray())
+        if ((0 until pending.length()).any { pending.optJSONObject(it)?.optString("id") == id }) return@synchronized true
+        pending.put(JSONObject().put("id", id).put("text", text).put("source", sourceName))
+        prefs.edit { putString("pending_incoming_clipboard", pending.toString()) }
+        true
+    }
+
+    private fun finishIncomingDelivery(context: Context, id: String) = synchronized(outboxLock) {
+        val prefs = context.getSharedPreferences("ecosystem_clipboard_sync", Context.MODE_PRIVATE)
+        val seen = runCatching { JSONArray(prefs.getString("seen_clipboard_delivery_ids", "[]")) }
+            .getOrDefault(JSONArray())
+        val nextSeen = JSONArray()
+        for (index in (seen.length() - 499).coerceAtLeast(0) until seen.length()) nextSeen.put(seen.optString(index))
+        if ((0 until seen.length()).none { seen.optString(it) == id }) nextSeen.put(id)
+        val pending = runCatching { JSONArray(prefs.getString("pending_incoming_clipboard", "[]")) }
+            .getOrDefault(JSONArray())
+        val nextPending = JSONArray()
+        for (index in 0 until pending.length()) {
+            val row = pending.optJSONObject(index) ?: continue
+            if (row.optString("id") != id) nextPending.put(row)
+        }
+        prefs.edit {
+            putString("seen_clipboard_delivery_ids", nextSeen.toString())
+            putString("pending_incoming_clipboard", nextPending.toString())
+        }
+    }
+
+    private fun replayPendingIncoming() {
+        if (!initialized) return
+        val prefs = appContext.getSharedPreferences("ecosystem_clipboard_sync", Context.MODE_PRIVATE)
+        val pending = runCatching { JSONArray(prefs.getString("pending_incoming_clipboard", "[]")) }
+            .getOrDefault(JSONArray())
+        for (index in 0 until pending.length()) {
+            val row = pending.optJSONObject(index) ?: continue
+            applyIncoming(appContext, row.optString("text"), row.optString("id"), row.optString("source"))
+        }
+    }
+
+    private fun readOutbox(): MutableList<PendingClipboard> {
+        val prefs = appContext.getSharedPreferences("ecosystem_clipboard_sync", Context.MODE_PRIVATE)
+        val json = runCatching { JSONArray(prefs.getString("pending_clipboard_delivery", "[]")) }
+            .getOrDefault(JSONArray())
+        return (0 until json.length()).mapNotNull { index ->
+            val row = json.optJSONObject(index) ?: return@mapNotNull null
+            val deviceId = row.optString("device")
+            val id = row.optString("id")
+            if (deviceId.isBlank() || id.isBlank()) null
+            else PendingClipboard(deviceId, id, row.optString("text"), row.optLong("sentAt"))
+        }.toMutableList()
+    }
+
+    private fun writeOutbox(pending: List<PendingClipboard>) {
+        val json = JSONArray()
+        pending.forEach { row ->
+            json.put(JSONObject().put("device", row.deviceId).put("id", row.id)
+                .put("text", row.text).put("sentAt", row.sentAt))
+        }
+        appContext.getSharedPreferences("ecosystem_clipboard_sync", Context.MODE_PRIVATE).edit {
+            putString("pending_clipboard_delivery", json.toString())
+        }
+    }
+
+    fun recordClipboardDelay(sentAt: Long) {
+        if (sentAt > 0) ConnectionLab.recordClipboardDelay((System.currentTimeMillis() - sentAt).coerceAtLeast(0))
     }
 
     private fun isTrustedWifiAllowed(context: Context, settings: ClipboardSyncSettings): Boolean {

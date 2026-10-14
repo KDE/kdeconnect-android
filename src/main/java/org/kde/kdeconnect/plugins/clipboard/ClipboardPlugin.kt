@@ -41,10 +41,21 @@ class ClipboardPlugin : Plugin() {
         val content = np.getString("content")
         when (np.type) {
             (PACKET_TYPE_CLIPBOARD) -> {
-                ClipboardSyncManager.applyIncoming(
+                val id = np.getString(ECOSYSTEM_CLIPBOARD_ID)
+                val accepted = ClipboardSyncManager.applyIncoming(
                     context, content, np.getString(ECOSYSTEM_CLIPBOARD_ID), device.name,
                     np.getBoolean(ECOSYSTEM_CLIPBOARD_SENSITIVE, false),
                 )
+                if (accepted && id.isNotBlank()) {
+                    val ack = NetworkPacket(PACKET_TYPE_CLIPBOARD_ACK)
+                    ack[ECOSYSTEM_CLIPBOARD_ID] = id
+                    device.sendPacket(ack)
+                    ClipboardSyncManager.recordClipboardDelay(np.getLong(ECOSYSTEM_CLIPBOARD_SENT_AT, 0L))
+                }
+                return true
+            }
+            (PACKET_TYPE_CLIPBOARD_ACK) -> {
+                ClipboardSyncManager.confirmDelivery(device.deviceId, np.getString(ECOSYSTEM_CLIPBOARD_ID))
                 return true
             }
             (PACKET_TYPE_CLIPBOARD_CONNECT) -> {
@@ -118,9 +129,9 @@ class ClipboardPlugin : Plugin() {
         ClipboardListener.instance(context).removeObserver(observer)
     }
 
-    override val supportedPacketTypes: Array<String> = arrayOf(PACKET_TYPE_CLIPBOARD, PACKET_TYPE_CLIPBOARD_CONNECT)
+    override val supportedPacketTypes: Array<String> = arrayOf(PACKET_TYPE_CLIPBOARD, PACKET_TYPE_CLIPBOARD_CONNECT, PACKET_TYPE_CLIPBOARD_ACK)
 
-    override val outgoingPacketTypes: Array<String> = arrayOf(PACKET_TYPE_CLIPBOARD, PACKET_TYPE_CLIPBOARD_CONNECT)
+    override val outgoingPacketTypes: Array<String> = arrayOf(PACKET_TYPE_CLIPBOARD, PACKET_TYPE_CLIPBOARD_CONNECT, PACKET_TYPE_CLIPBOARD_ACK)
 
     override fun getUiButtons(): List<PluginUiButton> {
         return if (!canSyncAutomatically(context)) {
@@ -174,8 +185,10 @@ class ClipboardPlugin : Plugin() {
          * "content": "password"
          * }
          */
-        private const val PACKET_TYPE_CLIPBOARD = "kdeconnect.clipboard"
-        private const val ECOSYSTEM_CLIPBOARD_ID = "ecosystem_clipboard_id"
+        internal const val PACKET_TYPE_CLIPBOARD = "kdeconnect.clipboard"
+        internal const val PACKET_TYPE_CLIPBOARD_ACK = "ecosystem.clipboard.ack"
+        internal const val ECOSYSTEM_CLIPBOARD_ID = "ecosystem_clipboard_id"
+        internal const val ECOSYSTEM_CLIPBOARD_SENT_AT = "ecosystem_clipboard_sent_at"
         private const val ECOSYSTEM_CLIPBOARD_SENSITIVE = "ecosystem_clipboard_sensitive"
 
         /**
