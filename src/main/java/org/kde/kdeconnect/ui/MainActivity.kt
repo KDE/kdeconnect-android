@@ -62,6 +62,9 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
     private val mNavigationView: NavigationView by lazy { binding.navigationDrawer }
     private var mDrawerLayout: DrawerLayout? = null
 
+    val isTwoPaneLayout: Boolean
+        get() = resources.getBoolean(R.bool.is_two_pane)
+
     private val openDocumentTreeLauncher = registerForActivityResult(ActivityResultContracts.OpenDocumentTree()) { uri ->
         if (uri != null) {
             ShareSettingsFragment.saveStorageLocationPreference(this, uri)

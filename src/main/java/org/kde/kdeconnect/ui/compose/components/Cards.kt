@@ -32,8 +32,9 @@ fun KdeCard(
             .fillMaxWidth()
             .padding(4.dp)
             .clickable(onClick = onClick),
-        colors = CardDefaults.cardColors(),
-        elevation = CardDefaults.cardElevation(),
+        shape = MaterialTheme.shapes.extraLarge,
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+        elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
         content = content
     )
 }

@@ -27,8 +27,12 @@ import androidx.core.content.ContextCompat
 import androidx.preference.EditTextPreference
 import androidx.preference.ListPreference
 import androidx.preference.Preference
+import androidx.preference.PreferenceCategory
+import androidx.preference.PreferenceGroupAdapter
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -58,22 +62,49 @@ class SettingsFragment : PreferenceFragmentCompat() {
         val context = preferenceManager.context
         val screen = preferenceManager.createPreferenceScreen(context)
 
-        listOf(
-            deviceNamePref(context),
-            themePref(context),
-            persistentNotificationPref(context),
-            trustedNetworkPref(context),
-            devicesByIpPref(context),
-            bluetoothSupportPref(context),
-            exportLogsPref(context),
-            moreSettingsPref(context),
-        ).forEach(screen::addPreference)
+        screen.addPreference(PreferenceCategory(context).apply {
+            setTitle(R.string.settings_category_device)
+            addPreference(deviceNamePref(context))
+            addPreference(themePref(context))
+        })
+        screen.addPreference(PreferenceCategory(context).apply {
+            setTitle(R.string.settings_category_connections)
+            addPreference(trustedNetworkPref(context))
+            addPreference(devicesByIpPref(context))
+            addPreference(bluetoothSupportPref(context))
+        })
+        screen.addPreference(PreferenceCategory(context).apply {
+            setTitle(R.string.settings_category_app)
+            addPreference(persistentNotificationPref(context))
+            addPreference(exportLogsPref(context))
+            addPreference(moreSettingsPref(context))
+        })
 
         preferenceScreen = screen
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val recyclerView = listView
+        val layoutManager = GridLayoutManager(requireContext(), 1)
+        layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+            override fun getSpanSize(position: Int): Int {
+                val preference = (recyclerView.adapter as? PreferenceGroupAdapter)?.getItem(position)
+                return if (preference is PreferenceCategory) layoutManager.spanCount else 1
+            }
+        }
+        recyclerView.layoutManager = layoutManager
+        val horizontalInset = (16 * resources.displayMetrics.density).toInt()
+        recyclerView.setPadding(horizontalInset, recyclerView.paddingTop, horizontalInset, recyclerView.paddingBottom)
+        recyclerView.addOnLayoutChangeListener { _, left, _, right, _, oldLeft, _, oldRight, _ ->
+            val widthDp = (right - left) / resources.displayMetrics.density
+            val columns = if (widthDp >= 720) 2 else 1
+            if (layoutManager.spanCount != columns) layoutManager.spanCount = columns
+        }
+        recyclerView.post {
+            val widthDp = recyclerView.width / resources.displayMetrics.density
+            layoutManager.spanCount = if (widthDp >= 720) 2 else 1
+        }
         listView.setupBottomPadding()
     }
 

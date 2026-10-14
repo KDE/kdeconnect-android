@@ -14,7 +14,9 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.unit.dp
 
 @Composable
 fun KdeTheme(context : Context, content: @Composable () -> Unit) {
@@ -31,6 +33,13 @@ fun KdeTheme(context : Context, content: @Composable () -> Unit) {
     }
     MaterialTheme(
         colorScheme = colorScheme,
+        shapes = MaterialTheme.shapes.copy(
+            extraSmall = RoundedCornerShape(12.dp),
+            small = RoundedCornerShape(16.dp),
+            medium = RoundedCornerShape(20.dp),
+            large = RoundedCornerShape(24.dp),
+            extraLarge = RoundedCornerShape(30.dp),
+        ),
         content = content,
     )
 }

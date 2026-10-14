@@ -33,6 +33,7 @@ import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect.PairingHandler
 import org.kde.kdeconnect.base.BaseFragment
 import org.kde.kdeconnect.extensions.setupBottomPadding
+import org.kde.kdeconnect.helpers.DeviceHelper
 import org.kde.kdeconnect.helpers.security.SslHelper
 import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.plugins.battery.BatteryPlugin
@@ -81,7 +82,7 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
         savedInstanceState: Bundle?
     ): ActivityDeviceBinding {
         val fromDeviceList = requireArguments().getBoolean(ARG_FROM_DEVICE_LIST, false)
-        if (fromDeviceList) {
+        if (fromDeviceList || (mActivity as? MainActivity)?.isTwoPaneLayout == false) {
             val callback = object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
                     // Handle back button, so we go to the list of devices in case we came from there
@@ -258,7 +259,11 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
                                             childFragmentManager,
                                             null
                                         )
-                                    }
+                                    },
+                                    localDeviceName = DeviceHelper.getDeviceName(requireContext()),
+                                    localDeviceIcon = DeviceHelper.deviceType.toDrawableId(),
+                                    remoteDeviceName = device.name,
+                                    remoteDeviceIcon = device.deviceType.toDrawableId(),
                                 )
                                 displayBatteryInfoIfPossible()
                             } else {

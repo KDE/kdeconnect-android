@@ -13,7 +13,19 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
         All translations for all KDE apps are handled by the [localization team](https://l10n.kde.org).
         We really appreciate your translations, but make sure to submit them by working with the proper team!
   -->
-    <string name="kde_connect">KDE Connect</string>
+    <string name="kde_connect">Ecosystem</string>
+    <string name="my_ecosystem">My Ecosystem</string>
+    <string name="connected">Connected</string>
+    <string name="wifi">Wi-Fi</string>
+    <string name="open_plugin">Open</string>
+    <string name="plugin_action_description">Quick action</string>
+    <string name="allow_permission">Allow</string>
+    <string name="add_a_device">Add a device</string>
+    <string name="discovery_subtitle">Connect devices on your Wi-Fi network</string>
+    <string name="discovery_devices_appear_here">Nearby devices will appear here</string>
+    <string name="searching">Searching for devices</string>
+    <string name="offline">Offline</string>
+    <string name="pair">Pair</string>
     <string name="manifest_label_share">Send to Device</string>
     <string name="foreground_notification_no_devices">Not connected to any device</string>
     <string name="foreground_notification_devices">Connected to: %s</string>
@@ -369,8 +381,13 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="block_notification_contents">Block notification contents</string>
     <string name="block_notification_images">Block notification images</string>
 
-    <string name="pairing_title">KDE Connect Devices</string>
-    <string name="pairing_description">Other devices running KDE Connect in your same network should appear here.</string>
+    <string name="pairing_title">Devices</string>
+    <string name="pairing_description">Nearby Ecosystem devices on your network should appear here.</string>
+    <string name="share_to_subtitle">Choose a device to send your content</string>
+    <string name="share_action_send">Send</string>
+    <string name="settings_category_device">Your device</string>
+    <string name="settings_category_connections">Connections</string>
+    <string name="settings_category_app">App</string>
     <string name="device_rename_title">Rename device</string>
     <string name="device_rename_confirm">Rename</string>
     <string name="refresh">Refresh</string>

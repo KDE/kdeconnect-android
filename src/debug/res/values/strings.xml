@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-    <string name="kde_connect">Debug KDE Connect</string>
+    <string name="kde_connect">Ecosystem</string>
     <string name="quit_app_shortcut">Quit</string>
-    <string name="remote_keyboard_service">Debug KDE Connect Remote Keyboard</string>
+    <string name="remote_keyboard_service">Ecosystem Remote Keyboard</string>
 </resources>
