@@ -30,6 +30,8 @@ internal data class HealthCheckState(
     val clipboardSync: ClipboardSyncSettings = ClipboardSyncSettings(false, false, true, true),
     val clipboardWatcherActive: Boolean = false,
     val clipboardAutomaticAvailable: Boolean = false,
+    val keepAlive: KeepAliveReport = KeepAliveReport(),
+    val keepAliveBusy: Boolean = false,
 )
 
 @Composable
@@ -46,6 +48,8 @@ internal fun HealthCheckScreen(
     onConfirmAutostart: () -> Unit,
     onOpenClipboardSettings: () -> Unit,
     onOpenShizukuSetup: () -> Unit,
+    onApplyKeepAlive: () -> Unit,
+    onOpenNotificationSettings: () -> Unit,
 ) {
     FoundationPage(R.string.health_title, onBack) {
         Text(stringResource(R.string.health_summary), style = MaterialTheme.typography.bodyLarge)
@@ -56,6 +60,21 @@ internal fun HealthCheckScreen(
                 Text(stringResource(R.string.health_shizuku_next), style = MaterialTheme.typography.bodyMedium)
                 Button(onClick = onOpenShizuku) { Text(stringResource(R.string.shizuku_setup_title)) }
             }
+        }
+        FoundationCard {
+            Text(stringResource(R.string.keep_alive_title), style = MaterialTheme.typography.titleLarge)
+            StatusLine(state.batteryUnrestricted, stringResource(R.string.keep_alive_battery))
+            StatusLine(state.keepAlive.backgroundAllowed && !state.keepAlive.error,
+                stringResource(R.string.keep_alive_background))
+            StatusLine(state.keepAlive.standbyProtected && !state.keepAlive.error,
+                stringResource(R.string.keep_alive_standby))
+            Text(stringResource(R.string.keep_alive_explanation), style = MaterialTheme.typography.bodyMedium)
+            if (state.keepAlive.error) Text(stringResource(R.string.keep_alive_failed), color = MaterialTheme.colorScheme.error)
+            Button(onClick = onApplyKeepAlive, enabled = state.shizuku.authorized && !state.keepAliveBusy) {
+                Text(stringResource(if (state.keepAliveBusy) R.string.keep_alive_applying else R.string.keep_alive_apply))
+            }
+            TextButton(onClick = onOpenNotificationSettings) { Text(stringResource(R.string.keep_alive_notification)) }
+            Text(stringResource(R.string.keep_alive_notification_hint), style = MaterialTheme.typography.bodySmall)
         }
         FoundationCard {
             StatusLine(state.batteryUnrestricted,

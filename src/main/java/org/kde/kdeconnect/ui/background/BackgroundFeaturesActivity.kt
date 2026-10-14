@@ -55,9 +55,15 @@ class BackgroundFeaturesActivity : AppCompatActivity() {
                 if (showingDisconnectLog) {
                     DisconnectLogScreen(disconnectEntries, onBack = { finish() }, onRefresh = ::refresh)
                 } else if (showingHealth) {
-                    HealthCheckScreen(healthState, onBack = { finish() }, onCheck = ::refresh,
+                    HealthCheckScreen(healthState.copy(keepAlive = KeepAliveSupport.report, keepAliveBusy = KeepAliveSupport.busy), onBack = { finish() }, onCheck = ::refresh,
                         onOpenShizuku = { openSettings(Intent(this, BackgroundFeaturesActivity::class.java).putExtra(EXTRA_SCREEN, SCREEN_SHIZUKU)) },
                         onOpenBattery = ::openBatterySettings,
+                        onApplyKeepAlive = { KeepAliveSupport.refresh(apply = true) },
+                        onOpenNotificationSettings = {
+                            openSettings(Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS)
+                                .putExtra(Settings.EXTRA_APP_PACKAGE, packageName)
+                                .putExtra(Settings.EXTRA_CHANNEL_ID, org.kde.kdeconnect.helpers.NotificationHelper.Channels.PERSISTENT))
+                        },
                         onOpenConnection = { openSettings(Intent(Settings.ACTION_WIFI_SETTINGS)) },
                         onOpenNotifications = { openSettings(Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS)) },
                         onOpenOemSettings = ::openOemAutostart,
@@ -106,6 +112,7 @@ class BackgroundFeaturesActivity : AppCompatActivity() {
 
     private fun refresh() {
         ClipboardSyncManager.refresh()
+        KeepAliveSupport.refresh()
         clipboardSettings = ClipboardSyncManager.settings(this)
         shizukuState = ShizukuSupport.state(this)
         val enabledListeners = Settings.Secure.getString(contentResolver, "enabled_notification_listeners")
