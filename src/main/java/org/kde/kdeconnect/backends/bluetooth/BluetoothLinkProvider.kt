@@ -25,6 +25,8 @@ import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.DeviceInfo
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.backends.BaseLinkProvider
+import org.kde.kdeconnect.backends.ConnectionTransport
+import org.kde.kdeconnect.backends.FallbackLinkManager
 import org.kde.kdeconnect.extensions.getParcelableArrayExtraCompat
 import org.kde.kdeconnect.extensions.getParcelableExtraCompat
 import org.kde.kdeconnect.helpers.DeviceHelper
@@ -90,9 +92,9 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
     }
 
     override fun onNetworkChange(network: Network?) {
-        Log.i("BluetoothLinkProvider", "onNetworkChange called")
-        onStop()
-        onStart()
+        // RFCOMM presence does not depend on the current IP network. Restarting it during Wi-Fi
+        // handover drops an otherwise healthy fallback link and can interrupt a small transfer.
+        Log.d("BluetoothLinkProvider", "Network changed; keeping the RFCOMM link alive")
     }
 
     override fun onStop() {
@@ -106,7 +108,15 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
 
     override val name: String = "BluetoothLinkProvider"
 
-    override val priority: Int = 10
+    override val priority: Int = ConnectionTransport.BLUETOOTH.priority
+
+    override val transport: ConnectionTransport = ConnectionTransport.BLUETOOTH
+
+    override fun supportsPayload(payloadSize: Long): Boolean = false
+
+    override fun canSendPacket(packet: NetworkPacket): Boolean = !packet.hasPayload() &&
+        runCatching { packet.serialize().toByteArray(Charsets.UTF_8).size <= FallbackLinkManager.BLUETOOTH_MAX_PACKET_BYTES }
+            .getOrDefault(false)
 
     fun disconnectedLink(link: BluetoothLink, remoteAddress: BluetoothDevice?) {
         Log.i("BluetoothLinkProvider", "disconnectedLink called")
