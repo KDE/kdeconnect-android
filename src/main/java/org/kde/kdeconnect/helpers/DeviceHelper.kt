@@ -9,6 +9,7 @@ import android.content.Context
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.os.Build
+import android.text.SpannableStringBuilder
 import android.util.Log
 import androidx.core.content.edit
 import androidx.preference.PreferenceManager
@@ -154,5 +155,19 @@ object DeviceHelper {
     fun filterInvalidCharactersFromDeviceNameAndLimitLength(input: String): String = filterInvalidCharactersFromDeviceName(input).trim().take(MAX_DEVICE_NAME_LENGTH)
 
     fun filterInvalidCharactersFromDeviceName(input: String): String = input.replace(NAME_INVALID_CHARACTERS_REGEX, "")
+
+    /**
+     * Filter implementation suitable for [android.text.InputFilter].
+     * Returns null if no characters are stripped to accept the replacement as-is
+     * and avoid breaking IME composing state/spans (which causes text duplication in Gboard/Samsung Keyboard).
+     */
+    fun filterDeviceNameInput(source: CharSequence, start: Int, end: Int): CharSequence? {
+        val input = source.subSequence(start, end)
+        val matches = NAME_INVALID_CHARACTERS_REGEX.findAll(input).toList()
+        if (matches.isEmpty()) return null
+        return SpannableStringBuilder(input).apply {
+            matches.asReversed().forEach { delete(it.range.first, it.range.last + 1) }
+        }
+    }
 
 }

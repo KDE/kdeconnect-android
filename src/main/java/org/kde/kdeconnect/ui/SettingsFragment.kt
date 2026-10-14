@@ -38,7 +38,6 @@ import org.kde.kdeconnect.extensions.setupBottomPadding
 import org.kde.kdeconnect.helpers.CreateFileParams
 import org.kde.kdeconnect.helpers.CreateFileResultContract
 import org.kde.kdeconnect.helpers.DeviceHelper
-import org.kde.kdeconnect.helpers.DeviceHelper.filterInvalidCharactersFromDeviceName
 import org.kde.kdeconnect.helpers.DeviceHelper.getDeviceName
 import org.kde.kdeconnect.helpers.NotificationHelper
 import org.kde.kdeconnect.ui.ThemeUtil.applyTheme
@@ -80,11 +79,11 @@ class SettingsFragment : PreferenceFragmentCompat() {
     private fun deviceNamePref(context: Context) = EditTextPreference(context).apply {
         key = DeviceHelper.KEY_DEVICE_NAME_PREFERENCE
         isSelectable = true
-        setOnBindEditTextListener(EditText::setSingleLine)
         setOnBindEditTextListener { editText: EditText ->
+            editText.setSingleLine()
             editText.filters = arrayOf(
                 InputFilter { source: CharSequence, start: Int, end: Int, _: Spanned?, _: Int, _: Int ->
-                    filterInvalidCharactersFromDeviceName(source.subSequence(start, end).toString())
+                    DeviceHelper.filterDeviceNameInput(source, start, end)
                 },
                 LengthFilter(DeviceHelper.MAX_DEVICE_NAME_LENGTH),
             )
