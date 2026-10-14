@@ -184,6 +184,7 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
             || (notification.flags and Notification.FLAG_ONGOING_EVENT) != 0
             || (notification.flags and Notification.FLAG_LOCAL_ONLY) != 0
             || (notification.flags and NotificationCompat.FLAG_GROUP_SUMMARY) != 0 // The notification that groups other notifications
+            || Notification.CATEGORY_TRANSPORT == notification.category // Media playback controls are handled by the MPRIS plugin
         ) {
             // This is not a notification we want
             return
