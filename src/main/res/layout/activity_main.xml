@@ -17,6 +17,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
         android:id="@+id/coordinatorLayout"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
+        android:background="@color/ecosystem_toolbar"
         tools:context="org.kde.kdeconnect.ui.MainActivity">
 
         <include layout="@layout/toolbar" android:id="@+id/toolbar_layout"/>
@@ -37,6 +38,11 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:background="@color/ecosystem_sidebar"
+        app:itemBackground="@drawable/ecosystem_navigation_item"
+        app:itemIconTint="@color/ecosystem_navigation_text"
+        app:itemTextColor="@color/ecosystem_navigation_text"
+        app:itemVerticalPadding="10dp"
         app:headerLayout="@layout/nav_header"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>

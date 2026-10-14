@@ -24,11 +24,10 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
 
         <ImageView
             android:id="@+id/device_type"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_gravity="top"
-            android:paddingTop="@dimen/nav_header_vertical_spacing"
-            android:paddingBottom="4dp"
+            android:visibility="gone"
             android:importantForAccessibility="no"
             tools:srcCompat="@drawable/ic_device_phone_32dp" />
 
@@ -43,12 +42,14 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/kde_connect"
-                android:textAppearance="?attr/textAppearanceHeadline6" />
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/device_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="@color/material_on_surface_emphasis_medium"
                 tools:text="My device" />

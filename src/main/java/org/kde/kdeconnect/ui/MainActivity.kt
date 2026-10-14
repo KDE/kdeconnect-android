@@ -77,8 +77,8 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
     private var mCurrentMenuEntry = 0
         set(value) {
             field = value
-            //Enabling "go to default fragment on back" callback when user in settings or "about" fragment
-            mainFragmentCallback.isEnabled = value == MENU_ENTRY_SETTINGS || value == MENU_ENTRY_ABOUT
+            mainFragmentCallback.isEnabled = value == MENU_ENTRY_SETTINGS || value == MENU_ENTRY_ABOUT ||
+                (value >= MENU_ENTRY_DEVICE_FIRST_ID && mCurrentDevice != null)
         }
     private val preferences: SharedPreferences by lazy { getSharedPreferences("stored_menu_selection", MODE_PRIVATE) }
     private val mMapMenuToDeviceId = HashMap<MenuItem, String>()
@@ -91,9 +91,17 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
 
     private val mainFragmentCallback = object : OnBackPressedCallback(false) {
         override fun handleOnBackPressed() {
-            mCurrentMenuEntry = mCurrentDevice?.let { deviceIdToMenuEntryId(it) } ?: MENU_ENTRY_ADD_DEVICE
-            mNavigationView.setCheckedItem(mCurrentMenuEntry)
-            setContentFragment(mCurrentDevice?.let { DeviceFragment.newInstance(it, false) } ?: PairingFragment())
+            if (mCurrentMenuEntry == MENU_ENTRY_SETTINGS || mCurrentMenuEntry == MENU_ENTRY_ABOUT) {
+                mCurrentMenuEntry = mCurrentDevice?.let { deviceIdToMenuEntryId(it) } ?: MENU_ENTRY_ADD_DEVICE
+                mNavigationView.setCheckedItem(mCurrentMenuEntry)
+                setContentFragment(mCurrentDevice?.let { DeviceFragment.newInstance(it, false) } ?: PairingFragment())
+            } else {
+                mCurrentDevice = null
+                preferences.edit { putString(STATE_SELECTED_DEVICE, null) }
+                mCurrentMenuEntry = MENU_ENTRY_ADD_DEVICE
+                mNavigationView.setCheckedItem(mCurrentMenuEntry)
+                setContentFragment(PairingFragment())
+            }
         }
     }
 
@@ -105,6 +113,7 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
         val root = binding.root
         setContentView(root)
         mDrawerLayout = root as? DrawerLayout
+        if (isTwoPaneLayout) binding.toolbarLayout.root.visibility = View.GONE
 
         // Pad the drawer header directly: DrawerLayout's default child dispatch stops at
         // AppBarLayout (which consumes the insets via its own fitsSystemWindows), so neither
@@ -112,6 +121,9 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
         root.setOnApplyWindowInsetsListenerCompat { _, insets ->
             mNavigationView.getHeaderView(0)?.updatePadding(
                 top = insets.getInsets(WindowInsetsCompat.Type.statusBars()).top
+            )
+            binding.container.updatePadding(
+                top = if (isTwoPaneLayout) insets.getInsets(WindowInsetsCompat.Type.statusBars()).top else 0
             )
             insets
         }
@@ -169,6 +181,12 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
         var savedDevice: String?
         var savedMenuEntry: Int
         when {
+            savedInstanceState != null -> {
+                Log.i(LOG_TAG, "Loading selected device from saved activity state")
+                savedDevice = savedInstanceState.getString(STATE_SELECTED_DEVICE)
+                savedMenuEntry = savedInstanceState.getInt(STATE_SELECTED_MENU_ENTRY, MENU_ENTRY_ADD_DEVICE)
+            }
+
             intent.hasExtra(FLAG_FORCE_OVERVIEW) -> {
                 Log.i(LOG_TAG, "Requested to start main overview")
                 savedDevice = null
@@ -190,12 +208,6 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
                 }
             }
 
-            savedInstanceState != null -> {
-                Log.i(LOG_TAG, "Loading selected device from saved activity state")
-                savedDevice = savedInstanceState.getString(STATE_SELECTED_DEVICE)
-                savedMenuEntry = savedInstanceState.getInt(STATE_SELECTED_MENU_ENTRY, MENU_ENTRY_ADD_DEVICE)
-            }
-
             else -> {
                 Log.i(LOG_TAG, "Loading selected device from persistent storage")
                 savedDevice = preferences.getString(STATE_SELECTED_DEVICE, null)
@@ -206,10 +218,18 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
         mCurrentDevice = savedDevice
         mNavigationView.setCheckedItem(savedMenuEntry)
 
-        //FragmentManager will restore whatever fragment was there
+        // FragmentManager restores the previous fragment, but it may not match the saved
+        // selection when the activity was recreated during a size/orientation change.
         if (savedInstanceState != null) {
             val frag = supportFragmentManager.findFragmentById(R.id.container)
-            if (frag !is DeviceFragment || frag.deviceId == savedDevice) return
+            val fragmentMatchesSelection = when {
+                savedMenuEntry == MENU_ENTRY_SETTINGS -> frag is SettingsFragment
+                savedMenuEntry == MENU_ENTRY_ABOUT -> frag is AboutFragment
+                savedMenuEntry >= MENU_ENTRY_DEVICE_FIRST_ID && savedDevice != null ->
+                    frag is DeviceFragment && frag.deviceId == savedDevice
+                else -> frag is PairingFragment
+            }
+            if (fragmentMatchesSelection) return
         }
 
         // Activate the chosen fragment and select the entry in the menu
