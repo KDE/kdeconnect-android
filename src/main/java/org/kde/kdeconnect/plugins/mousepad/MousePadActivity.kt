@@ -635,6 +635,10 @@ class MousePadActivity :
         }
 
         doubleTapDragEnabled = p.getBoolean(getString(R.string.mousepad_doubletap_drag_enabled_pref), true)
+        binding.mousepadInfo.setText(
+            if (doubleTapDragEnabled) R.string.mousepad_info_double_tap
+            else R.string.mousepad_info
+        )
 
         prefsApplied = true
     }
