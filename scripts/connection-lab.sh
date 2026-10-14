@@ -92,6 +92,7 @@ case "$SCENARIO" in
     wifi "$TABLET_SERIAL" enabled
     ;;
   flap)
+    mark_drop_both "Rapid Wi-Fi flapping begins"
     for ((i=0; i<60; i++)); do
       wifi "$PHONE_SERIAL" disabled
       wifi "$TABLET_SERIAL" disabled

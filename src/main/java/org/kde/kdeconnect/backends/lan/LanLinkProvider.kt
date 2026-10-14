@@ -94,8 +94,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
     }
 
     fun transportForRemoteAddress(remoteAddress: InetAddress): ConnectionTransport {
-        return if (activeTransport == ConnectionTransport.WIFI &&
-            customDeviceAddresses.contains(remoteAddress) && TailscaleRoute.isTailscaleAddress(remoteAddress)) {
+        return if (customDeviceAddresses.contains(remoteAddress) && TailscaleRoute.isTailscaleAddress(remoteAddress)) {
             ConnectionTransport.TAILSCALE
         } else {
             activeTransport
