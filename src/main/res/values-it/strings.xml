@@ -306,6 +306,7 @@
   <string name="contacts_per_device_confirmation">I contatti del tuo telefono saranno copiati su questo dispositivo, in modo che possano essere utilizzati dall\'applicazione KDE Connect SMS e da altre applicazioni.</string>
   <string name="select_ringtone">Seleziona una suoneria</string>
   <string name="telephony_pref_blocked_title">Numeri bloccati</string>
+  <string name="telephony_pref_blocked_dialog_desc">Non mostrare le chiamate provenienti da questi numeri. Indica un numero per riga.</string>
   <string name="mpris_coverart_description">Copertina del media attuale</string>
   <string name="settings_icon_description">Icona impostazioni</string>
   <string name="presenter_fullscreen">Schermo intero</string>
@@ -332,6 +333,7 @@
   <string name="runcommand_notpaired">Il dispositivo non è associato</string>
   <string name="runcommand_nosuchdevice">Non c\'è alcun dispositivo</string>
   <string name="runcommand_noruncommandplugin">Questo dispositivo non ha l\'estensione Esegui comando abilitata</string>
+  <string name="runcommand_widget_no_device">Fai clic sul titolo per selezionare un dispositivo.</string>
   <string name="runcommand_category_device_controls_title">Controlli del dispositivo</string>
   <string name="runcommand_device_controls_summary">Se il tuo dispositivo supporta Controlli del dispositivo, i comandi che hai configurato appariranno qui.</string>
   <string name="set_runcommand_name_as_title">set_runcommand_name_as_title</string>
