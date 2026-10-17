@@ -13,6 +13,7 @@ import android.hardware.camera2.CameraManager
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import androidx.core.content.getSystemService
 
 class FlashlightManager(context: Context) {
 
@@ -21,8 +22,7 @@ class FlashlightManager(context: Context) {
         private const val FLASH_INTERVAL_MS = 500L
     }
 
-    private val cameraManager =
-        context.getSystemService(Context.CAMERA_SERVICE) as CameraManager
+    private val cameraManager = context.getSystemService<CameraManager>()!!
 
     private val handler = Handler(Looper.getMainLooper())
 
@@ -83,8 +83,9 @@ class FlashlightManager(context: Context) {
     }
 
     private fun setFlashlight(enabled: Boolean) {
+        val id = cameraId ?: return
         try {
-            cameraManager.setTorchMode(cameraId!!, enabled)
+            cameraManager.setTorchMode(id, enabled)
         } catch (e: CameraAccessException) {
             Log.e(TAG, "Failed to set flashlight mode", e)
         } catch (e: IllegalArgumentException) {
