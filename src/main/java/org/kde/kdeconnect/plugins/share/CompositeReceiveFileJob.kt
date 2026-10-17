@@ -124,10 +124,10 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
 
     override fun run() {
         var outputStream: OutputStream? = null
+        var fileDocument: DocumentFile? = null
+        var fileSuccessfullyReceived = false
 
         try {
-            var fileDocument: DocumentFile? = null
-
             isRunning = true
 
             while (!isCancelled) {
@@ -148,6 +148,7 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
                 setProgress(prevProgressPercentage)
 
                 fileDocument = getDocumentFileFor(currentFileName!!, packet.getBoolean("open", false))
+                fileSuccessfullyReceived = false
 
                 if (packet.hasPayload()) {
                     outputStream = BufferedOutputStream(device.context.contentResolver.openOutputStream(fileDocument.uri), WRITE_BUFFER_SIZE)
@@ -168,11 +169,13 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
                             throw RuntimeException("Failed to receive: $currentFileName received:$received bytes, expected: ${packet.payloadSize} bytes")
                         }
                     } else {
+                        fileSuccessfullyReceived = true
                         publishFile(fileDocument, received)
                     }
                 } else {
                     // TODO: Only set progress to 100 if this is the only file/packet to send
                     setProgress(100)
+                    fileSuccessfullyReceived = true
                     publishFile(fileDocument, 0)
                 }
 
@@ -252,6 +255,12 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
             reportResult(Unit)
         } catch (e: Exception) {
             isRunning = false
+
+            outputStream?.closeSafe()
+            outputStream = null
+            if (!fileSuccessfullyReceived) {
+                fileDocument?.delete()
+            }
 
             Log.e("SharePlugin", "Error receiving file", e)
 
