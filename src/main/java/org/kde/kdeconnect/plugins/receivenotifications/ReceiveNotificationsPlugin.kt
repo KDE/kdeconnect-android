@@ -47,10 +47,6 @@ class ReceiveNotificationsPlugin : Plugin() {
             return true
         }
 
-        if (np.getBoolean("silent", false)) {
-            return true
-        }
-
         val resultPendingIntent = PendingIntent.getActivity(context, 0, Intent(context, MainActivity::class.java), PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 
         var largeIcon: Bitmap? = null
@@ -84,6 +80,7 @@ class ReceiveNotificationsPlugin : Plugin() {
                 .setAutoCancel(true)
                 .setLocalOnly(true) // to avoid bouncing the notification back to other kdeconnect nodes
                 .setDefaults(Notification.DEFAULT_ALL)
+                .setSilent(np.getBoolean("silent", false))
                 .setStyle(NotificationCompat.BigTextStyle().bigText(np.getString("ticker")))
                 .build()
 
