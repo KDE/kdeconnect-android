@@ -100,6 +100,9 @@ class ClipboardListener {
 
     fun setText(text: String?) {
         if (this::cm.isInitialized) {
+            if (text == currentContent) {
+                return
+            }
             updateTimestamp = System.currentTimeMillis()
             currentContent = text
             currentContentType = ClipboardContentType.Text
