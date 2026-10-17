@@ -247,11 +247,12 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
 
         np["actions"] = extractActions(notification, key)
 
+        val onlyAlertOnce = (notification.flags and Notification.FLAG_ONLY_ALERT_ONCE) != 0
         np["id"] = key
         np["isClearable"] = statusBarNotification.isClearable
         np["appName"] = appNameLookup(context, packageName)
         np["time"] = statusBarNotification.postTime.toString()
-        np["silent"] = isPreexisting
+        np["silent"] = isPreexisting || (isUpdate && onlyAlertOnce)
 
         if (!appDatabase.getPrivacy(packageName, AppDatabase.PrivacyOptions.BLOCK_CONTENTS)) {
             val rn = extractRepliableNotification(statusBarNotification)
