@@ -64,6 +64,7 @@
   <string name="open_mousepad">שליטה מרחוק</string>
   <string name="open_mousepad_tv">שלט לטלוויזיה</string>
   <string name="mousepad_info">החלקת האצבע על המסך תזיז את סמן העכבר. נקישה תלחץ, שימוש ב־2/3 אצבעות לכפתורים הימני והאמצעי. 2 אצבעות משמשות לגלילה. לחיצה ארוכה כדי לגרור ולהשליך. אפשר להפעיל יכולת עכבר גירוסקופי מהעדפות התוסף</string>
+  <string name="mousepad_info_double_tap">החלקת האצבע על המסך תזיז את סמן העכבר. נקישה תלחץ, שימוש ב־2/3 אצבעות לכפתורים הימני והאמצעי. 2 אצבעות משמשות לגלילה. נגיעה כפולה כדי לגרור ולהשליך. אפשר להפעיל יכולת עכבר גירוסקופי מהעדפות התוסף</string>
   <string name="mousepad_info_no_gestures">יש להזיז את האצבע על גבי המסך כדי להזיז את זמן העכבר, נגיעה גוררת לחיצת עכבר.</string>
   <string name="mousepad_keyboard_input_not_supported">אין תמיכה בקלט מקלדת במכשיר המצומד</string>
   <string name="mousepad_single_tap_settings_title">הגדרת פעולת נקישה באצבע אחת</string>
@@ -322,6 +323,7 @@
   <string name="contacts_per_device_confirmation">אנשי הקשר בטלפון שלך יועתקו למכשיר הזה, כדי שאפשר יהיה להשתמש בהם ביישום המסרונים של KDE Connect וביישומים אחרים.</string>
   <string name="select_ringtone">בחירת צלצול</string>
   <string name="telephony_pref_blocked_title">מספרים חסומים</string>
+  <string name="telephony_pref_blocked_dialog_desc">לא להציג שיחות מהמספרים האלה. נא לציין מספר טלפון אחד בכל שורה</string>
   <string name="mpris_coverart_description">עטיפת האלבום של המדיה הנוכחית</string>
   <string name="settings_icon_description">סמל הגדרות</string>
   <string name="presenter_fullscreen">מסך מלא</string>
@@ -348,6 +350,7 @@
   <string name="runcommand_notpaired">המכשיר לא מצומד</string>
   <string name="runcommand_nosuchdevice">אין כזה מכשיר</string>
   <string name="runcommand_noruncommandplugin">תוסף הרצת הפקודות לא פעיל במכשיר הזה</string>
+  <string name="runcommand_widget_no_device">יש ללחוץ על הכותרת כדי לבחור מכשיר.</string>
   <string name="runcommand_category_device_controls_title">שליטה במכשירים</string>
   <string name="runcommand_device_controls_summary">אם המכשיר שלך תומך בשליטה בהתקנים, הפקודות שהוגדרת תופענה כאן.</string>
   <string name="set_runcommand_name_as_title">הגדרת_שם_פקודת_ההרצה_ככותרת</string>

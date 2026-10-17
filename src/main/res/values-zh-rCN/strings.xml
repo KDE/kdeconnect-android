@@ -298,6 +298,7 @@
   <string name="contacts_per_device_confirmation">您的手机联系人将被复制到此设备，以便让 KDE Connect 短信应用和其他应用使用。</string>
   <string name="select_ringtone">选择铃声</string>
   <string name="telephony_pref_blocked_title">已屏蔽的号码</string>
+  <string name="telephony_pref_blocked_dialog_desc">不要显示来自这些号码的电话。一行一个号码</string>
   <string name="mpris_coverart_description">当前媒体的封面艺术</string>
   <string name="settings_icon_description">设置图标</string>
   <string name="presenter_fullscreen">全屏</string>
@@ -324,6 +325,7 @@
   <string name="runcommand_notpaired">设备未配对</string>
   <string name="runcommand_nosuchdevice">没有此设备</string>
   <string name="runcommand_noruncommandplugin">此设备没有启用“运行命令插件”</string>
+  <string name="runcommand_widget_no_device">点击标题来选择设备。</string>
   <string name="runcommand_category_device_controls_title">设备控制</string>
   <string name="runcommand_device_controls_summary">如果您的设备支持设备控制功能，您配置的命令将显示在该设备上。</string>
   <string name="set_runcommand_name_as_title">set_runcommand_name_as_title</string>

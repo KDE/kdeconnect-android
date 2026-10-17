@@ -64,6 +64,7 @@
   <string name="open_mousepad">Vzdálený vstup</string>
   <string name="open_mousepad_tv">Ovladač TV</string>
   <string name="mousepad_info">Pohybujte prstem po obrazovce pro pohybování kurzorem myši. Ťukněte pro kliknutí a použijte dva/tři prsty jako pravé a prostřední tlačítko. Použijte 2 prsty pro posunování. Pro přetažení dlouze podržte. Funkčnost gyro myš lze povolit v předvolbách modulu.</string>
+  <string name="mousepad_info_double_tap">Pohybem prstu po obrazovce můžete pohybovat kurzorem myši. Klepnutím provedete kliknutí a dvěma či třemi prsty ovládáte pravé a střední tlačítko. Pro posouvání použijte dva prsty. Dvojitým klepnutím provedete přetažení. Funkci gyroskopické myši lze zapnout v nastavení modulu.</string>
   <string name="mousepad_info_no_gestures">Pohybujte prstem po obrazovce pro pohybování kurzorem myši, ťukněte pro kliknutí.</string>
   <string name="mousepad_keyboard_input_not_supported">Vstup pomocí klávesnice není spárovaným zařízením podporován</string>
   <string name="mousepad_single_tap_settings_title">Nastavit činnost pro ťuknutí prstem</string>

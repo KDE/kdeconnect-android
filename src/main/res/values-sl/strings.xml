@@ -64,6 +64,7 @@
   <string name="open_mousepad">Oddaljeni input</string>
   <string name="open_mousepad_tv">TV daljinec</string>
   <string name="mousepad_info">Premaknite prst po zaslonu da bi premikali miško. Tapnite za klik in uporabite dva/tri prste za desni in srednji gumb. Za pomikanje uporabite dva prsta. Uporabite dolg pritisk za povleci in spusti. Žiroskopsko zmožnost miške lahko omogočite iz nastavitve vtičnika</string>
+  <string name="mousepad_info_double_tap">Premaknite prst po zaslonu da bi premikali miško. Dotaknite za klik in uporabite dva/tri prste za desni in srednji gumb. Za pomikanje uporabite dva prsta. Dvakratni dotik za povleci in spusti. Žiroskopsko zmožnost miške lahko omogočite iz nastavitve vtičnika</string>
   <string name="mousepad_info_no_gestures">Premaknite prst po zaslonu, da premaknete kazalec miške, tapnite za klik.</string>
   <string name="mousepad_keyboard_input_not_supported">Vnos s tipkovnice ni podprt na sparjeni napravi</string>
   <string name="mousepad_single_tap_settings_title">Nastavite akcijo tapkanja enega prsta</string>

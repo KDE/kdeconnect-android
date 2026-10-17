@@ -64,6 +64,7 @@
   <string name="open_mousepad">Introdução de dados remota</string>
   <string name="open_mousepad_tv">Controle remoto da TV</string>
   <string name="mousepad_info">Mova um dedo pela tela para mover o ponteiro do mouse. Dê um toque para clicar e use dois/três dedos para os botões da direita e do meio. Use dois dedos para rolar a tela. Use uma pressão longa para arrastar e soltar. A funcionalidade do mouse giroscópio pode ser habilitada nas preferências do plugin.</string>
+  <string name="mousepad_info_double_tap">Mova um dedo pela tela para mover o ponteiro do mouse. Dê um toque para clicar e use dois/três dedos para os botões da direita e do meio. Use dois dedos para rolar a tela. Duple toque para arrastar e soltar. A funcionalidade do mouse giroscópio pode ser habilitada nas preferências do plugin.</string>
   <string name="mousepad_info_no_gestures">Mova o dedo na tela para mover o cursor do mouse, toque para um clique.</string>
   <string name="mousepad_keyboard_input_not_supported">Entrada de teclado não suportada pelo dispositivo emparelhado</string>
   <string name="mousepad_single_tap_settings_title">Definir ação do toque com um dedo</string>

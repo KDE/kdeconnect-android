@@ -64,6 +64,7 @@
   <string name="open_mousepad">Entrada remota</string>
   <string name="open_mousepad_tv">Comandament a distància de TV</string>
   <string name="mousepad_info">Moveu un dit per la pantalla per a moure el cursor del ratolí. Toqueu per a un clic, i empreu dos/tres dits per als botons dret i mig. Useu 2 dits per a desplaçar. Empreu un toc llarg per a arrossegar i deixar anar. La funcionalitat giroscòpica dels ratolins es pot activar des de les preferències del connector</string>
+  <string name="mousepad_info_double_tap">Moveu un dit per la pantalla per a moure el cursor del ratolí. Toqueu per a un clic, i empreu dos/tres dits per als botons dret i mig. Useu 2 dits per a desplaçar. Empreu un toc doble per a arrossegar i deixar anar. La funcionalitat giroscòpica dels ratolins es pot activar des de les preferències del connector</string>
   <string name="mousepad_info_no_gestures">Moveu un dit a la pantalla per a moure el cursor del ratolí, toqueu per a fer un clic.</string>
   <string name="mousepad_keyboard_input_not_supported">El dispositiu aparellat no permet l\'entrada de teclat</string>
   <string name="mousepad_single_tap_settings_title">Estableix l\'acció de tocar amb un dit</string>
