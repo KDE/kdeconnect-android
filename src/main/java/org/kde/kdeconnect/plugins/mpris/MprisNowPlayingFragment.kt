@@ -53,6 +53,12 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
 
     private var targetPlayerName = ""
     private var targetPlayer: MprisPlayer? = null
+    private var showRemainingTime = false
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        showRemainingTime = savedInstanceState?.getBoolean("showRemainingTime") ?: false
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         activityMprisBinding = MprisNowPlayingBinding.inflate(inflater)
@@ -129,9 +135,18 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
         }
         positionSeekUpdateHandler.postDelayed(positionSeekUpdateRunnable, 200)
 
+        mprisControlBinding.timeTextview.setOnClickListener {
+            showRemainingTime = !showRemainingTime
+            updateTimeViews()
+        }
+
         mprisControlBinding.positionSeek.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, byUser: Boolean) {
                 mprisControlBinding.progressTextview.text = durationToProgress(progress.milliseconds)
+                if (showRemainingTime) {
+                    val remaining = ((targetPlayer?.length ?: 0) - progress).coerceAtLeast(0)
+                    mprisControlBinding.timeTextview.text = "-${durationToProgress(remaining.milliseconds)}"
+                }
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar) {
@@ -299,9 +314,9 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
         }
 
         if (playerStatus.isSeekAllowed) {
-            mprisControlBinding.timeTextview.text = durationToProgress(playerStatus.length.milliseconds)
             mprisControlBinding.positionSeek.max = playerStatus.length.toInt()
             mprisControlBinding.positionSeek.progress = playerStatus.position.toInt()
+            updateTimeViews()
             mprisControlBinding.progressSlider.visibility = View.VISIBLE
         } else {
             mprisControlBinding.progressSlider.visibility = View.GONE
@@ -353,6 +368,18 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
         } else {
             mprisControlBinding.prevButton.visibility = View.GONE
             mprisControlBinding.nextButton.visibility = View.GONE
+        }
+    }
+
+    private fun updateTimeViews() {
+        val player = targetPlayer ?: return
+        val currentPosition = mprisControlBinding.positionSeek.progress.toLong()
+        mprisControlBinding.progressTextview.text = durationToProgress(currentPosition.milliseconds)
+        if (showRemainingTime) {
+            val remaining = (player.length - currentPosition).coerceAtLeast(0)
+            mprisControlBinding.timeTextview.text = "-${durationToProgress(remaining.milliseconds)}"
+        } else {
+            mprisControlBinding.timeTextview.text = durationToProgress(player.length.milliseconds)
         }
     }
 
@@ -417,6 +444,8 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putBoolean("showRemainingTime", showRemainingTime)
         if (targetPlayer != null) {
             outState.putString("targetPlayer", targetPlayerName)
         }
