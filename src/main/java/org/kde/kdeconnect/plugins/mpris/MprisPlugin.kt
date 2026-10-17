@@ -203,6 +203,9 @@ class MprisPlugin : Plugin() {
     private var supportAlbumArtPayload = false
     private val playerStatusUpdated = ConcurrentHashMap<String, () -> Unit>()
     private val playerListUpdated = ConcurrentHashMap<String, () -> Unit>()
+    @Volatile
+    var isControlActivityVisible = false
+
     override val displayName: String
         get() = context.resources.getString(R.string.pref_plugin_mpris)
 
@@ -316,7 +319,7 @@ class MprisPlugin : Plugin() {
                 notifyPlayerStatusUpdated()
 
                 // Check to see if a stream has stopped playing and we should deliver a notification
-                if (np.has("isPlaying") && !playerStatus.isPlaying && wasPlaying) {
+                if (np.has("isPlaying") && !playerStatus.isPlaying && wasPlaying && !isControlActivityVisible) {
                     showContinueWatchingNotification(playerStatus)
                 }
             }

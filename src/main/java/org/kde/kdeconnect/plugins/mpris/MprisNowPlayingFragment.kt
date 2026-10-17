@@ -149,6 +149,16 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
         return activityMprisBinding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        KdeConnect.getInstance().getDevicePlugin<MprisPlugin>(deviceId)?.isControlActivityVisible = true
+    }
+
+    override fun onPause() {
+        KdeConnect.getInstance().getDevicePlugin<MprisPlugin>(deviceId)?.isControlActivityVisible = false
+        super.onPause()
+    }
+
     override fun onDestroyView() {
         disconnectFromPlugin()
         mprisControlBinding.playerSpinner.adapter = null
