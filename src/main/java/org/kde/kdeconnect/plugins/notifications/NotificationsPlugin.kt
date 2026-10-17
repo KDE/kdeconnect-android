@@ -197,6 +197,7 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
             // Notification excluded by the user
             return
         }
+
         if ("com.android.systemui" == packageName) {
             if ("low_battery" == statusBarNotification.tag) {
                 // HACK: Android low battery notification are posted again every few seconds. Ignore them, as we already have a battery indicator.
@@ -213,6 +214,17 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
         if ("org.kde.kdeconnect_tp" == packageName || "org.kde.kdeconnect_tp.debug" == packageName) {
             // Don't send our own notifications
             return
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            try {
+                if (context.packageManager.isPackageSuspended(packageName)) {
+                    // App is paused/suspended by the user (Digital Wellbeing, Focus Mode, etc.)
+                    return
+                }
+            } catch (_: PackageManager.NameNotFoundException) {
+                // Package not found or uninstalled
+            }
         }
 
         val key = getNotificationKeyCompat(statusBarNotification)
