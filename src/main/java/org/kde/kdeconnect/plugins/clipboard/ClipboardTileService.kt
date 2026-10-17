@@ -9,6 +9,7 @@ package org.kde.kdeconnect.plugins.clipboard
 import android.app.PendingIntent
 import android.content.Intent
 import android.os.Build
+import android.service.quicksettings.Tile
 import android.service.quicksettings.TileService
 import androidx.annotation.RequiresApi
 import androidx.core.service.quicksettings.PendingIntentActivityWrapper
@@ -17,6 +18,15 @@ import org.kde.kdeconnect.KdeConnect
 
 @RequiresApi(Build.VERSION_CODES.N)
 class ClipboardTileService : TileService() {
+    override fun onStartListening() {
+        super.onStartListening()
+        qsTile?.let { tile ->
+            val hasConnectedDevices = KdeConnect.getInstance().devices.values.any { it.isReachable && it.isPaired }
+            tile.state = if (hasConnectedDevices) Tile.STATE_ACTIVE else Tile.STATE_INACTIVE
+            tile.updateTile()
+        }
+    }
+
     override fun onClick() {
         super.onClick()
 
