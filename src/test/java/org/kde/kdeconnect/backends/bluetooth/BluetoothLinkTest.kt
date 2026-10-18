@@ -69,14 +69,12 @@ class BluetoothLinkTest {
             linkProvider
         )
 
-        try {
+        input.use {
             link.startListening()
             assertTrue(
                 "BluetoothLink kept buffering a packet without a line terminator",
                 disconnected.await(30, TimeUnit.SECONDS)
             )
-        } finally {
-            input.close()
         }
     }
 }

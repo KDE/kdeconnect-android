@@ -344,19 +344,19 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
                         secureIdentityPacket = unserialize(line)
                         if (!DeviceInfo.isValidIdentityPacket(secureIdentityPacket)) {
                             Log.e("KDE/LanLinkProvider", "Identity packet isn't valid")
-                            sslSocket.close()
+                            sslSocket.closeSafe()
                             return@execute
                         }
                         val newProtocolVersion = secureIdentityPacket.getInt("protocolVersion")
                         if (newProtocolVersion != protocolVersion) {
                             Log.e("KDE/LanLinkProvider", "Protocol version changed half-way through the handshake: $protocolVersion -> $newProtocolVersion")
-                            sslSocket.close()
+                            sslSocket.closeSafe()
                             return@execute
                         }
                         val newDeviceId = secureIdentityPacket.getString("deviceId")
                         if (newDeviceId != deviceId) {
                             Log.e("KDE/LanLinkProvider", "Device ID changed half-way through the handshake: $deviceId -> $newDeviceId")
-                            sslSocket.close()
+                            sslSocket.closeSafe()
                             return@execute
                         }
                     } else {
@@ -434,7 +434,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
         } catch (e: SocketException) {
             // We ignore this exception and continue without being able to receive broadcasts instead of crashing the app.
             Log.e("LanLinkProvider", "Error binding udp server. We can send udp broadcasts but not receive them", e)
-            newUdpServer?.close()
+            newUdpServer?.closeSafe()
             return
         }
         ThreadHelper.execute {
@@ -543,7 +543,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
             return
         }
 
-        val socket: DatagramSocket?
+        var socket: DatagramSocket? = null
         try {
             socket = DatagramSocket()
             if (network != null) {
@@ -558,6 +558,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
             socket.setBroadcast(true)
         } catch (e: SocketException) {
             Log.e("KDE/LanLinkProvider", "Failed to create DatagramSocket", e)
+            socket?.closeSafe()
             return
         }
 
@@ -570,7 +571,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
             }
         }
 
-        socket.close()
+        socket.closeSafe()
     }
 
     override fun onStart() {

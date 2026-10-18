@@ -25,6 +25,7 @@ import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.DeviceInfo
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.backends.BaseLinkProvider
+import org.kde.kdeconnect.extensions.closeSafe
 import org.kde.kdeconnect.extensions.getParcelableArrayExtraCompat
 import org.kde.kdeconnect.extensions.getParcelableExtraCompat
 import org.kde.kdeconnect.helpers.DeviceHelper
@@ -120,11 +121,7 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
         private var serverSocket: BluetoothServerSocket? = null
         fun stopProcessing() {
             continueProcessing = false
-            try {
-                serverSocket?.close()
-            } catch (e: IOException) {
-                Log.e("KDEConnect", "Exception", e)
-            }
+            serverSocket?.closeSafe()
         }
 
         override fun run() {
@@ -157,7 +154,7 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
             synchronized(sockets) {
                 if (sockets.containsKey(socket.remoteDevice)) {
                     Log.i("BTLinkProvider/Server", "Received duplicate connection from ${socket.remoteDevice.address}")
-                    socket.close()
+                    socket.closeSafe()
                     return
                 } else {
                     sockets.put(socket.remoteDevice, socket)
@@ -373,7 +370,7 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
 
                 if (!DeviceInfo.isValidIdentityPacket(identityPacket)) {
                     Log.w("BTLinkProvider/Client", "Invalid identity packet received.")
-                    connection.close()
+                    connection.closeSafe()
                     return
                 }
 
@@ -381,7 +378,7 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
                 val myId = DeviceHelper.getDeviceId(context)
                 if (identityPacket.getString("deviceId") == myId) {
                     // Probably won't happen, but just to be safe
-                    connection.close()
+                    connection.closeSafe()
                     return
                 }
                 if (visibleDevices.containsKey(identityPacket.getString("deviceId"))) {
