@@ -122,6 +122,7 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
     }
 
     override fun run() {
+        var numFilesReceived = 0
         try {
             var fileDocument: DocumentFile? = null
 
@@ -148,6 +149,7 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
                 fileDocument = getDocumentFileFor(filename, packet.getBoolean("open", false))
                 val size = receivePacket(fileDocument, packet)
                 publishFile(fileDocument, size)
+                numFilesReceived++
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     if (packet.has("lastModified")) {
@@ -187,7 +189,7 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
                         finished = true
 
                         if (!isCancelled && currentFileNum < totalNumFiles) {
-                            throw RuntimeException("Failed to receive ${totalNumFiles - currentFileNum + 1} files")
+                            throw RuntimeException("Failed to receive ${totalNumFiles - numFilesReceived} files")
                         }
                     }
                 }
@@ -231,7 +233,7 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
             } else {
                 Log.e("SharePlugin", "Error receiving file $currentFileName", e)
                 synchronized(lock) {
-                    val failedFiles = totalNumFiles - currentFileNum + 1
+                    val failedFiles = totalNumFiles - numFilesReceived
                     receiveNotification.setFailed(device.context.resources.getQuantityString(R.plurals.received_files_fail_title, failedFiles, device.name, failedFiles, totalNumFiles))
                 }
                 receiveNotification.show()
