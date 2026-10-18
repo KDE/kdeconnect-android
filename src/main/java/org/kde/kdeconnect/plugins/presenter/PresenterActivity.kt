@@ -28,8 +28,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DropdownMenu
@@ -201,7 +201,6 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener, OnSharedPref
                             .padding(horizontal = 16.dp),
                         style = MaterialTheme.typography.bodyLarge,
                     )
-                    @Suppress("DEPRECATION") // we explicitly want the non-mirrored version of the icons
                     Row(
                         modifier = Modifier
                             .fillMaxSize()
@@ -217,7 +216,7 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener, OnSharedPref
                                 .fillMaxSize()
                                 .weight(1f),
                             contentDescription = getString(R.string.mpris_previous),
-                            icon = Icons.Default.ArrowBack,
+                            icon = Icons.AutoMirrored.Filled.ArrowBack,
                         )
                         KdeButton(
                             onClick = {
@@ -228,7 +227,7 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener, OnSharedPref
                             modifier = Modifier
                                 .fillMaxSize()
                                 .weight(1f),
-                            icon = Icons.Default.ArrowForward,
+                            icon = Icons.AutoMirrored.Filled.ArrowForward,
                         )
                     }
                     if (sensorManager != null) KdeButton(
