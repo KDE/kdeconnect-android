@@ -104,15 +104,6 @@ internal class ReceiveNotification(private val device: Device, private val jobId
     }
 
     fun setURI(destinationUri: Uri, mimeType: String?, filename: String?) {
-        /*
-         * We only support file URIs (because sending a content uri to another app does not work for security reasons).
-         * In effect, that means only the default download folder currently works.
-         *
-         * TODO: implement our own content provider (instead of support-v4's FileProvider). It should:
-         *  - Proxy to real files (in case of the default download folder)
-         *  - Proxy to the underlying content uri (in case of a custom download folder)
-         */
-
         // If it's an image, try to show it in the notification
         if (mimeType != null && mimeType.startsWith("image/")) {
             // https://developer.android.com/topic/performance/graphics/load-bitmap

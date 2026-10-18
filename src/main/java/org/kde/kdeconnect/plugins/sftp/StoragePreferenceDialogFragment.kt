@@ -183,7 +183,6 @@ class StoragePreferenceDialogFragment : PreferenceDialogFragmentCompat(), TextWa
             binding!!.storageLocation.error = null
             binding!!.storageLocation.isEnabled = false
 
-            // TODO: Show name as used in android's picker app but I don't think it's possible to get that, everything I tried throws PermissionDeniedException
             binding!!.storageDisplayName.setText(displayName)
             binding!!.storageDisplayName.isEnabled = true
         } else {
@@ -250,7 +249,6 @@ class StoragePreferenceDialogFragment : PreferenceDialogFragmentCompat(), TextWa
     }
 
     private class FileSeparatorCharFilter : InputFilter {
-        // TODO: Add more chars to refuse?
         // https://www.cyberciti.biz/faq/linuxunix-rules-for-naming-file-and-directory-names/
         var notAllowed: String = "/\\><|:&?*"
 
