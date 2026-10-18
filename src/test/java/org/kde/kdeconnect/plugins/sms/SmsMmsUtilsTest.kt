@@ -52,12 +52,12 @@ class SmsMmsUtilsTest {
     }
 
     @Test
-    fun addressEqualsDetectsDuplicatePhoneNumbers() {
-        val addr1 = SMSHelper.Address(context, "+1 (202) 555-0173")
-        val addr2 = SMSHelper.Address(context, "2025550173")
-        val addr3 = SMSHelper.Address(context, "+1-202-555-0199")
+    fun addressIsSamePhoneNumberDetectsDuplicatePhoneNumbers() {
+        val addr1 = SMSHelper.Address("+1 (202) 555-0173")
+        val addr2 = SMSHelper.Address("2025550173")
+        val addr3 = SMSHelper.Address("+1-202-555-0199")
 
-        Assert.assertEquals(addr1, addr2)
-        Assert.assertNotEquals(addr1, addr3)
+        Assert.assertTrue(addr1.isSamePhoneNumber(addr2, "US"))
+        Assert.assertFalse(addr1.isSamePhoneNumber(addr3, "US"))
     }
 }

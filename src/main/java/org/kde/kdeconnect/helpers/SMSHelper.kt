@@ -16,7 +16,6 @@ import android.net.Uri
 import android.os.Looper
 import android.provider.Telephony
 import android.telephony.PhoneNumberUtils
-import android.telephony.TelephonyManager
 import android.util.Log
 import androidx.core.net.toUri
 import com.google.android.mms.pdu_alt.MultimediaMessagePdu
@@ -508,7 +507,7 @@ object SMSHelper {
      */
     private fun parseSMS(context: Context, messageInfo: Map<String, String?>): Message {
         return Message(
-            addresses = listOfNotNull(messageInfo[Telephony.Sms.ADDRESS]).map { Address(context, it) },
+            addresses = listOfNotNull(messageInfo[Telephony.Sms.ADDRESS]).map { Address(it) },
             body = messageInfo[Message.BODY] ?: "",
             date = messageInfo[Message.DATE]?.toLongOrNull() ?: 0L,
             type = messageInfo[Message.TYPE]?.toIntOrNull() ?: 0,
@@ -654,7 +653,7 @@ object SMSHelper {
 
         // Get address(es) of the message
         val msg = getMessagePdu(context, uID)
-        val from = SmsMmsUtils.getMmsFrom(context, msg)
+        val from = SmsMmsUtils.getMmsFrom(msg)
         val to = SmsMmsUtils.getMmsTo(context, msg)
         val addresses = mutableListOf<Address>()
         if (from != null) {
@@ -667,12 +666,13 @@ object SMSHelper {
             }
         }
         if (to != null) {
+            val networkCountryIso = TelephonyHelper.getNetworkCountryIso(context)
             for (toAddress in to) {
                 val isLocalPhoneNumber = userPhoneNumbers
                     .any { localPhoneNumber: LocalPhoneNumber ->
                         localPhoneNumber.isMatchingPhoneNumber(toAddress.getAddress())
                     }
-                if (!isLocalPhoneNumber && toAddress.toString() != "insert-address-token" && addresses.none { it == toAddress }) {
+                if (!isLocalPhoneNumber && toAddress.toString() != "insert-address-token" && addresses.none { it.isSamePhoneNumber(toAddress, networkCountryIso) }) {
                     addresses.add(toAddress)
                 }
             }
@@ -773,12 +773,12 @@ object SMSHelper {
     /**
      * converts a given JsonArray into List<Address>
     </Address> */
-    fun jsonArrayToAddressList(context: Context, jsonArray: JsonArray): List<Address> {
+    fun jsonArrayToAddressList(jsonArray: JsonArray): List<Address> {
         val addresses = mutableListOf<Address>()
         try {
             for (element in jsonArray) {
                 val address = element.jsonObject.getValue("address").jsonPrimitive.content
-                addresses.add(Address(context, address))
+                addresses.add(Address(address))
             }
         } catch (e: Exception) {
             e.printStackTrace()
@@ -830,8 +830,8 @@ object SMSHelper {
         }
     }
 
-    // TODO: Remove need for Context here
-    class Address(context: Context, private val address: String) {
+    @JvmInline
+    value class Address(private val address: String) {
         fun toJson(): JsonObject = buildJsonObject {
             put(ADDRESS, address)
         }
@@ -840,18 +840,11 @@ object SMSHelper {
 
         override fun toString() = address
 
-        private val networkCountryIso = (context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager).networkCountryIso
-
-        override fun equals(other: Any?) = when (other) {
-            null -> false
-            is Address -> PhoneNumberUtils.areSamePhoneNumber(address, other.address, networkCountryIso)
-            is String -> PhoneNumberUtils.areSamePhoneNumber(address, other, networkCountryIso)
-            else -> false
-        }
-
-        override fun hashCode(): Int {
-            return address.hashCode()
-        }
+        /**
+         * Loosely compares phone numbers, so different formats of the same number match.
+         */
+        fun isSamePhoneNumber(other: Address, networkCountryIso: String) =
+            PhoneNumberUtils.areSamePhoneNumber(address, other.address, networkCountryIso)
 
         companion object {
             /**

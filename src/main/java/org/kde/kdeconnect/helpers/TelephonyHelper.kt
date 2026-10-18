@@ -11,6 +11,7 @@ import android.content.Context
 import android.net.Uri
 import android.provider.Telephony
 import android.telephony.SubscriptionManager
+import android.telephony.TelephonyManager
 import android.util.Log
 import androidx.core.content.ContextCompat
 
@@ -48,6 +49,13 @@ object TelephonyHelper {
                 null
             }
         }
+    }
+
+    /**
+     * Get the ISO country code of the network the phone is currently registered to
+     */
+    fun getNetworkCountryIso(context: Context): String {
+        return (context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager).networkCountryIso
     }
 
     /**

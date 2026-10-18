@@ -181,9 +181,9 @@ class SMSPlugin : Plugin() {
             val jsonAddressList = np.getJsonArray("addresses")
             val addressList = if (jsonAddressList == null) {
                 // If jsonAddressList is null, then the SMS_REQUEST packet is most probably from the older version of the desktop app.
-                listOf(SMSHelper.Address(context, np.getString("phoneNumber")))
+                listOf(SMSHelper.Address(np.getString("phoneNumber")))
             } else {
-                jsonArrayToAddressList(context, jsonAddressList)
+                jsonArrayToAddressList(jsonAddressList)
             }
             val attachedFiles: List<SMSHelper.Attachment> = jsonArrayToAttachmentsList(np.getJsonArray("attachments"))
 

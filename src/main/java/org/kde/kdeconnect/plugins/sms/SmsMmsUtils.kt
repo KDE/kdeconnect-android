@@ -325,11 +325,11 @@ object SmsMmsUtils {
      * Returns the Address of the sender of the MMS message.
      * @return sender's Address
      */
-    fun getMmsFrom(context: Context, msg: MultimediaMessagePdu?): SMSHelper.Address? {
+    fun getMmsFrom(msg: MultimediaMessagePdu?): SMSHelper.Address? {
         if (msg == null) {
             return null
         }
-        return SMSHelper.Address(context, msg.from.string)
+        return SMSHelper.Address(msg.from.string)
     }
 
     /**
@@ -368,10 +368,11 @@ object SmsMmsUtils {
         val numbers = phoneNumbers.split(", ").dropLastWhile { it.isEmpty() }.toTypedArray()
 
         val uniqueNumbers = mutableListOf<SMSHelper.Address>()
+        val networkCountryIso = TelephonyHelper.getNetworkCountryIso(context)
 
         for (number in numbers) {
-            val address = SMSHelper.Address(context, number.trim { it <= ' ' })
-            if (uniqueNumbers.none { it == address }) {
+            val address = SMSHelper.Address(number.trim { it <= ' ' })
+            if (uniqueNumbers.none { it.isSamePhoneNumber(address, networkCountryIso) }) {
                 uniqueNumbers.add(address)
             }
         }
