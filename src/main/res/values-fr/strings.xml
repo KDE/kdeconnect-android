@@ -64,6 +64,7 @@
   <string name="open_mousepad">Contrôle distant</string>
   <string name="open_mousepad_tv">Télécommande de téléviseur</string>
   <string name="mousepad_info">Faites glisser votre doigt sur l\'écran pour déplacer le pointeur de la souris. Tapotez pour cliquer et utilisez deux / trois doigts pour les clics droit et centre. Utilisez 2 doigts pour faire un défilement. Faites un appui prolongé pour réaliser un glisser-déposer. La fonctionnalité de gyroscope de souris peut être activée à partir des préférences de module externe.</string>
+  <string name="mousepad_info_double_tap">Faites glisser votre doigt sur l\'écran pour déplacer le pointeur de la souris. Tapotez pour cliquer et utilisez deux / trois doigts pour les clics droit et central. Utilisez 2 doigts pour faire un défilement. Tapotez deux fois pour réaliser un glisser-déposer. La fonctionnalité de gyroscope de souris peut être activée à partir des préférences de module externe.</string>
   <string name="mousepad_info_no_gestures">Faites glisser un doigt sur l\'écran pour déplacer le pointeur de souris. Tapotez sur l\'écran pour effectuer un clic.</string>
   <string name="mousepad_keyboard_input_not_supported">La saisie par le clavier n\'est pas pris en charge par le périphérique associé.</string>
   <string name="mousepad_single_tap_settings_title">Définir une action pour tapotage avec un doigt</string>
