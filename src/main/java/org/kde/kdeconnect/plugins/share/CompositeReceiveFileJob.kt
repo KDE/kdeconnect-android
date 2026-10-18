@@ -269,8 +269,6 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
                     packet.payload?.close()
                 }
             } else {
-                // TODO: Only set progress to 100 if this is the only file/packet to send
-                setProgress(100)
                 0L
             }
 
