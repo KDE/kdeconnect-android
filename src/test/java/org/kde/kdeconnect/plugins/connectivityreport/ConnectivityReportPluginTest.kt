@@ -109,10 +109,39 @@ class ConnectivityReportPluginTest {
     // REMOTE -> LOCAL
 
     @Test
-    fun testIgnoresReceivedPackets() {
-        assertFalse(plugin.onPacketReceived(NetworkPacket("kdeconnect.connectivity_report")))
-        assertFalse(plugin.onPacketReceived(NetworkPacket("some.other.type")))
+    fun testReceivesConnectivityReportPacket() {
+        val np = NetworkPacket("kdeconnect.connectivity_report").apply {
+            val signalStrengths = org.json.JSONObject().apply {
+                val sub1 = org.json.JSONObject().apply {
+                    put("networkType", "5G")
+                    put("signalStrength", 4)
+                }
+                val sub2 = org.json.JSONObject().apply {
+                    put("networkType", "LTE")
+                    put("signalStrength", 2)
+                }
+                put("1", sub1)
+                put("2", sub2)
+            }
+            set("signalStrengths", signalStrengths)
+        }
 
+        val handled = plugin.onPacketReceived(np)
+        org.junit.Assert.assertTrue(handled)
+
+        val info = plugin.remoteConnectivityInfo
+        assertEquals(2, info.size)
+        assertEquals("5G", info["1"]?.networkType)
+        assertEquals(4, info["1"]?.signalStrength)
+        assertEquals("LTE", info["2"]?.networkType)
+        assertEquals(2, info["2"]?.signalStrength)
+
+        verify(exactly = 1) { device.onPluginsChanged() }
+    }
+
+    @Test
+    fun testIgnoresOtherPacketTypes() {
+        assertFalse(plugin.onPacketReceived(NetworkPacket("some.other.type")))
         verify(exactly = 0) { device.onPluginsChanged() }
     }
 

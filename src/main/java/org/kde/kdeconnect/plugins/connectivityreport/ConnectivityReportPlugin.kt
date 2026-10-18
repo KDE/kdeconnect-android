@@ -66,6 +66,13 @@ class ConnectivityReportPlugin : Plugin() {
         }
     }
 
+    /**
+     * The latest connectivity information received from the linked device. Will be empty or null
+     * if the linked device has not sent us any information yet.
+     */
+    var remoteConnectivityInfo: Map<String, DeviceConnectivityInfo> = emptyMap()
+        private set
+
     override fun onCreate() {
         getInstance(context).listenStateChanges(listener)
     }
@@ -75,16 +82,21 @@ class ConnectivityReportPlugin : Plugin() {
     }
 
     override fun onPacketReceived(np: NetworkPacket): Boolean {
-        return false
+        if (PACKET_TYPE_CONNECTIVITY_REPORT != np.type) {
+            return false
+        }
+        remoteConnectivityInfo = DeviceConnectivityInfo.fromPacket(np)
+        device.onPluginsChanged()
+        return true
     }
 
-    override val supportedPacketTypes: Array<String> = emptyArray()
+    override val supportedPacketTypes: Array<String> = arrayOf(PACKET_TYPE_CONNECTIVITY_REPORT)
 
     override val outgoingPacketTypes: Array<String> = arrayOf(PACKET_TYPE_CONNECTIVITY_REPORT)
 
     override val requiredPermissions: Array<String> = arrayOf(Manifest.permission.READ_PHONE_STATE)
 
     companion object {
-        private const val PACKET_TYPE_CONNECTIVITY_REPORT = "kdeconnect.connectivity_report"
+        const val PACKET_TYPE_CONNECTIVITY_REPORT = "kdeconnect.connectivity_report"
     }
 }

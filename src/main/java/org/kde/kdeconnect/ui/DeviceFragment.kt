@@ -36,6 +36,7 @@ import org.kde.kdeconnect.extensions.setupBottomPadding
 import org.kde.kdeconnect.helpers.security.SslHelper
 import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.plugins.battery.BatteryPlugin
+import org.kde.kdeconnect.plugins.connectivityreport.ConnectivityReportPlugin
 import org.kde.kdeconnect.ui.compose.KdeTheme
 import org.kde.kdeconnect.ui.compose.screen.device.DeviceErrorScreen
 import org.kde.kdeconnect.ui.compose.screen.device.DevicePairingScreen
@@ -340,29 +341,44 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
 
 
     /**
-     * This method tries to display battery info for the remote device. Includes
-     *
-     *  * Current charge as a percentage
-     *  * Whether the remote device is low on power
-     *  * Whether the remote device is currently charging
-     *
+     * This method tries to display status info (battery and connectivity) for the remote device.
      */
     private fun displayBatteryInfoIfPossible() {
         val batteryPlugin = device?.getPlugin<BatteryPlugin>()
+        val connectivityPlugin = device?.getPlugin<ConnectivityReportPlugin>()
 
-        val info = batteryPlugin?.remoteBatteryInfo
-        if (info != null) {
-
+        val batteryInfo = batteryPlugin?.remoteBatteryInfo
+        val batteryStatus = if (batteryInfo != null) {
             @StringRes
             val resId = when {
-                info.isCharging -> R.string.battery_status_charging_format
-                BatteryPlugin.isLowBattery(info) -> R.string.battery_status_low_format
+                batteryInfo.isCharging -> R.string.battery_status_charging_format
+                BatteryPlugin.isLowBattery(batteryInfo) -> R.string.battery_status_low_format
                 else -> R.string.battery_status_format
             }
-
-            mActivity?.supportActionBar?.subtitle = mActivity?.getString(resId, info.currentCharge)
+            mActivity?.getString(resId, batteryInfo.currentCharge)
         } else {
-            mActivity?.supportActionBar?.subtitle = null
+            null
         }
+
+        val connectivityInfoMap = connectivityPlugin?.remoteConnectivityInfo
+        val connectivityStatus = if (!connectivityInfoMap.isNullOrEmpty()) {
+            connectivityInfoMap.values
+                .map { it.networkType }
+                .filter { it.isNotEmpty() }
+                .distinct()
+                .joinToString(", ")
+                .ifEmpty { null }
+        } else {
+            null
+        }
+
+        val fullSubtitle = when {
+            batteryStatus != null && connectivityStatus != null -> "$batteryStatus  •  $connectivityStatus"
+            batteryStatus != null -> batteryStatus
+            connectivityStatus != null -> connectivityStatus
+            else -> null
+        }
+
+        mActivity?.supportActionBar?.subtitle = fullSubtitle
     }
 }
