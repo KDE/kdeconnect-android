@@ -275,7 +275,7 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
             if (isCancelled) {
                 throw RuntimeException("Cancelled")
             }
-            if (received != packet.payloadSize) {
+            if (packet.payloadSize >= 0 && received < packet.payloadSize) {
                 throw RuntimeException("Size mismatch: received:$received bytes, expected: ${packet.payloadSize} bytes")
             }
             return received
@@ -316,7 +316,7 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
             output.write(data, 0, count)
 
             val progressPercentage = synchronized(lock) {
-                totalReceived * 100 / totalPayloadSize
+                if (totalPayloadSize > 0) (totalReceived * 100 / totalPayloadSize).coerceIn(0L, 100L) else 0L
             }.toInt()
             val curTimeMillis = SystemClock.elapsedRealtime()
 
