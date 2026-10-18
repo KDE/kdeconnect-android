@@ -127,7 +127,7 @@ object SmsMmsUtils {
             if (addressList.size > 1) {
                 // Remove the user's phone number if present in the list of recipients
                 val networkCountryIso = TelephonyHelper.getNetworkCountryIso(context)
-                addressList.removeIf { address -> sendingPhoneNumber.isMatchingPhoneNumber(address.getAddress(), networkCountryIso) }
+                addressList.removeIf { address -> TelephonyHelper.isSamePhoneNumber(sendingPhoneNumber.number, address.getAddress(), networkCountryIso) }
             }
         }
 
@@ -373,7 +373,7 @@ object SmsMmsUtils {
 
         for (number in numbers) {
             val address = SMSHelper.Address(number.trim { it <= ' ' })
-            if (uniqueNumbers.none { it.isSamePhoneNumber(address, networkCountryIso) }) {
+            if (uniqueNumbers.none { TelephonyHelper.isSamePhoneNumber(it.getAddress(), address.getAddress(), networkCountryIso) }) {
                 uniqueNumbers.add(address)
             }
         }

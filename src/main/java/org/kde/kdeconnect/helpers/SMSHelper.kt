@@ -659,7 +659,7 @@ object SMSHelper {
         if (from != null) {
             val isLocalPhoneNumber = userPhoneNumbers
                 .any { localPhoneNumber: LocalPhoneNumber ->
-                    localPhoneNumber.isMatchingPhoneNumber(from.getAddress(), networkCountryIso)
+                    TelephonyHelper.isSamePhoneNumber(localPhoneNumber.number, from.getAddress(), networkCountryIso)
                 }
             if (!isLocalPhoneNumber && from.toString() != "insert-address-token") {
                 addresses.add(from)
@@ -669,9 +669,9 @@ object SMSHelper {
             for (toAddress in to) {
                 val isLocalPhoneNumber = userPhoneNumbers
                     .any { localPhoneNumber: LocalPhoneNumber ->
-                        localPhoneNumber.isMatchingPhoneNumber(toAddress.getAddress(), networkCountryIso)
+                        TelephonyHelper.isSamePhoneNumber(localPhoneNumber.number, toAddress.getAddress(), networkCountryIso)
                     }
-                if (!isLocalPhoneNumber && toAddress.toString() != "insert-address-token" && addresses.none { it.isSamePhoneNumber(toAddress, networkCountryIso) }) {
+                if (!isLocalPhoneNumber && toAddress.toString() != "insert-address-token" && addresses.none { TelephonyHelper.isSamePhoneNumber(it.getAddress(), toAddress.getAddress(), networkCountryIso) }) {
                     addresses.add(toAddress)
                 }
             }
@@ -838,13 +838,6 @@ object SMSHelper {
         fun getAddress() = address
 
         override fun toString() = address
-
-        /**
-         * Loosely compares phone numbers, so different formats of the same number match.
-         * @see TelephonyHelper.isSamePhoneNumber
-         */
-        fun isSamePhoneNumber(other: Address, networkCountryIso: String) =
-            TelephonyHelper.isSamePhoneNumber(address, other.address, networkCountryIso)
 
         companion object {
             /**

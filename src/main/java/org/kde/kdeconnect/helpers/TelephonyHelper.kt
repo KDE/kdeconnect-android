@@ -234,13 +234,6 @@ object TelephonyHelper {
         val subscriptionID: Int
     ) {
         override fun toString(): String = number
-
-        /**
-         * @see isSamePhoneNumber
-         */
-        fun isMatchingPhoneNumber(potentialMatchingPhoneNumber: String, networkCountryIso: String): Boolean {
-            return isSamePhoneNumber(number, potentialMatchingPhoneNumber, networkCountryIso)
-        }
     }
 
     /**

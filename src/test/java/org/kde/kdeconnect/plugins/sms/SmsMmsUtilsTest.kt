@@ -14,7 +14,6 @@ import org.junit.After
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-import org.kde.kdeconnect.helpers.SMSHelper
 import org.kde.kdeconnect.plugins.sms.SmsMmsUtils
 
 class SmsMmsUtilsTest {
@@ -40,15 +39,5 @@ class SmsMmsUtilsTest {
         Assert.assertEquals(2, result.size)
         Assert.assertEquals("+1-202-555-0173", result[0].getAddress())
         Assert.assertEquals("+1-202-555-0199", result[1].getAddress())
-    }
-
-    @Test
-    fun addressIsSamePhoneNumberDetectsDuplicatePhoneNumbers() {
-        val addr1 = SMSHelper.Address("+1 (202) 555-0173")
-        val addr2 = SMSHelper.Address("2025550173")
-        val addr3 = SMSHelper.Address("+1-202-555-0199")
-
-        Assert.assertTrue(addr1.isSamePhoneNumber(addr2, "US"))
-        Assert.assertFalse(addr1.isSamePhoneNumber(addr3, "US"))
     }
 }

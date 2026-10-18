@@ -61,6 +61,8 @@ class TelephonyHelperTest {
 
         // Exact match
         Assert.assertTrue(TelephonyHelper.isPhoneNumberMatchCompat(localNumber, "+12025550173"))
+        // Different formatting of the same number
+        Assert.assertTrue(TelephonyHelper.isPhoneNumberMatchCompat(localNumber, "+1 (202) 555-0173"))
         // Localized area-code match (10 digits >= 75% of 11 digits)
         Assert.assertTrue(TelephonyHelper.isPhoneNumberMatchCompat(localNumber, "2025550173"))
         // Numbers that are too short (< 75% length ratio) are discarded
