@@ -56,17 +56,17 @@ class TelephonyHelperTest {
     }
 
     @Test
-    fun isMatchingPhoneNumber() {
-        val localNumber = TelephonyHelper.LocalPhoneNumber("+1-202-555-0173", 1)
+    fun isPhoneNumberMatchCompat() {
+        val localNumber = "+1-202-555-0173"
 
         // Exact match
-        Assert.assertTrue(localNumber.isMatchingPhoneNumber("+12025550173"))
+        Assert.assertTrue(TelephonyHelper.isPhoneNumberMatchCompat(localNumber, "+12025550173"))
         // Localized area-code match (10 digits >= 75% of 11 digits)
-        Assert.assertTrue(localNumber.isMatchingPhoneNumber("2025550173"))
+        Assert.assertTrue(TelephonyHelper.isPhoneNumberMatchCompat(localNumber, "2025550173"))
         // Numbers that are too short (< 75% length ratio) are discarded
-        Assert.assertFalse(localNumber.isMatchingPhoneNumber("5550173"))
+        Assert.assertFalse(TelephonyHelper.isPhoneNumberMatchCompat(localNumber, "5550173"))
         // Non match
-        Assert.assertFalse(localNumber.isMatchingPhoneNumber("12025550199"))
-        Assert.assertFalse(localNumber.isMatchingPhoneNumber(""))
+        Assert.assertFalse(TelephonyHelper.isPhoneNumberMatchCompat(localNumber, "12025550199"))
+        Assert.assertFalse(TelephonyHelper.isPhoneNumberMatchCompat(localNumber, ""))
     }
 }

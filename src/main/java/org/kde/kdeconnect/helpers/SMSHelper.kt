@@ -15,7 +15,6 @@ import android.media.ThumbnailUtils
 import android.net.Uri
 import android.os.Looper
 import android.provider.Telephony
-import android.telephony.PhoneNumberUtils
 import android.util.Log
 import androidx.core.net.toUri
 import com.google.android.mms.pdu_alt.MultimediaMessagePdu
@@ -656,21 +655,21 @@ object SMSHelper {
         val from = SmsMmsUtils.getMmsFrom(msg)
         val to = SmsMmsUtils.getMmsTo(context, msg)
         val addresses = mutableListOf<Address>()
+        val networkCountryIso = TelephonyHelper.getNetworkCountryIso(context)
         if (from != null) {
             val isLocalPhoneNumber = userPhoneNumbers
                 .any { localPhoneNumber: LocalPhoneNumber ->
-                    localPhoneNumber.isMatchingPhoneNumber(from.getAddress())
+                    localPhoneNumber.isMatchingPhoneNumber(from.getAddress(), networkCountryIso)
                 }
             if (!isLocalPhoneNumber && from.toString() != "insert-address-token") {
                 addresses.add(from)
             }
         }
         if (to != null) {
-            val networkCountryIso = TelephonyHelper.getNetworkCountryIso(context)
             for (toAddress in to) {
                 val isLocalPhoneNumber = userPhoneNumbers
                     .any { localPhoneNumber: LocalPhoneNumber ->
-                        localPhoneNumber.isMatchingPhoneNumber(toAddress.getAddress())
+                        localPhoneNumber.isMatchingPhoneNumber(toAddress.getAddress(), networkCountryIso)
                     }
                 if (!isLocalPhoneNumber && toAddress.toString() != "insert-address-token" && addresses.none { it.isSamePhoneNumber(toAddress, networkCountryIso) }) {
                     addresses.add(toAddress)
@@ -842,9 +841,10 @@ object SMSHelper {
 
         /**
          * Loosely compares phone numbers, so different formats of the same number match.
+         * @see TelephonyHelper.isSamePhoneNumber
          */
         fun isSamePhoneNumber(other: Address, networkCountryIso: String) =
-            PhoneNumberUtils.areSamePhoneNumber(address, other.address, networkCountryIso)
+            TelephonyHelper.isSamePhoneNumber(address, other.address, networkCountryIso)
 
         companion object {
             /**

@@ -6,11 +6,9 @@
 package org.kde.kdeconnect.plugins.sms
 
 import android.content.Context
-import android.telephony.PhoneNumberUtils
 import android.telephony.TelephonyManager
 import io.mockk.every
 import io.mockk.mockk
-import io.mockk.mockkStatic
 import io.mockk.unmockkAll
 import org.junit.After
 import org.junit.Assert
@@ -27,13 +25,6 @@ class SmsMmsUtilsTest {
     fun setUp() {
         every { context.getSystemService(Context.TELEPHONY_SERVICE) } returns telephonyManager
         every { telephonyManager.networkCountryIso } returns "US"
-
-        mockkStatic(PhoneNumberUtils::class)
-        every { PhoneNumberUtils.areSamePhoneNumber(any(), any(), any()) } answers {
-            val a = firstArg<String>().replace(Regex("[^0-9]"), "")
-            val b = secondArg<String>().replace(Regex("[^0-9]"), "")
-            a == b || (a.length >= 7 && b.length >= 7 && (a.endsWith(b) || b.endsWith(a)))
-        }
     }
 
     @After

@@ -126,7 +126,8 @@ object SmsMmsUtils {
             // If the message is going to more than one target (to allow the user to send a message to themselves)
             if (addressList.size > 1) {
                 // Remove the user's phone number if present in the list of recipients
-                addressList.removeIf { address -> sendingPhoneNumber.isMatchingPhoneNumber(address.getAddress()) }
+                val networkCountryIso = TelephonyHelper.getNetworkCountryIso(context)
+                addressList.removeIf { address -> sendingPhoneNumber.isMatchingPhoneNumber(address.getAddress(), networkCountryIso) }
             }
         }
 
