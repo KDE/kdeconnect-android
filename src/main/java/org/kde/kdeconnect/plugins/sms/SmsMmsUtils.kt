@@ -127,7 +127,7 @@ object SmsMmsUtils {
             if (addressList.size > 1) {
                 // Remove the user's phone number if present in the list of recipients
                 val networkCountryIso = TelephonyHelper.getNetworkCountryIso(context)
-                addressList.removeIf { address -> TelephonyHelper.isSamePhoneNumber(sendingPhoneNumber.number, address.getAddress(), networkCountryIso) }
+                addressList.removeIf { address -> TelephonyHelper.isSamePhoneNumber(sendingPhoneNumber.number, address.address, networkCountryIso) }
             }
         }
 
@@ -136,7 +136,7 @@ object SmsMmsUtils {
 
             val transaction = Transaction(context, settings)
 
-            val addresses: Array<String> = addressList.map(SMSHelper.Address::getAddress).toTypedArray()
+            val addresses: Array<String> = addressList.map(SMSHelper.Address::address).toTypedArray()
             val message = Message(textMessage, addresses)
 
             // If there are any attachment files add those into the message
@@ -373,7 +373,7 @@ object SmsMmsUtils {
 
         for (number in numbers) {
             val address = SMSHelper.Address(number.trim { it <= ' ' })
-            if (uniqueNumbers.none { TelephonyHelper.isSamePhoneNumber(it.getAddress(), address.getAddress(), networkCountryIso) }) {
+            if (uniqueNumbers.none { TelephonyHelper.isSamePhoneNumber(it.address, address.address, networkCountryIso) }) {
                 uniqueNumbers.add(address)
             }
         }

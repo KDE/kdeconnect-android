@@ -37,7 +37,7 @@ class SmsMmsUtilsTest {
         val result = SmsMmsUtils.stripDuplicatePhoneNumbers(context, phoneNumbers)
 
         Assert.assertEquals(2, result.size)
-        Assert.assertEquals("+1-202-555-0173", result[0].getAddress())
-        Assert.assertEquals("+1-202-555-0199", result[1].getAddress())
+        Assert.assertEquals("+1-202-555-0173", result[0].address)
+        Assert.assertEquals("+1-202-555-0199", result[1].address)
     }
 }

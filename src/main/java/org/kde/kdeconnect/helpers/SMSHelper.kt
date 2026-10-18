@@ -659,7 +659,7 @@ object SMSHelper {
         if (from != null) {
             val isLocalPhoneNumber = userPhoneNumbers
                 .any { localPhoneNumber: LocalPhoneNumber ->
-                    TelephonyHelper.isSamePhoneNumber(localPhoneNumber.number, from.getAddress(), networkCountryIso)
+                    TelephonyHelper.isSamePhoneNumber(localPhoneNumber.number, from.address, networkCountryIso)
                 }
             if (!isLocalPhoneNumber && from.toString() != "insert-address-token") {
                 addresses.add(from)
@@ -669,9 +669,9 @@ object SMSHelper {
             for (toAddress in to) {
                 val isLocalPhoneNumber = userPhoneNumbers
                     .any { localPhoneNumber: LocalPhoneNumber ->
-                        TelephonyHelper.isSamePhoneNumber(localPhoneNumber.number, toAddress.getAddress(), networkCountryIso)
+                        TelephonyHelper.isSamePhoneNumber(localPhoneNumber.number, toAddress.address, networkCountryIso)
                     }
-                if (!isLocalPhoneNumber && toAddress.toString() != "insert-address-token" && addresses.none { TelephonyHelper.isSamePhoneNumber(it.getAddress(), toAddress.getAddress(), networkCountryIso) }) {
+                if (!isLocalPhoneNumber && toAddress.toString() != "insert-address-token" && addresses.none { TelephonyHelper.isSamePhoneNumber(it.address, toAddress.address, networkCountryIso) }) {
                     addresses.add(toAddress)
                 }
             }
@@ -830,12 +830,10 @@ object SMSHelper {
     }
 
     @JvmInline
-    value class Address(private val address: String) {
+    value class Address(val address: String) {
         fun toJson(): JsonObject = buildJsonObject {
             put(ADDRESS, address)
         }
-
-        fun getAddress() = address
 
         override fun toString() = address
 
