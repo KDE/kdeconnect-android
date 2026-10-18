@@ -19,7 +19,6 @@ import androidx.documentfile.provider.DocumentFile
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.async.BackgroundJob
-import org.kde.kdeconnect.extensions.closeSafe
 import org.kde.kdeconnect.helpers.FilesHelper
 import org.kde.kdeconnect.helpers.MediaStoreHelper
 import org.kde.kdeconnect_tp.R
@@ -123,11 +122,9 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
     }
 
     override fun run() {
-        var outputStream: OutputStream? = null
-        var fileDocument: DocumentFile? = null
-        var fileSuccessfullyReceived = false
-
         try {
+            var fileDocument: DocumentFile? = null
+
             isRunning = true
 
             while (!isCancelled) {
@@ -142,42 +139,15 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
                     next
                 } ?: break
 
-                currentFileName = packet.getString("filename", System.currentTimeMillis().toString())
+                val filename = packet.getString("filename", System.currentTimeMillis().toString())
+                currentFileName = filename
                 currentFileNum++
 
                 setProgress(prevProgressPercentage)
 
-                fileDocument = getDocumentFileFor(currentFileName!!, packet.getBoolean("open", false))
-                fileSuccessfullyReceived = false
-
-                if (packet.hasPayload()) {
-                    outputStream = BufferedOutputStream(device.context.contentResolver.openOutputStream(fileDocument.uri), WRITE_BUFFER_SIZE)
-                    val inputStream = packet.payload?.inputStream
-                        ?: throw RuntimeException("Payload InputStream is null for $currentFileName")
-
-                    val received = receiveFile(inputStream, outputStream)
-
-                    packet.payload?.close()
-
-                    outputStream.closeSafe()
-                    outputStream = null
-
-                    if (received != packet.payloadSize) {
-                        fileDocument.delete()
-
-                        if (!isCancelled) {
-                            throw RuntimeException("Failed to receive: $currentFileName received:$received bytes, expected: ${packet.payloadSize} bytes")
-                        }
-                    } else {
-                        fileSuccessfullyReceived = true
-                        publishFile(fileDocument, received)
-                    }
-                } else {
-                    // TODO: Only set progress to 100 if this is the only file/packet to send
-                    setProgress(100)
-                    fileSuccessfullyReceived = true
-                    publishFile(fileDocument, 0)
-                }
+                fileDocument = getDocumentFileFor(filename, packet.getBoolean("open", false))
+                val size = receivePacket(fileDocument, packet)
+                publishFile(fileDocument, size)
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     if (packet.has("lastModified")) {
@@ -255,21 +225,18 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
             reportResult(Unit)
         } catch (e: Exception) {
             isRunning = false
-
-            outputStream?.closeSafe()
-            outputStream = null
-            if (!fileSuccessfullyReceived) {
-                fileDocument?.delete()
+            if (isCancelled) {
+                Log.d("SharePlugin", "Cancelled receiving file $currentFileName", e)
+                receiveNotification.cancel()
+            } else {
+                Log.e("SharePlugin", "Error receiving file $currentFileName", e)
+                synchronized(lock) {
+                    val failedFiles = totalNumFiles - currentFileNum + 1
+                    receiveNotification.setFailed(device.context.resources.getQuantityString(R.plurals.received_files_fail_title, failedFiles, device.name, failedFiles, totalNumFiles))
+                }
+                receiveNotification.show()
+                reportError(e)
             }
-
-            Log.e("SharePlugin", "Error receiving file", e)
-
-            synchronized(lock) {
-                val failedFiles = totalNumFiles - currentFileNum + 1
-                receiveNotification.setFailed(device.context.resources.getQuantityString(R.plurals.received_files_fail_title, failedFiles, device.name, failedFiles, totalNumFiles))
-            }
-            receiveNotification.show()
-            reportError(e)
         } finally {
             val remainingPackets = synchronized(lock) {
                 finished = true
@@ -279,7 +246,44 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
             for (np in remainingPackets) {
                 np.payload?.close()
             }
-            outputStream?.closeSafe()
+        }
+    }
+
+    /**
+     * Writes the packet's payload into [fileDocument] and returns the number of bytes received.
+     * If the transfer fails or is cancelled, the file is deleted and this throws.
+     */
+    private fun receivePacket(fileDocument: DocumentFile, packet: NetworkPacket): Long {
+        try {
+            val received = if (packet.hasPayload()) {
+                try {
+                    val inputStream = packet.payload?.inputStream
+                        ?: throw RuntimeException("Payload InputStream is null")
+                    val outputStream = device.context.contentResolver.openOutputStream(fileDocument.uri)
+                        ?: throw RuntimeException("Can't open output stream")
+
+                    BufferedOutputStream(outputStream, WRITE_BUFFER_SIZE).use {
+                        receiveFile(inputStream, it)
+                    }
+                } finally {
+                    packet.payload?.close()
+                }
+            } else {
+                // TODO: Only set progress to 100 if this is the only file/packet to send
+                setProgress(100)
+                0L
+            }
+
+            if (isCancelled) {
+                throw RuntimeException("Cancelled")
+            }
+            if (received != packet.payloadSize) {
+                throw RuntimeException("Size mismatch: received:$received bytes, expected: ${packet.payloadSize} bytes")
+            }
+            return received
+        } catch (e: Exception) {
+            fileDocument.delete()
+            throw e
         }
     }
 
