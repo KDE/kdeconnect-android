@@ -44,9 +44,9 @@ object DeviceStats {
             append(minutes)
             append("m\n\n")
 
-            packetStats.summaries.stream().sorted { o1, o2 ->
-                o2.total compareTo o1.total // Sort them by total number of events
-            }.forEach { count ->
+            packetStats.summaries
+                .sortedByDescending { it.total }
+                .forEach { count ->
                 append(count.packetType.removePrefix("kdeconnect."))
                 append("\n• ")
                 append(count.received)

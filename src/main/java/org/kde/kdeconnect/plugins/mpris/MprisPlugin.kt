@@ -331,7 +331,7 @@ class MprisPlugin : Plugin() {
         val newPlayerList = np.getStringList("playerList")
         if (newPlayerList != null) {
             var equals = true
-            newPlayerList.stream().filter { !players.containsKey(it) }.forEach { newPlayer ->
+            newPlayerList.filter { !players.containsKey(it) }.forEach { newPlayer ->
                 equals = false
                 val player = MprisPlayer().apply {
                     playerName = newPlayer
@@ -343,7 +343,7 @@ class MprisPlugin : Plugin() {
             val iter = players.entries.iterator()
             iter.forEach {
                 val oldPlayer = it.key
-                val found = newPlayerList.stream().anyMatch { newPlayer -> newPlayer == oldPlayer }
+                val found = newPlayerList.any { newPlayer -> newPlayer == oldPlayer }
                 if (!found) {
                     // Player got removed
                     equals = false
@@ -468,7 +468,7 @@ class MprisPlugin : Plugin() {
          *
          * @return null if no players are playing, a playing player otherwise
          */
-        get() = players.values.stream().filter(MprisPlayer::isPlaying).findFirst().orElse(null)
+        get() = players.values.firstOrNull(MprisPlayer::isPlaying)
 
     fun hasPlayer(player: MprisPlayer): Boolean = players.containsValue(player)
 
