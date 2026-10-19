@@ -86,6 +86,7 @@ class ShareActivity : BaseActivity<ActivityShareBinding>() {
         val device = KdeConnect.getInstance().getDevice(id = deviceId)
         if (device == null) {
             Toast.makeText(this, getString(R.string.unknown_device), Toast.LENGTH_LONG ).show()
+            finish()
         } else if (!device.isReachable) {
             // Store the URL to be delivered once device becomes online
             val urls = IntentHelper.parseIntentUrls(intent)
@@ -94,10 +95,12 @@ class ShareActivity : BaseActivity<ActivityShareBinding>() {
             } else {
                 Toast.makeText(this, getString(R.string.error_not_reachable), Toast.LENGTH_LONG).show()
             }
+            finish()
         } else {
-            device.getPlugin<SharePlugin>()?.share(intent)
+            device.getPlugin<SharePlugin>()?.share(intent) {
+                runOnUiThread(this::finish)
+            } ?: finish()
         }
-        finish()
     }
 
     private fun storeUrlForFutureDelivery(

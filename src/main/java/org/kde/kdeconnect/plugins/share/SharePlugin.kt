@@ -244,46 +244,54 @@ class SharePlugin : Plugin() {
         device.sendPacket(np)
     }
 
-    fun sendFiles(uriList: List<Uri>) {
+    fun sendFiles(uriList: List<Uri>, onComplete: (() -> Unit)? = null) {
         //Read all the data early, as we only have permissions to do it while the activity is alive
         val packets = uriList.mapNotNull { uriToNetworkPacket(context, it, PACKET_TYPE_SHARE_REQUEST) }
 
-        if (packets.isEmpty()) {
-            return
-        }
+        try {
+            if (packets.isEmpty()) {
+                return
+            }
 
-        // If there's an existing batch, try adding the packets to it
-        if (uploadFileJob?.addNetworkPackets(packets) == true) {
-            // If the current job can accept the packets, we are done
-            return
-        }
+            // If there's an existing batch, try adding the packets to it
+            if (uploadFileJob?.addNetworkPackets(packets) == true) {
+                // If the current job can accept the packets, we are done
+                return
+            }
 
-        val job = CompositeUploadFileJob(device, receiveFileJobCallback)
-        job.addNetworkPackets(packets)
-        uploadFileJob = job
-        backgroundJobHandler.runJob(job)
+            val job = CompositeUploadFileJob(device, receiveFileJobCallback)
+            job.addNetworkPackets(packets)
+            uploadFileJob = job
+            backgroundJobHandler.runJob(job)
+        } finally {
+            onComplete?.invoke()
+        }
     }
 
-    fun share(intent: Intent) {
+    fun share(intent: Intent, onComplete: (() -> Unit)? = null) {
         val streams = IntentHelper.streamsFromIntent(intent)
         if (streams.isNotEmpty()) {
             Log.i(TAG, "Intent contains files to share")
-            ThreadHelper.execute { sendFiles(streams) }
+            ThreadHelper.execute { sendFiles(streams, onComplete) }
             return
         }
-        val urls = IntentHelper.parseIntentUrls(intent)
-        if (urls.isNotEmpty()) {
-            Log.i(TAG, "Intent contains URLs to share")
-            sendUrls(urls)
-            return
+        try {
+            val urls = IntentHelper.parseIntentUrls(intent)
+            if (urls.isNotEmpty()) {
+                Log.i(TAG, "Intent contains URLs to share")
+                sendUrls(urls)
+                return
+            }
+            val text = intent.extras?.getString(Intent.EXTRA_TEXT)
+            if (!text.isNullOrEmpty()) {
+                Log.i(TAG, "Intent contains text to share")
+                sendText(text)
+                return
+            }
+            Log.e(TAG, "There's nothing we know how to share")
+        } finally {
+            onComplete?.invoke()
         }
-        val text = intent.extras?.getString(Intent.EXTRA_TEXT)
-        if (!text.isNullOrEmpty()) {
-            Log.i(TAG, "Intent contains text to share")
-            sendText(text)
-            return
-        }
-        Log.e(TAG, "There's nothing we know how to share")
     }
 
     override fun getSettingsFragment(activity: Activity): PluginSettingsFragment {
