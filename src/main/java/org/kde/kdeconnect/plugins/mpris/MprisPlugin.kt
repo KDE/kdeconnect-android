@@ -124,9 +124,12 @@ class MprisPlugin : Plugin() {
         val isSetVolumeAllowed: Boolean
             get() = volume > -1
 
+        var playbackRate: Double = 1.0
+            internal set
+
         val position: Long
             get() = if (isPlaying) {
-                lastPosition + (SystemClock.elapsedRealtime() - lastPositionTime)
+                lastPosition + ((SystemClock.elapsedRealtime() - lastPositionTime) * playbackRate).toLong()
             } else {
                 lastPosition
             }
@@ -301,6 +304,9 @@ class MprisPlugin : Plugin() {
                 if (np.has("pos")) {
                     playerStatus.lastPosition = np.getLong("pos", playerStatus.lastPosition)
                     playerStatus.lastPositionTime = SystemClock.elapsedRealtime()
+                }
+                if (np.has("rate")) {
+                    playerStatus.playbackRate = np.getDouble("rate", playerStatus.playbackRate)
                 }
                 playerStatus.isPlaying = np.getBoolean("isPlaying", playerStatus.isPlaying)
                 playerStatus.isPlayAllowed = np.getBoolean("canPlay", playerStatus.isPlayAllowed)
