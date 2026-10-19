@@ -58,7 +58,7 @@ class TrustedNetworkHelper(private val context: Context) {
     }
 
     val isTrustedNetwork: Boolean
-        get() = this.allNetworksAllowed || this.getCurrentSSID() in this.trustedNetworks
+        get() = this.allNetworksAllowed || (this.trustedNetworks.isNotEmpty() && this.getCurrentSSID() in this.trustedNetworks)
 
     companion object {
         private const val KEY_CUSTOM_TRUSTED_NETWORKS = "trusted_network_preference"
