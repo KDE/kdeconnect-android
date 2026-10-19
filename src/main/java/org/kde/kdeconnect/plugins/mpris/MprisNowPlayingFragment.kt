@@ -9,6 +9,7 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
@@ -45,7 +46,7 @@ import kotlin.time.Duration.Companion.milliseconds
 private typealias MprisPlayerCallback = (MprisPlayer) -> Unit
 
 class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
-    private val positionSeekUpdateHandler = Handler()
+    private val positionSeekUpdateHandler = Handler(Looper.getMainLooper())
     private lateinit var mprisControlBinding: MprisControlBinding
     private lateinit var activityMprisBinding: MprisNowPlayingBinding
     private lateinit var deviceId: String

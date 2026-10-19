@@ -106,7 +106,7 @@ class ClipboardListener {
             updateTimestamp = System.currentTimeMillis()
             currentContent = text
             currentContentType = ClipboardContentType.Text
-            cm.text = text
+            cm.setPrimaryClip(ClipData.newPlainText(null, text))
         }
     }
 

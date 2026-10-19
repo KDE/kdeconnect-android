@@ -7,6 +7,7 @@ package org.kde.kdeconnect.plugins.share
 
 import android.Manifest
 import android.app.Activity
+import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
@@ -196,7 +197,8 @@ class SharePlugin : Plugin() {
 
     private fun receiveText(np: NetworkPacket) {
         val cm = context.getSystemService<ClipboardManager>()!!
-        cm.text = np.getString("text")
+        val text = np.getString("text")
+        cm.setPrimaryClip(ClipData.newPlainText(null, text))
         handler.post {
             Toast.makeText(context, R.string.shareplugin_text_saved, Toast.LENGTH_LONG).show()
         }
