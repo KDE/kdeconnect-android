@@ -108,6 +108,12 @@ class SftpPlugin : Plugin(), OnSharedPreferenceChangeListener {
                 pathNames.add(sv.getDescription(context))
                 paths.add(directory.path)
             }
+            if (paths.isEmpty()) {
+                device.sendPacket(NetworkPacket(PACKET_TYPE_SFTP).apply {
+                    this["errorMessage"] = context.getString(R.string.sftp_no_storage_locations_configured)
+                })
+                return true
+            }
             server.setNativeStorageDirs(paths.map { Path.of(it) })
         } else {
             val storageInfoList = SftpSettingsFragment.getStorageInfoList(context, this)
@@ -123,6 +129,14 @@ class SftpPlugin : Plugin(), OnSharedPreferenceChangeListener {
             server.setSafStorageDirs(storageInfoList)
         }
 
+        val localIp = getLocalIpAddress()?.hostAddress
+        if (localIp == null) {
+            device.sendPacket(NetworkPacket(PACKET_TYPE_SFTP).apply {
+                this["errorMessage"] = context.getString(R.string.sftp_could_not_determine_ip)
+            })
+            return true
+        }
+
         if (!server.start()) {
             return false
         }
@@ -130,7 +144,7 @@ class SftpPlugin : Plugin(), OnSharedPreferenceChangeListener {
         preferences.registerOnSharedPreferenceChangeListener(this)
 
         device.sendPacket(NetworkPacket(PACKET_TYPE_SFTP).apply {
-            this["ip"] = getLocalIpAddress()?.hostAddress!!
+            this["ip"] = localIp
             this["port"] = server.port
             this["user"] = SimpleSftpServer.USER
             this["password"] = server.regeneratePassword()
