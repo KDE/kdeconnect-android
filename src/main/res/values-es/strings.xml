@@ -64,6 +64,7 @@
   <string name="open_mousepad">Entrada remota</string>
   <string name="open_mousepad_tv">Control remoto TV</string>
   <string name="mousepad_info">Mueva un dedo sobre la pantalla para mover el cursor del ratón. Pulse para realizar un clic y use dos o tres dedos para emular los botones derecho y central. Use 2 dedos para desplazarse. Mantenga el dedo pulsado para arrastrar y soltar. El ratón giroscópico puede ser activado desde las preferencias del complemento.</string>
+  <string name="mousepad_info_double_tap">Mueva un dedo sobre la pantalla para mover el cursor del ratón. Pulse para realizar un clic y use dos o tres dedos para emular los botones derecho y central. Use 2 dedos para desplazarse. Una doble pulsación para arrastrar y soltar. El ratón giroscópico puede ser activado desde las preferencias del complemento.</string>
   <string name="mousepad_info_no_gestures">Mueva un dedo sobre la pantalla para mover el cursor del ratón, tóquela para hacer clic.</string>
   <string name="mousepad_keyboard_input_not_supported">Entrada de teclado no soportada por el dispositivo vinculado.</string>
   <string name="mousepad_single_tap_settings_title">Establecer la acción al pulsar con un dedo</string>
@@ -306,6 +307,7 @@
   <string name="contacts_per_device_confirmation">Sus contactos telefónicos serán copiados a este dispositivo y así podrán ser usados por la aplicación de SMS de KDE Connect y por otras aplicaciones.</string>
   <string name="select_ringtone">Seleccionar tono</string>
   <string name="telephony_pref_blocked_title">Números bloqueados</string>
+  <string name="telephony_pref_blocked_dialog_desc">No mostrar llamadas de estos números. Por favor, especifique solo un número por línea</string>
   <string name="mpris_coverart_description">Carátula del medio actual</string>
   <string name="settings_icon_description">Icono de preferencias</string>
   <string name="presenter_fullscreen">Pantalla completa</string>
@@ -332,6 +334,7 @@
   <string name="runcommand_notpaired">El dispositivo no está vinculado</string>
   <string name="runcommand_nosuchdevice">No se encuentra este dispositivo</string>
   <string name="runcommand_noruncommandplugin">No tiene activado el complemento para ejecutar órdenes en este dispositivo</string>
+  <string name="runcommand_widget_no_device">Pulse el título para seleccionar un dispositivo.</string>
   <string name="runcommand_category_device_controls_title">Controles del dispositivo</string>
   <string name="runcommand_device_controls_summary">Si su dispositivo reconoce los controles de dispositivo, las órdenes que haya configurado aparecerán aquí.</string>
   <string name="set_runcommand_name_as_title">mostrar_nombre_de_la_orden_como_título</string>

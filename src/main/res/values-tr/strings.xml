@@ -64,6 +64,7 @@
   <string name="open_mousepad">Uzaktan giriş</string>
   <string name="open_mousepad_tv">TV kumandası</string>
   <string name="mousepad_info">İmleç denetimi için parmağınızı ekranda hareket ettirin. Tıklamak için hafifçe vurun, sağ ve orta düğmeler için iki/üç parmağınızı kullanın. Sarmak için 2 parmağınızı kullanın. Bırakıp sürüklemek için uzun basın. Cayro fare işlevi, eklenti tercihlerinden etkinleştirilebilir</string>
+  <string name="mousepad_info_double_tap">İmleç denetimi için parmağınızı ekranda hareket ettirin. Tıklamak için hafifçe vurun, sağ ve orta düğmeler için iki/üç parmağınızı kullanın. Sarmak için 2 parmağınızı kullanın. Bırakıp sürüklemek için iki kez basın. Cayro fare işlevi, eklenti tercihlerinden etkinleştirilebilir</string>
   <string name="mousepad_info_no_gestures">Fare imlecini hareket ettirmek için ekranda parmağınızı hareket ettirin, tıklamak için dokunun.</string>
   <string name="mousepad_keyboard_input_not_supported">Klavye girişi, eşlenen aygıt tarafından desteklenmiyor</string>
   <string name="mousepad_single_tap_settings_title">Tek parmak dokunma eylemini ayarla</string>
