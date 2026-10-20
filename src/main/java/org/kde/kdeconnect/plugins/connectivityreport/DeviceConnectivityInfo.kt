@@ -6,7 +6,9 @@
 
 package org.kde.kdeconnect.plugins.connectivityreport
 
-import org.json.JSONObject
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.JsonPrimitive
+import kotlinx.serialization.json.contentOrNull
 import org.kde.kdeconnect.NetworkPacket
 
 /**
@@ -29,12 +31,12 @@ data class DeviceConnectivityInfo(
             require(np.type == ConnectivityReportPlugin.PACKET_TYPE_CONNECTIVITY_REPORT) {
                 "Packet type must be PACKET_TYPE_CONNECTIVITY_REPORT"
             }
-            val signalStrengths = np.getJSONObject("signalStrengths") ?: return emptyMap()
+            val signalStrengths = np.getJsonObject("signalStrengths") ?: return emptyMap()
             val result = mutableMapOf<String, DeviceConnectivityInfo>()
-            for (key in signalStrengths.keys()) {
-                val subObj = signalStrengths.optJSONObject(key) ?: continue
-                val networkType = subObj.optString("networkType", "")
-                val signalStrength = subObj.optInt("signalStrength", 0)
+            for ((key, signalStrength) in signalStrengths) {
+                signalStrength as? JsonObject ?: continue
+                val networkType = (signalStrength["networkType"] as? JsonPrimitive)?.contentOrNull ?: continue
+                val signalStrength = (signalStrength["signalStrength"] as? JsonPrimitive)?.contentOrNull?.toIntOrNull() ?: continue
                 result[key] = DeviceConnectivityInfo(networkType, signalStrength)
             }
             return result

@@ -9,6 +9,8 @@ import io.mockk.mockk
 import io.mockk.slot
 import io.mockk.unmockkObject
 import io.mockk.verify
+import kotlinx.serialization.json.JsonPrimitive
+import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.int
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
@@ -111,14 +113,14 @@ class ConnectivityReportPluginTest {
     @Test
     fun testReceivesConnectivityReportPacket() {
         val np = NetworkPacket("kdeconnect.connectivity_report").apply {
-            val signalStrengths = org.json.JSONObject().apply {
-                val sub1 = org.json.JSONObject().apply {
-                    put("networkType", "5G")
-                    put("signalStrength", 4)
+            val signalStrengths =  buildJsonObject {
+                val sub1 = buildJsonObject {
+                    put("networkType", JsonPrimitive("5G"))
+                    put("signalStrength", JsonPrimitive(4))
                 }
-                val sub2 = org.json.JSONObject().apply {
-                    put("networkType", "LTE")
-                    put("signalStrength", 2)
+                val sub2 = buildJsonObject {
+                    put("networkType", JsonPrimitive("LTE"))
+                    put("signalStrength", JsonPrimitive(2))
                 }
                 put("1", sub1)
                 put("2", sub2)
