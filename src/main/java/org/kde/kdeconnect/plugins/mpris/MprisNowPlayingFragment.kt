@@ -46,11 +46,22 @@ import kotlin.time.Duration.Companion.milliseconds
 private typealias MprisPlayerCallback = (MprisPlayer) -> Unit
 
 class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
-    private val positionSeekUpdateHandler = Handler(Looper.getMainLooper())
     private lateinit var mprisControlBinding: MprisControlBinding
     private lateinit var activityMprisBinding: MprisNowPlayingBinding
     private lateinit var deviceId: String
-    private lateinit var positionSeekUpdateRunnable: Runnable
+
+    private val positionSeekUpdateHandler = Handler(Looper.getMainLooper())
+    private val positionSeekUpdateRunnable = object : Runnable {
+        override fun run() {
+            if (!isAdded) return // Fragment was already detached
+
+            targetPlayer?.let {
+                mprisControlBinding.positionSeek.progress = it.position.toInt()
+            }
+            positionSeekUpdateHandler.removeCallbacks(this)
+            positionSeekUpdateHandler.postDelayed(this, 1000)
+        }
+    }
 
     private var targetPlayerName = ""
     private var targetPlayer: MprisPlayer? = null
@@ -125,15 +136,6 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
             override fun onStopTrackingTouch(seekBar: SeekBar) {}
         })
 
-        positionSeekUpdateRunnable = Runnable {
-            if (!isAdded) return@Runnable  // Fragment was already detached
-
-            targetPlayer?.let {
-                mprisControlBinding.positionSeek.progress = it.position.toInt()
-            }
-            positionSeekUpdateHandler.removeCallbacks(positionSeekUpdateRunnable)
-            positionSeekUpdateHandler.postDelayed(positionSeekUpdateRunnable, 1000)
-        }
         positionSeekUpdateHandler.postDelayed(positionSeekUpdateRunnable, 200)
 
         mprisControlBinding.timeTextview.setOnClickListener {
@@ -176,6 +178,7 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
     }
 
     override fun onDestroyView() {
+        positionSeekUpdateHandler.removeCallbacks(positionSeekUpdateRunnable)
         disconnectFromPlugin()
         mprisControlBinding.playerSpinner.adapter = null
         super.onDestroyView()
