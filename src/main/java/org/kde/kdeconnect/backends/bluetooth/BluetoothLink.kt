@@ -112,7 +112,7 @@ class BluetoothLink(
                         var bytesRead: Int
                         var progress: Long = 0
                         val stream = np.payload!!.inputStream!!
-                        while (stream.read(buffer).also { bytesRead = it } != -1) {
+                        while (!np.isCanceled && stream.read(buffer).also { bytesRead = it } != -1) {
                             progress += bytesRead.toLong()
                             payloadStream.write(buffer, 0, bytesRead)
                             if (np.payloadSize > 0) {
@@ -126,11 +126,15 @@ class BluetoothLink(
                     return false
                 }
             }
-            callback.onSuccess()
+            if (!np.isCanceled) {
+                callback.onSuccess()
+            }
             true
         } catch (e: Exception) {
             callback.onFailure(e)
             false
+        } finally {
+            np.payload?.close()
         }
     }
 
