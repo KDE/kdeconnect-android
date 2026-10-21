@@ -38,6 +38,7 @@ import java.time.ZoneId
 import java.util.Date
 import java.util.Formatter
 import java.util.Locale
+import java.util.concurrent.ConcurrentHashMap
 import javax.net.ssl.KeyManagerFactory
 import javax.net.ssl.SSLContext
 import javax.net.ssl.SSLSocket
@@ -48,6 +49,10 @@ import javax.net.ssl.X509TrustManager
 object SslHelper {
     lateinit var certificate: Certificate //my device's certificate
     private val factory: CertificateFactory = CertificateFactory.getInstance("X.509")
+
+    private val trustedSslContextCache = ConcurrentHashMap<String, SSLContext>()
+    @Volatile
+    private var untrustedSslContext: SSLContext? = null
 
     @SuppressLint("CustomX509TrustManager", "TrustAllX509TrustManager")
     private val trustAllCerts: Array<TrustManager> = arrayOf(object : X509TrustManager {
@@ -96,6 +101,7 @@ object SslHelper {
         }
 
         if (needsToGenerateCertificate) {
+            invalidateSslContext()
             TrustedDevices.removeAllTrustedDevices(context)
             Log.i(LOG_TAG, "Generating a certificate")
             // Fix for https://issuetracker.google.com/issues/37095309
@@ -132,8 +138,7 @@ object SslHelper {
         }
     }
 
-    private fun getSslContextForDevice(context: Context, deviceId: String, isDeviceTrusted: Boolean): SSLContext {
-        // TODO: This method is called for each payload that is sent. Cache the result.
+    private fun createSslContext(context: Context, deviceId: String?, isDeviceTrusted: Boolean): SSLContext {
         val privateKey = getPrivateKey(context)
 
         // Setup keystore
@@ -142,7 +147,7 @@ object SslHelper {
         keyStore.setKeyEntry("key", privateKey, "".toCharArray(), arrayOf(certificate))
 
         // Add device certificate if device trusted
-        if (isDeviceTrusted) {
+        if (isDeviceTrusted && deviceId != null) {
             val remoteDeviceCertificate = TrustedDevices.getDeviceCertificate(context, deviceId)
             keyStore.setCertificateEntry(deviceId, remoteDeviceCertificate)
         }
@@ -163,6 +168,30 @@ object SslHelper {
             tlsContext.init(keyManagerFactory.keyManagers, trustAllCerts, RandomHelper.secureRandom)
         }
         return tlsContext
+    }
+
+    private fun getSslContextForDevice(context: Context, deviceId: String, isDeviceTrusted: Boolean): SSLContext {
+        if (!isDeviceTrusted) {
+            return untrustedSslContext ?: synchronized(this) {
+                untrustedSslContext ?: createSslContext(context, null, isDeviceTrusted = false).also {
+                    untrustedSslContext = it
+                }
+            }
+        }
+        return trustedSslContextCache.computeIfAbsent(deviceId) {
+            createSslContext(context, deviceId, isDeviceTrusted = true)
+        }
+    }
+
+    fun invalidateSslContext(deviceId: String? = null) {
+        if (deviceId != null) {
+            trustedSslContextCache.remove(deviceId)
+        } else {
+            trustedSslContextCache.clear()
+            synchronized(this) {
+                untrustedSslContext = null
+            }
+        }
     }
 
     private fun configureSslSocket(socket: SSLSocket, isDeviceTrusted: Boolean, isClient: Boolean) {

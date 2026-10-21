@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.util.Base64
 import android.util.Log
 import androidx.core.content.edit
+import org.kde.kdeconnect.helpers.security.SslHelper
 import org.kde.kdeconnect.helpers.security.SslHelper.parseCertificate
 import java.security.cert.Certificate
 
@@ -22,6 +23,7 @@ object TrustedDevices {
     }
 
     fun removeTrustedDevice(context: Context, deviceId: String) {
+        SslHelper.invalidateSslContext(deviceId)
         val preferences = context.getSharedPreferences("trusted_devices", MODE_PRIVATE)
         preferences.edit { remove(deviceId) }
         val deviceSettings = context.getSharedPreferences(deviceId, MODE_PRIVATE)
@@ -35,6 +37,7 @@ object TrustedDevices {
     }
 
     fun removeAllTrustedDevices(context: Context) {
+        SslHelper.invalidateSslContext()
         val preferences = context.getSharedPreferences("trusted_devices", MODE_PRIVATE)
         preferences.all.keys
             .forEach {
