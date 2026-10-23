@@ -68,7 +68,7 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
     override fun hasSettings(): Boolean = true
 
     override fun getSettingsFragment(activity: Activity): PluginSettingsFragment {
-        return NotificationFilterFragment.newInstance(pluginKey, device.deviceId)
+        return NotificationsSettingsFragment.newInstance(pluginKey, device.deviceId)
     }
 
     override fun checkRequiredPermissions(): Boolean {

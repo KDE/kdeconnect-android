@@ -12,7 +12,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="org.kde.kdeconnect.plugins.notifications.NotificationFilterFragment">
+    tools:context="org.kde.kdeconnect.plugins.notifications.NotificationsSettingsFragment">
 
     <!-- Receives the PreferenceFragmentCompat view, with the preferences from notificationsplugin_preferences.xml -->
     <FrameLayout

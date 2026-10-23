@@ -41,7 +41,7 @@ import org.kde.kdeconnect.ui.PluginSettingsFragment
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.FragmentNotificationFilterBinding
 
-class NotificationFilterFragment : PluginSettingsFragment() {
+class NotificationsSettingsFragment : PluginSettingsFragment() {
 
     private lateinit var appDatabase: AppDatabase
     private var _binding: FragmentNotificationFilterBinding? = null
@@ -339,8 +339,8 @@ class NotificationFilterFragment : PluginSettingsFragment() {
     }
 
     companion object {
-        fun newInstance(pluginKey: String, deviceId: String): NotificationFilterFragment {
-            return NotificationFilterFragment().apply {
+        fun newInstance(pluginKey: String, deviceId: String): NotificationsSettingsFragment {
+            return NotificationsSettingsFragment().apply {
                 setArguments(pluginKey, deviceId, R.xml.notificationsplugin_preferences)
             }
         }
