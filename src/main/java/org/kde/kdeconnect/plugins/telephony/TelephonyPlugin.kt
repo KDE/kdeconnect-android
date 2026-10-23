@@ -17,7 +17,6 @@ import android.telephony.PhoneNumberUtils
 import android.telephony.TelephonyManager
 import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
-import androidx.preference.PreferenceManager
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.helpers.ContactsHelper
 import org.kde.kdeconnect.plugins.Plugin
@@ -176,8 +175,7 @@ class TelephonyPlugin : Plugin() {
     }
 
     private fun isNumberBlocked(number: String?): Boolean {
-        val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
-        val blockedNumbers: List<String> = sharedPref.getString(KEY_PREF_BLOCKED_NUMBERS, "")!!.split("\n").dropLastWhile { it.isEmpty() }
+        val blockedNumbers: List<String> = preferences.getString(KEY_PREF_BLOCKED_NUMBERS, "")!!.split("\n").dropLastWhile { it.isEmpty() }
 
         return blockedNumbers.any { s -> PhoneNumberUtils.compare(number, s) }
     }
@@ -191,6 +189,8 @@ class TelephonyPlugin : Plugin() {
     override val optionalPermissions: Array<String> = arrayOf(Manifest.permission.READ_CONTACTS)
 
     override fun hasSettings(): Boolean = true
+
+    override val settingsScope = SettingsScope.APP_WIDE
 
     override fun getSettingsFragment(activity: Activity): PluginSettingsFragment {
         return PluginSettingsFragment.newInstance(pluginKey, device.deviceId, R.xml.telephonyplugin_preferences)

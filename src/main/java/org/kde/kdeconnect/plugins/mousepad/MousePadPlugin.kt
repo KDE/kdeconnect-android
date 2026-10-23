@@ -9,7 +9,6 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.view.KeyEvent
-import androidx.preference.PreferenceManager
 import org.kde.kdeconnect.DeviceType
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.plugins.Plugin
@@ -48,8 +47,7 @@ class MousePadPlugin : Plugin() {
                 intent.putExtra(BigscreenActivity.EXTRA_DEVICE_ID, device.deviceId)
                 parentActivity.startActivity(intent)
             }
-            val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-            if (prefs.getBoolean(context.getString(R.string.pref_bigscreen_hide_mouse_input), false)) {
+            if (preferences.getBoolean(context.getString(R.string.pref_bigscreen_hide_mouse_input), false)) {
                 listOf(tvInput)
             } else {
                 listOf(mouseAndKeyboardInput, tvInput)
@@ -64,6 +62,8 @@ class MousePadPlugin : Plugin() {
         get() = context.getString(R.string.pref_plugin_mousepad_desc_nontv)
 
     override fun hasSettings(): Boolean = true
+
+    override val settingsScope = SettingsScope.APP_WIDE
 
     override fun getSettingsFragment(activity: Activity): PluginSettingsFragment {
         return if (device.deviceType == DeviceType.TV) {

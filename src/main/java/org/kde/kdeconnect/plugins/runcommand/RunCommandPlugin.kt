@@ -9,13 +9,11 @@ package org.kde.kdeconnect.plugins.runcommand
 
 import android.app.Activity
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Build
 import android.util.Log
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
-import androidx.preference.PreferenceManager
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
@@ -43,7 +41,6 @@ class RunCommandPlugin : Plugin() {
     // we can go back and update its color once we know whether it succeeded or failed.
     private val commandLineIndexById = HashMap<Int, Int>()
 
-    private lateinit var sharedPreferences: SharedPreferences
     private var canAddCommand = false
 
     fun addCommandsUpdatedCallback(newCallback: CommandsChangedCallback) {
@@ -73,6 +70,8 @@ class RunCommandPlugin : Plugin() {
 
     override fun hasSettings(): Boolean = true
 
+    override val settingsScope = SettingsScope.APP_WIDE
+
     override fun getSettingsFragment(activity: Activity): PluginSettingsFragment {
         return PluginSettingsFragment.newInstance(pluginKey, device.deviceId, R.xml.runcommand_preferences)
     }
@@ -87,7 +86,6 @@ class RunCommandPlugin : Plugin() {
     }
 
     override fun onCreate() {
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
         requestCommandList()
     }
 
@@ -112,7 +110,7 @@ class RunCommandPlugin : Plugin() {
                 // Used only by RunCommandControlsProviderService to display controls correctly even when device is not available
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                     val commandsJson = json.encodeToString(commandList)
-                    sharedPreferences.edit {
+                    preferences.edit {
                         putString(KEY_COMMANDS_PREFERENCE + device.deviceId, commandsJson)
                     }
                 }

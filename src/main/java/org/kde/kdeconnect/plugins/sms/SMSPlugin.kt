@@ -248,6 +248,8 @@ class SMSPlugin : Plugin() {
 
     override fun hasSettings(): Boolean = true
 
+    override val settingsScope = SettingsScope.APP_WIDE
+
     override fun getSettingsFragment(activity: Activity): PluginSettingsFragment {
         return PluginSettingsFragment.newInstance(pluginKey, device.deviceId, R.xml.smsplugin_preferences)
     }

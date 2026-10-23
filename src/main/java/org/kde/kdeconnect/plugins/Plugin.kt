@@ -16,6 +16,7 @@ import androidx.annotation.EmptySuper
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
+import androidx.preference.PreferenceManager
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.ui.AlertDialogFragment
@@ -38,7 +39,8 @@ abstract class Plugin {
 
         if (device != null) {
             this.device = device
-            this.preferences = context.getSharedPreferences(this.sharedPreferencesName, Context.MODE_PRIVATE)
+            this.preferences = sharedPreferencesName?.let { context.getSharedPreferences(it, Context.MODE_PRIVATE) }
+                ?: PreferenceManager.getDefaultSharedPreferences(context)
         }
     }
 
@@ -55,15 +57,19 @@ abstract class Plugin {
      */
     open fun getUiMenuEntries(): List<PluginUiMenuEntry> = listOf()
 
-    val sharedPreferencesName: String
+    /**
+     * Name of the SharedPreferences file selected by [settingsScope],
+     * or null to use the app-wide default SharedPreferences.
+     */
+    val sharedPreferencesName: String?
         get() {
             if (!isDeviceInitialized) {
                 throw RuntimeException("You have to call setContext() before you can call getSharedPreferencesName()")
             }
-            return if (supportsDeviceSpecificSettings()) {
-                 "${device.deviceId}_${pluginKey}_preferences"
-            } else {
-                "${pluginKey}_preferences"
+            return when (settingsScope) {
+                SettingsScope.APP_WIDE -> null
+                SettingsScope.PER_PLUGIN -> "${pluginKey}_preferences"
+                SettingsScope.PER_DEVICE -> "${device.deviceId}_${pluginKey}_preferences"
             }
         }
 
@@ -115,14 +121,21 @@ abstract class Plugin {
      */
     open fun hasSettings(): Boolean = false
 
+    enum class SettingsScope {
+        /** Settings are stored in the app-wide default SharedPreferences, shared with other plugins */
+        @Deprecated("Use PER_PLUGIN or PER_DEVICE for new plugins")
+        APP_WIDE,
+        /** Settings are stored in a SharedPreferences file specific to this plugin */
+        PER_PLUGIN,
+        /** Settings are stored in a SharedPreferences file specific to this plugin and device */
+        PER_DEVICE,
+    }
+
     /**
-     * Called to find out if a plugin supports device-specific settings.
-     * If you return `true` your PluginSettingsFragment will use the device
-     * specific SharedPreferences to store the settings.
-     *
-     * @return true if this plugin supports device-specific settings
+     * Where this plugin's settings are stored. Both [preferences] and the
+     * PluginSettingsFragment use the SharedPreferences file this selects.
      */
-    open fun supportsDeviceSpecificSettings(): Boolean = false
+    open val settingsScope: SettingsScope = SettingsScope.PER_PLUGIN
 
     /**
      * If hasSettings returns true, this will be called when the user

@@ -33,7 +33,7 @@ class ClipboardPlugin : Plugin() {
 
     override fun hasSettings(): Boolean = true
 
-    override fun supportsDeviceSpecificSettings(): Boolean = true
+    override val settingsScope = SettingsScope.PER_DEVICE
 
     override fun getSettingsFragment(activity: Activity): PluginSettingsFragment {
         return PluginSettingsFragment.newInstance(pluginKey, device.deviceId, R.xml.clipboardplugin_preferences)

@@ -24,7 +24,6 @@ import androidx.core.content.pm.ShortcutInfoCompat
 import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.core.graphics.drawable.IconCompat
 import androidx.core.net.toUri
-import androidx.preference.PreferenceManager
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.async.BackgroundJob
 import org.kde.kdeconnect.async.BackgroundJobHandler
@@ -123,12 +122,10 @@ class SharePlugin : Plugin() {
     }
 
     private fun deliverPreviouslySentIntents() {
-        val mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
-
-        val currentUrlSet = mSharedPrefs.getStringSet(KEY_UNREACHABLE_URL_LIST + device.deviceId, null)
+        val currentUrlSet = preferences.getStringSet(KEY_UNREACHABLE_URL_LIST + device.deviceId, null)
         if (currentUrlSet != null) {
             sendUrls(currentUrlSet.toList())
-            mSharedPrefs.edit {
+            preferences.edit {
                 putStringSet(KEY_UNREACHABLE_URL_LIST + device.deviceId, null)
             }
         }
@@ -162,6 +159,8 @@ class SharePlugin : Plugin() {
     }
 
     override fun hasSettings(): Boolean = true
+
+    override val settingsScope = SettingsScope.APP_WIDE
 
     override fun onPacketReceived(np: NetworkPacket): Boolean {
         try {
@@ -334,7 +333,7 @@ class SharePlugin : Plugin() {
 
     override fun onDeviceUnpaired(context: Context, deviceId: String) {
         Log.i(TAG, "onDeviceUnpaired deviceId = $deviceId")
-        PreferenceManager.getDefaultSharedPreferences(context).edit {
+        preferences.edit {
             remove(KEY_UNREACHABLE_URL_LIST + deviceId)
         }
     }

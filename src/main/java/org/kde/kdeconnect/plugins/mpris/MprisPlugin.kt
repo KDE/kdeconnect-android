@@ -19,7 +19,6 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.content.getSystemService
 import androidx.core.net.toUri
-import androidx.preference.PreferenceManager
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.helpers.NotificationHelper
@@ -225,6 +224,8 @@ class MprisPlugin : Plugin() {
 
     override fun hasSettings(): Boolean = true
 
+    override val settingsScope = SettingsScope.APP_WIDE
+
     override fun getSettingsFragment(activity: Activity): PluginSettingsFragment {
         return PluginSettingsFragment.newInstance(pluginKey, device.deviceId, R.xml.mprisplugin_preferences)
     }
@@ -378,9 +379,8 @@ class MprisPlugin : Plugin() {
                 // Pause was too short. Probably just the gap between songs
                 return@execute
             }
-            val prefs = PreferenceManager.getDefaultSharedPreferences(context)
             val httpUrl = playerStatus.getHttpUrl()
-            if (prefs.getBoolean(context.getString(R.string.mpris_keepwatching_key), true) && httpUrl != null) {
+            if (preferences.getBoolean(context.getString(R.string.mpris_keepwatching_key), true) && httpUrl != null) {
                 try {
                     val transformedUrl = httpUrl
                         .let { VideoUrlsHelper.convertToAndFromYoutubeTvLinks(it) }

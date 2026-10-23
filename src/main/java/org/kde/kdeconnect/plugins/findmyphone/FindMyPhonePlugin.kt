@@ -22,7 +22,6 @@ import android.provider.Settings
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
-import androidx.preference.PreferenceManager
 import org.kde.kdeconnect.DeviceType
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.helpers.DeviceHelper
@@ -62,8 +61,7 @@ class FindMyPhonePlugin : Plugin() {
         powerManager = ContextCompat.getSystemService(context, PowerManager::class.java)!!
         flashlightManager = FlashlightManager(context)
 
-        val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-        val ringtoneString = prefs.getString(context.getString(R.string.findmyphone_preference_key_ringtone), "")
+        val ringtoneString = preferences.getString(context.getString(R.string.findmyphone_preference_key_ringtone), "")
         val ringtone: Uri = if (ringtoneString.isNullOrEmpty()) {
             Settings.System.DEFAULT_RINGTONE_URI
         } else {
@@ -200,6 +198,8 @@ class FindMyPhonePlugin : Plugin() {
 
     override fun hasSettings(): Boolean = true
 
+    override val settingsScope = SettingsScope.APP_WIDE
+
     override fun getSettingsFragment(activity: Activity): PluginSettingsFragment =
         FindMyPhoneSettingsFragment.newInstance(pluginKey, device.deviceId, R.xml.findmyphoneplugin_preferences)
 
@@ -213,8 +213,7 @@ class FindMyPhonePlugin : Plugin() {
     override val permissionExplanation: Int = R.string.findmyphone_notifications_explanation
 
     private fun isFlashlightEnabledInSettings(): Boolean {
-        val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-        return prefs.getBoolean(context.getString(R.string.findmyphone_preference_key_flashlight), false)
+        return preferences.getBoolean(context.getString(R.string.findmyphone_preference_key_flashlight), false)
     }
 
     companion object {

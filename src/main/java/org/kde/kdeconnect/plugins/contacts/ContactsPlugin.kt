@@ -48,7 +48,7 @@ class ContactsPlugin : Plugin() {
         return preferences.getBoolean("acceptedToTransferContacts", false)
     }
 
-    override fun supportsDeviceSpecificSettings(): Boolean = true
+    override val settingsScope = SettingsScope.PER_DEVICE
 
     override val permissionExplanationDialog: DialogFragment
         get() {

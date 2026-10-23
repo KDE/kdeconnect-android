@@ -12,7 +12,6 @@ import android.app.PendingIntent
 import android.app.RemoteInput
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.graphics.Bitmap
@@ -56,7 +55,6 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
     private val pendingIntents = HashMap<String, RepliableNotification>()
     private val pendingActions = mutableMapOf<String, MutableList<Notification.Action>>()
     private var serviceReady = false
-    private lateinit var sharedPreferences: SharedPreferences
     private lateinit var keyguardManager: KeyguardManager
     private lateinit var mainHandler: Handler
     private val postedNotificationsLock = Any()
@@ -79,7 +77,6 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
 
     override fun onCreate() {
         appDatabase = AppDatabase.getInstance(context)
-        sharedPreferences = context.getSharedPreferences(sharedPreferencesName, Context.MODE_PRIVATE)
         keyguardManager = context.getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
         mainHandler = Handler(Looper.getMainLooper())
         NotificationReceiver.RunCommand(context) { service ->
@@ -140,7 +137,7 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
             postedNotifications.add(key)
         }
 
-        val sendOnlyIfLocked = sharedPreferences.getBoolean(PREF_NOTIFICATION_SCREEN_OFF, false)
+        val sendOnlyIfLocked = preferences.getBoolean(PREF_NOTIFICATION_SCREEN_OFF, false)
         val isLocked = keyguardManager.isKeyguardLocked
         if (!sendOnlyIfLocked || isLocked) {
             sendNotificationWithDelay(statusBarNotification)

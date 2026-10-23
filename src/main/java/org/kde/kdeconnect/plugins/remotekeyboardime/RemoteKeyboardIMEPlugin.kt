@@ -20,7 +20,6 @@ import android.view.inputmethod.InputConnection
 import android.view.inputmethod.InputMethodInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.DialogFragment
-import androidx.preference.PreferenceManager
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.plugins.PluginFactory
@@ -46,8 +45,7 @@ class RemoteKeyboardIMEPlugin : Plugin(), SharedPreferences.OnSharedPreferenceCh
             service.handler.post { service.updateInputView() }
         }
 
-        val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-        prefs.registerOnSharedPreferenceChangeListener(this)
+        preferences.registerOnSharedPreferenceChangeListener(this)
 
         notifyKeyboardState(isKeyboardAvailable)
     }
@@ -78,6 +76,8 @@ class RemoteKeyboardIMEPlugin : Plugin(), SharedPreferences.OnSharedPreferenceCh
         get() = context.getString(R.string.pref_plugin_remotekeyboard_desc)
 
     override fun hasSettings(): Boolean = true
+
+    override val settingsScope = SettingsScope.APP_WIDE
 
     override fun getSettingsFragment(activity: Activity): PluginSettingsFragment {
         return PluginSettingsFragment.newInstance(pluginKey, device.deviceId, R.xml.remotekeyboardplugin_preferences)
@@ -219,7 +219,7 @@ class RemoteKeyboardIMEPlugin : Plugin(), SharedPreferences.OnSharedPreferenceCh
 
         val service = RemoteKeyboardService.instance ?: return false // This packet will be handled by the RemoteKeyboardPlugin instead, silently ignore
 
-        if (!service.visible && PreferenceManager.getDefaultSharedPreferences(context).getBoolean(context.getString(R.string.remotekeyboard_editing_only), true)) {
+        if (!service.visible && preferences.getBoolean(context.getString(R.string.remotekeyboard_editing_only), true)) {
             Log.i(LOG_TAG, "Remote keyboard is currently not visible, dropping key")
             return false
         }
@@ -267,8 +267,7 @@ class RemoteKeyboardIMEPlugin : Plugin(), SharedPreferences.OnSharedPreferenceCh
 
     val isKeyboardAvailable: Boolean
         get() {
-            val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-            val editingOnly = prefs.getBoolean(context.getString(R.string.remotekeyboard_editing_only), true)
+            val editingOnly = preferences.getBoolean(context.getString(R.string.remotekeyboard_editing_only), true)
             val visible = RemoteKeyboardService.instance?.visible == true
             return !editingOnly || visible
         }
