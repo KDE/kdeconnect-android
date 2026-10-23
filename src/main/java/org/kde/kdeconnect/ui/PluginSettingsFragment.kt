@@ -37,7 +37,7 @@ open class PluginSettingsFragment : PreferenceFragmentCompat() {
             throw RuntimeException("You must provide a pluginKey by calling setArguments()")
         }
         this.pluginKey = arguments.getString(ARG_PLUGIN_KEY)!!
-        this.layouts = arguments.getIntArray(ARG_LAYOUT)!!
+        this.layouts = arguments.getIntArray(ARG_LAYOUT) ?: intArrayOf()
         val deviceId = requireArguments().getString(ARG_DEVICE_ID)!!
         val device = getInstance().getDevice(deviceId)
         if (device == null) {

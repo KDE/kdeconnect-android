@@ -69,11 +69,8 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
 
     override fun hasSettings(): Boolean = true
 
-    override fun getSettingsFragment(activity: Activity): PluginSettingsFragment? {
-        val intent = Intent(activity, NotificationFilterActivity::class.java)
-        intent.putExtra(PREFERENCE_KEY, this.sharedPreferencesName)
-        activity.startActivity(intent)
-        return null
+    override fun getSettingsFragment(activity: Activity): PluginSettingsFragment {
+        return NotificationFilterFragment.newInstance(pluginKey, device.deviceId)
     }
 
     override fun checkRequiredPermissions(): Boolean {
@@ -567,7 +564,6 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
         private const val PACKET_TYPE_NOTIFICATION_REQUEST = "kdeconnect.notification.request"
         private const val PACKET_TYPE_NOTIFICATION_REPLY = "kdeconnect.notification.reply"
         private const val PACKET_TYPE_NOTIFICATION_ACTION = "kdeconnect.notification.action"
-        const val PREFERENCE_KEY = "prefKey"
         const val PREF_NOTIFICATION_SCREEN_OFF = "pref_notification_screen_off"
         private const val NOTIFICATION_SYNC_DELAY_MS = 50L
 

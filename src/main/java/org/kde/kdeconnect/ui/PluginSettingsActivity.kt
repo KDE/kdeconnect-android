@@ -98,9 +98,7 @@ class PluginSettingsActivity : BaseActivity<ActivityPluginSettingsBinding>(), Pl
     override fun onStartPluginSettingsFragment(plugin: Plugin) {
         setTitle(getString(R.string.plugin_settings_with_name, plugin.displayName))
 
-        // TODO: getSettingsFragment return is nullable because NotificationFilterActivity isn't a PluginSettingsFragment yet
         val fragment = plugin.getSettingsFragment(this)
-            ?: return
 
         supportFragmentManager
             .beginTransaction()

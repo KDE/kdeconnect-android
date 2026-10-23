@@ -404,14 +404,6 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
                 android:resource="@xml/mouse_receiver_service" />
         </service>
 
-        <activity
-            android:name="org.kde.kdeconnect.plugins.notifications.NotificationFilterActivity"
-            android:label="@string/title_activity_notification_filter"
-            android:parentActivityName="org.kde.kdeconnect.ui.PluginSettingsActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.kde.kdeconnect.ui.PluginSettingsActivity" />
-        </activity>
 
         <activity
             android:name="org.kde.kdeconnect.plugins.digitizer.DigitizerActivity"

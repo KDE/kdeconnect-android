@@ -131,7 +131,7 @@ abstract class Plugin {
      *
      * @return The PluginSettingsFragment used to display this plugin's settings
      */
-    open fun getSettingsFragment(activity: Activity): PluginSettingsFragment? {
+    open fun getSettingsFragment(activity: Activity): PluginSettingsFragment {
         throw RuntimeException("Plugin doesn't reimplement getSettingsFragment: $pluginKey")
     }
 
