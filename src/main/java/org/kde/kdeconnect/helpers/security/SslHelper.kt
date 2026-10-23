@@ -101,8 +101,6 @@ object SslHelper {
         }
 
         if (needsToGenerateCertificate) {
-            invalidateSslContext()
-            TrustedDevices.removeAllTrustedDevices(context)
             Log.i(LOG_TAG, "Generating a certificate")
             // Fix for https://issuetracker.google.com/issues/37095309
             val initialLocale = Locale.getDefault()
@@ -132,6 +130,9 @@ object SslHelper {
                 settings.edit {
                     putString("certificate", Base64.encodeToString(certificateBytes, 0))
                 }
+
+                invalidateUntrustedSslContext()
+                TrustedDevices.removeAllTrustedDevices(context) // Already calls invalidateTrustedSslContext()
             } finally {
                 Locale.setDefault(initialLocale)
             }
@@ -171,26 +172,30 @@ object SslHelper {
     }
 
     private fun getSslContextForDevice(context: Context, deviceId: String, isDeviceTrusted: Boolean): SSLContext {
-        if (!isDeviceTrusted) {
-            return untrustedSslContext ?: synchronized(this) {
+        return if (isDeviceTrusted) {
+            trustedSslContextCache.computeIfAbsent(deviceId) {
+                createSslContext(context, deviceId, isDeviceTrusted = true)
+            }
+        } else {
+            untrustedSslContext ?: synchronized(this) {
                 untrustedSslContext ?: createSslContext(context, null, isDeviceTrusted = false).also {
                     untrustedSslContext = it
                 }
             }
         }
-        return trustedSslContextCache.computeIfAbsent(deviceId) {
-            createSslContext(context, deviceId, isDeviceTrusted = true)
-        }
     }
 
-    fun invalidateSslContext(deviceId: String? = null) {
+    fun invalidateTrustedSslContext(deviceId: String? = null) {
         if (deviceId != null) {
             trustedSslContextCache.remove(deviceId)
         } else {
             trustedSslContextCache.clear()
-            synchronized(this) {
-                untrustedSslContext = null
-            }
+        }
+    }
+
+    fun invalidateUntrustedSslContext() {
+        synchronized(this) {
+            untrustedSslContext = null
         }
     }
 
