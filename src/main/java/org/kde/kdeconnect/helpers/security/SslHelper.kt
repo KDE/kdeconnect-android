@@ -139,7 +139,12 @@ object SslHelper {
         }
     }
 
-    private fun createSslContext(context: Context, deviceId: String?, isDeviceTrusted: Boolean): SSLContext {
+    private sealed interface ContextTarget {
+        data class TrustedDevice(val deviceId: String) : ContextTarget
+        object UntrustedDevices : ContextTarget
+    }
+
+    private fun createSslContext(context: Context, target: ContextTarget): SSLContext {
         val privateKey = getPrivateKey(context)
 
         // Setup keystore
@@ -148,25 +153,27 @@ object SslHelper {
         keyStore.setKeyEntry("key", privateKey, "".toCharArray(), arrayOf(certificate))
 
         // Add device certificate if device trusted
-        if (isDeviceTrusted && deviceId != null) {
-            val remoteDeviceCertificate = TrustedDevices.getDeviceCertificate(context, deviceId)
-            keyStore.setCertificateEntry(deviceId, remoteDeviceCertificate)
+        if (target is ContextTarget.TrustedDevice) {
+            val remoteDeviceCertificate = TrustedDevices.getDeviceCertificate(context, target.deviceId)
+            keyStore.setCertificateEntry(target.deviceId, remoteDeviceCertificate)
         }
 
         // Setup key manager factory
         val keyManagerFactory = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm())
         keyManagerFactory.init(keyStore, "".toCharArray())
 
-        // Setup default trust manager
-        val trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm())
-        trustManagerFactory.init(keyStore)
-
-        // Setup custom trust manager if device not trusted
         val tlsContext = SSLContext.getInstance("TLSv1.2") // Use TLS up to 1.2, since 1.3 seems to cause issues in some (older?) devices
-        if (isDeviceTrusted) {
-            tlsContext.init(keyManagerFactory.keyManagers, trustManagerFactory.trustManagers, RandomHelper.secureRandom)
-        } else {
-            tlsContext.init(keyManagerFactory.keyManagers, trustAllCerts, RandomHelper.secureRandom)
+        when (target) {
+            is ContextTarget.TrustedDevice -> {
+                // Setup trust manager
+                val trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm())
+                trustManagerFactory.init(keyStore)
+
+                tlsContext.init(keyManagerFactory.keyManagers, trustManagerFactory.trustManagers, RandomHelper.secureRandom)
+            }
+            is ContextTarget.UntrustedDevices -> {
+                tlsContext.init(keyManagerFactory.keyManagers, trustAllCerts, RandomHelper.secureRandom)
+            }
         }
         return tlsContext
     }
@@ -174,11 +181,11 @@ object SslHelper {
     private fun getSslContextForDevice(context: Context, deviceId: String, isDeviceTrusted: Boolean): SSLContext {
         return if (isDeviceTrusted) {
             trustedSslContextCache.computeIfAbsent(deviceId) {
-                createSslContext(context, deviceId, isDeviceTrusted = true)
+                createSslContext(context, ContextTarget.TrustedDevice(deviceId))
             }
         } else {
             untrustedSslContext ?: synchronized(this) {
-                untrustedSslContext ?: createSslContext(context, null, isDeviceTrusted = false).also {
+                untrustedSslContext ?: createSslContext(context, ContextTarget.UntrustedDevices).also {
                     untrustedSslContext = it
                 }
             }
