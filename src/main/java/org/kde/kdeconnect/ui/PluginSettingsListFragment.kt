@@ -6,11 +6,21 @@
 
 package org.kde.kdeconnect.ui
 
+import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.widget.TextView
+import androidx.core.view.MenuProvider
+import androidx.lifecycle.Lifecycle
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceScreen
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import org.kde.kdeconnect.DeviceStats
 import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect.plugins.PluginFactory
 import org.kde.kdeconnect_tp.R
@@ -67,6 +77,38 @@ class PluginSettingsListFragment : PreferenceFragmentCompat() {
             val pref = PluginPreference(preferenceManager.context, pluginKey, device, cb)
             preferenceScreen.addPreference(pref)
         }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.N) {
+            return // PacketStats not working in API < 24
+        }
+        val deviceId = requireArguments().getString(ARG_DEVICE_ID) ?: return
+
+        requireActivity().addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menu.add(R.string.plugin_stats)
+                    .setOnMenuItemClickListener {
+                        val stats = DeviceStats.getStatsForDevice(deviceId)
+                        val alertDialog = MaterialAlertDialogBuilder(requireContext())
+                            .setTitle(R.string.plugin_stats)
+                            .setPositiveButton(R.string.ok) { dialog, _ ->
+                                dialog.dismiss()
+                            }
+                            .setMessage(stats)
+                            .show()
+                        val messageView = alertDialog.findViewById<View?>(android.R.id.message)
+                        if (messageView is TextView) {
+                            messageView.setTextIsSelectable(true)
+                        }
+                        true
+                    }
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean = false
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 
     override fun onCreateAdapter(preferenceScreen: PreferenceScreen): RecyclerView.Adapter<*> {
