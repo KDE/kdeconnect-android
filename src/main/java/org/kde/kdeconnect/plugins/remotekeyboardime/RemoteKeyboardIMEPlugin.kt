@@ -51,6 +51,7 @@ class RemoteKeyboardIMEPlugin : Plugin(), SharedPreferences.OnSharedPreferenceCh
     }
 
     override fun onDestroy() {
+        preferences.unregisterOnSharedPreferenceChangeListener(this)
         notifyKeyboardState(false)
         acquireInstances()
         try {

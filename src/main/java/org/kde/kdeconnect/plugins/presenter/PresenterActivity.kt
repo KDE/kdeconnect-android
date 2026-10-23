@@ -92,10 +92,6 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener, OnSharedPref
         super.onCreate(savedInstanceState)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
-        prefs = PreferenceManager.getDefaultSharedPreferences(this)!!
-        prefs.registerOnSharedPreferenceChangeListener(this)
-        applyPrefs()
-
         val deviceId = intent.getStringExtra(EXTRA_DEVICE_ID)!!
         val device = KdeConnect.getInstance().getDevice(deviceId)
         plugin = device?.getPlugin<PresenterPlugin>()
@@ -103,11 +99,17 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener, OnSharedPref
                 finish()
                 return
             }
+
+        prefs = plugin.preferences
+        prefs.registerOnSharedPreferenceChangeListener(this)
+        applyPrefs()
+
         setContent { PresenterScreen(device.name) }
         createMediaSession()
     }
 
     override fun onDestroy() {
+        prefs.unregisterOnSharedPreferenceChangeListener(this)
         mediaSession?.release()
         super.onDestroy()
     }
