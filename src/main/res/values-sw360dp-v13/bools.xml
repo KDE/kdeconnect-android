@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+SPDX-FileCopyrightText: 2026 KDE Connect contributors
+
+SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
+-->
+
+<resources>
+    <!--
+    AndroidX Preference reserves space for an icon on every preference on screens of 360dp and
+    wider, even if they have no icon. Most of ours have none, so remove that gap. Preferences with
+    an icon still show it. The qualifier must match the one the library uses for this to take effect.
+    -->
+    <bool name="config_materialPreferenceIconSpaceReserved">false</bool>
+</resources>
