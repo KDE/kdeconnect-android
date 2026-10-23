@@ -256,6 +256,7 @@
   <string name="sftp_saf_permission_explanation">Om toegang te hebben tot bestanden op afstand moet u opslaglocaties configureren</string>
   <string name="sftp_manage_storage_permission_explanation">Om toegang tot bestanden op dit apparaat toe te staan moet u toestaan dat KDE Connect de opslag mag beheren.</string>
   <string name="sftp_missing_permission_error">Toegangsrechten ontbreken: toegang tot bestandssysteem</string>
+  <string name="sftp_could_not_determine_ip">Kon lokaal IP-adres niet bepalen</string>
   <string name="no_players_connected">Geen spelers gevonden</string>
   <string name="send_files">Bestanden verzenden</string>
   <string name="use_digitizer">Gebruiken als tekentablet</string>

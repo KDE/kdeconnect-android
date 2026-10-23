@@ -272,6 +272,7 @@
   <string name="sftp_saf_permission_explanation">Pro vzdálený přístup k souborům musíte nastavit umístění úložišť</string>
   <string name="sftp_manage_storage_permission_explanation">Pro umožnění vzdáleného přístupu k souborům na tomto zařízení musíte povolit aplikaci KDE Connect spravovat úložiště.</string>
   <string name="sftp_missing_permission_error">Chybí oprávnění: přístup k souborovému systému</string>
+  <string name="sftp_could_not_determine_ip">Nepodařilo se zjistit místní IP adresu</string>
   <string name="no_players_connected">Přehrávač nenalezen</string>
   <string name="send_files">Odeslat soubory</string>
   <string name="use_digitizer">Používat jako grafický tablet</string>

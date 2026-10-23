@@ -256,6 +256,7 @@
   <string name="sftp_saf_permission_explanation">Para acessar arquivos remotamente você precisa configurar locais de armazenamento</string>
   <string name="sftp_manage_storage_permission_explanation">Para permitir o acesso remoto aos arquivos neste dispositivo, você precisapermitir que o KDE Connect gerencie o armazenamento.</string>
   <string name="sftp_missing_permission_error">Permissões ausentes: acesso ao sistema de arquivos</string>
+  <string name="sftp_could_not_determine_ip">Não foi possível determinar o endereço IP local</string>
   <string name="no_players_connected">Nenhum reprodutor encontrado</string>
   <string name="send_files">Enviar arquivos</string>
   <string name="use_digitizer">Usar como mesa digitalizadora</string>

@@ -272,6 +272,7 @@
   <string name="sftp_saf_permission_explanation">Щоб отримувати віддалений доступ до файлів, вам слід налаштувати розташування сховищ</string>
   <string name="sftp_manage_storage_permission_explanation">Щоб уможливити віддалений доступу до файлів на цьому пристрої, вам слід дозволити KDE Connect керувати сховищем даних.</string>
   <string name="sftp_missing_permission_error">Не вистачає прав доступу: доступ до файлової системи</string>
+  <string name="sftp_could_not_determine_ip">Не вдалося визначити локальну IP-адресу</string>
   <string name="no_players_connected">Не знайдено програвачів</string>
   <string name="send_files">Надіслати файли</string>
   <string name="use_digitizer">Використати як планшет для малювання</string>
