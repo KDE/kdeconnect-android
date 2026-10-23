@@ -73,10 +73,7 @@ class SftpSettingsFragment :
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         super.onCreatePreferences(savedInstanceState, rootKey)
 
-        // The activity is finishing because its device is no longer available.
-        val currentPlugin = plugin ?: return
-
-        storageInfoList = getStorageInfoList(requireContext(), currentPlugin)
+        storageInfoList = getStorageInfoList(requireContext(), plugin)
 
         val preferenceScreen = preferenceScreen
         val category: PreferenceCategory? = preferenceScreen.findPreference(getString(R.string.sftp_preference_key_preference_category))
@@ -184,8 +181,7 @@ class SftpSettingsFragment :
     }
 
     private fun saveStorageInfoList() {
-        val currentPlugin = this.plugin ?: return
-        val preferences: SharedPreferences = currentPlugin.preferences
+        val preferences: SharedPreferences = plugin.preferences
 
         preferences.edit {
             putString(requireContext().getString(SftpPlugin.PREFERENCE_KEY_STORAGE_INFO_LIST), SftpPlugin.StorageInfo.serializeList(storageInfoList))

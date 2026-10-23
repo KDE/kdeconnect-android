@@ -26,7 +26,9 @@ class PluginSettingsActivity : BaseActivity<ActivityPluginSettingsBinding>(), Pl
         settingsDeviceId = intent.getStringExtra(EXTRA_DEVICE_ID)
             ?: throw RuntimeException("You must start DeviceSettingActivity using an intent that has a $EXTRA_DEVICE_ID extra")
 
-        super.onCreate(savedInstanceState)
+        // Don't restore a specific plugin settings fragment if the device is no longer connected
+        val deviceReachable = getInstance().getDevice(settingsDeviceId)?.isReachable == true
+        super.onCreate(if (deviceReachable) savedInstanceState else null)
 
         setSupportActionBar(binding.toolbarLayout.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

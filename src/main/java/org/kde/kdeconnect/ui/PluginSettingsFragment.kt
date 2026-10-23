@@ -20,7 +20,7 @@ open class PluginSettingsFragment : PreferenceFragmentCompat() {
 
     protected lateinit var device: Device
 
-    protected var plugin: Plugin? = null
+    protected lateinit var plugin: Plugin
 
     protected fun setArguments(pluginKey: String, deviceId: String, vararg settingsLayouts: Int): Bundle {
         val args = Bundle()
@@ -39,19 +39,15 @@ open class PluginSettingsFragment : PreferenceFragmentCompat() {
         this.pluginKey = arguments.getString(ARG_PLUGIN_KEY)!!
         this.layouts = arguments.getIntArray(ARG_LAYOUT)!!
         val deviceId = requireArguments().getString(ARG_DEVICE_ID)!!
-        val device = getInstance().getDevice(deviceId)
-        if (device == null) {
-            requireActivity().finish()
-        } else {
-            this.device = device
-            this.plugin = device.getPluginIncludingWithoutPermissions(pluginKey)
-        }
+        // PluginSettingsActivity only creates or restores this fragment when the device and plugin are available
+        this.device = getInstance().getDevice(deviceId)!!
+        this.plugin = device.getPluginIncludingWithoutPermissions(pluginKey)!!
         super.onCreate(savedInstanceState)
     }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         // A null name means the app-wide default SharedPreferences, which PreferenceManager uses already
-        plugin?.sharedPreferencesName?.let { name ->
+        plugin.sharedPreferencesName?.let { name ->
             val prefsManager = preferenceManager
             prefsManager.setSharedPreferencesName(name)
             prefsManager.setSharedPreferencesMode(Context.MODE_PRIVATE)
