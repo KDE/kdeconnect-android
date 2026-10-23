@@ -39,6 +39,7 @@ class ShareActivity : BaseActivity<ActivityShareBinding>() {
     private var isRefreshing by mutableStateOf(value = false)
     private var uiDevices by mutableStateOf<List<DeviceUiModel>>(value = emptyList())
     private var intentHasUrl by mutableStateOf(value = false)
+    private var shareStarted = false
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater = menuInflater
@@ -83,6 +84,10 @@ class ShareActivity : BaseActivity<ActivityShareBinding>() {
         deviceId: String,
         intent: Intent
     ) {
+        // Prevent sharing twice
+        if (shareStarted) return
+        shareStarted = true
+
         val device = KdeConnect.getInstance().getDevice(id = deviceId)
         if (device == null) {
             Toast.makeText(this, getString(R.string.unknown_device), Toast.LENGTH_LONG ).show()
@@ -116,6 +121,8 @@ class ShareActivity : BaseActivity<ActivityShareBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        shareStarted = savedInstanceState?.getBoolean(KEY_SHARE_STARTED) ?: false
 
         setSupportActionBar(binding.toolbarLayout.toolbar)
         supportActionBar?.apply {
@@ -163,6 +170,11 @@ class ShareActivity : BaseActivity<ActivityShareBinding>() {
         }
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putBoolean(KEY_SHARE_STARTED, shareStarted)
+    }
+
     override fun onStop() {
         KdeConnect.getInstance().removeDeviceListChangedCallback("ShareActivity")
         super.onStop()
@@ -171,5 +183,6 @@ class ShareActivity : BaseActivity<ActivityShareBinding>() {
     companion object {
         const val EXTRA_DEVICE_ID = "deviceId"
         private const val KEY_UNREACHABLE_URL_LIST = "key_unreachable_url_list"
+        private const val KEY_SHARE_STARTED = "share_started"
     }
 }
