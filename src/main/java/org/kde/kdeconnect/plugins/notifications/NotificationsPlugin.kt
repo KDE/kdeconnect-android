@@ -137,7 +137,7 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
             postedNotifications.add(key)
         }
 
-        val sendOnlyIfLocked = preferences.getBoolean(PREF_NOTIFICATION_SCREEN_OFF, false)
+        val sendOnlyIfLocked = preferences.getBoolean(context.getString(R.string.pref_notification_screen_off_key), false)
         val isLocked = keyguardManager.isKeyguardLocked
         if (!sendOnlyIfLocked || isLocked) {
             sendNotificationWithDelay(statusBarNotification)
@@ -561,7 +561,6 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
         private const val PACKET_TYPE_NOTIFICATION_REQUEST = "kdeconnect.notification.request"
         private const val PACKET_TYPE_NOTIFICATION_REPLY = "kdeconnect.notification.reply"
         private const val PACKET_TYPE_NOTIFICATION_ACTION = "kdeconnect.notification.action"
-        const val PREF_NOTIFICATION_SCREEN_OFF = "pref_notification_screen_off"
         private const val NOTIFICATION_SYNC_DELAY_MS = 50L
 
         private const val TAG = "KDE/NotificationsPlugin"

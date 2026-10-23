@@ -318,7 +318,6 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="share_destination_folder_preference">Destination directory</string>
     <string name="share">Share</string>
     <string name="share_received_file">Share \"%s\"</string>
-    <string name="title_activity_notification_filter">Notification filter</string>
     <string name="filter_apps_info">Notifications will be synchronized for the selected apps.</string>
     <string name="show_notification_if_screen_off">Send notifications only if the screen is off</string>
     <string name="add_device_dialog_title">Add device</string>
@@ -640,7 +639,6 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="findmyphone_open_settings_for_camera">Grant camera permission in app settings to use the flashlight</string>
     <string name="no_notifications">Notifications are disabled, you won\'t receive incoming pairing request notifications.</string>
 
-
     <string name="mpris_keepwatching">Continue playing</string>
     <string name="mpris_keepwatching_key" translatable="false">mpris_keepwatching_enabled</string>
     <string name="mpris_keepwatching_settings_title">Continue playing</string>
@@ -671,4 +669,6 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="pref_mpris_volume_control_key" translatable="false">mpris_volume_control_enabled</string>
     <string name="pref_mpris_volume_control_title">Hardware volume keys</string>
     <string name="pref_mpris_volume_control_summary">Control the connected device\'s media volume using this phone\'s hardware buttons</string>
+
+    <string name="pref_notification_screen_off_key" translatable="false">pref_notification_screen_off</string>
 </resources>

@@ -7,7 +7,6 @@
 package org.kde.kdeconnect.plugins.notifications
 
 import android.Manifest
-import android.content.SharedPreferences
 import android.content.pm.ApplicationInfo
 import android.content.pm.LauncherApps
 import android.content.pm.PackageManager
@@ -31,7 +30,6 @@ import android.widget.CheckedTextView
 import android.widget.ListView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
-import androidx.core.content.edit
 import androidx.core.content.getSystemService
 import androidx.core.graphics.createBitmap
 import androidx.core.graphics.drawable.toDrawable
@@ -92,7 +90,10 @@ class NotificationFilterFragment : PluginSettingsFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        // The preferences view shows the settings from the XML layouts, the app list is shown below it
+        val preferencesView = super.onCreateView(inflater, container, savedInstanceState)
         _binding = FragmentNotificationFilterBinding.inflate(inflater, container, false)
+        binding.preferencesContainer.addView(preferencesView)
         return binding.root
     }
 
@@ -106,12 +107,6 @@ class NotificationFilterFragment : PluginSettingsFragment() {
 
         val context = requireContext()
         appDatabase = AppDatabase.getInstance(context)
-
-        val notificationsPlugin = plugin as? NotificationsPlugin
-        val preferences = notificationsPlugin?.preferences
-            ?: context.getSharedPreferences(notificationsPlugin?.sharedPreferencesName, android.content.Context.MODE_PRIVATE)
-
-        configureSwitch(preferences)
 
         ThreadHelper.execute {
             val packageManager = context.packageManager
@@ -240,15 +235,6 @@ class NotificationFilterFragment : PluginSettingsFragment() {
         }
     }
 
-    private fun configureSwitch(sharedPreferences: SharedPreferences) {
-        binding.smScreenOffNotification.isChecked = sharedPreferences.getBoolean(NotificationsPlugin.PREF_NOTIFICATION_SCREEN_OFF, false)
-        binding.smScreenOffNotification.setOnCheckedChangeListener { _, isChecked ->
-            sharedPreferences.edit {
-                putBoolean(NotificationsPlugin.PREF_NOTIFICATION_SCREEN_OFF, isChecked)
-            }
-        }
-    }
-
     private fun displayAppList() {
         val listView = binding.lvFilterApps
         val adapter = AppListAdapter()
@@ -355,7 +341,7 @@ class NotificationFilterFragment : PluginSettingsFragment() {
     companion object {
         fun newInstance(pluginKey: String, deviceId: String): NotificationFilterFragment {
             return NotificationFilterFragment().apply {
-                setArguments(pluginKey, deviceId)
+                setArguments(pluginKey, deviceId, R.xml.notificationsplugin_preferences)
             }
         }
     }

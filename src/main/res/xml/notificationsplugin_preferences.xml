@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+SPDX-FileCopyrightText: 2026 KDE Connect contributors
+
+SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
+-->
+
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:keep="@xml/notificationsplugin_preferences">
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="@string/pref_notification_screen_off_key"
+        android:title="@string/show_notification_if_screen_off" />
+
+</androidx.preference.PreferenceScreen>
