@@ -53,8 +53,8 @@
   <string name="open_input_settings">Apri le impostazioni della tastiera</string>
   <string name="no_permissions">Devi concedere i permessi per l\'accesso alle notifiche</string>
   <string name="no_permission_mprisreceiver">Per poter controllare i tuoi lettori multimediali devi accordare l\'accesso alle notifiche</string>
-  <string name="no_permissions_remotekeyboard_ime">Per ricevere la pressione dei tasti è necessario attivare la tastiera remota di KDE Connect come metodo di input di Android.</string>
-  <string name="no_permissions_remotekeyboard_accessibility">Per ricevere la pressione dei tasti è necessario concedere le autorizzazioni di accessibilità.</string>
+  <string name="no_permissions_remotekeyboard_ime">Per ricevere la pressione dei tasti è necessario attivare la tastiera remota di KDE Connect come metodo di input di Android</string>
+  <string name="no_permissions_remotekeyboard_accessibility">Per ricevere la pressione dei tasti è necessario concedere le autorizzazioni di accessibilità</string>
   <string name="send_ping">Invia ping</string>
   <string name="open_mpris_controls">Controllo multimediale</string>
   <string name="remotekeyboard_editing_only_title">Gestisci i tasti remoti solo durante la modifica</string>
@@ -64,6 +64,7 @@
   <string name="open_mousepad">Impulso remoto</string>
   <string name="open_mousepad_tv">Telecomando TV</string>
   <string name="mousepad_info">Muovi un dito sullo schermo per spostare il puntatore del mouse. Tocca per un clic e usa due/tre dita per i pulsanti destro e centrale. Utilizza 2 dita per scorrere. Utilizza una pressione lunga per trascinare e rilasciare. È possibile abilitare la funzionalità del mouse giroscopico dalle preferenze dell\'estensione</string>
+  <string name="mousepad_info_double_tap">Muovi un dito sullo schermo per spostare il puntatore del mouse. Tocca per un clic e usa due/tre dita per i pulsanti destro e centrale. Utilizza 2 dita per scorrere. Tocca due volte per trascinare e rilasciare. La funzionalità di mouse basata su giroscopio può essere attivata nelle preferenze dell\'estensione</string>
   <string name="mousepad_info_no_gestures">Sposta un dito sullo schermo per spostare il cursore del mouse, tocca per un clic.</string>
   <string name="mousepad_keyboard_input_not_supported">Immissione da tastiera non supportata dal dispositivo associato</string>
   <string name="mousepad_single_tap_settings_title">Imposta azione per il tocco a un dito</string>
@@ -116,7 +117,7 @@
   <string name="mouse_receiver_plugin_description">Ricevi i movimenti remoti del mouse</string>
   <string name="mouse_receiver_plugin_name">Ricevitore del mouse</string>
   <string name="mouse_receiver_no_permissions">Per ricevere input tattili da remoto è necessario concedere le autorizzazioni di accessibilità</string>
-  <string name="mouse_keyboard_receiver_service_description">Ricevi i movimenti del mouse e inserimento da tastiera in remoto.</string>
+  <string name="mouse_keyboard_receiver_service_description">Ricevi i movimenti del mouse e inserimento da tastiera in remoto</string>
   <string name="view_status_title">Stato</string>
   <string name="battery_status_format">Batteria: %d%%</string>
   <string name="battery_status_low_format">Batteria: %d%% livello basso</string>
@@ -145,10 +146,6 @@
   <plurals name="incoming_file_title">
     <item quantity="one">Ricezione di %1$d file da %2$s</item>
     <item quantity="other">Ricezione di %1$d file da %2$s</item>
-  </plurals>
-  <plurals name="incoming_files_text">
-    <item quantity="one">File: %1s</item>
-    <item quantity="other">(File %2$d di %3$d) : %1$s</item>
   </plurals>
   <plurals name="outgoing_file_title">
     <item quantity="one">Invio di %1$d file a %2$s</item>
@@ -255,6 +252,7 @@
   <string name="sftp_saf_permission_explanation">Per accedere da remoto ai file, devi configurare posizioni di archiviazione</string>
   <string name="sftp_manage_storage_permission_explanation">Per consentire l\'accesso remoto ai file su questo dispositivo devi consentire a KDE Connect di gestire l\'archiviazione.</string>
   <string name="sftp_missing_permission_error">Permessi mancanti: accesso al file system</string>
+  <string name="sftp_could_not_determine_ip">Impossibile determinare l\'indirizzo IP locale</string>
   <string name="no_players_connected">Nessun lettore trovato</string>
   <string name="send_files">Invia file</string>
   <string name="use_digitizer">Utilizza come tavoletta grafica</string>
@@ -306,7 +304,7 @@
   <string name="contacts_per_device_confirmation">I contatti del tuo telefono saranno copiati su questo dispositivo, in modo che possano essere utilizzati dall\'applicazione KDE Connect SMS e da altre applicazioni.</string>
   <string name="select_ringtone">Seleziona una suoneria</string>
   <string name="telephony_pref_blocked_title">Numeri bloccati</string>
-  <string name="telephony_pref_blocked_dialog_desc">Non mostrare le chiamate provenienti da questi numeri. Indica un numero per riga.</string>
+  <string name="telephony_pref_blocked_dialog_desc">Non mostrare le chiamate provenienti da questi numeri. Indica un numero per riga</string>
   <string name="mpris_coverart_description">Copertina del media attuale</string>
   <string name="settings_icon_description">Icona impostazioni</string>
   <string name="presenter_fullscreen">Schermo intero</string>
@@ -485,5 +483,5 @@
   <string name="runcommand_stop">Ferma il comando attuale</string>
   <string name="runcommand_clear_output">Pulisci il risultato</string>
   <string name="pref_mpris_volume_control_title">Tasti hardware del volume</string>
-  <string name="pref_mpris_volume_control_summary">Controlla il volume multimediale del dispositivo connesso utilizzando i pulsanti hardware di questo telefono.</string>
+  <string name="pref_mpris_volume_control_summary">Controlla il volume multimediale del dispositivo connesso utilizzando i pulsanti hardware di questo telefono</string>
 </resources>

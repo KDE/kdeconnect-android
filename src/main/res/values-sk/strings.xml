@@ -25,6 +25,8 @@
   <string name="pref_plugin_mousepad_desc_tv">Použije váš telefón alebo tablet ako touchpad a klávesnicu</string>
   <string name="pref_plugin_presenter">Diaľkové ovládanie obrazovky Bigscreen</string>
   <string name="pref_plugin_presenter_desc">Použije vaše zariadenie na zmenu snímok prezentácie</string>
+  <string name="pref_plugin_remotekeyboard_ime">Prijímač klávesnice (cez klávesnicu Androidu)</string>
+  <string name="pref_plugin_remotekeyboard_accessibility">Prijímač klávesnice (cez prístupnosť)</string>
   <string name="pref_plugin_remotekeyboard_desc">Prijme udalosti stlačenia klávesov z diaľkových zariadení</string>
   <string name="pref_plugin_mpris">Multimediálne ovládače</string>
   <string name="pref_plugin_mpris_desc">Poskytuje diaľkové ovládanie pre váš prehrávač médií</string>
@@ -47,8 +49,12 @@
   <string name="sad_ok">OK :(</string>
   <string name="cancel">Zrušiť</string>
   <string name="open_settings">Otvoriť nastavenia</string>
+  <string name="open_accessibility_settings">Otvoriť nastavenia prístupnosti</string>
+  <string name="open_input_settings">Otvoriť nastavenia klávesnice</string>
   <string name="no_permissions">Musíte udeliť oprávnenia na prístup k upozorneniam</string>
   <string name="no_permission_mprisreceiver">Aby ste mohli ovládať multimediálne prehrávače, musíte udeliť prístup k upozorneniam</string>
+  <string name="no_permissions_remotekeyboard_ime">Na prijímanie stlačení klávesov musíte aktivovať vzdialenú klávesnicu KDE Connect ako metódu vstupu Androidu</string>
+  <string name="no_permissions_remotekeyboard_accessibility">Na prijímanie stlačení klávesov musíte udeliť oprávnenia Prístupnosti</string>
   <string name="send_ping">Odoslať ping</string>
   <string name="open_mpris_controls">Multimediálny ovládač</string>
   <string name="remotekeyboard_editing_only_title">Spracovať vzdialené klávesy iba počas upravovania</string>
@@ -58,6 +64,7 @@
   <string name="open_mousepad">Vzdialený vstup</string>
   <string name="open_mousepad_tv">TV diaľkový ovládač</string>
   <string name="mousepad_info">Posúvajte prst na obrazovke pre pohyb kurzorom. Ťuknutím kliknete a použitím dvoch/troch prstov stlačíte pravé a stredné tlačidlo. Použitím dvoch prstov rolujete. Použite dlhého stlačenia vykonáte ťahanie a spustenie.</string>
+  <string name="mousepad_info_double_tap">Posúvajte prst na obrazovke pre pohyb kurzorom. Ťuknutím kliknete a použitím dvoch/troch prstov stlačíte pravé a stredné tlačidlo. Použitím dvoch prstov rolujete. Dvojitým ťuknutím vykonáte ťahanie a pustenie. Funkciu gyroskopickej myši môžete povoliť v nastaveniach modulu</string>
   <string name="mousepad_info_no_gestures">Pohybujte prstom po obrazovke na presun kurzora myši, ťuknite na kliknutie.</string>
   <string name="mousepad_keyboard_input_not_supported">Tento plugin nie je podporovaný zariadením</string>
   <string name="mousepad_single_tap_settings_title">Nastaviť akciu po ťuknutí dvoma prstami</string>
@@ -109,6 +116,8 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Odoslať ako klávesové údery</string>
   <string name="mouse_receiver_plugin_description">Prijímanie pohybu vzdialenej myši</string>
   <string name="mouse_receiver_plugin_name">Prijímač myši</string>
+  <string name="mouse_receiver_no_permissions">Na prijímanie dotykových vstupov na diaľku musíte udeliť oprávnenia Prístupnosti</string>
+  <string name="mouse_keyboard_receiver_service_description">Prijímanie pohybu vzdialenej myši a vstupu z klávesnice</string>
   <string name="view_status_title">Stav</string>
   <string name="battery_status_format">Batéria: %d%%</string>
   <string name="battery_status_low_format">Batéria: %d%% Nízka úroveň batérie</string>
@@ -263,6 +272,7 @@
   <string name="sftp_saf_permission_explanation">Na vzdialený prístup k súborom musíte nastaviť umiestnenia úložísk</string>
   <string name="sftp_manage_storage_permission_explanation">Na povolenie vzdialeného prístupu k súborom na tomto zariadení musíte povoliť KDE Connect spravovať úložisko.</string>
   <string name="sftp_missing_permission_error">Chýbajúce oprávnenia: prístup k súborovému systému</string>
+  <string name="sftp_could_not_determine_ip">Nepodarilo sa zistiť lokálnu IP adresu</string>
   <string name="no_players_connected">Nenašli sa žiadne prehrávače</string>
   <string name="send_files">Odoslať súbory</string>
   <string name="use_digitizer">Použiť ako grafický tablet</string>
@@ -314,6 +324,7 @@
   <string name="contacts_per_device_confirmation">Kontakty z vášho telefónu budú skopírované do tohto zariadenia, aby ich mohla používať aplikácia KDE Connect SMS a iné aplikácie.</string>
   <string name="select_ringtone">Vybrať zvonenie</string>
   <string name="telephony_pref_blocked_title">Blokované čísla</string>
+  <string name="telephony_pref_blocked_dialog_desc">Z týchto čísel sa nebudú zobrazovať hovory. Prosím, zadajte jedno číslo na riadok</string>
   <string name="mpris_coverart_description">Obrázok obalu aktuálneho média</string>
   <string name="settings_icon_description">Ikona nastavení</string>
   <string name="presenter_fullscreen">Na celú obrazovku</string>
@@ -340,6 +351,7 @@
   <string name="runcommand_notpaired">Zariadenie nie je spárované</string>
   <string name="runcommand_nosuchdevice">Neexistuje žiadne zariadenie</string>
   <string name="runcommand_noruncommandplugin">Toto zariadenie nemá povolený zásuvný modul spustenia príkazu</string>
+  <string name="runcommand_widget_no_device">Kliknutím na názov vyberte zariadenie.</string>
   <string name="runcommand_category_device_controls_title">Ikona zariadenia</string>
   <string name="runcommand_device_controls_summary">Ak vaše zariadenie podporuje ovládanie zariadenia, nakonfigurované príkazy sa tam zobrazia.</string>
   <string name="set_runcommand_name_as_title">set_runcommand_name_as_title</string>

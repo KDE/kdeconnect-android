@@ -256,6 +256,7 @@
   <string name="sftp_saf_permission_explanation">Vous devez configurer des emplacements de stockage pour accéder aux fichiers à distance</string>
   <string name="sftp_manage_storage_permission_explanation">Pour permettre l\'accès à distance aux fichiers sur ce périphérique, vous devez autoriser KDEConnect à gérer l\'enregistrement.</string>
   <string name="sftp_missing_permission_error">Autorisations manquantes : accès au système de fichiers</string>
+  <string name="sftp_could_not_determine_ip">Impossible de déterminer l\'adresse IP locale</string>
   <string name="no_players_connected">Aucun lecteur trouvé</string>
   <string name="send_files">Envoyer des fichiers</string>
   <string name="use_digitizer">Utiliser comme une tablette graphique</string>
