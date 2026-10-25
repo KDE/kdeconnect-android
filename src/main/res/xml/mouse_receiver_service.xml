@@ -6,9 +6,14 @@ SPDX-FileCopyrightText: 2021 Sohny Bohny <sohny.bean@streber24.de>
 SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 -->
 
+<!--
+flagInputMethodEditor is only enabled from API 34 (see xml-v34). On Android 13, the
+framework crashes with a NullPointerException in InputMethod.SessionImpl.invalidateInput()
+because it is missing a null check on mStartedInputConnection.
+-->
 <accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
     android:accessibilityFeedbackType="feedbackGeneric"
-    android:accessibilityFlags="flagDefault|flagInputMethodEditor"
+    android:accessibilityFlags="flagDefault"
     android:description="@string/mouse_keyboard_receiver_service_description"
     android:accessibilityEventTypes="typeWindowStateChanged|typeWindowContentChanged"
     android:canPerformGestures="true"
