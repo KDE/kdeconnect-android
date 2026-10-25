@@ -8,6 +8,7 @@ package org.kde.kdeconnect.plugins.mpris
 import android.content.Context
 import android.graphics.Bitmap
 import android.net.ConnectivityManager
+import android.os.SystemClock
 import android.util.Log
 import androidx.collection.LruCache
 import androidx.core.content.getSystemService
@@ -55,6 +56,16 @@ internal object AlbumArtCache {
      * Urls currently being loaded or written to the disk cache.
      */
     private val pendingUrls: MutableSet<String> = ConcurrentHashMap.newKeySet()
+
+    /**
+     * Urls we asked the connected device to transfer, with the time we asked, so we don't ask again while waiting.
+     */
+    private val requestedTransfers = ConcurrentHashMap<String, Long>()
+
+    /**
+     * After this long without an answer, we ask the connected device to transfer the art again.
+     */
+    private const val TRANSFER_REQUEST_TIMEOUT_MS = 30_000L
 
     /**
      * Loads album art from http(s) or from the disk cache (for art transferred from the device).
@@ -170,8 +181,19 @@ internal object AlbumArtCache {
         val fromDevice = url.scheme in DEVICE_FETCH_SCHEMES
         if (fromDevice && !isInDiskCache(albumUrl)) {
             // Special-case file or kdeconnect, since we need to fetch it from the connected device
-            if (!plugin.askTransferAlbumArt(albumUrl, player)) {
+            val now = SystemClock.elapsedRealtime()
+            var shouldAsk = false
+            requestedTransfers.compute(albumUrl) { _, askedAt ->
+                if (askedAt != null && now - askedAt < TRANSFER_REQUEST_TIMEOUT_MS) {
+                    askedAt // Already waiting for it
+                } else {
+                    shouldAsk = true
+                    now
+                }
+            }
+            if (shouldAsk && !plugin.askTransferAlbumArt(albumUrl, player)) {
                 // It doesn't support transferring the art, so mark it as failed
+                requestedTransfers.remove(albumUrl)
                 failedUrls.put(albumUrl, true)
             }
             return null
@@ -272,7 +294,10 @@ internal object AlbumArtCache {
         }
 
         // Check if we already have this art, or are already fetching it
-        if (getFromMemoryCache(albumUrl) != null || isInDiskCache(albumUrl) || !pendingUrls.add(albumUrl)) {
+        val alreadyHandled = getFromMemoryCache(albumUrl) != null || isInDiskCache(albumUrl) || !pendingUrls.add(albumUrl)
+        // We got an answer, and from now on pendingUrls prevents asking again
+        requestedTransfers.remove(albumUrl)
+        if (alreadyHandled) {
             payload.close()
             return
         }
