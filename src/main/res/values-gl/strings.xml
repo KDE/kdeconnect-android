@@ -209,7 +209,6 @@
   <string name="share_destination_folder_preference">Cartafol de destino</string>
   <string name="share">Compartir</string>
   <string name="share_received_file">Compartir «%s»</string>
-  <string name="title_activity_notification_filter">Filtro de notificacións</string>
   <string name="filter_apps_info">As notificacións das seguintes aplicacións sincronizaranse.</string>
   <string name="show_notification_if_screen_off">Enviar notificacións só se a pantalla está apagada</string>
   <string name="add_device_dialog_title">Engadir o dispositivo</string>

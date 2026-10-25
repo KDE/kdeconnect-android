@@ -206,7 +206,6 @@
   <string name="share_destination_folder_preference">Destina dosierujo</string>
   <string name="share">Kunhavigi</string>
   <string name="share_received_file">Kunhavigi \"%s\"</string>
-  <string name="title_activity_notification_filter">Filtrilo pri sciigo</string>
   <string name="filter_apps_info">Sciigoj estos sinkronigitaj por la elektitaj programoj.</string>
   <string name="show_notification_if_screen_off">Sendi sciigojn nur se la ekrano estas malŝaltita</string>
   <string name="add_device_dialog_title">Aldoni aparaton</string>

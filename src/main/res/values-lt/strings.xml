@@ -205,7 +205,6 @@
   <string name="share_destination_folder_preference">Paskirties katalogas</string>
   <string name="share">Bendrinti</string>
   <string name="share_received_file">Bendrinti \"%s\"</string>
-  <string name="title_activity_notification_filter">Pranešimų filtras</string>
   <string name="filter_apps_info">Pranešimai bus sinchronizuojami pasirinktoms programėlėms.</string>
   <string name="show_notification_if_screen_off">Siųsti pranešimus tik tuo atveju, jei ekranas yra išjungtas</string>
   <string name="add_device_dialog_title">Pridėti įrenginį</string>

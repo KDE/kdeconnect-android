@@ -253,7 +253,6 @@
   <string name="share_destination_folder_preference">תיקיית יעד</string>
   <string name="share">שיתוף</string>
   <string name="share_received_file">שיתוף „%s”</string>
-  <string name="title_activity_notification_filter">סינון התראות</string>
   <string name="filter_apps_info">התראות יסונכרנו רק מול יישומונים נבחרים.</string>
   <string name="show_notification_if_screen_off">לשלוח התראות רק אם המסך כבוי</string>
   <string name="add_device_dialog_title">הוספת מכשיר</string>

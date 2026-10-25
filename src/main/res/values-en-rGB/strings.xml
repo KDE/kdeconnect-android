@@ -203,7 +203,6 @@
   <string name="share_destination_folder_preference">Destination directory</string>
   <string name="share">Share</string>
   <string name="share_received_file">Share \"%s\"</string>
-  <string name="title_activity_notification_filter">Notification filter</string>
   <string name="filter_apps_info">Notifications will be synchronised for the selected apps.</string>
   <string name="show_notification_if_screen_off">Send notifications only if the screen is off</string>
   <string name="add_device_dialog_title">Add device</string>

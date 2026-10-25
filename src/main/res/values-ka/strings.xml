@@ -143,7 +143,6 @@
   <string name="share_destination_folder_preference">სამიზნე საქაღალდე</string>
   <string name="share">გაზიარება</string>
   <string name="share_received_file">\"%s\"-ის გაზიარება</string>
-  <string name="title_activity_notification_filter">შეტყობინებების ფილტრი</string>
   <string name="add_device_dialog_title">მოწყობილობის დამატება</string>
   <string name="add_device_hint">ჰოსტის სახელი ან IP მისამართი</string>
   <string name="sftp_preference_configured_storage_locations">მორგებული საცავის მდებარეობები</string>

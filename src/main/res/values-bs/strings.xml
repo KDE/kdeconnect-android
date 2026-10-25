@@ -76,7 +76,6 @@
   <string name="custom_device_list">Dodaj uređaje po IP</string>
   <string name="share_notification_preference">Glasne notifikacije</string>
   <string name="share_notification_preference_summary">Vibriraj i reprodukuj zvuk kad se prima datoteka</string>
-  <string name="title_activity_notification_filter">Filter napomena</string>
   <string name="filter_apps_info">Notifikacije će biti sinhronizovane s izabranim aplikacijama.</string>
   <string name="no_players_connected">Nema nađenih igrača</string>
   <string-array name="digitizer_preference_entries_draw_button_side">

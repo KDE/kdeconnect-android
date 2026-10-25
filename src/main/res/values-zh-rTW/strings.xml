@@ -228,7 +228,6 @@
   <string name="share_destination_folder_preference">目標資料夾</string>
   <string name="share">分享</string>
   <string name="share_received_file">分享「%s」</string>
-  <string name="title_activity_notification_filter">通知過濾器</string>
   <string name="filter_apps_info">所選應用程式的通知將被同步。</string>
   <string name="show_notification_if_screen_off">僅在螢幕關閉時傳送通知</string>
   <string name="add_device_dialog_title">新增裝置</string>

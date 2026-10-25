@@ -229,7 +229,6 @@
   <string name="share_destination_folder_preference">Dosar destinație</string>
   <string name="share">Partajează</string>
   <string name="share_received_file">Partajează „%s”</string>
-  <string name="title_activity_notification_filter">Filtru de notificări</string>
   <string name="filter_apps_info">Notificările vor fi sincronizate pentru aplicațiile alese.</string>
   <string name="show_notification_if_screen_off">Trimite notificări doar dacă ecranul e stins</string>
   <string name="add_device_dialog_title">Adaugă dispozitiv</string>

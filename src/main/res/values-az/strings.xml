@@ -195,7 +195,6 @@
   <string name="share_destination_folder_preference">Hədəf qovluğu</string>
   <string name="share">Paylaşmaq</string>
   <string name="share_received_file">\"%s\" paylaşmaq</string>
-  <string name="title_activity_notification_filter">Bildiriş filtri</string>
   <string name="filter_apps_info">Bildirişlər seçilmiş tətbiqlər üçün eyniləşdiriləcəkdir</string>
   <string name="show_notification_if_screen_off">Yalnız ekran söndükdə bildiriş göndərmək</string>
   <string name="add_device_dialog_title">Cihaz əlavə etmək</string>

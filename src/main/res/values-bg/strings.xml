@@ -212,7 +212,6 @@
   <string name="share_destination_folder_preference">Директория на местоназначението</string>
   <string name="share">Споделяне</string>
   <string name="share_received_file">Споделяне на \"%s\"</string>
-  <string name="title_activity_notification_filter">Филтър на известия</string>
   <string name="filter_apps_info">Известията ще се синхронизират за избраните приложения.</string>
   <string name="show_notification_if_screen_off">Изпращане на известия само ако екранът е изключен</string>
   <string name="add_device_dialog_title">Добавяне на устройство</string>

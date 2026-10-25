@@ -211,7 +211,6 @@
   <string name="share_destination_folder_preference">Móttökumappa</string>
   <string name="share">Deila</string>
   <string name="share_received_file">Deila \"%s\"</string>
-  <string name="title_activity_notification_filter">Tilkynningasía</string>
   <string name="filter_apps_info">Tilkynningar verða samstilltar fyrir völdu forritin.</string>
   <string name="show_notification_if_screen_off">Senda tilkynningar einungis ef slökkt er á skjánum</string>
   <string name="add_device_dialog_title">Bæta við tæki</string>

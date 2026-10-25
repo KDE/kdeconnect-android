@@ -208,7 +208,6 @@
   <string name="share_destination_folder_preference">受信先ディレクトリ</string>
   <string name="share">共有</string>
   <string name="share_received_file">\"%s\" を共有</string>
-  <string name="title_activity_notification_filter">通知フィルタ</string>
   <string name="filter_apps_info">選択されたアプリケーションの通知が同期されます。</string>
   <string name="show_notification_if_screen_off">スクリーンがオフのときのみ通知を送信</string>
   <string name="add_device_dialog_title">デバイスを追加</string>

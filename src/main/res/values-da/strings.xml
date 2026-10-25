@@ -100,7 +100,6 @@
   <string name="share_destination_customize_summary_disabled">Modtagne filer vil dukke op i Downloads</string>
   <string name="share_destination_customize_summary_enabled">Filer vil blive gemt i mappen nedenfor</string>
   <string name="share_destination_folder_preference">Destinationsmappe</string>
-  <string name="title_activity_notification_filter">Bekendtgørelsesfilter</string>
   <string name="filter_apps_info">Bekendtgørelser vil blive synkroniseret for de valgte apps.</string>
   <string name="no_players_connected">Ingen afspillere fundet</string>
   <string name="send_files">Send filer</string>

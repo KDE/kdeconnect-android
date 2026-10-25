@@ -156,7 +156,6 @@
   <string name="share_destination_folder_preference">Sihtkataloog</string>
   <string name="share">Jaga</string>
   <string name="share_received_file">Jaga \"%s\"</string>
-  <string name="title_activity_notification_filter">Märguannete filter</string>
   <string name="filter_apps_info">Valitud rakenduste märguanded sünkroonitakse</string>
   <string name="add_device_dialog_title">Seadme lisamine</string>
   <string name="add_device_hint">Masinanimi või IP-aadress</string>

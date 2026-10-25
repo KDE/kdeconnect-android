@@ -180,7 +180,6 @@
   <string name="share_destination_folder_preference">Κατάλογος προορισμού</string>
   <string name="share">Διαμοιρασμός</string>
   <string name="share_received_file">Διαμοιρασμός «%s»</string>
-  <string name="title_activity_notification_filter">Φιλτράρισμα ειδοποιήσεων</string>
   <string name="filter_apps_info">Οι ειδοποιήσεις θα συγχρονίζονται για επιλεγμένες εφαρμογές.</string>
   <string name="add_device_dialog_title">Προσθήκη συσκευής</string>
   <string name="add_device_hint">Όνομα ή IP διεύθυνση</string>

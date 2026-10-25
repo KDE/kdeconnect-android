@@ -253,7 +253,6 @@
   <string name="share_destination_folder_preference">Ciljni imenik</string>
   <string name="share">Deli</string>
   <string name="share_received_file">Deli \"%s\"</string>
-  <string name="title_activity_notification_filter">Filter obvestil</string>
   <string name="filter_apps_info">Obvestila bodo usklajena za izbrane aplikacije.</string>
   <string name="show_notification_if_screen_off">Pošlji obvestila le, če je zaslon izključen</string>
   <string name="add_device_dialog_title">Dodaj napravo</string>

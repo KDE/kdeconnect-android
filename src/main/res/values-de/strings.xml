@@ -223,7 +223,6 @@
   <string name="share_destination_folder_preference">Zielordner</string>
   <string name="share">Teilen</string>
   <string name="share_received_file">„%s“ teilen</string>
-  <string name="title_activity_notification_filter">Benachrichtigungsfilter</string>
   <string name="filter_apps_info">Benachrichtigungen der ausgewählten Apps werden abgeglichen.</string>
   <string name="show_notification_if_screen_off">Nur bei ausgeschaltetem Bildschirm Benachrichtigungen senden</string>
   <string name="add_device_dialog_title">Gerät hinzufügen</string>

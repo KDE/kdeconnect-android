@@ -268,7 +268,6 @@
   <string name="share_destination_folder_preference">مجلد الوجهة</string>
   <string name="share">شارك</string>
   <string name="share_received_file">شارك \"%s\"</string>
-  <string name="title_activity_notification_filter">مرشّح الإشعارات</string>
   <string name="filter_apps_info">ستُزامن الإشعارات من التّطبيقات المحدّدة.</string>
   <string name="show_notification_if_screen_off">أرسل إشعارات فقط إذا كانت الشاشة مغلقة</string>
   <string name="add_device_dialog_title">أضف جهازًا</string>

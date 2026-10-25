@@ -186,7 +186,6 @@
   <string name="share_destination_folder_preference">Direktori tujuan</string>
   <string name="share">Bagikan</string>
   <string name="share_received_file">Bagikan \"%s\"</string>
-  <string name="title_activity_notification_filter">Filter notifikasi</string>
   <string name="filter_apps_info">Notifikasi akan disinkronkan terhadap apl terpilih.</string>
   <string name="show_notification_if_screen_off">Hanya kirimkan notifikasi saja ketika layarnya mati</string>
   <string name="add_device_dialog_title">Tambahkan peranti</string>

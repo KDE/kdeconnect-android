@@ -188,7 +188,6 @@
   <string name="share_destination_folder_preference">Célmappa</string>
   <string name="share">Megosztás</string>
   <string name="share_received_file">„%s” megosztása</string>
-  <string name="title_activity_notification_filter">Értesítésszűrő</string>
   <string name="filter_apps_info">A kiválasztott alkalmazások értesítései szinkronizálódnak.</string>
   <string name="show_notification_if_screen_off">Értesítések küldése, csak ha a képernyő ki van kapcsolva</string>
   <string name="add_device_dialog_title">Eszköz hozzáadása</string>
