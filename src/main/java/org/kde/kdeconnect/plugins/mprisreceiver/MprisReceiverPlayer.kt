@@ -129,6 +129,16 @@ internal class MprisReceiverPlayer(
         return (state.actions and PlaybackState.ACTION_SKIP_TO_NEXT) != 0L
     }
 
+    fun canFastForward(): Boolean {
+        val state = controller.playbackState ?: return false
+        return (state.actions and PlaybackState.ACTION_FAST_FORWARD) != 0L
+    }
+
+    fun canRewind(): Boolean {
+        val state = controller.playbackState ?: return false
+        return (state.actions and PlaybackState.ACTION_REWIND) != 0L
+    }
+
     fun canSeek(): Boolean {
         val state = controller.playbackState ?: return false
         return (state.actions and PlaybackState.ACTION_SEEK_TO) != 0L
@@ -173,6 +183,14 @@ internal class MprisReceiverPlayer(
 
     fun next() {
         controller.transportControls.skipToNext()
+    }
+
+    fun fastForward() {
+        controller.transportControls.fastForward()
+    }
+
+    fun rewind() {
+        controller.transportControls.rewind()
     }
 
     fun play() {

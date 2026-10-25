@@ -108,6 +108,8 @@ class MprisReceiverPlugin : Plugin() {
                 "PlayPause" -> player.playPause()
                 "Next" -> player.next()
                 "Previous" -> player.previous()
+                "FastForward" -> player.fastForward()
+                "Rewind" -> player.rewind()
                 "Stop" -> player.stop()
             }
         }
@@ -191,6 +193,8 @@ class MprisReceiverPlugin : Plugin() {
         np["canPause"] = player.canPause()
         np["canGoPrevious"] = player.canGoPrevious()
         np["canGoNext"] = player.canGoNext()
+        np["canFastForward"] = player.canFastForward()
+        np["canRewind"] = player.canRewind()
         np["canSeek"] = player.canSeek()
         np["volume"] = player.volume
         np["albumArtUrl"] = player.art?.url ?: ""
