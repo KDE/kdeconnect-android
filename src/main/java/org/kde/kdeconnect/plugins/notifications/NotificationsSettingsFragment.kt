@@ -10,6 +10,7 @@ import android.Manifest
 import android.content.pm.ApplicationInfo
 import android.content.pm.LauncherApps
 import android.content.pm.PackageManager
+import android.content.res.Resources
 import android.graphics.Canvas
 import android.graphics.drawable.Drawable
 import android.os.Build
@@ -110,6 +111,8 @@ class NotificationsSettingsFragment : PluginSettingsFragment() {
 
         ThreadHelper.execute {
             val packageManager = context.packageManager
+            // Don't use the fragment's resources here, the fragment might get detached while this runs
+            val resources = context.resources
             val appList = packageManager.getInstalledApplications(0)
             val count = appList.size
 
@@ -123,7 +126,7 @@ class NotificationsSettingsFragment : PluginSettingsFragment() {
                 val appListInfo = AppListInfo(
                     pkg = appInfo.packageName,
                     name = appInfo.loadLabel(packageManager).toString(),
-                    icon = resizeIcon(appInfo.loadIcon(packageManager)),
+                    icon = resizeIcon(resources, appInfo.loadIcon(packageManager)),
                     isEnabled = appDatabase.isEnabled(appInfo.packageName),
                 )
 
@@ -155,7 +158,7 @@ class NotificationsSettingsFragment : PluginSettingsFragment() {
                         val appListInfo = AppListInfo(
                             pkg = appInfo.packageName,
                             name = appInfo.loadLabel(packageManager).toString(),
-                            icon = resizeIcon(appInfo.loadIcon(packageManager)),
+                            icon = resizeIcon(resources, appInfo.loadIcon(packageManager)),
                             isEnabled = appDatabase.isEnabled(appInfo.packageName),
                         )
                         allApps.add(appListInfo)
@@ -324,9 +327,7 @@ class NotificationsSettingsFragment : PluginSettingsFragment() {
         binding.spinner.visibility = View.GONE
     }
 
-    private fun resizeIcon(icon: Drawable, maxSize: Int = 48): Drawable {
-        val res = resources
-
+    private fun resizeIcon(res: Resources, icon: Drawable, maxSize: Int = 48): Drawable {
         // Convert to display pixels
         val pixelSize = (maxSize * res.displayMetrics.density).toInt()
 
