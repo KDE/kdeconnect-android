@@ -247,6 +247,7 @@
   <string name="sftp_saf_permission_explanation">要远程访问文件，您需要配置存储位置</string>
   <string name="sftp_manage_storage_permission_explanation">要允许远程访问此设备上的文件，您必须允许 KDE Connect 管理它的存储。</string>
   <string name="sftp_missing_permission_error">缺少权限：文件系统访问</string>
+  <string name="sftp_could_not_determine_ip">无法确定本地 IP 地址</string>
   <string name="no_players_connected">未找到播放器</string>
   <string name="send_files">发送文件</string>
   <string name="use_digitizer">用作数位板</string>
