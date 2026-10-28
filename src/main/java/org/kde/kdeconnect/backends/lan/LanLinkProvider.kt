@@ -84,6 +84,8 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
     private var udpServer: DatagramSocket? = null
 
     private var lastBroadcast: Long = 0
+    // Protect listener/mDNS setup and cleanup
+    private val lifecycleLock = Any()
     @Volatile
     private var isStopped = true
 
@@ -419,7 +421,8 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
         }
     }
 
-    @Synchronized
+    // Called with lifecycleLock held, on a background thread.
+    @WorkerThread
     private fun setupUdpListener() {
         if (udpServer != null) {
             return
@@ -463,7 +466,8 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
         }
     }
 
-    @Synchronized
+    // Called with lifecycleLock held, on a background thread.
+    @WorkerThread
     private fun setupTcpListener() {
         if (tcpServer != null) {
             return
@@ -500,24 +504,23 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
         }
     }
 
+    @WorkerThread
     private fun broadcastUdpIdentityPacket(network: Network?) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CINNAMON_BUN &&
             ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_LOCAL_NETWORK) != PackageManager.PERMISSION_GRANTED) {
             Log.w("LanLinkProvider", "Will not UDP broadcast, missing ACCESS_LOCAL_NETWORK permission")
             return
         }
-        ThreadHelper.runOnNewThread {
-            val ipList = ArrayList<InetAddress>()
-            if (TrustedNetworkHelper.isTrustedNetwork(context)) {
-                ipList.add(InetAddress.getByName("255.255.255.255")) // Default: broadcast.
-            } else {
-                Log.i("LanLinkProvider", "Current network isn't trusted, not broadcasting")
-            }
-            updateCustomDevicesList()
-            ipList.addAll(customDeviceAddresses)
-            if (ipList.isNotEmpty()) {
-                sendUdpIdentityPacket(ipList, network)
-            }
+        val ipList = ArrayList<InetAddress>()
+        if (TrustedNetworkHelper.isTrustedNetwork(context)) {
+            ipList.add(InetAddress.getByName("255.255.255.255")) // Default: broadcast.
+        } else {
+            Log.i("LanLinkProvider", "Current network isn't trusted, not broadcasting")
+        }
+        updateCustomDevicesList()
+        ipList.addAll(customDeviceAddresses)
+        if (ipList.isNotEmpty()) {
+            sendUdpIdentityPacket(ipList, network)
         }
     }
 
@@ -581,17 +584,20 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
         updateCustomDevicesList()
         customDevicePreferences.registerOnSharedPreferenceChangeListener(customDeviceListener)
 
-        setupUdpListener()
-        setupTcpListener()
+        ThreadHelper.runOnNewThread {
+            synchronized(lifecycleLock) {
+                if (isStopped) return@runOnNewThread
+                setupUdpListener()
+                setupTcpListener()
 
-        synchronized(mdnsDiscovery) {
-            mdnsDiscovery.startDiscovering()
-            if (TrustedNetworkHelper.isTrustedNetwork(context)) {
-                mdnsDiscovery.startAnnouncing()
+                mdnsDiscovery.startDiscovering()
+                if (TrustedNetworkHelper.isTrustedNetwork(context)) {
+                    mdnsDiscovery.startAnnouncing()
+                }
             }
-        }
 
-        broadcastUdpIdentityPacket(null)
+            broadcastUdpIdentityPacket(null)
+        }
     }
 
     override fun onNetworkChange(network: Network?) {
@@ -602,18 +608,21 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
         }
         lastBroadcast = SystemClock.elapsedRealtime()
 
-        setupUdpListener()
-        setupTcpListener()
+        ThreadHelper.runOnNewThread {
+            synchronized(lifecycleLock) {
+                if (isStopped) return@runOnNewThread
+                setupUdpListener()
+                setupTcpListener()
 
-        broadcastUdpIdentityPacket(network)
-        synchronized(mdnsDiscovery) {
-            if (TrustedNetworkHelper.isTrustedNetwork(context)) {
-                mdnsDiscovery.startAnnouncing() // noop if already announcing
-            } else {
-                mdnsDiscovery.stopAnnouncing() // noop if already stopped
+                if (TrustedNetworkHelper.isTrustedNetwork(context)) {
+                    mdnsDiscovery.startAnnouncing() // noop if already announcing
+                } else {
+                    mdnsDiscovery.stopAnnouncing() // noop if already stopped
+                }
+                mdnsDiscovery.stopDiscovering()
+                mdnsDiscovery.startDiscovering()
             }
-            mdnsDiscovery.stopDiscovering()
-            mdnsDiscovery.startDiscovering()
+            broadcastUdpIdentityPacket(network)
         }
     }
 
@@ -621,14 +630,14 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
         //Log.i("KDE/LanLinkProvider", "onStop");
         isStopped = true
         customDevicePreferences.unregisterOnSharedPreferenceChangeListener(customDeviceListener)
-        synchronized(mdnsDiscovery) {
+        synchronized(lifecycleLock) {
             mdnsDiscovery.stopAnnouncing()
             mdnsDiscovery.stopDiscovering()
+            tcpServer?.closeSafe()
+            udpServer?.closeSafe()
+            tcpServer = null
+            udpServer = null
         }
-        tcpServer?.closeSafe()
-        udpServer?.closeSafe()
-        tcpServer = null
-        udpServer = null
     }
 
     override val name: String = "LanLinkProvider"
