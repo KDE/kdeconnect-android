@@ -79,7 +79,7 @@ class MprisReceiverPlugin : Plugin() {
         val artUrl = np.getString("albumArtUrl", "")
         if (!artUrl.isEmpty()) {
             // run it on a different thread to avoid blocking
-            ThreadHelper.execute { sendAlbumArt(player, artUrl) }
+            ThreadHelper.runOnNewThread { sendAlbumArt(player, artUrl) }
             return true
         }
 

@@ -14,7 +14,7 @@ import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import androidx.core.content.getSystemService
-import org.kde.kdeconnect.helpers.ThreadHelper.execute
+import org.kde.kdeconnect.helpers.ThreadHelper
 import org.kde.kdeconnect_tp.BuildConfig
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -51,7 +51,7 @@ class ClipboardListener {
             cm.addPrimaryClipChangedListener { this.onClipboardChanged() }
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && ClipboardPlugin.canSyncAutomatically(context)) {
-            execute {
+            ThreadHelper.runOnNewThread {
                 try {
                     val timeStamp = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.US).format(Date())
                     // Listen only ClipboardService errors after now

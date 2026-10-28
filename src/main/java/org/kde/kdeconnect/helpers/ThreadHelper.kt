@@ -16,7 +16,7 @@ object ThreadHelper {
 
     private val executor: ExecutorService = Executors.newCachedThreadPool()
 
-    fun execute(command: Runnable) = executor.execute(command)
+    fun runOnNewThread(command: Runnable) = executor.execute(command)
 
     fun assertMainThread() {
         if (BuildConfig.DEBUG) {

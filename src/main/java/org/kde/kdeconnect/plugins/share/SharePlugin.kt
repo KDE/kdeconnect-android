@@ -271,7 +271,7 @@ class SharePlugin : Plugin() {
         val streams = IntentHelper.streamsFromIntent(intent)
         if (streams.isNotEmpty()) {
             Log.i(TAG, "Intent contains files to share")
-            ThreadHelper.execute { sendFiles(streams, onComplete) }
+            ThreadHelper.runOnNewThread { sendFiles(streams, onComplete) }
             return
         }
         try {

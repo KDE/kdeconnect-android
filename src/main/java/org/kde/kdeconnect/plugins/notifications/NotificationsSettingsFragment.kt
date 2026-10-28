@@ -109,7 +109,7 @@ class NotificationsSettingsFragment : PluginSettingsFragment() {
         val context = requireContext()
         appDatabase = AppDatabase.getInstance(context)
 
-        ThreadHelper.execute {
+        ThreadHelper.runOnNewThread {
             val packageManager = context.packageManager
             // Don't use the fragment's resources here, the fragment might get detached while this runs
             val resources = context.resources

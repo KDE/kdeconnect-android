@@ -328,7 +328,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
         val sslSocket = SslHelper.convertToSslSocket(context, socket, deviceId, deviceTrusted, clientMode)
         sslSocket.addHandshakeCompletedListener { event: HandshakeCompletedEvent ->
             // Start a new thread because some Android versions don't allow calling sslSocket.getOutputStream() from the callback
-            ThreadHelper.execute {
+            ThreadHelper.runOnNewThread {
                 val mode = if (clientMode) "client" else "server"
                 try {
                     val secureIdentityPacket: NetworkPacket?
@@ -345,19 +345,19 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
                         if (!DeviceInfo.isValidIdentityPacket(secureIdentityPacket)) {
                             Log.e("KDE/LanLinkProvider", "Identity packet isn't valid")
                             sslSocket.closeSafe()
-                            return@execute
+                            return@runOnNewThread
                         }
                         val newProtocolVersion = secureIdentityPacket.getInt("protocolVersion")
                         if (newProtocolVersion != protocolVersion) {
                             Log.e("KDE/LanLinkProvider", "Protocol version changed half-way through the handshake: $protocolVersion -> $newProtocolVersion")
                             sslSocket.closeSafe()
-                            return@execute
+                            return@runOnNewThread
                         }
                         val newDeviceId = secureIdentityPacket.getString("deviceId")
                         if (newDeviceId != deviceId) {
                             Log.e("KDE/LanLinkProvider", "Device ID changed half-way through the handshake: $deviceId -> $newDeviceId")
                             sslSocket.closeSafe()
-                            return@execute
+                            return@runOnNewThread
                         }
                     } else {
                         secureIdentityPacket = identityPacket
@@ -437,13 +437,13 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
             newUdpServer?.closeSafe()
             return
         }
-        ThreadHelper.execute {
+        ThreadHelper.runOnNewThread {
             Log.i("UdpListener", "Starting UDP listener")
             while (!isStopped) {
                 try {
                     val packet = DatagramPacket(ByteArray(MAX_UDP_PACKET_SIZE), MAX_UDP_PACKET_SIZE)
                     newUdpServer.receive(packet)
-                    ThreadHelper.execute {
+                    ThreadHelper.runOnNewThread {
                         try {
                             udpPacketReceived(packet)
                         } catch (e: Exception) {
@@ -476,12 +476,12 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
             Log.e("LanLinkProvider", "Error opening tcp server", e)
             return
         }
-        ThreadHelper.execute {
+        ThreadHelper.runOnNewThread {
             while (!isStopped) {
                 try {
                     val socket = newTcpServer.accept()
                     configureSocket(socket)
-                    ThreadHelper.execute {
+                    ThreadHelper.runOnNewThread {
                         try {
                             tcpPacketReceived(socket)
                         } catch (e: IOException) {
@@ -506,7 +506,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
             Log.w("LanLinkProvider", "Will not UDP broadcast, missing ACCESS_LOCAL_NETWORK permission")
             return
         }
-        ThreadHelper.execute {
+        ThreadHelper.runOnNewThread {
             val ipList = ArrayList<InetAddress>()
             if (TrustedNetworkHelper.isTrustedNetwork(context)) {
                 ipList.add(InetAddress.getByName("255.255.255.255")) // Default: broadcast.

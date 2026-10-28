@@ -29,7 +29,7 @@ import org.kde.kdeconnect.extensions.closeSafe
 import org.kde.kdeconnect.extensions.getParcelableArrayExtraCompat
 import org.kde.kdeconnect.extensions.getParcelableExtraCompat
 import org.kde.kdeconnect.helpers.DeviceHelper
-import org.kde.kdeconnect.helpers.ThreadHelper.execute
+import org.kde.kdeconnect.helpers.ThreadHelper
 import org.kde.kdeconnect.helpers.security.SslHelper
 import org.kde.kdeconnect.ui.SettingsFragment
 import java.io.IOException
@@ -81,13 +81,13 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
         }
         Log.i("BluetoothLinkProvider", "onStart called")
 
-        //This handles the case when I'm the existing device in the network and receive a hello package
+        // This handles the case when I'm the existing device in the network and receive a hello package
         clientRunnable = ClientRunnable()
-        execute(clientRunnable!!)
+        ThreadHelper.runOnNewThread(clientRunnable!!)
 
         // I'm on a new network, let's be polite and introduce myself
         serverRunnable = ServerRunnable()
-        execute(serverRunnable!!)
+        ThreadHelper.runOnNewThread(serverRunnable!!)
     }
 
     override fun onNetworkChange(network: Network?) {

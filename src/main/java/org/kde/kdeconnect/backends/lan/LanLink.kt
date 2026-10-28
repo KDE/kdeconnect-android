@@ -66,7 +66,7 @@ class LanLink(
     fun startListening() {
         val currentSocket = socket
         // Create a thread to take care of incoming data for the socket
-        ThreadHelper.execute {
+        ThreadHelper.runOnNewThread {
             try {
                 val stream = BufferedInputStream(currentSocket.inputStream)
                 while (true) {
@@ -135,7 +135,7 @@ class LanLink(
                     payloadTransferStarted = true
                     sendPayload(np, callback, server)
                 } else {
-                    ThreadHelper.execute {
+                    ThreadHelper.runOnNewThread {
                         try {
                             sendPayload(np, callback, server)
                         } catch (e: IOException) {

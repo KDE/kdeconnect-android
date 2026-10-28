@@ -379,11 +379,11 @@ class MprisPlugin : Plugin() {
             // Playback was too short
             return
         }
-        ThreadHelper.execute {
+        ThreadHelper.runOnNewThread {
             Thread.sleep(500)
             if (playerStatus.isPlaying) {
                 // Pause was too short. Probably just the gap between songs
-                return@execute
+                return@runOnNewThread
             }
             val httpUrl = playerStatus.getHttpUrl()
             if (preferences.getBoolean(context.getString(R.string.mpris_keepwatching_key), true) && httpUrl != null) {

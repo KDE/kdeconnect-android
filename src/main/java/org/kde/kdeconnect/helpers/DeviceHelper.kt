@@ -76,7 +76,7 @@ object DeviceHelper {
     }
 
     private fun backgroundFetchDeviceName(context: Context) {
-        ThreadHelper.execute {
+        ThreadHelper.runOnNewThread {
             try {
                 val url = URL(DEVICE_DATABASE)
                 val connection = url.openConnection()

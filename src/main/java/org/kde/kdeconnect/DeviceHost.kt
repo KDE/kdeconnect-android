@@ -17,7 +17,7 @@ class DeviceHost private constructor(val host: String) {
      * @param callback Callback for updating UI elements
      */
     fun checkReachable(callback: () -> Unit) {
-        ThreadHelper.execute {
+        ThreadHelper.runOnNewThread {
             try {
                 val address = InetAddress.getByName(this.host)
                 val startTime = SystemClock.elapsedRealtime()

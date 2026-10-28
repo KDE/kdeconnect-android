@@ -235,15 +235,15 @@ class KdeConnect : Application() {
         //       deleting devices from the map is actually counterproductive because each time we
         //       detect the same device, a new Device object will be created (and leaked again).
         Log.i("KdeConnect", "Scheduled for deletion: $device, paired: ${device.isPaired}, reachable: ${device.isReachable}")
-        ThreadHelper.execute {
+        ThreadHelper.runOnNewThread {
             try {Thread.sleep(1000)} catch (_: InterruptedException) { }
             if (device.isReachable) {
                 Log.i("KdeConnect", "Not deleting device since it's reachable again: $device")
-                return@execute
+                return@runOnNewThread
             }
             if (device.isPaired) {
                 Log.i("KdeConnect", "Not deleting device since it's still paired: $device")
-                return@execute
+                return@runOnNewThread
             }
             Log.i("KdeConnect", "Deleting unpaired and unreachable device: $device")
             device.removePairingCallback(devicePairingCallback)

@@ -43,7 +43,7 @@ class SendFileActivity : AppCompatActivity() {
                 Log.w("SendFileActivity", "No files to send?")
                 finish()
             } else {
-                ThreadHelper.execute {
+                ThreadHelper.runOnNewThread {
                     try {
                         KdeConnect.getInstance().getDevicePlugin<SharePlugin>(deviceId)
                             ?.sendFiles(uris)

@@ -8,7 +8,7 @@ package org.kde.kdeconnect.backends.bluetooth
 
 import android.bluetooth.BluetoothSocket
 import android.util.Log
-import org.kde.kdeconnect.helpers.ThreadHelper.execute
+import org.kde.kdeconnect.helpers.ThreadHelper
 import java.io.Closeable
 import java.io.IOException
 import java.io.InputStream
@@ -186,7 +186,7 @@ class ConnectionMultiplexer(private val socket: BluetoothSocket) : Closeable {
     init {
         channels[DEFAULT_CHANNEL] = Channel(this, DEFAULT_CHANNEL)
         sendProtocolVersion()
-        execute(ListenRunnable(socket))
+        ThreadHelper.runOnNewThread(ListenRunnable(socket))
     }
 
     @Throws(IOException::class)
