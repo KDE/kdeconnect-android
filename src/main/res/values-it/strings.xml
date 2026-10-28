@@ -147,6 +147,10 @@
     <item quantity="one">Ricezione di %1$d file da %2$s</item>
     <item quantity="other">Ricezione di %1$d file da %2$s</item>
   </plurals>
+  <plurals name="incoming_files_text">
+    <item quantity="one">File: %1s</item>
+    <item quantity="other">(File %2$d di %3$d) : %1$s</item>
+  </plurals>
   <plurals name="outgoing_file_title">
     <item quantity="one">Invio di %1$d file a %2$s</item>
     <item quantity="other">Invio di %1$d file a %2$s</item>

@@ -25,6 +25,8 @@
   <string name="pref_plugin_mousepad_desc_tv">Bruk telefonen eller nettbrettet som TV-fjernkontroll</string>
   <string name="pref_plugin_presenter">Fjernkontroll av presentasjon</string>
   <string name="pref_plugin_presenter_desc">Bruk eininga til å byta lysbilete i presentasjonar</string>
+  <string name="pref_plugin_remotekeyboard_ime">Tastatatur-mottakar (via Android-tastatur)</string>
+  <string name="pref_plugin_remotekeyboard_accessibility">Tastatatur-mottakar (via tilgjengelegheit)</string>
   <string name="pref_plugin_remotekeyboard_desc">Ta imot tastetrykk frå eksterne einingar</string>
   <string name="pref_plugin_mpris">Mediekontrollar</string>
   <string name="pref_plugin_mpris_desc">Gje fjernkontroll til mediespelarar</string>
@@ -47,6 +49,7 @@
   <string name="sad_ok">OK :(</string>
   <string name="cancel">Avbryt</string>
   <string name="open_settings">Opna innstillingar</string>
+  <string name="open_accessibility_settings">Opna tilgjengeinnstillingane</string>
   <string name="open_input_settings">Opna tastaturinnstillingar</string>
   <string name="no_permissions">Du må gje tilgang til lesing av varslingar</string>
   <string name="no_permission_mprisreceiver">Du må gje tilgang til varslingar for å kunne kontrollera mediespelarar</string>
@@ -229,7 +232,6 @@
   <string name="share_destination_folder_preference">Målmappe</string>
   <string name="share">Del</string>
   <string name="share_received_file">Del «%s»</string>
-  <string name="title_activity_notification_filter">Varslingsfilter</string>
   <string name="filter_apps_info">Varslingar vert synkroniserte for dei valde appane.</string>
   <string name="show_notification_if_screen_off">Send berre varslingar dersom skjermen er av</string>
   <string name="add_device_dialog_title">Legg til eining</string>
