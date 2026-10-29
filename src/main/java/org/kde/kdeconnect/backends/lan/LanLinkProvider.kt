@@ -455,7 +455,6 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
                     }
                 } catch (e: IOException) {
                     Log.e("LanLinkProvider", "UdpReceive exception", e)
-                    onNetworkChange(null) // Trigger a UDP broadcast to try to get them to connect to us instead
                 }
             }
             Log.w("UdpListener", "Stopping UDP listener")
