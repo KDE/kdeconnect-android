@@ -165,6 +165,7 @@ class TelephonyPlugin : Plugin() {
 
     override fun onDestroy() {
         context.unregisterReceiver(receiver)
+        unmuteRinger()
     }
 
     override fun onPacketReceived(np: NetworkPacket): Boolean {
