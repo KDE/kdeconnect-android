@@ -577,7 +577,10 @@ class Device : PacketReceiver {
             if (plugin.loadPluginWhenRequiredPermissionsMissing()) {
                 loadedPlugins[pluginKey] = plugin
             } else {
-                loadedPlugins.remove(pluginKey)
+                if (loadedPlugins.remove(pluginKey) != null) {
+                    // It was loaded before losing the permission, so onCreate was already called
+                    destroyPlugin(pluginKey, plugin)
+                }
                 return false
             }
         } else {
@@ -614,14 +617,16 @@ class Device : PacketReceiver {
         pluginsWithoutOptionalPermissions.remove(pluginKey)
         if (plugin == null) return false
 
+        destroyPlugin(pluginKey, plugin)
+        return true
+    }
+
+    private fun destroyPlugin(pluginKey: String, plugin: Plugin) {
         try {
             plugin.onDestroy()
-            // Log.e("removePlugin","removed $pluginKey");
         } catch (e: Exception) {
             Log.e("KDE/removePlugin", "Exception calling onDestroy for plugin $pluginKey", e)
         }
-
-        return true
     }
 
     fun setPluginEnabled(pluginKey: String, value: Boolean) {
