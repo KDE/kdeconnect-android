@@ -60,9 +60,11 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.ui.compose.KdeTheme
 import org.kde.kdeconnect.ui.compose.KdeTopAppBar
+import org.kde.kdeconnect.ui.compose.components.DeviceDisconnectedOverlay
 import org.kde.kdeconnect_tp.R
 import kotlin.time.Duration.Companion.seconds
 
@@ -94,6 +96,8 @@ fun RunCommandScreen(
         }
     }
 
+    val isReachable by device.isReachableFlow.collectAsStateWithLifecycle()
+
     val showOutputCard = commandList.isNotEmpty() &&
         device.canSendPacketType(RunCommandPlugin.PACKET_TYPE_RUNCOMMAND_OUTPUT)
 
@@ -109,7 +113,7 @@ fun RunCommandScreen(
                 )
             },
             floatingActionButton = {
-                if (plugin.canAddCommand()) {
+                if (plugin.canAddCommand() && isReachable) {
                     FloatingActionButton(onClick = {
                         plugin.sendSetupPacket()
                         showDialog = true
@@ -241,6 +245,8 @@ fun RunCommandScreen(
                     Text(text)
                 }
             }
+
+            DeviceDisconnectedOverlay(device, Modifier.padding(it))
         }
     }
 }

@@ -18,6 +18,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.preference.PreferenceManager
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.KdeConnect
+import org.kde.kdeconnect.ui.compose.components.addDeviceDisconnectedOverlay
 import org.kde.kdeconnect.base.BaseActivity
 import org.kde.kdeconnect.extensions.viewBinding
 import org.kde.kdeconnect.ui.PermissionsAlertDialogFragment
@@ -55,10 +56,12 @@ class BigscreenActivity : BaseActivity<ActivityBigscreenBinding>() {
             binding.micButton.visibility = View.INVISIBLE
         }
 
-        plugin = KdeConnect.getInstance().getDevicePlugin<MousePadPlugin>(deviceId) ?: run {
+        val device = KdeConnect.getInstance().getDevice(deviceId)
+        plugin = device?.getPlugin<MousePadPlugin>() ?: run {
             finish()
             return
         }
+        binding.root.addDeviceDisconnectedOverlay(device)
 
         binding.leftButton.setOnClickListener { plugin.sendLeft() }
         binding.rightButton.setOnClickListener { plugin.sendRight() }

@@ -28,6 +28,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.preference.PreferenceManager
 import org.kde.kdeconnect.KdeConnect
+import org.kde.kdeconnect.ui.compose.components.addDeviceDisconnectedOverlay
 import org.kde.kdeconnect.base.BaseActivity
 import org.kde.kdeconnect.ui.PluginSettingsActivity
 import org.kde.kdeconnect_tp.R
@@ -139,10 +140,12 @@ class MousePadActivity :
         binding.mouseClickRight.setOnClickListener { sendRightClick() }
 
         deviceId = intent.getStringExtra(EXTRA_DEVICE_ID) ?: ""
-        plugin = KdeConnect.getInstance().getDevicePlugin<MousePadPlugin>(deviceId) ?: run {
+        val device = KdeConnect.getInstance().getDevice(deviceId)
+        plugin = device?.getPlugin<MousePadPlugin>() ?: run {
             finish()
             return
         }
+        binding.root.addDeviceDisconnectedOverlay(device)
 
         window.decorView.isHapticFeedbackEnabled = true
 

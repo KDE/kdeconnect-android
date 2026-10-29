@@ -26,6 +26,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import org.kde.kdeconnect.DeviceStats.countReceived
 import org.kde.kdeconnect.DeviceStats.countSent
@@ -66,6 +69,14 @@ class Device : PacketReceiver {
     var pairingHandler: PairingHandler
 
     private val links = CopyOnWriteArrayList<BaseLink>()
+
+    private val _isReachableFlow = MutableStateFlow(false)
+
+    /**
+     * Same as [isReachable], but observable. It gets updated after the plugins have been
+     * loaded (on connection) or destroyed (on disconnection).
+     */
+    val isReachableFlow: StateFlow<Boolean> = _isReachableFlow.asStateFlow()
 
     /**
      * Plugins that have matching capabilities.
@@ -353,6 +364,8 @@ class Device : PacketReceiver {
         if (hasChanges || links.size == 1) {
             reloadPluginsFromSettings()
         }
+
+        _isReachableFlow.value = isReachable
     }
 
     @WorkerThread
@@ -374,6 +387,8 @@ class Device : PacketReceiver {
             }
             failUnsentPackets(unsent)
         }
+
+        _isReachableFlow.value = isReachable
     }
 
     private fun drainSendChannel(): List<NetworkPacketWithCallback> = buildList {

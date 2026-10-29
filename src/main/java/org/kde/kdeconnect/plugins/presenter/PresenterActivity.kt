@@ -56,6 +56,7 @@ import androidx.media.VolumeProviderCompat
 import androidx.preference.PreferenceManager
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.KdeConnect
+import org.kde.kdeconnect.ui.compose.components.DeviceDisconnectedOverlay
 import org.kde.kdeconnect.ui.compose.KdeButton
 import org.kde.kdeconnect.ui.compose.KdeTheme
 import org.kde.kdeconnect.ui.compose.KdeTopAppBar
@@ -104,7 +105,7 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener, OnSharedPref
         prefs.registerOnSharedPreferenceChangeListener(this)
         applyPrefs()
 
-        setContent { PresenterScreen(device.name) }
+        setContent { PresenterScreen(device.name, device) }
         createMediaSession()
     }
 
@@ -181,7 +182,7 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener, OnSharedPref
     }
 
     @Composable
-    private fun PresenterScreen(deviceName: String) {
+    private fun PresenterScreen(deviceName: String, device: Device? = null) {
 
         val sensorManager = LocalContext.current.getSystemService(SENSOR_SERVICE) as? SensorManager
         val haptics = LocalHapticFeedback.current
@@ -263,6 +264,8 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener, OnSharedPref
                         text = stringResource(R.string.presenter_pointer),
                     )
                 }
+
+                device?.let { device -> DeviceDisconnectedOverlay(device, Modifier.padding(it)) }
             }
         }
     }

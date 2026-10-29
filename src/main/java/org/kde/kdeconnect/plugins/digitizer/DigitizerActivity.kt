@@ -24,6 +24,7 @@ import androidx.core.view.WindowInsetsControllerCompat
 import androidx.preference.PreferenceManager
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.KdeConnect
+import org.kde.kdeconnect.ui.compose.components.addDeviceDisconnectedOverlay
 import org.kde.kdeconnect.base.BaseActivity
 import org.kde.kdeconnect.extensions.viewBinding
 import org.kde.kdeconnect.ui.PluginSettingsActivity
@@ -52,10 +53,12 @@ class DigitizerActivity : BaseActivity<ActivityDigitizerBinding>(), DrawingPadVi
         super.onCreate(savedInstanceState)
 
         deviceId = intent.getStringExtra(EXTRA_DEVICE_ID)!!
-        plugin = KdeConnect.getInstance().getDevicePlugin<DigitizerPlugin>(deviceId) ?: run {
+        val device = KdeConnect.getInstance().getDevice(deviceId)
+        plugin = device?.getPlugin<DigitizerPlugin>() ?: run {
             finish()
             return
         }
+        binding.root.addDeviceDisconnectedOverlay(device)
 
         setSupportActionBar(binding.toolbarLayout.toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)

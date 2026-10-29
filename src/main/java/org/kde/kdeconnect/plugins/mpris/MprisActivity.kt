@@ -13,10 +13,12 @@ import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.google.android.material.tabs.TabLayoutMediator
+import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect.base.BaseActivity
 import org.kde.kdeconnect.extensions.viewBinding
 import org.kde.kdeconnect.plugins.systemvolume.SystemVolumeFragment
 import org.kde.kdeconnect.ui.PluginSettingsActivity
+import org.kde.kdeconnect.ui.compose.components.addDeviceDisconnectedOverlay
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.ActivityMprisBinding
 
@@ -54,6 +56,11 @@ class MprisActivity : BaseActivity<ActivityMprisBinding>() {
         super.onCreate(savedInstanceState)
 
         deviceId = intent.getStringExtra(EXTRA_DEVICE_ID)!!
+        val device = KdeConnect.getInstance().getDevice(deviceId) ?: run {
+            finish()
+            return
+        }
+        binding.root.addDeviceDisconnectedOverlay(device)
 
         mprisPagerAdapter = MprisPagerAdapter(this, deviceId)
         binding.mprisPager.adapter = mprisPagerAdapter
