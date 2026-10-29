@@ -22,7 +22,10 @@ import org.kde.kdeconnect.helpers.DeviceHelper.deviceType
 import org.kde.kdeconnect.helpers.DeviceHelper.getDeviceId
 import org.kde.kdeconnect.helpers.DeviceHelper.getDeviceName
 import org.kde.kdeconnect.helpers.TrustedNetworkHelper
+import org.kde.kdeconnect.helpers.isPrivateAddress
 import org.kde.kdeconnect.helpers.normalizedMappedIpv4Address
+import java.net.Inet4Address
+import java.net.InetAddress
 
 class MdnsDiscovery {
     private val context: Context
@@ -229,11 +232,29 @@ class MdnsDiscovery {
             }
 
             // Let the LanLinkProvider handle the connection
-            val remoteAddress = serviceInfo.host.normalizedMappedIpv4Address()
+            val remoteAddress = pickAddress(serviceInfo)
+            // Bind to the network the service was found on: right after connecting to a wifi the
+            // default network can still be cellular, which would make the packet fail or get lost.
+            val network = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) serviceInfo.network else null
             // TODO: In protocol version 8 we should be able to call "identityPacketReceived"
             //       here, since we already have all the info we need to start a connection
             //       and the remaining identity info will be exchanged later.
-            lanLinkProvider.sendUdpIdentityPacket(listOf(remoteAddress), null)
+            lanLinkProvider.sendUdpIdentityPacket(listOf(remoteAddress), network)
+        }
+
+        /**
+         * Prefer a private address: if we reach the remote device through a public IPv6 it will
+         * connect back from it too, and we discard connections from non-private addresses.
+         */
+        private fun pickAddress(serviceInfo: NsdServiceInfo): InetAddress {
+            val addresses = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                serviceInfo.hostAddresses.map { it.normalizedMappedIpv4Address() }
+            } else {
+                emptyList()
+            }
+            return addresses.firstOrNull { it is Inet4Address && isPrivateAddress(it) }
+                ?: addresses.firstOrNull { isPrivateAddress(it) }
+                ?: serviceInfo.host.normalizedMappedIpv4Address()
         }
     }
 
