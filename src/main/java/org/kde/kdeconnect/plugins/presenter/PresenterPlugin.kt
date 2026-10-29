@@ -29,7 +29,7 @@ class PresenterPlugin : Plugin() {
     override val description: String
         get() = context.getString(R.string.pref_plugin_presenter_desc)
 
-    override fun hasSettings(): Boolean = true
+    override val hasSettings: Boolean = true
 
     override val settingsScope = SettingsScope.APP_WIDE
 

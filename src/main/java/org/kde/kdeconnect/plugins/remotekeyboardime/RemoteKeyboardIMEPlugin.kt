@@ -76,7 +76,7 @@ class RemoteKeyboardIMEPlugin : Plugin(), SharedPreferences.OnSharedPreferenceCh
     override val description: String
         get() = context.getString(R.string.pref_plugin_remotekeyboard_desc)
 
-    override fun hasSettings(): Boolean = true
+    override val hasSettings: Boolean = true
 
     override val settingsScope = SettingsScope.APP_WIDE
 

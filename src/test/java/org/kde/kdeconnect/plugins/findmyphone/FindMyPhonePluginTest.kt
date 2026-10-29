@@ -24,6 +24,6 @@ class FindMyPhonePluginTest {
     @Test
     fun testHasSettings() {
         val plugin = FindMyPhonePlugin()
-        assertTrue(plugin.hasSettings())
+        assertTrue(plugin.hasSettings)
     }
 }

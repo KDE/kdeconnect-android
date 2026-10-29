@@ -74,7 +74,7 @@ class DigitizerPlugin : Plugin() {
         device.sendPacket(np)
     }
 
-    override fun hasSettings(): Boolean = true
+    override val hasSettings: Boolean = true
 
     override val settingsScope = SettingsScope.APP_WIDE
 

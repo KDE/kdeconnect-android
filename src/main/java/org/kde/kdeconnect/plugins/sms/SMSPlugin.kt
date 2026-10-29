@@ -246,7 +246,7 @@ class SMSPlugin : Plugin() {
         return true
     }
 
-    override fun hasSettings(): Boolean = true
+    override val hasSettings: Boolean = true
 
     override val settingsScope = SettingsScope.APP_WIDE
 

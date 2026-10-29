@@ -68,7 +68,7 @@ class RunCommandPlugin : Plugin() {
     override val description: String
         get() = context.resources.getString(R.string.pref_plugin_runcommand_desc)
 
-    override fun hasSettings(): Boolean = true
+    override val hasSettings: Boolean = true
 
     override val settingsScope = SettingsScope.APP_WIDE
 

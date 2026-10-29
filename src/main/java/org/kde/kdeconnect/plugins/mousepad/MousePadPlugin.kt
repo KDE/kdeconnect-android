@@ -61,7 +61,7 @@ class MousePadPlugin : Plugin() {
     override val description: String
         get() = context.getString(R.string.pref_plugin_mousepad_desc_nontv)
 
-    override fun hasSettings(): Boolean = true
+    override val hasSettings: Boolean = true
 
     override val settingsScope = SettingsScope.APP_WIDE
 

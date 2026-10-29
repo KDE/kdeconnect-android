@@ -75,7 +75,7 @@ object PluginFactory {
         val instantiableClass: Class<out Plugin>,
     ) {
         internal constructor(p: Plugin) : this(p.displayName, p.description,
-            p.isEnabledByDefault, p.hasSettings(), p.listensToUnpairedDevices(),
+            p.isEnabledByDefault, p.hasSettings, p.listenToUnpairedDevices,
             p.supportedPacketTypes, p.outgoingPacketTypes, p.javaClass)
 
         val supportedPacketTypes: Set<String> = supportedPacketTypes.toSet()

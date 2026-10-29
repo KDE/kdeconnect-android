@@ -81,7 +81,7 @@ abstract class Plugin {
 
     /**
      * To receive the network packet from the unpaired device, override
-     * listensToUnpairedDevices to return true and this method.
+     * listenToUnpairedDevices to return true and this method.
      */
     @EmptySuper
     open fun onUnpairedDevicePacketReceived(np: NetworkPacket): Boolean {
@@ -92,9 +92,7 @@ abstract class Plugin {
      * Returns whether this plugin should be loaded or not, to listen to NetworkPackets
      * from the unpaired devices. By default, returns false.
      */
-    open fun listensToUnpairedDevices(): Boolean {
-        return false
-    }
+    open val listenToUnpairedDevices: Boolean = false
 
     /**
      * Return the internal plugin name, that will be used as a
@@ -125,7 +123,7 @@ abstract class Plugin {
     /**
      * Return true if this plugin needs a specific UI settings.
      */
-    open fun hasSettings(): Boolean = false
+    open val hasSettings: Boolean = false
 
     enum class SettingsScope {
         /** Settings are stored in the app-wide default SharedPreferences, shared with other plugins */
@@ -144,9 +142,8 @@ abstract class Plugin {
     open val settingsScope: SettingsScope = SettingsScope.PER_PLUGIN
 
     /**
-     * If hasSettings returns true, this will be called when the user
-     * wants to access this plugin's preferences. The default implementation
-     * will return a PluginSettingsFragment with content from "yourplugin"_preferences.xml
+     * If hasSettings is true, this will be called when the user wants to access this plugin's
+     * preferences.
      *
      * @return The PluginSettingsFragment used to display this plugin's settings
      */
@@ -171,8 +168,7 @@ abstract class Plugin {
     /**
      * Initialize the listeners and structures in your plugin.
      *
-     * If [isCompatible] or [checkRequiredPermissions] returns false, this
-     * will *not* be called.
+     * If [isCompatible] or [checkRequiredPermissions] returns false, this will *not* be called.
      */
     @EmptySuper
     @Throws(Exception::class)

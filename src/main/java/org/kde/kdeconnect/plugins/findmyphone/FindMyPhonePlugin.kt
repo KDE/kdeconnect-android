@@ -196,7 +196,7 @@ class FindMyPhonePlugin : Plugin() {
 
     override val outgoingPacketTypes: Array<String> = emptyArray()
 
-    override fun hasSettings(): Boolean = true
+    override val hasSettings: Boolean = true
 
     override val settingsScope = SettingsScope.APP_WIDE
 

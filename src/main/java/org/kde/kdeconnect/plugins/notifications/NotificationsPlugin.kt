@@ -65,7 +65,7 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
     override val description: String
         get() = context.getString(R.string.pref_plugin_notifications_desc)
 
-    override fun hasSettings(): Boolean = true
+    override val hasSettings: Boolean = true
 
     override fun getSettingsFragment(activity: Activity): PluginSettingsFragment {
         return NotificationsSettingsFragment.newInstance(pluginKey, device.deviceId)
