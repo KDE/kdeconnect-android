@@ -93,8 +93,7 @@ class SystemVolumeFragment : BaseFragment<SystemVolumeFragmentBinding>(),
             sink.addListener(this@SystemVolumeFragment)
         }
         requireActivity().runOnUiThread {
-            val newSinks: List<Sink> = ArrayList(plugin.sinks)
-            recyclerAdapter.submitList(newSinks)
+            recyclerAdapter.submitList(plugin.sinks.toList())
         }
     }
 
@@ -124,7 +123,7 @@ class SystemVolumeFragment : BaseFragment<SystemVolumeFragmentBinding>(),
         plugin.sendVolume(defaultSink.name, newVolume)
     }
 
-    private inner class RecyclerSinkAdapter : ListAdapter<Sink?, SinkItemHolder>(SinkItemCallback()) {
+    private inner class RecyclerSinkAdapter : ListAdapter<Sink, SinkItemHolder>(SinkItemCallback()) {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SinkItemHolder {
             val viewBinding = ListItemSystemvolumeBinding.inflate(layoutInflater, parent, false)
@@ -133,7 +132,7 @@ class SystemVolumeFragment : BaseFragment<SystemVolumeFragmentBinding>(),
 
         override fun onBindViewHolder(holder: SinkItemHolder, position: Int) {
             val sink = getItem(position)
-            sink?.let { holder.bind(it) }
+            holder.bind(sink)
         }
     }
 

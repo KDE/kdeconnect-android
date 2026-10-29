@@ -7,7 +7,7 @@ package org.kde.kdeconnect.plugins.systemvolume
 
 import androidx.recyclerview.widget.DiffUtil
 
-class SinkItemCallback : DiffUtil.ItemCallback<Sink?>() {
+class SinkItemCallback : DiffUtil.ItemCallback<Sink>() {
     override fun areItemsTheSame(oldItem: Sink, newItem: Sink): Boolean
          = oldItem.name == newItem.name
 
