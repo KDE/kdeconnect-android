@@ -19,7 +19,7 @@ import androidx.core.content.ContextCompat
 
 object TelephonyHelper {
 
-    const val LOGGING_TAG: String = "TelephonyHelper"
+    private const val LOGGING_TAG: String = "TelephonyHelper"
 
     /**
      * Try to get the phone number currently active on the phone

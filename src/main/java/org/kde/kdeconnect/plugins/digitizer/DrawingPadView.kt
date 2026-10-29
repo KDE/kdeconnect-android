@@ -157,7 +157,4 @@ class DrawingPadView(context: Context, attrs: AttributeSet?) : View(context, att
         fun onFingerTouchEvent(touching: Boolean)
     }
 
-    companion object {
-        const val TAG = "DrawingPadView"
-    }
 }

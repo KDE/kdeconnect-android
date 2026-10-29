@@ -382,7 +382,7 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
     }
 
     companion object {
-        const val LOG_TAG = "MainActivity"
+        private const val LOG_TAG = "MainActivity"
 
         const val EXTRA_DEVICE_ID = "deviceId"
         const val PAIR_REQUEST_STATUS = "pair_req_status"

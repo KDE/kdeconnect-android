@@ -251,8 +251,8 @@ class LanLink(
     }
 
     companion object {
-        const val LOG_TAG = "LanLink"
-        const val MAX_PACKET_SIZE: Int = 32 * 1024 * 1024
-        const val PAYLOAD_BUFFER_SIZE: Int = 256 * 1024
+        private const val LOG_TAG = "LanLink"
+        private const val MAX_PACKET_SIZE: Int = 32 * 1024 * 1024
+        private const val PAYLOAD_BUFFER_SIZE: Int = 256 * 1024
     }
 }

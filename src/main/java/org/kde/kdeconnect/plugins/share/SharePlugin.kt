@@ -318,17 +318,17 @@ class SharePlugin : Plugin() {
     }
 
     companion object {
-        const val TAG : String = "SharePlugin"
+        private const val TAG : String = "SharePlugin"
 
-        const val ACTION_CANCEL_SHARE: String = "org.kde.kdeconnect.plugins.share.CancelShare"
-        const val CANCEL_SHARE_BACKGROUND_JOB_ID_EXTRA: String = "backgroundJobId"
+        internal const val ACTION_CANCEL_SHARE: String = "org.kde.kdeconnect.plugins.share.CancelShare"
+        internal const val CANCEL_SHARE_BACKGROUND_JOB_ID_EXTRA: String = "backgroundJobId"
 
         private const val PACKET_TYPE_SHARE_REQUEST = "kdeconnect.share.request"
-        const val PACKET_TYPE_SHARE_REQUEST_UPDATE: String = "kdeconnect.share.request.update"
+        internal const val PACKET_TYPE_SHARE_REQUEST_UPDATE: String = "kdeconnect.share.request.update"
 
-        const val KEY_NUMBER_OF_FILES: String = "numberOfFiles"
-        const val KEY_TOTAL_PAYLOAD_SIZE: String = "totalPayloadSize"
+        internal const val KEY_NUMBER_OF_FILES: String = "numberOfFiles"
+        internal const val KEY_TOTAL_PAYLOAD_SIZE: String = "totalPayloadSize"
 
-        const val KEY_UNREACHABLE_URL_LIST: String = "key_unreachable_url_list"
+        internal const val KEY_UNREACHABLE_URL_LIST: String = "key_unreachable_url_list"
     }
 }

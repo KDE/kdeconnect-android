@@ -238,8 +238,8 @@ class MdnsDiscovery {
     }
 
     companion object {
-        const val LOG_TAG: String = "MdnsDiscovery"
+        private const val LOG_TAG: String = "MdnsDiscovery"
 
-        const val SERVICE_TYPE: String = "_kdeconnect._udp"
+        private const val SERVICE_TYPE: String = "_kdeconnect._udp"
     }
 }

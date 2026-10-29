@@ -12,7 +12,7 @@ import java.util.LinkedList
 
 class NsdResolveQueue {
     companion object {
-        const val LOG_TAG: String = "NsdResolveQueue"
+        private const val LOG_TAG: String = "NsdResolveQueue"
     }
 
     private val nsdManager: NsdManager
