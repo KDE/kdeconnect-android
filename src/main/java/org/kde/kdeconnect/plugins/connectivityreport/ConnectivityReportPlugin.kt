@@ -12,7 +12,6 @@ import kotlinx.serialization.json.putJsonObject
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.plugins.PluginFactory.LoadablePlugin
-import org.kde.kdeconnect.plugins.connectivityreport.ConnectivityListener.Companion.getInstance
 import org.kde.kdeconnect.plugins.connectivityreport.ConnectivityListener.SubscriptionState
 import org.kde.kdeconnect_tp.R
 
@@ -74,11 +73,11 @@ class ConnectivityReportPlugin : Plugin() {
         private set
 
     override fun onCreate() {
-        getInstance(context).listenStateChanges(listener)
+        ConnectivityListener.getInstance(context).listenStateChanges(listener)
     }
 
     override fun onDestroy() {
-        getInstance(context).cancelActiveListener(listener)
+        ConnectivityListener.getInstance(context).cancelActiveListener(listener)
     }
 
     override fun onPacketReceived(np: NetworkPacket): Boolean {

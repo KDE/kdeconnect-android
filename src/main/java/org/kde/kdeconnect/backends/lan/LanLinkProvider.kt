@@ -20,7 +20,6 @@ import androidx.core.content.ContextCompat
 import kotlinx.serialization.SerializationException
 import org.kde.kdeconnect.DeviceInfo
 import org.kde.kdeconnect.NetworkPacket
-import org.kde.kdeconnect.NetworkPacket.Companion.unserialize
 import org.kde.kdeconnect.backends.BaseLink
 import org.kde.kdeconnect.backends.BaseLinkProvider
 import org.kde.kdeconnect.extensions.closeSafe
@@ -102,7 +101,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
     fun unserializeReceivedIdentityPacket(message: String): Pair<NetworkPacket, Boolean>? {
         val identityPacket: NetworkPacket?
         try {
-            identityPacket = unserialize(message)
+            identityPacket = NetworkPacket.unserialize(message)
         } catch (e: SerializationException) {
             Log.w("KDE/LanLinkProvider", "Invalid identity packet received: ${e.message}")
             return null
@@ -341,7 +340,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
                         writer.flush()
                         val line = readLineBounded(sslSocket.getInputStream(), MAX_IDENTITY_PACKET_SIZE)
                         // Do not trust the identity packet we received unencrypted
-                        secureIdentityPacket = unserialize(line)
+                        secureIdentityPacket = NetworkPacket.unserialize(line)
                         if (!DeviceInfo.isValidIdentityPacket(secureIdentityPacket)) {
                             Log.e("KDE/LanLinkProvider", "Identity packet isn't valid")
                             sslSocket.closeSafe()

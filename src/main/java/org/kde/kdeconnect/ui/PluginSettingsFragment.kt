@@ -9,7 +9,7 @@ import android.content.Context
 import android.os.Bundle
 import androidx.preference.PreferenceFragmentCompat
 import org.kde.kdeconnect.Device
-import org.kde.kdeconnect.KdeConnect.Companion.getInstance
+import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.plugins.PluginFactory
 import org.kde.kdeconnect_tp.R
@@ -40,7 +40,7 @@ open class PluginSettingsFragment : PreferenceFragmentCompat() {
         this.layouts = arguments.getIntArray(ARG_LAYOUT)!!
         val deviceId = requireArguments().getString(ARG_DEVICE_ID)!!
         // PluginSettingsActivity only creates or restores this fragment when the device and plugin are available
-        this.device = getInstance().getDevice(deviceId)!!
+        this.device = KdeConnect.getInstance().getDevice(deviceId)!!
         this.plugin = device.getPluginIncludingWithoutPermissions(pluginKey)!!
         super.onCreate(savedInstanceState)
     }

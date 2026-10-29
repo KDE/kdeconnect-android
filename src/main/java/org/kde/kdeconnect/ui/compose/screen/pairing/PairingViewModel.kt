@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import org.kde.kdeconnect.BackgroundService.Companion.ForceRefreshConnections
+import org.kde.kdeconnect.BackgroundService
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.ui.compose.extensions.device.toUiModel
 import org.kde.kdeconnect.ui.compose.model.device.DeviceUiModel
@@ -102,7 +102,7 @@ class PairingViewModel(application: Application) : AndroidViewModel(application)
     fun onRefresh() {
         _pairingUiState.update { uiState -> uiState.copy(isRefreshing = true) }
 
-        ForceRefreshConnections(context = getApplication())
+        BackgroundService.ForceRefreshConnections(context = getApplication())
 
         viewModelScope.launch {
             delay(timeMillis = 1500)

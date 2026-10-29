@@ -29,12 +29,11 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import org.kde.kdeconnect.BackgroundService.Companion.ForceRefreshConnections
-import org.kde.kdeconnect.BackgroundService.Companion.instance
+import org.kde.kdeconnect.BackgroundService
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect.base.BaseFragment
-import org.kde.kdeconnect.helpers.TrustedNetworkHelper.Companion.isTrustedNetwork
+import org.kde.kdeconnect.helpers.TrustedNetworkHelper
 import org.kde.kdeconnect.ui.compose.KdeTheme
 import org.kde.kdeconnect.ui.compose.screen.pairing.PairingScreen
 import org.kde.kdeconnect.ui.compose.screen.pairing.PairingViewModel
@@ -169,7 +168,7 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
             if (granted) {
                 updatePermissionsHeader()
-                ForceRefreshConnections(requireContext())
+                BackgroundService.ForceRefreshConnections(requireContext())
             }
         }
 
@@ -201,7 +200,7 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
         listRefreshCalledThisFrame = true
 
         //Check if we're on Wi-Fi/Local network. If we still see a device, don't do anything special
-        val service = instance
+        val service = BackgroundService.instance
         if (service == null) {
             updateConnectivityInfoHeader(isConnectedToNonCellularNetwork = true)
         } else {
@@ -229,7 +228,7 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
     private fun updateConnectivityInfoHeader(isConnectedToNonCellularNetwork: Boolean) {
         viewModel.updateConnectivity(
             isWifiAvailable = isConnectedToNonCellularNetwork,
-            isTrustedNetwork = isTrustedNetwork(requireContext())
+            isTrustedNetwork = TrustedNetworkHelper.isTrustedNetwork(requireContext())
         )
     }
 
@@ -251,7 +250,7 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
         KdeConnect.getInstance().addDeviceListChangedCallback("PairingFragment") {
             mActivity?.runOnUiThread { this.updateDeviceList() }
         }
-        ForceRefreshConnections(requireContext()) // force a network re-discover
+        BackgroundService.ForceRefreshConnections(requireContext()) // force a network re-discover
         updateDeviceList()
     }
 
