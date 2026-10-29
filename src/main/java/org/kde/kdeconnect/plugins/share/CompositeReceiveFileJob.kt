@@ -18,7 +18,6 @@ import androidx.core.content.FileProvider
 import androidx.documentfile.provider.DocumentFile
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.NetworkPacket
-import org.kde.kdeconnect.async.BackgroundJob
 import org.kde.kdeconnect.helpers.FilesHelper
 import org.kde.kdeconnect.helpers.MediaStoreHelper
 import org.kde.kdeconnect_tp.R
@@ -31,7 +30,7 @@ import java.nio.file.Paths
 import java.nio.file.attribute.FileTime
 
 /**
- * A type of [BackgroundJob] that reads Files from another device.
+ * A [ShareJob] that reads Files from another device.
  *
  * We receive the requests as [NetworkPacket]s.
  *
@@ -43,8 +42,8 @@ import java.nio.file.attribute.FileTime
  *
  * @see CompositeUploadFileJob
  */
-class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
-    : BackgroundJob<Device, Unit>(device, callBack)
+class CompositeReceiveFileJob(device: Device, onFinished: (ShareJob) -> Unit)
+    : ShareJob(device, onFinished)
 {
 
     private val receiveNotification: ReceiveNotification = ReceiveNotification(device, id)
@@ -74,9 +73,6 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
     var isRunning: Boolean = false
         private set
 
-    private val device: Device
-        get() = requestInfo
-
     fun updateTotals(numberOfFiles: Int, totalPayloadSize: Long) {
         synchronized(lock) {
             this.totalNumFiles = numberOfFiles
@@ -92,13 +88,21 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
         }
     }
 
+    override fun cancel() {
+        super.cancel()
+        // Wake up run() if it's waiting for the next packet
+        synchronized(lock) {
+            lock.notifyAll()
+        }
+    }
+
     /**
      * @return false if the job has already finished and won't receive this packet, so the caller
      * should use a new job instead
      */
     fun addNetworkPacket(networkPacket: NetworkPacket): Boolean {
         synchronized(lock) {
-            if (finished) {
+            if (finished || isCancelled) {
                 return false
             }
 
@@ -175,13 +179,7 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
                         if (remainingMillis <= 0) { // Note wait(0) would wait forever
                             break
                         }
-                        try {
-                            lock.wait(remainingMillis)
-                        } catch (_: InterruptedException) {
-                            // Job was cancelled
-                            Thread.currentThread().interrupt()
-                            break
-                        }
+                        lock.wait(remainingMillis)
                     }
 
                     if (networkPacketList.isEmpty()) {
@@ -219,12 +217,9 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
 
                 receiveNotification.show()
             }
-            reportResult(Unit)
         } catch (_: ActivityNotFoundException) {
             receiveNotification.setFinished(device.context.getString(R.string.no_app_for_opening))
             receiveNotification.show()
-            // The file was received fine, there's just no app to open it
-            reportResult(Unit)
         } catch (e: Exception) {
             isRunning = false
             if (isCancelled) {
@@ -237,7 +232,6 @@ class CompositeReceiveFileJob(device: Device, callBack: Callback<Unit>)
                     receiveNotification.setFailed(device.context.resources.getQuantityString(R.plurals.received_files_fail_title, failedFiles, device.name, failedFiles, totalNumFiles))
                 }
                 receiveNotification.show()
-                reportError(e)
             }
         } finally {
             val remainingPackets = synchronized(lock) {

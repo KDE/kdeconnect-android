@@ -11,13 +11,12 @@ import android.os.Looper
 import androidx.annotation.GuardedBy
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.NetworkPacket
-import org.kde.kdeconnect.async.BackgroundJob
 import org.kde.kdeconnect.plugins.share.SharePlugin.Companion.KEY_NUMBER_OF_FILES
 import org.kde.kdeconnect.plugins.share.SharePlugin.Companion.KEY_TOTAL_PAYLOAD_SIZE
 import org.kde.kdeconnect_tp.R
 
 /**
- * A type of [BackgroundJob] that sends Files to another device.
+ * A [ShareJob] that sends Files to another device.
  *
  * We represent the individual upload requests as [NetworkPacket]s.
  *
@@ -31,8 +30,8 @@ import org.kde.kdeconnect_tp.R
  * @see CompositeReceiveFileJob
  * @see Device.SendPacketStatusCallback
  */
-class CompositeUploadFileJob(device: Device, callback: Callback<Unit>)
-    : BackgroundJob<Device, Unit>(device, callback)
+class CompositeUploadFileJob(device: Device, onFinished: (ShareJob) -> Unit)
+    : ShareJob(device, onFinished)
 {
 
     @Volatile
@@ -62,9 +61,6 @@ class CompositeUploadFileJob(device: Device, callback: Callback<Unit>)
     // Once set, this job can't be used anymore and addNetworkPackets() will reject new packets
     @GuardedBy("lock")
     private var finished: Boolean = false
-
-    private val device: Device
-        get() = requestInfo
 
     override fun run() {
         isRunning = true
@@ -107,8 +103,6 @@ class CompositeUploadFileJob(device: Device, callback: Callback<Unit>)
                     ),
                 )
                 uploadNotification.show()
-
-                reportResult(Unit)
             }
         } catch (e: RuntimeException) {
             synchronized(lock) {
@@ -125,7 +119,6 @@ class CompositeUploadFileJob(device: Device, callback: Callback<Unit>)
             }
 
             uploadNotification.show()
-            reportError(e)
         } finally {
             isRunning = false
 
@@ -170,7 +163,7 @@ class CompositeUploadFileJob(device: Device, callback: Callback<Unit>)
      */
     fun addNetworkPackets(networkPackets: List<NetworkPacket>): Boolean {
         synchronized(lock) {
-            if (finished) {
+            if (finished || isCancelled) {
                 return false
             }
 

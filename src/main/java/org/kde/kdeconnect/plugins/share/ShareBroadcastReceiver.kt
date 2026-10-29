@@ -10,31 +10,21 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import org.kde.kdeconnect.KdeConnect
 
 class ShareBroadcastReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         when (intent.action) {
-            SharePlugin.ACTION_CANCEL_SHARE -> cancelShare(context, intent)
+            SharePlugin.ACTION_CANCEL_SHARE -> cancelShare(intent)
             else -> Log.d("ShareBroadcastReceiver", "Unhandled Action received: ${intent.action}")
         }
     }
 
-    private fun cancelShare(context: Context, intent: Intent) {
-        if (!intent.hasExtra(SharePlugin.CANCEL_SHARE_BACKGROUND_JOB_ID_EXTRA) ||
-            !intent.hasExtra(SharePlugin.CANCEL_SHARE_DEVICE_ID_EXTRA)
-        ) {
-            Log.e(
-                "ShareBroadcastReceiver",
-                "cancelShare() - not all expected extra's are present. Ignoring this cancel intent"
-            )
+    private fun cancelShare(intent: Intent) {
+        if (!intent.hasExtra(SharePlugin.CANCEL_SHARE_BACKGROUND_JOB_ID_EXTRA)) {
+            Log.e("ShareBroadcastReceiver", "cancelShare() - job id missing. Ignoring this cancel intent")
             return
         }
 
-        val jobId = intent.getLongExtra(SharePlugin.CANCEL_SHARE_BACKGROUND_JOB_ID_EXTRA, -1)
-        val deviceId = intent.getStringExtra(SharePlugin.CANCEL_SHARE_DEVICE_ID_EXTRA) ?: return
-
-        KdeConnect.getInstance().getDevicePlugin<SharePlugin>(deviceId)
-            ?.cancelJob(jobId)
+        ShareJob.cancel(intent.getLongExtra(SharePlugin.CANCEL_SHARE_BACKGROUND_JOB_ID_EXTRA, -1))
     }
 }
