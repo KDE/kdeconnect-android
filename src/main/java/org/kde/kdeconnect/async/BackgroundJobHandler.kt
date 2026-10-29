@@ -129,7 +129,9 @@ class BackgroundJobHandler(
         private val LOG_TAG: String = BackgroundJobHandler::class.java.simpleName
 
         fun newFixedThreadPoolBackgroundJobHandler(numThreads: Int): BackgroundJobHandler {
-            return BackgroundJobHandler(numThreads, numThreads, 0L, TimeUnit.MILLISECONDS, LinkedBlockingQueue())
+            return BackgroundJobHandler(numThreads, numThreads, 60L, TimeUnit.SECONDS, LinkedBlockingQueue()).apply {
+                threadPoolExecutor.allowCoreThreadTimeOut(true)
+            }
         }
     }
 }
