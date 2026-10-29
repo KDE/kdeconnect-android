@@ -136,14 +136,13 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
             postedNotifications.add(key)
         }
 
-        val sendOnlyIfLocked = preferences.getBoolean(context.getString(R.string.pref_notification_screen_off_key), false)
-        val isLocked = keyguardManager.isKeyguardLocked
-        if (!sendOnlyIfLocked || isLocked) {
-            sendNotificationWithDelay(statusBarNotification)
-        }
+        // If the user only wants to be alerted while the phone is locked, still send the notification but as silent
+        val alertOnlyIfLocked = preferences.getBoolean(context.getString(R.string.pref_notification_screen_off_key), false)
+        val silent = alertOnlyIfLocked && !keyguardManager.isKeyguardLocked
+        sendNotificationWithDelay(statusBarNotification, silent)
     }
 
-    private fun sendNotificationWithDelay(statusBarNotification: StatusBarNotification) {
+    private fun sendNotificationWithDelay(statusBarNotification: StatusBarNotification, silent: Boolean) {
         val key = getNotificationKeyCompat(statusBarNotification)
         synchronized(postedNotificationsLock) {
             cancelDelayedNotification(key)
@@ -156,7 +155,7 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
                         return@Runnable
                     }
                 }
-                sendNotification(statusBarNotification, false)
+                sendNotification(statusBarNotification, silent)
             })
             delayedNotification.obj = key
             mainHandler.sendMessageDelayed(delayedNotification, NOTIFICATION_SYNC_DELAY_MS)
@@ -167,11 +166,11 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
         mainHandler.removeCallbacksAndMessages(key)
     }
 
-    // isPreexisting is true for notifications that we are sending in response to a request command
-    // and that we want to send with the "silent" flag set
+    // silent is true for notifications that shouldn't alert the user on the other end, eg: preexisting notifications
+    // that we are sending in response to a request command, or new ones while the screen is on if the user asked so
     private fun sendNotification(
         statusBarNotification: StatusBarNotification,
-        isPreexisting: Boolean
+        silent: Boolean
     ) {
         val notification = statusBarNotification.notification
 
@@ -256,7 +255,7 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
         np["isClearable"] = statusBarNotification.isClearable
         np["appName"] = appNameLookup(context, packageName)
         np["time"] = statusBarNotification.postTime.toString()
-        np["silent"] = isPreexisting || (isUpdate && onlyAlertOnce)
+        np["silent"] = silent || (isUpdate && onlyAlertOnce)
 
         if (!appDatabase.getPrivacy(packageName, AppDatabase.PrivacyOptions.BLOCK_CONTENTS)) {
             val rn = extractRepliableNotification(statusBarNotification)
