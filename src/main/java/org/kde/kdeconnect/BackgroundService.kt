@@ -127,7 +127,7 @@ class BackgroundService : Service() {
             override fun onLost(network: Network) {
                 Log.i("BackgroundService", "Valid network lost")
                 isConnectedToNonCellularNetwork.postValue(false)
-                onNetworkChange(network)
+                onNetworkChange(null)
             }
         })
 

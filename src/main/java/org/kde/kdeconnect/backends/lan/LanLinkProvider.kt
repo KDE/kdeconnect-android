@@ -17,6 +17,11 @@ import android.os.SystemClock
 import android.util.Log
 import androidx.annotation.WorkerThread
 import androidx.core.content.ContextCompat
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlinx.serialization.SerializationException
 import org.kde.kdeconnect.DeviceInfo
 import org.kde.kdeconnect.NetworkPacket
@@ -82,7 +87,8 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
     @Volatile
     private var udpServer: DatagramSocket? = null
 
-    private var lastBroadcast: Long = 0
+    private val networkChangeScope = CoroutineScope(Dispatchers.IO)
+    private var networkChangeJob: Job? = null
     @Volatile
     private var isStopped = true
 
@@ -285,7 +291,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
      * Called when a new 'identity' packet is received. Those are passed here by
      * [.tcpPacketReceived] and [.udpPacketReceived].
      * Should be called on a new thread since it blocks until the handshake is completed.
-     * 
+     *
      * @param identityPacket    identity of a remote device
      * @param socket            a new Socket, which should be used to receive packets from the remote device
      * @param connectionStarted which side started this connection
@@ -388,7 +394,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
 
     /**
      * Add or update a link in the [.visibleDevices] map.
-     * 
+     *
      * @param socket           a new Socket, which should be used to send and receive packets from the remote device
      * @param deviceInfo       remote device info
      * @throws IOException if an exception is thrown by [LanLink.reset]
@@ -592,14 +598,28 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
         broadcastUdpIdentityPacket(null)
     }
 
+    @Synchronized
     override fun onNetworkChange(network: Network?) {
-        if (isStopped) return
-        if (SystemClock.elapsedRealtime() < lastBroadcast + DELAY_BETWEEN_BROADCASTS) {
-            Log.i("LanLinkProvider", "onNetworkChange: relax cowboy")
-            return
+        // Stop announcing right away, or we could announce ourselves on an untrusted network
+        if (!TrustedNetworkHelper.isTrustedNetwork(context)) {
+            synchronized(mdnsDiscovery) {
+                mdnsDiscovery.stopAnnouncing() // noop if already stopped
+            }
         }
-        lastBroadcast = SystemClock.elapsedRealtime()
+        if (network != null) {
+            handleNetworkChange(network)
+        } else {
+            // Debounce refreshes without a target network
+            networkChangeJob?.cancel()
+            networkChangeJob = networkChangeScope.launch {
+                delay(timeMillis = NETWORK_CHANGE_DEBOUNCE_MS)
+                handleNetworkChange(null)
+            }
+        }
+    }
 
+    private fun handleNetworkChange(network: Network?) {
+        if (isStopped) return
         setupUdpListener()
         setupTcpListener()
 
@@ -653,7 +673,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
 
         private const val MAX_RATE_LIMIT_ENTRIES: Int = 255
         private const val MAX_UNPAIRED_CONNECTIONS: Int = 42
-        private const val DELAY_BETWEEN_BROADCASTS: Long = 200
+        private const val NETWORK_CHANGE_DEBOUNCE_MS: Long = 200
 
         @Throws(IOException::class)
         fun openServerSocketOnFreePort(minPort: Int): ServerSocket {
