@@ -23,6 +23,7 @@ import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect.base.BaseActivity
 import org.kde.kdeconnect.helpers.IntentHelper
+import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.ui.compose.KdeTheme
 import org.kde.kdeconnect.ui.compose.extensions.device.toUiModel
 import org.kde.kdeconnect.ui.compose.model.device.DeviceUiModel
@@ -75,8 +76,9 @@ class ShareActivity : BaseActivity<ActivityShareBinding>() {
         }
         val devices = KdeConnect.getInstance().devices.values
         this.intentHasUrl = IntentHelper.parseIntentUrls(intent).isNotEmpty()
+        val sharePluginKey = Plugin.getPluginKey(SharePlugin::class.java)
         this.uiDevices = devices
-            .filter { device -> device.isPaired && (intentHasUrl || device.isReachable) }
+            .filter { device -> device.isPaired && (intentHasUrl || device.isReachable) && device.isPluginEnabled(sharePluginKey) }
             .map { it.toUiModel() }
     }
 

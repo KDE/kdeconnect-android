@@ -68,7 +68,7 @@ class SharePlugin : Plugin() {
     override fun onDestroy() {
         for (shortcut in ShortcutManagerCompat.getDynamicShortcuts(context)) {
             if (shortcut.id != device.deviceId) continue
-            if (!device.isReachable && shortcut.isPinned) {
+            if (!device.isReachable && shortcut.isPinned && device.isPluginEnabled(pluginKey)) {
                 // Create an updated shortcut with the same ID
                 createOrUpdateDynamicShortcut(shortcut)
                 break
