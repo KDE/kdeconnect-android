@@ -19,7 +19,7 @@ import androidx.core.content.ContextCompat
 
 object TelephonyHelper {
 
-    private const val LOGGING_TAG: String = "TelephonyHelper"
+    private const val TAG: String = "TelephonyHelper"
 
     /**
      * Try to get the phone number currently active on the phone
@@ -34,13 +34,13 @@ object TelephonyHelper {
         val subscriptionManager = ContextCompat.getSystemService(context, SubscriptionManager::class.java)
         if (subscriptionManager == null) {
             // I don't know why or when this happens...
-            Log.w(LOGGING_TAG, "Could not get SubscriptionManager")
+            Log.w(TAG, "Could not get SubscriptionManager")
             return emptyList()
         }
         val subscriptionInfos = subscriptionManager.activeSubscriptionInfoList
         if (subscriptionInfos == null) {
             // This happens when there is no SIM card inserted
-            Log.w(LOGGING_TAG, "Could not get SubscriptionInfos")
+            Log.w(TAG, "Could not get SubscriptionInfos")
             return emptyList()
         }
         return subscriptionInfos.mapNotNull { info ->
@@ -121,7 +121,7 @@ object TelephonyHelper {
                 }
             }
         } catch (e: Exception) {
-            Log.e(LOGGING_TAG, "Error encountered while trying to read APNs", e)
+            Log.e(TAG, "Error encountered while trying to read APNs", e)
         }
 
         return null

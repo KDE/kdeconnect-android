@@ -49,7 +49,7 @@ class MdnsDiscovery {
             return
         }
         if (!TrustedNetworkHelper.isTrustedNetwork(context)) {
-            Log.i(LOG_TAG, "Will not MDNS discover on an untrusted network")
+            Log.i(TAG, "Will not MDNS discover on an untrusted network")
             return
         }
         if (discoveryListener == null) {
@@ -83,10 +83,10 @@ class MdnsDiscovery {
             try {
                 serviceInfo = createNsdServiceInfo()
             } catch (e: IllegalStateException) {
-                Log.w(LOG_TAG, "Couldn't start announcing via MDNS: ${e.message}")
+                Log.w(TAG, "Couldn't start announcing via MDNS: ${e.message}")
                 return
             } catch (e: IllegalAccessException) {
-                Log.w(LOG_TAG, "Couldn't start announcing via MDNS: ${e.message}")
+                Log.w(TAG, "Couldn't start announcing via MDNS: ${e.message}")
                 return
             }
             registrationListener = createRegistrationListener()
@@ -109,11 +109,11 @@ class MdnsDiscovery {
     fun createRegistrationListener() = object : RegistrationListener {
         override fun onServiceRegistered(serviceInfo: NsdServiceInfo) {
             // If Android changed the service name to avoid conflicts, here we can read it.
-            Log.i(LOG_TAG, "Registered ${serviceInfo.serviceName}")
+            Log.i(TAG, "Registered ${serviceInfo.serviceName}")
         }
 
         override fun onRegistrationFailed(serviceInfo: NsdServiceInfo?, errorCode: Int) {
-            Log.e(LOG_TAG, "Registration failed with: $errorCode")
+            Log.e(TAG, "Registration failed with: $errorCode")
             synchronized(this@MdnsDiscovery) {
                 if (registrationListener === this) {
                     registrationListener = null
@@ -122,11 +122,11 @@ class MdnsDiscovery {
         }
 
         override fun onServiceUnregistered(serviceInfo: NsdServiceInfo?) {
-            Log.d(LOG_TAG, "Service unregistered: $serviceInfo")
+            Log.d(TAG, "Service unregistered: $serviceInfo")
         }
 
         override fun onUnregistrationFailed(serviceInfo: NsdServiceInfo?, errorCode: Int) {
-            Log.e(LOG_TAG, "Unregister of $serviceInfo failed with: $errorCode")
+            Log.e(TAG, "Unregister of $serviceInfo failed with: $errorCode")
         }
     }
 
@@ -152,7 +152,7 @@ class MdnsDiscovery {
         serviceInfo.setAttribute("type", deviceType)
         serviceInfo.setAttribute("protocol", protocolVersion)
 
-        Log.i(LOG_TAG, "My MDNS info: $serviceInfo")
+        Log.i(TAG, "My MDNS info: $serviceInfo")
 
         return serviceInfo
     }
@@ -161,21 +161,21 @@ class MdnsDiscovery {
         val myId: String = getDeviceId(context)
 
         override fun onDiscoveryStarted(serviceType: String?) {
-            Log.i(LOG_TAG, "Service discovery started: $serviceType")
+            Log.i(TAG, "Service discovery started: $serviceType")
         }
 
         override fun onServiceFound(serviceInfo: NsdServiceInfo) {
-            Log.d(LOG_TAG, "Service discovered: $serviceInfo")
+            Log.d(TAG, "Service discovered: $serviceInfo")
 
             val deviceId = serviceInfo.serviceName
 
             if (myId == deviceId) {
-                Log.d(LOG_TAG, "Discovered myself, ignoring.")
+                Log.d(TAG, "Discovered myself, ignoring.")
                 return
             }
 
             if (lanLinkProvider.hasDevice(deviceId)) {
-                Log.i(LOG_TAG, "MDNS discovered $deviceId to which I'm already connected to. Ignoring.")
+                Log.i(TAG, "MDNS discovered $deviceId to which I'm already connected to. Ignoring.")
                 return
             }
 
@@ -185,18 +185,18 @@ class MdnsDiscovery {
         }
 
         override fun onServiceLost(serviceInfo: NsdServiceInfo?) {
-            Log.w(LOG_TAG, "Service lost: $serviceInfo")
+            Log.w(TAG, "Service lost: $serviceInfo")
             // We can't see this device via mdns. This probably means it's not reachable anymore
             // but we do nothing here since we have other ways to do detect unreachable devices
             // that hopefully will also trigger.
         }
 
         override fun onDiscoveryStopped(serviceType: String?) {
-            Log.i(LOG_TAG, "MDNS discovery stopped: $serviceType")
+            Log.i(TAG, "MDNS discovery stopped: $serviceType")
         }
 
         override fun onStartDiscoveryFailed(serviceType: String?, errorCode: Int) {
-            Log.e(LOG_TAG, "MDNS discovery start failed: $errorCode")
+            Log.e(TAG, "MDNS discovery start failed: $errorCode")
             synchronized(this@MdnsDiscovery) {
                 if (discoveryListener === this) {
                     discoveryListener = null
@@ -206,7 +206,7 @@ class MdnsDiscovery {
         }
 
         override fun onStopDiscoveryFailed(serviceType: String?, errorCode: Int) {
-            Log.e(LOG_TAG, "MDNS discovery stop failed: $errorCode")
+            Log.e(TAG, "MDNS discovery stop failed: $errorCode")
         }
     }
 
@@ -215,16 +215,16 @@ class MdnsDiscovery {
      */
     fun createResolveListener() = object : NsdManager.ResolveListener {
         override fun onResolveFailed(serviceInfo: NsdServiceInfo?, errorCode: Int) {
-            Log.w(LOG_TAG, "MDNS error $errorCode resolving service: $serviceInfo")
+            Log.w(TAG, "MDNS error $errorCode resolving service: $serviceInfo")
         }
 
         override fun onServiceResolved(serviceInfo: NsdServiceInfo) {
-            Log.i(LOG_TAG, "MDNS successfully resolved $serviceInfo")
+            Log.i(TAG, "MDNS successfully resolved $serviceInfo")
 
             // Discovery can have been stopped while this resolve was in flight.
             // Do not leak our identity to a service discovered on an untrusted network.
             if (!TrustedNetworkHelper.isTrustedNetwork(context)) {
-                Log.i(LOG_TAG, "Ignoring MDNS result on an untrusted network")
+                Log.i(TAG, "Ignoring MDNS result on an untrusted network")
                 return
             }
 
@@ -238,7 +238,7 @@ class MdnsDiscovery {
     }
 
     companion object {
-        private const val LOG_TAG: String = "MdnsDiscovery"
+        private const val TAG: String = "MdnsDiscovery"
 
         private const val SERVICE_TYPE: String = "_kdeconnect._udp"
     }

@@ -58,7 +58,7 @@ class RemoteKeyboardPlugin : Plugin() {
         const val PACKET_TYPE_MOUSEPAD_ECHO: String = "kdeconnect.mousepad.echo"
         const val PACKET_TYPE_MOUSEPAD_KEYBOARDSTATE: String = "kdeconnect.mousepad.keyboardstate"
 
-        private const val LOG_TAG = "RemoteKeyboardPlugin"
+        private const val TAG = "RemoteKeyboardPlugin"
     }
 
     override fun checkRequiredPermissions(): Boolean {
@@ -102,7 +102,7 @@ class RemoteKeyboardPlugin : Plugin() {
         }
 
         if (!handleKey(np)) {
-            Log.i(LOG_TAG, "Could not handle event!")
+            Log.i(TAG, "Could not handle event!")
             return false
         }
 

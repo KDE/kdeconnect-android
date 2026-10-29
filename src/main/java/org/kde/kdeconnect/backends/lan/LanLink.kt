@@ -47,11 +47,11 @@ class LanLink(
     override val name = "LanLink"
 
     override fun disconnect() {
-        Log.i(LOG_TAG, "Disconnect socket: ${socket.hashCode()}")
+        Log.i(TAG, "Disconnect socket: ${socket.hashCode()}")
         try {
             socket.close()
         } catch (e: IOException) {
-            Log.e(LOG_TAG, "Disconnect error", e)
+            Log.e(TAG, "Disconnect error", e)
         }
     }
 
@@ -84,7 +84,7 @@ class LanLink(
                     receivedNetworkPacket(np)
                 }
             } catch (e: Exception) {
-                Log.i(LOG_TAG, "Socket closed: ${currentSocket.hashCode()}. Reason: ${e.message}")
+                Log.i(TAG, "Socket closed: ${currentSocket.hashCode()}. Reason: ${e.message}")
                 currentSocket.closeSafe()
 
                 // Wait a bit because we might receive a new socket meanwhile
@@ -92,7 +92,7 @@ class LanLink(
 
                 val thereIsaANewSocket = (currentSocket !== socket)
                 if (!thereIsaANewSocket) {
-                    Log.i(LOG_TAG, "Socket closed and there's no new socket, disconnecting device")
+                    Log.i(TAG, "Socket closed and there's no new socket, disconnecting device")
                     linkProvider.onConnectionLost(this@LanLink)
                 }
             }
@@ -140,7 +140,7 @@ class LanLink(
                             sendPayload(np, callback, server)
                         } catch (e: IOException) {
                             e.printStackTrace()
-                            Log.e(LOG_TAG, "Async sendPayload failed for packet of type ${np.type}. The Plugin was NOT notified.")
+                            Log.e(TAG, "Async sendPayload failed for packet of type ${np.type}. The Plugin was NOT notified.")
                         }
                     }
                     payloadTransferStarted = true
@@ -192,7 +192,7 @@ class LanLink(
             // Doesn't need closing since closing payloadSocket also closes its stream
             val outputStream = payloadSocket.outputStream
 
-            Log.i(LOG_TAG, "Beginning to send payload for ${np.type})")
+            Log.i(TAG, "Beginning to send payload for ${np.type})")
             val buffer = ByteArray(PAYLOAD_BUFFER_SIZE)
             val size = np.payloadSize
             var bytesRead = 0
@@ -210,17 +210,17 @@ class LanLink(
                 }
             }
             outputStream.flush()
-            Log.i(LOG_TAG, "Finished sending payload ($progress bytes written)")
+            Log.i(TAG, "Finished sending payload ($progress bytes written)")
         } catch (e: SocketTimeoutException) {
-            Log.e(LOG_TAG, "Socket for payload in packet ${np.type} timed out. The other end didn't fetch the payload.")
+            Log.e(TAG, "Socket for payload in packet ${np.type} timed out. The other end didn't fetch the payload.")
             throw e
         } catch (e: CertificateException) {
             // The exception can be due to several causes. "Connection closed by peer" seems to be a common one.
             // If we could distinguish different cases we could react differently for some of them, but I haven't found how.
-            Log.e(LOG_TAG, "Payload SSLSocket failed", e)
+            Log.e(TAG, "Payload SSLSocket failed", e)
             throw IOException("Payload SSL socket failed", e)
         } catch (e: SSLHandshakeException) {
-            Log.e(LOG_TAG, "Payload SSLSocket failed", e)
+            Log.e(TAG, "Payload SSLSocket failed", e)
             throw IOException("Payload SSL socket failed", e)
         } finally {
             server.closeSafe()
@@ -243,7 +243,7 @@ class LanLink(
                 np.payload = NetworkPacket.Payload(payloadSocket, np.payloadSize)
             } catch (e: Exception) {
                 payloadSocket.closeSafe()
-                Log.e(LOG_TAG, "Exception connecting to payload remote socket", e)
+                Log.e(TAG, "Exception connecting to payload remote socket", e)
             }
         }
 
@@ -251,7 +251,7 @@ class LanLink(
     }
 
     companion object {
-        private const val LOG_TAG = "LanLink"
+        private const val TAG = "LanLink"
         private const val MAX_PACKET_SIZE: Int = 32 * 1024 * 1024
         private const val PAYLOAD_BUFFER_SIZE: Int = 256 * 1024
     }

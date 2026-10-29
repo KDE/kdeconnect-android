@@ -12,7 +12,7 @@ import java.util.LinkedList
 
 class NsdResolveQueue {
     companion object {
-        private const val LOG_TAG: String = "NsdResolveQueue"
+        private const val TAG: String = "NsdResolveQueue"
     }
 
     private val nsdManager: NsdManager
@@ -30,7 +30,7 @@ class NsdResolveQueue {
     fun resolveOrEnqueue(serviceInfo: NsdServiceInfo, listener: NsdManager.ResolveListener) {
         synchronized(lock) {
             if (resolveRequests.any { r -> serviceInfo.serviceName == r.serviceInfo.serviceName }) {
-                Log.i(LOG_TAG, "Not enqueuing a new resolve request for the same service: ${serviceInfo.serviceName}")
+                Log.i(TAG, "Not enqueuing a new resolve request for the same service: ${serviceInfo.serviceName}")
                 return
             }
             resolveRequests.addLast(PendingResolve(serviceInfo, ListenerWrapper(listener)))

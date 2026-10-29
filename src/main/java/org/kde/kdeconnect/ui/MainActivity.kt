@@ -169,19 +169,19 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
         var savedMenuEntry: Int
         when {
             intent.hasExtra(FLAG_FORCE_OVERVIEW) -> {
-                Log.i(LOG_TAG, "Requested to start main overview")
+                Log.i(TAG, "Requested to start main overview")
                 savedDevice = null
                 savedMenuEntry = MENU_ENTRY_ADD_DEVICE
             }
 
             intent.hasExtra(EXTRA_DEVICE_ID) -> {
-                Log.i(LOG_TAG, "Loading selected device from parameter")
+                Log.i(TAG, "Loading selected device from parameter")
                 savedDevice = intent.getStringExtra(EXTRA_DEVICE_ID)
                 savedMenuEntry = MENU_ENTRY_DEVICE_UNKNOWN
                 // If pairStatus is not empty, then the user has accepted/reject the pairing from the notification
                 val pairStatus = intent.getStringExtra(PAIR_REQUEST_STATUS)
                 if (pairStatus != null) {
-                    Log.i(LOG_TAG, "Pair status is $pairStatus")
+                    Log.i(TAG, "Pair status is $pairStatus")
                     savedDevice = onPairResultFromNotification(savedDevice, pairStatus)
                     if (savedDevice == null) {
                         savedMenuEntry = MENU_ENTRY_ADD_DEVICE
@@ -190,13 +190,13 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
             }
 
             savedInstanceState != null -> {
-                Log.i(LOG_TAG, "Loading selected device from saved activity state")
+                Log.i(TAG, "Loading selected device from saved activity state")
                 savedDevice = savedInstanceState.getString(STATE_SELECTED_DEVICE)
                 savedMenuEntry = savedInstanceState.getInt(STATE_SELECTED_MENU_ENTRY, MENU_ENTRY_ADD_DEVICE)
             }
 
             else -> {
-                Log.i(LOG_TAG, "Loading selected device from persistent storage")
+                Log.i(TAG, "Loading selected device from persistent storage")
                 savedDevice = preferences.getString(STATE_SELECTED_DEVICE, null)
                 savedMenuEntry = if (savedDevice != null) MENU_ENTRY_DEVICE_UNKNOWN else MENU_ENTRY_ADD_DEVICE
             }
@@ -254,7 +254,7 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
         if (pairStatus != PAIRING_PENDING) {
             val device = KdeConnect.getInstance().getDevice(deviceId)
             if (device == null) {
-                Log.w(LOG_TAG, "Reject pairing - device no longer exists: $deviceId")
+                Log.w(TAG, "Reject pairing - device no longer exists: $deviceId")
                 return null
             }
             when (pairStatus) {
@@ -382,7 +382,7 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
     }
 
     companion object {
-        private const val LOG_TAG = "MainActivity"
+        private const val TAG = "MainActivity"
 
         const val EXTRA_DEVICE_ID = "deviceId"
         const val PAIR_REQUEST_STATUS = "pair_req_status"

@@ -66,7 +66,7 @@ object SslHelper {
         val privateKey: PrivateKey = getPrivateKey(context)
         val publicKey: PublicKey = getPublicKey(context)
 
-        Log.i(LOG_TAG, "Key algorithm: ${publicKey.algorithm}")
+        Log.i(TAG, "Key algorithm: ${publicKey.algorithm}")
 
         val deviceId = getDeviceId(context)
 
@@ -81,19 +81,19 @@ object SslHelper {
 
                 val certDeviceId = getCommonNameFromCertificate(cert)
                 if (certDeviceId != deviceId) {
-                    Log.e(LOG_TAG,"The certificate stored is from a different device id! (found: $certDeviceId expected:$deviceId)")
+                    Log.e(TAG,"The certificate stored is from a different device id! (found: $certDeviceId expected:$deviceId)")
                     needsToGenerateCertificate = true
                 } else if (cert.notAfter.time < currDate.time) {
-                    Log.e(LOG_TAG, "The certificate expired: ${cert.notAfter}")
+                    Log.e(TAG, "The certificate expired: ${cert.notAfter}")
                     needsToGenerateCertificate = true
                 } else if (cert.notBefore.time > currDate.time) {
-                    Log.e(LOG_TAG, "The certificate is not effective yet: ${cert.notBefore}")
+                    Log.e(TAG, "The certificate is not effective yet: ${cert.notBefore}")
                     needsToGenerateCertificate = true
                 } else {
                     certificate = cert
                 }
             } catch (e: Exception) {
-                Log.e(LOG_TAG, "Exception reading own certificate", e)
+                Log.e(TAG, "Exception reading own certificate", e)
                 needsToGenerateCertificate = true
             }
         } else {
@@ -101,7 +101,7 @@ object SslHelper {
         }
 
         if (needsToGenerateCertificate) {
-            Log.i(LOG_TAG, "Generating a certificate")
+            Log.i(TAG, "Generating a certificate")
             // Fix for https://issuetracker.google.com/issues/37095309
             val initialLocale = Locale.getDefault()
             Locale.setDefault(Locale.ENGLISH)
@@ -248,5 +248,5 @@ object SslHelper {
         return IETFUtils.valueToString(rdn.getFirst().value)
     }
 
-    private const val LOG_TAG = "KDE/SslHelper"
+    private const val TAG = "KDE/SslHelper"
 }

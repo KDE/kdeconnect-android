@@ -37,7 +37,7 @@ class PingPlugin : Plugin() {
 
     override fun onPacketReceived(np: NetworkPacket): Boolean {
         if (np.type != PACKET_TYPE_PING) {
-            Log.e(LOG_TAG, "Ping plugin should not receive packets other than pings!")
+            Log.e(TAG, "Ping plugin should not receive packets other than pings!")
             return false
         }
 
@@ -95,6 +95,6 @@ class PingPlugin : Plugin() {
 
     companion object {
         private const val PACKET_TYPE_PING = "kdeconnect.ping"
-        private const val LOG_TAG = "PingPlugin"
+        private const val TAG = "PingPlugin"
     }
 }

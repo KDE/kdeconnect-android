@@ -20,7 +20,7 @@ import java.io.File
 import java.nio.charset.StandardCharsets
 
 object FilesHelper {
-    private const val LOG_TAG: String = "SendFileActivity"
+    private const val TAG: String = "SendFileActivity"
 
     fun getMimeTypeFromFile(file: String?): String {
         val mime = file?.let {
@@ -127,7 +127,7 @@ object FilesHelper {
                     return Triple(filename, size, lastModified)
                 }
                 else {
-                    Log.e(LOG_TAG, "Received bad file URI, path was null")
+                    Log.e(TAG, "Received bad file URI, path was null")
                     return Triple(null, sizeDefault, null)
                 }
             }
@@ -150,7 +150,7 @@ object FilesHelper {
                     }
                 }
                 catch (e: Exception) {
-                    Log.e(LOG_TAG, "Problem getting file information", e)
+                    Log.e(TAG, "Problem getting file information", e)
                 }
                 return Triple(null, sizeDefault, null)
             }
@@ -165,7 +165,7 @@ object FilesHelper {
             }
             else {
                 // It would be very surprising if this happens
-                Log.e(LOG_TAG, "Unable to read filename")
+                Log.e(TAG, "Unable to read filename")
             }
 
             if (lastModified != null) {
@@ -173,7 +173,7 @@ object FilesHelper {
             }
             else {
                 // This would not be too surprising, and probably means we need to improve FilesHelper.getLastModifiedTime
-                Log.w(LOG_TAG, "Unable to read file last modified time")
+                Log.w(TAG, "Unable to read file last modified time")
             }
 
             packet.payload = NetworkPacket.Payload(inputStream, size)
@@ -181,7 +181,7 @@ object FilesHelper {
             return packet
         }
         catch (e: Exception) {
-            Log.e(LOG_TAG, "Exception creating network packet", e)
+            Log.e(TAG, "Exception creating network packet", e)
             return null
         }
     }

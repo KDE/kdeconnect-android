@@ -34,7 +34,7 @@ import java.util.concurrent.locks.ReentrantLock
 class RemoteKeyboardIMEPlugin : Plugin(), SharedPreferences.OnSharedPreferenceChangeListener {
 
     override fun onCreate() {
-        Log.d(LOG_TAG, "Creating for device ${device.name}")
+        Log.d(TAG, "Creating for device ${device.name}")
         acquireInstances()
         try {
             instances.add(this)
@@ -67,7 +67,7 @@ class RemoteKeyboardIMEPlugin : Plugin(), SharedPreferences.OnSharedPreferenceCh
             releaseInstances()
         }
 
-        Log.d(LOG_TAG, "Destroying for device ${device.name}")
+        Log.d(TAG, "Destroying for device ${device.name}")
     }
 
     override val displayName: String
@@ -98,7 +98,7 @@ class RemoteKeyboardIMEPlugin : Plugin(), SharedPreferences.OnSharedPreferenceCh
             return false
         }
         val inputConn: InputConnection = RemoteKeyboardService.instance?.currentInputConnection ?: return false
-        //Log.d(LOG_TAG, "Handling special key $key translated to $keyEvent shift=$shift ctrl=$ctrl alt=$alt");
+        //Log.d(TAG, "Handling special key $key translated to $keyEvent shift=$shift ctrl=$ctrl alt=$alt");
 
         // special sequences:
         if (ctrl && (keyEvent == KeyEvent.KEYCODE_DPAD_RIGHT || keyEvent == KeyEvent.KEYCODE_DPAD_LEFT)) {
@@ -150,7 +150,7 @@ class RemoteKeyboardIMEPlugin : Plugin(), SharedPreferences.OnSharedPreferenceCh
                 }
             } else {
                 // else: fall back to regular Enter-event:
-//                Log.d(LOG_TAG, "Enter: normal keypress");
+//                Log.d(TAG, "Enter: normal keypress");
                 inputConn.sendKeyEvent(KeyEvent(KeyEvent.ACTION_DOWN, keyEvent))
                 inputConn.sendKeyEvent(KeyEvent(KeyEvent.ACTION_UP, keyEvent))
             }
@@ -164,7 +164,7 @@ class RemoteKeyboardIMEPlugin : Plugin(), SharedPreferences.OnSharedPreferenceCh
     }
 
     private fun handleVisibleKey(key: String, shift: Boolean, ctrl: Boolean, alt: Boolean): Boolean {
-        //Log.d(LOG_TAG, "Handling visible key $key shift=$shift ctrl=$ctrl alt=$alt ${key.equals("c", true)} ${key.length}");
+        //Log.d(TAG, "Handling visible key $key shift=$shift ctrl=$ctrl alt=$alt ${key.equals("c", true)} ${key.length}");
 
         if (key.isEmpty()) {
             return false
@@ -184,7 +184,7 @@ class RemoteKeyboardIMEPlugin : Plugin(), SharedPreferences.OnSharedPreferenceCh
             return inputConn.performContextMenuAction(android.R.id.selectAll)
         }
 
-        //Log.d(LOG_TAG, "Committing visible key '$key'");
+        //Log.d(TAG, "Committing visible key '$key'");
         inputConn.commitText(key, key.length)
         return true
     }
@@ -221,12 +221,12 @@ class RemoteKeyboardIMEPlugin : Plugin(), SharedPreferences.OnSharedPreferenceCh
         val service = RemoteKeyboardService.instance ?: return false // This packet will be handled by the RemoteKeyboardPlugin instead, silently ignore
 
         if (!service.visible && preferences.getBoolean(context.getString(R.string.remotekeyboard_editing_only), true)) {
-            Log.i(LOG_TAG, "Remote keyboard is currently not visible, dropping key")
+            Log.i(TAG, "Remote keyboard is currently not visible, dropping key")
             return false
         }
 
         if (!handleEvent(np)) {
-            Log.i(LOG_TAG, "Could not handle event!")
+            Log.i(TAG, "Could not handle event!")
             return false
         }
 
@@ -260,7 +260,7 @@ class RemoteKeyboardIMEPlugin : Plugin(), SharedPreferences.OnSharedPreferenceCh
                 return
             }
         }
-        Log.d(LOG_TAG, "Keyboardstate changed to $state")
+        Log.d(TAG, "Keyboardstate changed to $state")
         val np = NetworkPacket(PACKET_TYPE_MOUSEPAD_KEYBOARDSTATE)
         np["state"] = state
         device.sendPacket(np)
@@ -301,7 +301,7 @@ class RemoteKeyboardIMEPlugin : Plugin(), SharedPreferences.OnSharedPreferenceCh
     }
 
     companion object {
-        private const val LOG_TAG = "RemoteKeyboardIMEPlugin"
+        private const val TAG = "RemoteKeyboardIMEPlugin"
 
         private const val PACKET_TYPE_MOUSEPAD_REQUEST = "kdeconnect.mousepad.request"
         private const val PACKET_TYPE_MOUSEPAD_ECHO = "kdeconnect.mousepad.echo"

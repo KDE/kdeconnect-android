@@ -72,10 +72,10 @@ class BackgroundService : Service() {
 
     fun onNetworkChange(network: Network?) {
         if (!initialized) {
-            Log.d(LOG_TAG, "ignoring onNetworkChange called before the service is initialized")
+            Log.d(TAG, "ignoring onNetworkChange called before the service is initialized")
             return
         }
-        Log.d(LOG_TAG, "onNetworkChange")
+        Log.d(TAG, "onNetworkChange")
         for (linkProvider in linkProviders) {
             linkProvider.onNetworkChange(network)
         }
@@ -241,7 +241,7 @@ class BackgroundService : Service() {
     override fun onBind(intent: Intent): IBinder? = null
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        Log.d(LOG_TAG, "onStartCommand")
+        Log.d(TAG, "onStartCommand")
         if (NotificationHelper.isPersistentNotificationEnabled(this)) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 try {
@@ -262,7 +262,7 @@ class BackgroundService : Service() {
     }
 
     companion object {
-        private const val LOG_TAG = "KDE/BackgroundService"
+        private const val TAG = "KDE/BackgroundService"
 
         private const val UPDATE_IMMUTABLE_FLAGS = PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         private const val FOREGROUND_NOTIFICATION_ID = 1
@@ -292,13 +292,13 @@ class BackgroundService : Service() {
         }
 
         fun Start(context: Context) {
-            Log.d(LOG_TAG, "Start")
+            Log.d(TAG, "Start")
             val intent = Intent(context, BackgroundService::class.java)
             ContextCompat.startForegroundService(context, intent)
         }
 
         fun ForceRefreshConnections(context: Context) {
-            Log.d(LOG_TAG, "ForceRefreshConnections")
+            Log.d(TAG, "ForceRefreshConnections")
             val intent = Intent(context, BackgroundService::class.java)
             intent.putExtra("refresh", true)
             ContextCompat.startForegroundService(context, intent)
