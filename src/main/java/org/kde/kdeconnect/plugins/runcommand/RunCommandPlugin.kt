@@ -70,6 +70,8 @@ class RunCommandPlugin : Plugin() {
 
     override val hasSettings: Boolean = true
 
+    override val keepAliveWhenUnreachable: Boolean = true
+
     override val settingsScope = SettingsScope.APP_WIDE
 
     override fun getSettingsFragment(activity: Activity): PluginSettingsFragment {
@@ -87,6 +89,12 @@ class RunCommandPlugin : Plugin() {
 
     override fun onCreate() {
         requestCommandList()
+    }
+
+    override fun onDestroy() {
+        // We won't get commandFinished for the commands that were running, so stop tracking them
+        runningProcesses.clear()
+        commandRunning.value = false
     }
 
     override fun onPacketReceived(np: NetworkPacket): Boolean {

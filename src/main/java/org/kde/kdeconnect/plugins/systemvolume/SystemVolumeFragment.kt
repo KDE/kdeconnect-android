@@ -55,7 +55,7 @@ class SystemVolumeFragment : BaseFragment<SystemVolumeFragmentBinding>(),
     }
 
     override fun onDestroyView() {
-        disconnectFromPlugin(deviceId)
+        disconnectFromPlugin()
         super.onDestroyView()
     }
 
@@ -78,9 +78,10 @@ class SystemVolumeFragment : BaseFragment<SystemVolumeFragmentBinding>(),
         sinksChanged()
     }
 
-    private fun disconnectFromPlugin(deviceId: String) {
-        KdeConnect.getInstance().getDevicePlugin<SystemVolumePlugin>(deviceId)
-            ?.removeSinkListener(this@SystemVolumeFragment)
+    private fun disconnectFromPlugin() {
+        if (::plugin.isInitialized) {
+            plugin.removeSinkListener(this@SystemVolumeFragment)
+        }
     }
 
     override fun sinksChanged() {

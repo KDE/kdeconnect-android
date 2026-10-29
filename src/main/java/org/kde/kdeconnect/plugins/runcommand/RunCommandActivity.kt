@@ -29,16 +29,14 @@ class RunCommandActivity : AppCompatActivity() {
 
     val commandList = mutableStateListOf<CommandEntry>()
 
-    private lateinit var deviceId: String
-
+    private lateinit var plugin: RunCommandPlugin
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d("RunCommandActivity", "Launched")
-        deviceId = intent.getStringExtra(EXTRA_DEVICE_ID)!!
+        val deviceId = intent.getStringExtra(EXTRA_DEVICE_ID)!!
         val device = KdeConnect.getInstance().getDevice(deviceId)
-        val plugin = device?.getPlugin<RunCommandPlugin>()
-        if (plugin == null) {
+        plugin = device?.getPlugin<RunCommandPlugin>() ?: run {
             finish()
             return
         }
@@ -88,22 +86,10 @@ class RunCommandActivity : AppCompatActivity() {
 
     private fun updateList() {
         commandList.removeAll(commandList)
-        val plugin = KdeConnect.getInstance().getDevicePlugin<RunCommandPlugin>(deviceId) ?: return
-
         for (info in plugin.commandList) {
             commandList.add(CommandEntry(info))
         }
         commandList.sortBy { it.name.lowercase() }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        val plugin =
-            KdeConnect.getInstance().getDevicePlugin<RunCommandPlugin>(deviceId)
-        if (plugin == null) {
-            finish()
-            return
-        }
     }
 
     companion object {

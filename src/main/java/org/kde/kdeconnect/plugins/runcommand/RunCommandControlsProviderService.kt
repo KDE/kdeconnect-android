@@ -84,7 +84,8 @@ class RunCommandControlsProviderService : ControlsProviderService() {
             if (commandEntry != null) {
                 val deviceId = controlId.split(":")[0]
                 val plugin = KdeConnect.getInstance().getDevicePlugin<RunCommandPlugin>(deviceId)
-                if (plugin != null) {
+                // The plugin is kept while the device is unreachable, but we can't run commands then
+                if (plugin != null && commandEntry.device.isReachable) {
                     plugin.runCommand(commandEntry.key)
                     consumer.accept(ControlAction.RESPONSE_OK)
                 } else {

@@ -29,6 +29,7 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.preference.PreferenceManager
+import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect.helpers.DEFAULT_MAX_VOLUME
 import org.kde.kdeconnect.helpers.DEFAULT_VOLUME_STEP
@@ -48,7 +49,7 @@ private typealias MprisPlayerCallback = (MprisPlayer) -> Unit
 class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
     private lateinit var mprisControlBinding: MprisControlBinding
     private lateinit var activityMprisBinding: MprisNowPlayingBinding
-    private lateinit var deviceId: String
+    private var plugin: MprisPlugin? = null
 
     private val positionSeekUpdateHandler = Handler(Looper.getMainLooper())
     private val positionSeekUpdateRunnable = object : Runnable {
@@ -75,8 +76,6 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         activityMprisBinding = MprisNowPlayingBinding.inflate(inflater)
         mprisControlBinding = activityMprisBinding.mprisControl
-
-        deviceId = arguments?.getString(EXTRA_DEVICE_ID)!!
 
         val activityIntent = requireActivity().intent
 
@@ -169,11 +168,11 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
 
     override fun onResume() {
         super.onResume()
-        KdeConnect.getInstance().getDevicePlugin<MprisPlugin>(deviceId)?.isControlActivityVisible = true
+        plugin?.isControlActivityVisible = true
     }
 
     override fun onPause() {
-        KdeConnect.getInstance().getDevicePlugin<MprisPlugin>(deviceId)?.isControlActivityVisible = false
+        plugin?.isControlActivityVisible = false
         super.onPause()
     }
 
@@ -185,21 +184,23 @@ class MprisNowPlayingFragment : Fragment(), VolumeKeyListener {
     }
 
     private fun disconnectFromPlugin() {
-        val plugin = KdeConnect.getInstance().getDevicePlugin<MprisPlugin>(deviceId) ?: return
-        plugin.apply {
+        plugin?.apply {
             removePlayerListUpdatedHandler("activity")
             removePlayerStatusUpdatedHandler("activity")
         }
     }
 
     private fun connectToPlugin() {
-        val plugin = KdeConnect.getInstance().getDevicePlugin<MprisPlugin>(deviceId)
+        val deviceId = arguments?.getString(EXTRA_DEVICE_ID)!!
+        val device = KdeConnect.getInstance().getDevice(deviceId)
+        val plugin = device?.getPlugin<MprisPlugin>()
         if (plugin == null) {
             if (isAdded) {
                 requireActivity().finish()
             }
             return
         }
+        this.plugin = plugin
         targetPlayer = plugin.getPlayerStatus(targetPlayerName)
 
         plugin.setPlayerStatusUpdatedHandler("activity") {

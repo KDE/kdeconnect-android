@@ -31,6 +31,8 @@ class PresenterPlugin : Plugin() {
 
     override val hasSettings: Boolean = true
 
+    override val keepAliveWhenUnreachable: Boolean = true
+
     override val settingsScope = SettingsScope.APP_WIDE
 
     override fun getSettingsFragment(activity: Activity): PluginSettingsFragment {
@@ -76,6 +78,7 @@ class PresenterPlugin : Plugin() {
     }
 
     fun sendPointer(xDelta: Float, yDelta: Float) {
+        if (!device.isReachable) return // Called continuously from the gyroscope, don't spam failures
         val np = NetworkPacket(PACKET_TYPE_PRESENTER)
         np["dx"] = xDelta.toDouble()
         np["dy"] = yDelta.toDouble()

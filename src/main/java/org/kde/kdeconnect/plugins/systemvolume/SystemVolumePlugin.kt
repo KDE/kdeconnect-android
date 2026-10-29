@@ -28,6 +28,14 @@ class SystemVolumePlugin : Plugin() {
     override val description: String
         get() = context.resources.getString(R.string.pref_plugin_systemvolume_desc)
 
+    override val keepAliveWhenUnreachable: Boolean = true
+
+    override fun onDestroy() {
+        // The sinks will be sent again on reconnection
+        sinkMap.clear()
+        notifySinksChanged()
+    }
+
     override fun onPacketReceived(np: NetworkPacket): Boolean {
         if ("sinkList" in np) {
             sinkMap.clear()
@@ -42,11 +50,7 @@ class SystemVolumePlugin : Plugin() {
                 }
             }
 
-            synchronized(listeners) {
-                for (l in listeners) {
-                    l.sinksChanged()
-                }
-            }
+            notifySinksChanged()
         } else {
             val name = np.getString("name")
             val sink = sinkMap[name]
@@ -63,6 +67,14 @@ class SystemVolumePlugin : Plugin() {
             }
         }
         return true
+    }
+
+    private fun notifySinksChanged() {
+        synchronized(listeners) {
+            for (l in listeners) {
+                l.sinksChanged()
+            }
+        }
     }
 
     internal fun sendVolume(name: String, volume: Int) {

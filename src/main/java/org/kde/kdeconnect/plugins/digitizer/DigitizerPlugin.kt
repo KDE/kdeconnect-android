@@ -42,18 +42,34 @@ class DigitizerPlugin : Plugin() {
         return false
     }
 
+    private data class Session(val width: Int, val height: Int, val resolutionX: Int, val resolutionY: Int)
+
+    // Kept across reconnections, so the session can be restarted
+    private var session: Session? = null
+
+    override fun onCreate() {
+        session?.let(::sendStartSession)
+    }
+
     fun startSession(width: Int, height: Int, resolutionX: Int, resolutionY: Int) {
+        val session = Session(width, height, resolutionX, resolutionY)
+        this.session = session
+        sendStartSession(session)
+    }
+
+    private fun sendStartSession(session: Session) {
         val np = NetworkPacket(PACKET_TYPE_DIGITIZER_SESSION).apply {
             set("action", "start")
-            set("width", width)
-            set("height", height)
-            set("resolutionX", resolutionX)
-            set("resolutionY", resolutionY)
+            set("width", session.width)
+            set("height", session.height)
+            set("resolutionX", session.resolutionX)
+            set("resolutionY", session.resolutionY)
         }
         device.sendPacket(np)
     }
 
     fun endSession() {
+        session = null
         val np = NetworkPacket(PACKET_TYPE_DIGITIZER_SESSION).apply {
             set("action", "end")
         }
@@ -61,6 +77,7 @@ class DigitizerPlugin : Plugin() {
     }
 
     fun reportEvent(event: ToolEvent) {
+        if (!device.isReachable) return // Called continuously while drawing, don't spam failures
         Log.d(TAG, "reportEvent: $event")
 
         val np = NetworkPacket(PACKET_TYPE_DIGITIZER).also { packet ->
@@ -75,6 +92,8 @@ class DigitizerPlugin : Plugin() {
     }
 
     override val hasSettings: Boolean = true
+
+    override val keepAliveWhenUnreachable: Boolean = true
 
     override val settingsScope = SettingsScope.APP_WIDE
 

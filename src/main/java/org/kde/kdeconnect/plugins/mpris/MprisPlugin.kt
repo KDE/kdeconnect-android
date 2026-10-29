@@ -227,6 +227,8 @@ class MprisPlugin : Plugin() {
 
     override val hasSettings: Boolean = true
 
+    override val keepAliveWhenUnreachable: Boolean = true
+
     override val settingsScope = SettingsScope.APP_WIDE
 
     override fun getSettingsFragment(activity: Activity): PluginSettingsFragment {
@@ -245,6 +247,7 @@ class MprisPlugin : Plugin() {
 
     override fun onDestroy() {
         players.clear()
+        notifyPlayerListUpdated() // The player list will be sent again on reconnection
         deregisterPlugin(this)
         MprisMediaSession.instance.removeDevice(this, device.deviceId)
     }

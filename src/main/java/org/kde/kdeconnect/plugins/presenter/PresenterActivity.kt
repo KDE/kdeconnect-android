@@ -54,6 +54,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.media.VolumeProviderCompat
 import androidx.preference.PreferenceManager
+import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect.ui.compose.KdeButton
 import org.kde.kdeconnect.ui.compose.KdeTheme
@@ -94,11 +95,10 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener, OnSharedPref
 
         val deviceId = intent.getStringExtra(EXTRA_DEVICE_ID)!!
         val device = KdeConnect.getInstance().getDevice(deviceId)
-        plugin = device?.getPlugin<PresenterPlugin>()
-            ?: run {
-                finish()
-                return
-            }
+        plugin = device?.getPlugin<PresenterPlugin>() ?: run {
+            finish()
+            return
+        }
 
         prefs = plugin.preferences
         prefs.registerOnSharedPreferenceChangeListener(this)
@@ -109,13 +109,15 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener, OnSharedPref
     }
 
     override fun onDestroy() {
-        prefs.unregisterOnSharedPreferenceChangeListener(this)
+        if (::prefs.isInitialized) {
+            prefs.unregisterOnSharedPreferenceChangeListener(this)
+        }
         mediaSession?.release()
         super.onDestroy()
     }
 
     override fun dispatchKeyEvent(event: KeyEvent): Boolean {
-        //Only override dispatchKeyEvent if offScreenControls is not supported
+        // Only override dispatchKeyEvent if offScreenControls is not supported
         if (offScreenControlsSupported){
             return super.dispatchKeyEvent(event)
         }

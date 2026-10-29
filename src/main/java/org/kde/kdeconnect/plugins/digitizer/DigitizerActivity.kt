@@ -22,6 +22,7 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.preference.PreferenceManager
+import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect.base.BaseActivity
 import org.kde.kdeconnect.extensions.viewBinding
@@ -39,13 +40,7 @@ class DigitizerActivity : BaseActivity<ActivityDigitizerBinding>(), DrawingPadVi
 
     private lateinit var deviceId: String
 
-    private val plugin: DigitizerPlugin?
-        get() {
-            val plugin = KdeConnect.getInstance().getDevicePlugin<DigitizerPlugin>(deviceId)
-            if (plugin == null)
-                finish()
-            return plugin
-        }
+    private lateinit var plugin: DigitizerPlugin
 
     private var prefHideDrawButton: Boolean
         get() = prefs.getBoolean(getString(R.string.digitizer_preference_key_hide_draw_button), false)
@@ -57,6 +52,10 @@ class DigitizerActivity : BaseActivity<ActivityDigitizerBinding>(), DrawingPadVi
         super.onCreate(savedInstanceState)
 
         deviceId = intent.getStringExtra(EXTRA_DEVICE_ID)!!
+        plugin = KdeConnect.getInstance().getDevicePlugin<DigitizerPlugin>(deviceId) ?: run {
+            finish()
+            return
+        }
 
         setSupportActionBar(binding.toolbarLayout.toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -116,7 +115,7 @@ class DigitizerActivity : BaseActivity<ActivityDigitizerBinding>(), DrawingPadVi
         // During onStart, the views aren't laid out yet.
         // We must wait a frame for the view to get laid out before we can query its size.
         binding.drawingPad.post {
-            plugin?.startSession(
+            plugin.startSession(
                 binding.drawingPad.width,
                 binding.drawingPad.height,
                 (resources.displayMetrics.xdpi * INCHES_TO_MM).roundToInt(),
@@ -141,7 +140,9 @@ class DigitizerActivity : BaseActivity<ActivityDigitizerBinding>(), DrawingPadVi
 
     override fun onStop() {
         super.onStop()
-        plugin?.endSession()
+        if (::plugin.isInitialized) {
+            plugin.endSession()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -165,7 +166,7 @@ class DigitizerActivity : BaseActivity<ActivityDigitizerBinding>(), DrawingPadVi
     }
 
     override fun onToolEvent(event: ToolEvent) {
-        plugin?.reportEvent(event)
+        plugin.reportEvent(event)
     }
 
     override fun onFingerTouchEvent(touching: Boolean) {

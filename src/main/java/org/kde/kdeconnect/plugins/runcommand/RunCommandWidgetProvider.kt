@@ -57,8 +57,10 @@ class RunCommandWidgetProvider : AppWidgetProvider() {
         if (intent.action == RUN_COMMAND_ACTION) {
             val targetCommand = intent.getStringExtra(TARGET_COMMAND)
             val targetDevice = intent.getStringExtra(TARGET_DEVICE)
-            val plugin = KdeConnect.getInstance().getDevicePlugin<RunCommandPlugin>(targetDevice)
-            if (plugin != null) {
+            val device = KdeConnect.getInstance().getDevice(targetDevice)
+            val plugin = device?.getPlugin<RunCommandPlugin>()
+            // The plugin is kept while the device is unreachable, but we can't run commands then
+            if (plugin != null && device?.isReachable == true) {
                 try {
                     plugin.runCommand(targetCommand)
                 } catch (ex: Exception) {
