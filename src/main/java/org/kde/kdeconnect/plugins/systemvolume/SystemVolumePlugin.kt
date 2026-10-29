@@ -30,12 +30,6 @@ class SystemVolumePlugin : Plugin() {
 
     override val keepAliveWhenUnreachable: Boolean = true
 
-    override fun onDestroy() {
-        // The sinks will be sent again on reconnection
-        sinkMap.clear()
-        notifySinksChanged()
-    }
-
     override fun onPacketReceived(np: NetworkPacket): Boolean {
         if ("sinkList" in np) {
             sinkMap.clear()
