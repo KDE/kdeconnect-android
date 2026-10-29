@@ -62,6 +62,7 @@
   <string name="open_mousepad">Fjernstyring</string>
   <string name="open_mousepad_tv">TV-fjernkontroll</string>
   <string name="mousepad_info">Dra ein finger over skjermen for å flytta peikaren på datamaskina. Trykk for å klikka, og bruk to eller tre fingrar for høvesvis høgre- og midtknappen. Bruk to fingrar for å rulla. Trykk lenge for å dra og sleppa. Funksjonalitet for gyromus kan du slå på i programtillegg-innstillingane.</string>
+  <string name="mousepad_info_double_tap">Dra ein finger over skjermen for å flytta peikaren på datamaskina. Trykk for å klikka, og bruk to eller tre fingrar for høvesvis høgre- og midtknappen. Bruk to fingrar for å rulla. Trykk to gongar raskt for å dra og sleppa. Funksjonalitet for gyromus kan du slå på i programtillegg-innstillingane.</string>
   <string name="mousepad_info_no_gestures">Flytt fingeren over skjermen for å flytta musepeikaren, og trykk for å klikka med musa.</string>
   <string name="mousepad_keyboard_input_not_supported">Tekst frå tastaturet er ikkje støtta av den para eininga</string>
   <string name="mousepad_single_tap_settings_title">Vel handling for éinfingertrykk</string>
@@ -113,6 +114,7 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Send som tastetrykk</string>
   <string name="mouse_receiver_plugin_description">Ta imot eksterne muserørsler</string>
   <string name="mouse_receiver_plugin_name">Muserørsle-mottakar</string>
+  <string name="mouse_receiver_no_permissions">For å kunna ta imot trykk-data, må du gje tilgjenge­løyva</string>
   <string name="view_status_title">Status</string>
   <string name="battery_status_format">Batteri: %d %%</string>
   <string name="battery_status_low_format">Batteri: %d %% – lågt batterinivå</string>
