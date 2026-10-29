@@ -63,6 +63,9 @@ class NotificationReceiver : NotificationListenerService() {
             return
         }
 
+        // onListenerDisconnected() is only called from onDestroy(), and since this is a started service
+        // unbinding won't destroy it, so we have to track the disconnection ourselves.
+        isConnected = false
         try {
             super.requestUnbind()
         } catch (_: Exception) {
