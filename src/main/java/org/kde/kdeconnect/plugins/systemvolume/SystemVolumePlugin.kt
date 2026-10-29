@@ -98,6 +98,12 @@ class SystemVolumePlugin : Plugin() {
         device.sendPacket(np)
     }
 
+    internal fun requestSinkList() {
+        val np = NetworkPacket(PACKET_TYPE_SYSTEMVOLUME_REQUEST)
+        np["requestSinks"] = true
+        device.sendPacket(np)
+    }
+
     override val supportedPacketTypes: Array<String> = arrayOf(PACKET_TYPE_SYSTEMVOLUME)
     override val outgoingPacketTypes: Array<String> = arrayOf(PACKET_TYPE_SYSTEMVOLUME_REQUEST)
 
