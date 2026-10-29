@@ -98,6 +98,7 @@ class Device : PacketReceiver {
     private val pluginsChangedListeners = CopyOnWriteArrayList<PluginsChangedListener>()
 
     private val sendChannel = Channel<NetworkPacketWithCallback>(Channel.UNLIMITED)
+    @Volatile
     private var sendCoroutine : Job? = null
 
     /**
@@ -314,8 +315,11 @@ class Device : PacketReceiver {
         get() = links.isNotEmpty()
 
     fun addLink(link: BaseLink) {
+        var unsent = emptyList<NetworkPacketWithCallback>()
         synchronized(sendChannel) {
             if (sendCoroutine == null) {
+                // Packets that raced with removeLink() could still be in the channel, don't send them now
+                unsent = drainSendChannel()
                 sendCoroutine = CoroutineScope(Dispatchers.IO).launch {
                     for ((np, callback) in sendChannel) {
                         sendPacketBlocking(np, callback)
@@ -323,6 +327,7 @@ class Device : PacketReceiver {
                 }
             }
         }
+        failUnsentPackets(unsent)
 
         // FilesHelper.LogOpenFileCount();
         links.add(link)
@@ -362,10 +367,24 @@ class Device : PacketReceiver {
         )
         if (links.isEmpty()) {
             reloadPluginsFromSettings()
-            synchronized(sendChannel) {
+            val unsent = synchronized(sendChannel) {
                 sendCoroutine?.cancel(CancellationException("Device disconnected"))
                 sendCoroutine = null
+                drainSendChannel()
             }
+            failUnsentPackets(unsent)
+        }
+    }
+
+    private fun drainSendChannel(): List<NetworkPacketWithCallback> = buildList {
+        while (true) {
+            add(sendChannel.tryReceive().getOrNull() ?: break)
+        }
+    }
+
+    private fun failUnsentPackets(unsent: List<NetworkPacketWithCallback>) {
+        unsent.forEach { (np, callback) ->
+            callback.onFailure(Exception("Device disconnected, packet ${np.type} not sent"))
         }
     }
 
@@ -479,6 +498,10 @@ class Device : PacketReceiver {
      */
     @AnyThread
     fun sendPacket(np: NetworkPacket, callback: SendPacketStatusCallback) {
+        if (sendCoroutine == null) {
+            callback.onFailure(Exception("Device disconnected, packet ${np.type} not sent"))
+            return
+        }
         sendChannel.trySend(NetworkPacketWithCallback(np, callback))
     }
 
