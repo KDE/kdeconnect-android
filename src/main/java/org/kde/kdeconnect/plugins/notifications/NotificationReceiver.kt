@@ -30,10 +30,12 @@ class NotificationReceiver : NotificationListenerService() {
     private val listeners = mutableListOf<NotificationListener>()
 
     fun addListener(listener: NotificationListener) {
-        val shouldRebind = listeners.isEmpty() || !isConnected
         listeners.add(listener)
 
-        if (shouldRebind) {
+        if (isConnected) {
+            // onListenerConnected won't be called again by the system, so notify the new listener now
+            listener.onListenerConnected(this)
+        } else {
             requestRebindSafe()
         }
     }
@@ -107,14 +109,18 @@ class NotificationReceiver : NotificationListenerService() {
     // This will be called for each intent launch, even if the service is already started and is reused
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         // Log.e("NotificationReceiver", "onStartCommand")
+        // Drain a snapshot so callbacks can call RunCommand() without modifying the list while we iterate it.
+        // Callbacks added during dispatch are handled by the onStartCommand triggered by their own startService().
+        val pending: List<InstanceCallback>
         mutex.lock()
         try {
-            for (c in callbacks) {
-                c.onServiceStart(this)
-            }
+            pending = callbacks.toList()
             callbacks.clear()
         } finally {
             mutex.unlock()
+        }
+        for (c in pending) {
+            c.onServiceStart(this)
         }
         return START_STICKY
     }

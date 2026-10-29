@@ -105,9 +105,6 @@ class MprisMediaSession : OnSharedPreferenceChangeListener, NotificationReceiver
 
             NotificationReceiver.RunCommand(context) { service: NotificationReceiver ->
                 service.addListener(this@MprisMediaSession)
-                if (service.isConnected) {
-                    onListenerConnected(service)
-                }
             }
         }
 

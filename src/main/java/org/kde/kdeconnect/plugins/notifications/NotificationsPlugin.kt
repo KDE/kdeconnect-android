@@ -81,7 +81,6 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
         mainHandler = Handler(Looper.getMainLooper())
         NotificationReceiver.RunCommand(context) { service ->
             service.addListener(this@NotificationsPlugin)
-            serviceReady = service.isConnected
         }
     }
 
