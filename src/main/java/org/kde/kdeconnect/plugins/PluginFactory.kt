@@ -70,12 +70,13 @@ object PluginFactory {
         val isEnabledByDefault: Boolean,
         val hasSettings: Boolean,
         val listenToUnpaired: Boolean,
+        val keepAliveWhenUnreachable: Boolean,
         supportedPacketTypes: Array<String>,
         outgoingPacketTypes: Array<String>,
         val instantiableClass: Class<out Plugin>,
     ) {
         internal constructor(p: Plugin) : this(p.displayName, p.description,
-            p.isEnabledByDefault, p.hasSettings, p.listenToUnpairedDevices,
+            p.isEnabledByDefault, p.hasSettings, p.listenToUnpairedDevices, p.keepAliveWhenUnreachable,
             p.supportedPacketTypes, p.outgoingPacketTypes, p.javaClass)
 
         val supportedPacketTypes: Set<String> = supportedPacketTypes.toSet()

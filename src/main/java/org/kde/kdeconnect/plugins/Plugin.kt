@@ -95,6 +95,18 @@ abstract class Plugin {
     open val listenToUnpairedDevices: Boolean = false
 
     /**
+     * Returns whether this plugin instance should be kept while a paired device is unreachable,
+     * instead of being discarded on disconnection and re-instantiated on reconnection. This allows
+     * keeping state and the plugin instance valid across reconnections.
+     *
+     * Plugins that return true will get [onDestroy] called on disconnection and [onCreate] called
+     * again on the same instance on reconnection, so they must not assume a fresh state in
+     * [onCreate], and must keep working (eg: not crash if their methods get called) after [onDestroy].
+     * By default, returns false.
+     */
+    open val keepAliveWhenUnreachable: Boolean = false
+
+    /**
      * Return the internal plugin name, that will be used as a
      * unique key to distinguish it.
      * Use the class name as `key`.
@@ -166,9 +178,11 @@ abstract class Plugin {
         get() = Build.VERSION.SDK_INT >= minSdk
 
     /**
-     * Initialize the listeners and structures in your plugin.
+     * Initialize the listeners and structures in your plugin. Only called while the device is reachable.
      *
      * If [isCompatible] or [checkRequiredPermissions] returns false, this will *not* be called.
+     *
+     * If [keepAliveWhenUnreachable] returns true, this gets called again on the same Plugin object on reconnection.
      */
     @EmptySuper
     @Throws(Exception::class)
@@ -182,6 +196,27 @@ abstract class Plugin {
      */
     @EmptySuper
     open fun onDestroy() {}
+
+    private var isCreated = false
+
+    /**
+     * Calls [onCreate] unless it was already called without a matching [destroy]. Used by [Device].
+     */
+    @Throws(Exception::class)
+    internal fun create() {
+        if (isCreated) return
+        isCreated = true // Before onCreate(), so destroy() calls onDestroy() even if onCreate() throws
+        onCreate()
+    }
+
+    /**
+     * Calls [onDestroy] if [create] was called without a matching destroy. Used by [Device].
+     */
+    internal fun destroy() {
+        if (!isCreated) return
+        isCreated = false
+        onDestroy()
+    }
 
     /**
      * Called when a plugin receives a packet.

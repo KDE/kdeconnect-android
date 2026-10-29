@@ -582,8 +582,6 @@ class Device : PacketReceiver {
     // - all permissions granted: loadedPlugins only
     // returns true if the plugin ended up in loadedPlugins
     private fun addPlugin(pluginKey: String): Boolean {
-        val isNewPlugin = !loadedPlugins.containsKey(pluginKey)
-
         val plugin = loadedPlugins[pluginKey]
             ?: PluginFactory.instantiatePluginForDevice(context, pluginKey, this)
                 ?: return false
@@ -600,10 +598,8 @@ class Device : PacketReceiver {
             if (plugin.loadPluginWhenRequiredPermissionsMissing()) {
                 loadedPlugins[pluginKey] = plugin
             } else {
-                if (loadedPlugins.remove(pluginKey) != null) {
-                    // It was loaded before losing the permission, so onCreate was already called
-                    destroyPlugin(pluginKey, plugin)
-                }
+                loadedPlugins.remove(pluginKey)
+                destroyPlugin(pluginKey, plugin) // In case it was loaded before losing the permission
                 return false
             }
         } else {
@@ -619,12 +615,8 @@ class Device : PacketReceiver {
             }
         }
 
-        if (!isNewPlugin) {
-            return true
-        }
-
         try {
-            plugin.onCreate()
+            plugin.create()
         } catch (e : Exception) {
             Log.e("KDE/addPlugin", "plugin failed to load $pluginKey", e)
             removePlugin(pluginKey)
@@ -646,7 +638,7 @@ class Device : PacketReceiver {
 
     private fun destroyPlugin(pluginKey: String, plugin: Plugin) {
         try {
-            plugin.onDestroy()
+            plugin.destroy()
         } catch (e: Exception) {
             Log.e("KDE/removePlugin", "Exception calling onDestroy for plugin $pluginKey", e)
         }
@@ -684,6 +676,7 @@ class Device : PacketReceiver {
     @WorkerThread
     fun reloadPluginsFromSettings() {
         Log.i("Device", "${deviceInfo.name}: reloading plugins")
+        val isReachable = this.isReachable
         val newPluginsByIncomingInterface = mutableMapOf<String, MutableList<String>>()
 
         val existingPluginKeys = loadedPlugins.keys + pluginsWithoutPermissions.keys + pluginsWithoutOptionalPermissions.keys
@@ -691,18 +684,25 @@ class Device : PacketReceiver {
 
         supportedPlugins.forEach { pluginKey ->
             val pluginInfo = PluginFactory.getPluginInfo(pluginKey)
-            val listenToUnpaired = pluginInfo.listenToUnpaired
+            val canLoad = if (isPaired) {
+                // Kept-alive plugins aren't instantiated while unreachable, only kept if they already were
+                isReachable || (pluginInfo.keepAliveWhenUnreachable && loadedPlugins.containsKey(pluginKey))
+            } else {
+                isReachable && pluginInfo.listenToUnpaired
+            }
+            val pluginEnabled = canLoad && isPluginEnabled(pluginKey)
 
-            val pluginEnabled = (isPaired || listenToUnpaired) && this.isReachable && isPluginEnabled(pluginKey)
-
-            if (pluginEnabled) {
+            if (!pluginEnabled) {
+                removePlugin(pluginKey)
+            } else if (isReachable) {
                 if (addPlugin(pluginKey)) {
                     pluginInfo.supportedPacketTypes.forEach { packetType ->
                         newPluginsByIncomingInterface.getOrPut(packetType) { mutableListOf() }.add(pluginKey)
                     }
                 }
             } else {
-                removePlugin(pluginKey)
+                // Kept alive, but destroyed until the device is reachable again
+                loadedPlugins[pluginKey]?.let { destroyPlugin(pluginKey, it) }
             }
         }
 

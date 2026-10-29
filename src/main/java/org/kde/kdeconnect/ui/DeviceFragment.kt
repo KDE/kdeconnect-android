@@ -100,8 +100,11 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
             val device = device ?: return
 
             //Plugins button list
-            val menuEntries: Collection<Plugin.PluginUiMenuEntry> =
+            val menuEntries: Collection<Plugin.PluginUiMenuEntry> = if (device.isReachable) {
                 device.loadedPlugins.values.flatMap { it.getUiMenuEntries() }
+            } else {
+                emptyList()
+            }
             for (p in menuEntries) {
                 menu.add(p.name).setOnMenuItemClickListener {
                     p.onClick(mActivity!!)
