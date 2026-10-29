@@ -23,7 +23,7 @@ import com.klinker.android.send_message.Transaction
 import kotlinx.serialization.json.JsonArray
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.helpers.SMSHelper
-import org.kde.kdeconnect.helpers.SMSHelper.MessageLooper.Companion.getLooper
+import org.kde.kdeconnect.helpers.SMSHelper.MessageLooper
 import org.kde.kdeconnect.helpers.SMSHelper.ThreadID
 import org.kde.kdeconnect.helpers.SMSHelper.getConversations
 import org.kde.kdeconnect.helpers.SMSHelper.getMessagesInRange
@@ -94,7 +94,8 @@ class SMSPlugin : Plugin() {
         }
     }
 
-    private val messageObserver: ContentObserver = MessageContentObserver(Handler(getLooper()!!))
+    // Lazy so we don't start a thread in the constructor
+    private val messageObserver: ContentObserver by lazy { MessageContentObserver(MessageLooper.handler) }
 
 
     /**

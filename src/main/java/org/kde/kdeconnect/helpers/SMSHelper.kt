@@ -13,7 +13,8 @@ import android.database.sqlite.SQLiteException
 import android.media.MediaMetadataRetriever
 import android.media.ThumbnailUtils
 import android.net.Uri
-import android.os.Looper
+import android.os.Handler
+import android.os.HandlerThread
 import android.provider.Telephony
 import android.util.Log
 import androidx.core.net.toUri
@@ -33,8 +34,6 @@ import org.kde.kdeconnect.plugins.sms.SmsMmsUtils
 import java.io.IOException
 import java.util.SortedMap
 import java.util.TreeMap
-import java.util.concurrent.locks.Lock
-import java.util.concurrent.locks.ReentrantLock
 
 object SMSHelper {
     private const val THUMBNAIL_HEIGHT = 100
@@ -956,57 +955,9 @@ object SMSHelper {
     /**
      * If anyone wants to subscribe to changes in the messages database, they will need a thread
      * to handle callbacks on
-     * This singleton conveniently provides such a thread, accessed and used via its Looper object
+     * This singleton conveniently provides such a thread, accessed and used via its Handler object
      */
-    class MessageLooper private constructor() : Thread() {
-        init {
-            setName("MessageHelperLooper")
-        }
-
-        override fun run() {
-            looperReadyLock.lock()
-            try {
-                Looper.prepare()
-                looper = Looper.myLooper()
-                looperReady.signalAll()
-            } finally {
-                looperReadyLock.unlock()
-            }
-            Looper.loop()
-        }
-
-        companion object {
-            private var singleton: MessageLooper? = null
-            private var looper: Looper? = null
-            private val looperReadyLock: Lock = ReentrantLock()
-            private val looperReady = looperReadyLock.newCondition()
-
-            /**
-             * Get the Looper object associated with this thread
-             *
-             * If the Looper has not been prepared, it is prepared as part of this method call.
-             * Since this means a thread has to be spawned, this method might block until that thread is
-             * ready to serve requests
-             */
-            fun getLooper(): Looper? {
-                if (singleton == null) {
-                    looperReadyLock.lock()
-                    try {
-                        singleton = MessageLooper().apply { start() }
-                        while (looper == null) {
-                            // Block until the looper is ready
-                            looperReady.await()
-                        }
-                    } catch (e: InterruptedException) {
-                        // I don't know when this would happen
-                        Log.e("SMSHelper", "Interrupted while waiting for Looper", e)
-                        return null
-                    } finally {
-                        looperReadyLock.unlock()
-                    }
-                }
-                return looper
-            }
-        }
+    object MessageLooper {
+        val handler = Handler(HandlerThread("MessageHelperLooper").apply { start() }.looper)
     }
 }

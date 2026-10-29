@@ -24,6 +24,12 @@ import org.kde.kdeconnect.ui.PermissionsAlertDialogFragment
 import org.kde.kdeconnect.ui.PluginSettingsFragment
 import org.kde.kdeconnect_tp.R
 
+/**
+ * Plugin instances can be created and discarded without [onCreate] or [onDestroy] ever being called (e.g. if
+ * the required permissions are missing, or just to call [onDeviceUnpaired]), so the constructor must not
+ * register listeners, start threads or acquire anything else that would need to be released. Do that in
+ * [onCreate] instead.
+ */
 abstract class Plugin {
     protected lateinit var device: Device
     protected lateinit var context: Context
