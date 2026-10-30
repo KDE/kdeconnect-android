@@ -173,7 +173,7 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
             try {
                 Thread.sleep(500)
             } catch (e: Exception) {
-                synchronized(sockets) { sockets.remove(socket.remoteDevice) }
+                rejectConnection(socket.remoteDevice, socket, socket)
                 throw e
             }
             var connection: ConnectionMultiplexer? = null
@@ -339,7 +339,11 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
         }
 
         private fun connectToDevice() {
-            val socket: BluetoothSocket
+            if (synchronized(sockets) { sockets.containsKey(device) }) {
+                Log.i("BTLinkProvider/Client", "Already connected to ${device?.address}")
+                return
+            }
+            var socket: BluetoothSocket? = null
             try {
                 Log.i("BTLinkProvider/Client", "Cancelling Discovery")
                 bluetoothAdapter!!.cancelDiscovery()
@@ -347,13 +351,23 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
                 socket = device!!.createRfcommSocketToServiceRecord(SERVICE_UUID)
                 Log.i("BTLinkProvider/Client", "Connecting to ServiceRecord Socket")
                 socket.connect()
-                synchronized(sockets) { sockets.put(device, socket) }
             } catch (e: IOException) {
                 Log.e("BTLinkProvider/Client", "Could not connect to KDE Connect service on ${device?.address}", e)
+                socket?.closeSafe()
                 return
             } catch (e: SecurityException) {
                 Log.e("BTLinkProvider/Client", "Security Exception connecting to ${device?.address}", e)
+                socket?.closeSafe()
                 return
+            }
+            synchronized(sockets) {
+                // The server thread might have accepted a connection from this device while we were connecting
+                if (sockets.containsKey(device)) {
+                    Log.i("BTLinkProvider/Client", "Already connected to ${device.address}, dropping new connection")
+                    socket.closeSafe()
+                    return
+                }
+                sockets.put(device, socket)
             }
             Log.i("BTLinkProvider/Client", "Connected to ${device.address}")
             var connection: ConnectionMultiplexer? = null
