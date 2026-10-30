@@ -51,6 +51,29 @@ data class DeviceInfo(
     }
 
     /**
+     * Packet broadcast via UDP so other devices on the network connect to us via TCP.
+     */
+    fun toUdpDiscoveryPacket(tcpPort: Int): NetworkPacket =
+        NetworkPacket(NetworkPacket.PACKET_TYPE_IDENTITY).also { np ->
+            np["deviceId"] = id
+            np["deviceName"] = name // Unused but needed to pass validation on older implementations
+            np["protocolVersion"] = protocolVersion
+            np["tcpPort"] = tcpPort
+        }
+
+    /**
+     * Packet sent unencrypted right after opening a TCP connection to a discovered device.
+     */
+    fun toConnectionPacket(targetDeviceId: String, targetProtocolVersion: Int): NetworkPacket =
+        NetworkPacket(NetworkPacket.PACKET_TYPE_IDENTITY).also { np ->
+            np["deviceId"] = id
+            np["deviceName"] = name // Unused but needed to pass validation on older implementations
+            np["protocolVersion"] = protocolVersion
+            np["targetDeviceId"] = targetDeviceId
+            np["targetProtocolVersion"] = targetProtocolVersion
+        }
+
+    /**
      * Serializes to a NetworkPacket, which LanLinkProvider uses to send this data over the network.
      * The serialization doesn't include the certificate, since LanLink can query that from the socket.
      * Can be deserialized using fromIdentityPacketAndCert(), given a certificate.
@@ -111,6 +134,16 @@ data class DeviceInfo(
             type == NetworkPacket.PACKET_TYPE_IDENTITY &&
                     DeviceHelper.filterInvalidCharactersFromDeviceNameAndLimitLength(getString("deviceName", "")).isNotBlank() &&
                     isValidDeviceId(getString("deviceId", ""))
+        }
+
+        fun isValidUdpDiscoveryPacket(np: NetworkPacket): Boolean = with(np) {
+            type == NetworkPacket.PACKET_TYPE_IDENTITY && isValidDeviceId(getString("deviceId", ""))
+        }
+
+        fun isValidConnectionPacket(np: NetworkPacket): Boolean = with(np) {
+            type == NetworkPacket.PACKET_TYPE_IDENTITY &&
+                    isValidDeviceId(getString("deviceId", "")) &&
+                    isValidDeviceId(getString("targetDeviceId", ""))
         }
 
         private val DEVICE_ID_REGEX = "^[a-zA-Z0-9_-]{32,38}$".toRegex()

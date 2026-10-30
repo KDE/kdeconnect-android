@@ -104,42 +104,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
         }
     }
 
-    fun unserializeReceivedIdentityPacket(message: String): Pair<NetworkPacket, Boolean>? {
-        val identityPacket: NetworkPacket?
-        try {
-            identityPacket = NetworkPacket.unserialize(message)
-        } catch (e: SerializationException) {
-            Log.w("KDE/LanLinkProvider", "Invalid identity packet received: ${e.message}")
-            return null
-        }
-
-        if (!DeviceInfo.isValidIdentityPacket(identityPacket)) {
-            Log.w("KDE/LanLinkProvider", "Invalid identity packet received.")
-            return null
-        }
-
-        val deviceId = identityPacket.getString("deviceId")
-        val myId = DeviceHelper.getDeviceId(context)
-        if (deviceId == myId) {
-            //Ignore my own broadcast
-            return null
-        }
-
-        if (rateLimitByDeviceId(deviceId)) {
-            Log.i("LanLinkProvider", "Discarding second packet from the same device $deviceId received too quickly")
-            return null
-        }
-
-        val deviceTrusted = TrustedDevices.isTrustedDevice(context, deviceId)
-        if (!deviceTrusted && !TrustedNetworkHelper.isTrustedNetwork(context)) {
-            Log.i("KDE/LanLinkProvider", "Ignoring identity packet because the device is not trusted and I'm not on a trusted network.")
-            return null
-        }
-
-        return Pair(identityPacket, deviceTrusted)
-    }
-
-    // They received my UDP broadcast and are connecting to me. The first thing they send should be their identity packet.
+    // Another device discovered us and is connecting to us via TCP. The first thing they send should be their connection packet.
     @WorkerThread
     @Throws(IOException::class, CertificateException::class)
     private fun tcpPacketReceived(socket: Socket) {
@@ -157,29 +122,51 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
             return
         }
 
-        val message: String?
+        val connectionPacket: NetworkPacket
         try {
             // We don't use a BufferedInputStream on purpose, since BufferedReader reads ahead and would require
             // us to keep a single BufferedInputStream instance and pass it around to make sure we don't lose data.
             // This means we are readying byte by byte directly from the OS, which is slow, but only for the handshake.
-            message = readLineBounded(socket.getInputStream(), MAX_IDENTITY_PACKET_SIZE)
+            val message = readLineBounded(socket.getInputStream(), MAX_IDENTITY_PACKET_SIZE)
             //Log.e("TcpListener", "Received TCP packet: $message");
+            connectionPacket = NetworkPacket.unserialize(message)
         } catch (e: Exception) {
             Log.e("KDE/LanLinkProvider", "Exception while receiving TCP packet", e)
             socket.closeSafe()
             return
         }
 
-        val (identityPacket, deviceTrusted)  = unserializeReceivedIdentityPacket(message) ?: run {
+        if (!DeviceInfo.isValidConnectionPacket(connectionPacket)) {
+            Log.w("KDE/LanLinkProvider", "Invalid connection packet received.")
             socket.closeSafe()
             return
         }
 
-        Log.i("KDE/LanLinkProvider", "identity packet received from a TCP connection from ${identityPacket.getString("deviceName")}")
+        val deviceId = connectionPacket.getString("deviceId")
+        if (deviceId == DeviceHelper.getDeviceId(context)) {
+            // Ignore connections from myself
+            socket.closeSafe()
+            return
+        }
 
-        val targetDeviceId = identityPacket.getStringOrNull("targetDeviceId")
-        val targetProtocolVersion = identityPacket.getIntOrNull("targetProtocolVersion")
-        if (targetDeviceId != null && targetDeviceId != DeviceHelper.getDeviceId(context)) {
+        if (rateLimitByDeviceId(deviceId)) {
+            Log.i("LanLinkProvider", "Discarding second connection from the same device $deviceId received too quickly")
+            socket.closeSafe()
+            return
+        }
+
+        val deviceTrusted = TrustedDevices.isTrustedDevice(context, deviceId)
+        if (!deviceTrusted && !TrustedNetworkHelper.isTrustedNetwork(context)) {
+            Log.i("KDE/LanLinkProvider", "Ignoring connection because the device is not trusted and I'm not on a trusted network.")
+            socket.closeSafe()
+            return
+        }
+
+        Log.i("KDE/LanLinkProvider", "Connection packet received from a TCP connection from $deviceId")
+
+        val targetDeviceId = connectionPacket.getString("targetDeviceId")
+        val targetProtocolVersion = connectionPacket.getIntOrNull("targetProtocolVersion")
+        if (targetDeviceId != DeviceHelper.getDeviceId(context)) {
             Log.e("KDE/LanLinkProvider", "Received a connection request for a device that isn't me: $targetDeviceId")
             socket.closeSafe()
             return
@@ -190,7 +177,21 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
             return
         }
 
-        identityPacketReceived(identityPacket, socket, ConnectionStarted.Locally, deviceTrusted)
+        val protocolVersion = connectionPacket.getInt("protocolVersion", 0)
+        if (protocolVersion < 8) {
+            Log.w("KDE/LanLinkProvider", "Ignoring device $deviceId using too old protocol version $protocolVersion")
+            socket.closeSafe()
+            return
+        }
+
+        if (deviceTrusted && isProtocolDowngrade(deviceId, protocolVersion)) {
+            Log.w("KDE/LanLinkProvider", "Refusing to connect to a device using an older protocol version:$protocolVersion")
+            socket.closeSafe()
+            return
+        }
+
+
+        startSslHandshake(socket, deviceId, protocolVersion, ConnectionStarted.Locally, deviceTrusted)
     }
 
     private fun isAllowedAddress(address: InetAddress): Boolean {
@@ -223,7 +224,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
         return false
     }
 
-    //I've received their broadcast and should connect to their TCP socket and send my identity.
+    // We received their UDP broadcast and should connect to their TCP socket.
     @WorkerThread
     private fun udpPacketReceived(packet: DatagramPacket) {
         val address = packet.address
@@ -233,48 +234,103 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
             return
         }
 
-        if (!isAllowedAddress(address)) {
-            Log.i("LanLinkProvider", "Discarding UDP packet from a non-local IP: $address")
+        val message = String(packet.data, 0, packet.length, Charsets.UTF_8)
+        val discoveryPacket: NetworkPacket
+        try {
+            discoveryPacket = NetworkPacket.unserialize(message)
+        } catch (e: SerializationException) {
+            Log.w("KDE/LanLinkProvider", "Invalid UDP discovery packet received: ${e.message}")
+            return
+        }
+        if (!DeviceInfo.isValidUdpDiscoveryPacket(discoveryPacket)) {
+            Log.w("KDE/LanLinkProvider", "Invalid UDP discovery packet received.")
             return
         }
 
-        val message = String(packet.data, 0, packet.length, Charsets.UTF_8)
+        val deviceId = discoveryPacket.getString("deviceId")
+        if (deviceId == DeviceHelper.getDeviceId(context)) {
+            // Ignore my own broadcast
+            return
+        }
 
-        val (identityPacket, deviceTrusted) = unserializeReceivedIdentityPacket(message)
-            ?: return
+        val protocolVersion = discoveryPacket.getInt("protocolVersion", 0)
+        val tcpPort = discoveryPacket.getInt("tcpPort", -1)
 
-        Log.i("KDE/LanLinkProvider", "Broadcast identity packet received from ${identityPacket.getString("deviceName")}")
+        deviceDiscovered(address, tcpPort, deviceId, protocolVersion, null, false)
+    }
 
-        val tcpPort = identityPacket.getInt("tcpPort", MIN_PORT)
-        if (tcpPort !in MIN_PORT..MAX_PORT) {
+    /**
+     * We discovered a device (via mDNS or UDP broadcast) and want to connect to it.
+     * Blocks until the handshake is completed, so it should be called on a worker thread.
+     *
+     * @param network                   if not null, the network to which the TCP socket will be bound
+     * @param reverseConnectionOnError  if connecting fails, send them a UDP discovery packet so they try to connect to us instead
+     */
+    @WorkerThread
+    fun deviceDiscovered(address: InetAddress, port: Int, deviceId: String, protocolVersion: Int, network: Network?, reverseConnectionOnError: Boolean) {
+        if (protocolVersion < 8) {
+            Log.w("KDE/LanLinkProvider", "Ignoring device $deviceId using too old protocol version $protocolVersion")
+            return
+        }
+
+        if (port !in MIN_PORT..MAX_PORT) {
             Log.e("LanLinkProvider", "TCP port outside of kdeconnect's range")
             return
         }
 
+        if (!isAllowedAddress(address)) {
+            Log.i("LanLinkProvider", "Not connecting to a non-local IP: $address")
+            return
+        }
+
+        if (rateLimitByDeviceId(deviceId)) {
+            Log.i("LanLinkProvider", "Discarding second discovery of the same device $deviceId received too quickly")
+            return
+        }
+
+        val deviceTrusted = TrustedDevices.isTrustedDevice(context, deviceId)
+        if (!deviceTrusted && !TrustedNetworkHelper.isTrustedNetwork(context)) {
+            Log.i("KDE/LanLinkProvider", "Ignoring discovered device because it is not trusted and I'm not on a trusted network.")
+            return
+        }
+
+        if (deviceTrusted && isProtocolDowngrade(deviceId, protocolVersion)) {
+            Log.w("KDE/LanLinkProvider", "Refusing to connect to a device using an older protocol version:$protocolVersion")
+            return
+        }
+
+        Log.i("KDE/LanLinkProvider", "Attempting to connect to $deviceId at $address:$port")
+
         var socket: Socket? = null
         try {
-            socket = SocketFactory.getDefault().createSocket(address, tcpPort)
+            val socketFactory = network?.socketFactory ?: SocketFactory.getDefault()
+            socket = socketFactory.createSocket(address, port)
             configureSocket(socket)
 
             val myDeviceInfo = DeviceHelper.getDeviceInfo(context)
-            val myIdentity = myDeviceInfo.toIdentityPacket()
-            myIdentity["targetDeviceId"] = identityPacket.getString("deviceId")
-            myIdentity["targetProtocolVersion"] = identityPacket.getString("protocolVersion")
+            val connectionPacket = myDeviceInfo.toConnectionPacket(deviceId, protocolVersion)
 
             val out = socket.getOutputStream()
-            out.write(myIdentity.serialize().toByteArray())
+            out.write(connectionPacket.serialize().toByteArray())
             out.flush()
-
-            identityPacketReceived(identityPacket, socket, ConnectionStarted.Remotely, deviceTrusted)
-            socket = null // The SSL socket now owns the underlying socket, or it was rejected and closed.
         } catch (e: IOException) {
-            Log.e("LanLinkProvider", "Exception receiving incoming UDP connection", e)
-        } catch (e: CertificateException) {
-            Log.e("LanLinkProvider", "Exception receiving incoming UDP connection", e)
-        } catch (e: SerializationException) {
-            Log.e("LanLinkProvider", "Exception receiving incoming UDP connection", e)
-        } finally {
+            Log.e("LanLinkProvider", "Exception connecting to $deviceId", e)
             socket?.closeSafe()
+            if (reverseConnectionOnError) {
+                Log.i("LanLinkProvider", "Connection error, attempting reverse connection")
+                sendUdpDiscoveryPacket(listOf(address), network)
+            }
+            return
+        }
+
+        try {
+            startSslHandshake(socket, deviceId, protocolVersion, ConnectionStarted.Remotely, deviceTrusted)
+        } catch (e: IOException) {
+            Log.e("LanLinkProvider", "Exception during handshake with $deviceId", e)
+            socket.closeSafe()
+        } catch (e: CertificateException) {
+            Log.e("LanLinkProvider", "Exception during handshake with $deviceId", e)
+            socket.closeSafe()
         }
     }
 
@@ -288,32 +344,25 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
     }
 
     /**
-     * Called when a new 'identity' packet is received. Those are passed here by
-     * [.tcpPacketReceived] and [.udpPacketReceived].
+     * Starts the SSL handshake with a remote device after the connection packet has been exchanged.
+     * Called from [tcpPacketReceived] and [deviceDiscovered].
      * Should be called on a new thread since it blocks until the handshake is completed.
      *
-     * @param identityPacket    identity of a remote device
      * @param socket            a new Socket, which should be used to receive packets from the remote device
+     * @param deviceId          id of the remote device, as received in the connection or discovery packet
+     * @param protocolVersion   protocol version of the remote device, as received in the connection or discovery packet
      * @param connectionStarted which side started this connection
-     * @param deviceTrusted     whether the packet comes from a trusted device
+     * @param deviceTrusted     whether the remote device is trusted
      */
     @WorkerThread
     @Throws(IOException::class, CertificateException::class)
-    private fun identityPacketReceived(
-        identityPacket: NetworkPacket,
+    private fun startSslHandshake(
         socket: Socket,
+        deviceId: String,
+        protocolVersion: Int,
         connectionStarted: ConnectionStarted,
         deviceTrusted: Boolean
     ) {
-        val deviceId = identityPacket.getString("deviceId")
-        val protocolVersion = identityPacket.getInt("protocolVersion")
-
-        if (deviceTrusted && isProtocolDowngrade(deviceId, protocolVersion)) {
-            Log.w("KDE/LanLinkProvider", "Refusing to connect to a device using an older protocol version:$protocolVersion")
-            socket.closeSafe()
-            return
-        }
-
         if (deviceTrusted && !TrustedDevices.isCertificateStored(context, deviceId)) {
             Log.e("KDE/LanLinkProvider", "Device trusted but no cert stored. This should not happen.")
             socket.closeSafe()
@@ -336,36 +385,30 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
             ThreadHelper.runOnNewThread {
                 val mode = if (clientMode) "client" else "server"
                 try {
-                    val secureIdentityPacket: NetworkPacket?
-                    if (protocolVersion >= 8) {
-                        val myDeviceInfo = DeviceHelper.getDeviceInfo(context)
-                        val myIdentity = myDeviceInfo.toIdentityPacket()
+                    val myDeviceInfo = DeviceHelper.getDeviceInfo(context)
+                    val myIdentity = myDeviceInfo.toIdentityPacket()
 
-                        val writer = sslSocket.getOutputStream()
-                        writer.write(myIdentity.serialize().toByteArray(Charsets.UTF_8))
-                        writer.flush()
-                        val line = readLineBounded(sslSocket.getInputStream(), MAX_IDENTITY_PACKET_SIZE)
-                        // Do not trust the identity packet we received unencrypted
-                        secureIdentityPacket = NetworkPacket.unserialize(line)
-                        if (!DeviceInfo.isValidIdentityPacket(secureIdentityPacket)) {
-                            Log.e("KDE/LanLinkProvider", "Identity packet isn't valid")
-                            sslSocket.closeSafe()
-                            return@runOnNewThread
-                        }
-                        val newProtocolVersion = secureIdentityPacket.getInt("protocolVersion")
-                        if (newProtocolVersion != protocolVersion) {
-                            Log.e("KDE/LanLinkProvider", "Protocol version changed half-way through the handshake: $protocolVersion -> $newProtocolVersion")
-                            sslSocket.closeSafe()
-                            return@runOnNewThread
-                        }
-                        val newDeviceId = secureIdentityPacket.getString("deviceId")
-                        if (newDeviceId != deviceId) {
-                            Log.e("KDE/LanLinkProvider", "Device ID changed half-way through the handshake: $deviceId -> $newDeviceId")
-                            sslSocket.closeSafe()
-                            return@runOnNewThread
-                        }
-                    } else {
-                        secureIdentityPacket = identityPacket
+                    val writer = sslSocket.getOutputStream()
+                    writer.write(myIdentity.serialize().toByteArray(Charsets.UTF_8))
+                    writer.flush()
+                    val line = readLineBounded(sslSocket.getInputStream(), MAX_IDENTITY_PACKET_SIZE)
+                    val secureIdentityPacket = NetworkPacket.unserialize(line)
+                    if (!DeviceInfo.isValidIdentityPacket(secureIdentityPacket)) {
+                        Log.e("KDE/LanLinkProvider", "Identity packet isn't valid")
+                        sslSocket.closeSafe()
+                        return@runOnNewThread
+                    }
+                    val newProtocolVersion = secureIdentityPacket.getInt("protocolVersion")
+                    if (newProtocolVersion != protocolVersion) {
+                        Log.e("KDE/LanLinkProvider", "Protocol version changed half-way through the handshake: $protocolVersion -> $newProtocolVersion")
+                        sslSocket.closeSafe()
+                        return@runOnNewThread
+                    }
+                    val newDeviceId = secureIdentityPacket.getString("deviceId")
+                    if (newDeviceId != deviceId) {
+                        Log.e("KDE/LanLinkProvider", "Device ID changed half-way through the handshake: $deviceId -> $newDeviceId")
+                        sslSocket.closeSafe()
+                        return@runOnNewThread
                     }
                     val certificate = event.peerCertificates[0]
                     val deviceInfo = DeviceInfo.fromIdentityPacketAndCert(secureIdentityPacket, certificate)
@@ -504,7 +547,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
         }
     }
 
-    private fun broadcastUdpIdentityPacket(network: Network?) {
+    private fun broadcastUdpDiscoveryPacket(network: Network?) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CINNAMON_BUN &&
             ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_LOCAL_NETWORK) != PackageManager.PERMISSION_GRANTED) {
             Log.w("LanLinkProvider", "Will not UDP broadcast, missing ACCESS_LOCAL_NETWORK permission")
@@ -520,30 +563,27 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
             updateCustomDevicesList()
             ipList.addAll(customDeviceAddresses)
             if (ipList.isNotEmpty()) {
-                sendUdpIdentityPacket(ipList, network)
+                sendUdpDiscoveryPacket(ipList, network)
             }
         }
     }
 
     @WorkerThread
-    fun sendUdpIdentityPacket(ipList: List<InetAddress>, network: Network?) {
+    fun sendUdpDiscoveryPacket(ipList: List<InetAddress>, network: Network?) {
         val tcpServer = tcpServer
         if (tcpServer?.isBound != true) {
             Log.i("LanLinkProvider", "Won't broadcast UDP packet if TCP socket is not ready yet")
             return
         }
 
-        // TODO: In protocol version 8 this packet doesn't need to contain identity info
-        //       since it will be exchanged after the socket is encrypted.
         val myDeviceInfo = DeviceHelper.getDeviceInfo(context)
-        val identity = myDeviceInfo.toIdentityPacket()
-        identity["tcpPort"] = tcpServer.getLocalPort()
+        val discoveryPacket = myDeviceInfo.toUdpDiscoveryPacket(tcpServer.getLocalPort())
 
         val bytes: ByteArray
         try {
-            bytes = identity.serialize().toByteArray(Charsets.UTF_8)
+            bytes = discoveryPacket.serialize().toByteArray(Charsets.UTF_8)
         } catch (e: SerializationException) {
-            Log.e("KDE/LanLinkProvider", "Failed to serialize identity packet", e)
+            Log.e("KDE/LanLinkProvider", "Failed to serialize UDP discovery packet", e)
             return
         }
 
@@ -569,9 +609,9 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
         for (ip in ipList) {
             try {
                 socket.send(DatagramPacket(bytes, bytes.size, ip, MIN_PORT))
-                //Log.i("KDE/LanLinkProvider","Udp identity packet sent to address "+client);
+                //Log.i("KDE/LanLinkProvider","UDP discovery packet sent to address "+client);
             } catch (e: IOException) {
-                Log.e("KDE/LanLinkProvider", "Sending udp identity packet failed. Invalid address? ($ip)", e)
+                Log.e("KDE/LanLinkProvider", "Sending UDP discovery packet failed. Invalid address? ($ip)", e)
             }
         }
 
@@ -595,7 +635,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
             }
         }
 
-        broadcastUdpIdentityPacket(null)
+        broadcastUdpDiscoveryPacket(null)
     }
 
     @Synchronized
@@ -623,7 +663,7 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
         setupUdpListener()
         setupTcpListener()
 
-        broadcastUdpIdentityPacket(network)
+        broadcastUdpDiscoveryPacket(network)
         synchronized(mdnsDiscovery) {
             if (TrustedNetworkHelper.isTrustedNetwork(context)) {
                 mdnsDiscovery.startAnnouncing() // noop if already announcing

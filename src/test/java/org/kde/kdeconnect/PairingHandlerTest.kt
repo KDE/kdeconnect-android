@@ -64,11 +64,4 @@ class PairingHandlerTest {
         verify(exactly = 0) { device.sendPacket(any()) }
         verify(exactly = 0) { callback.pairingFailed(any()) }
     }
-
-    @Test
-    fun getVerificationKeyV7() {
-        Assert.assertEquals("F3900DB5", PairingHandler.getVerificationKeyV7(certA, certB))
-        Assert.assertEquals("F3900DB5", PairingHandler.getVerificationKeyV7(certB, certA))
-        Assert.assertEquals("97A75917", PairingHandler.getVerificationKeyV7(certA, certA))
-    }
 }

@@ -18,9 +18,9 @@ import android.os.Build
 import android.util.Log
 import androidx.core.content.ContextCompat
 import org.kde.kdeconnect.helpers.DeviceHelper
-import org.kde.kdeconnect.helpers.DeviceHelper.deviceType
 import org.kde.kdeconnect.helpers.DeviceHelper.getDeviceId
 import org.kde.kdeconnect.helpers.DeviceHelper.getDeviceName
+import org.kde.kdeconnect.helpers.ThreadHelper
 import org.kde.kdeconnect.helpers.TrustedNetworkHelper
 import org.kde.kdeconnect.helpers.isPrivateAddress
 import org.kde.kdeconnect.helpers.normalizedMappedIpv4Address
@@ -148,11 +148,9 @@ class MdnsDiscovery {
         // for it to be useful (namely: we can't include the device certificate).
         // Each field (key + value) needs to be < 255 bytes. All the fields combined need to be < 1300 bytes.
         val deviceName = getDeviceName(context)
-        val deviceType = deviceType.toString()
         val protocolVersion = DeviceHelper.PROTOCOL_VERSION.toString()
         serviceInfo.setAttribute("id", deviceId)
         serviceInfo.setAttribute("name", deviceName)
-        serviceInfo.setAttribute("type", deviceType)
         serviceInfo.setAttribute("protocol", protocolVersion)
 
         Log.i(TAG, "My MDNS info: $serviceInfo")
@@ -231,15 +229,18 @@ class MdnsDiscovery {
                 return
             }
 
-            // Let the LanLinkProvider handle the connection
+            val deviceId = serviceInfo.serviceName
+            val protocolVersion = serviceInfo.attributes["protocol"]?.toString(Charsets.UTF_8)?.toIntOrNull() ?: -1
             val remoteAddress = pickAddress(serviceInfo)
+            val port = serviceInfo.port
             // Bind to the network the service was found on: right after connecting to a wifi the
-            // default network can still be cellular, which would make the packet fail or get lost.
+            // default network can still be cellular, which would make the connection fail.
             val network = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) serviceInfo.network else null
-            // TODO: In protocol version 8 we should be able to call "identityPacketReceived"
-            //       here, since we already have all the info we need to start a connection
-            //       and the remaining identity info will be exchanged later.
-            lanLinkProvider.sendUdpIdentityPacket(listOf(remoteAddress), network)
+
+            // Let the LanLinkProvider handle the connection. Connecting blocks, so do it on another thread.
+            ThreadHelper.runOnNewThread {
+                lanLinkProvider.deviceDiscovered(remoteAddress, port, deviceId, protocolVersion, network, true)
+            }
         }
 
         /**

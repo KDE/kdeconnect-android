@@ -68,20 +68,18 @@ class PairingHandler(private val device: Device, private val callback: PairingCa
                         callback.unpaired(device)
                     }
 
-                    if (device.protocolVersion >= 8) {
-                        pairingTimestamp = np.getLong("timestamp", -1L)
-                        if (pairingTimestamp == -1L) {
-                            state = PairState.NotPaired
-                            callback.unpaired(device)
-                            return
-                        }
-                        val currentTimestamp = System.currentTimeMillis() / 1000L
-                        if (pairingTimestamp < currentTimestamp - allowedTimestampDifferenceSeconds
-                            || pairingTimestamp > currentTimestamp + allowedTimestampDifferenceSeconds) {
-                            state = PairState.NotPaired
-                            callback.pairingFailed(device.context.getString(R.string.error_clocks_not_match))
-                            return
-                        }
+                    pairingTimestamp = np.getLong("timestamp", -1L)
+                    if (pairingTimestamp == -1L) {
+                        state = PairState.NotPaired
+                        callback.unpaired(device)
+                        return
+                    }
+                    val currentTimestamp = System.currentTimeMillis() / 1000L
+                    if (pairingTimestamp < currentTimestamp - allowedTimestampDifferenceSeconds
+                        || pairingTimestamp > currentTimestamp + allowedTimestampDifferenceSeconds) {
+                        state = PairState.NotPaired
+                        callback.pairingFailed(device.context.getString(R.string.error_clocks_not_match))
+                        return
                     }
 
                     state = PairState.RequestedByPeer
@@ -117,14 +115,10 @@ class PairingHandler(private val device: Device, private val callback: PairingCa
     }
 
     fun verificationKey(): String? {
-        return if (device.protocolVersion >= 8) {
-            if (state != PairState.Requested && state != PairState.RequestedByPeer) {
-                null
-            } else {
-                getVerificationKey(SslHelper.certificate, device.certificate, pairingTimestamp)
-            }
+        return if (state != PairState.Requested && state != PairState.RequestedByPeer) {
+            null
         } else {
-            getVerificationKeyV7(SslHelper.certificate, device.certificate)
+            getVerificationKey(SslHelper.certificate, device.certificate, pairingTimestamp)
         }
     }
 
@@ -263,11 +257,6 @@ class PairingHandler(private val device: Device, private val callback: PairingCa
         fun getVerificationKey(certificateA: Certificate, certificateB: Certificate, timestamp: Long): String {
             val certsConcat = sortedConcat(certificateA.publicKey.encoded, certificateB.publicKey.encoded)
             return humanReadableHash(certsConcat + timestamp.toString().toByteArray())
-        }
-
-        fun getVerificationKeyV7(certificateA: Certificate, certificateB: Certificate): String {
-            val certsConcat = sortedConcat(certificateA.publicKey.encoded, certificateB.publicKey.encoded)
-            return humanReadableHash(certsConcat)
         }
     }
 
