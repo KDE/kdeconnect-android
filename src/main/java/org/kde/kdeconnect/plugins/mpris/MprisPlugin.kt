@@ -202,6 +202,7 @@ class MprisPlugin : Plugin() {
     }
 
     private val players = ConcurrentHashMap<String, MprisPlayer>()
+    private var fallbackPlayer: String? = null
     private var supportAlbumArtPayload = false
     private val playerStatusUpdated = ConcurrentHashMap<String, () -> Unit>()
     private val playerListUpdated = ConcurrentHashMap<String, () -> Unit>()
@@ -340,6 +341,7 @@ class MprisPlugin : Plugin() {
 
         val newPlayerList = np.getStringList("playerList")
         if (newPlayerList != null) {
+            fallbackPlayer = np.getStringOrNull("fallbackPlayer")
             var equals = true
             newPlayerList.filter { !players.containsKey(it) }.forEach { newPlayer ->
                 equals = false
@@ -463,7 +465,7 @@ class MprisPlugin : Plugin() {
     }
 
     val playerList: List<String>
-        get() = players.keys.sorted()
+        get() = players.keys.sortedWith(compareBy({ it == fallbackPlayer }, { it }))
 
     fun getPlayerStatus(player: String?): MprisPlayer? = if (player == null) {
         null
@@ -477,7 +479,7 @@ class MprisPlugin : Plugin() {
          *
          * @return null if no players are playing, a playing player otherwise
          */
-        get() = players.values.firstOrNull(MprisPlayer::isPlaying)
+        get() = players.values.filter(MprisPlayer::isPlaying).minByOrNull { it.playerName == fallbackPlayer }
 
     fun hasPlayer(player: MprisPlayer): Boolean = players.containsValue(player)
 
