@@ -30,6 +30,7 @@ import org.kde.kdeconnect.extensions.getParcelableArrayExtraCompat
 import org.kde.kdeconnect.extensions.getParcelableExtraCompat
 import org.kde.kdeconnect.helpers.DeviceHelper
 import org.kde.kdeconnect.helpers.ThreadHelper
+import org.kde.kdeconnect.helpers.TrustedDevices
 import org.kde.kdeconnect.helpers.security.SslHelper
 import org.kde.kdeconnect.ui.SettingsFragment
 import java.io.Closeable
@@ -37,6 +38,7 @@ import java.io.IOException
 import java.io.InputStreamReader
 import java.io.Reader
 import java.security.cert.CertificateException
+import java.security.cert.X509Certificate
 import java.util.UUID
 import kotlin.text.Charsets.UTF_8
 
@@ -115,6 +117,20 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
         synchronized(sockets) { sockets.remove(remoteAddress) }
         synchronized(visibleDevices) { visibleDevices.remove(link.deviceId) }
         onConnectionLost(link)
+    }
+
+    private fun isCertificateValid(deviceInfo: DeviceInfo): Boolean {
+        val certDeviceId = SslHelper.getCommonNameFromCertificate(deviceInfo.certificate as X509Certificate)
+        if (certDeviceId != deviceInfo.id) {
+            Log.w("BluetoothLinkProvider", "DeviceID in cert doesn't match deviceID in identity packet: ${deviceInfo.id} vs $certDeviceId")
+            return false
+        }
+        if (TrustedDevices.isTrustedDevice(context, deviceInfo.id)
+            && deviceInfo.certificate != TrustedDevices.getDeviceCertificate(context, deviceInfo.id)) {
+            Log.w("BluetoothLinkProvider", "Certificate doesn't match the one stored for trusted device ${deviceInfo.id}")
+            return false
+        }
+        return true
     }
 
     private fun rejectConnection(device: BluetoothDevice?, socket: BluetoothSocket, connection: Closeable) {
@@ -217,6 +233,10 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
                 val pemEncodedCertificateBytes = Base64.decode(base64CertificateString, 0)
                 val certificate = SslHelper.parseCertificate(pemEncodedCertificateBytes)
                 val deviceInfo = DeviceInfo.fromIdentityPacketAndCert(identityPacket, certificate)
+                if (!isCertificateValid(deviceInfo)) {
+                    rejectConnection(socket.remoteDevice, socket, connection)
+                    return
+                }
                 Log.i("BTLinkProvider/Server", "About to create link")
                 val link = BluetoothLink(context, connection,
                         inputStream, outputStream, socket.remoteDevice,
@@ -415,6 +435,10 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
                 val pemEncodedCertificateBytes = Base64.decode(base64CertificateString, 0)
                 val certificate = SslHelper.parseCertificate(pemEncodedCertificateBytes)
                 val deviceInfo = DeviceInfo.fromIdentityPacketAndCert(identityPacket, certificate)
+                if (!isCertificateValid(deviceInfo)) {
+                    rejectConnection(device, socket, connection)
+                    return
+                }
                 val link = BluetoothLink(context, connection, inputStream, outputStream,
                         socket.remoteDevice, deviceInfo, this@BluetoothLinkProvider)
 
