@@ -32,6 +32,7 @@ import org.kde.kdeconnect.helpers.DeviceHelper
 import org.kde.kdeconnect.helpers.ThreadHelper
 import org.kde.kdeconnect.helpers.security.SslHelper
 import org.kde.kdeconnect.ui.SettingsFragment
+import java.io.Closeable
 import java.io.IOException
 import java.io.InputStreamReader
 import java.io.Reader
@@ -116,6 +117,12 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
         onConnectionLost(link)
     }
 
+    private fun rejectConnection(device: BluetoothDevice?, socket: BluetoothSocket, connection: Closeable) {
+        connection.closeSafe()
+        // Only remove the entry if it's still ours, so we don't drop the socket of an existing link
+        synchronized(sockets) { sockets.remove(device, socket) }
+    }
+
     private inner class ServerRunnable : Runnable {
         private var continueProcessing = true
         private var serverSocket: BluetoothServerSocket? = null
@@ -169,58 +176,57 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
                 synchronized(sockets) { sockets.remove(socket.remoteDevice) }
                 throw e
             }
+            var connection: ConnectionMultiplexer? = null
             try {
-                ConnectionMultiplexer(socket).use { connection ->
-                    val outputStream = connection.defaultOutputStream
-                    val inputStream = connection.defaultInputStream
+                connection = ConnectionMultiplexer(socket)
+                val outputStream = connection.defaultOutputStream
+                val inputStream = connection.defaultInputStream
 
-                    val myDeviceInfo = DeviceHelper.getDeviceInfo(context)
-                    val np = myDeviceInfo.toIdentityPacket()
-                    val myCertificate = Base64.encodeToString(SslHelper.certificate.encoded, 0)
-                    val pemEncodedCertificate = "-----BEGIN CERTIFICATE-----\n$myCertificate\n-----END CERTIFICATE-----\n"
+                val myDeviceInfo = DeviceHelper.getDeviceInfo(context)
+                val np = myDeviceInfo.toIdentityPacket()
+                val myCertificate = Base64.encodeToString(SslHelper.certificate.encoded, 0)
+                val pemEncodedCertificate = "-----BEGIN CERTIFICATE-----\n$myCertificate\n-----END CERTIFICATE-----\n"
 
-                    np["certificate"] = pemEncodedCertificate
+                np["certificate"] = pemEncodedCertificate
 
-                    val message = np.serialize().toByteArray(UTF_8)
-                    outputStream.write(message)
-                    outputStream.flush()
-                    Log.i("BTLinkProvider/Server", "Sent identity packet")
+                val message = np.serialize().toByteArray(UTF_8)
+                outputStream.write(message)
+                outputStream.flush()
+                Log.i("BTLinkProvider/Server", "Sent identity packet")
 
-                    // Listen for the response
-                    val sb = StringBuilder()
-                    val reader: Reader = InputStreamReader(inputStream, UTF_8)
-                    var charsRead = 0
-                    val buf = CharArray(512)
-                    while (sb.lastIndexOf("\n") == -1 && reader.read(buf).also { charsRead = it } != -1) {
-                        sb.append(buf, 0, charsRead)
-                    }
-                    val response = sb.toString().substringBefore('\n') // the last chunk may contain the start of the next packet
-                    val identityPacket = NetworkPacket.unserialize(response)
-                    if (!DeviceInfo.isValidIdentityPacket(identityPacket)) {
-                        Log.w("BTLinkProvider/Server", "Invalid identity packet received.")
-                        return
-                    }
-                    Log.i("BTLinkProvider/Server", "Received identity packet")
-                    val pemEncodedCertificateString = identityPacket.getString("certificate")
-                    val base64CertificateString = pemEncodedCertificateString
-                            .replace("-----BEGIN CERTIFICATE-----\n", "")
-                            .replace("-----END CERTIFICATE-----\n", "")
-                    val pemEncodedCertificateBytes = Base64.decode(base64CertificateString, 0)
-                    val certificate = SslHelper.parseCertificate(pemEncodedCertificateBytes)
-                    val deviceInfo = DeviceInfo.fromIdentityPacketAndCert(identityPacket, certificate)
-                    Log.i("BTLinkProvider/Server", "About to create link")
-                    val link = BluetoothLink(context, connection,
-                            inputStream, outputStream, socket.remoteDevice,
-                            deviceInfo, this@BluetoothLinkProvider)
-                    Log.i("BTLinkProvider/Server", "About to addLink")
-                    addLink(identityPacket, link)
-                    Log.i("BTLinkProvider/Server", "Link Added")
+                // Listen for the response
+                val sb = StringBuilder()
+                val reader: Reader = InputStreamReader(inputStream, UTF_8)
+                var charsRead = 0
+                val buf = CharArray(512)
+                while (sb.lastIndexOf("\n") == -1 && reader.read(buf).also { charsRead = it } != -1) {
+                    sb.append(buf, 0, charsRead)
                 }
+                val response = sb.toString().substringBefore('\n') // the last chunk may contain the start of the next packet
+                val identityPacket = NetworkPacket.unserialize(response)
+                if (!DeviceInfo.isValidIdentityPacket(identityPacket)) {
+                    Log.w("BTLinkProvider/Server", "Invalid identity packet received.")
+                    rejectConnection(socket.remoteDevice, socket, connection)
+                    return
+                }
+                Log.i("BTLinkProvider/Server", "Received identity packet")
+                val pemEncodedCertificateString = identityPacket.getString("certificate")
+                val base64CertificateString = pemEncodedCertificateString
+                        .replace("-----BEGIN CERTIFICATE-----\n", "")
+                        .replace("-----END CERTIFICATE-----\n", "")
+                val pemEncodedCertificateBytes = Base64.decode(base64CertificateString, 0)
+                val certificate = SslHelper.parseCertificate(pemEncodedCertificateBytes)
+                val deviceInfo = DeviceInfo.fromIdentityPacketAndCert(identityPacket, certificate)
+                Log.i("BTLinkProvider/Server", "About to create link")
+                val link = BluetoothLink(context, connection,
+                        inputStream, outputStream, socket.remoteDevice,
+                        deviceInfo, this@BluetoothLinkProvider)
+                Log.i("BTLinkProvider/Server", "About to addLink")
+                addLink(identityPacket, link)
+                Log.i("BTLinkProvider/Server", "Link Added")
             } catch (e: Exception) {
-                synchronized(sockets) {
-                    sockets.remove(socket.remoteDevice)
-                    Log.i("BTLinkProvider/Server", "Exception thrown, removing socket", e)
-                }
+                Log.i("BTLinkProvider/Server", "Exception thrown, removing socket", e)
+                rejectConnection(socket.remoteDevice, socket, connection ?: socket)
                 throw e
             }
         }
@@ -350,10 +356,11 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
                 return
             }
             Log.i("BTLinkProvider/Client", "Connected to ${device.address}")
+            var connection: ConnectionMultiplexer? = null
             try {
                 //Delay to let bluetooth initialize stuff correctly
                 Thread.sleep(500)
-                val connection = ConnectionMultiplexer(socket)
+                connection = ConnectionMultiplexer(socket)
                 val outputStream = connection.defaultOutputStream
                 val inputStream = connection.defaultInputStream
                 Log.i("BTLinkProvider/Client","Device: ${device.address} Before inputStream.read()")
@@ -370,7 +377,7 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
 
                 if (!DeviceInfo.isValidIdentityPacket(identityPacket)) {
                     Log.w("BTLinkProvider/Client", "Invalid identity packet received.")
-                    connection.closeSafe()
+                    rejectConnection(device, socket, connection)
                     return
                 }
 
@@ -378,10 +385,11 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
                 val myId = DeviceHelper.getDeviceId(context)
                 if (identityPacket.getString("deviceId") == myId) {
                     // Probably won't happen, but just to be safe
-                    connection.closeSafe()
+                    rejectConnection(device, socket, connection)
                     return
                 }
                 if (visibleDevices.containsKey(identityPacket.getString("deviceId"))) {
+                    rejectConnection(device, socket, connection)
                     return
                 }
                 Log.i("BTLinkProvider/Client", "identity packet received, creating link")
@@ -416,7 +424,7 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
                 }, true)
             } catch (e: Exception) {
                 Log.e("BTLinkProvider/Client", "Connection lost/disconnected on ${device.address}", e)
-                synchronized(sockets) { sockets.remove(device, socket) }
+                rejectConnection(device, socket, connection ?: socket)
             }
         }
     }
