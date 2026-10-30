@@ -40,8 +40,7 @@ class RemoteKeyboardPlugin : Plugin() {
     override val description: String
         get() = context.resources.getString(R.string.pref_plugin_remotekeyboard_desc)
 
-    override val minSdk: Int
-        get() = Build.VERSION_CODES.O
+    override val minSdk: Int = Build.VERSION_CODES.O
 
     override val permissionExplanationDialog: DialogFragment
         get() = StartActivityAlertDialogFragment.Builder()

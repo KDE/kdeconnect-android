@@ -137,7 +137,7 @@ internal object AlbumArtCache {
      *
      * @param mpris The mpris plugin
      */
-    fun deregisterPlugin(mpris: MprisPlugin?) {
+    fun deregisterPlugin(mpris: MprisPlugin) {
         registeredPlugins.remove(mpris)
     }
 
@@ -149,9 +149,9 @@ internal object AlbumArtCache {
      * @param albumUrl The album art url
      * @return A bitmap for the album art. Can be null if not (yet) found
      */
-    fun getAlbumArt(albumUrl: String?, plugin: MprisPlugin, player: String?): Bitmap? {
+    fun getAlbumArt(albumUrl: String, plugin: MprisPlugin, player: String): Bitmap? {
         // If the url is invalid, return "no album art"
-        if (albumUrl.isNullOrEmpty()) {
+        if (albumUrl.isEmpty()) {
             return null
         }
         val url = albumUrl.toUri()

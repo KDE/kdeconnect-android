@@ -467,9 +467,7 @@ class MprisPlugin : Plugin() {
     val playerList: List<String>
         get() = players.keys.sortedWith(compareBy({ it == fallbackPlayer }, { it }))
 
-    fun getPlayerStatus(player: String?): MprisPlayer? = if (player == null) {
-        null
-    } else players[player]
+    fun getPlayerStatus(player: String?): MprisPlayer? = player?.let { players[it] }
 
     fun getEmptyPlayer(): MprisPlayer = MprisPlayer()
 

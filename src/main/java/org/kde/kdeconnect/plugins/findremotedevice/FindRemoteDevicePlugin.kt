@@ -22,7 +22,7 @@ class FindRemoteDevicePlugin : Plugin() {
     override fun onPacketReceived(np: NetworkPacket): Boolean = true
 
     override fun getUiMenuEntries(): List<PluginUiMenuEntry> = listOf(
-        PluginUiMenuEntry(context.getString(R.string.ring)) { parentActivity ->
+        PluginUiMenuEntry(context.getString(R.string.ring)) {
             device.sendPacket(NetworkPacket(FindMyPhonePlugin.PACKET_TYPE_FINDMYPHONE_REQUEST))
         }
     )

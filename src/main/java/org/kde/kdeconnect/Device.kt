@@ -148,9 +148,6 @@ class Device : PacketReceiver {
         fun onPluginsChanged(device: Device)
     }
 
-    val connectivityType: String?
-        get() = links.firstOrNull()?.name
-
     val name: String
         get() = deviceInfo.name
 

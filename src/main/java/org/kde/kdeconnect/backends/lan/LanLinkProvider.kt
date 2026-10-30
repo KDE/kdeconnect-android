@@ -157,12 +157,11 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
             return
         }
 
-        val message: String?
-        try {
+        val message = try {
             // We don't use a BufferedInputStream on purpose, since BufferedReader reads ahead and would require
             // us to keep a single BufferedInputStream instance and pass it around to make sure we don't lose data.
             // This means we are readying byte by byte directly from the OS, which is slow, but only for the handshake.
-            message = readLineBounded(socket.getInputStream(), MAX_IDENTITY_PACKET_SIZE)
+            readLineBounded(socket.getInputStream(), MAX_IDENTITY_PACKET_SIZE)
             //Log.e("TcpListener", "Received TCP packet: $message");
         } catch (e: Exception) {
             Log.e("KDE/LanLinkProvider", "Exception while receiving TCP packet", e)

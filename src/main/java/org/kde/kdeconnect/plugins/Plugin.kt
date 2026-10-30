@@ -238,19 +238,17 @@ abstract class Plugin {
      */
     abstract val outgoingPacketTypes: Array<String>
 
-    protected open val requiredPermissions: Array<String>
-        /**
-         * Should return the list of permissions from Manifest.permission.* that, if not present,
-         * mean the plugin can't be loaded.
-         */
-        get() = emptyArray()
+    /**
+     * Should return the list of permissions from Manifest.permission.* that, if not present,
+     * mean the plugin can't be loaded.
+     */
+    protected open val requiredPermissions: Array<String> = emptyArray()
 
-    protected open val optionalPermissions: Array<String>
-        /**
-         * Should return the list of permissions from Manifest.permission.* that enable additional
-         * functionality in the plugin (without preventing the plugin to load).
-         */
-        get() = emptyArray()
+    /**
+     * Should return the list of permissions from Manifest.permission.* that enable additional
+     * functionality in the plugin (without preventing the plugin to load).
+     */
+    protected open val optionalPermissions: Array<String> = emptyArray()
 
     /**
      * Returns the string to display before asking for the required permissions for the plugin.

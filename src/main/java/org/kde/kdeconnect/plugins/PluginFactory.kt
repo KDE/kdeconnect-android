@@ -10,7 +10,7 @@ import android.util.Log
 import org.kde.kdeconnect.Device
 
 object PluginFactory {
-    annotation class LoadablePlugin  //Annotate plugins with this so PluginFactory finds them
+    annotation class LoadablePlugin  // Annotate plugins with this so PluginFactory finds them
 
     private var pluginInfo: Map<String, PluginInfo> = mapOf()
 

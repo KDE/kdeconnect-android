@@ -203,8 +203,7 @@ class FindMyPhonePlugin : Plugin() {
     override fun getSettingsFragment(activity: Activity): PluginSettingsFragment =
         FindMyPhoneSettingsFragment.newInstance(pluginKey, device.deviceId, R.xml.findmyphoneplugin_preferences)
 
-    override val requiredPermissions: Array<String>
-        get() = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+    override val requiredPermissions: Array<String> = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             arrayOf(Manifest.permission.POST_NOTIFICATIONS)
         } else {
             emptyArray()

@@ -124,8 +124,7 @@ class MouseReceiverPlugin : Plugin() {
         }
     }
 
-    override val minSdk: Int
-        get() = Build.VERSION_CODES.N
+    override val minSdk: Int = Build.VERSION_CODES.N
 
     override val displayName: String
         get() = context.getString(R.string.mouse_receiver_plugin_name)
