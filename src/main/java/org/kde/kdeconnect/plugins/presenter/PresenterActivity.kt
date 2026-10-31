@@ -25,12 +25,17 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -44,12 +49,15 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.input.pointer.pointerInteropFilter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.media.VolumeProviderCompat
@@ -76,6 +84,7 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener, OnSharedPref
     private var volumeKeys = false
     private lateinit var prefs: SharedPreferences
     private var sensitivity = 0.03f
+    private var zoomControlsVisible by mutableStateOf(false)
 
     override fun onSensorChanged(event: SensorEvent?) {
         if (event?.sensor?.type == Sensor.TYPE_GYROSCOPE) {
@@ -206,6 +215,7 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener, OnSharedPref
                             .padding(horizontal = 16.dp),
                         style = MaterialTheme.typography.bodyLarge,
                     )
+                    if (zoomControlsVisible) ZoomControls(onClose = { zoomControlsVisible = false })
                     Row(
                         modifier = Modifier
                             .fillMaxSize()
@@ -299,9 +309,74 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener, OnSharedPref
                         },
                         text = { Text(stringResource(R.string.presenter_exit)) },
                     )
+                    DropdownMenuItem(
+                        onClick = {
+                            menuExpanded = false
+                            zoomControlsVisible = true
+                        },
+                        text = { Text(stringResource(R.string.presenter_change_zoom)) },
+                    )
                 }
             }
         )
+    }
+
+    @Composable
+    private fun ZoomControls(onClose: () -> Unit) {
+        val haptics = LocalHapticFeedback.current
+        val zoomOutDescription = stringResource(R.string.presenter_zoom_out)
+        val zoomInDescription = stringResource(R.string.presenter_zoom_in)
+
+        Column {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 16.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Text(
+                    text = stringResource(R.string.presenter_zoom),
+                    modifier = Modifier.weight(1f),
+                    style = MaterialTheme.typography.titleMedium,
+                )
+                IconButton(onClick = onClose) {
+                    Icon(Icons.Default.Close, stringResource(R.string.close))
+                }
+            }
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(20.dp),
+            ) {
+                Button(
+                    onClick = {
+                        plugin.sendZoomOut()
+                        haptics.performHapticFeedback(HapticFeedbackType.Confirm)
+                    },
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(72.dp)
+                        .semantics { contentDescription = zoomOutDescription },
+                    shape = RoundedCornerShape(24.dp),
+                    colors = ButtonDefaults.filledTonalButtonColors(),
+                ) {
+                    Text("−", style = MaterialTheme.typography.displaySmall)
+                }
+                Button(
+                    onClick = {
+                        plugin.sendZoomIn()
+                        haptics.performHapticFeedback(HapticFeedbackType.Confirm)
+                    },
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(72.dp)
+                        .semantics { contentDescription = zoomInDescription },
+                    shape = RoundedCornerShape(24.dp),
+                    colors = ButtonDefaults.filledTonalButtonColors(),
+                ) {
+                    Text("+", style = MaterialTheme.typography.displaySmall)
+                }
+            }
+        }
     }
 
     companion object {

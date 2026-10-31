@@ -77,6 +77,17 @@ class PresenterPlugin : Plugin() {
         device.sendPacket(np)
     }
 
+    fun sendZoomIn() = sendCtrlKey("+")
+
+    fun sendZoomOut() = sendCtrlKey("-")
+
+    private fun sendCtrlKey(key: String) {
+        val np = NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST)
+        np["key"] = key
+        np["ctrl"] = true
+        device.sendPacket(np)
+    }
+
     fun sendPointer(xDelta: Float, yDelta: Float) {
         if (!device.isReachable) return // Called continuously from the gyroscope, don't spam failures
         val np = NetworkPacket(PACKET_TYPE_PRESENTER)

@@ -413,6 +413,10 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
 
     <string name="presenter_fullscreen">Fullscreen</string>
     <string name="presenter_exit">Exit presentation</string>
+    <string name="presenter_change_zoom">Change zoom</string>
+    <string name="presenter_zoom">Zoom</string>
+    <string name="presenter_zoom_in">Zoom in</string>
+    <string name="presenter_zoom_out">Zoom out</string>
     <string name="presenter_lock_tip">You can lock your device and use the volume keys to go to the previous/next slide</string>
 
     <string name="add_command">Add a command</string>
