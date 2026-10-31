@@ -15,6 +15,8 @@ import android.net.nsd.NsdServiceInfo
 import android.net.wifi.WifiManager
 import android.net.wifi.WifiManager.MulticastLock
 import android.os.Build
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.core.content.ContextCompat
 import org.kde.kdeconnect.helpers.DeviceHelper
@@ -45,6 +47,14 @@ class MdnsDiscovery {
         multicastLock = wifiManager.createMulticastLock("kdeConnectMdnsMulticastLock")
     }
 
+    private val handler = Handler(Looper.getMainLooper())
+    private val stopDiscoveryRunnable = Runnable {
+        synchronized(this@MdnsDiscovery) {
+            Log.d(TAG, "Mdns discovery window timed out, stopping discovery to release MulticastLock")
+            stopDiscovering()
+        }
+    }
+
     @Synchronized
     fun startDiscovering() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CINNAMON_BUN && ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_LOCAL_NETWORK) != PERMISSION_GRANTED) {
@@ -56,21 +66,43 @@ class MdnsDiscovery {
             return
         }
         if (discoveryListener == null) {
+            val listener = createDiscoveryListener()
             multicastLock.acquire()
-            discoveryListener = createDiscoveryListener()
-            mNsdManager.discoverServices(SERVICE_TYPE, NsdManager.PROTOCOL_DNS_SD, discoveryListener)
+            discoveryListener = listener
+            // Schedule before requesting discovery so even an immediate failure callback
+            // can cancel the timeout belonging to this discovery session.
+            handler.postDelayed(stopDiscoveryRunnable, DISCOVERY_TIMEOUT_MILLIS)
+            try {
+                mNsdManager.discoverServices(SERVICE_TYPE, NsdManager.PROTOCOL_DNS_SD, listener)
+            } catch (e: RuntimeException) {
+                clearDiscovery(listener)
+                throw e
+            }
         }
     }
 
     @Synchronized
     fun stopDiscovering() {
+        handler.removeCallbacks(stopDiscoveryRunnable)
         if (discoveryListener != null) {
             try {
                 mNsdManager.stopServiceDiscovery(discoveryListener)
             } catch (_: IllegalArgumentException) {
                 // Ignore "listener not registered" exception
+            } finally {
+                clearDiscovery(discoveryListener)
             }
-            discoveryListener = null
+        }
+    }
+
+    // Ends the current discovery session, but only if `listener` belongs to it:
+    // callbacks from an already-stopped session can arrive late and must not
+    // clear a newer session.
+    private fun clearDiscovery(listener: DiscoveryListener?) {
+        if (listener == null || discoveryListener !== listener) return
+        handler.removeCallbacks(stopDiscoveryRunnable)
+        discoveryListener = null
+        if (multicastLock.isHeld) {
             multicastLock.release()
         }
     }
@@ -196,15 +228,15 @@ class MdnsDiscovery {
 
         override fun onDiscoveryStopped(serviceType: String?) {
             Log.i(TAG, "MDNS discovery stopped: $serviceType")
+            synchronized(this@MdnsDiscovery) {
+                clearDiscovery(this)
+            }
         }
 
         override fun onStartDiscoveryFailed(serviceType: String?, errorCode: Int) {
             Log.e(TAG, "MDNS discovery start failed: $errorCode")
             synchronized(this@MdnsDiscovery) {
-                if (discoveryListener === this) {
-                    discoveryListener = null
-                    multicastLock.release()
-                }
+                clearDiscovery(this)
             }
         }
 
@@ -262,5 +294,7 @@ class MdnsDiscovery {
         private const val TAG: String = "MdnsDiscovery"
 
         private const val SERVICE_TYPE: String = "_kdeconnect._udp"
+
+        private const val DISCOVERY_TIMEOUT_MILLIS: Long = 30000L
     }
 }
