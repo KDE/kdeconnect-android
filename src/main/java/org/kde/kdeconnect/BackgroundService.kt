@@ -66,7 +66,7 @@ class BackgroundService : Service() {
 
     private fun registerLinkProviders() {
         linkProviders.add(LanLinkProvider(this))
-        //linkProviders.add(LoopbackLinkProvider(this))
+        //linkProviders.add(org.kde.kdeconnect.backends.loopback.LoopbackLinkProvider(this))
         linkProviders.add(BluetoothLinkProvider(this))
     }
 
