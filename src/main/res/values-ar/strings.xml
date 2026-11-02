@@ -64,6 +64,7 @@
   <string name="open_mousepad">الإدخال البعيد</string>
   <string name="open_mousepad_tv">جهاز التحكم عن بعد للتلفاز</string>
   <string name="mousepad_info">حرك إصبعًا على الشاشة لتحريك مؤشر الفأرة. اطرق للنقرة، واستخدم اثنين أو ثلاث أصابع للأزرار اليمنى والوسطى. استخدام أصبعين للتمرير. استخدم الضغط طويلًا للسحب والإفلات. يمكن تمكين وظيفة الفأرة التوجيهية Gyro من تفضيلات الملحقة.</string>
+  <string name="mousepad_info_double_tap">حرك إصبعًا على الشاشة لتحريك مؤشر الفأرة. اطرق للنقرة، واستخدم اثنين أو ثلاث أصابع للأزرار اليمنى والوسطى. استخدام أصبعين للتمرير. الطرق المزدوج للسحب والإفلات. يمكن تمكين وظيفة الفأرة التوجيهية Gyro من تفضيلات الملحقة.</string>
   <string name="mousepad_info_no_gestures">حرك إصبعًا على الشاشة لتحريك مؤشر الفأرة، اطرق للنقرة.</string>
   <string name="mousepad_keyboard_input_not_supported">إدخال لوحة المفاتيح غير مدعوم من قبل الجهاز المقترن</string>
   <string name="mousepad_single_tap_settings_title">اضبط إجراء الطَرق بأصبع واحدة</string>
@@ -286,6 +287,7 @@
   <string name="sftp_saf_permission_explanation">للوصول إلى الملفات عن بُعد عليك ضبط مواقع التخزين</string>
   <string name="sftp_manage_storage_permission_explanation">للسماح بالوصول عن بُعد إلى الملفات الموجودة على هذا الجهاز، يجب أن تسمح لـ جسر كِيدِي بإدارة التخزين.</string>
   <string name="sftp_missing_permission_error">أذون مفقودة: الوصول إلى نظام الملفات</string>
+  <string name="sftp_could_not_determine_ip">تعذّر تحديد عنوان IP المحلي</string>
   <string name="no_players_connected">لم يُعثر على مشغّلات</string>
   <string name="send_files">أرسل ملفّات</string>
   <string name="use_digitizer">استعمله كلوح رسم</string>
@@ -337,6 +339,7 @@
   <string name="contacts_per_device_confirmation">ستُنسخ جهات اتصال هاتفك إلى هذا الجهاز، بحيث يمكن استخدامها من قبل تطبيق جسر كِيدِي للرسائل النصية القصيرة والتطبيقات الأخرى.</string>
   <string name="select_ringtone">اختر النغمة</string>
   <string name="telephony_pref_blocked_title">أرقام محظورة</string>
+  <string name="telephony_pref_blocked_dialog_desc">لا تعرض المكالمات من هذه الأرقام. يرجى تحديد رقم واحد لكل سطر</string>
   <string name="mpris_coverart_description">الصورة الفنية للوسيط الحالي</string>
   <string name="settings_icon_description">أيقونة الإعدادات</string>
   <string name="presenter_fullscreen">ملء الشّاشة</string>
@@ -363,6 +366,7 @@
   <string name="runcommand_notpaired">الجهاز غير مقترن</string>
   <string name="runcommand_nosuchdevice">لا يوجد جهاز من هذا القبيل</string>
   <string name="runcommand_noruncommandplugin">لم يُمكّن ملحقة تشغيل الأوامر في هذا الجهاز</string>
+  <string name="runcommand_widget_no_device">انقر على العنوان لاختيار جهاز.</string>
   <string name="runcommand_category_device_controls_title">متحكمات الجهاز</string>
   <string name="runcommand_device_controls_summary">إذا كان جهازك يدعم عناصر تحكم الجهاز، فستظهر الأوامر التي ضبطتها هناك.</string>
   <string name="set_runcommand_name_as_title">اجعل اسم الأمر كعنوان</string>
