@@ -328,6 +328,10 @@
   <string name="settings_icon_description">Піктограма параметрів</string>
   <string name="presenter_fullscreen">На увесь екран</string>
   <string name="presenter_exit">Вийти з презентації</string>
+  <string name="presenter_change_zoom">Змінити масштаб</string>
+  <string name="presenter_zoom">Масштаб</string>
+  <string name="presenter_zoom_in">Збільшити</string>
+  <string name="presenter_zoom_out">Зменшити</string>
   <string name="presenter_lock_tip">Ви можете заблокувати ваш пристрій так, щоб користуватися кнопками зміни гучності як кнопками зміни слайдів «Назад»/«Далі».</string>
   <string name="add_command">Додати команду</string>
   <string name="addcommand_explanation">Жодних команд не зареєстровано</string>
