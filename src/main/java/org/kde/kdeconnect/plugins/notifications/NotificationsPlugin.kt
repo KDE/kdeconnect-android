@@ -250,12 +250,16 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
 
         np["actions"] = extractActions(notification, key)
 
-        val onlyAlertOnce = (notification.flags and Notification.FLAG_ONLY_ALERT_ONCE) != 0
+        // Some apps ask to notify the user only once they are posted and not for updates, but (for some reason),
+        // some messaging apps also set that flag, and we should notify the user for every new message (since they
+        // just update the notification), so ignore their ask.
+        val isSilent = silent || (isUpdate && (notification.flags and Notification.FLAG_ONLY_ALERT_ONCE) != 0 && !isConversation)
+
         np["id"] = key
         np["isClearable"] = statusBarNotification.isClearable
         np["appName"] = appNameLookup(context, packageName)
         np["time"] = statusBarNotification.postTime.toString()
-        np["silent"] = silent || (isUpdate && onlyAlertOnce)
+        np["silent"] = isSilent
 
         if (!appDatabase.getPrivacy(packageName, AppDatabase.PrivacyOptions.BLOCK_CONTENTS)) {
             val rn = extractRepliableNotification(statusBarNotification)
