@@ -52,6 +52,9 @@ class BackgroundService : Service() {
 
     private val linkProviders = mutableListOf<BaseLinkProvider>()
 
+    private var screenOnReceiver: KdeConnectBroadcastReceiver? = null
+    private var networkCallback: NetworkCallback? = null
+
     /** Indicates whether device is connected over wifi / usb / bluetooth / (anything other than cellular) */
     val isConnectedToNonCellularNetwork: LiveData<Boolean>
         field = MutableLiveData<Boolean>()
@@ -109,12 +112,14 @@ class BackgroundService : Service() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
             filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION)
         }
-        registerReceiver(KdeConnectBroadcastReceiver(), filter)
+        screenOnReceiver = KdeConnectBroadcastReceiver().also {
+            registerReceiver(it, filter)
+        }
 
         // Watch for changes on all network connections except cellular networks
         val networkRequestBuilder = createNonCellularNetworkRequestBuilder()
         val connectivityManager = this.getSystemService<ConnectivityManager>()
-        connectivityManager?.registerNetworkCallback(networkRequestBuilder.build(), object : NetworkCallback() {
+        networkCallback = object : NetworkCallback() {
 
             // All callbacks run on a dedicated thread that isn't the main thread
 
@@ -129,7 +134,9 @@ class BackgroundService : Service() {
                 isConnectedToNonCellularNetwork.postValue(false)
                 onNetworkChange(null)
             }
-        })
+        }.also {
+            connectivityManager?.registerNetworkCallback(networkRequestBuilder.build(), it)
+        }
 
         registerLinkProviders()
         addConnectionListener(applicationInstance.connectionListener) // Link Providers need to be already registered
@@ -235,6 +242,10 @@ class BackgroundService : Service() {
             linkProvider.onStop()
         }
         KdeConnect.getInstance().removeDeviceListChangedCallback("BackgroundService")
+        screenOnReceiver?.let { unregisterReceiver(it) }
+        screenOnReceiver = null
+        networkCallback?.let { getSystemService<ConnectivityManager>()?.unregisterNetworkCallback(it) }
+        networkCallback = null
         super.onDestroy()
     }
 
