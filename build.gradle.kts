@@ -327,7 +327,7 @@ dependencies {
 }
 
 licenseReport {
-    configurations = LicenseReportExtension.ALL
+    configurations = arrayOf("releaseRuntimeClasspath", "coreLibraryDesugaring")
     renderers = arrayOf<ReportRenderer>(TextReportRenderer())
 }
 
