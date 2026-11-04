@@ -318,7 +318,9 @@ dependencies {
     testImplementation(libs.mockk)
     testImplementation(libs.slf4j.simple) // do not try to use the Android logger backend in tests
     testImplementation(libs.jsonassert)
-    testImplementation(libs.robolectric)
+    testImplementation(libs.robolectric) {
+        exclude(group = "org.robolectric", module = "nativeruntime-dist-compat")
+    }
     testImplementation(libs.androidx.junit)
 
     // For device controls
