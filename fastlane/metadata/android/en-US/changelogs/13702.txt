@@ -1,0 +1,9 @@
+1.37.2:
+- Fix some notifications not being synced
+- Fix volume controls disappearing
+- Improve device reconnection
+- Add zoom controls to presentation remote
+
+1.37.0:
+No new features added, but this version ships lots of internal changes. Please report any issues you find!
+
