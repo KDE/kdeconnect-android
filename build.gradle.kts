@@ -3,7 +3,6 @@ import com.android.build.api.instrumentation.ClassContext
 import com.android.build.api.instrumentation.ClassData
 import com.android.build.api.instrumentation.InstrumentationParameters
 import com.android.build.api.instrumentation.InstrumentationScope
-import com.github.jk1.license.LicenseReportExtension
 import com.github.jk1.license.render.ReportRenderer
 import com.github.jk1.license.render.TextReportRenderer
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget

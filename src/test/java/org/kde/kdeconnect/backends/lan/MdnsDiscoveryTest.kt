@@ -27,12 +27,10 @@ import org.kde.kdeconnect.helpers.DeviceHelper
 import org.kde.kdeconnect.helpers.TrustedNetworkHelper
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.Shadows.shadowOf
-import org.robolectric.annotation.Config
 import org.robolectric.annotation.LooperMode
 import java.util.concurrent.TimeUnit
 
 @RunWith(RobolectricTestRunner::class)
-@Config(sdk = [28])
 @LooperMode(LooperMode.Mode.PAUSED)
 class MdnsDiscoveryTest {
     private lateinit var discovery: MdnsDiscovery
