@@ -89,11 +89,12 @@ class SystemVolumeFragment : BaseFragment<SystemVolumeFragmentBinding>(),
         if (!::plugin.isInitialized || !::recyclerAdapter.isInitialized) {
             return
         }
-        for (sink in plugin.sinks) {
+        val sinks = plugin.sinks.toList()
+        for (sink in sinks) {
             sink.addListener(this@SystemVolumeFragment)
         }
         requireActivity().runOnUiThread {
-            recyclerAdapter.submitList(plugin.sinks.toList())
+            recyclerAdapter.submitList(sinks)
         }
     }
 
