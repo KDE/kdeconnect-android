@@ -9,18 +9,19 @@ package org.kde.kdeconnect.plugins.share
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.edit
+import androidx.core.net.toUri
 import androidx.documentfile.provider.DocumentFile
 import androidx.preference.Preference
 import androidx.preference.PreferenceManager
 import androidx.preference.SwitchPreference
 import org.kde.kdeconnect.ui.PluginSettingsFragment
 import java.io.File
-import androidx.core.content.edit
-import androidx.core.net.toUri
 
 class ShareSettingsFragment : PluginSettingsFragment() {
 
@@ -54,6 +55,12 @@ class ShareSettingsFragment : PluginSettingsFragment() {
             .getBoolean(PREFERENCE_CUSTOMIZE_DESTINATION, false)
 
         updateFilePickerStatus(customized)
+
+        // Since Android O, sound and vibration are controlled by the notification channel, so this preference has no effect
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // Remove the setting when we only support SDK 26+
+            preferenceScreen.findPreference<SwitchPreference>("share_notification_preference")!!.isVisible = false
+        }
     }
 
     private fun updateFilePickerStatus(enabled: Boolean) {

@@ -9,6 +9,7 @@ import android.app.Notification
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Intent
+import android.os.Build
 import android.os.SystemClock
 import androidx.core.app.NotificationCompat
 import androidx.core.content.getSystemService
@@ -76,9 +77,13 @@ internal class UploadNotification(private val device: Device, private val jobId:
             .setAutoCancel(true)
             .setOngoing(false)
 
-        val prefs = PreferenceManager.getDefaultSharedPreferences(device.context)
-        if (prefs.getBoolean("share_notification_preference", true)) {
-            builder.setDefaults(Notification.DEFAULT_ALL)
+        // Since Android O, sound and vibration are controlled by the notification channel
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+            // Remove the setting when we only support SDK 26+
+            val prefs = PreferenceManager.getDefaultSharedPreferences(device.context)
+            if (prefs.getBoolean("share_notification_preference", true)) {
+                builder.setDefaults(Notification.DEFAULT_ALL)
+            }
         }
     }
 
