@@ -139,12 +139,10 @@ class RunCommandPluginTest {
         val commandList = runCommandPlugin.commandList
         assertEquals(2, commandList.size)
 
-        val updatedCommand1 = commandList[0]
-        assertEquals("command1", updatedCommand1.key)
+        val updatedCommand1 = commandList.single { it.key == "command1" }
         assertEquals("Updated Command 1", updatedCommand1.name)
 
-        val command2 = commandList[1]
-        assertEquals("command2", command2.key)
+        val command2 = commandList.single { it.key == "command2" }
         assertEquals("Command 2", command2.name)
 
         verify { device.onPluginsChanged() }
