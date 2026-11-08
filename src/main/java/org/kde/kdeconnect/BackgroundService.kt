@@ -293,12 +293,14 @@ class BackgroundService : Service() {
                 addTransportType(NetworkCapabilities.TRANSPORT_VPN)
                 addTransportType(NetworkCapabilities.TRANSPORT_ETHERNET)
                 addTransportType(NetworkCapabilities.TRANSPORT_BLUETOOTH)
-                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.O) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     addTransportType(NetworkCapabilities.TRANSPORT_WIFI_AWARE)
                 }
-                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.S) {
-                    addTransportType(NetworkCapabilities.TRANSPORT_USB)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
                     addTransportType(NetworkCapabilities.TRANSPORT_LOWPAN)
+                }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                    addTransportType(NetworkCapabilities.TRANSPORT_USB)
                 }
             }
         }
