@@ -6,6 +6,7 @@
  */
 package org.kde.kdeconnect.helpers
 
+import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.ClipDescription
 import android.content.Context
@@ -15,7 +16,7 @@ import android.os.Build
 import android.os.SystemClock
 import android.webkit.URLUtil
 import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.getSystemService
 import org.kde.kdeconnect.extensions.getParcelableArrayListCompat
 import org.kde.kdeconnect.extensions.getParcelableCompat
 import org.kde.kdeconnect.helpers.LifecycleHelper.isInForeground
@@ -43,7 +44,8 @@ object IntentHelper {
                 .setAutoCancel(true)
                 .build()
             val id = SystemClock.elapsedRealtime().toInt()
-            NotificationManagerCompat.from(context).notify(id, notification)
+            context.getSystemService<NotificationManager>()
+                ?.notify(id, notification)
         } else {
             context.startActivity(intent)
         }
