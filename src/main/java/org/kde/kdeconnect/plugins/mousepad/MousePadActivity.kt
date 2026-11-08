@@ -228,6 +228,10 @@ class MousePadActivity :
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        if (!::prefs.isInitialized) {
+            return false
+        }
+
         menuInflater.inflate(R.menu.menu_mousepad, menu)
 
         val mouseButtonsEnabled = prefs.getBoolean(getString(R.string.mousepad_mouse_buttons_enabled_pref), true)
