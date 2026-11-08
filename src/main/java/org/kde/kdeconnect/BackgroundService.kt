@@ -302,17 +302,25 @@ class BackgroundService : Service() {
             }
         }
 
+        private fun startService(context: Context, intent: Intent) {
+            try {
+                ContextCompat.startForegroundService(context, intent)
+            } catch (e: IllegalStateException) { // To catch ForegroundServiceStartNotAllowedException
+                Log.w(TAG, "Couldn't start BackgroundService", e)
+            }
+        }
+
         fun Start(context: Context) {
             Log.d(TAG, "Start")
             val intent = Intent(context, BackgroundService::class.java)
-            ContextCompat.startForegroundService(context, intent)
+            startService(context, intent)
         }
 
         fun ForceRefreshConnections(context: Context) {
             Log.d(TAG, "ForceRefreshConnections")
             val intent = Intent(context, BackgroundService::class.java)
             intent.putExtra("refresh", true)
-            ContextCompat.startForegroundService(context, intent)
+            startService(context, intent)
         }
     }
 }
