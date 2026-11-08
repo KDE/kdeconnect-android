@@ -74,7 +74,12 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
         }
     }
 
+    @Synchronized
     override fun onStart() {
+        if (clientRunnable != null || serverRunnable != null) {
+            return // Already started
+        }
+
         val preferences = PreferenceManager.getDefaultSharedPreferences(context)
         if (!preferences.getBoolean(SettingsFragment.KEY_BLUETOOTH_ENABLED, false)) {
             return
@@ -93,19 +98,23 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
         ThreadHelper.runOnNewThread(serverRunnable!!)
     }
 
+    @Synchronized
     override fun onNetworkChange(network: Network?) {
         Log.i("BluetoothLinkProvider", "onNetworkChange called")
         onStop()
         onStart()
     }
 
+    @Synchronized
     override fun onStop() {
-        if (bluetoothAdapter == null || clientRunnable == null || serverRunnable == null) {
+        if (clientRunnable == null && serverRunnable == null) {
             return
         }
         Log.i("BluetoothLinkProvider", "onStop called")
-        clientRunnable!!.stopProcessing()
-        serverRunnable!!.stopProcessing()
+        clientRunnable?.stopProcessing()
+        serverRunnable?.stopProcessing()
+        clientRunnable = null
+        serverRunnable = null
     }
 
     override val name: String = "BluetoothLinkProvider"
