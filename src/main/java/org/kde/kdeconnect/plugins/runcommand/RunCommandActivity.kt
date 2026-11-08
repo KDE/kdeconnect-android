@@ -27,7 +27,7 @@ import org.kde.kdeconnect_tp.R
 
 class RunCommandActivity : AppCompatActivity() {
 
-    val commandList = mutableStateListOf<CommandEntry>()
+    val commandList = mutableStateListOf<CommandInfo>()
 
     private lateinit var plugin: RunCommandPlugin
 
@@ -41,7 +41,7 @@ class RunCommandActivity : AppCompatActivity() {
             return
         }
 
-        commandList.addAll(plugin.commandItems)
+        commandList.addAll(plugin.commandList)
 
         setContent {
             val clipboardManager = LocalClipboard.current
@@ -63,7 +63,7 @@ class RunCommandActivity : AppCompatActivity() {
 
     private fun copyCommandToClipboard(
         device: Device,
-        command: CommandEntry,
+        command: CommandInfo,
         clipboardManager: Clipboard
     ) {
         val url = "kdeconnect://runcommand/${device.deviceId}/${command.key}"
@@ -82,7 +82,7 @@ class RunCommandActivity : AppCompatActivity() {
 
     private fun updateList() {
         commandList.clear()
-        commandList.addAll(plugin.commandItems)
+        commandList.addAll(plugin.commandList)
     }
 
     companion object {

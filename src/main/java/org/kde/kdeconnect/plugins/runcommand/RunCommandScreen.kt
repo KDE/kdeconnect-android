@@ -72,9 +72,9 @@ import kotlin.time.Duration.Companion.seconds
 fun RunCommandScreen(
     plugin: RunCommandPlugin,
     device: Device,
-    commandList: SnapshotStateList<CommandEntry>,
+    commandList: SnapshotStateList<CommandInfo>,
     onBackPressedDispatcher: OnBackPressedDispatcher,
-    onCopyUrlToClipboard: (CommandEntry) -> Unit,
+    onCopyUrlToClipboard: (CommandInfo) -> Unit,
     onUpdate: () -> Unit
 ) {
     val haptics = LocalHapticFeedback.current

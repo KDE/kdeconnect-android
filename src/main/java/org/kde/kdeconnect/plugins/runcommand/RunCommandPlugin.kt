@@ -33,9 +33,6 @@ class RunCommandPlugin : Plugin() {
     var commandList: List<CommandInfo> = emptyList()
         private set
     private val callbacks = ArrayList<CommandsChangedCallback>()
-    @Volatile
-    var commandItems: List<CommandEntry> = emptyList()
-        private set
     val output = SnapshotStateList<RunCommandOutput>()
 
     // Ids of the commands that are currently running on the remote device. Currently only
@@ -115,8 +112,7 @@ class RunCommandPlugin : Plugin() {
                     }
                 }
 
-                commandList = newCommandList
-                commandItems = newCommandList.map { CommandEntry(it) }.sortedBy { it.name.lowercase() }
+                commandList = newCommandList.sortedBy { it.name.lowercase() }
 
                 // Used only by RunCommandControlsProviderService to display controls correctly even when device is not available
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -131,7 +127,6 @@ class RunCommandPlugin : Plugin() {
             } catch (e: SerializationException) {
                 Log.e("RunCommand", "Error parsing JSON", e)
                 commandList = emptyList()
-                commandItems = emptyList()
             }
 
             for (aCallback in callbacks) {

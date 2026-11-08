@@ -32,7 +32,7 @@ import org.reactivestreams.FlowAdapters
 import java.util.concurrent.Flow
 import java.util.function.Consumer
 
-private class CommandEntryWithDevice(info: CommandInfo, val device: Device) : CommandEntry(info)
+private class CommandWithDevice(val info: CommandInfo, val device: Device)
 
 @RequiresApi(Build.VERSION_CODES.R)
 class RunCommandControlsProviderService : ControlsProviderService() {
@@ -41,9 +41,9 @@ class RunCommandControlsProviderService : ControlsProviderService() {
 
     override fun createPublisherForAllAvailable(): Flow.Publisher<Control> {
         return FlowAdapters.toFlowPublisher(Flowable.fromIterable(getAllCommandsList().map { commandEntry ->
-            Control.StatelessBuilder("${commandEntry.device.deviceId}:${commandEntry.key}", getIntent(commandEntry.device))
-                .setTitle(commandEntry.name)
-                .setSubtitle(commandEntry.command)
+            Control.StatelessBuilder("${commandEntry.device.deviceId}:${commandEntry.info.key}", getIntent(commandEntry.device))
+                .setTitle(commandEntry.info.name)
+                .setSubtitle(commandEntry.info.command)
                 .setStructure(commandEntry.device.name)
                 .setCustomIcon(Icon.createWithResource(this, R.drawable.run_command_plugin_icon_24dp))
                 .build()
@@ -86,7 +86,7 @@ class RunCommandControlsProviderService : ControlsProviderService() {
                 val plugin = KdeConnect.getInstance().getDevicePlugin<RunCommandPlugin>(deviceId)
                 // The plugin is kept while the device is unreachable, but we can't run commands then
                 if (plugin != null && commandEntry.device.isReachable) {
-                    plugin.runCommand(commandEntry.key)
+                    plugin.runCommand(commandEntry.info.key)
                     consumer.accept(ControlAction.RESPONSE_OK)
                 } else {
                     consumer.accept(ControlAction.RESPONSE_FAIL)
@@ -100,7 +100,7 @@ class RunCommandControlsProviderService : ControlsProviderService() {
         }
     }
 
-    private fun getSavedCommandsList(device: Device): List<CommandEntryWithDevice> {
+    private fun getSavedCommandsList(device: Device): List<CommandWithDevice> {
         if (!this::sharedPreferences.isInitialized) {
             sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         }
@@ -108,15 +108,15 @@ class RunCommandControlsProviderService : ControlsProviderService() {
         return try {
             val commandsJson = sharedPreferences.getString(RunCommandPlugin.KEY_COMMANDS_PREFERENCE + device.deviceId, "[]")!!
             val commands: List<CommandInfo> = json.decodeFromString(commandsJson)
-            commands.map { CommandEntryWithDevice(it, device) }
+            commands.map { CommandWithDevice(it, device) }
         } catch (error: SerializationException) {
             Log.e("RunCommand", "Error parsing JSON", error)
             listOf()
         }
     }
 
-    private fun getAllCommandsList(): List<CommandEntryWithDevice> {
-        val commandList = mutableListOf<CommandEntryWithDevice>()
+    private fun getAllCommandsList(): List<CommandWithDevice> {
+        val commandList = mutableListOf<CommandWithDevice>()
 
         for (device in KdeConnect.getInstance().devices.values) {
             if (!device.isReachable) {
@@ -129,7 +129,7 @@ class RunCommandControlsProviderService : ControlsProviderService() {
             val plugin = device.getPlugin<RunCommandPlugin>()
             if (plugin != null) {
                 for (info in plugin.commandList) {
-                    commandList.add(CommandEntryWithDevice(info, device))
+                    commandList.add(CommandWithDevice(info, device))
                 }
             }
         }
@@ -137,7 +137,7 @@ class RunCommandControlsProviderService : ControlsProviderService() {
         return commandList
     }
 
-    private fun getCommandByControlId(controlId: String): CommandEntryWithDevice? {
+    private fun getCommandByControlId(controlId: String): CommandWithDevice? {
         val controlIdParts = controlId.split(":")
 
         val device = KdeConnect.getInstance().getDevice(controlIdParts[0])
@@ -146,28 +146,28 @@ class RunCommandControlsProviderService : ControlsProviderService() {
 
         val commandList = if (device.isReachable) {
             device.getPlugin<RunCommandPlugin>()?.commandList?.map { info ->
-                CommandEntryWithDevice(info, device)
+                CommandWithDevice(info, device)
             }
         } else {
             getSavedCommandsList(device)
         }
 
         return commandList?.find { command ->
-            command.key == controlIdParts[1]
+            command.info.key == controlIdParts[1]
         }
     }
 
-    private fun createStatefulBuilder(commandEntry: CommandEntryWithDevice, controlId: String): Control.StatefulBuilder {
+    private fun createStatefulBuilder(commandEntry: CommandWithDevice, controlId: String): Control.StatefulBuilder {
         if (!this::sharedPreferences.isInitialized) {
             sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         }
         val useNameForTitle = sharedPreferences.getBoolean(getString(R.string.set_runcommand_name_as_title), true)
 
         return Control.StatefulBuilder(controlId, getIntent(commandEntry.device))
-                .setTitle(if (useNameForTitle) commandEntry.name else commandEntry.command)
-                .setSubtitle(if (useNameForTitle) commandEntry.command else commandEntry.name)
+                .setTitle(if (useNameForTitle) commandEntry.info.name else commandEntry.info.command)
+                .setSubtitle(if (useNameForTitle) commandEntry.info.command else commandEntry.info.name)
                 .setStructure(commandEntry.device.name)
-                .setControlTemplate(StatelessTemplate(commandEntry.key))
+                .setControlTemplate(StatelessTemplate(commandEntry.info.key))
                 .setDeviceType(DeviceTypes.TYPE_ROUTINE)
                 .setCustomIcon(Icon.createWithResource(this, R.drawable.run_command_plugin_icon_24dp))
     }
