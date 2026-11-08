@@ -246,6 +246,7 @@ class BackgroundService : Service() {
         screenOnReceiver = null
         networkCallback?.let { getSystemService<ConnectivityManager>()?.unregisterNetworkCallback(it) }
         networkCallback = null
+        instance = null
         super.onDestroy()
     }
 
