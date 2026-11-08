@@ -15,9 +15,9 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.core.content.edit
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.JsonObject
-import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.decodeFromJsonElement
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.helpers.JsonHelper.json
@@ -25,6 +25,9 @@ import org.kde.kdeconnect.plugins.Plugin
 import org.kde.kdeconnect.plugins.PluginFactory.LoadablePlugin
 import org.kde.kdeconnect.ui.PluginSettingsFragment
 import org.kde.kdeconnect_tp.R
+
+@Serializable
+private class RemoteCommand(val name: String, val command: String)
 
 @LoadablePlugin
 class RunCommandPlugin : Plugin() {
@@ -101,12 +104,12 @@ class RunCommandPlugin : Plugin() {
     override fun onPacketReceived(np: NetworkPacket): Boolean {
         if (np.has("commandList")) {
             try {
-                val obj = json.decodeFromString<Map<String, JsonObject>>(np.getString("commandList"))
+                val commandMap = json.decodeFromString<Map<String, JsonObject>>(np.getString("commandList"))
                 val newCommandList = ArrayList<CommandInfo>()
-                for ((s, value) in obj) {
+                for ((key, value) in commandMap) {
                     try {
-                        val info = json.decodeFromJsonElement<CommandInfo>(JsonObject(value + ("key" to JsonPrimitive(s))))
-                        newCommandList.add(info)
+                        val command = json.decodeFromJsonElement<RemoteCommand>(value)
+                        newCommandList.add(CommandInfo(key, command.name, command.command))
                     } catch (e: SerializationException) {
                         Log.e("RunCommand", "Error parsing JSON", e)
                     }

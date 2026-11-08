@@ -8,4 +8,4 @@ package org.kde.kdeconnect.plugins.runcommand
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CommandInfo(val name: String, val command: String, val key: String)
+data class CommandInfo(val key: String, val name: String, val command: String)
