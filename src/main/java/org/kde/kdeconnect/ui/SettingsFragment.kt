@@ -183,7 +183,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
     private lateinit var devicesByIpPref : Preference
 
     val activityLauncherWithNetworkRefresh = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-        BackgroundService.instance?.onNetworkChange(null)
+        context?.let { BackgroundService.ForceRefreshConnections(it) }
     }
 
     /** Opens activity to configure device by IP when clicked */
@@ -211,7 +211,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S &&
             results[Manifest.permission.BLUETOOTH_CONNECT] == true &&
             results[Manifest.permission.BLUETOOTH_SCAN] == true) {
-            findPreference<SwitchPreference>(KEY_BLUETOOTH_ENABLED)?.isChecked = true // Also saves the preference
+            findPreference<SwitchPreference>(KEY_BLUETOOTH_ENABLED)?.isChecked = true // Save the preference before BluetoothLinkProvider reads it
             BackgroundService.ForceRefreshConnections(requireContext()) // Restarts the BluetoothLinkProvider
         }
     }
@@ -234,8 +234,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
                     return@OnPreferenceChangeListener false
                 }
             }
-            // Restarts the BluetoothLinkProvider. The preference is saved before the service handles this.
-            BackgroundService.ForceRefreshConnections(context)
+            isChecked = newValue as Boolean // Save the preference before BluetoothLinkProvider reads it
+            BackgroundService.ForceRefreshConnections(context) // Restarts the BluetoothLinkProvider
             true
         }
     }

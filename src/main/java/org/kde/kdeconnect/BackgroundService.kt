@@ -73,7 +73,7 @@ class BackgroundService : Service() {
         linkProviders.add(BluetoothLinkProvider(this))
     }
 
-    fun onNetworkChange(network: Network?) {
+    private fun onNetworkChange(network: Network?) {
         if (!initialized) {
             Log.d(TAG, "ignoring onNetworkChange called before the service is initialized")
             return
@@ -318,6 +318,11 @@ class BackgroundService : Service() {
 
         fun ForceRefreshConnections(context: Context) {
             Log.d(TAG, "ForceRefreshConnections")
+            val service = instance
+            if (initialized && service != null) {
+                service.onNetworkChange(null)
+                return
+            }
             val intent = Intent(context, BackgroundService::class.java)
             intent.putExtra("refresh", true)
             startService(context, intent)
