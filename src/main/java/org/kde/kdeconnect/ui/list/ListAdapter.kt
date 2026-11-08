@@ -11,14 +11,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 
-class ListAdapter : ArrayAdapter<ListAdapter.Item> {
-    private val items: List<Item>
-    private val isEnabled: Boolean
-
-    constructor(context: Context, items: List<Item>, isEnabled: Boolean = true) : super(context, 0, items) {
-        this.items = items
-        this.isEnabled = isEnabled
-    }
+class ListAdapter(
+    context: Context,
+    private val items: List<Item>,
+    private val isEnabled: Boolean = true
+) : ArrayAdapter<ListAdapter.Item>(context, 0, items) {
 
     interface Item {
         fun inflateView(layoutInflater: LayoutInflater): View

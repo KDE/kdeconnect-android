@@ -13,8 +13,8 @@ import org.kde.kdeconnect_tp.databinding.ListItemDeviceEntryBinding
 open class DeviceItem(
     val device: Device,
     private val callback: ((d: Device) -> Unit)
-) : ListAdapter.Item
-{
+) : ListAdapter.Item {
+
     protected lateinit var binding: ListItemDeviceEntryBinding
 
     override fun inflateView(layoutInflater: LayoutInflater): View {

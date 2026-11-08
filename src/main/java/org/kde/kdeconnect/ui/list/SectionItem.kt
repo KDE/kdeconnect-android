@@ -9,12 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import org.kde.kdeconnect_tp.databinding.ListItemCategoryBinding
 
-class SectionItem : ListAdapter.Item {
-    private val title: String
-
-    constructor(title: String) {
-        this.title = title
-    }
+class SectionItem(private val title: String) : ListAdapter.Item {
 
     var isEmpty: Boolean = true
 
