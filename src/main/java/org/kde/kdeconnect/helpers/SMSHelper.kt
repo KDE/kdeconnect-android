@@ -13,6 +13,7 @@ import android.database.sqlite.SQLiteException
 import android.media.MediaMetadataRetriever
 import android.media.ThumbnailUtils
 import android.net.Uri
+import android.os.Build
 import android.os.Handler
 import android.os.HandlerThread
 import android.provider.Telephony
@@ -601,12 +602,16 @@ object SMSHelper {
                                     context,
                                     ContentUris.withAppendedId(mMSPartUri, partID)
                                 )
-                                val videoThumbnail = retriever.getScaledFrameAtTime(
-                                    -1,
-                                    MediaMetadataRetriever.OPTION_CLOSEST_SYNC,
-                                    THUMBNAIL_WIDTH,
-                                    THUMBNAIL_HEIGHT
-                                )
+                                val videoThumbnail = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
+                                    retriever.getScaledFrameAtTime(
+                                        -1,
+                                        MediaMetadataRetriever.OPTION_CLOSEST_SYNC,
+                                        THUMBNAIL_WIDTH,
+                                        THUMBNAIL_HEIGHT
+                                    )
+                                } else {
+                                    null
+                                }
                                 if (videoThumbnail != null) {
                                     val encodedThumbnail = SmsMmsUtils.bitMapToBase64(videoThumbnail)
                                     attachments.add(
