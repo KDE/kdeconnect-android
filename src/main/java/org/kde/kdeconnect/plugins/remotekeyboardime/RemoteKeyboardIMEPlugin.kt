@@ -7,7 +7,6 @@
 package org.kde.kdeconnect.plugins.remotekeyboardime
 
 import android.app.Activity
-import android.content.Context
 import android.content.SharedPreferences
 import android.os.SystemClock
 import android.provider.Settings
@@ -19,6 +18,7 @@ import android.view.inputmethod.ExtractedTextRequest
 import android.view.inputmethod.InputConnection
 import android.view.inputmethod.InputMethodInfo
 import android.view.inputmethod.InputMethodManager
+import androidx.core.content.getSystemService
 import androidx.fragment.app.DialogFragment
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.plugins.Plugin
@@ -27,7 +27,6 @@ import org.kde.kdeconnect.plugins.remotekeyboard.RemoteKeyboardPlugin
 import org.kde.kdeconnect.ui.PluginSettingsFragment
 import org.kde.kdeconnect.ui.StartActivityAlertDialogFragment
 import org.kde.kdeconnect_tp.R
-import java.util.ArrayList
 import java.util.concurrent.locks.ReentrantLock
 
 @PluginFactory.LoadablePlugin
@@ -277,7 +276,7 @@ class RemoteKeyboardIMEPlugin : Plugin(), SharedPreferences.OnSharedPreferenceCh
         get() = device.deviceId
 
     override fun checkRequiredPermissions(): Boolean {
-        val inputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val inputMethodManager = context.getSystemService<InputMethodManager>()!!
         val inputMethodList: List<InputMethodInfo> = inputMethodManager.enabledInputMethodList
         return inputMethodList.any { info ->
             context.packageName == info.packageName

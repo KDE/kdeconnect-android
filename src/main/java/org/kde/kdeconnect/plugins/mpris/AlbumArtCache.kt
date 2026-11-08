@@ -103,7 +103,7 @@ internal object AlbumArtCache {
     fun initializeDiskCache(context: Context) {
         if (this::imageLoader.isInitialized) return
         appContext = context.applicationContext
-        connectivityManager = appContext.getSystemService()!!
+        connectivityManager = appContext.getSystemService<ConnectivityManager>()!!
         imageLoader = ImageLoader.Builder(appContext)
             .memoryCache {
                 MemoryCache.Builder()

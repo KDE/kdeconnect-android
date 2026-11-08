@@ -60,14 +60,14 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.content.getSystemService
 import androidx.media.VolumeProviderCompat
-import androidx.preference.PreferenceManager
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.KdeConnect
-import org.kde.kdeconnect.ui.compose.components.DeviceDisconnectedOverlay
 import org.kde.kdeconnect.ui.compose.KdeButton
 import org.kde.kdeconnect.ui.compose.KdeTheme
 import org.kde.kdeconnect.ui.compose.KdeTopAppBar
+import org.kde.kdeconnect.ui.compose.components.DeviceDisconnectedOverlay
 import org.kde.kdeconnect_tp.R
 
 private const val VOLUME_UP = 1
@@ -193,7 +193,7 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener, OnSharedPref
     @Composable
     private fun PresenterScreen(deviceName: String, device: Device? = null) {
 
-        val sensorManager = LocalContext.current.getSystemService(SENSOR_SERVICE) as? SensorManager
+        val sensorManager = LocalContext.current.getSystemService<SensorManager>()
         val haptics = LocalHapticFeedback.current
 
         KdeTheme(this) {

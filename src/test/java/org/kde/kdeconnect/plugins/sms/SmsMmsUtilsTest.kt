@@ -7,6 +7,7 @@ package org.kde.kdeconnect.plugins.sms
 
 import android.content.Context
 import android.telephony.TelephonyManager
+import androidx.core.content.getSystemService
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.unmockkAll
@@ -14,7 +15,6 @@ import org.junit.After
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-import org.kde.kdeconnect.plugins.sms.SmsMmsUtils
 
 class SmsMmsUtilsTest {
     private val context: Context = mockk()
@@ -22,7 +22,7 @@ class SmsMmsUtilsTest {
 
     @Before
     fun setUp() {
-        every { context.getSystemService(Context.TELEPHONY_SERVICE) } returns telephonyManager
+        every { context.getSystemService<TelephonyManager>() } returns telephonyManager
         every { telephonyManager.networkCountryIso } returns "US"
     }
 

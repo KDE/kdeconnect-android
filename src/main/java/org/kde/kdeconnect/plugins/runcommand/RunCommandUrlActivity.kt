@@ -13,6 +13,7 @@ import android.view.Gravity
 import android.widget.TextView
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.getSystemService
 import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect_tp.R
 
@@ -52,7 +53,7 @@ class RunCommandUrlActivity : AppCompatActivity() {
                 plugin.runCommand(uri.pathSegments[1])
                 finish()
 
-                val vibrator = getSystemService(Vibrator::class.java)
+                val vibrator = getSystemService<Vibrator>()
                 if (vibrator != null && vibrator.hasVibrator()) {
                     @Suppress("DEPRECATION")
                     vibrator.vibrate(100)

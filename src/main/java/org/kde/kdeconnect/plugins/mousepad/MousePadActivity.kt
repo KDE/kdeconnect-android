@@ -21,7 +21,6 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
 import androidx.core.view.OnApplyWindowInsetsListener
 import androidx.core.view.ViewCompat
@@ -152,7 +151,7 @@ class MousePadActivity :
         mDetector = GestureDetector(this, this)
         mMousePadGestureDetector = MousePadGestureDetector(this)
         mDetector.setOnDoubleTapListener(this)
-        mSensorManager = ContextCompat.getSystemService(this, SensorManager::class.java)
+        mSensorManager = getSystemService<SensorManager>()
 
         keyListenerView = binding.keyListener
         keyListenerView.setDeviceId(deviceId)

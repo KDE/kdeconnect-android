@@ -8,7 +8,6 @@ package org.kde.kdeconnect.ui.compose.screen.about
 
 import android.content.ClipData
 import android.content.ClipboardManager
-import android.content.Context
 import android.os.SystemClock
 import android.widget.Toast
 import androidx.annotation.DrawableRes
@@ -49,6 +48,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.core.content.getSystemService
 import org.kde.kdeconnect.extensions.safeDrawingBottomPadding
 import org.kde.kdeconnect.ui.about.AboutData
 import org.kde.kdeconnect.ui.about.AboutPerson
@@ -117,7 +117,7 @@ private fun AppInfoCard(
     ElevatedCard(
         modifier = Modifier.fillMaxWidth(),
         onClick = {
-            val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val clipboard = context.getSystemService<ClipboardManager>()!!
             clipboard.setPrimaryClip(ClipData.newPlainText("Version", aboutData.versionName))
             Toast.makeText(context, R.string.clipboard_toast, Toast.LENGTH_SHORT).show()
 

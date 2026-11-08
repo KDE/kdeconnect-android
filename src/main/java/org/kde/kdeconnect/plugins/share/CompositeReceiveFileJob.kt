@@ -13,8 +13,8 @@ import android.os.Build
 import android.os.SystemClock
 import android.util.Log
 import androidx.annotation.GuardedBy
-import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import androidx.core.content.getSystemService
 import androidx.documentfile.provider.DocumentFile
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.NetworkPacket
@@ -352,10 +352,7 @@ class CompositeReceiveFileJob(device: Device, onFinished: (ShareJob) -> Unit)
         if (!ShareSettingsFragment.isCustomDestinationEnabled(device.context)) {
             Log.i("SharePlugin", "Adding to downloads")
             try {
-                val manager = ContextCompat.getSystemService(
-                    device.context,
-                    DownloadManager::class.java,
-                )
+                val manager = device.context.getSystemService<DownloadManager>()
                 manager?.addCompletedDownload(fileDocument.uri.lastPathSegment, device.name, true, fileDocument.type, fileDocument.uri.path, size, false)
             } catch (e: Exception) {
                 // DownloadManager.addCompletedDownload is deprecated starting in Android 10 and throws

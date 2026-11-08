@@ -21,6 +21,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.annotation.VisibleForTesting
 import androidx.core.content.ContextCompat
+import androidx.core.content.getSystemService
 import org.kde.kdeconnect.ui.MainActivity
 import org.kde.kdeconnect.ui.PluginSettingsActivity
 import org.kde.kdeconnect_tp.R
@@ -143,7 +144,7 @@ open class RemoteKeyboardService :
                 }
             }
             2 -> { // "keyboard"
-                val imm = ContextCompat.getSystemService(this, InputMethodManager::class.java)
+                val imm = getSystemService<InputMethodManager>()
                 imm?.showInputMethodPicker()
             }
             3 -> { // "connected"?

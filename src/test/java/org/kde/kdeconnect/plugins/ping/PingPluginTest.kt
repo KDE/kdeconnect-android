@@ -5,6 +5,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.app.NotificationCompat
+import androidx.core.content.getSystemService
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkConstructor
@@ -23,7 +24,7 @@ class PingPluginTest {
         }
         val context = mockk<Context> {
             every { getSharedPreferences(any(), any()) } returns mockk<SharedPreferences>()
-            every { getSystemService(NotificationManager::class.java) } returns notificationManager
+            every { getSystemService<NotificationManager>() } returns notificationManager
             every { getString(any()) } returns "STRING"
         }
         val device = mockk<Device> {

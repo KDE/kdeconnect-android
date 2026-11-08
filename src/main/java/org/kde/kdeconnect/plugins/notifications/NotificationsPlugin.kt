@@ -27,6 +27,7 @@ import android.service.notification.StatusBarNotification
 import android.text.TextUtils
 import android.util.Log
 import androidx.core.app.NotificationCompat
+import androidx.core.content.getSystemService
 import androidx.core.graphics.createBitmap
 import androidx.fragment.app.DialogFragment
 import kotlinx.serialization.json.JsonArray
@@ -77,7 +78,7 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
 
     override fun onCreate() {
         appDatabase = AppDatabase.getInstance(context)
-        keyguardManager = context.getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
+        keyguardManager = context.getSystemService<KeyguardManager>()!!
         mainHandler = Handler(Looper.getMainLooper())
         NotificationReceiver.RunCommand(context) { service ->
             service.addListener(this@NotificationsPlugin)

@@ -21,6 +21,7 @@ import android.telephony.SmsManager
 import android.text.TextUtils
 import android.util.Base64
 import android.util.Log
+import androidx.core.content.getSystemService
 import androidx.preference.PreferenceManager
 import com.android.mms.dom.smil.parser.SmilXmlSerializer
 import com.google.android.mms.ContentType
@@ -222,7 +223,7 @@ object SmsMmsUtils {
         }
 
         val mSmsManager = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            val baseManager = context.getSystemService(SmsManager::class.java)
+            val baseManager = context.getSystemService<SmsManager>()!!
             if (klinkerSettings.subscriptionId < 0) {
                 baseManager
             } else {

@@ -76,7 +76,8 @@ class ConnectivityListener(context: Context) {
                 activeIDs.removeAll(removedSubs)
                 activeIDs.addAll(addedSubs)
 
-                val tm = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+                val tm = context.getSystemService<TelephonyManager>()!!
+
                 for (subID in removedSubs) {
                     Log.i(TAG, "Removed subscription ID $subID")
                     try {
@@ -151,7 +152,7 @@ class ConnectivityListener(context: Context) {
 
     private fun stopListening() {
         runOnMainThread {
-            val tm = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+            val tm = context.getSystemService<TelephonyManager>()!!
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 val sm = context.getSystemService<SubscriptionManager>()
                 sm?.removeOnSubscriptionsChangedListener(subscriptionsListener)

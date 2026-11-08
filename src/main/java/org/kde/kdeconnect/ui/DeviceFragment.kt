@@ -5,7 +5,6 @@
  */
 package org.kde.kdeconnect.ui
 
-import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -22,6 +21,7 @@ import androidx.annotation.StringRes
 import androidx.annotation.UiThread
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.ViewCompositionStrategy
+import androidx.core.content.getSystemService
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -312,8 +312,7 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
             }
 
             override fun pairingSuccessful() {
-                val accessibilityManager =
-                    requireContext().getSystemService(Context.ACCESSIBILITY_SERVICE) as? AccessibilityManager
+                val accessibilityManager = requireContext().getSystemService<AccessibilityManager>()
                 if (accessibilityManager?.isEnabled == true) {
                     @Suppress("DEPRECATION")
                     val event = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {

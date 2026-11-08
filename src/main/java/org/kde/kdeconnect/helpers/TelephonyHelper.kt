@@ -15,7 +15,7 @@ import android.telephony.SubscriptionManager
 import android.telephony.TelephonyManager
 import android.util.Log
 import androidx.annotation.VisibleForTesting
-import androidx.core.content.ContextCompat
+import androidx.core.content.getSystemService
 
 object TelephonyHelper {
 
@@ -31,9 +31,8 @@ object TelephonyHelper {
     @Throws(SecurityException::class)
     fun getAllPhoneNumbers(context: Context): List<LocalPhoneNumber> {
         // Each subscription is a different SIM card
-        val subscriptionManager = ContextCompat.getSystemService(context, SubscriptionManager::class.java)
+        val subscriptionManager = context.getSystemService<SubscriptionManager>()
         if (subscriptionManager == null) {
-            // I don't know why or when this happens...
             Log.w(TAG, "Could not get SubscriptionManager")
             return emptyList()
         }
@@ -57,7 +56,7 @@ object TelephonyHelper {
      * Get the ISO country code of the network the phone is currently registered to
      */
     fun getNetworkCountryIso(context: Context): String {
-        return (context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager).networkCountryIso
+        return context.getSystemService<TelephonyManager>()!!.networkCountryIso
     }
 
     /**

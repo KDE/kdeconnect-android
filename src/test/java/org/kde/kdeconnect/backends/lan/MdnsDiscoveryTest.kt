@@ -4,10 +4,10 @@
 package org.kde.kdeconnect.backends.lan
 
 import android.app.Application
-import android.content.Context
 import android.net.nsd.NsdManager
 import android.net.wifi.WifiManager
 import android.os.Looper
+import androidx.core.content.getSystemService
 import androidx.test.core.app.ApplicationProvider
 import io.mockk.every
 import io.mockk.mockk
@@ -46,8 +46,8 @@ class MdnsDiscoveryTest {
         lock = mockk(relaxed = true)
         val wifi = mockk<WifiManager>()
         every { context.applicationContext } returns context
-        every { context.getSystemService(Context.NSD_SERVICE) } returns nsd
-        every { context.getSystemService(Context.WIFI_SERVICE) } returns wifi
+        every { context.getSystemService<NsdManager>() } returns nsd
+        every { context.getSystemService<WifiManager>() } returns wifi
         every { wifi.createMulticastLock(any()) } returns lock
         every { lock.acquire() } answers { held = true }
         every { lock.release() } answers { held = false }

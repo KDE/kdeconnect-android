@@ -20,7 +20,7 @@ import android.os.PowerManager
 import android.os.SystemClock
 import android.provider.Settings
 import androidx.core.app.NotificationCompat
-import androidx.core.content.ContextCompat
+import androidx.core.content.getSystemService
 import androidx.core.net.toUri
 import org.kde.kdeconnect.DeviceType
 import org.kde.kdeconnect.NetworkPacket
@@ -56,9 +56,9 @@ class FindMyPhonePlugin : Plugin() {
         get() = context.getString(R.string.findmyphone_description)
 
     override fun onCreate() {
-        notificationManager = ContextCompat.getSystemService(context, NotificationManager::class.java)!!
-        audioManager = ContextCompat.getSystemService(context, AudioManager::class.java)!!
-        powerManager = ContextCompat.getSystemService(context, PowerManager::class.java)!!
+        notificationManager = context.getSystemService<NotificationManager>()!!
+        audioManager = context.getSystemService<AudioManager>()!!
+        powerManager = context.getSystemService<PowerManager>()!!
         flashlightManager = FlashlightManager(context)
 
         val ringtoneString = preferences.getString(context.getString(R.string.findmyphone_preference_key_ringtone), "")

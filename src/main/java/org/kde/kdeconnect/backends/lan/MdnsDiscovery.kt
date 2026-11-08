@@ -19,6 +19,7 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import androidx.core.content.ContextCompat
+import androidx.core.content.getSystemService
 import org.kde.kdeconnect.helpers.DeviceHelper
 import org.kde.kdeconnect.helpers.DeviceHelper.deviceType
 import org.kde.kdeconnect.helpers.DeviceHelper.getDeviceId
@@ -41,9 +42,9 @@ class MdnsDiscovery {
     constructor(context: Context, lanLinkProvider: LanLinkProvider) {
         this.context = context
         this.lanLinkProvider = lanLinkProvider
-        this.mNsdManager = context.getSystemService(Context.NSD_SERVICE) as NsdManager
+        this.mNsdManager = context.getSystemService<NsdManager>()!!
         this.mNsdResolveQueue = NsdResolveQueue(this.mNsdManager)
-        val wifiManager = context.applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
+        val wifiManager = context.getSystemService<WifiManager>()!!
         multicastLock = wifiManager.createMulticastLock("kdeConnectMdnsMulticastLock")
     }
 
