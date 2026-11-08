@@ -41,11 +41,7 @@ class RunCommandActivity : AppCompatActivity() {
             return
         }
 
-        for (info in plugin.commandList) {
-            commandList.add(CommandEntry(info))
-        }
-        commandList.sortBy { it.name.lowercase() }
-
+        commandList.addAll(plugin.commandItems)
 
         setContent {
             val clipboardManager = LocalClipboard.current
@@ -85,11 +81,8 @@ class RunCommandActivity : AppCompatActivity() {
     }
 
     private fun updateList() {
-        commandList.removeAll(commandList)
-        for (info in plugin.commandList) {
-            commandList.add(CommandEntry(info))
-        }
-        commandList.sortBy { it.name.lowercase() }
+        commandList.clear()
+        commandList.addAll(plugin.commandItems)
     }
 
     companion object {
