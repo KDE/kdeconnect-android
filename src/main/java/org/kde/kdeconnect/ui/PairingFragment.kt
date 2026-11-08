@@ -28,6 +28,7 @@ import androidx.core.content.edit
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.Observer
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.kde.kdeconnect.BackgroundService
 import org.kde.kdeconnect.Device
@@ -48,6 +49,9 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
     private val viewModel by viewModels<PairingViewModel>()
 
     private var listRefreshCalledThisFrame = false
+
+    // Single instance so we don't create one observer per updateDeviceList call
+    private val connectivityObserver = Observer<Boolean> { updateConnectivityInfoHeader(it) }
 
     private val menuProvider = object : MenuProvider {
 
@@ -204,10 +208,8 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
         if (service == null) {
             updateConnectivityInfoHeader(isConnectedToNonCellularNetwork = true)
         } else {
-            service.isConnectedToNonCellularNetwork.observe(
-                viewLifecycleOwner,
-                ::updateConnectivityInfoHeader
-            )
+            // Observed here rather than in onViewCreated() because the service may not exist yet at that point
+            service.isConnectedToNonCellularNetwork.observe(viewLifecycleOwner, connectivityObserver)
         }
 
         updatePermissionsHeader()
