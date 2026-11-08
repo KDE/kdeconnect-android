@@ -408,10 +408,7 @@ class MprisPlugin : Plugin() {
                             .setTimeoutAfter(3000)
                             .setContentIntent(pendingIntent)
                             .setContentText(context.resources.getString(R.string.mpris_keepwatching) + " " + playerStatus.title)
-                        notificationManager.notify(
-                            SystemClock.elapsedRealtime().toInt(),
-                            builder.build()
-                        )
+                        notificationManager.notify(CONTINUE_WATCHING_NOTIFICATION_ID, builder.build())
                     }
                 } catch (e: MalformedURLException) {
                     e.printStackTrace()
@@ -535,5 +532,7 @@ class MprisPlugin : Plugin() {
     companion object {
         private const val PACKET_TYPE_MPRIS = "kdeconnect.mpris"
         private const val PACKET_TYPE_MPRIS_REQUEST = "kdeconnect.mpris.request"
+        private const val CONTINUE_WATCHING_NOTIFICATION_ID =
+            0xea94d2f7.toInt() // echo MprisContinueWatching | md5sum | head -c 8
     }
 }
