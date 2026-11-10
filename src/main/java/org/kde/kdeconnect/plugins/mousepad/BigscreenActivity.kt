@@ -15,7 +15,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.preference.PreferenceManager
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect.ui.compose.components.addDeviceDisconnectedOverlay
@@ -85,7 +84,7 @@ class BigscreenActivity : BaseActivity<ActivityBigscreenBinding>() {
             }
         }
 
-        val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+        val prefs = plugin.preferences
         if (prefs.getBoolean(getString(R.string.pref_bigscreen_show_back), true)) {
             binding.backButton.visibility = View.VISIBLE
         } else {

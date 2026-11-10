@@ -9,7 +9,6 @@ package org.kde.kdeconnect.plugins.findmyphone
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
-import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.media.RingtoneManager
 import android.net.Uri
@@ -23,7 +22,6 @@ import androidx.core.content.IntentCompat
 import androidx.core.content.edit
 import androidx.core.net.toUri
 import androidx.preference.Preference
-import androidx.preference.PreferenceManager
 import androidx.preference.SwitchPreference
 import org.kde.kdeconnect.ui.PluginSettingsFragment
 import org.kde.kdeconnect_tp.R
@@ -32,7 +30,6 @@ class FindMyPhoneSettingsFragment : PluginSettingsFragment() {
 
     private lateinit var preferenceKeyRingtone: String
     private lateinit var preferenceKeyFlashlight: String
-    private lateinit var sharedPreferences: SharedPreferences
     private var ringtonePreference: Preference? = null
     private var flashlightPreference: SwitchPreference? = null
 
@@ -64,7 +61,7 @@ class FindMyPhoneSettingsFragment : PluginSettingsFragment() {
                 Uri::class.java
             )
             if (uri != null) {
-                sharedPreferences.edit {
+                plugin.preferences.edit {
                     putString(preferenceKeyRingtone, uri.toString())
                 }
                 setRingtoneSummary()
@@ -77,7 +74,6 @@ class FindMyPhoneSettingsFragment : PluginSettingsFragment() {
 
         preferenceKeyRingtone = getString(R.string.findmyphone_preference_key_ringtone)
         preferenceKeyFlashlight = getString(R.string.findmyphone_preference_key_flashlight)
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
 
         ringtonePreference = preferenceScreen.findPreference(preferenceKeyRingtone)
         flashlightPreference = preferenceScreen.findPreference(preferenceKeyFlashlight)
@@ -102,7 +98,7 @@ class FindMyPhoneSettingsFragment : PluginSettingsFragment() {
     }
 
     private fun syncFlashlightPreferenceWithPermission() {
-        val preferenceOn = sharedPreferences.getBoolean(preferenceKeyFlashlight, false)
+        val preferenceOn = plugin.preferences.getBoolean(preferenceKeyFlashlight, false)
         if (!hasCameraPermission() && preferenceOn) {
             setFlashlightEnabled(false)
         }
@@ -116,14 +112,14 @@ class FindMyPhoneSettingsFragment : PluginSettingsFragment() {
     }
 
     private fun setFlashlightEnabled(enabled: Boolean) {
-        sharedPreferences.edit {
+        plugin.preferences.edit {
             putBoolean(preferenceKeyFlashlight, enabled)
         }
         flashlightPreference?.isChecked = enabled
     }
 
     private fun setRingtoneSummary() {
-        val ringtone = sharedPreferences.getString(
+        val ringtone = plugin.preferences.getString(
             preferenceKeyRingtone,
             Settings.System.DEFAULT_RINGTONE_URI.toString()
         )
@@ -139,7 +135,7 @@ class FindMyPhoneSettingsFragment : PluginSettingsFragment() {
                 putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, false)
                 putExtra(RingtoneManager.EXTRA_RINGTONE_DEFAULT_URI, Settings.System.DEFAULT_NOTIFICATION_URI)
 
-                val existingValue = sharedPreferences.getString(preferenceKeyRingtone, null)
+                val existingValue = plugin.preferences.getString(preferenceKeyRingtone, null)
                 if (existingValue != null) {
                     putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, existingValue.toUri())
                 } else {

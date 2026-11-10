@@ -25,11 +25,10 @@ import androidx.core.content.getSystemService
 import androidx.core.view.OnApplyWindowInsetsListener
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.preference.PreferenceManager
 import org.kde.kdeconnect.KdeConnect
-import org.kde.kdeconnect.ui.compose.components.addDeviceDisconnectedOverlay
 import org.kde.kdeconnect.base.BaseActivity
 import org.kde.kdeconnect.ui.PluginSettingsActivity
+import org.kde.kdeconnect.ui.compose.components.addDeviceDisconnectedOverlay
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.ActivityMousepadBinding
 import kotlin.math.abs
@@ -74,8 +73,6 @@ class MousePadActivity :
     private var mouseDelta: PointerAccelerationProfile.MouseDelta = PointerAccelerationProfile.MouseDelta() // to be reused on every touch move event
 
     private lateinit var keyListenerView: KeyListenerView
-
-    private lateinit var prefs: SharedPreferences
 
     private var prefsApplied: Boolean = false
 
@@ -157,8 +154,7 @@ class MousePadActivity :
         keyListenerView.setDeviceId(deviceId)
         ViewCompat.setOnApplyWindowInsetsListener(keyListenerView, this)
 
-        prefs = PreferenceManager.getDefaultSharedPreferences(this)
-        prefs.registerOnSharedPreferenceChangeListener(this)
+        plugin.preferences.registerOnSharedPreferenceChangeListener(this)
 
         applyPrefs()
 
@@ -220,20 +216,20 @@ class MousePadActivity :
     }
 
     override fun onDestroy() {
-        if (::prefs.isInitialized) {
-            prefs.unregisterOnSharedPreferenceChangeListener(this)
+        if (::plugin.isInitialized) {
+            plugin.preferences.unregisterOnSharedPreferenceChangeListener(this)
         }
         super.onDestroy()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        if (!::prefs.isInitialized) {
+        if (!::plugin.isInitialized) {
             return false
         }
 
         menuInflater.inflate(R.menu.menu_mousepad, menu)
 
-        val mouseButtonsEnabled = prefs.getBoolean(getString(R.string.mousepad_mouse_buttons_enabled_pref), true)
+        val mouseButtonsEnabled = plugin.preferences.getBoolean(getString(R.string.mousepad_mouse_buttons_enabled_pref), true)
 
         menu.findItem(R.id.menu_right_click).isVisible = !mouseButtonsEnabled
         menu.findItem(R.id.menu_middle_click).isVisible = !mouseButtonsEnabled
@@ -520,9 +516,8 @@ class MousePadActivity :
 
     private fun applyPrefs() {
         if (prefsApplied) return
-        if (!::prefs.isInitialized) return
 
-        val p = prefs
+        val p = plugin.preferences
 
         if (p.getBoolean(getString(R.string.mousepad_scroll_direction), false)) {
             scrollDirection = -1

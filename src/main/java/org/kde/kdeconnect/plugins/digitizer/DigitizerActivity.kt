@@ -7,7 +7,6 @@
 package org.kde.kdeconnect.plugins.digitizer
 
 import android.annotation.SuppressLint
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Gravity
 import android.view.Menu
@@ -17,17 +16,14 @@ import android.view.View
 import android.widget.FrameLayout
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.addCallback
-import androidx.core.content.edit
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
-import androidx.preference.PreferenceManager
-import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.KdeConnect
-import org.kde.kdeconnect.ui.compose.components.addDeviceDisconnectedOverlay
 import org.kde.kdeconnect.base.BaseActivity
 import org.kde.kdeconnect.extensions.viewBinding
 import org.kde.kdeconnect.ui.PluginSettingsActivity
+import org.kde.kdeconnect.ui.compose.components.addDeviceDisconnectedOverlay
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.ActivityDigitizerBinding
 import kotlin.math.roundToInt
@@ -35,19 +31,11 @@ import kotlin.math.roundToInt
 class DigitizerActivity : BaseActivity<ActivityDigitizerBinding>(), DrawingPadView.EventListener {
     override val binding: ActivityDigitizerBinding by viewBinding(ActivityDigitizerBinding::inflate)
 
-    private lateinit var prefs: SharedPreferences
-
     private lateinit var fullscreenBackCallback: OnBackPressedCallback
 
     private lateinit var deviceId: String
 
     private lateinit var plugin: DigitizerPlugin
-
-    private var prefHideDrawButton: Boolean
-        get() = prefs.getBoolean(getString(R.string.digitizer_preference_key_hide_draw_button), false)
-        set(value) = prefs.edit {
-            putBoolean(getString(R.string.digitizer_preference_key_hide_draw_button), value)
-        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,8 +51,6 @@ class DigitizerActivity : BaseActivity<ActivityDigitizerBinding>(), DrawingPadVi
         setSupportActionBar(binding.toolbarLayout.toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
-
-        prefs = PreferenceManager.getDefaultSharedPreferences(this)
 
         binding.drawingPad.eventListener = this
 
@@ -126,13 +112,14 @@ class DigitizerActivity : BaseActivity<ActivityDigitizerBinding>(), DrawingPadVi
             )
         }
 
+        val prefHideDrawButton = plugin.preferences.getBoolean(getString(R.string.digitizer_preference_key_hide_draw_button), false)
         if (prefHideDrawButton) {
             binding.buttonDraw.visibility = View.GONE
         }
 
         binding.buttonDraw.layoutParams = (binding.buttonDraw.layoutParams as FrameLayout.LayoutParams).also {
             @SuppressLint("RtlHardcoded")
-            when (prefs.getString(getString(R.string.digitizer_preference_key_draw_button_side), "bottom_left")) {
+            when (plugin.preferences.getString(getString(R.string.digitizer_preference_key_draw_button_side), "bottom_left")) {
                 "top_left" -> it.gravity = Gravity.TOP or Gravity.LEFT
                 "top_right" -> it.gravity = Gravity.TOP or Gravity.RIGHT
                 "bottom_left" -> it.gravity = Gravity.BOTTOM or Gravity.LEFT
