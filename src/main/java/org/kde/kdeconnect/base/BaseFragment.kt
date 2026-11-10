@@ -21,9 +21,6 @@ abstract class BaseFragment<VB: ViewBinding> : Fragment() {
 
     val hasBinding : Boolean get() = _binding != null
 
-    protected val mActivity
-        get() = activity as? AppCompatActivity?
-
     abstract fun onInflateBinding(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): VB
 
     final override fun onCreateView(
@@ -42,9 +39,13 @@ abstract class BaseFragment<VB: ViewBinding> : Fragment() {
     }
 
     protected fun setActionBarText(title: CharSequence?, subtitle: CharSequence? = null) {
-        mActivity?.supportActionBar?.apply {
+        (activity  as? AppCompatActivity?)?.supportActionBar?.apply {
             this.title = title
             this.subtitle = subtitle
         }
+    }
+
+    protected fun setActionBarSubtitle(subtitle: CharSequence? = null) {
+        (activity  as? AppCompatActivity?)?.supportActionBar?.subtitle = subtitle
     }
 }

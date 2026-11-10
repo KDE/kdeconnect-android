@@ -67,12 +67,12 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
                 }
 
                 R.id.menu_custom_device_list -> {
-                    startActivity(Intent(mActivity, CustomDevicesActivity::class.java))
+                    startActivity(Intent(activity, CustomDevicesActivity::class.java))
                     true
                 }
 
                 R.id.menu_trusted_networks -> {
-                    startActivity(Intent(mActivity, TrustedNetworksActivity::class.java))
+                    startActivity(Intent(activity, TrustedNetworksActivity::class.java))
                     true
                 }
 
@@ -91,7 +91,7 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
         super.onViewCreated(view, savedInstanceState)
         setActionBarText(getString(R.string.pairing_title))
 
-        mActivity?.addMenuProvider(menuProvider, viewLifecycleOwner, Lifecycle.State.RESUMED)
+        activity?.addMenuProvider(menuProvider, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
         createComposeView()
     }
@@ -249,7 +249,7 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
     override fun onStart() {
         super.onStart()
         KdeConnect.getInstance().addDeviceListChangedCallback("PairingFragment") {
-            mActivity?.runOnUiThread { this.updateDeviceList() }
+            activity?.runOnUiThread { this.updateDeviceList() }
         }
         BackgroundService.ForceRefreshConnections(requireContext()) // force a network re-discover
         updateDeviceList()
@@ -261,7 +261,7 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
     }
 
     fun deviceClicked(device: Device) {
-        (mActivity as? MainActivity)?.onDeviceSelected(
+        (activity as? MainActivity)?.onDeviceSelected(
             device.deviceId,
             !device.isPaired || !device.isReachable
         )
