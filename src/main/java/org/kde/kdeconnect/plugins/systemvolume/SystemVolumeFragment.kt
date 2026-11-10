@@ -51,11 +51,14 @@ class SystemVolumeFragment : BaseFragment<SystemVolumeFragmentBinding>(),
             adapter = recyclerAdapter
             setupBottomPadding()
         }
-        connectToPlugin(deviceId)
+        plugin = KdeConnect.getInstance().getDevicePlugin<SystemVolumePlugin>(deviceId) ?: return
+        registerPluginHandlers()
+        sinksChanged()
+        plugin.requestSinkList()
     }
 
     override fun onDestroyView() {
-        disconnectFromPlugin()
+        unregisterPluginHandlers()
         super.onDestroyView()
     }
 
@@ -71,15 +74,11 @@ class SystemVolumeFragment : BaseFragment<SystemVolumeFragmentBinding>(),
         }
     }
 
-    private fun connectToPlugin(deviceId: String) {
-        val plugin = KdeConnect.getInstance().getDevicePlugin<SystemVolumePlugin>(deviceId) ?: return
-        this.plugin = plugin
+    private fun registerPluginHandlers() {
         plugin.addSinkListener(this@SystemVolumeFragment)
-        sinksChanged()
-        plugin.requestSinkList()
     }
 
-    private fun disconnectFromPlugin() {
+    private fun unregisterPluginHandlers() {
         if (::plugin.isInitialized) {
             plugin.removeSinkListener(this@SystemVolumeFragment)
         }

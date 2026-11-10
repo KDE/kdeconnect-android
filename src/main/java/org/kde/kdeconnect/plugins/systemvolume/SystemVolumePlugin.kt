@@ -20,6 +20,9 @@ class SystemVolumePlugin : Plugin() {
 
     @Volatile
     private var sinkMap: Map<String, Sink> = emptyMap()
+    val sinks: Collection<Sink>
+        get() = sinkMap.values
+
     private val listeners: MutableList<SinkListener> = mutableListOf()
 
     override val displayName: String
@@ -100,9 +103,6 @@ class SystemVolumePlugin : Plugin() {
 
     override val supportedPacketTypes: Array<String> = arrayOf(PACKET_TYPE_SYSTEMVOLUME)
     override val outgoingPacketTypes: Array<String> = arrayOf(PACKET_TYPE_SYSTEMVOLUME_REQUEST)
-
-    val sinks: Collection<Sink>
-        get() = sinkMap.values
 
     internal fun addSinkListener(listener: SinkListener) {
         synchronized(listeners) {
