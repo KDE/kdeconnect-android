@@ -24,22 +24,16 @@ abstract class BaseFragment<VB: ViewBinding> : Fragment() {
     protected val mActivity
         get() = activity as? AppCompatActivity?
 
-    protected abstract fun getActionBarTitle(): String?
-
     abstract fun onInflateBinding(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): VB
 
-    override fun onCreateView(
+    final override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
+        setActionBarText(null, null) // Clear text from previous screen
         _binding = onInflateBinding(inflater, container, savedInstanceState)
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setActionBarText()
     }
 
     override fun onDestroyView() {
@@ -47,8 +41,10 @@ abstract class BaseFragment<VB: ViewBinding> : Fragment() {
         _binding = null
     }
 
-    private fun setActionBarText(){
-        mActivity?.supportActionBar?.title = getActionBarTitle()
-        mActivity?.supportActionBar?.subtitle = null
+    protected fun setActionBarText(title: CharSequence?, subtitle: CharSequence? = null) {
+        mActivity?.supportActionBar?.apply {
+            this.title = title
+            this.subtitle = subtitle
+        }
     }
 }

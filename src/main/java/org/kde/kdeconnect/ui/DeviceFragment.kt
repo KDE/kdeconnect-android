@@ -65,8 +65,6 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
         }
     }
 
-    override fun getActionBarTitle() = null
-
     val deviceId: String by lazy {
         arguments?.getString(ARG_DEVICE_ID)
             ?: throw RuntimeException("You must instantiate a new DeviceFragment using DeviceFragment.newInstance()")
@@ -171,7 +169,7 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
         super.onViewCreated(view, savedInstanceState)
         binding.deviceView.setupBottomPadding()
         device?.apply {
-            mActivity?.supportActionBar?.title = name
+            setActionBarText(name)
             removePairingCallback(pairingCallback)
             addPairingCallback(pairingCallback)
             removePluginsChangedListener(pluginsChangedListener)

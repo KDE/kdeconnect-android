@@ -29,10 +29,6 @@ class SystemVolumeFragment : BaseFragment<SystemVolumeFragmentBinding>(),
     private lateinit var recyclerAdapter: RecyclerSinkAdapter
     private var tracking = false
 
-    private lateinit var deviceId: String
-
-    override fun getActionBarTitle() = getString(R.string.open_mpris_controls)
-
     override fun onInflateBinding(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -43,7 +39,7 @@ class SystemVolumeFragment : BaseFragment<SystemVolumeFragmentBinding>(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        deviceId = arguments?.getString(EXTRA_DEVICE_ID)!!
+        val deviceId = arguments?.getString(EXTRA_DEVICE_ID)!!
         recyclerAdapter = RecyclerSinkAdapter()
         binding.audioDevicesRecycler.apply {
             layoutManager = LinearLayoutManager(requireContext())
@@ -51,7 +47,9 @@ class SystemVolumeFragment : BaseFragment<SystemVolumeFragmentBinding>(),
             adapter = recyclerAdapter
             setupBottomPadding()
         }
-        plugin = KdeConnect.getInstance().getDevicePlugin<SystemVolumePlugin>(deviceId) ?: return
+        val device = KdeConnect.getInstance().getDevice(deviceId)
+        setActionBarText(getString(R.string.open_mpris_controls), device?.name)
+        plugin = device?.getPlugin<SystemVolumePlugin>() ?: return
         registerPluginHandlers()
         sinksChanged()
         plugin.requestSinkList()

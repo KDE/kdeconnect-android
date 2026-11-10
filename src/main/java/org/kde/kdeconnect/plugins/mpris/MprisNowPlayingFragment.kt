@@ -70,8 +70,6 @@ class MprisNowPlayingFragment : BaseFragment<MprisNowPlayingBinding>(), VolumeKe
         showRemainingTime = savedInstanceState?.getBoolean("showRemainingTime") ?: false
     }
 
-    override fun getActionBarTitle() = getString(R.string.open_mpris_controls)
-
     override fun onInflateBinding(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): MprisNowPlayingBinding {
         return MprisNowPlayingBinding.inflate(inflater, container, false)
     }
@@ -92,7 +90,9 @@ class MprisNowPlayingFragment : BaseFragment<MprisNowPlayingBinding>(), VolumeKe
             }
 
         val deviceId = requireArguments().getString(EXTRA_DEVICE_ID)!!
-        plugin = KdeConnect.getInstance().getDevicePlugin(deviceId) ?: run {
+        val device = KdeConnect.getInstance().getDevice(deviceId)
+        setActionBarText(getString(R.string.open_mpris_controls), device?.name)
+        plugin = device?.getPlugin<MprisPlugin>() ?: run {
             requireActivity().finish()
             return
         }

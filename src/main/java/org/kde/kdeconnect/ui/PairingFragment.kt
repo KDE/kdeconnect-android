@@ -81,8 +81,6 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
         }
     }
 
-    override fun getActionBarTitle() = getString(R.string.pairing_title)
-
     override fun onInflateBinding(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -91,6 +89,7 @@ class PairingFragment : BaseFragment<DevicesListBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setActionBarText(getString(R.string.pairing_title))
 
         mActivity?.addMenuProvider(menuProvider, viewLifecycleOwner, Lifecycle.State.RESUMED)
 

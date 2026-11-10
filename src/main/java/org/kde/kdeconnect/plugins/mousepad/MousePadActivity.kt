@@ -142,6 +142,7 @@ class MousePadActivity :
             return
         }
         binding.root.addDeviceDisconnectedOverlay(device)
+        supportActionBar?.subtitle = device.name
 
         window.decorView.isHapticFeedbackEnabled = true
 
