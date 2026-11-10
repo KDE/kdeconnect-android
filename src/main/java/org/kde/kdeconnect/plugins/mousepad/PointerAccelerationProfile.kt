@@ -17,5 +17,5 @@ abstract class PointerAccelerationProfile {
      * The value returned here will be directly sent to the desktop client.
      *
      * A MouseDelta object will be provided by the caller to reduce object allocations.*/
-    abstract fun commitAcceleratedMouseDelta(reusedObject: MouseDelta): MouseDelta
+    abstract fun commitAcceleratedMouseDelta(reusedObject: MouseDelta)
 }

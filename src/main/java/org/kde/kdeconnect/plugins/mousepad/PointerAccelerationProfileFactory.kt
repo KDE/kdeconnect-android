@@ -30,12 +30,11 @@ object PointerAccelerationProfileFactory {
             accumulatedY += deltaY
         }
 
-        override fun commitAcceleratedMouseDelta(reusedObject: MouseDelta): MouseDelta {
+        override fun commitAcceleratedMouseDelta(reusedObject: MouseDelta) {
             reusedObject.x = accumulatedX
             reusedObject.y = accumulatedY
             accumulatedY = 0f
             accumulatedX = 0f
-            return reusedObject
         }
     }
 
@@ -106,7 +105,7 @@ object PointerAccelerationProfileFactory {
          * for the touch delta. ( mouse_delta = touch_delta * multiplier ) */
         abstract fun calculateMultiplier(speed: Float): Float
 
-        override fun commitAcceleratedMouseDelta(reusedObject: MouseDelta): MouseDelta {
+        override fun commitAcceleratedMouseDelta(reusedObject: MouseDelta) {
             /* This makes sure that only the integer components of the deltas are sent,
              * since the coordinates are converted to integers in the desktop client anyway.
              * The leftover fractional part is stored and added later; this makes
@@ -115,7 +114,6 @@ object PointerAccelerationProfileFactory {
             reusedObject.y = accumulatedY.toInt().toFloat()
             accumulatedY %= 1.0f
             accumulatedX %= 1.0f
-            return reusedObject
         }
     }
 
