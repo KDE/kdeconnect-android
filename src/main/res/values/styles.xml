@@ -14,6 +14,13 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
 
         <!-- https://github.com/material-components/material-components-android/issues/2732 -->
         <item name="alertDialogTheme">@style/KdeConnectDialogStyle</item>
+
+        <item name="actionOverflowMenuStyle">@style/KdeConnectOverflowMenuStyle</item>
+    </style>
+
+    <!-- Show the overflow menu below the "three dots" button instead of on top of it, like the Compose menus -->
+    <style name="KdeConnectOverflowMenuStyle" parent="Widget.Material3.PopupMenu.Overflow">
+        <item name="overlapAnchor">false</item>
     </style>
 
     <style name="KdeConnectTheme" parent="KdeConnectThemeBase" />
