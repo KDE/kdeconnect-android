@@ -312,6 +312,10 @@
   <string name="settings_icon_description">Icona impostazioni</string>
   <string name="presenter_fullscreen">Schermo intero</string>
   <string name="presenter_exit">Esci dalla presentazione</string>
+  <string name="presenter_change_zoom">Modifica l\'ingrandimento</string>
+  <string name="presenter_zoom">Ingrandimento</string>
+  <string name="presenter_zoom_in">Ingrandisci</string>
+  <string name="presenter_zoom_out">Rimpicciolisci</string>
   <string name="presenter_lock_tip">Puoi bloccare il tuo dispositivo e utilizzare i tasti del volume per scorrere le diapositive</string>
   <string name="add_command">Aggiungi un comando</string>
   <string name="addcommand_explanation">Non ci sono comandi registrati</string>
