@@ -376,6 +376,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="device_rename_confirm">Rename</string>
     <string name="refresh">Refresh</string>
     <string name="unreachable_description">This paired device is not reachable. Make sure it is connected to your same network.</string>
+    <string name="unreachable_unpaired_description">Device is not reachable and not paired</string>
     <string name="no_wifi">You\'re not connected to a Wi-Fi network, so you may not be able to see any devices. Click here to enable Wi-Fi.</string>
     <string name="on_non_trusted_message">Not on a trusted network: autodiscovery is disabled.</string>
     <string name="no_file_browser">There are no file browsers installed.</string>

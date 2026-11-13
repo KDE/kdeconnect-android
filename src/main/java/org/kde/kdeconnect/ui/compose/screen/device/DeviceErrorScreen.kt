@@ -30,10 +30,12 @@ import org.kde.kdeconnect_tp.R
 
 @Composable
 fun DeviceErrorScreen(
+    message: String,
     isRefreshing: Boolean,
     onRefresh: () -> Unit
 ) {
     DeviceErrorScreenContent(
+        message = message,
         isRefreshing = isRefreshing,
         onRefresh = onRefresh
     )
@@ -41,6 +43,7 @@ fun DeviceErrorScreen(
 
 @Composable
 private fun DeviceErrorScreenContent(
+    message: String,
     isRefreshing: Boolean,
     onRefresh: () -> Unit
 ) {
@@ -64,7 +67,7 @@ private fun DeviceErrorScreenContent(
                 modifier = Modifier.padding(end = 8.dp)
             )
             KdeBodyLargeText(
-                text = stringResource(id = R.string.unreachable_description),
+                text = message,
                 modifier = Modifier.weight(1f)
             )
         }
@@ -76,6 +79,7 @@ private fun DeviceErrorScreenContent(
 private fun DeviceErrorScreenPreview() {
     KdeTheme(context = LocalContext.current) {
         DeviceErrorScreenContent(
+            message = stringResource(id = R.string.unreachable_description),
             isRefreshing = false,
             onRefresh = { /* Do nothing */ }
         )

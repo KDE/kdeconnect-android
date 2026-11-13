@@ -21,6 +21,7 @@ import androidx.annotation.StringRes
 import androidx.annotation.UiThread
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.ViewCompositionStrategy
+import androidx.compose.ui.res.stringResource
 import androidx.core.content.getSystemService
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.viewModels
@@ -265,13 +266,20 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
                                 displayBatteryInfoIfPossible()
                             } else {
                                 DeviceErrorScreen(
+                                    message = stringResource(id = R.string.unreachable_description),
                                     isRefreshing = isRefreshing,
                                     onRefresh = { refreshDevicesAction() }
                                 )
                             }
                         }
 
-                        else -> {
+                        else -> if (!device.isReachable) {
+                            DeviceErrorScreen(
+                                message = stringResource(id = R.string.unreachable_unpaired_description),
+                                isRefreshing = isRefreshing,
+                                onRefresh = { refreshDevicesAction() }
+                            )
+                        } else {
                             DevicePairingScreen(
                                 pairStatus = device.pairStatus,
                                 verificationKey = device.verificationKey ?: "",
