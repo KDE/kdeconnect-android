@@ -59,8 +59,8 @@ class RemoteKeyboardIMEPluginTest {
         every { context.getSharedPreferences(any(), any()) } returns sharedPreferences
         every { context.packageName } returns "org.kde.kdeconnect_tp"
 
-        remoteKeyboardPlugin = RemoteKeyboardIMEPlugin().apply {
-            setContext(context, device)
+        remoteKeyboardPlugin = RemoteKeyboardIMEPlugin().also {
+            it.setContext(context, device)
         }
     }
 
@@ -122,9 +122,9 @@ class RemoteKeyboardIMEPluginTest {
         }
         every { device.getPlugin<RemoteKeyboardIMEPlugin>() } returns imePlugin
 
-        AccessibilityRemoteKeyboardPlugin().apply {
-            setContext(context, device)
-            onDestroy()
+        AccessibilityRemoteKeyboardPlugin().also {
+            it.setContext(context, device)
+            it.onDestroy()
         }
 
         Assert.assertNull(packet)
@@ -137,9 +137,9 @@ class RemoteKeyboardIMEPluginTest {
         }
         every { device.getPlugin<RemoteKeyboardIMEPlugin>() } returns imePlugin
 
-        AccessibilityRemoteKeyboardPlugin().apply {
-            setContext(context, device)
-            onDestroy()
+        AccessibilityRemoteKeyboardPlugin().also {
+            it.setContext(context, device)
+            it.onDestroy()
         }
 
         val sentPacket = checkNotNull(packet)

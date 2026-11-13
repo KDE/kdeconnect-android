@@ -37,8 +37,8 @@ class RunCommandPluginTest {
             }
             every { onPluginsChanged() } returns Unit
         }
-        runCommandPlugin = RunCommandPlugin().apply {
-            setContext(context, device)
+        runCommandPlugin = RunCommandPlugin().also {
+            it.setContext(context, device)
         }
     }
 

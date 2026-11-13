@@ -44,8 +44,8 @@ class ConnectivityReportPluginTest {
             every { onPluginsChanged() } returns Unit
         }
 
-        plugin = ConnectivityReportPlugin().apply {
-            setContext(context, device)
+        plugin = ConnectivityReportPlugin().also {
+            it.setContext(context, device)
         }
     }
 

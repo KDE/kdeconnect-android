@@ -35,8 +35,8 @@ class SystemVolumePluginTest {
                 packet = sentPacket
             }
         }
-        systemVolumePlugin = SystemVolumePlugin().apply {
-            setContext(context, device)
+        systemVolumePlugin = SystemVolumePlugin().also {
+            it.setContext(context, device)
         }
     }
 
