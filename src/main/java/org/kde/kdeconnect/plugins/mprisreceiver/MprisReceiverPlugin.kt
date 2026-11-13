@@ -23,7 +23,6 @@ import org.kde.kdeconnect.plugins.notifications.NotificationReceiver
 import org.kde.kdeconnect.ui.StartActivityAlertDialogFragment
 import org.kde.kdeconnect_tp.R
 import java.util.concurrent.ConcurrentHashMap
-import kotlin.collections.MutableList
 
 @LoadablePlugin
 class MprisReceiverPlugin : Plugin() {

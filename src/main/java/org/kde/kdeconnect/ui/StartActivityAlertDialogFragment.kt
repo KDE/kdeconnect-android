@@ -9,9 +9,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.net.toUri
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import org.kde.kdeconnect.KdeConnect
 
 class StartActivityAlertDialogFragment : AlertDialogFragment() {

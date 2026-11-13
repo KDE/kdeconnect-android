@@ -54,10 +54,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.ui.compose.KdeDropdownMenuItem
 import org.kde.kdeconnect.ui.compose.KdeOverflowMenu

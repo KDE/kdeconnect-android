@@ -14,8 +14,8 @@ import android.provider.ContactsContract.PhoneLookup
 import android.util.Base64
 import android.util.Base64OutputStream
 import android.util.Log
-import java.io.ByteArrayOutputStream
 import androidx.core.net.toUri
+import java.io.ByteArrayOutputStream
 
 /**
  * Helper object for contacts-related operations.
