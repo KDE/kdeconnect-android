@@ -110,10 +110,12 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
                     true
                 }
             }
-            val intent = PluginSettingsActivity.createIntent(requireActivity(), deviceId)
-            menu.add(R.string.device_menu_plugins).setOnMenuItemClickListener {
-                startActivity(intent)
-                true
+            if (device.isPaired || device.isReachable) {
+                val intent = PluginSettingsActivity.createIntent(requireActivity(), deviceId)
+                menu.add(R.string.device_menu_plugins).setOnMenuItemClickListener {
+                    startActivity(intent)
+                    true
+                }
             }
             if (device.isReachable) {
                 val builder = MaterialAlertDialogBuilder(requireContext())
