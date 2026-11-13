@@ -6,10 +6,12 @@
  */
 package org.kde.kdeconnect.plugins.sms
 
+import android.app.PendingIntent
 import android.content.ContentResolver
 import android.content.ContentUris
 import android.content.ContentValues
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -220,6 +222,8 @@ object SmsMmsUtils {
             }
         } catch (e: IOException) {
             Log.e(SENDING_MESSAGE, "Error while writing temporary PDU file: ", e)
+            MmsSentReceiver.deletePduFile(context, fileName)
+            return
         }
 
         val mSmsManager = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -238,7 +242,22 @@ object SmsMmsUtils {
             }
         }
 
-        mSmsManager.sendMultimediaMessage(context, contentUri, null, configOverrides, null)
+        // The system reads the PDU file asynchronously, so it can only be deleted once it reports
+        // that sending finished, in MmsSentReceiver
+        val sentIntent = Intent(context, MmsSentReceiver::class.java)
+            .setData(contentUri) // Makes each PendingIntent unique, so they don't replace each other
+            .putExtra(MmsSentReceiver.EXTRA_PDU_FILE_NAME, fileName)
+        val sentPendingIntent = PendingIntent.getBroadcast(
+            context, 0, sentIntent,
+            PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
+        )
+
+        try {
+            mSmsManager.sendMultimediaMessage(context, contentUri, null, configOverrides, sentPendingIntent)
+        } catch (e: Exception) {
+            MmsSentReceiver.deletePduFile(context, fileName)
+            throw e
+        }
     }
 
     const val DEFAULT_EXPIRY_TIME: Long = (7 * 24 * 60 * 60).toLong()
