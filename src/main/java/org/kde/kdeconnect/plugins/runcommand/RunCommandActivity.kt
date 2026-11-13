@@ -34,12 +34,8 @@ class RunCommandActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d("RunCommandActivity", "Launched")
-        val deviceId = intent.getStringExtra(EXTRA_DEVICE_ID)!!
-        val device = KdeConnect.getInstance().getDevice(deviceId)
-        plugin = device?.getPlugin<RunCommandPlugin>() ?: run {
-            finish()
-            return
-        }
+        plugin = KdeConnect.getInstance().getDevicePlugin<RunCommandPlugin>(intent.getStringExtra(EXTRA_DEVICE_ID))
+            ?: return finish()
 
         commandList.addAll(plugin.commandList)
 
@@ -48,11 +44,11 @@ class RunCommandActivity : AppCompatActivity() {
 
             RunCommandScreen(
                 plugin = plugin,
-                device = device,
+                device = plugin.device,
                 commandList = commandList,
                 onBackPressedDispatcher = onBackPressedDispatcher,
                 onCopyUrlToClipboard = {
-                    copyCommandToClipboard(device, it, clipboardManager)
+                    copyCommandToClipboard(plugin.device, it, clipboardManager)
                 },
                 onUpdate = {
                     updateList()

@@ -43,7 +43,6 @@ class MousePadActivity :
     SharedPreferences.OnSharedPreferenceChangeListener,
     OnApplyWindowInsetsListener {
 
-    private lateinit var deviceId: String
     private lateinit var plugin: MousePadPlugin
 
     private var mPrevX: Float = 0f
@@ -135,14 +134,10 @@ class MousePadActivity :
         binding.mouseClickMiddle.setOnClickListener { sendMiddleClick() }
         binding.mouseClickRight.setOnClickListener { sendRightClick() }
 
-        deviceId = intent.getStringExtra(EXTRA_DEVICE_ID) ?: ""
-        val device = KdeConnect.getInstance().getDevice(deviceId)
-        plugin = device?.getPlugin<MousePadPlugin>() ?: run {
-            finish()
-            return
-        }
-        binding.root.addDeviceDisconnectedOverlay(device)
-        supportActionBar?.subtitle = device.name
+        plugin = KdeConnect.getInstance().getDevicePlugin<MousePadPlugin>(intent.getStringExtra(EXTRA_DEVICE_ID))
+            ?: return finish()
+        binding.root.addDeviceDisconnectedOverlay(plugin.device)
+        supportActionBar?.subtitle = plugin.device.name
 
         window.decorView.isHapticFeedbackEnabled = true
 
@@ -152,7 +147,7 @@ class MousePadActivity :
         mSensorManager = getSystemService<SensorManager>()
 
         keyListenerView = binding.keyListener
-        keyListenerView.setDeviceId(deviceId)
+        keyListenerView.setDeviceId(plugin.device.deviceId)
         ViewCompat.setOnApplyWindowInsetsListener(keyListenerView, this)
 
         plugin.preferences.registerOnSharedPreferenceChangeListener(this)
@@ -248,7 +243,7 @@ class MousePadActivity :
                 true
             }
             R.id.menu_open_mousepad_settings -> {
-                val intent = PluginSettingsActivity.createIntent(this, deviceId, MousePadPlugin::class.java.simpleName)
+                val intent = PluginSettingsActivity.createIntent(this, plugin.device.deviceId, MousePadPlugin::class.java.simpleName)
                 startActivity(intent)
                 true
             }
@@ -511,7 +506,7 @@ class MousePadActivity :
 
     private fun showCompose() {
         val intent = Intent(this, ComposeSendActivity::class.java)
-        intent.putExtra(ComposeSendActivity.EXTRA_DEVICE_ID, deviceId)
+        intent.putExtra(ComposeSendActivity.EXTRA_DEVICE_ID, plugin.device.deviceId)
         startActivity(intent)
     }
 

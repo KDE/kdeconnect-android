@@ -30,7 +30,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.core.content.edit
 import androidx.preference.PreferenceManager
-import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect.ui.compose.KdeTextButton
 import org.kde.kdeconnect.ui.compose.KdeTextField
@@ -41,8 +40,6 @@ import org.kde.kdeconnect_tp.R
 private const val INPUT_CACHE_KEY = "compose_send_input_cache"
 
 class ComposeSendActivity : AppCompatActivity() {
-    private lateinit var deviceId: String
-    private lateinit var device: Device
     private lateinit var plugin: MousePadPlugin
     private val userInput = mutableStateOf(String())
     private val prefs by lazy { PreferenceManager.getDefaultSharedPreferences(this) }
@@ -52,15 +49,8 @@ class ComposeSendActivity : AppCompatActivity() {
 
         prefs.getString(INPUT_CACHE_KEY, null)?.let { userInput.value = it }
 
-        deviceId = intent.getStringExtra(EXTRA_DEVICE_ID)!!
-        device = KdeConnect.getInstance().getDevice(deviceId) ?: run {
-            finish()
-            return
-        }
-        plugin = device.getPlugin<MousePadPlugin>() ?: run {
-            finish()
-            return
-        }
+        plugin = KdeConnect.getInstance().getDevicePlugin<MousePadPlugin>(intent.getStringExtra(EXTRA_DEVICE_ID))
+            ?: return finish()
 
         setContent { ComposeSendScreen() }
     }
@@ -74,7 +64,7 @@ class ComposeSendActivity : AppCompatActivity() {
     }
 
     private fun sendComposed() {
-        if (!device.isReachable) {
+        if (!plugin.device.isReachable) {
             // Keep the text so it can be sent once the device reconnects
             Toast.makeText(this, R.string.error_not_reachable, Toast.LENGTH_SHORT).show()
             return

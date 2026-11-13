@@ -15,18 +15,16 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
-import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.KdeConnect
-import org.kde.kdeconnect.ui.compose.components.addDeviceDisconnectedOverlay
 import org.kde.kdeconnect.base.BaseActivity
 import org.kde.kdeconnect.extensions.viewBinding
 import org.kde.kdeconnect.ui.PermissionsAlertDialogFragment
+import org.kde.kdeconnect.ui.compose.components.addDeviceDisconnectedOverlay
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.ActivityBigscreenBinding
 
 class BigscreenActivity : BaseActivity<ActivityBigscreenBinding>() {
 
-    private lateinit var deviceId: String
     private lateinit var plugin: MousePadPlugin
 
     override val binding : ActivityBigscreenBinding by viewBinding(ActivityBigscreenBinding::inflate)
@@ -48,19 +46,14 @@ class BigscreenActivity : BaseActivity<ActivityBigscreenBinding>() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
-        deviceId = intent.getStringExtra(EXTRA_DEVICE_ID)!!
-
         if (!SpeechRecognizer.isRecognitionAvailable(this)) {
             binding.micButton.isEnabled = false
             binding.micButton.visibility = View.INVISIBLE
         }
 
-        val device = KdeConnect.getInstance().getDevice(deviceId)
-        plugin = device?.getPlugin<MousePadPlugin>() ?: run {
-            finish()
-            return
-        }
-        binding.root.addDeviceDisconnectedOverlay(device)
+        plugin = KdeConnect.getInstance().getDevicePlugin<MousePadPlugin>(intent.getStringExtra(EXTRA_DEVICE_ID))
+            ?: return finish()
+        binding.root.addDeviceDisconnectedOverlay(plugin.device)
 
         binding.leftButton.setOnClickListener { plugin.sendLeft() }
         binding.rightButton.setOnClickListener { plugin.sendRight() }
@@ -122,7 +115,7 @@ class BigscreenActivity : BaseActivity<ActivityBigscreenBinding>() {
         val id = item.itemId
         if (id == R.id.menu_use_mouse_and_keyboard) {
             val intent = Intent(this, MousePadActivity::class.java)
-            intent.putExtra(MousePadActivity.EXTRA_DEVICE_ID, deviceId)
+            intent.putExtra(MousePadActivity.EXTRA_DEVICE_ID, plugin.device.deviceId)
             startActivity(intent)
             return true
         } else {

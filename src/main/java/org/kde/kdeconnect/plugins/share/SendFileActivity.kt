@@ -64,7 +64,8 @@ class SendFileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        deviceId = intent.getStringExtra(EXTRA_DEVICE_ID)!!
+        deviceId = intent.getStringExtra(EXTRA_DEVICE_ID)
+            ?: return finish()
 
         val intent = Intent(Intent.ACTION_GET_CONTENT).apply {
             type = "*/*"

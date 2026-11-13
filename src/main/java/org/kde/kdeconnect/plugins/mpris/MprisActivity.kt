@@ -27,7 +27,7 @@ class MprisActivity : BaseActivity<ActivityMprisBinding>() {
     override val binding: ActivityMprisBinding by viewBinding(ActivityMprisBinding::inflate)
 
     private lateinit var mprisPagerAdapter: MprisPagerAdapter
-    private lateinit var deviceId: String
+    private lateinit var plugin: MprisPlugin
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
         return when (keyCode) {
@@ -55,14 +55,11 @@ class MprisActivity : BaseActivity<ActivityMprisBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        deviceId = intent.getStringExtra(EXTRA_DEVICE_ID)!!
-        val device = KdeConnect.getInstance().getDevice(deviceId) ?: run {
-            finish()
-            return
-        }
-        binding.root.addDeviceDisconnectedOverlay(device)
+        plugin = KdeConnect.getInstance().getDevicePlugin<MprisPlugin>(intent.getStringExtra(EXTRA_DEVICE_ID))
+            ?: return finish()
+        binding.root.addDeviceDisconnectedOverlay(plugin.device)
 
-        mprisPagerAdapter = MprisPagerAdapter(this, deviceId)
+        mprisPagerAdapter = MprisPagerAdapter(this, plugin.device.deviceId)
         binding.mprisPager.adapter = mprisPagerAdapter
 
         val tabLayoutMediator = TabLayoutMediator(
@@ -86,7 +83,7 @@ class MprisActivity : BaseActivity<ActivityMprisBinding>() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return if (item.itemId == MENU_OPEN_SETTINGS) {
-            startActivity(PluginSettingsActivity.createIntent(this, deviceId, MprisPlugin::class.java.simpleName))
+            startActivity(PluginSettingsActivity.createIntent(this, plugin.device.deviceId, MprisPlugin::class.java.simpleName))
             true
         } else {
             super.onOptionsItemSelected(item)

@@ -101,18 +101,14 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener, OnSharedPref
         super.onCreate(savedInstanceState)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
-        val deviceId = intent.getStringExtra(EXTRA_DEVICE_ID)!!
-        val device = KdeConnect.getInstance().getDevice(deviceId)
-        plugin = device?.getPlugin<PresenterPlugin>() ?: run {
-            finish()
-            return
-        }
+        plugin = KdeConnect.getInstance().getDevicePlugin<PresenterPlugin>(intent.getStringExtra(EXTRA_DEVICE_ID))
+            ?: return finish()
 
         prefs = plugin.preferences
         prefs.registerOnSharedPreferenceChangeListener(this)
         applyPrefs()
 
-        setContent { PresenterScreen(device.name, device) }
+        setContent { PresenterScreen(plugin.device.name, plugin.device) }
         createMediaSession()
     }
 

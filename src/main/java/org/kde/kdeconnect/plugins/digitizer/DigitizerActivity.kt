@@ -33,20 +33,14 @@ class DigitizerActivity : BaseActivity<ActivityDigitizerBinding>(), DrawingPadVi
 
     private lateinit var fullscreenBackCallback: OnBackPressedCallback
 
-    private lateinit var deviceId: String
-
     private lateinit var plugin: DigitizerPlugin
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        deviceId = intent.getStringExtra(EXTRA_DEVICE_ID)!!
-        val device = KdeConnect.getInstance().getDevice(deviceId)
-        plugin = device?.getPlugin<DigitizerPlugin>() ?: run {
-            finish()
-            return
-        }
-        binding.root.addDeviceDisconnectedOverlay(device)
+        plugin = KdeConnect.getInstance().getDevicePlugin<DigitizerPlugin>(intent.getStringExtra(EXTRA_DEVICE_ID))
+            ?: return finish()
+        binding.root.addDeviceDisconnectedOverlay(plugin.device)
 
         setSupportActionBar(binding.toolbarLayout.toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -148,7 +142,7 @@ class DigitizerActivity : BaseActivity<ActivityDigitizerBinding>(), DrawingPadVi
                 true
             }
             R.id.menu_open_settings -> {
-                startActivity(PluginSettingsActivity.createIntent(this, deviceId, DigitizerPlugin::class.java.simpleName))
+                startActivity(PluginSettingsActivity.createIntent(this, plugin.device.deviceId, DigitizerPlugin::class.java.simpleName))
                 true
             }
             else -> super.onOptionsItemSelected(item)

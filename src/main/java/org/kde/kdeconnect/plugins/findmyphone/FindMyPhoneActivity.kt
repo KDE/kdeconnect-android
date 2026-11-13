@@ -28,7 +28,8 @@ class FindMyPhoneActivity : BaseActivity<ActivityFindMyPhoneBinding>() {
             setDisplayShowHomeEnabled(true)
         }
 
-        deviceId = intent.getStringExtra(EXTRA_DEVICE_ID)!!
+        deviceId = intent.getStringExtra(EXTRA_DEVICE_ID)
+            ?: return finish()
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
             setShowWhenLocked(true)

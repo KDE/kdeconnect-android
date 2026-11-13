@@ -31,7 +31,8 @@ import org.kde.kdeconnect_tp.R
  * [onCreate] instead.
  */
 abstract class Plugin {
-    protected lateinit var device: Device
+    lateinit var device: Device
+        private set
     protected lateinit var context: Context
 
     protected val isDeviceInitialized: Boolean
