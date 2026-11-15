@@ -295,6 +295,7 @@
   <string name="device_rename_confirm">Preimenuj</string>
   <string name="refresh">Osveži</string>
   <string name="unreachable_description">Ta uparjena naprava ni dosegljiva. Prepričajte se, da je povezana v isto omrežje.</string>
+  <string name="unreachable_unpaired_description">Naprava ni dosegljiva in ni uparjena</string>
   <string name="no_wifi">Niste povezani z omrežjem Wi-Fi, zato morda ne boste mogli videti nobene naprave. Kliknite tukaj, če želite omogočiti Wi-Fi.</string>
   <string name="on_non_trusted_message">Ni v zaupanja vrednem omrežju: samodejno odkrivanje je onemogočeno.</string>
   <string name="no_file_browser">Ni nameščenega nobenega brskalnika datotek.</string>

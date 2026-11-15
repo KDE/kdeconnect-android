@@ -279,6 +279,7 @@
   <string name="device_rename_confirm">Reanomena</string>
   <string name="refresh">Actualitza</string>
   <string name="unreachable_description">Aquest dispositiu aparellat no és accessible. Assegureu-vos que està connectat a la mateixa xarxa.</string>
+  <string name="unreachable_unpaired_description">No es pot accedir al dispositiu i no està aparellat</string>
   <string name="no_wifi">No esteu connectat a una xarxa Wi-Fi, per tant, no podreu veure cap dispositiu. Feu clic aquí per a activar la Wi-Fi.</string>
   <string name="on_non_trusted_message">No és una xarxa de confiança: el descobriment automàtic està desactivat.</string>
   <string name="no_file_browser">No hi ha instal·lat cap navegador de fitxers.</string>

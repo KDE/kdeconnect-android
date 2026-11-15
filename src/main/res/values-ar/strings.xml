@@ -311,6 +311,7 @@
   <string name="device_rename_confirm">أعد التّسمية</string>
   <string name="refresh">حدّث</string>
   <string name="unreachable_description">الجهاز المقترن هذا لا يمكن الوصول إليه. تأكّد من اتّصاله بنفس الشّبكة.</string>
+  <string name="unreachable_unpaired_description">الجهاز غير قابل للوصول وغير مقترن</string>
   <string name="no_wifi">أنت غير متصل بشبكة واي فاي، لذلك قد لا تتمكن من رؤية أي أجهزة. انقر هنا لتمكين واي فاي.</string>
   <string name="on_non_trusted_message">ليس على شبكة موثوق بها: الاكتشاف الآليّ معطل.</string>
   <string name="no_file_browser">لا متصفّحات ملفّات مثبّتة.</string>

@@ -279,6 +279,7 @@
   <string name="device_rename_confirm">Renomear</string>
   <string name="refresh">Atualizar</string>
   <string name="unreachable_description">Este dispositivo emparelhado não está acessível. Certifique-se de que está conectado à mesma rede que você.</string>
+  <string name="unreachable_unpaired_description">Dispositivo não acessível e não emparelhado</string>
   <string name="no_wifi">Você não está conectado a nenhuma rede Wi-Fi, então não conseguirá ver nenhum dispositivo. Clique aqui para ativar o Wi-Fi.</string>
   <string name="on_non_trusted_message">Não é uma rede confiável: a descoberta automática está desativada.</string>
   <string name="no_file_browser">Não há gerenciadores de arquivos instalados.</string>

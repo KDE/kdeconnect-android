@@ -295,6 +295,7 @@
   <string name="device_rename_confirm">Přejmenovat</string>
   <string name="refresh">Obnovit</string>
   <string name="unreachable_description">Toto spárované zařízení je nedosažitelné. Ujistěte se, že běží ve stejné síti.</string>
+  <string name="unreachable_unpaired_description">Zařízení není dostupné a není spárováno</string>
   <string name="no_wifi">Nejste připojeni k síti WiFi, takže nemůžete vidět žádná zařízení. Pro zapnutí WiFi klikněte zde.</string>
   <string name="on_non_trusted_message">Síť není důvěryhodná. Automatické hledání bylo vypnuto.</string>
   <string name="no_file_browser">Není nainstalován žádný prohlížeč souborů.</string>
