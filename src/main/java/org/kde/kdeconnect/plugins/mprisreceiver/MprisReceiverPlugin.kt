@@ -195,7 +195,7 @@ class MprisReceiverPlugin : Plugin() {
         np["canFastForward"] = player.canFastForward()
         np["canRewind"] = player.canRewind()
         np["canSeek"] = player.canSeek()
-        np["playbackRate"] = player.playbackRate()
+        np["rate"] = player.playbackRate()
         np["volume"] = player.volume
         np["albumArtUrl"] = player.art?.url ?: ""
         device.sendPacket(np)
