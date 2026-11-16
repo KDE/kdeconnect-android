@@ -144,6 +144,16 @@ internal class MprisReceiverPlayer(
         return (state.actions and PlaybackState.ACTION_SEEK_TO) != 0L
     }
 
+    fun playbackRate(): Float {
+        val state = controller.playbackState ?: return 1.0f
+        val speed = state.playbackSpeed
+        return if (speed > 0.0f) {
+            speed
+        } else {
+            1.0f
+        }
+    }
+
     fun playPause() {
         if (this.isPlaying()) {
             controller.transportControls.pause()

@@ -130,6 +130,13 @@ class NetworkPacket private constructor(
         }
     }
 
+    operator fun set(key: String, value: Float) {
+        // NaN and infinity can't be represented in JSON
+        if (value.isFinite()) {
+            mBody[key] = JsonPrimitive(value)
+        }
+    }
+
     fun getJsonArray(key: String): JsonArray? {
         return mBody[key] as? JsonArray
     }
