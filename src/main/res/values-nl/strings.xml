@@ -279,6 +279,7 @@
   <string name="device_rename_confirm">Hernoemen</string>
   <string name="refresh">Vernieuwen</string>
   <string name="unreachable_description">Dit gepaarde apparaat is niet bereikbaar. Ga na dat het is verbonden met uw zelfde netwerk.</string>
+  <string name="unreachable_unpaired_description">Apparaat is niet bereikbaar en niet gepaard</string>
   <string name="no_wifi">U bent niet verbonden met een Wi-Fi-netwerk, u zou dus niet in staat kunnen zijn om apparaten te zien. Klik hier om Wi-Fi in te schakelen.</string>
   <string name="on_non_trusted_message">Niet op een vertrouwd netwerk: automatisch ontdekken is uitgeschakeld.</string>
   <string name="no_file_browser">Er zijn geen bestandsbrowsers geïnstalleerd.</string>

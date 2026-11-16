@@ -295,6 +295,7 @@
   <string name="device_rename_confirm">Перейменувати</string>
   <string name="refresh">Оновити</string>
   <string name="unreachable_description">Цей пов’язаний пристрій недоступний. Переконайтеся, що його з’єднано з вашою мережею.</string>
+  <string name="unreachable_unpaired_description">Немає доступу до пристрою і його не пов\'язано</string>
   <string name="no_wifi">Ваш комп\'ютер не з\'єднано із мережею Wi-Fi, отже перегляд пристроїв у мережі неможливий. Натисніть тут, щоб увімкнути Wi-Fi.</string>
   <string name="on_non_trusted_message">Не є надійною мережею: автовиявлення вимкнено.</string>
   <string name="no_file_browser">Програм для навігації файловою системою не встановлено.</string>
