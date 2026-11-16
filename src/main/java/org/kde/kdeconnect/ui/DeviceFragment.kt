@@ -227,6 +227,12 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
         //Once in-app, there is no point in keep displaying the notification if any
         device.hidePairingNotification()
 
+        if (device.isPaired && device.isReachable) {
+            displayBatteryInfoIfPossible()
+        } else {
+            setActionBarSubtitle(null)
+        }
+
         binding.deviceView.apply {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
@@ -265,7 +271,6 @@ class DeviceFragment : BaseFragment<ActivityDeviceBinding>() {
                                         )
                                     }
                                 )
-                                displayBatteryInfoIfPossible()
                             } else {
                                 DeviceErrorScreen(
                                     message = stringResource(id = R.string.unreachable_description),
