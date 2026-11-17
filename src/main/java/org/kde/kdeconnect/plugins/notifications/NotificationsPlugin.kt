@@ -373,6 +373,10 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
                 val title = action.title
                     ?: continue
 
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && action.actionIntent?.isActivity == true) {
+                    continue
+                }
+
                 // Check whether it is a reply action. We have special treatment for them
                 if (action.remoteInputs?.isNotEmpty() == true) {
                     continue
