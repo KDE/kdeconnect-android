@@ -147,6 +147,7 @@ class FindMyPhonePlugin : Plugin() {
             .setSmallIcon(R.drawable.ic_notification)
             .setOngoing(true)
             .setFullScreenIntent(pendingIntent, true)
+            .setDeleteIntent(pendingIntent)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setAutoCancel(true)
             .setContentTitle(context.getString(R.string.findmyphone_found))
