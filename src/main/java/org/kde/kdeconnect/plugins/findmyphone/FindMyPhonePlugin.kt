@@ -19,6 +19,7 @@ import android.os.Build
 import android.os.PowerManager
 import android.os.SystemClock
 import android.provider.Settings
+import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.content.getSystemService
 import androidx.core.net.toUri
@@ -62,24 +63,41 @@ class FindMyPhonePlugin : Plugin() {
         flashlightManager = FlashlightManager(context)
 
         val ringtoneString = preferences.getString(context.getString(R.string.findmyphone_preference_key_ringtone), "")
-        val ringtone: Uri = if (ringtoneString.isNullOrEmpty()) {
-            Settings.System.DEFAULT_RINGTONE_URI
-        } else {
-            ringtoneString.toUri()
-        }
 
-        mediaPlayer = MediaPlayer()
-        mediaPlayer?.apply {
-            setDataSource(context, ringtone)
-            val audioAttributes = AudioAttributes.Builder()
-                .setUsage(AudioAttributes.USAGE_ALARM)
-                .setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
-                .build()
-            @Suppress("DEPRECATION")
-            setWakeMode(context, PowerManager.SCREEN_DIM_WAKE_LOCK)
-            setAudioAttributes(audioAttributes)
-            isLooping = true
-            prepare()
+        // The chosen sound may not be playable (e.g. it was deleted, or the system default
+        // ringtone is set to "None"), so fall back to other system sounds.
+        val ringtoneCandidates = listOfNotNull(
+            ringtoneString?.takeIf { it.isNotEmpty() }?.toUri(),
+            Settings.System.DEFAULT_RINGTONE_URI,
+            Settings.System.DEFAULT_ALARM_ALERT_URI,
+            Settings.System.DEFAULT_NOTIFICATION_URI,
+        ).distinct()
+
+        mediaPlayer = ringtoneCandidates.firstNotNullOfOrNull { createMediaPlayer(it) }
+        if (mediaPlayer == null) {
+            Log.e(LOG_TAG, "No playable ringtone found, FindMyPhone will not play a sound")
+        }
+    }
+
+    private fun createMediaPlayer(ringtone: Uri): MediaPlayer? {
+        val player = MediaPlayer()
+        return try {
+            player.apply {
+                setDataSource(context, ringtone)
+                val audioAttributes = AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_ALARM)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
+                    .build()
+                @Suppress("DEPRECATION")
+                setWakeMode(context, PowerManager.SCREEN_DIM_WAKE_LOCK)
+                setAudioAttributes(audioAttributes)
+                isLooping = true
+                prepare()
+            }
+        } catch (e: Exception) {
+            Log.w(LOG_TAG, "Could not use ringtone $ringtone", e)
+            player.release()
+            null
         }
     }
 
@@ -218,5 +236,6 @@ class FindMyPhonePlugin : Plugin() {
 
     companion object {
         const val PACKET_TYPE_FINDMYPHONE_REQUEST: String = "kdeconnect.findmyphone.request"
+        private const val LOG_TAG = "FindMyPhonePlugin"
     }
 }

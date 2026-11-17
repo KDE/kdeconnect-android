@@ -124,7 +124,7 @@ class FindMyPhoneSettingsFragment : PluginSettingsFragment() {
             Settings.System.DEFAULT_RINGTONE_URI.toString()
         )
         val ringtoneUri = ringtone?.toUri() ?: Settings.System.DEFAULT_RINGTONE_URI
-        ringtonePreference?.summary = RingtoneManager.getRingtone(requireContext(), ringtoneUri).getTitle(requireContext())
+        ringtonePreference?.summary = RingtoneManager.getRingtone(requireContext(), ringtoneUri)?.getTitle(requireContext())
     }
 
     override fun onPreferenceTreeClick(preference: Preference): Boolean {
