@@ -45,6 +45,7 @@ import org.kde.kdeconnect_tp.R
 import java.io.ByteArrayOutputStream
 import java.security.MessageDigest
 import java.util.Locale
+import java.util.concurrent.atomic.AtomicBoolean
 
 @LoadablePlugin
 class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener {
@@ -55,7 +56,10 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
     private val postedNotifications = HashSet<String>()
     private val pendingIntents = HashMap<String, RepliableNotification>()
     private val pendingActions = mutableMapOf<String, MutableList<Notification.Action>>()
+    @Volatile
     private var serviceReady = false
+    // Set when the remote asked for the current notifications before the listener service was ready
+    private val pendingRequest = AtomicBoolean(false)
     private lateinit var keyguardManager: KeyguardManager
     private lateinit var mainHandler: Handler
     private val postedNotificationsLock = Any()
@@ -103,8 +107,11 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
 
     override fun onListenerConnected(service: NotificationReceiver) {
         serviceReady = true
-        NotificationReceiver.RunCommand(context) { service ->
-            this.sendCurrentNotifications(service)
+        // Current notifications are only sent in response to a request from the remote device
+        if (pendingRequest.getAndSet(false)) {
+            NotificationReceiver.RunCommand(context) { service ->
+                this.sendCurrentNotifications(service)
+            }
         }
     }
 
@@ -518,7 +525,9 @@ class NotificationsPlugin : Plugin(), NotificationReceiver.NotificationListener 
                 }
             }
         } else if (np.getBoolean("request")) {
-            if (serviceReady) {
+            // Set the flag first so that either this or onListenerConnected sends, never neither
+            pendingRequest.set(true)
+            if (serviceReady && pendingRequest.getAndSet(false)) {
                 NotificationReceiver.RunCommand(context) { service ->
                     this.sendCurrentNotifications(service)
                 }
