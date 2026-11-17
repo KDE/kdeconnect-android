@@ -88,6 +88,8 @@ class MprisPlugin : Plugin() {
             internal set
         var isPauseAllowed: Boolean = true
             internal set
+        var isStopAllowed: Boolean = true
+            internal set
         var isGoNextAllowed: Boolean = true
             internal set
         var isGoPreviousAllowed: Boolean = true
@@ -315,6 +317,7 @@ class MprisPlugin : Plugin() {
                 playerStatus.isPlaying = np.getBoolean("isPlaying", playerStatus.isPlaying)
                 playerStatus.isPlayAllowed = np.getBoolean("canPlay", playerStatus.isPlayAllowed)
                 playerStatus.isPauseAllowed = np.getBoolean("canPause", playerStatus.isPauseAllowed)
+                playerStatus.isStopAllowed = np.getBoolean("canStop", playerStatus.isStopAllowed)
                 playerStatus.isGoNextAllowed = np.getBoolean("canGoNext", playerStatus.isGoNextAllowed)
                 playerStatus.isGoPreviousAllowed = np.getBoolean("canGoPrevious", playerStatus.isGoPreviousAllowed)
                 playerStatus.seekAllowed = np.getBoolean("canSeek", playerStatus.seekAllowed)

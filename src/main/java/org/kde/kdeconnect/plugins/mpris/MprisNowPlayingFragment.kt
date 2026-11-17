@@ -341,6 +341,12 @@ class MprisNowPlayingFragment : BaseFragment<MprisNowPlayingBinding>(), VolumeKe
             mprisControlBinding.playButton.isEnabled = playerStatus.isPlayAllowed
         }
 
+        mprisControlBinding.stopButton.visibility = if (playerStatus.isStopAllowed) {
+            View.VISIBLE
+        } else {
+            View.GONE
+        }
+
         val loopStatus = playerStatus.loopStatus
         when (loopStatus) {
             "None" -> mprisControlBinding.loopButton.setIconResource(R.drawable.ic_loop_none_black)
