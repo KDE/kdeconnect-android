@@ -36,6 +36,7 @@ import kotlinx.coroutines.launch
 import okio.Path.Companion.toOkioPath
 import okio.source
 import org.kde.kdeconnect.NetworkPacket.Payload
+import org.kde.kdeconnect.plugins.mpris.AlbumArtCache.DEVICE_FETCH_SCHEMES
 import java.io.File
 import java.io.IOException
 import java.util.concurrent.ConcurrentHashMap
@@ -85,7 +86,7 @@ internal object AlbumArtCache {
      */
     private val registeredPlugins = CopyOnWriteArrayList<MprisPlugin>()
 
-    val ALLOWED_SCHEMES = listOf("http", "https", "file", "kdeconnect")
+    val ALLOWED_SCHEMES = listOf("http", "https", "file", "kdeconnect", "data")
 
     /**
      * A list of art url schemes that require a transfer from the connected device.
@@ -156,7 +157,6 @@ internal object AlbumArtCache {
         }
         val url = albumUrl.toUri()
 
-        // We currently only support http(s), file, and kdeconnect urls
         if (url.scheme !in ALLOWED_SCHEMES) {
             return null
         }
@@ -223,9 +223,11 @@ internal object AlbumArtCache {
      * @param fromDevice Whether the art was transferred from the connected device, so it can only come from the disk cache
      */
     private fun load(albumUrl: String, fromDevice: Boolean) {
+        // Embedded images in a data: url need no download nor disk cache
+        val isDataUrl = albumUrl.startsWith("data:")
         // Only download art on unmetered networks (wifi etc.), but still use what's in the disk cache
         val metered = ConnectivityManagerCompat.isActiveNetworkMetered(connectivityManager)
-        if (!fromDevice && metered && !isInDiskCache(albumUrl)) {
+        if (!fromDevice && !isDataUrl && metered && !isInDiskCache(albumUrl)) {
             // Not a failure, it will be downloaded once we are on an unmetered network
             return
         }
@@ -238,6 +240,7 @@ internal object AlbumArtCache {
             .memoryCacheKey(albumUrl)
             .diskCacheKey(albumUrl)
             .networkCachePolicy(if (metered) CachePolicy.DISABLED else CachePolicy.ENABLED)
+            .diskCachePolicy(if (isDataUrl) CachePolicy.DISABLED else CachePolicy.ENABLED)
             // The bitmaps get passed to the media session and notifications
             .allowHardware(false)
             // Downscale big images (we don't need more for the notification or the now playing screen), never upscale
