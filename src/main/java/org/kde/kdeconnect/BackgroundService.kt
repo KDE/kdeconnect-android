@@ -123,15 +123,23 @@ class BackgroundService : Service() {
 
             // All callbacks run on a dedicated thread that isn't the main thread
 
+            private val availableNetworks = mutableSetOf<Network>()
+
             override fun onAvailable(network: Network) {
                 Log.i("BackgroundService", "Valid network available")
-                isConnectedToNonCellularNetwork.postValue(true)
+                synchronized(availableNetworks) {
+                    availableNetworks.add(network)
+                    isConnectedToNonCellularNetwork.postValue(true)
+                }
                 onNetworkChange(network)
             }
 
             override fun onLost(network: Network) {
                 Log.i("BackgroundService", "Valid network lost")
-                isConnectedToNonCellularNetwork.postValue(false)
+                synchronized(availableNetworks) {
+                    availableNetworks.remove(network)
+                    isConnectedToNonCellularNetwork.postValue(availableNetworks.isNotEmpty())
+                }
                 onNetworkChange(null)
             }
         }.also {
