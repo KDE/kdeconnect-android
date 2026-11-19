@@ -49,11 +49,12 @@ class ConnectivityReportPlugin : Plugin() {
 
     var listener = object : ConnectivityListener.StateCallback {
         override fun statesChanged(states : Map<Int, SubscriptionState>) {
-            if (states.isEmpty()) {
+            val activeStates = states.filterValues { !it.isOff }
+            if (activeStates.isEmpty()) {
                 return
             }
             val signalStrengths = buildJsonObject {
-                states.forEach { (subID: Int, subscriptionState: SubscriptionState) ->
+                activeStates.forEach { (subID: Int, subscriptionState: SubscriptionState) ->
                     putJsonObject(subID.toString()) {
                         put("networkType", subscriptionState.networkType)
                         put("signalStrength", subscriptionState.signalStrength)

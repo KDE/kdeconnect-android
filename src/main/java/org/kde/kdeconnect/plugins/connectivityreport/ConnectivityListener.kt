@@ -12,6 +12,7 @@ import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import android.telephony.PhoneStateListener
+import android.telephony.ServiceState
 import android.telephony.SignalStrength
 import android.telephony.SubscriptionManager
 import android.telephony.SubscriptionManager.OnSubscriptionsChangedListener
@@ -28,9 +29,13 @@ class ConnectivityListener(context: Context) {
 
     val context : Context = context.applicationContext
 
-    data class SubscriptionState(var signalStrength: Int = 0, var networkType: String = "Unknown") {
+    data class SubscriptionState(var signalStrength: Int = 0, var networkType: String = "Unknown", var isOff: Boolean = false) {
         @RequiresApi(Build.VERSION_CODES.P)
-        constructor(tm: TelephonyManager) : this(ASUUtils.signalStrengthToLevel(tm.signalStrength), ASUUtils.networkTypeToString(tm.dataNetworkType))
+        constructor(tm: TelephonyManager) : this(
+            ASUUtils.signalStrengthToLevel(tm.signalStrength),
+            ASUUtils.networkTypeToString(tm.dataNetworkType),
+            tm.serviceState?.state == ServiceState.STATE_POWER_OFF
+        )
     }
 
     interface StateCallback {
@@ -99,7 +104,7 @@ class ConnectivityListener(context: Context) {
                     }
                     val listener = createListenerForSubscription(subID)
                     connectivityListeners[subID] = listener
-                    subTm.listen(listener, PhoneStateListener.LISTEN_SIGNAL_STRENGTHS or PhoneStateListener.LISTEN_DATA_CONNECTION_STATE)
+                    subTm.listen(listener, PhoneStateListener.LISTEN_SIGNAL_STRENGTHS or PhoneStateListener.LISTEN_DATA_CONNECTION_STATE or PhoneStateListener.LISTEN_SERVICE_STATE)
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                         statesChanged()
                     }
@@ -179,6 +184,17 @@ class ConnectivityListener(context: Context) {
                     val newStrength = ASUUtils.signalStrengthToLevel(signalStrength)
                     if (newStrength != state.signalStrength) {
                         state.signalStrength = newStrength
+                        statesChanged()
+                    }
+                }
+            }
+
+            override fun onServiceStateChanged(serviceState: ServiceState?) {
+                val state = states[subID]
+                if (state != null && serviceState != null) {
+                    val off = serviceState.state == ServiceState.STATE_POWER_OFF
+                    if (off != state.isOff) {
+                        state.isOff = off
                         statesChanged()
                     }
                 }
