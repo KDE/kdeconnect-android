@@ -8,6 +8,7 @@ package org.kde.kdeconnect.backends.bluetooth
 
 import android.annotation.SuppressLint
 import android.bluetooth.BluetoothAdapter
+import android.bluetooth.BluetoothClass
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothServerSocket
 import android.bluetooth.BluetoothSocket
@@ -316,6 +317,10 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
                 if (sockets.containsKey(device)) {
                     continue
                 }
+                if (!canRunKdeConnect(device)) {
+                    Log.i("ClientRunnable", "Skipping device that can't run KDE Connect: $device")
+                    continue
+                }
                 Log.i("ClientRunnable", "Calling fetchUuidsWithSdp for device: $device")
                 device.fetchUuidsWithSdp()
                 val deviceUuids = device.uuids
@@ -324,6 +329,28 @@ class BluetoothLinkProvider(private val context: Context) : BaseLinkProvider() {
                         Log.i("ClientRunnable", "device $device uuid: $thisUuid")
                     }
                 }
+            }
+        }
+
+        /**
+         * SDP has to page the remote device, so every bonded device that is out of range
+         * keeps the radio busy until the page timeout (~5 s). Skip devices that can't run
+         * KDE Connect: LE-only devices (no RFCOMM) and car kits, headsets, speakers, mice,
+         * watches, etc.
+         */
+        @SuppressLint("MissingPermission")
+        private fun canRunKdeConnect(device: BluetoothDevice): Boolean {
+            if (device.type == BluetoothDevice.DEVICE_TYPE_LE) {
+                return false
+            }
+            return when (device.bluetoothClass?.majorDeviceClass) {
+                BluetoothClass.Device.Major.AUDIO_VIDEO,
+                BluetoothClass.Device.Major.PERIPHERAL,
+                BluetoothClass.Device.Major.IMAGING,
+                BluetoothClass.Device.Major.WEARABLE,
+                BluetoothClass.Device.Major.TOY,
+                BluetoothClass.Device.Major.HEALTH -> false
+                else -> true
             }
         }
 
