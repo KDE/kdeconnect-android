@@ -295,6 +295,7 @@
   <string name="device_rename_confirm">Premenovať</string>
   <string name="refresh">Obnoviť</string>
   <string name="unreachable_description">Toto spárované zariadenie nie je dosiahnuteľné. Prosím, uistite sa, že je pripojené k rovnakej sieti ako vy.</string>
+  <string name="unreachable_unpaired_description">Zariadenie nie je dosiahnuteľné a nie je spárované</string>
   <string name="no_wifi">Nie ste pripojení k sieti Wi-Fi, takže pravdepodobne nebudete môcť vidieť žiadne zariadenia. Kliknutím sem povolíte pripojenie Wi-Fi.</string>
   <string name="on_non_trusted_message">Pripojené k nedôveryhodnej sieti: automatické objavovanie je zakázané.</string>
   <string name="no_file_browser">Nie sú nainštalované žiadne prehliadače.</string>
@@ -328,6 +329,10 @@
   <string name="settings_icon_description">Ikona nastavení</string>
   <string name="presenter_fullscreen">Na celú obrazovku</string>
   <string name="presenter_exit">Ukončiť prezentáciu</string>
+  <string name="presenter_change_zoom">Zmeniť priblíženie</string>
+  <string name="presenter_zoom">Priblíženie</string>
+  <string name="presenter_zoom_in">Priblížiť</string>
+  <string name="presenter_zoom_out">Oddialiť</string>
   <string name="presenter_lock_tip">Môžete uzamknúť vaše zariadenie a použiť klávesy hlasitosti na prechod na predchádzajúci a nasledujúci snímok</string>
   <string name="add_command">Pridať príkaz</string>
   <string name="addcommand_explanation">Nie sú registrované žiadne príkazy</string>
