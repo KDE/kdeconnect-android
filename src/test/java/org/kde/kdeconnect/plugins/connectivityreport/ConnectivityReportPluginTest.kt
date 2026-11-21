@@ -17,7 +17,7 @@ import kotlinx.serialization.json.jsonPrimitive
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
-import org.junit.Assert.assertNull
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -58,9 +58,11 @@ class ConnectivityReportPluginTest {
     // LOCAL -> REMOTE
 
     @Test
-    fun testDoesNotSendPacketWhenStatesEmpty() {
+    fun testSendsEmptyReportWhenStatesEmpty() {
         plugin.listener.statesChanged(emptyMap())
-        assertNull(packet)
+
+        val signalStrengths = checkNotNull(packet).getJsonObject("signalStrengths")!!
+        assertTrue(signalStrengths.isEmpty())
     }
 
     @Test
@@ -110,11 +112,12 @@ class ConnectivityReportPluginTest {
     }
 
     @Test
-    fun testDoesNotSendPacketWhenAllSubscriptionsOff() {
+    fun testSendsEmptyReportWhenAllSubscriptionsOff() {
         plugin.listener.statesChanged(mapOf(6 to ConnectivityListener.SubscriptionState(isOff = true)))
 
-        assertNull(packet)
-        verify(exactly = 0) { device.sendPacket(any()) }
+        val signalStrengths = checkNotNull(packet).getJsonObject("signalStrengths")!!
+        assertTrue(signalStrengths.isEmpty())
+        verify(exactly = 1) { device.sendPacket(any()) }
     }
 
     @Test
