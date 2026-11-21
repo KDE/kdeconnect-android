@@ -29,7 +29,13 @@ class ConnectivityListener(context: Context) {
 
     val context : Context = context.applicationContext
 
-    data class SubscriptionState(var signalStrength: Int = 0, var networkType: String = "Unknown", var isOff: Boolean = false) {
+    data class SubscriptionState(
+        var signalStrength: Int = 0,
+        var networkType: String = "Unknown",
+        var isOff: Boolean = false,
+        var name: String? = null,
+        var slot: Int = -1
+    ) {
         @RequiresApi(Build.VERSION_CODES.P)
         constructor(tm: TelephonyManager) : this(
             ASUUtils.signalStrengthToLevel(tm.signalStrength),
@@ -59,6 +65,22 @@ class ConnectivityListener(context: Context) {
     private val externalListeners = HashSet<StateCallback>()
 
     private val activeIDs = HashSet<Int>()
+
+    private fun updateSubscriptionInfo(subID: Int) {
+        val info = try {
+            context.getSystemService<SubscriptionManager>()?.activeSubscriptionInfoList?.firstOrNull { it.subscriptionId == subID }
+        } catch (_: Exception) {
+            null
+        } ?: return
+        states[subID]?.let {
+            it.name = (info.displayName ?: info.carrierName)?.toString()
+            it.slot = if (info.simSlotIndex != SubscriptionManager.INVALID_SIM_SLOT_INDEX) {
+                info.simSlotIndex + 1 // Android reports it 0-indexed
+            }  else {
+                -1
+            }
+        }
+    }
 
     private fun statesChanged() {
         val listenersCopy = synchronized(externalListeners) {
@@ -102,6 +124,7 @@ class ConnectivityListener(context: Context) {
                     } else {
                         states[subID] = SubscriptionState()
                     }
+                    updateSubscriptionInfo(subID)
                     val listener = createListenerForSubscription(subID)
                     connectivityListeners[subID] = listener
                     subTm.listen(listener, PhoneStateListener.LISTEN_SIGNAL_STRENGTHS or PhoneStateListener.LISTEN_DATA_CONNECTION_STATE or PhoneStateListener.LISTEN_SERVICE_STATE)

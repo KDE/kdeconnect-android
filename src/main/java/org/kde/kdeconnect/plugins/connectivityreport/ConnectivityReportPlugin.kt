@@ -35,7 +35,9 @@ class ConnectivityReportPlugin : Plugin() {
      *     "signalStrengths": {
      *         "6": {
      *             "networkType": "4G",
-     *             "signalStrength": 3
+     *             "signalStrength": 3,
+     *             "name": "Vodafone",
+     *             "slot": 1
      *         },
      *         "17": {
      *             "networkType": "HSPA",
@@ -58,6 +60,8 @@ class ConnectivityReportPlugin : Plugin() {
                     putJsonObject(subID.toString()) {
                         put("networkType", subscriptionState.networkType)
                         put("signalStrength", subscriptionState.signalStrength)
+                        subscriptionState.name?.let { put("name", it) }
+                        if (subscriptionState.slot >= 0) put("slot", subscriptionState.slot)
                     }
                 }
             }
