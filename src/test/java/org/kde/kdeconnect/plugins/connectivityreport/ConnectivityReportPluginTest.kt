@@ -65,10 +65,7 @@ class ConnectivityReportPluginTest {
 
     @Test
     fun testSendsConnectivityStateSingle() {
-        val subState = mockk<ConnectivityListener.SubscriptionState> {
-            every { networkType } returns "4G"
-            every { signalStrength } returns 3
-        }
+        val subState = ConnectivityListener.SubscriptionState(signalStrength = 3, networkType = "4G")
 
         plugin.listener.statesChanged(mapOf(6 to subState))
 
@@ -80,18 +77,18 @@ class ConnectivityReportPluginTest {
         val subInfo = signalStrengths.getValue("6").jsonObject
         assertEquals("4G", subInfo.getValue("networkType").jsonPrimitive.content)
         assertEquals(3, subInfo.getValue("signalStrength").jsonPrimitive.int)
+        assertFalse(subInfo.containsKey("name"))
+        assertFalse(subInfo.containsKey("slot"))
     }
 
     @Test
     fun testSendsConnectivityStateMultiple() {
-        val subState1 = mockk<ConnectivityListener.SubscriptionState> {
-            every { networkType } returns "5G"
-            every { signalStrength } returns 4
-        }
-        val subState2 = mockk<ConnectivityListener.SubscriptionState> {
-            every { networkType } returns "HSPA"
-            every { signalStrength } returns 2
-        }
+        val subState1 = ConnectivityListener.SubscriptionState(
+            signalStrength = 4, networkType = "5G", name = "Vodafone", slot = 1
+        )
+        val subState2 = ConnectivityListener.SubscriptionState(
+            signalStrength = 2, networkType = "HSPA", name = "Telekom", slot = 2
+        )
 
         plugin.listener.statesChanged(mapOf(6 to subState1, 17 to subState2))
 
@@ -103,9 +100,35 @@ class ConnectivityReportPluginTest {
 
         assertEquals("5G", subInfo1.getValue("networkType").jsonPrimitive.content)
         assertEquals(4, subInfo1.getValue("signalStrength").jsonPrimitive.int)
+        assertEquals("Vodafone", subInfo1.getValue("name").jsonPrimitive.content)
+        assertEquals(1, subInfo1.getValue("slot").jsonPrimitive.int)
 
         assertEquals("HSPA", subInfo2.getValue("networkType").jsonPrimitive.content)
         assertEquals(2, subInfo2.getValue("signalStrength").jsonPrimitive.int)
+        assertEquals("Telekom", subInfo2.getValue("name").jsonPrimitive.content)
+        assertEquals(2, subInfo2.getValue("slot").jsonPrimitive.int)
+    }
+
+    @Test
+    fun testDoesNotSendPacketWhenAllSubscriptionsOff() {
+        plugin.listener.statesChanged(mapOf(6 to ConnectivityListener.SubscriptionState(isOff = true)))
+
+        assertNull(packet)
+        verify(exactly = 0) { device.sendPacket(any()) }
+    }
+
+    @Test
+    fun testOmitsPoweredOffSubscriptions() {
+        val activeState = ConnectivityListener.SubscriptionState(signalStrength = 3, networkType = "4G")
+        val offState = ConnectivityListener.SubscriptionState(isOff = true)
+
+        plugin.listener.statesChanged(mapOf(6 to activeState, 17 to offState))
+
+        val signalStrengths = checkNotNull(packet).getJsonObject("signalStrengths")!!
+        assertEquals(setOf("6"), signalStrengths.keys)
+        val subInfo = signalStrengths.getValue("6").jsonObject
+        assertEquals("4G", subInfo.getValue("networkType").jsonPrimitive.content)
+        assertEquals(3, subInfo.getValue("signalStrength").jsonPrimitive.int)
     }
 
     // REMOTE -> LOCAL
