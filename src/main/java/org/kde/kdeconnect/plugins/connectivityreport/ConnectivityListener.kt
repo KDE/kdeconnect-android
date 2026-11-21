@@ -215,7 +215,7 @@ class ConnectivityListener(context: Context) {
             override fun onServiceStateChanged(serviceState: ServiceState?) {
                 val state = states[subID]
                 if (state != null && serviceState != null) {
-                    val off = serviceState.state == ServiceState.STATE_POWER_OFF
+                    val off = serviceState.state == ServiceState.STATE_POWER_OFF || serviceState.state == ServiceState.STATE_OUT_OF_SERVICE
                     if (off != state.isOff) {
                         state.isOff = off
                         statesChanged()
