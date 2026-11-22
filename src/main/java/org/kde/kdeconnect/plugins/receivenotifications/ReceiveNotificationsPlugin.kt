@@ -47,7 +47,7 @@ class ReceiveNotificationsPlugin : Plugin() {
             return true
         }
 
-        val resultPendingIntent = PendingIntent.getActivity(context, 0, Intent(context, MainActivity::class.java), PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+        val resultPendingIntent = PendingIntent.getActivity(context, 0, Intent(context, MainActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP), PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 
         var largeIcon: Bitmap? = null
         val payload = np.payload

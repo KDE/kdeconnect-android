@@ -130,7 +130,7 @@ open class RemoteKeyboardService :
                     } else { // != 1 instance of plugin -> show main activity view
                         val intent = Intent(this, MainActivity::class.java).apply {
                             putExtra(MainActivity.FLAG_FORCE_OVERVIEW, true)
-                            flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
                         }
                         startActivity(intent)
                         if (instances.isEmpty()) {

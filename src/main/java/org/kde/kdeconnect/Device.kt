@@ -263,6 +263,7 @@ class Device : PacketReceiver {
         val intent = Intent(context, MainActivity::class.java).apply {
             // PendingIntent matching ignores extras, so scope each action to this device.
             action = "org.kde.kdeconnect.PAIRING_PENDING.$deviceId"
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             putExtra(MainActivity.EXTRA_DEVICE_ID, deviceId)
             putExtra(MainActivity.PAIR_REQUEST_STATUS, MainActivity.PAIRING_PENDING)
         }
@@ -276,11 +277,13 @@ class Device : PacketReceiver {
 
         val acceptIntent = Intent(context, MainActivity::class.java).apply {
             action = "org.kde.kdeconnect.PAIRING_ACCEPTED.$deviceId"
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             putExtra(MainActivity.EXTRA_DEVICE_ID, deviceId)
             putExtra(MainActivity.PAIR_REQUEST_STATUS, MainActivity.PAIRING_ACCEPTED)
         }
         val rejectIntent = Intent(context, MainActivity::class.java).apply {
             action = "org.kde.kdeconnect.PAIRING_REJECTED.$deviceId"
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             putExtra(MainActivity.EXTRA_DEVICE_ID, deviceId)
             putExtra(MainActivity.PAIR_REQUEST_STATUS, MainActivity.PAIRING_REJECTED)
         }

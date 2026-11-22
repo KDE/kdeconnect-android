@@ -180,6 +180,7 @@ class BackgroundService : Service() {
         // PendingIntent matching ignores extras, so add an action to avoid other notifications that also
         // open MainActivity replacing the device id extra below.
         intent.action = "org.kde.kdeconnect.FOREGROUND_NOTIFICATION"
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         if (connectedDeviceIds.size == 1) {
             // Force open screen of the only connected device
             intent.putExtra(MainActivity.EXTRA_DEVICE_ID, connectedDeviceIds[0])

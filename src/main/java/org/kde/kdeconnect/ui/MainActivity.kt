@@ -165,62 +165,17 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
             true
         }
 
-        // Decide which menu entry should be selected at start
-        val intentAlreadyHandled = (intent.flags and Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY) != 0
-        var savedDevice: String?
-        var savedMenuEntry: Int
         when {
             savedInstanceState != null -> {
                 Log.i(TAG, "Loading selected device from saved activity state")
-                savedDevice = savedInstanceState.getString(STATE_SELECTED_DEVICE)
-                savedMenuEntry = savedInstanceState.getInt(STATE_SELECTED_MENU_ENTRY, MENU_ENTRY_ADD_DEVICE)
+                mCurrentDevice = savedInstanceState.getString(STATE_SELECTED_DEVICE)
+                mCurrentMenuEntry = savedInstanceState.getInt(STATE_SELECTED_MENU_ENTRY, MENU_ENTRY_ADD_DEVICE)
+                mNavigationView.setCheckedItem(mCurrentMenuEntry)
             }
 
-            !intentAlreadyHandled && intent.hasExtra(FLAG_FORCE_OVERVIEW) -> {
-                Log.i(TAG, "Requested to start main overview")
-                savedDevice = null
-                savedMenuEntry = MENU_ENTRY_ADD_DEVICE
-            }
-
-            !intentAlreadyHandled && intent.hasExtra(EXTRA_DEVICE_ID) -> {
-                Log.i(TAG, "Loading selected device from parameter")
-                savedDevice = intent.getStringExtra(EXTRA_DEVICE_ID)
-                savedMenuEntry = MENU_ENTRY_DEVICE_UNKNOWN
-                // If pairStatus is not empty, then the user has accepted/reject the pairing from the notification
-                val pairStatus = intent.getStringExtra(PAIR_REQUEST_STATUS)
-                if (pairStatus != null) {
-                    Log.i(TAG, "Pair status is $pairStatus")
-                    savedDevice = onPairResultFromNotification(savedDevice, pairStatus)
-                    if (savedDevice == null) {
-                        savedMenuEntry = MENU_ENTRY_ADD_DEVICE
-                    }
-                }
-            }
-
-            else -> {
+            !showScreenFromIntent(intent) -> {
                 Log.i(TAG, "Loading selected device from persistent storage")
-                savedDevice = preferences.getString(STATE_SELECTED_DEVICE, null)
-                savedMenuEntry = if (savedDevice != null) MENU_ENTRY_DEVICE_UNKNOWN else MENU_ENTRY_ADD_DEVICE
-            }
-        }
-        mCurrentMenuEntry = savedMenuEntry
-        mCurrentDevice = savedDevice
-        mNavigationView.setCheckedItem(savedMenuEntry)
-
-        //FragmentManager will restore whatever fragment was there
-        if (savedInstanceState != null) {
-            val frag = supportFragmentManager.findFragmentById(R.id.container)
-            if (frag !is DeviceFragment || frag.deviceId == savedDevice) return
-        }
-
-        // Activate the chosen fragment and select the entry in the menu
-        if (savedMenuEntry >= MENU_ENTRY_DEVICE_FIRST_ID && savedDevice != null) {
-            onDeviceSelected(savedDevice)
-        } else {
-            when (mCurrentMenuEntry) {
-                MENU_ENTRY_SETTINGS -> setContentFragment(SettingsFragment())
-                MENU_ENTRY_ABOUT -> setContentFragment(AboutFragment.newInstance())
-                else -> setContentFragment(PairingFragment())
+                onDeviceSelected(preferences.getString(STATE_SELECTED_DEVICE, null))
             }
         }
 
@@ -246,13 +201,45 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
         }
     }
 
+    // MainActivity is singleTop, so intents sent while it's on top of the stack (eg: from notifications) arrive here
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        showScreenFromIntent(intent)
+    }
+
+    /**
+     * Shows the screen that [intent] asks for, and applies its pairing action if it has one.
+     * Returns false if the intent doesn't ask for any screen.
+     * Must be called only once for each intent delivery.
+     */
+    private fun showScreenFromIntent(intent: Intent): Boolean {
+        val intentAlreadyHandled = (intent.flags and Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY) != 0
+        if (intentAlreadyHandled) {
+            return false
+        }
+        if (intent.hasExtra(FLAG_FORCE_OVERVIEW)) {
+            Log.i(TAG, "Requested to start main overview")
+            onDeviceSelected(null)
+            return true
+        }
+        val deviceId = intent.getStringExtra(EXTRA_DEVICE_ID) ?: return false
+        Log.i(TAG, "Loading selected device from parameter")
+        val pairStatus = intent.getStringExtra(PAIR_REQUEST_STATUS)
+        if (pairStatus == null) {
+            onDeviceSelected(deviceId)
+        } else {
+            Log.i(TAG, "Pair status is $pairStatus")
+            onDeviceSelected(onPairResultFromNotification(deviceId, pairStatus))
+        }
+        return true
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this)
     }
 
-    private fun onPairResultFromNotification(deviceId: String?, pairStatus: String): String? {
-        assert(deviceId != null)
+    private fun onPairResultFromNotification(deviceId: String, pairStatus: String): String? {
         if (pairStatus != PAIRING_PENDING) {
             val device = KdeConnect.getInstance().getDevice(deviceId)
             if (device == null) {

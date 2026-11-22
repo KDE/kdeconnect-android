@@ -41,8 +41,7 @@ class PingPlugin : Plugin() {
             return false
         }
 
-        val mutableUpdateFlags = PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-        val resultPendingIntent = PendingIntent.getActivity(context, 0, Intent(context, MainActivity::class.java), mutableUpdateFlags)
+        val resultPendingIntent = PendingIntent.getActivity(context, 0, Intent(context, MainActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP), PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 
         val (id: Int, message: String) = if (np.has("message")) {
             val id = SystemClock.elapsedRealtime().toInt()
