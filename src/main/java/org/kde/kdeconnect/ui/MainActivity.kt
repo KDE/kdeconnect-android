@@ -7,6 +7,7 @@
 package org.kde.kdeconnect.ui
 
 import android.Manifest
+import android.content.Intent
 import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import android.content.pm.PackageManager.PERMISSION_GRANTED
@@ -165,16 +166,23 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
         }
 
         // Decide which menu entry should be selected at start
+        val intentAlreadyHandled = (intent.flags and Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY) != 0
         var savedDevice: String?
         var savedMenuEntry: Int
         when {
-            intent.hasExtra(FLAG_FORCE_OVERVIEW) -> {
+            savedInstanceState != null -> {
+                Log.i(TAG, "Loading selected device from saved activity state")
+                savedDevice = savedInstanceState.getString(STATE_SELECTED_DEVICE)
+                savedMenuEntry = savedInstanceState.getInt(STATE_SELECTED_MENU_ENTRY, MENU_ENTRY_ADD_DEVICE)
+            }
+
+            !intentAlreadyHandled && intent.hasExtra(FLAG_FORCE_OVERVIEW) -> {
                 Log.i(TAG, "Requested to start main overview")
                 savedDevice = null
                 savedMenuEntry = MENU_ENTRY_ADD_DEVICE
             }
 
-            intent.hasExtra(EXTRA_DEVICE_ID) -> {
+            !intentAlreadyHandled && intent.hasExtra(EXTRA_DEVICE_ID) -> {
                 Log.i(TAG, "Loading selected device from parameter")
                 savedDevice = intent.getStringExtra(EXTRA_DEVICE_ID)
                 savedMenuEntry = MENU_ENTRY_DEVICE_UNKNOWN
@@ -187,12 +195,6 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
                         savedMenuEntry = MENU_ENTRY_ADD_DEVICE
                     }
                 }
-            }
-
-            savedInstanceState != null -> {
-                Log.i(TAG, "Loading selected device from saved activity state")
-                savedDevice = savedInstanceState.getString(STATE_SELECTED_DEVICE)
-                savedMenuEntry = savedInstanceState.getInt(STATE_SELECTED_MENU_ENTRY, MENU_ENTRY_ADD_DEVICE)
             }
 
             else -> {
