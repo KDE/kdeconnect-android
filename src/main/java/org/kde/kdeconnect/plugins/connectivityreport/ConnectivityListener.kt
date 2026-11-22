@@ -226,6 +226,17 @@ class ConnectivityListener(context: Context) {
             override fun onDataConnectionStateChanged(ignore: Int, networkType: Int) {
                 val state = states[subID]
                 if (state != null) {
+                    val networkType = if (networkType == TelephonyManager.NETWORK_TYPE_UNKNOWN && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        try {
+                            // Fallback to voice if data is not available
+                            context.getSystemService<TelephonyManager>()?.createForSubscriptionId(subID)?.voiceNetworkType
+                        } catch (_: SecurityException) {
+                            null
+                        } ?: TelephonyManager.NETWORK_TYPE_UNKNOWN
+                    } else {
+                        networkType
+                    }
+
                     val newNetworkType = ASUUtils.networkTypeToString(networkType)
                     if (newNetworkType != state.networkType) {
                         state.networkType = newNetworkType
