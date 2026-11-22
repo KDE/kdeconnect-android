@@ -64,6 +64,7 @@
   <string name="open_mousepad">원격 입력</string>
   <string name="open_mousepad_tv">TV 리모콘</string>
   <string name="mousepad_info">화면에서 손가락을 움직이면 마우스 커서를 움직입니다. 화면을 누르면 왼쪽 단추를 누르고, 두 손가락과 세 손가락으로 누르면 오른쪽/가운데 단추를 누릅니다. 두 손가락을 사용하여 스크롤할 수 있습니다. 드래그 앤 드롭을 사용하려면 길게 누르십시오. 플러그인 설정에서 자이로 마우스를 활성화할 수 있습니다</string>
+  <string name="mousepad_info_double_tap">화면에서 손가락을 움직이면 마우스 커서를 움직입니다. 화면을 누르면 왼쪽 단추를 누르고, 두 손가락과 세 손가락으로 누르면 오른쪽/가운데 단추를 누릅니다. 두 손가락을 사용하여 스크롤할 수 있습니다. 드래그 앤 드롭을 사용하려면 두 번 탭하십시오. 플러그인 설정에서 자이로 마우스를 활성화할 수 있습니다</string>
   <string name="mousepad_info_no_gestures">화면에서 손가락을 움직이면 마우스 커서를 움직이며, 탭하면 클릭합니다.</string>
   <string name="mousepad_keyboard_input_not_supported">페어링된 장치에서 키보드 입력을 지원하지 않음</string>
   <string name="mousepad_single_tap_settings_title">한 손가락으로 눌렀을 때 동작 설정</string>
@@ -246,6 +247,7 @@
   <string name="sftp_saf_permission_explanation">원격으로 파일에 접근하려면 저장소 위치를 설정해야 함</string>
   <string name="sftp_manage_storage_permission_explanation">이 장치에 있는 파일에 원격 접근을 허용하려면 KDE Connect에서 저장소를 관리할 수 있도록 허용해야 합니다.</string>
   <string name="sftp_missing_permission_error">권한 없음: 파일 시스템 접근</string>
+  <string name="sftp_could_not_determine_ip">로컬 IP 주소를 결정할 수 없음</string>
   <string name="no_players_connected">재생기를 찾을 수 없음</string>
   <string name="send_files">파일 보내기</string>
   <string name="use_digitizer">그래픽 태블릿으로 사용</string>
@@ -269,6 +271,7 @@
   <string name="device_rename_confirm">이름 바꾸기</string>
   <string name="refresh">새로 고침</string>
   <string name="unreachable_description">이 페어링된 장치에 접근할 수 없습니다. 같은 네트워크에 있는지 확인하십시오.</string>
+  <string name="unreachable_unpaired_description">장치에 접근할 수 없고 페어링되지 않았음</string>
   <string name="no_wifi">Wi-Fi 네트워크에 연결된 것 같지 않습니다. 다른 장치를 볼 수 없습니다. 여기를 클릭하면 Wi-Fi를 활성화합니다.</string>
   <string name="on_non_trusted_message">신뢰할 수 없는 네트워크: 자동 발견을 비활성화했습니다.</string>
   <string name="no_file_browser">설치된 파일 탐색기가 없습니다.</string>
@@ -297,10 +300,15 @@
   <string name="contacts_per_device_confirmation">휴대폰 연락처를 이 장치로 복사하여 KDE Connect SMS 앱이나 기타 앱에서 사용할 수 있습니다.</string>
   <string name="select_ringtone">벨소리 선택</string>
   <string name="telephony_pref_blocked_title">차단된 번호</string>
+  <string name="telephony_pref_blocked_dialog_desc">다음 번호에서 걸려 온 통화를 표시하지 않습니다. 한 줄당 하나의 번호를 지정하십시오</string>
   <string name="mpris_coverart_description">현재 미디어 커버 아트</string>
   <string name="settings_icon_description">설정 아이콘</string>
   <string name="presenter_fullscreen">전체 화면</string>
   <string name="presenter_exit">프레젠테이션 끝내기</string>
+  <string name="presenter_change_zoom">확대/축소 수준 변경</string>
+  <string name="presenter_zoom">확대/축소</string>
+  <string name="presenter_zoom_in">확대</string>
+  <string name="presenter_zoom_out">축소</string>
   <string name="presenter_lock_tip">장치 잠금 상태에서는 음량 키를 이전/다음 슬라이드 단추로 사용할 수 있습니다</string>
   <string name="add_command">명령 추가</string>
   <string name="addcommand_explanation">등록된 명령이 없습니다</string>
@@ -323,6 +331,7 @@
   <string name="runcommand_notpaired">장치가 페어링되지 않음</string>
   <string name="runcommand_nosuchdevice">장치가 없음</string>
   <string name="runcommand_noruncommandplugin">이 장치에서 명령 실행 플러그인이 활성화되어 있지 않음</string>
+  <string name="runcommand_widget_no_device">제목을 클릭하여 장치를 선택하십시오.</string>
   <string name="runcommand_category_device_controls_title">장치 제어</string>
   <string name="runcommand_device_controls_summary">장치에서 장치 제어를 지원한다면 설정된 명령이 표시됩니다.</string>
   <string name="set_runcommand_name_as_title">set_runcommand_name_as_title</string>
