@@ -13,7 +13,10 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import android.content.pm.PackageManager
 import android.net.Network
 import android.os.Build
+import android.os.ParcelFileDescriptor
 import android.os.SystemClock
+import android.system.Os
+import android.system.OsConstants
 import android.util.Log
 import androidx.annotation.WorkerThread
 import androidx.core.content.ContextCompat
@@ -279,12 +282,12 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
 
     private fun configureSocket(socket: Socket) {
         try {
-            socket.keepAlive = true
             socket.tcpNoDelay = true
             socket.soTimeout = 10 * 1000
         } catch (e: SocketException) {
             Log.e("LanLink", "Exception", e)
         }
+        enableKeepAlive(socket)
     }
 
     /**
@@ -674,6 +677,34 @@ class LanLinkProvider(private val context: Context) : BaseLinkProvider() {
         private const val MAX_RATE_LIMIT_ENTRIES: Int = 255
         private const val MAX_UNPAIRED_CONNECTIONS: Int = 42
         private const val NETWORK_CHANGE_DEBOUNCE_MS: Long = 200
+
+        // Linux values, not all of them are exposed in OsConstants
+        private const val TCP_KEEPIDLE = 4
+        private const val TCP_KEEPINTVL = 5
+        private const val TCP_KEEPCNT = 6
+        private const val TCP_USER_TIMEOUT = 18
+
+        /**
+         * Detect dead connections in ~60s instead of the system default (~2h for
+         * idle sockets, ~15 min for sockets with unacknowledged data), eg: when
+         * the other device disappears because it was suspended or left the network.
+         * Must be called on a connected socket.
+         */
+        fun enableKeepAlive(socket: Socket) {
+            try {
+                socket.keepAlive = true
+                ParcelFileDescriptor.fromSocket(socket).use { pfd ->
+                    val fd = pfd.fileDescriptor
+                    Os.setsockoptInt(fd, OsConstants.IPPROTO_TCP, TCP_KEEPIDLE, 30) // seconds before first keepalive probe
+                    Os.setsockoptInt(fd, OsConstants.IPPROTO_TCP, TCP_KEEPINTVL, 10) // seconds between probes
+                    Os.setsockoptInt(fd, OsConstants.IPPROTO_TCP, TCP_KEEPCNT, 3) // failed probes before connection is dropped
+                    // Abort if sent data is unacknowledged for 60s (matches idle + intvl * cnt)
+                    Os.setsockoptInt(fd, OsConstants.IPPROTO_TCP, TCP_USER_TIMEOUT, 60 * 1000)
+                }
+            } catch (e: Exception) {
+                Log.e("KDE/LanLink", "Failed to configure keepalive", e)
+            }
+        }
 
         @Throws(IOException::class)
         fun openServerSocketOnFreePort(minPort: Int): ServerSocket {

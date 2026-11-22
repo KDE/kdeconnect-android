@@ -182,6 +182,7 @@ class LanLink(
             server.setSoTimeout(10 * 1000)
 
             payloadSocket = server.accept()
+            LanLinkProvider.enableKeepAlive(payloadSocket)
 
             // Convert to SSL if needed
             payloadSocket = convertToSslSocket(context, payloadSocket, deviceId,
@@ -236,6 +237,7 @@ class LanLink(
                 val tcpPort = np.payloadTransferInfo.getValue("port").jsonPrimitive.int
                 val deviceAddress = socket.getRemoteSocketAddress() as InetSocketAddress
                 payloadSocket.connect(InetSocketAddress(deviceAddress.address, tcpPort))
+                LanLinkProvider.enableKeepAlive(payloadSocket)
                 payloadSocket = convertToSslSocket(context, payloadSocket, deviceId,
                     isDeviceTrusted = true,
                     clientMode = true
