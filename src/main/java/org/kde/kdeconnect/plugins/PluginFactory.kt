@@ -51,6 +51,10 @@ object PluginFactory {
     }
 
     fun pluginsForCapabilities(incoming: Set<String>, outgoing: Set<String>): Set<String> {
+        if (incoming.isEmpty() || outgoing.isEmpty()) {
+            return availablePlugins // Assume all are supported
+        }
+
         fun hasCommonCapabilities(info: PluginInfo): Boolean =
             outgoing.any { it in info.supportedPacketTypes } ||
             incoming.any { it in info.outgoingPacketTypes }

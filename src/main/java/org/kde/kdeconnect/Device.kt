@@ -133,7 +133,7 @@ class Device : PacketReceiver {
         this.context = context
         this.deviceInfo = link.deviceInfo
         this.pairingHandler = PairingHandler(this, createDefaultPairingCallback(), PairingHandler.PairState.NotPaired)
-        this.supportedPlugins = PluginFactory.availablePlugins // Assume all are supported until we receive capabilities
+        this.supportedPlugins = PluginFactory.pluginsForCapabilities(deviceInfo.incomingCapabilities.orEmpty(), deviceInfo.outgoingCapabilities.orEmpty())
         Log.i("Device", "Creating untrusted device: ${deviceInfo.name}")
         addLink(link)
     }
