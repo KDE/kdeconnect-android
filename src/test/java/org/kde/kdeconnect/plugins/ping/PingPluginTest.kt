@@ -3,6 +3,7 @@ package org.kde.kdeconnect.plugins.ping
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import androidx.core.app.NotificationCompat
 import androidx.core.content.getSystemService
@@ -35,6 +36,8 @@ class PingPluginTest {
             every<PendingIntent> {
                 PendingIntent.getActivity(any<Context>(), any(), any(), any())
             } returns mockk<PendingIntent>()
+            mockkConstructor(Intent::class)
+            every { anyConstructed<Intent>().setFlags(any()) } answers { self as Intent }
             mockkStatic(NotificationCompat.Builder::class) {
                 mockkConstructor(NotificationCompat.Builder::class)
                 every { anyConstructed<NotificationCompat.Builder>().build() } returns mockk()
