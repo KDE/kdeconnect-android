@@ -238,7 +238,7 @@ fun RunCommandScreen(
                     if (!plugin.canAddCommand()) {
                         text += "\n" + stringResource(R.string.addcommand_explanation2)
                     }
-                    Text(text)
+                    Text(text, textAlign = TextAlign.Center)
                 }
             }
 
