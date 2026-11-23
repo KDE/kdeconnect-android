@@ -90,8 +90,8 @@
   <string-array name="mousepad_sensitivity_entries">
     <item>En Yavaş</item>
     <item>En Yavaşın Üstü</item>
-    <item>Öntanımlı</item>
-    <item>Öntanımlının Üstü</item>
+    <item>Varsayılan</item>
+    <item>Varsayılannın Üstü</item>
     <item>En Hızlı</item>
   </string-array>
   <string-array name="mousepad_acceleration_profile_entries">
@@ -286,7 +286,7 @@
   <string name="pref_plugin_telepathy">SMS Gönder</string>
   <string name="pref_plugin_telepathy_desc">Masaüstünden metin iletisi gönder</string>
   <string name="pref_plugin_telepathy_mms">MMS Gönder</string>
-  <string name="pref_plugin_telepathy_mms_desc">KDE Connect üzerinden MMS göndermek için onu öntanımlı SMS uygulaması olarak ayarlayın.</string>
+  <string name="pref_plugin_telepathy_mms_desc">KDE Connect üzerinden MMS göndermek için onu varsayılan SMS uygulaması olarak ayarlayın.</string>
   <string name="findmyphone_title">Telefonumu bul</string>
   <string name="findmyphone_title_tablet">Tabletimi bul</string>
   <string name="findmyphone_title_tv">TV’mi bul</string>
@@ -416,7 +416,7 @@
     <item>Koyu</item>
   </string-array>
   <string-array name="theme_list_v28">
-    <item>Sistem Öntanımlısı</item>
+    <item>Sistem Varsayılanı</item>
     <item>Açık</item>
     <item>Koyu</item>
   </string-array>
