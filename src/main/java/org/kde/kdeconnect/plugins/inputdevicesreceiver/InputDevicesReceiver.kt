@@ -6,8 +6,10 @@
 package org.kde.kdeconnect.plugins.inputdevicesreceiver
 
 import android.hardware.display.DisplayManager
+import android.os.Build
 import android.util.DisplayMetrics
 import android.view.Display
+import androidx.annotation.RequiresApi
 import androidx.core.content.getSystemService
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.plugins.Plugin
@@ -17,6 +19,9 @@ import org.kde.kdeconnect_tp.R
 
 @LoadablePlugin
 class InputDevicesReceiverPlugin : Plugin() {
+    // Depends on MouseReceiverPlugin, which requires API 24
+    override val minSdk: Int = Build.VERSION_CODES.N
+
     override val displayName: String
         get() = context.resources.getString(R.string.pref_plugin_inputdevicesreceiver)
 
@@ -68,6 +73,7 @@ class InputDevicesReceiverPlugin : Plugin() {
         Cursor.enterEdge = NONE_EDGE
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     override fun onPacketReceived(np: NetworkPacket): Boolean {
         val mouseReceiverPlugin = device.getPlugin<MouseReceiverPlugin>()
 
