@@ -295,6 +295,7 @@
   <string name="device_rename_confirm">שינוי שם</string>
   <string name="refresh">ריענון</string>
   <string name="unreachable_description">ההתקן המצומד לא זמין, כדאי לוודא שהוא מחובר לאותה רשת כמוך.</string>
+  <string name="unreachable_unpaired_description">המכשיר לא נגיש ולא מצומד</string>
   <string name="no_wifi">לא התחברת לאף רשת אלחוטית, לכן אין לך אפשרות לראות מכשירים כלשהם. לחיצה כאן תפעיל את הרשת האלחוטית.</string>
   <string name="on_non_trusted_message">לא רשת מהימנה: גילוי אוטומטי מושבת.</string>
   <string name="no_file_browser">לא מותקנים מנהלי קבצים.</string>
