@@ -104,6 +104,8 @@ class PresenterActivity : AppCompatActivity(), SensorEventListener, OnSharedPref
         plugin = KdeConnect.getInstance().getDevicePlugin<PresenterPlugin>(intent.getStringExtra(EXTRA_DEVICE_ID))
             ?: return finish()
 
+        plugin.initializeRemoteInput()
+
         prefs = plugin.preferences
         prefs.registerOnSharedPreferenceChangeListener(this)
         applyPrefs()

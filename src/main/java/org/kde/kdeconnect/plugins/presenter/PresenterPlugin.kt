@@ -53,27 +53,31 @@ class PresenterPlugin : Plugin() {
 
     override val outgoingPacketTypes: Array<String> = arrayOf(PACKET_TYPE_MOUSEPAD_REQUEST, PACKET_TYPE_PRESENTER)
 
-    fun sendNext() {
-        val np = NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST)
-        np["specialKey"] = KeyListenerView.SpecialKeysMap.get(KeyEvent.KEYCODE_PAGE_DOWN)
-        device.sendPacket(np)
+    fun sendNext() = sendSpecialKey(KeyEvent.KEYCODE_PAGE_DOWN)
+
+    fun sendPrevious() = sendSpecialKey(KeyEvent.KEYCODE_PAGE_UP)
+
+    fun sendFullscreen() = sendSpecialKey(KeyEvent.KEYCODE_F5)
+
+    fun sendEsc() = sendSpecialKey(KeyEvent.KEYCODE_ESCAPE)
+
+    /**
+     * Creates the remote input session on the desktop before the first key is sent.
+     *
+     * On Wayland the RemoteDesktop portal session is created lazily by the first
+     * mousepad packet, and that packet is discarded. Slide changes are discrete
+     * key presses, so create the session when the presenter UI opens instead of
+     * losing the first PageUp/PageDown to the portal handshake.
+     */
+    fun initializeRemoteInput() {
+        if (!device.isReachable) return
+        device.sendPacket(NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST))
     }
 
-    fun sendPrevious() {
+    private fun sendSpecialKey(keyCode: Int) {
+        if (!device.isReachable) return
         val np = NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST)
-        np["specialKey"] = KeyListenerView.SpecialKeysMap.get(KeyEvent.KEYCODE_PAGE_UP)
-        device.sendPacket(np)
-    }
-
-    fun sendFullscreen() {
-        val np = NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST)
-        np["specialKey"] = KeyListenerView.SpecialKeysMap.get(KeyEvent.KEYCODE_F5)
-        device.sendPacket(np)
-    }
-
-    fun sendEsc() {
-        val np = NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST)
-        np["specialKey"] = KeyListenerView.SpecialKeysMap.get(KeyEvent.KEYCODE_ESCAPE)
+        np["specialKey"] = KeyListenerView.SpecialKeysMap.get(keyCode)
         device.sendPacket(np)
     }
 
