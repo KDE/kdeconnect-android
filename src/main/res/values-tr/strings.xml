@@ -112,7 +112,7 @@
   <string name="sendkeystrokes_pref_enabled">Düğme basımı göndermeyi etkinleştir</string>
   <string name="sendkeystrokes_pref_enabled_summary">“text/x-keystrokes” MIME türlü veriyi dinle</string>
   <string name="sendkeystrokes_safe_text_enabled">Güvenli metni anında gönder</string>
-  <string name="sendkeystrokes_safe_text_enabled_summary">Onay olmadan yalnızca sayısal kısa diziler gönder</string>
+  <string name="sendkeystrokes_safe_text_enabled_summary">Onay olmadan yalnızca sayısal kısa dizgeler gönder</string>
   <string name="pref_plugin_mousepad_send_keystrokes">Düğme basımları olarak gönder</string>
   <string name="mouse_receiver_plugin_description">Uzaktan fare hareketi al</string>
   <string name="mouse_receiver_plugin_name">Fare alıcısı</string>
